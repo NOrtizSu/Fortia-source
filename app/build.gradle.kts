@@ -108,6 +108,11 @@ android {
         unitTests.isReturnDefaultValues = true
     }
 
+    // The food recognizer is memory-mapped from the APK: it must be stored uncompressed.
+    androidResources {
+        noCompress += "tflite"
+    }
+
     // Users can pick the app language in the system settings (Android 13+, res/xml/locales_config.xml):
     // keep every language in the base APK so the chosen one is always installed.
     bundle {
@@ -202,7 +207,12 @@ dependencies {
     implementation(libs.billing.ktx)
     // Asks for a Google Play rating with Google's own card (no screen of ours).
     implementation(libs.play.review)
+    // Comida: the food recognizer runs on the phone (LiteRT, no Play services) and barcodes are read
+    // from a photo (ZXing core, no camera preview).
+    implementation(libs.litert)
+    implementation(libs.zxing.core)
 
     testImplementation(libs.junit)
     testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.sqlite.jdbc)
 }

@@ -164,6 +164,29 @@ object AppIcons {
         )
     }
 
+    /** Fork and knife ("restaurant"): the Comida tab and meals. */
+    val Restaurant: ImageVector by lazy {
+        icon(
+            "Restaurant",
+            "M11,9H9V2H7v7H5V2H3v7c0,2.12 1.66,3.84 3.75,3.97V22h2.5v-9.03C11.34,12.84 13,11.12 13,9V2h-2V9z" +
+                "M16,6v8h2.5v8H21V2C18.24,2 16,4.24 16,6z",
+        )
+    }
+
+    /** A product barcode (bars of different widths). */
+    val Barcode: ImageVector by lazy {
+        icon("Barcode", "M2,5h2v14H2zM5,5h1v14H5zM7,5h3v14H7zM11,5h1v14h-1zM14,5h2v14h-2zM17,5h1v14h-1zM19,5h3v14h-3z")
+    }
+
+    /** Flag ("flag"): the daily food goal. */
+    val Flag: ImageVector by lazy {
+        icon("Flag", "M14.4,6L14,4H5v17h2v-7h5.6l0.4,2h7V6z")
+    }
+
+    val ChevronLeft: ImageVector by lazy {
+        icon("ChevronLeft", "M15.41,7.41L14,6l-6,6 6,6 1.41,-1.41L10.83,12z", autoMirror = true)
+    }
+
     /** Line chart with sparkles ("insights"): the Progreso tab. */
     val Insights: ImageVector by lazy {
         icon(

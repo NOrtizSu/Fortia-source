@@ -65,6 +65,8 @@ import com.enjoyyourtime.globalfitness.ui.components.Sparkline
 import com.enjoyyourtime.globalfitness.ui.components.StatusChip
 import com.enjoyyourtime.globalfitness.ui.components.TabPage
 import com.enjoyyourtime.globalfitness.ui.devices.ScaleSuggestionCard
+import com.enjoyyourtime.globalfitness.ui.food.FoodTodayCard
+import com.enjoyyourtime.globalfitness.ui.food.FoodTodayUi
 import com.enjoyyourtime.globalfitness.ui.wearables.wearableStatus
 import com.enjoyyourtime.globalfitness.ui.health.HealthDashboard
 import com.enjoyyourtime.globalfitness.ui.health.HealthFormat
@@ -107,6 +109,9 @@ fun TodayScreen(
     state: MainUiState,
     status: TodayStatus,
     muscles: MusclesUiState,
+    /** The food card, null while hidden (nothing logged, no goal set). */
+    food: FoodTodayUi?,
+    onOpenFood: () -> Unit,
     access: BleAccess,
     onRetryScan: () -> Unit,
     onConnectHealth: () -> Unit,
@@ -193,6 +198,8 @@ fun TodayScreen(
                 WeekMusclesCard(muscles, female = state.profile?.sex == Sex.FEMALE, onOpen = onOpenMuscles)
             }
         }
+        // Only once the user logs food or set a goal: Hoy stays as it was for everyone else.
+        food?.let { f -> item(key = "food") { FoodTodayCard(f, onOpen = onOpenFood) } }
         item(key = "weight") { WeightCard(entries, now, onOpen = { onOpenMetric(Metric.WEIGHT) }, onAddWeight = onAddWeight) }
         if (entries.isNotEmpty()) {
             val latest = entries.lastOrNull { it.composition.fatPercent != null }

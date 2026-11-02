@@ -24,7 +24,7 @@
         tools:targetApi="s" />
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
 
-    <!-- Health Connect: read wearable data (e.g. Mi Fitness), write scale measurements and workouts -->
+    <!-- Health Connect: read wearable data (e.g. Mi Fitness), write scale measurements, workouts and meals -->
     <uses-permission android:name="android.permission.health.READ_STEPS" />
     <uses-permission android:name="android.permission.health.READ_DISTANCE" />
     <uses-permission android:name="android.permission.health.READ_ACTIVE_CALORIES_BURNED" />
@@ -46,6 +46,7 @@
     <uses-permission android:name="android.permission.health.WRITE_BASAL_METABOLIC_RATE" />
     <uses-permission android:name="android.permission.health.WRITE_BODY_WATER_MASS" />
     <uses-permission android:name="android.permission.health.WRITE_EXERCISE" />
+    <uses-permission android:name="android.permission.health.WRITE_NUTRITION" />
 
     <!-- Health Connect app (Android 13 and lower) and installed Mi Fitness variant (band settings shortcut) -->
     <queries>
@@ -154,7 +155,7 @@
             </intent-filter>
         </activity>
 
-        <!-- Machine photos: the camera app writes into the cache folder shared here (no storage or camera permission) -->
+        <!-- Machine and meal photos: the camera app writes into the cache folders shared here (no storage or camera permission) -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.fileprovider"

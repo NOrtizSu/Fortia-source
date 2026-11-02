@@ -25,6 +25,9 @@ enum class HealthDataType(val readPermission: String?, val writePermission: Stri
     LEAN_BODY_MASS(null, write("LEAN_BODY_MASS")),
     BASAL_METABOLIC_RATE(null, write("BASAL_METABOLIC_RATE")),
     BODY_WATER_MASS(null, write("BODY_WATER_MASS")),
+
+    /** Write only: the meals of the food log ([FoodExporter]); the app never reads nutrition. */
+    NUTRITION(null, write("NUTRITION")),
 }
 
 private fun read(name: String) = "android.permission.health.READ_$name"
@@ -67,9 +70,18 @@ object HealthPermissions {
     /** Write permission for the workouts of the training log (exercise sessions). */
     val WRITE_EXERCISE: String = checkNotNull(HealthDataType.EXERCISE.writePermission)
 
-    /** Everything to ask for; the history permission only when the device supports it. */
+    /** Write permission for the meals of the food log (nutrition records). */
+    val WRITE_NUTRITION: String = checkNotNull(HealthDataType.NUTRITION.writePermission)
+
+    /**
+     * Asked only in context, never by "Connect Health Connect": nutrition after the first meal saved
+     * (and by the meals switch), so connecting for the scale or the band does not ask about meals.
+     */
+    val contextOnly: Set<String> = setOf(WRITE_NUTRITION)
+
+    /** Everything the connect request asks for (not [contextOnly]); the history permission only when the device supports it. */
     fun requested(historyAvailable: Boolean): Set<String> =
-        readPermissions + writePermissions + if (historyAvailable) setOf(READ_HISTORY) else emptySet()
+        readPermissions + writePermissions - contextOnly + if (historyAvailable) setOf(READ_HISTORY) else emptySet()
 
     fun readableTypes(granted: Set<String>): Set<HealthDataType> =
         HealthDataType.entries.filter { it.readPermission != null && it.readPermission in granted }.toSet()
@@ -92,6 +104,9 @@ object HealthPermissions {
     /** Workouts are saved as exercise sessions (and deleted again) only with this permission. */
     fun canExportWorkouts(granted: Set<String>): Boolean = canWrite(granted, HealthDataType.EXERCISE)
 
+    /** Meals are saved as nutrition records (and deleted again) only with this permission. */
+    fun canExportMeals(granted: Set<String>): Boolean = canWrite(granted, HealthDataType.NUTRITION)
+
     fun historyGranted(granted: Set<String>): Boolean = READ_HISTORY in granted
 
     /** Days to import on a full read. */
@@ -104,8 +119,8 @@ object HealthPermissions {
     fun allGranted(granted: Set<String>, historyAvailable: Boolean): Boolean = missing(granted, historyAvailable).isEmpty()
 
     /**
-     * Requested permissions the connection status does not depend on: writing workouts has its
-     * own switch (and "Allow" button), and users who connected before it existed do not have it.
+     * Requested permissions the connection status does not depend on: writing workouts has its own
+     * switch (and "Allow" button), and users who connected before it existed do not have it.
      */
     val optionalForStatus: Set<String> = setOf(WRITE_EXERCISE)
 

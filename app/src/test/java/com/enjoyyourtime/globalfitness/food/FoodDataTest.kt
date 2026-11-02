@@ -1,0 +1,231 @@
+package com.enjoyyourtime.globalfitness.food
+
+import com.enjoyyourtime.globalfitness.food.data.FoodBatch
+import com.enjoyyourtime.globalfitness.food.data.FoodRepository
+import com.enjoyyourtime.globalfitness.food.data.FoodSchema
+import com.enjoyyourtime.globalfitness.food.data.FoodVersions
+import com.enjoyyourtime.globalfitness.food.model.CustomFood
+import com.enjoyyourtime.globalfitness.food.model.CustomFoodSource
+import com.enjoyyourtime.globalfitness.food.model.FoodTombstones
+import com.enjoyyourtime.globalfitness.food.model.FoodUnit
+import com.enjoyyourtime.globalfitness.food.model.Nutrients
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.test.StandardTestDispatcher
+import kotlinx.coroutines.test.TestScope
+import kotlinx.coroutines.test.advanceUntilIdle
+import kotlinx.coroutines.test.runTest
+import org.junit.After
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertNotNull
+import org.junit.Assert.assertNull
+import org.junit.Assert.assertTrue
+import org.junit.Assert.fail
+import org.junit.Test
+import java.sql.Connection
+import java.sql.DriverManager
+
+@OptIn(ExperimentalCoroutinesApi::class)
+class FoodDataTest {
+    // ---- schema on a real SQLite ---------------------------------------------------------------
+
+    private fun columns(db: Connection, table: String): List<String> =
+        db.createStatement().executeQuery("PRAGMA table_info($table)").use { rs ->
+            buildList { while (rs.next()) add(rs.getString("name")) }
+        }
+
+    @Test
+    fun schemaCreatesEveryColumnTheDatabaseReads() {
+        DriverManager.getConnection("jdbc:sqlite::memory:").use { db ->
+            FoodSchema.CREATE.forEach { db.createStatement().execute(it) }
+            assertEquals(FoodSchema.ENTRY_COLUMNS, columns(db, "food_entries"))
+            assertEquals(FoodSchema.CUSTOM_FOOD_COLUMNS, columns(db, "custom_foods"))
+            assertEquals(listOf("kind", "id", "deleted_at"), columns(db, "tombstones"))
+            assertEquals(listOf("entry_id", "version", "record_id", "exported_at", "device"), columns(db, "hc_export"))
+            // The reads select these lists: they work, NULLs included.
+            val placeholders = FoodSchema.ENTRY_COLUMNS.joinToString { "?" }
+            db.prepareStatement("INSERT INTO food_entries (${FoodSchema.ENTRY_COLUMNS.joinToString()}) VALUES ($placeholders)").use { st ->
+                FoodSchema.ENTRY_COLUMNS.forEachIndexed { i, c ->
+                    when (c) {
+                        "id" -> st.setString(i + 1, "e1")
+                        "eaten_at", "created_at", "updated_at" -> st.setLong(i + 1, 1L)
+                        "zone_offset" -> st.setInt(i + 1, 3600)
+                        "meal", "name", "unit", "source" -> st.setString(i + 1, "x")
+                        "amount" -> st.setDouble(i + 1, 150.0)
+                        else -> st.setNull(i + 1, java.sql.Types.NULL)
+                    }
+                }
+                st.executeUpdate()
+            }
+            db.createStatement().executeQuery("SELECT ${FoodSchema.ENTRY_COLUMNS.joinToString()} FROM food_entries ORDER BY eaten_at, id").use { rs ->
+                assertTrue(rs.next())
+                assertEquals("e1", rs.getString(1))
+                assertNull(rs.getObject(12)) // kcal unknown
+            }
+        }
+    }
+
+    @Test
+    fun upgradeStepsAreSafeToRunAgain() {
+        DriverManager.getConnection("jdbc:sqlite::memory:").use { db ->
+            FoodSchema.CREATE.forEach { db.createStatement().execute(it) }
+            // A newer file opened by this version, then upgraded again: nothing fails, nothing is lost.
+            db.createStatement().execute("INSERT INTO tombstones (kind, id, deleted_at) VALUES ('food_entry', 'a', 5)")
+            FoodSchema.upgrade(0).forEach { db.createStatement().execute(it) }
+            assertEquals(emptyList<String>(), FoodSchema.upgrade(FoodSchema.VERSION))
+            db.createStatement().executeQuery("SELECT COUNT(*) FROM tombstones").use { rs ->
+                rs.next()
+                assertEquals(1, rs.getInt(1))
+            }
+        }
+    }
+
+    // ---- repository --------------------------------------------------------------------------------
+
+    private var now = 1_000_000L
+    private var ids = 0
+    private val scopes = mutableListOf<CoroutineScope>()
+
+    @After
+    fun cancelScopes() = scopes.forEach { it.cancel() }
+
+    private fun TestScope.repo(store: FakeFoodStore = FakeFoodStore()): FoodRepository {
+        val dispatcher = StandardTestDispatcher(testScheduler)
+        val scope = CoroutineScope(SupervisorJob() + dispatcher).also { scopes += it }
+        return FoodRepository(store, scope, io = dispatcher, clock = { now }, newId = { "id${ids++}" })
+    }
+
+    @Test
+    fun addEditDeleteAndUndo() = runTest {
+        val store = FakeFoodStore()
+        val repo = repo(store)
+        advanceUntilIdle()
+        val e = repo.addEntry(testEntry(name = "  Paella "))
+        assertEquals("id0", e.id)
+        assertEquals("Paella", e.name)
+        assertEquals(now, e.updatedAt)
+        val edited = repo.updateEntry(e.id) { it.copy(amount = 200.0) }!!
+        assertEquals(now + 1, edited.updatedAt) // past the version it replaced, even at the same instant
+        assertEquals(edited, repo.entries.value.single())
+        assertEquals(edited, repo.deleteEntry(e.id))
+        assertTrue(repo.entries.value.isEmpty())
+        val tomb = store.tombstones.getValue(FoodTombstones.ENTRY to e.id)
+        assertTrue("the deletion is newer than the version it deletes", tomb.deletedAt > edited.updatedAt)
+        val back = repo.restoreEntry(edited)
+        assertTrue(back.updatedAt > tomb.deletedAt)
+        assertEquals(listOf(back), repo.entries.value)
+        assertTrue("undo removes the tombstone", store.tombstones.isEmpty())
+        assertNull(repo.updateEntry("missing") { it })
+    }
+
+    private fun food(id: String = "", barcode: String? = "841", updatedAt: Long = 0) =
+        CustomFood(id, "Galletas", "Marca", barcode, FoodUnit.G, Nutrients(kcal = 436.0), 25.0, CustomFoodSource.OFF, updatedAt, updatedAt)
+
+    @Test
+    fun aPlatesPhotoStaysWhileAnotherFoodOfItRemains() = runTest {
+        val repo = repo()
+        advanceUntilIdle()
+        val steak = repo.addEntry(testEntry(name = "Steak", photo = "plate.jpg"))
+        repo.addEntry(testEntry(name = "Chips", photo = "plate.jpg"))
+        val seen = FoodVersions(repo.entries.value.associate { it.id to it.updatedAt })
+        // Another phone deleted the steak: the chips keep the photo.
+        val (_, photos) = repo.applyRemoteIfUnchanged(FoodBatch(removeEntries = listOf(steak.id)), seen)
+        assertTrue(photos.isEmpty())
+        val chips = repo.entries.value.single()
+        val (_, last) = repo.applyRemoteIfUnchanged(FoodBatch(removeEntries = listOf(chips.id)), FoodVersions(mapOf(chips.id to chips.updatedAt)))
+        assertEquals(listOf("plate.jpg"), last)
+    }
+
+    @Test
+    fun customFoodsAndBarcodeLookup() = runTest {
+        val repo = repo()
+        advanceUntilIdle()
+        val f = repo.addCustomFood(food())
+        now += 10
+        val newer = repo.addCustomFood(food())
+        assertEquals("the latest product of a barcode", newer, repo.customFoodByBarcode("841"))
+        val upc = repo.addCustomFood(food(barcode = "0036000291452"))
+        assertEquals("a UPC-A read as 12 digits finds its EAN-13", upc, repo.customFoodByBarcode("036000291452"))
+        assertNull(repo.customFoodByBarcode("000"))
+        repo.deleteCustomFood(f.id)
+        assertEquals(listOf(newer, upc), repo.customFoods.value)
+    }
+
+    @Test
+    fun cloudChangesKeepThePhotoAndNeverOverwriteALocalEdit() = runTest {
+        val repo = repo()
+        advanceUntilIdle()
+        val a = repo.addEntry(testEntry(photo = "meal_1.jpg"))
+        val b = repo.addEntry(testEntry(photo = "meal_2.jpg"))
+        val seen = FoodVersions(repo.entries.value.associate { it.id to it.updatedAt })
+        // The user edits b while the sync is running.
+        now += 5
+        repo.updateEntry(b.id) { it.copy(amount = 90.0) }
+        val fromCloud = a.copy(amount = 300.0, photo = null, updatedAt = a.updatedAt + 100)
+        val (applied, photos) = repo.applyRemoteIfUnchanged(FoodBatch(upsertEntries = listOf(fromCloud), removeEntries = listOf(b.id)), seen)
+        assertEquals(listOf(fromCloud.copy(photo = "meal_1.jpg")), applied.upsertEntries)
+        assertTrue("b changed since the sync read it: left for the next sync", applied.removeEntries.isEmpty())
+        assertTrue(photos.isEmpty())
+        assertEquals("meal_1.jpg", repo.entry(a.id)!!.photo)
+        assertEquals(300.0, repo.entry(a.id)!!.amount, 0.0)
+        assertNotNull(repo.entry(b.id))
+        // A removal of an unchanged entry hands back its photo to delete.
+        val seen2 = FoodVersions(repo.entries.value.associate { it.id to it.updatedAt })
+        val (_, gone) = repo.applyRemoteIfUnchanged(FoodBatch(removeEntries = listOf(a.id)), seen2)
+        assertEquals(listOf("meal_1.jpg"), gone)
+        assertNull(repo.entry(a.id))
+    }
+
+    @Test
+    fun aDatabaseThatCannotOpenFailsEveryWriteAtOnce() = runTest {
+        val repo = repo(FakeFoodStore().apply { failLoad = true })
+        advanceUntilIdle()
+        assertEquals("disk I/O error", repo.loadError.value)
+        // Before: the write waited forever for a load that never comes (and the page closed as if saved).
+        try {
+            repo.addEntry(testEntry())
+            fail("the write must fail")
+        } catch (e: IllegalStateException) {
+            assertTrue(e.message!!.contains("disk I/O error"))
+        }
+        try {
+            repo.snapshot()
+            fail("the backup must not read an empty log")
+        } catch (e: IllegalStateException) {
+            assertTrue(e.message!!.contains("food database"))
+        }
+    }
+
+    @Test
+    fun aPhotoTheScreensStillNeedIsNeverHandedOutForDeletion() = runTest {
+        val repo = repo()
+        advanceUntilIdle()
+        val meal = repo.addEntry(testEntry(photo = "plate.jpg"))
+        assertTrue(repo.photoInUse("plate.jpg"))
+        // Deleted here with "Undo" offered (or the plate being logged again): a sync deleting it keeps the file.
+        val undo = repo.registerPhotoUser { it == "plate.jpg" }
+        val (applied, photos) = repo.applyRemoteIfUnchanged(FoodBatch(removeEntries = listOf(meal.id)), FoodVersions(mapOf(meal.id to meal.updatedAt)))
+        assertEquals(listOf(meal.id), applied.removeEntries)
+        assertTrue(photos.isEmpty())
+        assertTrue(repo.photoInUse("plate.jpg"))
+        undo.close()
+        assertFalse(repo.photoInUse("plate.jpg"))
+    }
+
+    @Test
+    fun theBackupReadsEntriesFoodsAndTombstonesTogether() = runTest {
+        val repo = repo()
+        advanceUntilIdle()
+        val kept = repo.addEntry(testEntry(name = "Kept"))
+        val gone = repo.addEntry(testEntry(name = "Gone"))
+        val f = repo.addCustomFood(food())
+        repo.deleteEntry(gone.id)
+        val s = repo.snapshot()
+        assertEquals(listOf(kept), s.entries)
+        assertEquals(listOf(f), s.customFoods)
+        assertEquals(listOf(gone.id), s.tombstones.map { it.id })
+    }
+}

@@ -1,0 +1,234 @@
+# The Comida (food log) tab: photo, barcode, search or manual entry; the day, the daily goal, Health Connect. Food names are in 97_foods.txt.
+
+# Bottom bar (one short word)
+nav_food = Питание
+
+# Units
+unit_g = г
+unit_ml = мл
+value_g = %1$s г
+value_ml = %1$s мл
+
+# Portion names
+food_portion_unit = Штука
+food_portion_piece = Кусок
+food_portion_slice = Ломтик
+food_portion_plate = Тарелка
+food_portion_small_plate = Маленькая тарелка
+food_portion_bowl = Миска
+food_portion_cup = Чашка
+food_portion_glass = Стакан
+food_portion_can = Банка
+food_portion_bottle = Бутылка
+food_portion_tbsp = Столовая ложка
+food_portion_tsp = Чайная ложка
+food_portion_handful = Горсть
+food_portion_serving = Порция
+
+# Meals of the day
+foodlog_meal_breakfast = Завтрак
+foodlog_meal_lunch = Обед
+foodlog_meal_snack = Перекус
+foodlog_meal_dinner = Ужин
+foodlog_meal_other = Другое
+
+# Nutrition label
+foodlog_nutrient_kcal = Калории
+foodlog_nutrient_protein = Белки
+foodlog_nutrient_carbs = Углеводы
+foodlog_nutrient_sugars = Сахара
+foodlog_nutrient_fat = Жиры
+foodlog_nutrient_sat_fat = Насыщенные жиры
+foodlog_nutrient_fiber = Клетчатка
+foodlog_nutrient_salt = Соль
+
+# The day
+foodlog_previous_day = Предыдущий день
+foodlog_next_day = Следующий день
+foodlog_eaten = Съедено
+foodlog_goal_of = из %1$s ккал
+foodlog_left = осталось
+foodlog_over = сверх цели
+foodlog_left_desc = Съедено %1$s из %2$s ккал, осталось %3$s ккал
+foodlog_over_desc = Съедено %1$s из %2$s ккал, на %3$s ккал больше цели
+foodlog_no_goal = Задайте дневную цель, чтобы видеть, сколько осталось.
+foodlog_set_goal = Задать цель
+foodlog_value_of_target = %1$s / %2$s
+foodlog_limit_desc = %1$s: %2$s, лимит
+foodlog_limit_over_desc = %1$s: %2$s, выше лимита
+foodlog_label_value = %1$s: %2$s
+foodlog_more = Подробнее
+foodlog_less = Свернуть
+foodlog_portion_amount = %1$s × %2$s · %3$s
+foodlog_edit_entry = Изменить
+foodlog_empty_today = Сегодня ничего не записано
+foodlog_empty_day = В этот день ничего не записано
+foodlog_empty_text = Сфотографируйте тарелку: Fortia предложит, что это, а вы подтвердите.
+foodlog_add_photo_short = Фото
+foodlog_add_search_short = Поиск
+foodlog_estimates_note = Значения приблизительные: они взяты из таблиц состава продуктов и с этикеток. Это не медицинская рекомендация.
+foodlog_deleted = Удалено: %1$s
+foodlog_undo = Отменить
+foodlog_write_failed = Не удалось сохранить изменение. Повторите попытку.
+foodlog_db_error = Не удалось открыть дневник питания
+
+# Add
+foodlog_add = Добавить
+foodlog_add_title = Добавить еду
+foodlog_add_photo = Фото тарелки
+foodlog_add_photo_text = Распознаётся на телефоне, фото никуда не отправляется
+foodlog_add_gallery = Фото из галереи
+foodlog_add_gallery_text = Уже сделанный снимок
+foodlog_add_barcode = Штрихкод
+foodlog_add_barcode_text = Сфотографируйте штрихкод на упаковке
+foodlog_add_barcode_gallery = Фото штрихкода из галереи
+foodlog_add_search = Найти продукт
+foodlog_add_search_text = Продукты и блюда, а также ваши продукты
+foodlog_add_manual = Ввести вручную
+foodlog_add_manual_text = Название, количество и калории
+foodlog_camera_unavailable = Нет приложения, которое может сделать фото. Выберите снимок из галереи.
+
+# Photo
+foodlog_photo_title = Что на тарелке?
+foodlog_photo_desc = Фото еды
+foodlog_photo_recognizing = Распознаём еду…
+foodlog_photo_question = Выберите, что это
+foodlog_photo_question_more = На тарелке есть что-то ещё?
+foodlog_hint_very_likely = Очень вероятно
+foodlog_hint_likely = Вероятно
+foodlog_hint_possible = Возможно
+foodlog_photo_other = Другое…
+foodlog_photo_search = Найти продукт
+foodlog_photo_not_food = На фото не видно еды. Найдите продукт через поиск.
+foodlog_photo_no_model = Распознавание фото недоступно. Найдите продукт через поиск.
+foodlog_photo_unreadable = Не удалось открыть фото.
+foodlog_photo_gone = Этого фото больше нет.
+foodlog_photo_private = Фото обрабатывается на телефоне и остаётся на нём.
+foodlog_photo_added = Добавлено: %1$s
+foodlog_photo_add_another = Добавить ещё продукт с этого фото
+foodlog_done = Готово
+
+# Search
+foodlog_search_title = Поиск
+foodlog_search_hint = Продукт или блюдо
+foodlog_search_clear = Очистить
+foodlog_search_recent = Недавние
+foodlog_search_none = По запросу «%1$s» ничего не найдено.
+foodlog_create_food = Создать свой продукт
+foodlog_kcal_per_100g = %1$s ккал на 100 г
+foodlog_kcal_per_100ml = %1$s ккал на 100 мл
+foodlog_food_options = Изменить или удалить
+foodlog_food_edit = Изменить продукт
+foodlog_food_delete = Удалить продукт
+foodlog_food_delete_title = Удалить «%1$s»?
+foodlog_food_delete_text = Он больше не будет появляться в поиске. Уже записанные с ним приёмы пищи сохранят свои значения.
+
+# Barcode
+foodlog_barcode_title = Штрихкод
+foodlog_barcode_reading = Считываем штрихкод…
+foodlog_barcode_looking_up = Ищем %1$s в Open Food Facts…
+foodlog_barcode_not_read = На фото нет штрихкода
+foodlog_barcode_not_read_text = Сделайте фото ближе и чётче или введите цифры под штрихами.
+foodlog_barcode_type = Номер штрихкода
+foodlog_barcode_invalid = Проверьте номер: в нём 8, 12 или 13 цифр.
+foodlog_barcode_search = Найти
+foodlog_barcode_not_found = Продукт не найден
+foodlog_barcode_not_found_text = В Open Food Facts пока нет штрихкода %1$s. Введите продукт вручную: он сохранится на следующий раз.
+foodlog_barcode_offline = Нет подключения
+foodlog_barcode_offline_text = Без интернета не удаётся найти штрихкод %1$s. Повторите попытку или введите продукт вручную.
+foodlog_barcode_failed = Open Food Facts не отвечает
+foodlog_barcode_code = Штрихкод %1$s
+foodlog_values_per_100g = На 100 г
+foodlog_values_per_100ml = На 100 мл
+foodlog_barcode_missing = Не указано: %1$s
+foodlog_barcode_use = Использовать этот продукт
+foodlog_barcode_complete = Дополнить значения
+foodlog_off_attribution = Данные: Open Food Facts (ODbL)
+
+# Confirm / edit
+foodlog_confirm_title = Подтверждение
+foodlog_edit_title = Изменить продукт
+foodlog_amount = Количество
+foodlog_portion_chip = %1$s · %2$s
+foodlog_portion_count = %1$s × %2$s
+foodlog_portion_less = Меньше
+foodlog_portion_more = Больше
+foodlog_grams = Граммы
+foodlog_millilitres = Миллилитры
+foodlog_meal = Приём пищи
+
+# Manual entry
+foodlog_manual_title = Ввести вручную
+foodlog_complete_title = Дополнить значения
+foodlog_edit_food_title = Изменить сохранённый продукт
+foodlog_manual_name = Название
+foodlog_manual_values = Значения
+foodlog_manual_values_for = Значения на %1$s
+foodlog_manual_save_food = Сохранить как мой продукт
+foodlog_manual_save_food_text = Чтобы найти его в поиске в следующий раз
+
+# Daily goal
+foodlog_goal_title = Дневная цель
+foodlog_goal_profile_text = Калории и нутриенты для вкладки «Питание»
+foodlog_goal_auto = Автоматически
+foodlog_goal_manual = Вручную
+foodlog_goal_aim = Ваша цель
+foodlog_goal_lose = Похудеть
+foodlog_goal_maintain = Сохранить вес
+foodlog_goal_gain = Набрать вес
+foodlog_goal_weight = Ваш вес
+foodlog_goal_weight_text = Измерений пока нет: введите свой вес, чтобы рассчитать цель.
+foodlog_goal_needs_weight = Введите свой вес, чтобы увидеть цель.
+foodlog_goal_how = Как это рассчитывается
+foodlog_goal_bmr_scale = Калории в покое (по вашим весам)
+foodlog_goal_bmr_formula = Калории в покое (по весу, росту, возрасту и полу)
+foodlog_goal_resting = Спокойный день (× 1,2)
+foodlog_goal_active = Активность за сегодня (Health Connect)
+foodlog_plus_kcal = + %1$s ккал
+foodlog_goal_light = Слегка активный день (× 1,375)
+foodlog_goal_no_activity = Без данных об активности за сегодня из Health Connect считается, что день слегка активный.
+foodlog_goal_maintenance = Чтобы сохранить вес
+foodlog_goal_lose_adjust = Чтобы похудеть, на 15% меньше.
+foodlog_goal_gain_adjust = Чтобы набрать вес, на 10% больше.
+foodlog_goal_result = Ваша цель: %1$s ккал в день
+foodlog_goal_targets = Нормы
+foodlog_goal_protein_per_kg = Белки (%1$s г на кг)
+foodlog_goal_fat_share = Жиры (30% калорий)
+foodlog_goal_carbs_rest = Углеводы (остальное)
+foodlog_goal_limits = Ограничения
+foodlog_goal_sugars_limit = Сахара (10% калорий)
+foodlog_goal_sat_fat_limit = Насыщенные жиры (10% калорий)
+foodlog_less_than = меньше %1$s
+foodlog_at_least = не менее %1$s
+foodlog_goal_manual_text = Ваши собственные значения: калории и нутриенты, которые вы хотите отслеживать (остальные рассчитываются).
+foodlog_goal_disclaimer = Это оценка для здоровых взрослых, а не медицинская рекомендация. Если у вас есть заболевание, вы беременны или соблюдаете диету, проконсультируйтесь со специалистом.
+
+# Hoy's card
+foodlog_today_title = Питание сегодня
+foodlog_today_of = %1$s / %2$s ккал
+foodlog_today_open = Открыть «Питание»
+
+# Health Connect
+hc_type_nutrition = Питание
+hc_meals_export_title = Сохранять приёмы пищи в Health Connect
+hc_meals_export_text = Каждый записанный продукт сохраняется как данные о питании (калории, белки, углеводы, сахара, жиры, насыщенные жиры, клетчатка и натрий) для своего приёма пищи. Если вы измените или удалите его, данные в Health Connect тоже обновятся.
+hc_meals_export_missing_permission = Разрешите Fortia записывать данные о питании в Health Connect, чтобы сохранять там ваши приёмы пищи.
+hc_meals_export_denied = Если окно разрешений не открылось, разрешите Fortia доступ к разделу «Питание» в Health Connect.
+hc_meals_export_off = Новые приёмы пищи не сохраняются. Те, что уже есть в Health Connect, остаются там.
+hc_meals_export_count_none = В Health Connect пока нет приёмов пищи.
+hc_meals_export_count{one} = В Health Connect %1$d продукт.
+hc_meals_export_count{few} = В Health Connect %1$d продукта.
+hc_meals_export_count{many} = В Health Connect %1$d продуктов.
+hc_meals_export_count{other} = В Health Connect %1$d продукта.
+health_rationale_write_meals = Если вы разрешите, Fortia также будет записывать продукты из вашего дневника (питание), чтобы другие приложения могли их учитывать. Данные о питании приложение никогда не читает.
+
+# Open-source licences
+notice_litert = Запускает на телефоне нашу модель распознавания еды.
+notice_zxing = Считывает штрихкоды продуктов с фото.
+open_source_food_data = Данные о продуктах
+notice_open_food_facts = Упакованные продукты, найденные по штрихкоду. Данные © участники Open Food Facts, по лицензии Open Database License (ODbL).
+notice_usda = Пищевая ценность продуктов из списка: U.S. Department of Agriculture, Agricultural Research Service, FoodData Central. Общественное достояние (CC0).
+notice_ciqual = Пищевая ценность продуктов из списка: Anses, французская таблица состава продуктов Ciqual, по лицензии Licence Ouverte / Etalab 2.0.
+notice_food_model_name = Модель распознавания еды Fortia
+notice_food_model_license = Собственная модель (см. её карточку)
+notice_food_model = Наша собственная модель, обученная на изображениях из Open Images (CC BY 2.0) и Wikimedia Commons (свободные лицензии); список изображений и их авторов опубликован вместе с исходным кодом.

@@ -24,6 +24,7 @@ val HealthDataType.labelRes: Int
         HealthDataType.LEAN_BODY_MASS -> R.string.hc_type_lean_mass
         HealthDataType.BASAL_METABOLIC_RATE -> R.string.hc_type_bmr
         HealthDataType.BODY_WATER_MASS -> R.string.hc_type_body_water
+        HealthDataType.NUTRITION -> R.string.hc_type_nutrition
     }
 
 @get:StringRes

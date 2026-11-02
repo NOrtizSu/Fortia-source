@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    Files shared through the FileProvider (AndroidManifest.xml): only the cache folder the camera
-    app writes a new machine photo into (ExercisePhotos.cameraTarget). The stored photos in
-    files/exercise_photos are never shared.
+    Files shared through the FileProvider (AndroidManifest.xml): only the cache folders the camera
+    app writes a new machine photo (ExercisePhotos.cameraTarget) or meal photo (MealPhotos.cameraTarget)
+    into. The stored photos in files/exercise_photos and files/meal_photos are never shared.
 -->
 <paths>
     <cache-path name="exercise_photos" path="exercise_photos/" />
+    <cache-path name="meal_photos" path="meal_photos/" />
 </paths>

@@ -50,6 +50,9 @@ class FirestoreBackupRemote {
     /** Workouts, custom exercises, machine notes and photos, routines, on the same Firestore instance. */
     val training: FirestoreTrainingRemote by lazy { FirestoreTrainingRemote(firestore = { db }) }
 
+    /** The food log (meal entries, custom foods), on the same Firestore instance. */
+    val food: FirestoreFoodRemote by lazy { FirestoreFoodRemote(firestore = { db }) }
+
     private fun user(uid: String) = db.collection(USERS).document(uid)
     private fun profileRef(uid: String) = user(uid).collection(META).document(PROFILE_DOC)
     private fun settingsRef(uid: String) = user(uid).collection(META).document(SETTINGS_DOC)
@@ -193,8 +196,8 @@ class FirestoreBackupRemote {
 
     /**
      * Deletes the whole backup tree of [uid] (measurements, devices, the training collections with
-     * the routines and machine photos, settings, profile). Needs a connection; throws if the server
-     * does not confirm.
+     * the routines and machine photos, the food log, settings, profile). Needs a connection; throws if
+     * the server does not confirm.
      */
     suspend fun deleteAll(uid: String) {
         for (collection in listOf(MEASUREMENTS, DEVICES)) {
@@ -207,6 +210,7 @@ class FirestoreBackupRemote {
             }
         }
         training.deleteAll(uid)
+        food.deleteAll(uid)
         // The profile goes last: while it exists, other phones do not mistake a half-deleted copy for a wipe.
         val batch = db.batch()
         batch.delete(settingsRef(uid))

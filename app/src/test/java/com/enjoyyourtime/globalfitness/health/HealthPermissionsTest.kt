@@ -11,6 +11,7 @@ import androidx.health.connect.client.records.ExerciseSessionRecord
 import androidx.health.connect.client.records.HeartRateRecord
 import androidx.health.connect.client.records.HeartRateVariabilityRmssdRecord
 import androidx.health.connect.client.records.LeanBodyMassRecord
+import androidx.health.connect.client.records.NutritionRecord
 import androidx.health.connect.client.records.OxygenSaturationRecord
 import androidx.health.connect.client.records.Record
 import androidx.health.connect.client.records.RespiratoryRateRecord
@@ -21,6 +22,7 @@ import androidx.health.connect.client.records.TotalCaloriesBurnedRecord
 import androidx.health.connect.client.records.WeightRecord
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
+import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
 import kotlin.reflect.KClass
@@ -57,22 +59,45 @@ class HealthPermissionsTest {
             HealthDataType.BASAL_METABOLIC_RATE to BasalMetabolicRateRecord::class,
             HealthDataType.BODY_WATER_MASS to BodyWaterMassRecord::class,
             HealthDataType.EXERCISE to ExerciseSessionRecord::class,
+            HealthDataType.NUTRITION to NutritionRecord::class,
         )
         writes.forEach { (type, record) -> assertEquals(type.name, HealthPermission.getWritePermission(record), type.writePermission) }
         assertEquals(HealthPermission.PERMISSION_READ_HEALTH_DATA_HISTORY, HealthPermissions.READ_HISTORY)
         assertEquals(HealthPermission.getWritePermission(ExerciseSessionRecord::class), HealthPermissions.WRITE_EXERCISE)
+        assertEquals(HealthPermission.getWritePermission(NutritionRecord::class), HealthPermissions.WRITE_NUTRITION)
+        // Nutrition is written only: the app never asks to read it.
+        assertNull(HealthDataType.NUTRITION.readPermission)
     }
 
     @Test
-    fun requestedSetHas13ReadsAnd7WritesPlusOptionalHistory() {
+    fun requestedSetHas13ReadsAnd8WritesPlusOptionalHistory() {
         assertEquals(13, HealthPermissions.readPermissions.size)
-        assertEquals(7, HealthPermissions.writePermissions.size)
+        assertEquals(8, HealthPermissions.writePermissions.size)
+        // Nutrition is asked in context only (after the first meal saved, or by the meals switch).
         assertEquals(20, HealthPermissions.requested(historyAvailable = false).size)
         assertTrue(HealthPermissions.WRITE_EXERCISE in HealthPermissions.requested(historyAvailable = false))
+        assertFalse(HealthPermissions.WRITE_NUTRITION in HealthPermissions.requested(historyAvailable = false))
         val withHistory = HealthPermissions.requested(historyAvailable = true)
         assertEquals(21, withHistory.size)
+        assertFalse(HealthPermissions.WRITE_NUTRITION in withHistory)
         assertTrue(HealthPermissions.READ_HISTORY in withHistory)
         assertFalse(HealthPermissions.READ_HISTORY in HealthPermissions.requested(historyAvailable = false))
+    }
+
+    @Test
+    fun nutritionWritePermissionIsOptionalLikeWorkouts() {
+        val granted = writeOf(HealthDataType.NUTRITION)
+        assertTrue(HealthPermissions.canExportMeals(granted))
+        assertFalse(HealthPermissions.canExportWorkouts(granted))
+        assertFalse(HealthPermissions.canWriteAnyScaleValue(granted))
+        assertFalse(HealthPermissions.canExportMeals(writeOf(HealthDataType.EXERCISE)))
+        // Not part of the connect request: without it (everyone at first) nothing is "missing".
+        val connected = HealthPermissions.requested(historyAvailable = false)
+        assertTrue(HealthPermissions.missing(connected, historyAvailable = false).isEmpty())
+        assertTrue(HealthPermissions.allGranted(connected, historyAvailable = false))
+        assertTrue(HealthPermissions.connectedFully(connected - HealthPermissions.WRITE_EXERCISE, historyAvailable = false))
+        // Granted in context, it changes nothing about the connection either.
+        assertTrue(HealthPermissions.missing(connected + HealthPermissions.WRITE_NUTRITION, historyAvailable = false).isEmpty())
     }
 
     @Test

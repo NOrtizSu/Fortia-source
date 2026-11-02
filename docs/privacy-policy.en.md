@@ -1,6 +1,6 @@
 # Fortia Privacy Policy
 
-Last updated: 28 October 2026 · Contact: **enjoyyourtime.online@gmail.com** ·
+Last updated: 2 November 2026 · Contact: **enjoyyourtime.online@gmail.com** ·
 Web version (Spanish, with an English summary): [globalfitness-app.web.app/privacy.html#en](https://globalfitness-app.web.app/privacy.html#en)
 
 This is the English version of the privacy policy. If it differs from the Spanish version, the
@@ -32,6 +32,13 @@ For any privacy question, write to **enjoyyourtime.online@gmail.com**.
   the photos with the camera or pick them one by one with Android's photo picker (the app has no access to
   your gallery); they are downscaled and stored in the app's private storage. With your logged body weight
   the phone calculates the estimated 1RM and the progress per muscle.
+- **Food**: what you log that you eat (food, amount, meal, date and time and its nutrient values), the foods
+  you create, the products you find by their barcode and your daily goal (with the weight you type if you have
+  no measurements yet). If you take a **photo of your plate**, it is downscaled, stored in the app's private
+  storage and **analysed on the phone itself** by our recognition model: **the photo never leaves the phone**
+  (it is not uploaded to the cloud or to any server) and it is deleted when you delete the food. With each food
+  the app keeps what the model proposed and how sure it was, only on your phone (and in your cloud backup if
+  you use it), to improve its suggestions.
 - **Xiaomi Smart Band**: the band's pairing key is stored only on the phone and **never leaves it**
   (not to the cloud, not to Android backups). The heart rate you record in direct mode (date, time
   and beats per minute) is also stored only on the phone.
@@ -63,6 +70,11 @@ weights are not written) so other fitness apps can see them. If you delete a wor
 deleted from Health Connect; if you turn the option off, the app stops writing and what was already saved is
 kept. The app does not read its own sessions back.
 
+If you allow it, the app also **writes what you log that you eat to Health Connect** as nutrition records (date
+and time, meal, the food's name, calories, protein, carbohydrates, sugars, fat, saturated fat, fibre and sodium).
+If you edit or delete a food, it is updated or deleted in Health Connect too; if you turn the option off, the app
+stops writing and what was already saved is kept. The app **does not read** nutrition data from Health Connect.
+
 - Health Connect data is used **only to show you your progress and to sync your measurements** with
   other apps you choose. What is read is kept in a cache on the phone.
 - It is **not uploaded** to the Fortia cloud backup, **not used for advertising**, not sold
@@ -79,8 +91,9 @@ If you sign in with Google (through Firebase Authentication):
 - **Backup** (Google Cloud Firestore): your profile (with a random dataset identifier, so data of
   different people is never mixed), your measurements (date, weight, impedance, body composition
   reported by the scale, source and scale model) and your configured scales (model, name and user
-  number on the scale), and your workouts and your own machines and exercises with their notes,
-  favourites and photos. The band key, the encryption keys, PINs or pairing keys of the scales, the
+  number on the scale), your workouts, your routines and your own machines and exercises with their notes,
+  favourites and photos, and what you log in Food (foods, amounts, values and your own foods), **without
+  the photos of your meals**. The band key, the encryption keys, PINs or pairing keys of the scales, the
   Bluetooth addresses, Health Connect data and phone-specific settings are **not** uploaded.
   If you bought "Remove ads", an informational `premium` flag is also stored.
 - **Where**: on Google Cloud servers in the **European Union (region europe-southwest1, Madrid)**. The
@@ -93,8 +106,11 @@ If you sign in with Google (through Firebase Authentication):
   can sign in again to restore it).
 - **How to delete it**: in the app, **Profile → Account and cloud backup → "Delete my cloud data and
   account"**. Your Firestore backup and your Firebase account are permanently deleted; the data on
-  your phone is not touched. You can also ask for it by email at enjoyyourtime.online@gmail.com. Full
-  instructions:
+  your phone is not touched. You can also ask for it by email at enjoyyourtime.online@gmail.com. In
+  addition, an automatic daily cleanup deletes, within 2 days at most, any cloud data left under an account
+  that no longer exists (for example, an account deleted from an older version of the app that did not know
+  about newer kinds of data, such as the food log). We run it ourselves with Google's own Firebase APIs; no
+  other third party receives any data. Full instructions:
   [globalfitness-app.web.app/delete-account.html](https://globalfitness-app.web.app/delete-account.html)
 
 ## 7. Advertising (Google AdMob)
@@ -122,14 +138,26 @@ state is stored on the phone so you stay ad-free even without a connection.
 If Android backup is on, the system may store an encrypted copy of the app's database and settings in
 your Google Drive account and restore it when you reinstall or change phones. **Excluded** are the
 bands and watches set up in the app (with their keys, settings and the heart rate recorded in
-direct mode), the Health Connect cache and the photos of your machines (because of their size; if you use
-the app's cloud backup, they are kept there). You can turn it off in the Android settings.
+direct mode), the Health Connect cache, the photos of your machines (because of their size; if you use
+the app's cloud backup, they are kept there) and the photos of your meals (kept on the phone only). You can
+turn it off in the Android settings.
 
 ## 10. Who the data is shared with
 
 Only with the providers needed for the app to work, acting as processors or as independent
 controllers depending on the case: **Google** (Firebase Authentication, Cloud Firestore, AdMob/UMP and
 Google Play). We do not sell personal data.
+
+**Barcodes (Open Food Facts).** When you take a photo of a product's barcode, the barcode is read on the
+phone and **only the barcode number and the app's language** (for the product name in your language) are sent
+to **Open Food Facts** (world.openfoodfacts.org, an open database
+of food products run by a French non-profit association) to get the product's name, brand and nutrient values.
+Open Food Facts receives your IP address and an app User-Agent ("Fortia/", its version and our contact email);
+nothing else is sent: no photo, account, identifier or personal data. The product found is kept on the phone (and
+in your cloud backup if you use it) and asked again, when you scan it, only if data is missing or it is over 90
+days old. It only happens when you scan a barcode; searching the
+app's food list sends nothing. Legal basis: providing the service you ask for (GDPR art. 6(1)(b)). Open Food
+Facts data is published under the Open Database License (ODbL).
 
 **Music for today (Spotify).** The covers and names of the Spotify playlists the app suggests are only
 loaded **if you allow it**: the app asks once, at start, right after the ad consent, and you can change

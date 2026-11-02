@@ -1,0 +1,250 @@
+# The Comida (food log) tab: log what you eat from a photo (recognized on the phone), a barcode, a search or by hand;
+# the day with its meals and totals; the daily goal; saving meals to Health Connect. Food and group names are in 97_foods.txt.
+
+# Bottom bar: Hoy · Entreno · Comida · Progreso · Perfil (five items: very little room, one short word)
+nav_food = Food ||| Comida
+
+# Units next to numbers ("150 g", "250 ml"); the unit alone as a field suffix
+unit_g = g ||| g
+unit_ml = ml ||| ml
+value_g = %1$s g ||| %1$s g
+value_ml = %1$s ml ||| %1$s ml
+
+# Portion names of the catalog (one portion; the amount shows next to it: "Plate · 350 g", "2 × Slice · 60 g")
+food_portion_unit = Unit ||| Unidad
+food_portion_piece = Piece ||| Pieza
+food_portion_slice = Slice ||| Rebanada
+food_portion_plate = Plate ||| Plato
+food_portion_small_plate = Small plate ||| Plato pequeño
+food_portion_bowl = Bowl ||| Cuenco
+food_portion_cup = Cup ||| Taza
+food_portion_glass = Glass ||| Vaso
+food_portion_can = Can ||| Lata
+food_portion_bottle = Bottle ||| Botella
+food_portion_tbsp = Tablespoon ||| Cucharada
+food_portion_tsp = Teaspoon ||| Cucharadita
+food_portion_handful = Handful ||| Puñado
+food_portion_serving = Serving ||| Ración
+
+# Meals of the day (sections of the day, chips of the confirm page). In Spanish "Comida" is the tab, so lunch is "Almuerzo"
+foodlog_meal_breakfast = Breakfast ||| Desayuno
+foodlog_meal_lunch = Lunch ||| Almuerzo
+foodlog_meal_snack = Snack ||| Merienda
+foodlog_meal_dinner = Dinner ||| Cena
+foodlog_meal_other = Other ||| Otros
+
+# The eight values of the nutrition label
+foodlog_nutrient_kcal = Calories ||| Calorías
+foodlog_nutrient_protein = Protein ||| Proteínas
+foodlog_nutrient_carbs = Carbohydrates ||| Hidratos de carbono
+foodlog_nutrient_sugars = Sugars ||| Azúcares
+foodlog_nutrient_fat = Fat ||| Grasas
+foodlog_nutrient_sat_fat = Saturated fat ||| Grasas saturadas
+foodlog_nutrient_fiber = Fibre ||| Fibra
+foodlog_nutrient_salt = Salt ||| Sal
+
+# The day: navigation (icon buttons for TalkBack), summary card ("Eaten 1,250 kcal · of 2,300 kcal", ring "1,050 left")
+foodlog_previous_day = Previous day ||| Día anterior
+foodlog_next_day = Next day ||| Día siguiente
+foodlog_eaten = Eaten ||| Consumido
+foodlog_goal_of = of %1$s kcal ||| de %1$s kcal
+foodlog_left = left ||| quedan
+foodlog_over = over ||| de más
+foodlog_left_desc = %1$s of %2$s kcal eaten, %3$s kcal left ||| %1$s de %2$s kcal consumidas, quedan %3$s kcal
+foodlog_over_desc = %1$s of %2$s kcal eaten, %3$s kcal over the goal ||| %1$s de %2$s kcal consumidas, %3$s kcal por encima del objetivo
+foodlog_no_goal = Set a daily goal to see how much is left. ||| Fija un objetivo diario para ver cuánto te queda.
+foodlog_set_goal = Set goal ||| Fijar objetivo
+# A nutrient against its target or limit: "45 / 120 g"; TalkBack: "Sugars: 30 / 50 g, limit" / "…, over the limit"
+foodlog_value_of_target = %1$s / %2$s ||| %1$s / %2$s
+foodlog_limit_desc = %1$s: %2$s, limit ||| %1$s: %2$s, límite
+foodlog_limit_over_desc = %1$s: %2$s, over the limit ||| %1$s: %2$s, por encima del límite
+# TalkBack reads a label with its value: "Protein: 45 / 120 g", "Food today: 1,250 / 2,300 kcal"
+foodlog_label_value = %1$s: %2$s ||| %1$s: %2$s
+foodlog_more = More ||| Más
+foodlog_less = Less ||| Menos
+# An entry of the list: "2 × Slice · 60 g"; TalkBack action on a row
+foodlog_portion_amount = %1$s × %2$s · %3$s ||| %1$s × %2$s · %3$s
+foodlog_edit_entry = Edit ||| Editar
+# A day without entries (today / another day) and how to start, in one line
+foodlog_empty_today = Nothing logged today ||| Nada anotado hoy
+foodlog_empty_day = Nothing logged this day ||| Nada anotado este día
+foodlog_empty_text = Take a photo of your plate: Fortia suggests what it is and you confirm. ||| Haz una foto de tu plato: Fortia te sugiere qué es y tú lo confirmas.
+foodlog_add_photo_short = Photo ||| Foto
+foodlog_add_search_short = Search ||| Buscar
+# Under the day (the values are estimates)
+foodlog_estimates_note = Values are estimates from food tables and product labels, not medical advice. ||| Los valores son estimaciones de tablas de alimentos y etiquetas, no consejo médico.
+# The entry deleted (with its name) and the snackbar's action
+foodlog_deleted = %1$s deleted ||| %1$s eliminado
+foodlog_undo = Undo ||| Deshacer
+# Snackbar when a change could not be saved (the food log's storage refused it); the Comida tab when it cannot be opened at all
+foodlog_write_failed = Couldn't save the change. Try again. ||| No se ha podido guardar el cambio. Inténtalo de nuevo.
+foodlog_db_error = Your food log couldn't be opened ||| No se ha podido abrir tu registro de comidas
+
+# The add button and its sheet
+foodlog_add = Add ||| Añadir
+foodlog_add_title = Add food ||| Añadir comida
+foodlog_add_photo = Photo of the plate ||| Foto del plato
+foodlog_add_photo_text = Recognized on your phone; the photo never leaves it ||| Se reconoce en tu móvil; la foto no sale de él
+foodlog_add_gallery = Photo from the gallery ||| Foto de la galería
+foodlog_add_gallery_text = A photo you already took ||| Una foto que ya hiciste
+foodlog_add_barcode = Barcode ||| Código de barras
+foodlog_add_barcode_text = Take a photo of the package's barcode ||| Haz una foto del código del envase
+foodlog_add_barcode_gallery = Barcode photo from the gallery ||| Foto del código de la galería
+foodlog_add_search = Search for a food ||| Buscar un alimento
+foodlog_add_search_text = Foods and dishes, and your own foods ||| Alimentos y platos, y tus alimentos
+foodlog_add_manual = Enter manually ||| Añadir a mano
+foodlog_add_manual_text = Name, amount and calories ||| Nombre, cantidad y calorías
+foodlog_camera_unavailable = No app can take the photo. Choose one from the gallery. ||| Ninguna app puede hacer la foto. Elige una de la galería.
+
+# The photo page: the photo, the five suggestions with a hint (never a %), "Other…", no food
+foodlog_photo_title = What's on the plate? ||| ¿Qué hay en el plato?
+foodlog_photo_desc = Meal photo ||| Foto de la comida
+foodlog_photo_recognizing = Recognizing the food… ||| Reconociendo la comida…
+foodlog_photo_question = Choose what it is ||| Elige qué es
+foodlog_photo_question_more = Anything else on the plate? ||| ¿Algo más en el plato?
+foodlog_hint_very_likely = Very likely ||| Muy probable
+foodlog_hint_likely = Likely ||| Probable
+foodlog_hint_possible = Possible ||| Posible
+foodlog_photo_other = Other… ||| Otro…
+# The same button when there are no suggestions (no food seen, recognition not available)
+foodlog_photo_search = Search for the food ||| Buscar el alimento
+foodlog_photo_not_food = I don't see food in the photo. Search for it instead. ||| No reconozco comida en la foto. Búscala.
+foodlog_photo_no_model = Recognizing photos isn't available. Search for the food. ||| El reconocimiento de fotos no está disponible. Busca el alimento.
+foodlog_photo_unreadable = The photo couldn't be opened. ||| No se ha podido abrir la foto.
+foodlog_photo_gone = The photo is no longer here. ||| La foto ya no está.
+foodlog_photo_private = The photo is processed on your phone and stays there. ||| La foto se procesa en tu móvil y se queda en él.
+# After a food is added from the photo ("Added: Steak and Chips"), to add the next one of the same plate
+foodlog_photo_added = Added: %1$s ||| Añadido: %1$s
+foodlog_photo_add_another = Add another food of this photo ||| Añadir otro alimento de esta foto
+foodlog_done = Done ||| Listo
+
+# Search
+foodlog_search_title = Search ||| Buscar
+foodlog_search_hint = Food or dish ||| Alimento o plato
+foodlog_search_clear = Clear ||| Borrar
+foodlog_search_recent = Recent ||| Recientes
+foodlog_search_none = No food matches "%1$s". ||| Ningún alimento coincide con «%1$s».
+foodlog_create_food = Create your own food ||| Crear un alimento propio
+# The calories of a food under its name: "250 kcal per 100 g"
+foodlog_kcal_per_100g = %1$s kcal per 100 g ||| %1$s kcal por 100 g
+foodlog_kcal_per_100ml = %1$s kcal per 100 ml ||| %1$s kcal por 100 ml
+# The user's own foods (and products kept from a barcode) in the results: long press for a menu (TalkBack: its action), then a confirmation
+foodlog_food_options = Edit or delete ||| Editar o eliminar
+foodlog_food_edit = Edit food ||| Editar alimento
+foodlog_food_delete = Delete food ||| Eliminar alimento
+foodlog_food_delete_title = Delete "%1$s"? ||| ¿Eliminar «%1$s»?
+foodlog_food_delete_text = It won't appear in the search any more. Meals you already logged with it keep their values. ||| Dejará de aparecer en la búsqueda. Las comidas que ya anotaste con él conservan sus valores.
+
+# Barcode: reading the photo, looking it up in Open Food Facts (keep the name), results
+foodlog_barcode_title = Barcode ||| Código de barras
+foodlog_barcode_reading = Reading the barcode… ||| Leyendo el código…
+foodlog_barcode_looking_up = Looking up %1$s in Open Food Facts… ||| Buscando %1$s en Open Food Facts…
+foodlog_barcode_not_read = No barcode found in the photo ||| No se ve ningún código en la foto
+foodlog_barcode_not_read_text = Try a closer, sharper photo, or type the numbers under the bars. ||| Prueba con una foto más cercana y nítida, o escribe los números bajo las barras.
+foodlog_barcode_type = Barcode number ||| Número del código
+foodlog_barcode_invalid = Check the number: it has 8, 12 or 13 digits. ||| Revisa el número: tiene 8, 12 o 13 cifras.
+foodlog_barcode_search = Search ||| Buscar
+foodlog_barcode_not_found = Product not found ||| Producto no encontrado
+foodlog_barcode_not_found_text = Open Food Facts doesn't have %1$s yet. Enter it by hand: it is kept for next time. ||| Open Food Facts aún no tiene %1$s. Añádelo a mano: se guardará para la próxima vez.
+foodlog_barcode_offline = No connection ||| Sin conexión
+foodlog_barcode_offline_text = %1$s can't be looked up without internet. Try again or enter it by hand. ||| No se puede buscar %1$s sin internet. Vuelve a intentarlo o añádelo a mano.
+foodlog_barcode_failed = Open Food Facts didn't answer ||| Open Food Facts no ha respondido
+foodlog_barcode_code = Barcode %1$s ||| Código %1$s
+foodlog_values_per_100g = Per 100 g ||| Por 100 g
+foodlog_values_per_100ml = Per 100 ml ||| Por 100 ml
+# Values the product page doesn't give ("Missing: sugars and salt")
+foodlog_barcode_missing = Missing: %1$s ||| Faltan: %1$s
+foodlog_barcode_use = Use this product ||| Usar este producto
+foodlog_barcode_complete = Complete the values ||| Completar valores
+# Required attribution of the product data (keep "Open Food Facts" and "ODbL")
+foodlog_off_attribution = Data: Open Food Facts (ODbL) ||| Datos: Open Food Facts (ODbL)
+
+# Confirm / edit page: amount (portion chips "Plate · 350 g", count "2 × Plate", grams), meal, when, values
+foodlog_confirm_title = Confirm ||| Confirmar
+foodlog_edit_title = Edit food ||| Editar alimento
+foodlog_amount = Amount ||| Cantidad
+foodlog_portion_chip = %1$s · %2$s ||| %1$s · %2$s
+foodlog_portion_count = %1$s × %2$s ||| %1$s × %2$s
+foodlog_portion_less = Less ||| Menos
+foodlog_portion_more = More ||| Más
+foodlog_grams = Grams ||| Gramos
+foodlog_millilitres = Millilitres ||| Mililitros
+foodlog_meal = Meal ||| Comida del día
+
+# Manual entry (values for the amount typed) and completing a product's missing values (per 100 g)
+foodlog_manual_title = Enter manually ||| Añadir a mano
+foodlog_complete_title = Complete the values ||| Completar valores
+# The same form opened from "Edit food" in the search (saves the food, logs nothing)
+foodlog_edit_food_title = Edit saved food ||| Editar alimento guardado
+foodlog_manual_name = Name ||| Nombre
+foodlog_manual_values = Values ||| Valores
+foodlog_manual_values_for = Values for %1$s ||| Valores para %1$s
+foodlog_manual_save_food = Save as my food ||| Guardar como alimento propio
+foodlog_manual_save_food_text = Find it in the search next time ||| Para encontrarlo en la búsqueda la próxima vez
+
+# The daily goal page (top bar action of Comida, and a row in Perfil under the training settings); "Automatic" / "Manual"
+foodlog_goal_title = Daily goal ||| Objetivo diario
+foodlog_goal_profile_text = Calories and nutrients for the Food tab ||| Calorías y nutrientes de la pestaña Comida
+foodlog_goal_auto = Automatic ||| Automático
+foodlog_goal_manual = Manual ||| Manual
+foodlog_goal_aim = Your aim ||| Tu meta
+foodlog_goal_lose = Lose weight ||| Perder peso
+foodlog_goal_maintain = Keep weight ||| Mantener
+foodlog_goal_gain = Gain weight ||| Ganar peso
+foodlog_goal_weight = Your weight ||| Tu peso
+foodlog_goal_weight_text = There's no weighing yet: type your weight to calculate the goal. ||| Aún no hay ninguna medición: escribe tu peso para calcular el objetivo.
+foodlog_goal_needs_weight = Type your weight to see your goal. ||| Escribe tu peso para ver tu objetivo.
+# How it is calculated, in plain words (one line each, the value on the right)
+foodlog_goal_how = How it's calculated ||| Cómo se calcula
+foodlog_goal_bmr_scale = Calories at rest (your scale) ||| Calorías en reposo (tu báscula)
+foodlog_goal_bmr_formula = Calories at rest (from weight, height, age and sex) ||| Calorías en reposo (por peso, altura, edad y sexo)
+foodlog_goal_resting = A quiet day (× 1.2) ||| Un día tranquilo (× 1,2)
+foodlog_goal_active = Today's activity (Health Connect) ||| Actividad de hoy (Health Connect)
+# The calories the activity adds: "+ 420 kcal"
+foodlog_plus_kcal = + %1$s kcal ||| + %1$s kcal
+foodlog_goal_light = A lightly active day (× 1.375) ||| Un día algo activo (× 1,375)
+foodlog_goal_no_activity = Without today's activity from Health Connect, a lightly active day is assumed. ||| Sin la actividad de hoy de Health Connect, se supone un día algo activo.
+foodlog_goal_maintenance = To keep your weight ||| Para mantener tu peso
+foodlog_goal_lose_adjust = To lose weight, 15% less. ||| Para perder peso, un 15 % menos.
+foodlog_goal_gain_adjust = To gain weight, 10% more. ||| Para ganar peso, un 10 % más.
+foodlog_goal_result = Your goal: %1$s kcal a day ||| Tu objetivo: %1$s kcal al día
+foodlog_goal_targets = Targets ||| Objetivos
+foodlog_goal_protein_per_kg = Protein (%1$s g per kg) ||| Proteínas (%1$s g por kg)
+foodlog_goal_fat_share = Fat (30% of calories) ||| Grasas (30 % de las calorías)
+foodlog_goal_carbs_rest = Carbohydrates (the rest) ||| Hidratos de carbono (el resto)
+foodlog_goal_limits = Limits ||| Límites
+foodlog_goal_sugars_limit = Sugars (10% of calories) ||| Azúcares (10 % de las calorías)
+foodlog_goal_sat_fat_limit = Saturated fat (10% of calories) ||| Grasas saturadas (10 % de las calorías)
+foodlog_less_than = under %1$s ||| menos de %1$s
+foodlog_at_least = at least %1$s ||| al menos %1$s
+foodlog_goal_manual_text = Your own numbers: calories, and the nutrients you want to follow (the others are calculated). ||| Tus propios números: las calorías y los nutrientes que quieras seguir (el resto se calcula).
+foodlog_goal_disclaimer = An estimate for healthy adults, not medical advice. If you have a health condition, are pregnant or follow a diet, ask a professional. ||| Es una estimación para adultos sanos, no consejo médico. Si tienes alguna enfermedad, estás embarazada o sigues una dieta, consulta a un profesional.
+
+# Hoy's card: "Food today · 1,250 / 2,300 kcal"; TalkBack action
+foodlog_today_title = Food today ||| Comida de hoy
+foodlog_today_of = %1$s / %2$s kcal ||| %1$s / %2$s kcal
+foodlog_today_open = Open Food ||| Abrir Comida
+
+# Health Connect: the switch next to "Save workouts to Health Connect" (same style as 52_health_training.txt)
+hc_type_nutrition = Nutrition ||| Nutrición
+hc_meals_export_title = Save meals to Health Connect ||| Guardar comidas en Health Connect
+hc_meals_export_text = Each food you log is saved as nutrition (calories, protein, carbohydrates, sugars, fat, saturated fat, fibre and sodium) for its meal. If you edit or delete it, Health Connect is updated too. ||| Cada alimento que anotas se guarda como nutrición (calorías, proteínas, hidratos, azúcares, grasas, grasas saturadas, fibra y sodio) en su comida. Si lo editas o lo borras, también se actualiza en Health Connect.
+hc_meals_export_missing_permission = Allow Fortia to write nutrition in Health Connect to save your meals there. ||| Permite que Fortia escriba nutrición en Health Connect para guardar ahí tus comidas.
+hc_meals_export_denied = If no permission window opens, allow "Nutrition" for Fortia in Health Connect. ||| Si no se abre la ventana de permisos, permite «Nutrición» para Fortia en Health Connect.
+hc_meals_export_off = New meals are not saved. The ones already in Health Connect stay there. ||| Las comidas nuevas no se guardan. Las que ya están en Health Connect se quedan allí.
+hc_meals_export_count_none = No meals in Health Connect yet. ||| Ninguna comida en Health Connect todavía.
+hc_meals_export_count{one} = %1$d food in Health Connect. ||| %1$d alimento en Health Connect.
+hc_meals_export_count{other} = %1$d foods in Health Connect. ||| %1$d alimentos en Health Connect.
+# Health Connect's "Why does Fortia ask for these permissions?" page (one paragraph more)
+health_rationale_write_meals = If you allow it, Fortia also writes the foods you log (nutrition) so other apps can count them. It never reads your nutrition data. ||| Si lo permites, Fortia también escribe los alimentos que anotas (nutrición) para que otras apps los tengan en cuenta. Nunca lee tus datos de nutrición.
+
+# Profile → Open-source licences: the libraries and the food data (keep names and licence names)
+notice_litert = Runs our food recognizer on the phone. ||| Ejecuta nuestro reconocedor de comida en el móvil.
+notice_zxing = Reads product barcodes from a photo. ||| Lee los códigos de barras de los productos en una foto.
+open_source_food_data = Food data ||| Datos de alimentos
+notice_open_food_facts = Packaged products found by their barcode. Data © Open Food Facts contributors, under the Open Database License (ODbL). ||| Productos envasados por su código de barras. Datos © colaboradores de Open Food Facts, con la Open Database License (ODbL).
+notice_usda = Nutrient values of the food list: U.S. Department of Agriculture, Agricultural Research Service, FoodData Central. Public domain (CC0). ||| Valores nutricionales de la lista de alimentos: U.S. Department of Agriculture, Agricultural Research Service, FoodData Central. Dominio público (CC0).
+notice_ciqual = Nutrient values of the food list: Anses, Ciqual French food composition table, under the Licence Ouverte / Etalab 2.0. ||| Valores nutricionales de la lista de alimentos: Anses, tabla de composición nutricional de los alimentos Ciqual, con la Licence Ouverte / Etalab 2.0.
+notice_food_model_name = Fortia food recognizer ||| Reconocedor de comida de Fortia
+notice_food_model_license = Our own model (see its model card) ||| Modelo propio (ver su ficha)
+notice_food_model = Our own model, trained on images from Open Images (CC BY 2.0) and Wikimedia Commons (free licences); the list of images and their authors is published with the source code. ||| Nuestro propio modelo, entrenado con imágenes de Open Images (CC BY 2.0) y Wikimedia Commons (licencias libres); la lista de imágenes y sus autores se publica con el código fuente.

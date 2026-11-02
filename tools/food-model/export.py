@@ -1,0 +1,201 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+"""Export a checkpoint to TFLite (LiteRT) + food_model.json.
+
+Two steps, each in its own virtualenv (PyTorch and TensorFlow pin different protobuf versions):
+
+  1. python export.py onnx --work D:/FoodML --run run1            (training venv: torch + timm)
+     -> <run>/export/model.onnx (static 1x3x224x224, TF-'SAME' padding made explicit, see static_pad.py)
+        <run>/export/calib.npy  (val photos for int8 calibration, NHWC, 0..1)
+  2. python export.py tflite --work D:/FoodML --run run1 --classes classes.csv --temperature 1.0
+        --min-confidence 0.05 --variant integer_quant --assets ../../app/src/main/assets/food    (export venv)
+     -> runs onnx2tf (ONNX -> TF -> TFLite: float32, float16, dynamic-range and int8 variants) and copies
+        the chosen variant to <assets>/food_model.tflite, writing <assets>/food_model.json.
+
+onnx2tf transposes the model to NHWC, so the TFLite input is [1, 224, 224, 3] float32 RGB normalised with
+mean = std = 0.5 after scaling to 0..1; the output is [1, n_classes] float32 logits (labels in that order).
+"""
+import argparse
+import csv
+import datetime
+import json
+import os
+import shutil
+import subprocess
+import sys
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+VARIANTS = ("float32", "float16", "dynamic_range_quant", "integer_quant", "full_integer_quant")
+
+
+def fuse_pads(path):
+    """Fold every constant zero Pad that feeds a Conv into the Conv's own (asymmetric) `pads`.
+
+    onnx2tf puts the H/W padding of a standalone NCHW Pad on the wrong NHWC axes (N and H), which breaks the
+    model; a Conv with asymmetric pads converts correctly."""
+    import numpy as np
+    import onnx
+    import onnxruntime as ort
+    from onnx import numpy_helper
+    m = onnx.load(path)
+    g = m.graph
+    consts = {i.name: numpy_helper.to_array(i) for i in g.initializer}
+    for n in g.node:
+        if n.op_type == "Constant":
+            consts[n.output[0]] = numpy_helper.to_array(n.attribute[0].t)
+    # torch exports the pads of F.pad as a small chain of shape ops: evaluate them once with ONNX Runtime
+    wanted = [n.input[1] for n in g.node if n.op_type == "Pad" and n.input[1] not in consts]
+    if wanted:
+        probe = onnx.load(path)
+        for name in wanted:
+            probe.graph.output.append(onnx.helper.make_tensor_value_info(name, onnx.TensorProto.INT64, None))
+        sess = ort.InferenceSession(probe.SerializeToString())
+        shape = [d.dim_value for d in g.input[0].type.tensor_type.shape.dim]
+        vals = sess.run(wanted, {g.input[0].name: np.zeros(shape, np.float32)})
+        consts.update(dict(zip(wanted, vals)))
+    users = {}
+    for n in g.node:
+        for i in n.input:
+            users.setdefault(i, []).append(n)
+    remove, fused = [], 0
+    for n in g.node:
+        if n.op_type != "Pad":
+            continue
+        pads = consts.get(n.input[1])
+        value = consts.get(n.input[2]) if len(n.input) > 2 and n.input[2] else np.zeros(())
+        mode = next((a.s.decode() for a in n.attribute if a.name == "mode"), "constant")
+        nxt = users.get(n.output[0], [])
+        if pads is None or mode != "constant" or float(np.asarray(value).reshape(-1)[0] if np.asarray(value).size else 0) != 0 \
+                or len(nxt) != 1 or nxt[0].op_type != "Conv" or pads[0] or pads[1] or pads[4] or pads[5]:
+            continue
+        conv = nxt[0]
+        old = next((list(a.ints) for a in conv.attribute if a.name == "pads"), [0, 0, 0, 0])
+        new = [old[0] + int(pads[2]), old[1] + int(pads[3]), old[2] + int(pads[6]), old[3] + int(pads[7])]
+        for a in list(conv.attribute):
+            if a.name in ("pads", "auto_pad"):
+                conv.attribute.remove(a)
+        conv.attribute.append(onnx.helper.make_attribute("pads", new))
+        conv.input[0] = n.input[0]
+        remove.append(n)
+        fused += 1
+    for n in remove:
+        g.node.remove(n)
+    while True:  # drop the now unused pad-computing nodes
+        used = {i for n in g.node for i in n.input} | {o.name for o in g.output}
+        dead = [n for n in g.node if not any(o in used for o in n.output)]
+        if not dead:
+            break
+        for n in dead:
+            g.node.remove(n)
+    onnx.checker.check_model(m)
+    onnx.save(m, path)
+    return fused
+
+
+def step_onnx(a):
+    import numpy as np
+    import pandas as pd
+    import timm
+    import torch
+    from PIL import Image
+    from torchvision.transforms import v2 as T
+    sys.path.insert(0, HERE)
+    from static_pad import make_static
+    from train import RESIZE, SIZE
+
+    run = os.path.join(a.work, "runs", a.run)
+    out = os.path.join(run, "export")
+    os.makedirs(out, exist_ok=True)
+    ck = torch.load(os.path.join(run, a.ckpt), map_location="cpu")
+    model = timm.create_model(ck["model"], pretrained=False, num_classes=ck["n_classes"])
+    model.load_state_dict(ck["state_dict"])
+    model.eval()
+    make_static(model, SIZE)
+    x = torch.zeros(1, 3, SIZE, SIZE)
+    onnx_path = os.path.join(out, "model.onnx")
+    torch.onnx.export(model, x, onnx_path, input_names=["input"], output_names=["logits"],
+                      opset_version=17, dynamo=False)
+    print("Pad ops folded into Conv:", fuse_pads(onnx_path))
+    import onnxruntime as ort
+    xr = torch.randn(2, 3, SIZE, SIZE)
+    with torch.no_grad():
+        ref = model(xr).numpy()
+    sess = ort.InferenceSession(onnx_path)
+    got = np.concatenate([sess.run(None, {"input": xr[i:i + 1].numpy()})[0] for i in range(2)])
+    print("ONNX vs PyTorch max |diff|:", float(np.abs(got - ref).max()))
+    assert np.abs(got - ref).max() < 1e-3
+    tf = T.Compose([T.Resize(RESIZE, interpolation=T.InterpolationMode.BILINEAR, antialias=True),
+                    T.CenterCrop(SIZE)])
+    val = pd.read_csv(os.path.join(a.work, a.dataset, "val.csv")).sample(a.calib, random_state=3)
+    arr = np.stack([np.asarray(tf(Image.open(p).convert("RGB")), dtype=np.float32) / 255.0 for p in val.path])
+    np.save(os.path.join(out, "calib.npy"), arr)
+    # onnx2tf checks its conversion on a sample batch it would otherwise download: give it local photos
+    small = np.stack([np.asarray(Image.open(p).convert("RGB").resize((128, 128), Image.BILINEAR),
+                                 dtype=np.float32) / 255.0 for p in val.path[:20]])
+    np.save(os.path.join(out, "calibration_image_sample_data_20x128x128x3_float32.npy"), small)
+    meta = {"model": ck["model"], "n_classes": ck["n_classes"], "epoch": ck.get("epoch"),
+            "checkpoint": a.ckpt, "val_top1": ck.get("val_top1")}
+    with open(os.path.join(out, "export_meta.json"), "w") as f:
+        json.dump(meta, f, indent=1)
+    print("onnx + calibration written to", out)
+
+
+def step_tflite(a):
+    run = os.path.join(a.work, "runs", a.run)
+    out = os.path.join(run, "export")
+    tfl = os.path.join(out, "tflite")
+    if not a.skip_convert:
+        shutil.rmtree(tfl, ignore_errors=True)
+        exe = os.path.join(os.path.dirname(sys.executable), "onnx2tf")
+        cmd = [exe, "-i", "model.onnx", "-o", "tflite", "-oiqt", "-qt", "per-channel",
+               "-cind", "input", "calib.npy", "[[[[0.5,0.5,0.5]]]]", "[[[[0.5,0.5,0.5]]]]", "-n"]
+        with open(os.path.join(out, "onnx2tf.log"), "w") as log:
+            subprocess.run(cmd, cwd=out, check=True, stdout=log, stderr=subprocess.STDOUT)
+    src = os.path.join(tfl, f"model_{a.variant}.tflite")
+    labels = [r["id"] for r in csv.DictReader(open(a.classes, encoding="utf-8"))]
+    with open(os.path.join(out, "export_meta.json")) as f:
+        meta = json.load(f)
+    assert len(labels) == meta["n_classes"], (len(labels), meta["n_classes"])
+    os.makedirs(a.assets, exist_ok=True)
+    shutil.copyfile(src, os.path.join(a.assets, "food_model.tflite"))
+    spec = {
+        "version": 1,
+        "labels": labels,
+        "input": {"width": 224, "height": 224, "layout": "NHWC", "dtype": "float32", "channels": "RGB",
+                  "mean": [0.5, 0.5, 0.5], "std": [0.5, 0.5, 0.5], "range": "0..1 before mean/std",
+                  "resize": "short_side_then_center_crop", "crop_fraction": 0.875, "resize_short_side": 256,
+                  "interpolation": "bilinear"},
+        "output": {"dtype": "float32", "scale": 1.0, "zero_point": 0, "kind": "logits"},
+        "temperature": a.temperature,
+        "min_confidence": a.min_confidence,
+        "not_food_label": "_not_food",
+        "model": {"name": a.name, "backbone": meta["model"], "quantization": a.variant,
+                  "trained": datetime.date.today().isoformat(), "notes": a.notes},
+    }
+    with open(os.path.join(a.assets, "food_model.json"), "w", encoding="utf-8", newline="\n") as f:
+        json.dump(spec, f, ensure_ascii=False, indent=1)
+        f.write("\n")
+    print("wrote", a.assets, os.path.getsize(src), "bytes")
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("step", choices=("onnx", "tflite"))
+    ap.add_argument("--work", default="D:/FoodML")
+    ap.add_argument("--dataset", default="dataset", help="under --work")
+    ap.add_argument("--run", default="run1")
+    ap.add_argument("--ckpt", default="best.pt")
+    ap.add_argument("--calib", type=int, default=500)
+    ap.add_argument("--classes", default=os.path.join(HERE, "classes.csv"))
+    ap.add_argument("--variant", default="integer_quant", choices=VARIANTS)
+    ap.add_argument("--temperature", type=float, default=1.0)
+    ap.add_argument("--min-confidence", type=float, default=0.05)
+    ap.add_argument("--assets", default=os.path.join(HERE, "..", "..", "app", "src", "main", "assets", "food"))
+    ap.add_argument("--name", default="fortia-food")
+    ap.add_argument("--notes", default="")
+    ap.add_argument("--skip-convert", action="store_true", help="reuse the tflite folder")
+    a = ap.parse_args()
+    step_onnx(a) if a.step == "onnx" else step_tflite(a)
+
+
+if __name__ == "__main__":
+    main()

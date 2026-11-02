@@ -15,6 +15,7 @@ import androidx.health.connect.client.records.ExerciseSessionRecord
 import androidx.health.connect.client.records.HeartRateRecord
 import androidx.health.connect.client.records.HeartRateVariabilityRmssdRecord
 import androidx.health.connect.client.records.LeanBodyMassRecord
+import androidx.health.connect.client.records.NutritionRecord
 import androidx.health.connect.client.records.OxygenSaturationRecord
 import androidx.health.connect.client.records.Record
 import androidx.health.connect.client.records.RespiratoryRateRecord
@@ -50,7 +51,8 @@ import kotlin.reflect.KClass
  *     adb shell am broadcast -n com.enjoyyourtime.globalfitness/.health.debug.DebugHealthSeedReceiver --es action clear
  *     adb shell am broadcast -n com.enjoyyourtime.globalfitness/.health.debug.DebugHealthSeedReceiver --es action dump
  *
- * `dump` logs the scale records this app wrote (client id, version, value) to verify the export.
+ * `dump` logs the scale records this app wrote (client id, version, value) to verify the export;
+ * `meals` (`--es action meals`) the meals' nutrition records, every nutrient as Health Connect stored it.
  *
  * The write permissions are declared only in the debug manifest; grant them with `pm grant`.
  */
@@ -69,6 +71,7 @@ class DebugHealthSeedReceiver : BroadcastReceiver() {
                         Log.i(TAG, "Cleared seeded records")
                     }
                     "dump" -> dumpScaleRecords(client, context.packageName)
+                    "meals" -> dumpMealRecords(client, context.packageName)
                     else -> {
                         val count = seed(client, days)
                         Log.i(TAG, "Seeded $count records for $days days")
@@ -102,6 +105,21 @@ class DebugHealthSeedReceiver : BroadcastReceiver() {
         }
         Log.i(TAG, "Scale records in Health Connect: ${lines.size}")
         lines.sorted().forEach { Log.i(TAG, it) }
+    }
+
+    /** The meals this app wrote, read back as Health Connect stores them (every nutrient the export sets). */
+    private suspend fun dumpMealRecords(client: HealthConnectClient, ownPackage: String) {
+        val range = TimeRangeFilter.after(Instant.now().minusSeconds(400L * 86_400))
+        val records = client.readRecords(ReadRecordsRequest(NutritionRecord::class, range, setOf(DataOrigin(ownPackage)))).records
+        Log.i(TAG, "Meal records in Health Connect: ${records.size}")
+        for (r in records) {
+            Log.i(
+                TAG,
+                line(r, "\"${r.name}\" meal=${r.mealType} energy=${r.energy?.inKilocalories} kcal protein=${r.protein?.inGrams} g " +
+                    "carbs=${r.totalCarbohydrate?.inGrams} g sugar=${r.sugar?.inGrams} g fat=${r.totalFat?.inGrams} g " +
+                    "satFat=${r.saturatedFat?.inGrams} g fiber=${r.dietaryFiber?.inGrams} g sodium=${r.sodium?.inGrams} g"),
+            )
+        }
     }
 
     private fun line(r: Record, value: String): String {

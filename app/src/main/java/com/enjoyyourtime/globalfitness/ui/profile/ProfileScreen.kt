@@ -79,6 +79,7 @@ fun ProfileScreen(
     onConnectHealth: () -> Unit,
     onOpenDevices: () -> Unit,
     onOpenTrainingSettings: () -> Unit,
+    onOpenFoodGoal: () -> Unit,
     onOpenAchievements: () -> Unit,
     onOpenAccount: () -> Unit,
     onOpenRemoveAds: () -> Unit,
@@ -164,6 +165,13 @@ fun ProfileScreen(
                     title = stringResource(R.string.profile_training_title),
                     subtitle = stringResource(R.string.profile_training_text),
                     onClick = onOpenTrainingSettings,
+                )
+                HorizontalDivider(color = MaterialTheme.colorScheme.surfaceContainerHighest)
+                SettingRow(
+                    icon = AppIcons.Restaurant,
+                    title = stringResource(R.string.foodlog_goal_title),
+                    subtitle = stringResource(R.string.foodlog_goal_profile_text),
+                    onClick = onOpenFoodGoal,
                 )
                 HorizontalDivider(color = MaterialTheme.colorScheme.surfaceContainerHighest)
                 SettingRow(

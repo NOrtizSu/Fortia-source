@@ -1,0 +1,233 @@
+# The Comida (food log) tab: photo, barcode, search or manual entry; the day, the daily goal, Health Connect
+
+# Bottom bar: Today · Training · Food · Progress · Profile
+nav_food = Nutrizione
+
+# Units
+unit_g = g
+unit_ml = ml
+value_g = %1$s g
+value_ml = %1$s ml
+
+# Portion names
+food_portion_unit = Unità
+food_portion_piece = Pezzo
+food_portion_slice = Fetta
+food_portion_plate = Piatto
+food_portion_small_plate = Piatto piccolo
+food_portion_bowl = Ciotola
+food_portion_cup = Tazza
+food_portion_glass = Bicchiere
+food_portion_can = Lattina
+food_portion_bottle = Bottiglia
+food_portion_tbsp = Cucchiaio
+food_portion_tsp = Cucchiaino
+food_portion_handful = Manciata
+food_portion_serving = Porzione
+
+# Meals of the day
+foodlog_meal_breakfast = Colazione
+foodlog_meal_lunch = Pranzo
+foodlog_meal_snack = Spuntino
+foodlog_meal_dinner = Cena
+foodlog_meal_other = Altro
+
+# Nutrition label
+foodlog_nutrient_kcal = Calorie
+foodlog_nutrient_protein = Proteine
+foodlog_nutrient_carbs = Carboidrati
+foodlog_nutrient_sugars = Zuccheri
+foodlog_nutrient_fat = Grassi
+foodlog_nutrient_sat_fat = Grassi saturi
+foodlog_nutrient_fiber = Fibre
+foodlog_nutrient_salt = Sale
+
+# The day
+foodlog_previous_day = Giorno precedente
+foodlog_next_day = Giorno successivo
+foodlog_eaten = Assunte
+foodlog_goal_of = su %1$s kcal
+foodlog_left = rimanenti
+foodlog_over = in eccesso
+foodlog_left_desc = %1$s su %2$s kcal assunte, %3$s kcal rimanenti
+foodlog_over_desc = %1$s su %2$s kcal assunte, %3$s kcal oltre l'obiettivo
+foodlog_no_goal = Imposta un obiettivo giornaliero per vedere quanto ti resta.
+foodlog_set_goal = Imposta obiettivo
+foodlog_value_of_target = %1$s / %2$s
+foodlog_limit_desc = %1$s: %2$s, limite
+foodlog_limit_over_desc = %1$s: %2$s, oltre il limite
+foodlog_label_value = %1$s: %2$s
+foodlog_more = Mostra di più
+foodlog_less = Mostra meno
+foodlog_portion_amount = %1$s × %2$s · %3$s
+foodlog_edit_entry = Modifica
+foodlog_empty_today = Niente registrato oggi
+foodlog_empty_day = Niente registrato in questo giorno
+foodlog_empty_text = Fai una foto al tuo piatto: Fortia ti suggerisce cos'è e tu confermi.
+foodlog_add_photo_short = Foto
+foodlog_add_search_short = Cerca
+foodlog_estimates_note = I valori sono stime basate su tabelle nutrizionali ed etichette dei prodotti, non un consiglio medico.
+foodlog_deleted = %1$s eliminato
+foodlog_undo = Annulla
+foodlog_write_failed = Impossibile salvare la modifica. Riprova.
+foodlog_db_error = Impossibile aprire il tuo diario alimentare
+
+# Add button and sheet
+foodlog_add = Aggiungi
+foodlog_add_title = Aggiungi alimento
+foodlog_add_photo = Foto del piatto
+foodlog_add_photo_text = Riconoscimento sul tuo telefono; la foto non lo lascia mai
+foodlog_add_gallery = Foto dalla galleria
+foodlog_add_gallery_text = Una foto che hai già scattato
+foodlog_add_barcode = Codice a barre
+foodlog_add_barcode_text = Fotografa il codice a barre della confezione
+foodlog_add_barcode_gallery = Foto del codice a barre dalla galleria
+foodlog_add_search = Cerca un alimento
+foodlog_add_search_text = Alimenti, piatti e i tuoi alimenti
+foodlog_add_manual = Inserisci manualmente
+foodlog_add_manual_text = Nome, quantità e calorie
+foodlog_camera_unavailable = Nessuna app può scattare la foto. Scegline una dalla galleria.
+
+# Photo page
+foodlog_photo_title = Cosa c'è nel piatto?
+foodlog_photo_desc = Foto del pasto
+foodlog_photo_recognizing = Riconoscimento del cibo…
+foodlog_photo_question = Scegli cos'è
+foodlog_photo_question_more = Qualcos'altro nel piatto?
+foodlog_hint_very_likely = Molto probabile
+foodlog_hint_likely = Probabile
+foodlog_hint_possible = Possibile
+foodlog_photo_other = Altro…
+foodlog_photo_search = Cerca l'alimento
+foodlog_photo_not_food = Non vedo cibo nella foto. Prova a cercarlo.
+foodlog_photo_no_model = Il riconoscimento delle foto non è disponibile. Cerca l'alimento.
+foodlog_photo_unreadable = Impossibile aprire la foto.
+foodlog_photo_gone = La foto non è più disponibile.
+foodlog_photo_private = La foto viene elaborata sul tuo telefono e resta lì.
+foodlog_photo_added = Aggiunto: %1$s
+foodlog_photo_add_another = Aggiungi un altro alimento da questa foto
+foodlog_done = Fatto
+
+# Search
+foodlog_search_title = Cerca
+foodlog_search_hint = Alimento o piatto
+foodlog_search_clear = Cancella ricerca
+foodlog_search_recent = Recenti
+foodlog_search_none = Nessun alimento corrisponde a “%1$s”.
+foodlog_create_food = Crea un alimento tuo
+foodlog_kcal_per_100g = %1$s kcal per 100 g
+foodlog_kcal_per_100ml = %1$s kcal per 100 ml
+foodlog_food_options = Modifica o elimina
+foodlog_food_edit = Modifica alimento
+foodlog_food_delete = Elimina alimento
+foodlog_food_delete_title = Eliminare “%1$s”?
+foodlog_food_delete_text = Non comparirà più nella ricerca. I pasti già registrati con questo alimento mantengono i loro valori.
+
+# Barcode
+foodlog_barcode_title = Codice a barre
+foodlog_barcode_reading = Lettura del codice a barre…
+foodlog_barcode_looking_up = Ricerca di %1$s in Open Food Facts…
+foodlog_barcode_not_read = Nessun codice a barre trovato nella foto
+foodlog_barcode_not_read_text = Prova con una foto più vicina e nitida, oppure digita i numeri sotto le barre.
+foodlog_barcode_type = Numero del codice a barre
+foodlog_barcode_invalid = Controlla il numero: ha 8, 12 o 13 cifre.
+foodlog_barcode_search = Cerca
+foodlog_barcode_not_found = Prodotto non trovato
+foodlog_barcode_not_found_text = Open Food Facts non ha ancora %1$s. Inseriscilo manualmente: verrà salvato per la prossima volta.
+foodlog_barcode_offline = Nessuna connessione
+foodlog_barcode_offline_text = Impossibile cercare %1$s senza internet. Riprova o inseriscilo manualmente.
+foodlog_barcode_failed = Open Food Facts non ha risposto
+foodlog_barcode_code = Codice %1$s
+foodlog_values_per_100g = Per 100 g
+foodlog_values_per_100ml = Per 100 ml
+foodlog_barcode_missing = Mancano: %1$s
+foodlog_barcode_use = Usa questo prodotto
+foodlog_barcode_complete = Completa i valori
+foodlog_off_attribution = Dati: Open Food Facts (ODbL)
+
+# Confirm / edit page
+foodlog_confirm_title = Conferma
+foodlog_edit_title = Modifica alimento
+foodlog_amount = Quantità
+foodlog_portion_chip = %1$s · %2$s
+foodlog_portion_count = %1$s × %2$s
+foodlog_portion_less = Meno
+foodlog_portion_more = Più
+foodlog_grams = Grammi
+foodlog_millilitres = Millilitri
+foodlog_meal = Pasto
+
+# Manual entry and completing a product's values
+foodlog_manual_title = Inserisci manualmente
+foodlog_complete_title = Completa i valori
+foodlog_edit_food_title = Modifica alimento salvato
+foodlog_manual_name = Nome
+foodlog_manual_values = Valori
+foodlog_manual_values_for = Valori per %1$s
+foodlog_manual_save_food = Salva tra i miei alimenti
+foodlog_manual_save_food_text = Per trovarlo nella ricerca la prossima volta
+
+# Daily goal page
+foodlog_goal_title = Obiettivo giornaliero
+foodlog_goal_profile_text = Calorie e nutrienti della scheda Nutrizione
+foodlog_goal_auto = Automatico
+foodlog_goal_manual = Manuale
+foodlog_goal_aim = Il tuo obiettivo
+foodlog_goal_lose = Perdere peso
+foodlog_goal_maintain = Mantenere
+foodlog_goal_gain = Prendere peso
+foodlog_goal_weight = Il tuo peso
+foodlog_goal_weight_text = Non c'è ancora nessuna pesata: inserisci il tuo peso per calcolare l'obiettivo.
+foodlog_goal_needs_weight = Inserisci il tuo peso per vedere il tuo obiettivo.
+foodlog_goal_how = Come si calcola
+foodlog_goal_bmr_scale = Calorie a riposo (la tua bilancia)
+foodlog_goal_bmr_formula = Calorie a riposo (da peso, altezza, età e sesso)
+foodlog_goal_resting = Una giornata tranquilla (× 1,2)
+foodlog_goal_active = Attività di oggi (Health Connect)
+foodlog_plus_kcal = + %1$s kcal
+foodlog_goal_light = Una giornata leggermente attiva (× 1,375)
+foodlog_goal_no_activity = Senza l'attività di oggi da Health Connect, si considera una giornata leggermente attiva.
+foodlog_goal_maintenance = Per mantenere il tuo peso
+foodlog_goal_lose_adjust = Per perdere peso, il 15% in meno.
+foodlog_goal_gain_adjust = Per prendere peso, il 10% in più.
+foodlog_goal_result = Obiettivo giornaliero: %1$s kcal
+foodlog_goal_targets = Obiettivi
+foodlog_goal_protein_per_kg = Proteine (%1$s g per kg)
+foodlog_goal_fat_share = Grassi (30% delle calorie)
+foodlog_goal_carbs_rest = Carboidrati (il resto)
+foodlog_goal_limits = Limiti
+foodlog_goal_sugars_limit = Zuccheri (10% delle calorie)
+foodlog_goal_sat_fat_limit = Grassi saturi (10% delle calorie)
+foodlog_less_than = meno di %1$s
+foodlog_at_least = almeno %1$s
+foodlog_goal_manual_text = I tuoi numeri: le calorie e i nutrienti che vuoi seguire (gli altri vengono calcolati).
+foodlog_goal_disclaimer = È una stima per adulti sani, non un consiglio medico. Se hai una patologia, sei incinta o segui una dieta, rivolgiti a un professionista.
+
+# Today card
+foodlog_today_title = Nutrizione di oggi
+foodlog_today_of = %1$s / %2$s kcal
+foodlog_today_open = Apri Nutrizione
+
+# Health Connect
+hc_type_nutrition = Alimentazione
+hc_meals_export_title = Salva i pasti in Health Connect
+hc_meals_export_text = Ogni alimento che registri viene salvato come dati di alimentazione (calorie, proteine, carboidrati, zuccheri, grassi, grassi saturi, fibre e sodio) nel suo pasto. Se lo modifichi o lo elimini, viene aggiornato anche Health Connect.
+hc_meals_export_missing_permission = Consenti a Fortia di scrivere l'alimentazione in Health Connect per salvarci i tuoi pasti.
+hc_meals_export_denied = Se non si apre nessuna finestra di autorizzazione, consenti “Alimentazione” per Fortia in Health Connect.
+hc_meals_export_off = I nuovi pasti non vengono salvati. Quelli già presenti in Health Connect restano lì.
+hc_meals_export_count_none = Ancora nessun pasto in Health Connect.
+hc_meals_export_count{one} = %1$d alimento in Health Connect.
+hc_meals_export_count{many} = %1$d alimenti in Health Connect.
+hc_meals_export_count{other} = %1$d alimenti in Health Connect.
+health_rationale_write_meals = Se lo consenti, Fortia scrive anche gli alimenti che registri (alimentazione), così le altre app possono tenerne conto. Non legge mai i tuoi dati sull'alimentazione.
+
+# Profile → Open source
+notice_litert = Esegue il nostro riconoscimento del cibo sul telefono.
+notice_zxing = Legge i codici a barre dei prodotti da una foto.
+open_source_food_data = Dati sugli alimenti
+notice_open_food_facts = Prodotti confezionati trovati tramite il codice a barre. Dati © collaboratori di Open Food Facts, con licenza Open Database License (ODbL).
+notice_usda = Valori nutrizionali dell'elenco degli alimenti: U.S. Department of Agriculture, Agricultural Research Service, FoodData Central. Pubblico dominio (CC0).
+notice_ciqual = Valori nutrizionali dell'elenco degli alimenti: Anses, tabella di composizione degli alimenti Ciqual, con Licence Ouverte / Etalab 2.0.
+notice_food_model_name = Riconoscimento del cibo di Fortia
+notice_food_model_license = Modello nostro (vedi la sua scheda)
+notice_food_model = Il nostro modello, addestrato con immagini di Open Images (CC BY 2.0) e Wikimedia Commons (licenze libere); l'elenco delle immagini e dei loro autori è pubblicato con il codice sorgente.

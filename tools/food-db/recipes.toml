@@ -1,0 +1,940 @@
+# Recipes for foods that neither USDA FoodData Central nor CIQUAL has as such (mapping.txt source = recipe).
+#
+# [<food id>]
+# name        = short description (copied to mapping.txt's description column)
+# yield       = finished weight / total weight of the ingredients (default 1.0): water lost when cooking (< 1)
+#               or absorbed (> 1). Nutrients are kept; only the weight changes.
+# ingredients = [[source key, grams, "what"], ...]: grams as weighed for the whole recipe (raw unless the source
+#               is a cooked food). Values per 100 g of the finished dish = sum(nutrients x grams / 100) / (total x yield).
+# basis       = where the amounts come from
+#
+# Amounts are typical home recipes (our own composition of standard Spanish recipes); the nutrient values come only
+# from the USDA/CIQUAL foods named in each line.
+
+# --- Drinks (ml converted to g; mapping.txt adds the density) ---
+
+[coffee_with_milk]
+name = "Coffee with milk: espresso + semi-skimmed milk (1 : 4)"
+ingredients = [
+  ["ciqual:18071", 40, "espresso"],
+  ["ciqual:19041", 165, "semi-skimmed milk, 160 ml"],
+]
+basis = "Spanish café con leche in a 200 ml cup: one espresso topped up with hot milk"
+
+[cortado]
+name = "Cortado: espresso + a dash of semi-skimmed milk"
+ingredients = [
+  ["ciqual:18071", 40, "espresso"],
+  ["ciqual:19041", 31, "semi-skimmed milk, 30 ml"],
+]
+basis = "Spanish cortado: espresso with ~30 ml of milk"
+
+[tinto_de_verano]
+name = "Tinto de verano: red wine + lemon soda (1 : 1)"
+ingredients = [
+  ["ciqual:5214", 124, "red wine, 125 ml"],
+  ["ciqual:18010", 130, "lemonade with sugar, 125 ml"],
+]
+basis = "usual 1:1 mix"
+
+[gin_tonic]
+name = "Gin and tonic: 50 ml gin + 200 ml tonic"
+ingredients = [
+  ["ciqual:1002", 47, "gin, 50 ml"],
+  ["ciqual:18344", 206, "tonic water with sugar, 200 ml"],
+]
+basis = "Spanish bar pour (50 ml) and one 200 ml bottle of tonic"
+
+[rum_and_cola]
+name = "Rum and cola: 50 ml rum + 200 ml cola"
+ingredients = [
+  ["ciqual:1004", 47, "rum, 50 ml"],
+  ["ciqual:18018", 208, "cola with sugar, 200 ml"],
+]
+basis = "Spanish bar pour (50 ml) and 200 ml of cola"
+
+[hot_chocolate]
+name = "Spanish thick hot chocolate: whole milk, dark chocolate, corn starch, sugar"
+yield = 0.95
+ingredients = [
+  ["ciqual:19023", 1000, "whole milk, ~970 ml"],
+  ["ciqual:31005", 100, "dark chocolate 50%"],
+  ["ciqual:9510", 20, "corn starch"],
+  ["ciqual:31016", 50, "sugar"],
+]
+basis = "home recipe for 5 cups; ~5% evaporates while thickening"
+
+# --- Eggs ---
+
+[fried_egg]
+name = "Fried egg: egg fried in olive oil (oil absorbed)"
+yield = 0.95
+ingredients = [
+  ["ciqual:22000", 50, "egg"],
+  ["ciqual:17270", 5, "olive oil absorbed"],
+]
+basis = "Spanish huevo frito in plenty of oil: ~5 g of oil stays on the egg; ~5% water lost"
+
+# --- Spanish dishes (amounts for the whole recipe) ---
+
+[spanish_omelette]
+name = "Spanish potato omelette: potato and onion confit in olive oil, eggs"
+yield = 0.80
+ingredients = [
+  ["ciqual:4008", 1000, "potatoes, peeled"],
+  ["ciqual:22000", 300, "6 eggs"],
+  ["ciqual:20034", 150, "onion"],
+  ["ciqual:17270", 100, "olive oil absorbed (of ~400 ml used, rest drained)"],
+  ["ciqual:11017", 8, "salt"],
+]
+basis = "home recipe for 4-6; finished tortilla ~1.25 kg (potatoes lose ~25% water when fried)"
+
+[gazpacho]
+name = "Gazpacho: tomato, pepper, cucumber, onion, garlic, bread, olive oil, vinegar"
+ingredients = [
+  ["ciqual:20276", 1000, "ripe tomatoes"],
+  ["ciqual:20085", 100, "green pepper"],
+  ["ciqual:20019", 150, "cucumber"],
+  ["ciqual:20034", 50, "onion"],
+  ["ciqual:11000", 5, "garlic"],
+  ["ciqual:7001", 50, "bread"],
+  ["ciqual:17270", 60, "olive oil"],
+  ["ciqual:11018", 30, "wine vinegar"],
+  ["ciqual:11017", 8, "salt"],
+  ["ciqual:18066", 150, "cold water"],
+]
+basis = "Andalusian home recipe, ~1.6 kg (6 glasses or bowls), blended raw"
+
+[salmorejo]
+name = "Salmorejo: tomato, bread, olive oil, garlic; topped with ham and egg"
+ingredients = [
+  ["ciqual:20276", 1000, "ripe tomatoes"],
+  ["ciqual:7001", 200, "bread"],
+  ["ciqual:17270", 100, "olive oil"],
+  ["ciqual:11000", 5, "garlic"],
+  ["ciqual:11017", 8, "salt"],
+  ["ciqual:28845", 30, "serrano ham, diced (topping)"],
+  ["ciqual:22010", 50, "hard-boiled egg (topping)"],
+]
+basis = "Cordoban home recipe for 6 bowls, blended raw"
+
+[lentils]
+name = "Lentil stew with chorizo: lentils, chorizo, potato, vegetables, olive oil, paprika"
+yield = 0.60
+ingredients = [
+  ["ciqual:20359", 300, "dry lentils"],
+  ["ciqual:30315", 100, "chorizo"],
+  ["ciqual:4008", 200, "potato"],
+  ["ciqual:20009", 100, "carrot"],
+  ["ciqual:20034", 100, "onion"],
+  ["ciqual:20085", 50, "green pepper"],
+  ["ciqual:11000", 10, "garlic"],
+  ["ciqual:20276", 100, "tomato"],
+  ["ciqual:17270", 30, "olive oil"],
+  ["ciqual:11049", 5, "paprika"],
+  ["ciqual:11017", 8, "salt"],
+  ["ciqual:18066", 1500, "water"],
+]
+basis = "home recipe for 4 plates (~375 g each); ~1.5 kg after 45 min of simmering"
+
+[croquettes]
+name = "Ham croquettes: thick bechamel with serrano ham, breaded and fried"
+yield = 0.79
+ingredients = [
+  ["ciqual:16400", 50, "butter"],
+  ["ciqual:17270", 30, "olive oil (roux)"],
+  ["fdc:168894", 100, "wheat flour"],
+  ["ciqual:19023", 1030, "whole milk, 1 l"],
+  ["ciqual:28845", 100, "serrano ham, chopped"],
+  ["ciqual:20034", 50, "onion"],
+  ["ciqual:11017", 5, "salt"],
+  ["ciqual:22000", 100, "egg (coating)"],
+  ["ciqual:7500", 120, "breadcrumbs (coating)"],
+  ["ciqual:17440", 120, "sunflower oil absorbed when deep-fried"],
+]
+basis = "home recipe, ~45 croquettes of 30 g; dough reduced ~300 g while thickening, ~50 g lost when frying"
+
+[ratatouille]
+name = "Pisto: zucchini, peppers, onion and tomato slowly fried in olive oil"
+yield = 0.65
+ingredients = [
+  ["ciqual:20020", 400, "zucchini"],
+  ["ciqual:20085", 200, "green pepper"],
+  ["ciqual:20087", 200, "red pepper"],
+  ["ciqual:20034", 200, "onion"],
+  ["ciqual:20169", 600, "tomato, peeled, canned"],
+  ["ciqual:17270", 60, "olive oil"],
+  ["ciqual:31016", 5, "sugar"],
+  ["ciqual:11017", 8, "salt"],
+]
+basis = "pisto manchego home recipe for 4; reduces to ~1.1 kg"
+
+[cocido]
+name = "Cocido madrileño (chickpeas, meats and vegetables, without the soup)"
+yield = 1.08
+ingredients = [
+  ["ciqual:20516", 500, "dry chickpeas (soaked; ~1.1 kg cooked)"],
+  ["ciqual:6231", 400, "beef shank (stewing meat)"],
+  ["ciqual:36002", 400, "chicken leg, meat and skin"],
+  ["ciqual:28550", 150, "salted pork belly (tocino)"],
+  ["ciqual:30315", 150, "chorizo"],
+  ["ciqual:8703", 150, "morcilla"],
+  ["ciqual:28845", 100, "serrano ham end"],
+  ["ciqual:4008", 600, "potatoes"],
+  ["ciqual:20009", 200, "carrots"],
+  ["ciqual:20069", 500, "cabbage (sautéed)"],
+  ["ciqual:17270", 30, "olive oil (cabbage)"],
+  ["ciqual:11000", 10, "garlic"],
+  ["ciqual:11017", 10, "salt"],
+]
+basis = "home recipe for 6; the 2nd and 3rd vuelco (chickpeas, vegetables, meats) ~3.5 kg; the fat and salt that go into the broth are kept here (slight overestimate)"
+
+[bean_stew]
+name = "Fabada asturiana: white beans with chorizo, morcilla and pork belly"
+yield = 0.81
+ingredients = [
+  ["fdc:173745", 500, "dry white beans (fabes)"],
+  ["ciqual:30315", 200, "chorizo"],
+  ["ciqual:8703", 200, "morcilla"],
+  ["ciqual:28550", 150, "salted pork belly"],
+  ["ciqual:17270", 20, "olive oil"],
+  ["ciqual:11017", 5, "salt"],
+  ["ciqual:18066", 2000, "water"],
+]
+basis = "home recipe for 6 (~2.5 kg with its broth)"
+
+[migas]
+name = "Migas: fried breadcrumbs with garlic, chorizo, pork belly and peppers"
+yield = 0.84
+ingredients = [
+  ["ciqual:7001", 500, "stale bread"],
+  ["ciqual:18066", 150, "water to moisten the bread"],
+  ["ciqual:17270", 100, "olive oil"],
+  ["ciqual:11000", 20, "garlic"],
+  ["ciqual:30315", 100, "chorizo"],
+  ["ciqual:28550", 100, "salted pork belly"],
+  ["ciqual:20085", 100, "green pepper"],
+  ["ciqual:11017", 3, "salt"],
+]
+basis = "migas manchegas/extremeñas for 4; the water evaporates while frying"
+
+[patatas_bravas]
+name = "Patatas bravas: fried potato cubes with spicy tomato sauce"
+yield = 0.66
+ingredients = [
+  ["ciqual:4008", 1000, "potatoes"],
+  ["ciqual:17440", 80, "sunflower oil absorbed when fried"],
+  ["ciqual:11017", 8, "salt"],
+  ["ciqual:11107", 150, "tomato sauce"],
+  ["ciqual:11049", 5, "paprika (hot)"],
+  ["ciqual:17270", 15, "olive oil (sauce)"],
+]
+basis = "bar recipe for 4 raciones; 1 kg raw potatoes give ~650 g fried"
+
+[potato_salad]
+name = "Ensaladilla rusa: potato, carrot, peas, tuna, egg and mayonnaise"
+ingredients = [
+  ["ciqual:4003", 500, "boiled potatoes"],
+  ["ciqual:20352", 100, "boiled carrot"],
+  ["ciqual:20037", 100, "cooked peas"],
+  ["ciqual:26245", 120, "canned tuna in oil, drained"],
+  ["ciqual:22010", 100, "hard-boiled eggs"],
+  ["ciqual:11054", 200, "mayonnaise"],
+  ["ciqual:13033", 30, "green olives"],
+  ["ciqual:11017", 3, "salt"],
+]
+basis = "home recipe for 6 tapas"
+
+[ensalada_mixta]
+name = "Mixed salad: lettuce, tomato, onion, tuna, egg, olives, corn, carrot, olive oil and vinegar"
+ingredients = [
+  ["ciqual:20031", 150, "lettuce"],
+  ["ciqual:20276", 150, "tomato"],
+  ["ciqual:20034", 30, "onion"],
+  ["ciqual:26245", 56, "canned tuna in oil, drained"],
+  ["ciqual:22010", 50, "hard-boiled egg"],
+  ["ciqual:13033", 20, "green olives"],
+  ["ciqual:20066", 30, "sweet corn"],
+  ["ciqual:20009", 30, "grated carrot"],
+  ["ciqual:17270", 15, "olive oil"],
+  ["ciqual:11018", 10, "wine vinegar"],
+  ["ciqual:11017", 2, "salt"],
+]
+basis = "one large plate (Spanish ensalada mixta as a first course)"
+
+[bread_with_tomato]
+name = "Toast with grated tomato and olive oil"
+ingredients = [
+  ["ciqual:7001", 100, "bread, toasted"],
+  ["ciqual:20276", 50, "grated tomato"],
+  ["ciqual:17270", 10, "olive oil"],
+  ["ciqual:11017", 1, "salt"],
+]
+basis = "one Spanish tostada con tomate (half a barra)"
+
+[octopus]
+name = "Galician octopus (pulpo á feira): boiled octopus with olive oil, paprika and coarse salt"
+ingredients = [
+  ["ciqual:10079", 500, "boiled octopus"],
+  ["ciqual:17270", 40, "olive oil"],
+  ["ciqual:11049", 5, "paprika"],
+  ["ciqual:11017", 5, "coarse salt"],
+]
+basis = "pulpeira recipe for 3 raciones, without the potatoes (log cachelos as potato)"
+
+[gambas_al_ajillo]
+name = "Garlic prawns: prawns cooked in olive oil with garlic and chilli"
+yield = 0.85
+ingredients = [
+  ["ciqual:10021", 400, "raw peeled prawns"],
+  ["ciqual:17270", 60, "olive oil eaten (of ~100 ml in the dish)"],
+  ["ciqual:11000", 30, "garlic"],
+  ["ciqual:11017", 4, "salt"],
+]
+basis = "tapa recipe for 4 cazuelitas; prawns lose ~20% water"
+
+[pimientos_de_padron]
+name = "Padrón peppers fried in olive oil with coarse salt"
+yield = 0.80
+ingredients = [
+  ["ciqual:20085", 300, "small green peppers"],
+  ["ciqual:17270", 30, "olive oil absorbed"],
+  ["ciqual:11017", 5, "coarse salt"],
+]
+basis = "one ración"
+
+[meatballs]
+name = "Meatballs in sauce: fried beef meatballs stewed in onion, carrot and tomato sauce"
+yield = 0.82
+ingredients = [
+  ["ciqual:6254", 500, "minced beef, 15% fat"],
+  ["ciqual:22000", 50, "egg"],
+  ["ciqual:7500", 50, "breadcrumbs"],
+  ["ciqual:11000", 10, "garlic"],
+  ["fdc:168894", 30, "flour (coating)"],
+  ["ciqual:17270", 50, "olive oil absorbed when fried"],
+  ["ciqual:20034", 150, "onion"],
+  ["ciqual:20009", 100, "carrot"],
+  ["ciqual:20169", 200, "tomato, canned"],
+  ["ciqual:18066", 200, "water/stock"],
+  ["ciqual:11017", 8, "salt"],
+]
+basis = "home recipe for 4 (~24 meatballs with their sauce, ~1.1 kg)"
+
+[calamari]
+name = "Fried squid rings: squid coated in flour and deep-fried"
+yield = 0.81
+ingredients = [
+  ["ciqual:10001", 500, "squid rings, raw"],
+  ["fdc:168894", 80, "wheat flour (coating)"],
+  ["ciqual:17440", 75, "sunflower oil absorbed"],
+  ["ciqual:11017", 5, "salt"],
+]
+basis = "bar ración x3; squid loses ~25% water"
+
+[empanada]
+name = "Galician tuna pie: bread dough with onion, pepper, tomato, tuna and egg, baked"
+yield = 0.80
+ingredients = [
+  ["fdc:168894", 500, "wheat flour"],
+  ["ciqual:17270", 80, "olive oil (dough)"],
+  ["ciqual:18066", 200, "water (dough)"],
+  ["ciqual:22000", 50, "egg (glaze)"],
+  ["ciqual:11017", 8, "salt"],
+  ["ciqual:20034", 400, "onion"],
+  ["ciqual:20087", 200, "red pepper"],
+  ["ciqual:17270", 60, "olive oil (filling)"],
+  ["ciqual:11107", 150, "tomato sauce"],
+  ["ciqual:26245", 300, "canned tuna in oil, drained"],
+  ["ciqual:22010", 100, "hard-boiled eggs"],
+]
+basis = "home recipe, one large empanada (~1.6 kg baked, 10 slices)"
+
+[huevos_rotos]
+name = "Huevos rotos: fried potatoes with fried eggs and serrano ham"
+yield = 0.68
+ingredients = [
+  ["ciqual:4008", 1000, "potatoes"],
+  ["ciqual:17440", 80, "sunflower oil absorbed (potatoes)"],
+  ["ciqual:22000", 200, "4 eggs"],
+  ["ciqual:17270", 20, "olive oil absorbed (eggs)"],
+  ["ciqual:28845", 100, "serrano ham"],
+  ["ciqual:11017", 8, "salt"],
+]
+basis = "bar recipe for 3 plates"
+
+[judias_verdes_con_patatas]
+name = "Green beans with potatoes, dressed with garlic olive oil and paprika"
+ingredients = [
+  ["ciqual:20061", 500, "green beans"],
+  ["ciqual:4008", 300, "potatoes"],
+  ["ciqual:17270", 30, "olive oil"],
+  ["ciqual:11000", 10, "garlic"],
+  ["ciqual:11049", 2, "paprika"],
+  ["ciqual:11017", 6, "salt"],
+]
+basis = "home recipe for 3 plates (boiled, drained, garlic fried in the oil)"
+
+[garbanzos_con_espinacas]
+name = "Chickpeas with spinach, fried bread, garlic and paprika"
+yield = 0.95
+ingredients = [
+  ["fdc:173757", 600, "cooked chickpeas"],
+  ["ciqual:20027", 300, "cooked spinach"],
+  ["ciqual:17270", 40, "olive oil"],
+  ["ciqual:11000", 10, "garlic"],
+  ["ciqual:7001", 30, "fried bread (majado)"],
+  ["ciqual:11049", 3, "paprika"],
+  ["ciqual:11017", 6, "salt"],
+  ["ciqual:18066", 100, "water"],
+]
+basis = "Sevillian tapa recipe for 4"
+
+[cream_soup]
+name = "Zucchini cream soup: zucchini, potato, onion, olive oil, cheese portions"
+yield = 0.95
+ingredients = [
+  ["ciqual:20020", 800, "zucchini"],
+  ["ciqual:4008", 200, "potato"],
+  ["ciqual:20034", 150, "onion"],
+  ["ciqual:17270", 30, "olive oil"],
+  ["ciqual:12300", 40, "processed cheese"],
+  ["ciqual:18066", 400, "water"],
+  ["ciqual:11017", 7, "salt"],
+]
+basis = "home recipe for 5 bowls (stands for vegetable cream soups in general)"
+
+[grilled_vegetables]
+name = "Grilled vegetables: zucchini, eggplant, red pepper and onion with olive oil"
+yield = 0.75
+ingredients = [
+  ["ciqual:20020", 200, "zucchini"],
+  ["ciqual:20053", 200, "eggplant"],
+  ["ciqual:20087", 150, "red pepper"],
+  ["ciqual:20034", 100, "onion"],
+  ["ciqual:17270", 30, "olive oil"],
+  ["ciqual:11017", 3, "salt"],
+]
+basis = "parrillada de verduras / escalivada for 3; ~25% water lost on the grill"
+
+[cold_cuts]
+name = "Charcuterie board: cured ham, chorizo, salchichón and cured cheese"
+ingredients = [
+  ["ciqual:28845", 30, "serrano ham"],
+  ["ciqual:30315", 25, "chorizo"],
+  ["ciqual:30350", 25, "salchichón"],
+  ["ciqual:12119", 20, "cured ewe's milk cheese"],
+]
+basis = "a typical Spanish tabla de embutidos y queso, by weight"
+
+[skewers]
+name = "Pork skewers (pinchos morunos): marinated pork shoulder, grilled"
+yield = 0.72
+ingredients = [
+  ["ciqual:28477", 500, "pork shoulder, lean"],
+  ["ciqual:17270", 20, "olive oil (marinade)"],
+  ["ciqual:11049", 5, "paprika and spices"],
+  ["ciqual:11017", 5, "salt"],
+]
+basis = "home recipe for 6 skewers; meat loses ~28% when grilled"
+
+[mixed_grill]
+name = "Mixed grill: chicken, pork ribs, lamb chops, chorizo, morcilla and sausage"
+ingredients = [
+  ["ciqual:36006", 150, "chicken leg, roasted"],
+  ["ciqual:28401", 100, "pork ribs, cooked"],
+  ["ciqual:21512", 100, "lamb chops, grilled"],
+  ["ciqual:30315", 50, "chorizo"],
+  ["ciqual:8704", 50, "morcilla, grilled"],
+  ["ciqual:30005", 50, "pork sausage, cooked"],
+]
+basis = "parrillada de carne for 2, cooked weights of the edible part"
+
+[korean_bbq]
+name = "Bulgogi: thin beef marinated in soy sauce, sugar, onion and garlic, grilled"
+yield = 0.75
+ingredients = [
+  ["ciqual:6102", 500, "beef round, sliced"],
+  ["ciqual:11104", 50, "soy sauce"],
+  ["ciqual:31016", 25, "sugar"],
+  ["ciqual:17440", 15, "oil"],
+  ["ciqual:20034", 100, "onion"],
+  ["ciqual:11000", 10, "garlic"],
+]
+basis = "home bulgogi for 4"
+
+[tripe_stew]
+name = "Callos a la madrileña: beef tripe stewed with chorizo, morcilla, tomato and paprika"
+yield = 0.80
+ingredients = [
+  ["fdc:174769", 800, "beef tripe, simmered"],
+  ["ciqual:30315", 150, "chorizo"],
+  ["ciqual:8703", 100, "morcilla"],
+  ["ciqual:20034", 100, "onion"],
+  ["ciqual:20169", 100, "tomato, canned"],
+  ["ciqual:17270", 30, "olive oil"],
+  ["ciqual:11049", 10, "paprika"],
+  ["fdc:168894", 10, "flour"],
+  ["ciqual:11017", 8, "salt"],
+  ["ciqual:18066", 300, "cooking water"],
+]
+basis = "home recipe for 6 cazuelas"
+
+[tandoori_chicken]
+name = "Tandoori chicken: chicken leg marinated in yogurt and spices, roasted"
+yield = 0.75
+ingredients = [
+  ["ciqual:36024", 500, "chicken leg meat"],
+  ["ciqual:19593", 100, "plain yogurt"],
+  ["ciqual:11049", 10, "paprika and spices"],
+  ["ciqual:13009", 20, "lemon"],
+  ["ciqual:17270", 10, "oil"],
+  ["ciqual:11017", 6, "salt"],
+]
+basis = "home recipe for 3"
+
+[stir_fry]
+name = "Chicken and vegetable stir-fry with soy sauce"
+yield = 0.85
+ingredients = [
+  ["ciqual:36017", 300, "chicken breast"],
+  ["ciqual:20057", 150, "broccoli"],
+  ["ciqual:20087", 150, "red pepper"],
+  ["ciqual:20034", 100, "onion"],
+  ["ciqual:20009", 100, "carrot"],
+  ["ciqual:17440", 20, "oil"],
+  ["ciqual:11104", 30, "soy sauce"],
+  ["ciqual:31016", 5, "sugar"],
+]
+basis = "wok recipe for 3, without rice or noodles"
+
+[fried_fish]
+name = "Fried fish (pescaíto frito): white fish coated in flour and fried in olive oil"
+yield = 0.82
+ingredients = [
+  ["ciqual:26044", 500, "hake or similar white fish, raw"],
+  ["fdc:168894", 60, "wheat flour"],
+  ["ciqual:17270", 50, "olive oil absorbed"],
+  ["ciqual:11017", 5, "salt"],
+]
+basis = "Andalusian fritura for 3; fish loses ~20% water"
+
+[fish_and_chips]
+name = "Fish and chips: breaded fried fish with French fries (1 : 1)"
+ingredients = [
+  ["ciqual:26030", 200, "fried breaded fish"],
+  ["ciqual:4032", 200, "French fries"],
+]
+basis = "one plate"
+
+[sashimi]
+name = "Sashimi: raw salmon and tuna (1 : 1)"
+ingredients = [
+  ["ciqual:26036", 50, "raw farmed salmon"],
+  ["ciqual:26064", 50, "raw yellowfin tuna"],
+]
+basis = "the usual mix in Spain"
+
+[french_toast]
+name = "Torrijas: bread soaked in sweet milk and egg, fried, coated in sugar"
+yield = 0.85
+ingredients = [
+  ["ciqual:7001", 300, "stale bread"],
+  ["ciqual:19023", 400, "whole milk absorbed"],
+  ["ciqual:31016", 120, "sugar (milk and coating)"],
+  ["ciqual:22000", 150, "3 eggs"],
+  ["ciqual:17440", 100, "oil absorbed when fried"],
+]
+basis = "home recipe, ~12 torrijas"
+
+[turron]
+name = "Hard turrón (Alicante type): almonds, honey, sugar and egg white"
+yield = 0.95
+ingredients = [
+  ["ciqual:15041", 600, "peeled almonds"],
+  ["ciqual:31008", 200, "honey"],
+  ["ciqual:31016", 150, "sugar"],
+  ["ciqual:22001", 50, "egg white"],
+]
+basis = "traditional proportions (almonds ~60%); water from the honey evaporates"
+
+[quince_paste]
+name = "Quince paste: quince pulp cooked with sugar"
+yield = 0.70
+ingredients = [
+  ["ciqual:13010", 1000, "quince, peeled and cored"],
+  ["ciqual:31016", 800, "sugar"],
+]
+basis = "home dulce de membrillo; reduced by ~30%"
+
+[oatmeal]
+name = "Porridge: rolled oats cooked in semi-skimmed milk"
+yield = 0.90
+ingredients = [
+  ["ciqual:32140", 40, "rolled oats"],
+  ["ciqual:19041", 210, "semi-skimmed milk, 200 ml"],
+]
+basis = "one bowl, no sugar"
+
+[avocado_toast]
+name = "Avocado toast: toasted bread with avocado and olive oil"
+ingredients = [
+  ["fdc:174925", 60, "toasted bread"],
+  ["fdc:171706", 70, "half an avocado"],
+  ["ciqual:17270", 5, "olive oil"],
+  ["ciqual:11017", 1, "salt"],
+]
+basis = "one toast"
+
+[green_salad]
+name = "Green salad: lettuce, tomato, cucumber and onion with olive oil and vinegar"
+ingredients = [
+  ["ciqual:20031", 150, "lettuce"],
+  ["ciqual:20276", 100, "tomato"],
+  ["ciqual:20019", 50, "cucumber"],
+  ["ciqual:20034", 30, "onion"],
+  ["ciqual:17270", 15, "olive oil"],
+  ["ciqual:11018", 10, "vinegar"],
+  ["ciqual:11017", 2, "salt"],
+]
+basis = "one side plate, dressed"
+
+[greek_salad]
+name = "Greek salad: tomato, cucumber, onion, pepper, feta and olives with olive oil"
+ingredients = [
+  ["ciqual:20276", 150, "tomato"],
+  ["ciqual:20019", 100, "cucumber"],
+  ["ciqual:20238", 30, "red onion"],
+  ["ciqual:20085", 50, "green pepper"],
+  ["ciqual:12060", 60, "feta"],
+  ["ciqual:13186", 20, "black olives"],
+  ["ciqual:17270", 20, "olive oil"],
+  ["ciqual:11017", 1, "salt"],
+]
+basis = "one plate"
+
+[caprese_salad]
+name = "Caprese salad: tomato and mozzarella with olive oil and basil"
+ingredients = [
+  ["ciqual:20276", 200, "tomato"],
+  ["ciqual:19590", 125, "mozzarella"],
+  ["ciqual:17270", 15, "olive oil"],
+  ["ciqual:11017", 1, "salt"],
+]
+basis = "one plate"
+
+[pesto_pasta]
+name = "Pasta with pesto and parmesan"
+ingredients = [
+  ["ciqual:9811", 220, "cooked pasta"],
+  ["ciqual:11179", 40, "pesto"],
+  ["ciqual:12120", 5, "grated parmesan"],
+]
+basis = "one plate (80 g dry pasta)"
+
+[ramen]
+name = "Ramen: wheat noodles in broth with pork belly, egg and spring onion"
+ingredients = [
+  ["fdc:2343835", 200, "cooked noodles"],
+  ["ciqual:25930", 400, "broth"],
+  ["fdc:2341307", 50, "pork belly (chashu)"],
+  ["ciqual:22010", 50, "boiled egg"],
+  ["ciqual:11003", 10, "spring onion"],
+  ["ciqual:11104", 20, "soy sauce"],
+  ["ciqual:17440", 10, "oil"],
+]
+basis = "one restaurant bowl"
+
+[stew]
+name = "Beef stew (estofado): beef, potatoes, carrot, onion, peas and tomato"
+yield = 0.75
+ingredients = [
+  ["ciqual:6231", 600, "beef stewing meat"],
+  ["ciqual:4008", 500, "potatoes"],
+  ["ciqual:20009", 200, "carrots"],
+  ["ciqual:20034", 150, "onion"],
+  ["ciqual:20084", 100, "peas, frozen"],
+  ["ciqual:20169", 150, "tomato, canned"],
+  ["ciqual:17270", 40, "olive oil"],
+  ["fdc:168894", 15, "flour"],
+  ["ciqual:11017", 10, "salt"],
+  ["ciqual:18066", 500, "water"],
+]
+basis = "home recipe for 5 plates (the wine of the recipe is left out: its alcohol cooks off)"
+
+[hot_pot]
+name = "Hot pot: broth with thin beef, tofu, cabbage, mushrooms and noodles"
+ingredients = [
+  ["ciqual:25909", 500, "meat and vegetable broth"],
+  ["ciqual:6102", 150, "beef, thinly sliced"],
+  ["ciqual:20904", 100, "tofu"],
+  ["ciqual:20116", 150, "cabbage"],
+  ["ciqual:20010", 100, "mushrooms"],
+  ["fdc:2343835", 100, "cooked noodles"],
+]
+basis = "one portion with its broth"
+
+[full_breakfast]
+name = "Full English breakfast: egg, bacon, sausages, beans, toast, mushrooms, tomato, black pudding"
+ingredients = [
+  ["ciqual:22000", 50, "egg"],
+  ["ciqual:17440", 10, "oil (frying)"],
+  ["ciqual:28727", 50, "back bacon"],
+  ["ciqual:30005", 100, "two pork sausages"],
+  ["ciqual:20194", 100, "baked beans"],
+  ["fdc:174925", 40, "toast"],
+  ["ciqual:16400", 5, "butter"],
+  ["ciqual:20102", 50, "mushrooms"],
+  ["ciqual:20276", 80, "tomato"],
+  ["ciqual:8704", 30, "black pudding"],
+]
+basis = "one plate"
+
+[iced_coffee]
+name = "Café con hielo: espresso poured over ice, no sugar"
+ingredients = [
+  ["ciqual:18071", 40, "espresso"],
+  ["ciqual:18066", 60, "melted ice"],
+]
+basis = "one glass (~100 ml once the ice melts); sugar is logged apart, as for the other coffees"
+
+[mojito]
+name = "Mojito: rum, lime, sugar, mint and soda water"
+ingredients = [
+  ["ciqual:1004", 47, "rum, 50 ml"],
+  ["ciqual:2030", 20, "lime juice"],
+  ["ciqual:31016", 15, "sugar"],
+  ["ciqual:18046", 100, "soda water"],
+]
+basis = "one glass (without the ice)"
+
+[canapes]
+name = "Montaditos: bread slices with ham, cheese, tuna with mayonnaise and roasted pepper"
+ingredients = [
+  ["ciqual:7001", 120, "4 slices of barra"],
+  ["ciqual:28845", 15, "serrano ham"],
+  ["ciqual:12119", 15, "cured cheese"],
+  ["ciqual:26245", 15, "canned tuna"],
+  ["ciqual:11054", 10, "mayonnaise"],
+  ["ciqual:20276", 20, "tomato"],
+  ["ciqual:20088", 15, "roasted red pepper"],
+  ["ciqual:17270", 5, "olive oil"],
+]
+basis = "a plate of 4 assorted montaditos/pinchos"
+
+[steamed_buns]
+name = "Steamed buns (bao) filled with sweet soy pork"
+yield = 0.95
+ingredients = [
+  ["fdc:168894", 300, "wheat flour"],
+  ["ciqual:18066", 150, "water"],
+  ["ciqual:31016", 35, "sugar (dough and filling)"],
+  ["ciqual:17440", 10, "oil"],
+  ["ciqual:28477", 200, "pork shoulder"],
+  ["ciqual:11104", 15, "soy sauce"],
+]
+basis = "10 buns"
+
+[arancini]
+name = "Arancini: rice balls with mozzarella and tomato, breaded and fried"
+yield = 0.95
+ingredients = [
+  ["ciqual:9104", 500, "cooked rice"],
+  ["ciqual:19590", 100, "mozzarella"],
+  ["ciqual:12120", 20, "parmesan"],
+  ["ciqual:22000", 50, "egg"],
+  ["ciqual:7500", 80, "breadcrumbs"],
+  ["ciqual:17440", 80, "oil absorbed when fried"],
+  ["ciqual:11107", 50, "tomato sauce"],
+  ["ciqual:11017", 3, "salt"],
+]
+basis = "8 arancini"
+
+[paella]
+name = "Paella mixta: rice with chicken, prawns, squid, mussels, pepper, tomato and olive oil"
+yield = 0.69
+ingredients = [
+  ["ciqual:9100", 400, "round rice, raw"],
+  ["ciqual:36016", 500, "chicken, meat and skin"],
+  ["ciqual:10021", 200, "prawns, peeled"],
+  ["ciqual:10001", 200, "squid"],
+  ["ciqual:10014", 200, "mussel meat"],
+  ["ciqual:20087", 100, "red pepper"],
+  ["ciqual:20276", 150, "grated tomato"],
+  ["ciqual:17270", 80, "olive oil"],
+  ["ciqual:11000", 10, "garlic"],
+  ["ciqual:11049", 5, "paprika"],
+  ["ciqual:11017", 12, "salt"],
+  ["ciqual:18066", 1200, "water or stock"],
+]
+basis = "Spanish home paella for 6 (~2.1 kg cooked: rice x2.5, meat and seafood lose ~25%); CIQUAL's French home-made paella (135 kcal, 2.2 g fat) has less oil than a Spanish one"
+
+[ham_baguette]
+name = "Serrano ham bocadillo: half a barra with tomato and olive oil"
+ingredients = [
+  ["ciqual:7001", 120, "half a barra"],
+  ["ciqual:28845", 40, "serrano ham"],
+  ["ciqual:20276", 20, "grated tomato"],
+  ["ciqual:17270", 5, "olive oil"],
+]
+basis = "one bar bocadillo"
+
+[toast_with_olive_oil]
+name = "Toast with olive oil"
+ingredients = [
+  ["ciqual:7001", 60, "toasted bread"],
+  ["ciqual:17270", 10, "olive oil"],
+  ["ciqual:11017", 0.5, "salt"],
+]
+basis = "one Spanish breakfast tostada"
+
+[toast_with_butter_and_jam]
+name = "Toast with butter and jam"
+ingredients = [
+  ["ciqual:7001", 60, "toasted bread"],
+  ["ciqual:16400", 10, "butter"],
+  ["ciqual:31006", 20, "jam"],
+]
+basis = "one Spanish breakfast tostada"
+
+[arroz_a_la_cubana]
+name = "Arroz a la cubana: white rice with tomato sauce, a fried egg and fried banana"
+ingredients = [
+  ["ciqual:9104", 200, "cooked white rice"],
+  ["ciqual:11107", 60, "tomato sauce"],
+  ["ciqual:22000", 50, "egg"],
+  ["ciqual:17270", 10, "olive oil absorbed (egg and banana)"],
+  ["ciqual:13005", 100, "banana, fried"],
+]
+basis = "one plate"
+
+[crema_catalana]
+name = "Crema catalana: milk custard with egg yolks and cornflour, burnt sugar on top"
+yield = 0.90
+ingredients = [
+  ["ciqual:19023", 500, "whole milk (with lemon peel and cinnamon)"],
+  ["ciqual:22002", 72, "4 egg yolks"],
+  ["ciqual:31016", 75, "sugar (custard)"],
+  ["ciqual:9510", 25, "cornflour"],
+  ["ciqual:31016", 25, "sugar burnt on top"],
+]
+basis = "Catalan home recipe for 5 cazuelitas; ~10% water lost while thickening"
+
+[squid]
+name = "Griddled squid (a la plancha): raw squid with a little olive oil and salt"
+yield = 0.85
+ingredients = [
+  ["ciqual:10001", 500, "squid, cleaned, raw"],
+  ["ciqual:17270", 20, "olive oil (griddle)"],
+  ["ciqual:11017", 3, "salt"],
+]
+basis = "one large ración x3; squid loses ~15% water on the griddle"
+
+[pakora]
+name = "Pakora: onion and spinach fritters in chickpea batter, deep-fried"
+yield = 0.80
+ingredients = [
+  ["ciqual:9580", 100, "chickpea flour"],
+  ["ciqual:20034", 100, "onion"],
+  ["ciqual:20059", 50, "spinach"],
+  ["ciqual:18066", 80, "water (batter)"],
+  ["ciqual:11017", 2, "salt"],
+  ["ciqual:17440", 50, "sunflower oil absorbed"],
+]
+basis = "home recipe, ~12 pakoras; ~20% water lost when frying"
+
+[custard_tart]
+name = "Pastel de nata: puff pastry filled with egg-yolk custard, baked"
+yield = 0.84
+ingredients = [
+  ["ciqual:23424", 300, "puff pastry, butter, raw"],
+  ["ciqual:19023", 350, "whole milk"],
+  ["ciqual:22002", 100, "6 egg yolks"],
+  ["ciqual:31016", 150, "sugar"],
+  ["fdc:168894", 25, "wheat flour"],
+]
+basis = "12 tarts of ~65 g"
+
+[bibimbap]
+name = "Bibimbap: rice with beef, vegetables, a fried egg and sauce"
+ingredients = [
+  ["ciqual:9104", 200, "cooked rice"],
+  ["ciqual:6253", 60, "minced beef, cooked"],
+  ["ciqual:20027", 50, "spinach, cooked"],
+  ["ciqual:20009", 40, "carrot"],
+  ["ciqual:20183", 40, "bean sprouts"],
+  ["ciqual:20102", 40, "mushrooms, cooked"],
+  ["ciqual:22000", 50, "egg"],
+  ["ciqual:17440", 15, "oil (egg and vegetables)"],
+  ["ciqual:11104", 10, "soy sauce"],
+  ["ciqual:31016", 5, "sugar (sauce)"],
+]
+basis = "one restaurant bowl (~510 g)"
+
+[iberico_ham]
+name = "Ibérico ham, estimated: serrano ham with 20% of its fat (marbled, fattier cut)"
+ingredients = [
+  ["ciqual:28845", 80, "dry-cured serrano ham"],
+  ["ciqual:28470", 20, "pork back fat"],
+]
+basis = "an estimate: no open table has ibérico ham; it is the same dry-cured product with more intramuscular and covering fat (~25 g fat/100 g)"
+
+[anchovies]
+name = "Boquerones en vinagre: anchovy fillets cured in vinegar, served in olive oil with garlic"
+ingredients = [
+  ["ciqual:26079", 300, "raw anchovy fillets"],
+  ["ciqual:11018", 20, "vinegar absorbed"],
+  ["ciqual:17270", 30, "olive oil (served in)"],
+  ["ciqual:11000", 5, "garlic"],
+  ["ciqual:11017", 6, "salt"],
+]
+basis = "home tapa recipe for 3"
+
+[potaje_alubias]
+name = "Potaje de alubias: white beans stewed with potato and vegetables, olive oil and paprika"
+yield = 0.60
+ingredients = [
+  ["fdc:173745", 400, "dry white beans"],
+  ["ciqual:4008", 300, "potatoes"],
+  ["ciqual:20009", 150, "carrot"],
+  ["ciqual:20034", 100, "onion"],
+  ["ciqual:20085", 80, "green pepper"],
+  ["ciqual:20276", 100, "tomato"],
+  ["ciqual:17270", 40, "olive oil"],
+  ["ciqual:11000", 10, "garlic"],
+  ["ciqual:11049", 5, "paprika"],
+  ["ciqual:11017", 8, "salt"],
+  ["ciqual:18066", 1800, "water"],
+]
+basis = "home recipe for 5 plates, without meat (~1.8 kg)"
+
+[sopa_de_ajo]
+name = "Sopa de ajo: garlic, bread, paprika and ham in broth, with egg"
+yield = 0.90
+ingredients = [
+  ["ciqual:25947", 1000, "poultry broth"],
+  ["ciqual:7001", 150, "stale bread"],
+  ["ciqual:11000", 30, "garlic"],
+  ["ciqual:17270", 50, "olive oil"],
+  ["ciqual:11049", 10, "paprika"],
+  ["ciqual:22000", 100, "2 eggs"],
+  ["ciqual:28845", 50, "serrano ham"],
+  ["ciqual:11017", 2, "salt (the broth and ham are salted)"],
+]
+basis = "Castilian home recipe for 4 bowls"
+
+[french_fries]
+name = "French fries, deep-fried, salted as served"
+ingredients = [
+  ["ciqual:4032", 1000, "deep-fried chips"],
+  ["ciqual:11017", 7, "salt"],
+]
+basis = "chips salted at ~0.7% (bar/fast-food portion)"
+
+[tempura]
+name = "Vegetable tempura with a little tentsuyu (soy) dip"
+ingredients = [
+  ["fdc:2345592", 950, "vegetable tempura"],
+  ["ciqual:11104", 50, "soy sauce in the dip"],
+]
+basis = "one portion with its dipping sauce"

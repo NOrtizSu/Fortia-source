@@ -30,6 +30,11 @@
             android:name=".debug.DebugTrainingSeedReceiver"
             android:exported="true"
             android:permission="android.permission.DUMP" />
+        <!-- Seeds a sample day of food (same DUMP-only protection). -->
+        <receiver
+            android:name=".debug.DebugFoodSeedReceiver"
+            android:exported="true"
+            android:permission="android.permission.DUMP" />
         <!-- Celebrates an achievement already reached, for the store screenshots (same DUMP-only protection). -->
         <receiver
             android:name=".debug.DebugCelebrationReceiver"

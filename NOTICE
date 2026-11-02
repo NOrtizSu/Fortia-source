@@ -91,6 +91,34 @@ including it in this AGPL-3.0 work; its notice is kept below. Ported data lives 
   SOFTWARE.
 
 
+Data
+====
+
+Food composition data (app/src/main/assets/food/foods.tsv), built by tools/food-db; sources and changes
+are described in docs/third-party/food-data/README.md:
+
+  - USDA FoodData Central (Foundation Foods 2026-04, SR Legacy 2018-04, FNDDS 2019-2020): public domain,
+    CC0 1.0. U.S. Department of Agriculture, Agricultural Research Service. FoodData Central, 2019.
+    fdc.nal.usda.gov.
+  - Ciqual 2025 food composition table: Etalab Open Licence 2.0. Anses. 2025. Table de composition
+    nutritionnelle des aliments Ciqual (version of 2025-11-03). https://ciqual.anses.fr/
+  - Open Food Facts (looked up online for barcodes, not bundled): Open Database License (ODbL 1.0),
+    https://world.openfoodfacts.org
+
+
+Food recognition model
+======================
+
+app/src/main/assets/food/food_model.tflite is our own image classifier, trained with the scripts in
+tools/food-model/ (see tools/food-model/MODEL_CARD.md). It starts from the ImageNet weights of
+EfficientNet-Lite0 (Copyright Google LLC, Apache-2.0, https://github.com/tensorflow/tpu, as ported to
+PyTorch by timm, https://github.com/huggingface/pytorch-image-models, Apache-2.0) and was fine-tuned on
+photos from Open Images V7 (Google LLC; annotations CC BY 4.0, images listed as CC BY 2.0 by their Flickr
+authors) and from Wikimedia Commons (CC0, public domain, CC BY and CC BY-SA files, each by its author).
+docs/third-party/food-model/ names every photo used, with its author, licence and source page. The
+photos themselves are not distributed.
+
+
 Libraries
 =========
 

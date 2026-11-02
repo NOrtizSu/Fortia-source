@@ -7,7 +7,9 @@
     flag, whether the notification permission was asked (workout_notification), the Health Connect
     cache (health.db) or Firestore's local cache. Machine photos
     (files/exercise_photos) are left out of the Drive backup only (25 MB quota; the app's cloud backup
-    keeps them) and are copied in a device-to-device transfer.
+    keeps them) and are copied in a device-to-device transfer. Meal photos (files/meal_photos) never
+    leave the phone: they are left out of both (the privacy policy says so), and the entries moved to a
+    new phone simply show no photo.
 -->
 <data-extraction-rules>
     <cloud-backup>
@@ -28,6 +30,7 @@
         <exclude domain="database" path="firestore.%5BDEFAULT%5D.globalfitness-app.%28default%29-wal" />
         <exclude domain="database" path="firestore.%5BDEFAULT%5D.globalfitness-app.%28default%29-shm" />
         <exclude domain="file" path="exercise_photos/" />
+        <exclude domain="file" path="meal_photos/" />
     </cloud-backup>
     <device-transfer>
         <exclude domain="sharedpref" path="band_prefs.xml" />
@@ -46,5 +49,6 @@
         <exclude domain="database" path="firestore.%5BDEFAULT%5D.globalfitness-app.%28default%29-journal" />
         <exclude domain="database" path="firestore.%5BDEFAULT%5D.globalfitness-app.%28default%29-wal" />
         <exclude domain="database" path="firestore.%5BDEFAULT%5D.globalfitness-app.%28default%29-shm" />
+        <exclude domain="file" path="meal_photos/" />
     </device-transfer>
 </data-extraction-rules>

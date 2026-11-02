@@ -773,6 +773,8 @@ fun HealthExportCard(state: HealthUiState, onToggle: (Boolean) -> Unit, onExport
             export.error?.let { Text(it.asString(), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.error) }
             HorizontalDivider(Modifier.padding(vertical = 8.dp), color = MaterialTheme.colorScheme.surfaceContainerHighest)
             WorkoutExportRow()
+            HorizontalDivider(Modifier.padding(vertical = 8.dp), color = MaterialTheme.colorScheme.surfaceContainerHighest)
+            FoodExportRow()
         }
     }
 }

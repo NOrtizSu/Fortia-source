@@ -1,0 +1,14 @@
+# Training / data venv (Python 3.11, Windows 11, NVIDIA GPU with CUDA 12.8 driver support).
+# Install PyTorch from the official index first:
+#   pip install torch==2.11.0 torchvision==0.26.0 --index-url https://download.pytorch.org/whl/cu128
+torch==2.11.0
+torchvision==0.26.0
+timm==1.0.30
+huggingface_hub==2.4.0
+numpy==2.4.6
+pandas==3.1.0
+pyarrow==26.0.0
+pillow==13.0.0
+requests==2.34.2
+onnx==1.23.2
+onnxruntime==1.31.1

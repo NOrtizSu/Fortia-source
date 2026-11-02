@@ -1,0 +1,229 @@
+# The food log tab: photo, barcode, search or manual entry; the day, the daily goal, Health Connect
+nav_food = 饮食
+
+# Units (zh-CN writes 公斤 / 千卡 elsewhere, so 克 / 毫升 here)
+unit_g = 克
+unit_ml = 毫升
+value_g = %1$s 克
+value_ml = %1$s 毫升
+
+# Portion names (with a count they read "1 片 × 2")
+food_portion_unit = 1 个
+food_portion_piece = 1 块
+food_portion_slice = 1 片
+food_portion_plate = 1 盘
+food_portion_small_plate = 1 小盘
+food_portion_bowl = 1 碗
+food_portion_cup = 1 杯
+food_portion_glass = 1 玻璃杯
+food_portion_can = 1 罐
+food_portion_bottle = 1 瓶
+food_portion_tbsp = 1 汤匙
+food_portion_tsp = 1 茶匙
+food_portion_handful = 1 把
+food_portion_serving = 1 份
+
+# Meals of the day
+foodlog_meal_breakfast = 早餐
+foodlog_meal_lunch = 午餐
+foodlog_meal_snack = 加餐
+foodlog_meal_dinner = 晚餐
+foodlog_meal_other = 其他
+
+# Nutrition label
+foodlog_nutrient_kcal = 热量
+foodlog_nutrient_protein = 蛋白质
+foodlog_nutrient_carbs = 碳水化合物
+foodlog_nutrient_sugars = 糖
+foodlog_nutrient_fat = 脂肪
+foodlog_nutrient_sat_fat = 饱和脂肪
+foodlog_nutrient_fiber = 膳食纤维
+foodlog_nutrient_salt = 盐
+
+# The day
+foodlog_previous_day = 前一天
+foodlog_next_day = 后一天
+foodlog_eaten = 已摄入
+foodlog_goal_of = 目标 %1$s 千卡
+foodlog_left = 剩余
+foodlog_over = 超出
+foodlog_left_desc = 已摄入 %1$s / %2$s 千卡，还剩 %3$s 千卡
+foodlog_over_desc = 已摄入 %1$s / %2$s 千卡，超出目标 %3$s 千卡
+foodlog_no_goal = 设置每日目标，即可查看还剩多少。
+foodlog_set_goal = 设置目标
+foodlog_value_of_target = %1$s / %2$s
+foodlog_limit_desc = %1$s：%2$s，上限
+foodlog_limit_over_desc = %1$s：%2$s，已超出上限
+foodlog_label_value = %1$s：%2$s
+foodlog_more = 更多
+foodlog_less = 收起
+foodlog_portion_amount = %2$s × %1$s · %3$s
+foodlog_edit_entry = 编辑
+foodlog_empty_today = 今天还没有记录
+foodlog_empty_day = 这一天没有记录
+foodlog_empty_text = 给你的餐食拍张照：Fortia 会给出建议，你确认即可。
+foodlog_add_photo_short = 拍照
+foodlog_add_search_short = 搜索
+foodlog_estimates_note = 数值是根据食物成分表和产品标签得出的估算值，不构成医疗建议。
+foodlog_deleted = 已删除“%1$s”
+foodlog_undo = 撤销
+foodlog_write_failed = 无法保存更改，请重试。
+foodlog_db_error = 无法打开你的饮食记录
+
+# Add sheet
+foodlog_add = 添加
+foodlog_add_title = 添加食物
+foodlog_add_photo = 拍摄餐食
+foodlog_add_photo_text = 在手机上识别，照片不会离开手机
+foodlog_add_gallery = 从相册选择照片
+foodlog_add_gallery_text = 你已经拍好的照片
+foodlog_add_barcode = 条形码
+foodlog_add_barcode_text = 拍摄包装上的条形码
+foodlog_add_barcode_gallery = 从相册选择条形码照片
+foodlog_add_search = 搜索食物
+foodlog_add_search_text = 食物、菜品和自定义食物
+foodlog_add_manual = 手动输入
+foodlog_add_manual_text = 名称、分量和热量
+foodlog_camera_unavailable = 没有可以拍照的应用。请从相册中选择一张。
+
+# Photo page
+foodlog_photo_title = 盘子里是什么？
+foodlog_photo_desc = 餐食照片
+foodlog_photo_recognizing = 正在识别食物…
+foodlog_photo_question = 选择对应的食物
+foodlog_photo_question_more = 盘子里还有别的吗？
+foodlog_hint_very_likely = 很可能
+foodlog_hint_likely = 较可能
+foodlog_hint_possible = 有可能
+foodlog_photo_other = 其他…
+foodlog_photo_search = 搜索食物
+foodlog_photo_not_food = 照片中没有识别到食物。请改为搜索。
+foodlog_photo_no_model = 照片识别不可用。请搜索食物。
+foodlog_photo_unreadable = 无法打开照片。
+foodlog_photo_gone = 这张照片已不存在。
+foodlog_photo_private = 照片在你的手机上处理，并保留在手机中。
+foodlog_photo_added = 已添加：%1$s
+foodlog_photo_add_another = 从这张照片添加其他食物
+foodlog_done = 完成
+
+# Search
+foodlog_search_title = 搜索
+foodlog_search_hint = 食物或菜品
+foodlog_search_clear = 清除
+foodlog_search_recent = 最近
+foodlog_search_none = 没有与“%1$s”匹配的食物。
+foodlog_create_food = 创建自定义食物
+foodlog_kcal_per_100g = 每 100 克 %1$s 千卡
+foodlog_kcal_per_100ml = 每 100 毫升 %1$s 千卡
+foodlog_food_options = 编辑或删除
+foodlog_food_edit = 编辑食物
+foodlog_food_delete = 删除食物
+foodlog_food_delete_title = 要删除“%1$s”吗？
+foodlog_food_delete_text = 它将不再出现在搜索结果中。已用它记录的餐食会保留原有数值。
+
+# Barcode
+foodlog_barcode_title = 条形码
+foodlog_barcode_reading = 正在读取条形码…
+foodlog_barcode_looking_up = 正在 Open Food Facts 中查找 %1$s…
+foodlog_barcode_not_read = 照片中未找到条形码
+foodlog_barcode_not_read_text = 请靠近一点拍一张更清晰的照片，或输入条形码下方的数字。
+foodlog_barcode_type = 条形码编号
+foodlog_barcode_invalid = 请检查编号：应为 8、12 或 13 位数字。
+foodlog_barcode_search = 搜索
+foodlog_barcode_not_found = 未找到产品
+foodlog_barcode_not_found_text = Open Food Facts 中还没有 %1$s。请手动输入：它会被保存，方便下次使用。
+foodlog_barcode_offline = 无网络连接
+foodlog_barcode_offline_text = 没有网络，无法查找 %1$s。请重试或手动输入。
+foodlog_barcode_failed = Open Food Facts 没有响应
+foodlog_barcode_code = 条形码 %1$s
+foodlog_values_per_100g = 每 100 克
+foodlog_values_per_100ml = 每 100 毫升
+foodlog_barcode_missing = 缺少：%1$s
+foodlog_barcode_use = 使用此产品
+foodlog_barcode_complete = 补全数值
+foodlog_off_attribution = 数据：Open Food Facts（ODbL）
+
+# Confirm / edit page
+foodlog_confirm_title = 确认
+foodlog_edit_title = 编辑食物
+foodlog_amount = 分量
+foodlog_portion_chip = %1$s · %2$s
+foodlog_portion_count = %2$s × %1$s
+foodlog_portion_less = 减少
+foodlog_portion_more = 增加
+foodlog_grams = 克
+foodlog_millilitres = 毫升
+foodlog_meal = 餐次
+
+# Manual entry
+foodlog_manual_title = 手动输入
+foodlog_complete_title = 补全数值
+foodlog_edit_food_title = 编辑已保存的食物
+foodlog_manual_name = 名称
+foodlog_manual_values = 营养成分
+foodlog_manual_values_for = %1$s 的营养成分
+foodlog_manual_save_food = 保存为自定义食物
+foodlog_manual_save_food_text = 下次可在搜索中找到它
+
+# Daily goal
+foodlog_goal_title = 每日目标
+foodlog_goal_profile_text = “饮食”标签页的热量和营养素
+foodlog_goal_auto = 自动
+foodlog_goal_manual = 手动
+foodlog_goal_aim = 体重目标
+foodlog_goal_lose = 减重
+foodlog_goal_maintain = 保持体重
+foodlog_goal_gain = 增重
+foodlog_goal_weight = 你的体重
+foodlog_goal_weight_text = 还没有称重记录：请输入你的体重以计算目标。
+foodlog_goal_needs_weight = 输入你的体重即可查看目标。
+foodlog_goal_how = 计算方式
+foodlog_goal_bmr_scale = 静息热量消耗（你的体重秤）
+foodlog_goal_bmr_formula = 静息热量消耗（根据体重、身高、年龄和性别）
+foodlog_goal_resting = 平静的一天（× 1.2）
+foodlog_goal_active = 今日活动（Health Connect）
+foodlog_plus_kcal = + %1$s 千卡
+foodlog_goal_light = 轻度活动的一天（× 1.375）
+foodlog_goal_no_activity = 如果没有来自 Health Connect 的今日活动数据，则按轻度活动的一天计算。
+foodlog_goal_maintenance = 保持体重所需
+foodlog_goal_lose_adjust = 减重时减少 15%。
+foodlog_goal_gain_adjust = 增重时增加 10%。
+foodlog_goal_result = 你的目标：每天 %1$s 千卡
+foodlog_goal_targets = 目标值
+foodlog_goal_protein_per_kg = 蛋白质（每公斤体重 %1$s 克）
+foodlog_goal_fat_share = 脂肪（占热量的 30%）
+foodlog_goal_carbs_rest = 碳水化合物（其余部分）
+foodlog_goal_limits = 上限
+foodlog_goal_sugars_limit = 糖（占热量的 10%）
+foodlog_goal_sat_fat_limit = 饱和脂肪（占热量的 10%）
+foodlog_less_than = 低于 %1$s
+foodlog_at_least = 至少 %1$s
+foodlog_goal_manual_text = 使用你自己的数值：热量，以及你想关注的营养素（其余的会自动计算）。
+foodlog_goal_disclaimer = 这是针对健康成年人的估算值，不构成医疗建议。如果你患有疾病、正在怀孕或遵循特定饮食，请咨询专业人士。
+
+# Today card
+foodlog_today_title = 今日饮食
+foodlog_today_of = %1$s / %2$s 千卡
+foodlog_today_open = 打开饮食
+
+# Health Connect
+hc_type_nutrition = 营养
+hc_meals_export_title = 将餐食保存到 Health Connect
+hc_meals_export_text = 你记录的每种食物都会作为其所属餐次的营养数据（热量、蛋白质、碳水化合物、糖、脂肪、饱和脂肪、膳食纤维和钠）保存。如果你编辑或删除它，Health Connect 中的数据也会随之更新。
+hc_meals_export_missing_permission = 请允许 Fortia 向 Health Connect 写入营养数据，以便将你的餐食保存到那里。
+hc_meals_export_denied = 如果没有打开权限窗口，请在 Health Connect 中为 Fortia 允许“营养”。
+hc_meals_export_off = 新的餐食不会被保存。已在 Health Connect 中的餐食会保留。
+hc_meals_export_count_none = Health Connect 中还没有餐食。
+hc_meals_export_count{other} = Health Connect 中有 %1$d 条食物记录。
+health_rationale_write_meals = 如果你允许，Fortia 还会写入你记录的食物（营养数据），以便其他应用将其计入。它从不读取你的营养数据。
+
+# Open-source licences
+notice_litert = 在手机上运行我们的食物识别模型。
+notice_zxing = 从照片中读取产品条形码。
+open_source_food_data = 食物数据
+notice_open_food_facts = 通过条形码查找的包装食品。数据 © Open Food Facts 贡献者，采用 Open Database License（ODbL）授权。
+notice_usda = 食物列表的营养数据：U.S. Department of Agriculture, Agricultural Research Service, FoodData Central。公有领域（CC0）。
+notice_ciqual = 食物列表的营养数据：Anses，Ciqual 法国食物成分表，采用 Licence Ouverte / Etalab 2.0 授权。
+notice_food_model_name = Fortia 食物识别模型
+notice_food_model_license = 自研模型（见模型卡）
+notice_food_model = 我们自研的模型，使用来自 Open Images（CC BY 2.0）和 Wikimedia Commons（自由许可）的图像训练；图像及其作者列表随源代码一同发布。

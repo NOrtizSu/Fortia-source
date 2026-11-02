@@ -62,6 +62,7 @@ private fun RationaleScreen(onClose: () -> Unit) {
             Paragraph(stringResource(R.string.health_rationale_read))
             Paragraph(stringResource(R.string.health_rationale_write))
             Paragraph(stringResource(R.string.health_rationale_write_workouts))
+            Paragraph(stringResource(R.string.health_rationale_write_meals))
             Paragraph(stringResource(R.string.health_rationale_storage))
             Paragraph(stringResource(R.string.health_rationale_revoke))
             OutlinedButton(onClick = { runCatching { uriHandler.openUri(PRIVACY_POLICY_URL) } }) {

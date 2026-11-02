@@ -148,9 +148,26 @@ private val LIBRARIES = listOf(
         "https://developer.android.com/guide/playcore/in-app-review",
         licenseRes = R.string.notice_google_terms,
     ),
+    Notice("LiteRT (TensorFlow Lite)", "Apache-2.0", R.string.notice_litert, "https://ai.google.dev/edge/litert"),
+    Notice("ZXing", "Apache-2.0", R.string.notice_zxing, "https://github.com/zxing/zxing"),
 )
 
-/** Licence and source code (AGPL-3.0 "Appropriate Legal Notices"), ported code, then the libraries. */
+/** The food data and the food recognizer: their sources and licences (attribution required by most). */
+private val FOOD_DATA = listOf(
+    Notice("Open Food Facts", "ODbL 1.0", R.string.notice_open_food_facts, "https://world.openfoodfacts.org"),
+    Notice("USDA FoodData Central", "CC0 1.0", R.string.notice_usda, "https://fdc.nal.usda.gov"),
+    Notice("Ciqual (Anses)", "Licence Ouverte / Etalab 2.0", R.string.notice_ciqual, "https://ciqual.anses.fr"),
+    Notice(
+        "Fortia food model",
+        "",
+        R.string.notice_food_model,
+        "https://github.com/NOrtizSu/Fortia-source/tree/main/docs/third-party/food-model",
+        nameRes = R.string.notice_food_model_name,
+        licenseRes = R.string.notice_food_model_license,
+    ),
+)
+
+/** Licence and source code (AGPL-3.0 "Appropriate Legal Notices"), ported code, the libraries, then the food data. */
 @Composable
 fun OpenSourceScreen(onBack: () -> Unit) {
     val uriHandler = LocalUriHandler.current
@@ -189,6 +206,10 @@ fun OpenSourceScreen(onBack: () -> Unit) {
                 Text(stringResource(R.string.open_source_libraries), style = MaterialTheme.typography.titleMedium, modifier = Modifier.padding(top = 8.dp))
             }
             items(LIBRARIES) { NoticeItem(it, onOpen = { runCatching { uriHandler.openUri(it.url) } }) }
+            item {
+                Text(stringResource(R.string.open_source_food_data), style = MaterialTheme.typography.titleMedium, modifier = Modifier.padding(top = 8.dp))
+            }
+            items(FOOD_DATA) { NoticeItem(it, onOpen = { runCatching { uriHandler.openUri(it.url) } }) }
         }
     }
 }

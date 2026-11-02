@@ -186,22 +186,22 @@ object TrainingMerge {
         val roRoutines = readOnlyIds(TrainingKind.ROUTINE, remote.routines) { it.id }
 
         val w = mergeKind(
-            TrainingKind.WORKOUT, mode, local.workouts, dead[TrainingKind.WORKOUT].orEmpty(), remote.workouts, entries, now,
+            mode, local.workouts, dead[TrainingKind.WORKOUT].orEmpty(), remote.workouts, entriesOf(entries, TrainingKind.WORKOUT), now,
             id = { it.id }, updatedAt = { it.updatedAt }, version = ::versionOf, since = since, readOnly = roWorkouts,
         )
         sanitizeIds(w, local.workouts)
         if (w.lost) refetch += TrainingKind.WORKOUT
 
         val c = mergeKind(
-            TrainingKind.CUSTOM_EXERCISE, mode, local.customExercises, dead[TrainingKind.CUSTOM_EXERCISE].orEmpty(),
-            remote.customExercises, entries, now,
+            mode, local.customExercises, dead[TrainingKind.CUSTOM_EXERCISE].orEmpty(),
+            remote.customExercises, entriesOf(entries, TrainingKind.CUSTOM_EXERCISE), now,
             id = { it.id }, updatedAt = { it.updatedAt }, version = ::versionOf, since = since, readOnly = roCustom,
         )
         if (c.lost) refetch += TrainingKind.CUSTOM_EXERCISE
 
         // Routines: plain documents, last writer wins like the others.
         val r = mergeKind(
-            TrainingKind.ROUTINE, mode, local.routines, dead[TrainingKind.ROUTINE].orEmpty(), remote.routines, entries, now,
+            mode, local.routines, dead[TrainingKind.ROUTINE].orEmpty(), remote.routines, entriesOf(entries, TrainingKind.ROUTINE), now,
             id = { it.id }, updatedAt = { it.updatedAt }, version = ::versionOf, since = since, readOnly = roRoutines,
         )
         if (r.lost) refetch += TrainingKind.ROUTINE
@@ -235,7 +235,7 @@ object TrainingMerge {
             resolved
         }
         val n = mergeKind(
-            TrainingKind.NOTE, mode, effectiveNotes, dead[TrainingKind.NOTE].orEmpty(), remote.notes, entries, now,
+            mode, effectiveNotes, dead[TrainingKind.NOTE].orEmpty(), remote.notes, entriesOf(entries, TrainingKind.NOTE), now,
             id = { it.exerciseId }, updatedAt = { it.updatedAt }, version = ::versionOf, skip = unresolved, since = since, readOnly = roNotes,
         )
         if (n.lost) refetch += TrainingKind.NOTE
@@ -283,10 +283,10 @@ object TrainingMerge {
         n.put.mapTo(docWrites) { TrainingWrite.PutNote(it) }
         w.put.mapTo(docWrites) { TrainingWrite.PutWorkout(it) }
         r.put.mapTo(docWrites) { TrainingWrite.PutRoutine(it) }
-        docWrites += c.delete
-        docWrites += n.delete
-        docWrites += w.delete
-        docWrites += r.delete
+        c.delete.mapTo(docWrites) { TrainingWrite.Delete(TrainingKind.CUSTOM_EXERCISE, it.id, it.deletedAt) }
+        n.delete.mapTo(docWrites) { TrainingWrite.Delete(TrainingKind.NOTE, it.id, it.deletedAt) }
+        w.delete.mapTo(docWrites) { TrainingWrite.Delete(TrainingKind.WORKOUT, it.id, it.deletedAt) }
+        r.delete.mapTo(docWrites) { TrainingWrite.Delete(TrainingKind.ROUTINE, it.id, it.deletedAt) }
 
         val settled = LinkedHashMap<DocKey, String?>()
         val onConfirm = LinkedHashMap<DocKey, String?>()
@@ -402,11 +402,22 @@ object TrainingMerge {
 
     private const val DEAD_PREFIX = "D:"
 
-    private class KindMerge<T> {
+    /** A tombstone to upload for document [id]. */
+    internal data class DocDeletion(val id: String, val deletedAt: Long)
+
+    /** The base entries of one collection, by document id. */
+    internal fun entriesOf(entries: Map<DocKey, String>, kind: TrainingKind): Map<String, String> =
+        HashMap<String, String>().apply { for ((k, v) in entries) if (k.kind == kind) put(k.id, v) }
+
+    /**
+     * The merge of one collection (also used by the food log's sync, [FoodMerge]): what to apply on the
+     * phone, upload and delete, and the base entries that follow (by document id).
+     */
+    internal class KindMerge<T> {
         val apply = ArrayList<T>()
         val removeLocal = LinkedHashSet<String>()
         val put = ArrayList<T>()
-        val delete = ArrayList<TrainingWrite.Delete>()
+        val delete = ArrayList<DocDeletion>()
         val dropNow = ArrayList<LocalTombstone>()
         val dropOnConfirm = LinkedHashMap<String, LocalTombstone>()
         val settled = LinkedHashMap<String, String?>()
@@ -416,13 +427,16 @@ object TrainingMerge {
         var lost = false
     }
 
-    private fun <T> mergeKind(
-        kind: TrainingKind,
+    /**
+     * Last-writer-wins merge of one collection in [mode] (see the class comment). [base]: the agreed
+     * version or deletion of each document, by id (empty when untrusted).
+     */
+    internal fun <T> mergeKind(
         mode: TrainingMode,
         local: List<T>,
         localDead: List<LocalTombstone>,
         remote: RemoteDocs<T>,
-        entries: Map<DocKey, String>,
+        base: Map<String, String>,
         now: Long,
         id: (T) -> String,
         updatedAt: (T) -> Long,
@@ -441,7 +455,6 @@ object TrainingMerge {
         }
         val theirs = LinkedHashMap<String, T>().apply { for (x in remote.live) putIfAbsent(id(x), x) }
         val theirDead = LinkedHashMap<String, Tombstone>().apply { for (t in remote.dead) if (t.id !in theirs) putIfAbsent(t.id, t) }
-        val base = HashMap<String, String>().apply { for ((k, v) in entries) if (k.kind == kind) put(k.id, v) }
         val ids = LinkedHashSet<String>().apply {
             addAll(mine.keys)
             addAll(myDead.keys)
@@ -469,7 +482,7 @@ object TrainingMerge {
         }
 
         fun delete(key: String, deletedAt: Long, tombstone: LocalTombstone?) {
-            out.delete += TrainingWrite.Delete(kind, key, deletedAt)
+            out.delete += DocDeletion(key, deletedAt)
             out.onConfirm[key] = dead(deletedAt)
             if (tombstone != null) out.dropOnConfirm[key] = tombstone
         }
@@ -707,7 +720,7 @@ object TrainingMerge {
     }
 
     /** Unambiguous canonical text of a record (length-prefixed strings, explicit nulls), hashed with SHA-1. */
-    private class Canon {
+    internal class Canon {
         private val sb = StringBuilder()
 
         fun s(v: String?) = apply { if (v == null) sb.append("N;") else sb.append('S').append(v.length).append(':').append(v).append(';') }

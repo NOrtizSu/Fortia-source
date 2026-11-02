@@ -14,6 +14,8 @@
     - exercise_photos: photos of the user's machines. They could exceed the 25 MB Auto Backup quota
       (which would stop backing up the measurements too); the app's cloud backup keeps them, and
       training.db (with the notes) is still backed up.
+    - meal_photos: photos of the logged meals, kept on this phone only (the quota, and they never
+      leave the device); food.db with the entries is still backed up.
     Cloud sync bookkeeping lives in noBackupFilesDir, which is never backed up.
     Keep in sync with data_extraction_rules.xml.
 -->
@@ -35,4 +37,5 @@
     <exclude domain="database" path="firestore.%5BDEFAULT%5D.globalfitness-app.%28default%29-wal" />
     <exclude domain="database" path="firestore.%5BDEFAULT%5D.globalfitness-app.%28default%29-shm" />
     <exclude domain="file" path="exercise_photos/" />
+        <exclude domain="file" path="meal_photos/" />
 </full-backup-content>

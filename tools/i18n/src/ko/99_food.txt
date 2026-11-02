@@ -1,0 +1,229 @@
+# The food log tab: photo, barcode, search or manual entry; the day, the daily goal, Health Connect
+nav_food = 식단
+
+# Units
+unit_g = g
+unit_ml = ml
+value_g = %1$s g
+value_ml = %1$s ml
+
+# Portion names (with a count they read "1조각 × 2")
+food_portion_unit = 1개
+food_portion_piece = 1조각
+food_portion_slice = 1장
+food_portion_plate = 1접시
+food_portion_small_plate = 작은 접시
+food_portion_bowl = 1그릇
+food_portion_cup = 1컵
+food_portion_glass = 1잔
+food_portion_can = 1캔
+food_portion_bottle = 1병
+food_portion_tbsp = 1큰술
+food_portion_tsp = 1작은술
+food_portion_handful = 한 줌
+food_portion_serving = 1인분
+
+# Meals of the day
+foodlog_meal_breakfast = 아침
+foodlog_meal_lunch = 점심
+foodlog_meal_snack = 간식
+foodlog_meal_dinner = 저녁
+foodlog_meal_other = 기타
+
+# Nutrition label
+foodlog_nutrient_kcal = 칼로리
+foodlog_nutrient_protein = 단백질
+foodlog_nutrient_carbs = 탄수화물
+foodlog_nutrient_sugars = 당류
+foodlog_nutrient_fat = 지방
+foodlog_nutrient_sat_fat = 포화지방
+foodlog_nutrient_fiber = 식이섬유
+foodlog_nutrient_salt = 소금
+
+# The day
+foodlog_previous_day = 전날
+foodlog_next_day = 다음 날
+foodlog_eaten = 섭취
+foodlog_goal_of = 목표 %1$s kcal
+foodlog_left = 남음
+foodlog_over = 초과
+foodlog_left_desc = %2$s kcal 중 %1$s kcal 섭취, %3$s kcal 남음
+foodlog_over_desc = %2$s kcal 중 %1$s kcal 섭취, 목표보다 %3$s kcal 초과
+foodlog_no_goal = 하루 목표를 설정하면 남은 칼로리를 볼 수 있습니다.
+foodlog_set_goal = 목표 설정
+foodlog_value_of_target = %1$s / %2$s
+foodlog_limit_desc = %1$s: %2$s, 상한
+foodlog_limit_over_desc = %1$s: %2$s, 상한 초과
+foodlog_label_value = %1$s: %2$s
+foodlog_more = 더보기
+foodlog_less = 접기
+foodlog_portion_amount = %2$s × %1$s · %3$s
+foodlog_edit_entry = 편집
+foodlog_empty_today = 오늘 기록한 음식이 없습니다
+foodlog_empty_day = 이날 기록한 음식이 없습니다
+foodlog_empty_text = 음식 사진을 찍으면 Fortia가 어떤 음식인지 제안하고, 확인만 하면 됩니다.
+foodlog_add_photo_short = 사진
+foodlog_add_search_short = 검색
+foodlog_estimates_note = 수치는 식품 성분표와 제품 라벨에 기반한 추정치이며 의학적 조언이 아닙니다.
+foodlog_deleted = %1$s 삭제됨
+foodlog_undo = 실행 취소
+foodlog_write_failed = 변경 사항을 저장할 수 없습니다. 다시 시도하세요.
+foodlog_db_error = 식단 기록을 열 수 없습니다
+
+# Add sheet
+foodlog_add = 추가
+foodlog_add_title = 음식 추가
+foodlog_add_photo = 음식 사진
+foodlog_add_photo_text = 휴대전화에서 인식하며, 사진은 외부로 전송되지 않습니다
+foodlog_add_gallery = 갤러리 사진
+foodlog_add_gallery_text = 이미 찍은 사진
+foodlog_add_barcode = 바코드
+foodlog_add_barcode_text = 포장지의 바코드를 촬영하세요
+foodlog_add_barcode_gallery = 갤러리의 바코드 사진
+foodlog_add_search = 음식 검색
+foodlog_add_search_text = 식품, 요리 및 내 음식
+foodlog_add_manual = 직접 입력
+foodlog_add_manual_text = 이름, 양, 칼로리
+foodlog_camera_unavailable = 사진을 찍을 수 있는 앱이 없습니다. 갤러리에서 선택하세요.
+
+# Photo page
+foodlog_photo_title = 어떤 음식인가요?
+foodlog_photo_desc = 식사 사진
+foodlog_photo_recognizing = 음식을 인식하는 중…
+foodlog_photo_question = 해당하는 음식을 선택하세요
+foodlog_photo_question_more = 접시에 다른 음식도 있나요?
+foodlog_hint_very_likely = 가능성 매우 높음
+foodlog_hint_likely = 가능성 높음
+foodlog_hint_possible = 가능성 있음
+foodlog_photo_other = 기타…
+foodlog_photo_search = 음식 검색
+foodlog_photo_not_food = 사진에서 음식을 찾을 수 없습니다. 대신 검색하세요.
+foodlog_photo_no_model = 사진 인식을 사용할 수 없습니다. 음식을 검색하세요.
+foodlog_photo_unreadable = 사진을 열 수 없습니다.
+foodlog_photo_gone = 사진이 더 이상 없습니다.
+foodlog_photo_private = 사진은 휴대전화에서 처리되며 외부로 전송되지 않습니다.
+foodlog_photo_added = 추가됨: %1$s
+foodlog_photo_add_another = 이 사진에서 다른 음식 추가
+foodlog_done = 완료
+
+# Search
+foodlog_search_title = 검색
+foodlog_search_hint = 식품 또는 요리
+foodlog_search_clear = 지우기
+foodlog_search_recent = 최근
+foodlog_search_none = ‘%1$s’에 대한 검색 결과가 없습니다.
+foodlog_create_food = 내 음식 만들기
+foodlog_kcal_per_100g = 100 g당 %1$s kcal
+foodlog_kcal_per_100ml = 100 ml당 %1$s kcal
+foodlog_food_options = 편집 또는 삭제
+foodlog_food_edit = 음식 편집
+foodlog_food_delete = 음식 삭제
+foodlog_food_delete_title = ‘%1$s’ 음식을 삭제할까요?
+foodlog_food_delete_text = 더 이상 검색에 표시되지 않습니다. 이 음식으로 이미 기록한 식사는 값이 그대로 유지됩니다.
+
+# Barcode
+foodlog_barcode_title = 바코드
+foodlog_barcode_reading = 바코드를 읽는 중…
+foodlog_barcode_looking_up = Open Food Facts에서 %1$s 검색 중…
+foodlog_barcode_not_read = 사진에서 바코드를 찾을 수 없습니다
+foodlog_barcode_not_read_text = 더 가까이에서 선명하게 찍거나, 막대 아래의 숫자를 입력하세요.
+foodlog_barcode_type = 바코드 번호
+foodlog_barcode_invalid = 번호를 확인하세요. 8자리, 12자리 또는 13자리입니다.
+foodlog_barcode_search = 검색
+foodlog_barcode_not_found = 제품을 찾을 수 없음
+foodlog_barcode_not_found_text = Open Food Facts에 아직 %1$s 제품이 없습니다. 직접 입력하면 다음에 쓸 수 있도록 저장됩니다.
+foodlog_barcode_offline = 인터넷 연결 없음
+foodlog_barcode_offline_text = 인터넷에 연결되어 있지 않아 %1$s 제품을 검색할 수 없습니다. 다시 시도하거나 직접 입력하세요.
+foodlog_barcode_failed = Open Food Facts가 응답하지 않습니다
+foodlog_barcode_code = 바코드 %1$s
+foodlog_values_per_100g = 100 g당
+foodlog_values_per_100ml = 100 ml당
+foodlog_barcode_missing = 누락: %1$s
+foodlog_barcode_use = 이 제품 사용
+foodlog_barcode_complete = 누락된 값 입력
+foodlog_off_attribution = 데이터: Open Food Facts(ODbL)
+
+# Confirm / edit page
+foodlog_confirm_title = 확인
+foodlog_edit_title = 음식 편집
+foodlog_amount = 양
+foodlog_portion_chip = %1$s · %2$s
+foodlog_portion_count = %2$s × %1$s
+foodlog_portion_less = 줄이기
+foodlog_portion_more = 늘리기
+foodlog_grams = 그램
+foodlog_millilitres = 밀리리터
+foodlog_meal = 식사
+
+# Manual entry
+foodlog_manual_title = 직접 입력
+foodlog_complete_title = 누락된 값 입력
+foodlog_edit_food_title = 저장한 음식 편집
+foodlog_manual_name = 이름
+foodlog_manual_values = 영양 정보
+foodlog_manual_values_for = %1$s 기준 영양 정보
+foodlog_manual_save_food = 내 음식으로 저장
+foodlog_manual_save_food_text = 다음에 검색에서 찾을 수 있습니다
+
+# Daily goal
+foodlog_goal_title = 하루 목표
+foodlog_goal_profile_text = 식단 탭의 칼로리 및 영양소
+foodlog_goal_auto = 자동
+foodlog_goal_manual = 수동
+foodlog_goal_aim = 목적
+foodlog_goal_lose = 체중 감량
+foodlog_goal_maintain = 체중 유지
+foodlog_goal_gain = 체중 증가
+foodlog_goal_weight = 내 체중
+foodlog_goal_weight_text = 아직 측정 기록이 없습니다. 목표를 계산하려면 체중을 입력하세요.
+foodlog_goal_needs_weight = 목표를 보려면 체중을 입력하세요.
+foodlog_goal_how = 계산 방법
+foodlog_goal_bmr_scale = 안정 시 칼로리(체중계)
+foodlog_goal_bmr_formula = 안정 시 칼로리(체중, 키, 나이, 성별 기준)
+foodlog_goal_resting = 활동이 적은 날(× 1.2)
+foodlog_goal_active = 오늘의 활동(Health Connect)
+foodlog_plus_kcal = + %1$s kcal
+foodlog_goal_light = 가볍게 활동하는 날(× 1.375)
+foodlog_goal_no_activity = Health Connect에서 오늘의 활동을 가져오지 못하면 가볍게 활동하는 날로 가정합니다.
+foodlog_goal_maintenance = 체중 유지에 필요한 칼로리
+foodlog_goal_lose_adjust = 체중을 감량하려면 15% 줄입니다.
+foodlog_goal_gain_adjust = 체중을 늘리려면 10% 늘립니다.
+foodlog_goal_result = 내 목표: 하루 %1$s kcal
+foodlog_goal_targets = 목표치
+foodlog_goal_protein_per_kg = 단백질(체중 1 kg당 %1$s g)
+foodlog_goal_fat_share = 지방(칼로리의 30%)
+foodlog_goal_carbs_rest = 탄수화물(나머지)
+foodlog_goal_limits = 상한
+foodlog_goal_sugars_limit = 당류(칼로리의 10%)
+foodlog_goal_sat_fat_limit = 포화지방(칼로리의 10%)
+foodlog_less_than = %1$s 미만
+foodlog_at_least = %1$s 이상
+foodlog_goal_manual_text = 직접 정한 수치: 칼로리와 관리하려는 영양소(나머지는 자동으로 계산됩니다).
+foodlog_goal_disclaimer = 건강한 성인을 위한 추정치이며 의학적 조언이 아닙니다. 질환이 있거나 임신 중이거나 식이요법을 하고 있다면 전문가와 상담하세요.
+
+# Today card
+foodlog_today_title = 오늘의 식단
+foodlog_today_of = %1$s / %2$s kcal
+foodlog_today_open = 식단 열기
+
+# Health Connect
+hc_type_nutrition = 영양
+hc_meals_export_title = Health Connect에 식사 저장
+hc_meals_export_text = 기록한 각 음식은 해당 식사의 영양 정보(칼로리, 단백질, 탄수화물, 당류, 지방, 포화지방, 식이섬유, 나트륨)로 저장됩니다. 편집하거나 삭제하면 Health Connect에도 반영됩니다.
+hc_meals_export_missing_permission = 식사를 Health Connect에 저장하려면 Fortia가 Health Connect에 영양 데이터를 쓸 수 있도록 허용하세요.
+hc_meals_export_denied = 권한 창이 열리지 않으면 Health Connect에서 Fortia에 ‘영양’을 허용하세요.
+hc_meals_export_off = 새 식사는 저장되지 않습니다. 이미 Health Connect에 있는 식사는 그대로 유지됩니다.
+hc_meals_export_count_none = 아직 Health Connect에 식사가 없습니다.
+hc_meals_export_count{other} = Health Connect에 음식 %1$d개가 있습니다.
+health_rationale_write_meals = 허용하면 Fortia는 기록한 음식(영양)도 써서 다른 앱에서도 반영할 수 있게 합니다. 영양 데이터를 읽지는 않습니다.
+
+# Open-source licences
+notice_litert = 휴대전화에서 음식 인식 모델을 실행합니다.
+notice_zxing = 사진에서 제품 바코드를 읽습니다.
+open_source_food_data = 식품 데이터
+notice_open_food_facts = 바코드로 찾는 포장 제품. 데이터 © Open Food Facts 기여자, Open Database License(ODbL)에 따름.
+notice_usda = 식품 목록의 영양 성분: U.S. Department of Agriculture, Agricultural Research Service, FoodData Central. 퍼블릭 도메인(CC0).
+notice_ciqual = 식품 목록의 영양 성분: Anses, Ciqual 프랑스 식품 성분표, Licence Ouverte / Etalab 2.0에 따름.
+notice_food_model_name = Fortia 음식 인식 모델
+notice_food_model_license = 자체 모델(모델 카드 참조)
+notice_food_model = Open Images(CC BY 2.0)와 Wikimedia Commons(자유 라이선스)의 이미지로 학습한 자체 모델입니다. 이미지 목록과 저작자는 소스 코드와 함께 공개됩니다.

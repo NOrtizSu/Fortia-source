@@ -13,12 +13,14 @@ import com.enjoyyourtime.globalfitness.ble.ScaleMonitor
 import com.enjoyyourtime.globalfitness.ble.ScaleScanner
 import com.enjoyyourtime.globalfitness.cloud.CloudSyncEngine
 import com.enjoyyourtime.globalfitness.cloud.ExercisePhotoFiles
+import com.enjoyyourtime.globalfitness.cloud.FoodBackupSource
 import com.enjoyyourtime.globalfitness.cloud.RepositoryBackupAdapter
 import com.enjoyyourtime.globalfitness.cloud.TrainingBackupSource
 import com.enjoyyourtime.globalfitness.data.AppDatabase
 import com.enjoyyourtime.globalfitness.data.Repository
 import com.enjoyyourtime.globalfitness.data.SettingsStore
 import com.enjoyyourtime.globalfitness.domain.MeasurementRecorder
+import com.enjoyyourtime.globalfitness.food.FoodModule
 import com.enjoyyourtime.globalfitness.health.HealthModule
 import com.enjoyyourtime.globalfitness.review.ReviewPrompter
 import com.enjoyyourtime.globalfitness.scale.SessionStatus
@@ -91,9 +93,12 @@ class AppContainer(context: Context) {
     /** Exercise and machine catalog, workouts and the muscle statistics' data. */
     val training = TrainingModule(context, appScope)
 
+    /** The food log ("Comida"): meals, custom foods, catalog, recognizer, barcodes, daily goal. */
+    val food = FoodModule(context, appScope)
+
     /** The ongoing notification of the workout in progress (posted again at every start of the process). */
     val workoutNotifications = WorkoutNotifications(context, training.repository, training.rest, training.settings, appScope).also { it.start() }
-    val health = HealthModule(context, repository, scaleRegistry, appScope, training)
+    val health = HealthModule(context, repository, scaleRegistry, appScope, training, food)
     // ---- Optional Google account + cloud backup, ads and the "Quitar anuncios" purchase --------
     val adSuppression = AdSuppression().also { suppression ->
         // No interstitials while a workout is in progress: the user is logging sets in the gym.
@@ -110,6 +115,7 @@ class AppContainer(context: Context) {
         RepositoryBackupAdapter(repository, settings),
         billing.isPremium,
         training = TrainingBackupSource(training.repository, ExercisePhotoFiles(training.photos)),
+        food = FoodBackupSource(food.repository) { names -> names.forEach(food.photos::delete) },
     )
     val onboarding = OnboardingStore(context)
     val ads = AdsManager(

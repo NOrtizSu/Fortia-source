@@ -17,6 +17,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -62,7 +63,8 @@ data class CloudSyncStatus(
  * are surfaced in [status] and [messages], never thrown.
  *
  * The training data (workouts, custom machines, machine notes and photos, routines; see [TrainingSync]) is
- * synced in the same cycle, right after the measurements, following the same dataset decision.
+ * synced in the same cycle, right after the measurements, following the same dataset decision; then
+ * the food log (meal entries and custom foods, never the meal photos; see [FoodSync]).
  */
 @OptIn(FlowPreview::class)
 class CloudSyncEngine(
@@ -78,8 +80,11 @@ class CloudSyncEngine(
     private val retry: RetryPolicy = RetryPolicy(),
     /** Training data to back up too; null leaves it out. */
     training: TrainingBackupSource? = null,
+    /** The food log to back up too; null leaves it out. */
+    food: FoodBackupSource? = null,
 ) {
     private val trainingSync = training?.let { TrainingSync(it.repository, it.photos, remote.training, store, clock) }
+    private val foodSync = food?.let { FoodSync(it.repository, it.deletePhotos, remote.food, store, clock) }
     private val mutex = Mutex()
     private val requests = Channel<Unit>(Channel.CONFLATED)
     private var stamps: EditStamps? = null
@@ -99,7 +104,8 @@ class CloudSyncEngine(
 
     init {
         scope.launch { watchLocalChanges() }
-        trainingSync?.let { t -> scope.launch { watchTrainingChanges(t) } }
+        trainingSync?.let { t -> scope.launch { watchLoggedChanges(t.localChanges) } }
+        foodSync?.let { f -> scope.launch { watchLoggedChanges(f.localChanges) } }
         scope.launch { runWhileSignedIn() }
         scope.launch {
             // Mirror the informational premium flag on the next sync.
@@ -207,10 +213,11 @@ class CloudSyncEngine(
      * Training edits come in bursts (every set of a workout): they are uploaded after a pause, and at
      * most once a minute while the user keeps logging, to stay within the shared Firestore quota.
      * The data is safe on the phone meanwhile; the sync on app start or "Sync now" sends the rest.
+     * Meals logged one after another (a plate of three foods) are paced the same way.
      */
-    private suspend fun watchTrainingChanges(training: TrainingSync) {
+    private suspend fun watchLoggedChanges(localChanges: Flow<Unit>) {
         // conflate first: this subscriber never makes the repository's change flow wait.
-        training.localChanges.conflate().debounce(TRAINING_CHANGE_DEBOUNCE_MS).collect {
+        localChanges.conflate().debounce(TRAINING_CHANGE_DEBOUNCE_MS).collect {
             if (account.user.value != null && _status.value.conflict == null) requests.trySend(Unit)
             delay(TRAINING_SYNC_MIN_INTERVAL_MS)
         }
@@ -308,7 +315,10 @@ class CloudSyncEngine(
             local.datasetId
         }
         // Before anything changes: if this sync fails, the retry finishes the same training transition.
-        TrainingMerge.transitionFor(mode, choice)?.let { trainingSync?.prepareTransition(uid, it, datasetId) }
+        TrainingMerge.transitionFor(mode, choice)?.let { transition ->
+            trainingSync?.prepareTransition(uid, transition, datasetId)
+            foodSync?.prepareTransition(uid, transition, datasetId)
+        }
 
         var after = local
         if (!plan.localChanges.isEmpty) {
@@ -332,7 +342,8 @@ class CloudSyncEngine(
         pendingChoice = null
         _status.update { it.copy(conflict = null) }
         val trainingQueued = trainingSync?.sync(uid, datasetId) ?: false
-        !confirmed || trainingQueued
+        val foodQueued = foodSync?.sync(uid, datasetId) ?: false
+        !confirmed || trainingQueued || foodQueued
     }
 
     /** The cloud copy this phone synced is gone (account deleted elsewhere): stop and sign out, keep local data. */

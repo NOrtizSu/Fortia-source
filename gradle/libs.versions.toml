@@ -25,6 +25,12 @@ billing = "9.1.0"
 # Google Play's in-app rating card. Plain Java artifact, no -ktx: newer Play libraries may carry Kotlin
 # metadata this compiler cannot read (see above); kotlinx-coroutines-play-services awaits its Tasks.
 playReview = "2.0.2"
+# Comida: on-device food recognizer (TensorFlow Lite runtime, classic Interpreter API; 2.x is the new
+# CompiledModel API) and barcode decoding from a photo.
+litert = "1.4.2"
+zxing = "3.5.3"
+# Unit tests only: runs the food database schema on a real SQLite (the version AGP already ships).
+sqliteJdbc = "3.41.2.2"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -57,6 +63,9 @@ play-services-ads = { group = "com.google.android.gms", name = "play-services-ad
 ump = { group = "com.google.android.ump", name = "user-messaging-platform", version.ref = "ump" }
 billing-ktx = { group = "com.android.billingclient", name = "billing-ktx", version.ref = "billing" }
 play-review = { group = "com.google.android.play", name = "review", version.ref = "playReview" }
+litert = { group = "com.google.ai.edge.litert", name = "litert", version.ref = "litert" }
+zxing-core = { group = "com.google.zxing", name = "core", version.ref = "zxing" }
+sqlite-jdbc = { group = "org.xerial", name = "sqlite-jdbc", version.ref = "sqliteJdbc" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

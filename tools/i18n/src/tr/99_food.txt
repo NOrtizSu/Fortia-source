@@ -1,0 +1,232 @@
+# The Comida (food log) tab: photo, barcode, search or manual entry; the day, the daily goal, Health Connect. Food names are in 97_foods.txt.
+
+# Bottom bar (one short word)
+nav_food = Beslenme
+
+# Units
+unit_g = g
+unit_ml = ml
+value_g = %1$s g
+value_ml = %1$s ml
+
+# Portion names
+food_portion_unit = Adet
+food_portion_piece = Parça
+food_portion_slice = Dilim
+food_portion_plate = Tabak
+food_portion_small_plate = Küçük tabak
+food_portion_bowl = Kase
+food_portion_cup = Fincan
+food_portion_glass = Bardak
+food_portion_can = Kutu
+food_portion_bottle = Şişe
+food_portion_tbsp = Yemek kaşığı
+food_portion_tsp = Çay kaşığı
+food_portion_handful = Avuç
+food_portion_serving = Porsiyon
+
+# Meals of the day
+foodlog_meal_breakfast = Kahvaltı
+foodlog_meal_lunch = Öğle yemeği
+foodlog_meal_snack = Ara öğün
+foodlog_meal_dinner = Akşam yemeği
+foodlog_meal_other = Diğer
+
+# Nutrition label
+foodlog_nutrient_kcal = Kalori
+foodlog_nutrient_protein = Protein
+foodlog_nutrient_carbs = Karbonhidrat
+foodlog_nutrient_sugars = Şeker
+foodlog_nutrient_fat = Yağ
+foodlog_nutrient_sat_fat = Doymuş yağ
+foodlog_nutrient_fiber = Lif
+foodlog_nutrient_salt = Tuz
+
+# The day
+foodlog_previous_day = Önceki gün
+foodlog_next_day = Sonraki gün
+foodlog_eaten = Alınan
+foodlog_goal_of = Hedef: %1$s kcal
+foodlog_left = kaldı
+foodlog_over = fazla
+foodlog_left_desc = %1$s / %2$s kcal alındı, %3$s kcal kaldı
+foodlog_over_desc = %1$s / %2$s kcal alındı, hedefin %3$s kcal üzerinde
+foodlog_no_goal = Ne kadar kaldığını görmek için günlük bir hedef belirleyin.
+foodlog_set_goal = Hedef belirle
+foodlog_value_of_target = %1$s / %2$s
+foodlog_limit_desc = %1$s: %2$s, sınır
+foodlog_limit_over_desc = %1$s: %2$s, sınırın üzerinde
+foodlog_label_value = %1$s: %2$s
+foodlog_more = Daha fazla
+foodlog_less = Daha az
+foodlog_portion_amount = %1$s × %2$s · %3$s
+foodlog_edit_entry = Düzenle
+foodlog_empty_today = Bugün kayıt yok
+foodlog_empty_day = Bu gün için kayıt yok
+foodlog_empty_text = Tabağınızın fotoğrafını çekin: Fortia ne olduğunu önerir, siz onaylarsınız.
+foodlog_add_photo_short = Fotoğraf
+foodlog_add_search_short = Ara
+foodlog_estimates_note = Değerler, besin tablolarına ve ürün etiketlerine dayanan tahminlerdir; tıbbi tavsiye değildir.
+foodlog_deleted = %1$s silindi
+foodlog_undo = Geri al
+foodlog_write_failed = Değişiklik kaydedilemedi. Tekrar deneyin.
+foodlog_db_error = Beslenme günlüğünüz açılamadı
+
+# Add
+foodlog_add = Ekle
+foodlog_add_title = Yiyecek ekle
+foodlog_add_photo = Tabağın fotoğrafı
+foodlog_add_photo_text = Telefonunuzda tanınır; fotoğraf telefondan hiç çıkmaz
+foodlog_add_gallery = Galeriden fotoğraf
+foodlog_add_gallery_text = Daha önce çektiğiniz bir fotoğraf
+foodlog_add_barcode = Barkod
+foodlog_add_barcode_text = Ambalajdaki barkodun fotoğrafını çekin
+foodlog_add_barcode_gallery = Galeriden barkod fotoğrafı
+foodlog_add_search = Yiyecek ara
+foodlog_add_search_text = Yiyecekler, yemekler ve kendi yiyecekleriniz
+foodlog_add_manual = Elle gir
+foodlog_add_manual_text = Ad, miktar ve kalori
+foodlog_camera_unavailable = Fotoğraf çekebilecek bir uygulama yok. Galeriden bir fotoğraf seçin.
+
+# Photo
+foodlog_photo_title = Tabakta ne var?
+foodlog_photo_desc = Yemek fotoğrafı
+foodlog_photo_recognizing = Yiyecek tanınıyor…
+foodlog_photo_question = Ne olduğunu seçin
+foodlog_photo_question_more = Tabakta başka bir şey var mı?
+foodlog_hint_very_likely = Çok olası
+foodlog_hint_likely = Olası
+foodlog_hint_possible = Mümkün
+foodlog_photo_other = Diğer…
+foodlog_photo_search = Yiyeceği ara
+foodlog_photo_not_food = Fotoğrafta yiyecek göremiyorum. Arayarak bulun.
+foodlog_photo_no_model = Fotoğraf tanıma kullanılamıyor. Yiyeceği arayın.
+foodlog_photo_unreadable = Fotoğraf açılamadı.
+foodlog_photo_gone = Fotoğraf artık burada değil.
+foodlog_photo_private = Fotoğraf telefonunuzda işlenir ve orada kalır.
+foodlog_photo_added = Eklendi: %1$s
+foodlog_photo_add_another = Bu fotoğraftan başka bir yiyecek ekle
+foodlog_done = Tamam
+
+# Search
+foodlog_search_title = Ara
+foodlog_search_hint = Yiyecek veya yemek
+foodlog_search_clear = Temizle
+foodlog_search_recent = Son kullanılanlar
+foodlog_search_none = “%1$s” ile eşleşen yiyecek yok.
+foodlog_create_food = Özel yiyecek oluştur
+foodlog_kcal_per_100g = 100 g'da %1$s kcal
+foodlog_kcal_per_100ml = 100 ml'de %1$s kcal
+foodlog_food_options = Düzenle veya sil
+foodlog_food_edit = Yiyeceği düzenle
+foodlog_food_delete = Yiyeceği sil
+foodlog_food_delete_title = “%1$s” silinsin mi?
+foodlog_food_delete_text = Artık aramada görünmez. Onunla kaydettiğiniz öğünler değerlerini korur.
+
+# Barcode
+foodlog_barcode_title = Barkod
+foodlog_barcode_reading = Barkod okunuyor…
+foodlog_barcode_looking_up = %1$s, Open Food Facts'te aranıyor…
+foodlog_barcode_not_read = Fotoğrafta barkod bulunamadı
+foodlog_barcode_not_read_text = Daha yakından ve net bir fotoğraf deneyin ya da çizgilerin altındaki numaraları yazın.
+foodlog_barcode_type = Barkod numarası
+foodlog_barcode_invalid = Numarayı kontrol edin: 8, 12 veya 13 haneli olmalı.
+foodlog_barcode_search = Ara
+foodlog_barcode_not_found = Ürün bulunamadı
+foodlog_barcode_not_found_text = Open Food Facts'te henüz %1$s barkodlu ürün yok. Elle girin: bir dahaki sefere için saklanır.
+foodlog_barcode_offline = Bağlantı yok
+foodlog_barcode_offline_text = İnternet olmadan %1$s barkodu aranamaz. Tekrar deneyin veya elle girin.
+foodlog_barcode_failed = Open Food Facts yanıt vermedi
+foodlog_barcode_code = Barkod %1$s
+foodlog_values_per_100g = 100 g için
+foodlog_values_per_100ml = 100 ml için
+foodlog_barcode_missing = Eksik: %1$s
+foodlog_barcode_use = Bu ürünü kullan
+foodlog_barcode_complete = Değerleri tamamla
+foodlog_off_attribution = Veriler: Open Food Facts (ODbL)
+
+# Confirm / edit
+foodlog_confirm_title = Onayla
+foodlog_edit_title = Yiyeceği düzenle
+foodlog_amount = Miktar
+foodlog_portion_chip = %1$s · %2$s
+foodlog_portion_count = %1$s × %2$s
+foodlog_portion_less = Azalt
+foodlog_portion_more = Artır
+foodlog_grams = Gram
+foodlog_millilitres = Mililitre
+foodlog_meal = Öğün
+
+# Manual entry
+foodlog_manual_title = Elle gir
+foodlog_complete_title = Değerleri tamamla
+foodlog_edit_food_title = Kayıtlı yiyeceği düzenle
+foodlog_manual_name = Ad
+foodlog_manual_values = Değerler
+foodlog_manual_values_for = %1$s için değerler
+foodlog_manual_save_food = Yiyeceklerime kaydet
+foodlog_manual_save_food_text = Bir dahaki sefere aramada bulun
+
+# Daily goal
+foodlog_goal_title = Günlük hedef
+foodlog_goal_profile_text = Beslenme sekmesi için kalori ve besin öğeleri
+foodlog_goal_auto = Otomatik
+foodlog_goal_manual = Manuel
+foodlog_goal_aim = Hedefiniz
+foodlog_goal_lose = Kilo vermek
+foodlog_goal_maintain = Kiloyu korumak
+foodlog_goal_gain = Kilo almak
+foodlog_goal_weight = Kilonuz
+foodlog_goal_weight_text = Henüz tartım yok: hedefi hesaplamak için kilonuzu yazın.
+foodlog_goal_needs_weight = Hedefinizi görmek için kilonuzu yazın.
+foodlog_goal_how = Nasıl hesaplanır
+foodlog_goal_bmr_scale = Dinlenme kalorisi (tartınız)
+foodlog_goal_bmr_formula = Dinlenme kalorisi (kilo, boy, yaş ve cinsiyete göre)
+foodlog_goal_resting = Sakin bir gün (× 1,2)
+foodlog_goal_active = Bugünkü aktivite (Health Connect)
+foodlog_plus_kcal = + %1$s kcal
+foodlog_goal_light = Hafif aktif bir gün (× 1,375)
+foodlog_goal_no_activity = Health Connect'ten bugünkü aktivite verisi gelmezse hafif aktif bir gün varsayılır.
+foodlog_goal_maintenance = Kilonuzu korumak için
+foodlog_goal_lose_adjust = Kilo vermek için %15 daha az.
+foodlog_goal_gain_adjust = Kilo almak için %10 daha fazla.
+foodlog_goal_result = Hedefiniz: günde %1$s kcal
+foodlog_goal_targets = Hedefler
+foodlog_goal_protein_per_kg = Protein (kg başına %1$s g)
+foodlog_goal_fat_share = Yağ (kalorinin %30'u)
+foodlog_goal_carbs_rest = Karbonhidrat (geri kalanı)
+foodlog_goal_limits = Sınırlar
+foodlog_goal_sugars_limit = Şeker (kalorinin %10'u)
+foodlog_goal_sat_fat_limit = Doymuş yağ (kalorinin %10'u)
+foodlog_less_than = %1$s altında
+foodlog_at_least = en az %1$s
+foodlog_goal_manual_text = Kendi değerleriniz: kalori ve takip etmek istediğiniz besin öğeleri (diğerleri hesaplanır).
+foodlog_goal_disclaimer = Sağlıklı yetişkinler için bir tahmindir, tıbbi tavsiye değildir. Bir sağlık sorununuz varsa, hamileyseniz veya diyet yapıyorsanız bir uzmana danışın.
+
+# Hoy's card
+foodlog_today_title = Bugünkü beslenme
+foodlog_today_of = %1$s / %2$s kcal
+foodlog_today_open = Beslenme sekmesini aç
+
+# Health Connect
+hc_type_nutrition = Beslenme
+hc_meals_export_title = Öğünleri Health Connect'e kaydet
+hc_meals_export_text = Kaydettiğiniz her yiyecek, öğünüyle birlikte beslenme verisi olarak (kalori, protein, karbonhidrat, şeker, yağ, doymuş yağ, lif ve sodyum) kaydedilir. Düzenler veya silerseniz Health Connect de güncellenir.
+hc_meals_export_missing_permission = Öğünlerinizi Health Connect'e kaydetmek için Fortia'nın oraya beslenme verisi yazmasına izin verin.
+hc_meals_export_denied = İzin penceresi açılmazsa Health Connect'te Fortia için “Beslenme” iznini verin.
+hc_meals_export_off = Yeni öğünler kaydedilmez. Health Connect'te zaten bulunanlar orada kalır.
+hc_meals_export_count_none = Health Connect'te henüz öğün yok.
+hc_meals_export_count{one} = Health Connect'te %1$d yiyecek var.
+hc_meals_export_count{other} = Health Connect'te %1$d yiyecek var.
+health_rationale_write_meals = İzin verirseniz Fortia, diğer uygulamaların da hesaba katabilmesi için kaydettiğiniz yiyecekleri de (beslenme) yazar. Beslenme verilerinizi asla okumaz.
+
+# Open-source licences
+notice_litert = Yiyecek tanıma modelimizi telefonda çalıştırır.
+notice_zxing = Ürün barkodlarını fotoğraftan okur.
+open_source_food_data = Besin verileri
+notice_open_food_facts = Barkoduyla bulunan paketli ürünler. Veriler © Open Food Facts katkıda bulunanları, Open Database License (ODbL) kapsamında.
+notice_usda = Yiyecek listesinin besin değerleri: U.S. Department of Agriculture, Agricultural Research Service, FoodData Central. Kamu malı (CC0).
+notice_ciqual = Yiyecek listesinin besin değerleri: Anses, Ciqual Fransız besin bileşimi tablosu, Licence Ouverte / Etalab 2.0 kapsamında.
+notice_food_model_name = Fortia yiyecek tanıma modeli
+notice_food_model_license = Kendi modelimiz (model kartına bakın)
+notice_food_model = Open Images (CC BY 2.0) ve Wikimedia Commons'tan (özgür lisanslar) alınan görüntülerle eğitilmiş kendi modelimiz; görüntülerin ve yazarlarının listesi kaynak koduyla birlikte yayımlanır.

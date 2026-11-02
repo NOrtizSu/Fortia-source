@@ -1,0 +1,236 @@
+# The Comida (food log) tab: photo, barcode, search or manual entry; the day, the daily goal, Health Connect. Food names are in 97_foods.txt.
+
+# Bottom bar (one short word)
+nav_food = الطعام
+
+# Units
+unit_g = غ
+unit_ml = مل
+value_g = %1$s غ
+value_ml = %1$s مل
+
+# Portion names
+food_portion_unit = حبة
+food_portion_piece = قطعة
+food_portion_slice = شريحة
+food_portion_plate = طبق
+food_portion_small_plate = طبق صغير
+food_portion_bowl = وعاء
+food_portion_cup = كوب
+food_portion_glass = كأس
+food_portion_can = علبة
+food_portion_bottle = زجاجة
+food_portion_tbsp = ملعقة كبيرة
+food_portion_tsp = ملعقة صغيرة
+food_portion_handful = حفنة
+food_portion_serving = حصة
+
+# Meals of the day
+foodlog_meal_breakfast = الفطور
+foodlog_meal_lunch = الغداء
+foodlog_meal_snack = وجبة خفيفة
+foodlog_meal_dinner = العشاء
+foodlog_meal_other = أخرى
+
+# Nutrition label
+foodlog_nutrient_kcal = السعرات الحرارية
+foodlog_nutrient_protein = البروتين
+foodlog_nutrient_carbs = الكربوهيدرات
+foodlog_nutrient_sugars = السكريات
+foodlog_nutrient_fat = الدهون
+foodlog_nutrient_sat_fat = الدهون المشبعة
+foodlog_nutrient_fiber = الألياف
+foodlog_nutrient_salt = الملح
+
+# The day
+foodlog_previous_day = اليوم السابق
+foodlog_next_day = اليوم التالي
+foodlog_eaten = تناولت
+foodlog_goal_of = من %1$s سعرة حرارية
+foodlog_left = متبقية
+foodlog_over = زيادة
+foodlog_left_desc = تناولت %1$s من %2$s سعرة حرارية، والمتبقي %3$s سعرة حرارية
+foodlog_over_desc = تناولت %1$s من %2$s سعرة حرارية، أي %3$s سعرة حرارية فوق الهدف
+foodlog_no_goal = حدّد هدفًا يوميًا لتعرف الكمية المتبقية.
+foodlog_set_goal = تحديد الهدف
+foodlog_value_of_target = %1$s / %2$s
+foodlog_limit_desc = %1$s: %2$s، حد أقصى
+foodlog_limit_over_desc = %1$s: %2$s، فوق الحد الأقصى
+foodlog_label_value = %1$s: %2$s
+foodlog_more = المزيد
+foodlog_less = أقل
+foodlog_portion_amount = %1$s × %2$s · %3$s
+foodlog_edit_entry = تعديل
+foodlog_empty_today = لم تسجّل شيئًا اليوم
+foodlog_empty_day = لا شيء مسجّل في هذا اليوم
+foodlog_empty_text = التقط صورة لطبقك: يقترح Fortia ما هو وأنت تؤكد.
+foodlog_add_photo_short = صورة
+foodlog_add_search_short = بحث
+foodlog_estimates_note = القيم تقديرات مأخوذة من جداول الأغذية وملصقات المنتجات، وليست نصيحة طبية.
+foodlog_deleted = تم حذف %1$s
+foodlog_undo = تراجع
+foodlog_write_failed = تعذّر حفظ التغيير. أعد المحاولة.
+foodlog_db_error = تعذّر فتح سجل طعامك
+
+# Add
+foodlog_add = إضافة
+foodlog_add_title = إضافة طعام
+foodlog_add_photo = صورة الطبق
+foodlog_add_photo_text = يتم التعرّف عليه على هاتفك، ولا تغادر الصورة هاتفك أبدًا
+foodlog_add_gallery = صورة من المعرض
+foodlog_add_gallery_text = صورة التقطتها من قبل
+foodlog_add_barcode = الرمز الشريطي
+foodlog_add_barcode_text = التقط صورة للرمز الشريطي على العبوة
+foodlog_add_barcode_gallery = صورة رمز شريطي من المعرض
+foodlog_add_search = البحث عن طعام
+foodlog_add_search_text = أطعمة وأطباق، وأطعمتك الخاصة
+foodlog_add_manual = إدخال يدوي
+foodlog_add_manual_text = الاسم والكمية والسعرات الحرارية
+foodlog_camera_unavailable = لا يوجد تطبيق يمكنه التقاط الصورة. اختر صورة من المعرض.
+
+# Photo
+foodlog_photo_title = ماذا يوجد في الطبق؟
+foodlog_photo_desc = صورة الوجبة
+foodlog_photo_recognizing = جارٍ التعرّف على الطعام…
+foodlog_photo_question = اختر الطعام
+foodlog_photo_question_more = هل يوجد شيء آخر في الطبق؟
+foodlog_hint_very_likely = مرجّح جدًا
+foodlog_hint_likely = مرجّح
+foodlog_hint_possible = محتمل
+foodlog_photo_other = غير ذلك…
+foodlog_photo_search = البحث عن الطعام
+foodlog_photo_not_food = لا أرى طعامًا في الصورة. ابحث عنه بدلًا من ذلك.
+foodlog_photo_no_model = التعرّف على الصور غير متاح. ابحث عن الطعام.
+foodlog_photo_unreadable = تعذّر فتح الصورة.
+foodlog_photo_gone = لم تعد الصورة موجودة.
+foodlog_photo_private = تُعالَج الصورة على هاتفك وتبقى فيه.
+foodlog_photo_added = تمت الإضافة: %1$s
+foodlog_photo_add_another = إضافة طعام آخر من هذه الصورة
+foodlog_done = تم
+
+# Search
+foodlog_search_title = بحث
+foodlog_search_hint = طعام أو طبق
+foodlog_search_clear = مسح
+foodlog_search_recent = الأخيرة
+foodlog_search_none = لا يوجد طعام يطابق «%1$s».
+foodlog_create_food = إنشاء طعام خاص بك
+foodlog_kcal_per_100g = %1$s سعرة حرارية لكل 100 غ
+foodlog_kcal_per_100ml = %1$s سعرة حرارية لكل 100 مل
+foodlog_food_options = تعديل أو حذف
+foodlog_food_edit = تعديل الطعام
+foodlog_food_delete = حذف الطعام
+foodlog_food_delete_title = هل تريد حذف «%1$s»؟
+foodlog_food_delete_text = لن يظهر في البحث بعد الآن. وتحتفظ الوجبات التي سجّلتها به من قبل بقيمها.
+
+# Barcode
+foodlog_barcode_title = الرمز الشريطي
+foodlog_barcode_reading = جارٍ قراءة الرمز الشريطي…
+foodlog_barcode_looking_up = جارٍ البحث عن %1$s في Open Food Facts…
+foodlog_barcode_not_read = لم يُعثر على رمز شريطي في الصورة
+foodlog_barcode_not_read_text = جرّب صورة أقرب وأوضح، أو اكتب الأرقام الموجودة أسفل الخطوط.
+foodlog_barcode_type = رقم الرمز الشريطي
+foodlog_barcode_invalid = تحقّق من الرقم: يتكوّن من 8 أو 12 أو 13 رقمًا.
+foodlog_barcode_search = بحث
+foodlog_barcode_not_found = لم يُعثر على المنتج
+foodlog_barcode_not_found_text = لا يتوفر المنتج ذو الرمز %1$s في Open Food Facts بعد. أدخله يدويًا: سيُحفظ للمرة القادمة.
+foodlog_barcode_offline = لا يوجد اتصال
+foodlog_barcode_offline_text = لا يمكن البحث عن الرمز %1$s دون إنترنت. أعد المحاولة أو أدخل المنتج يدويًا.
+foodlog_barcode_failed = لم يستجب Open Food Facts
+foodlog_barcode_code = الرمز الشريطي %1$s
+foodlog_values_per_100g = لكل 100 غ
+foodlog_values_per_100ml = لكل 100 مل
+foodlog_barcode_missing = القيم الناقصة: %1$s
+foodlog_barcode_use = استخدام هذا المنتج
+foodlog_barcode_complete = إكمال القيم
+foodlog_off_attribution = البيانات: Open Food Facts (ODbL)
+
+# Confirm / edit
+foodlog_confirm_title = تأكيد
+foodlog_edit_title = تعديل الطعام
+foodlog_amount = الكمية
+foodlog_portion_chip = %1$s · %2$s
+foodlog_portion_count = %1$s × %2$s
+foodlog_portion_less = تقليل
+foodlog_portion_more = زيادة
+foodlog_grams = غرام
+foodlog_millilitres = مليلتر
+foodlog_meal = الوجبة
+
+# Manual entry
+foodlog_manual_title = إدخال يدوي
+foodlog_complete_title = إكمال القيم
+foodlog_edit_food_title = تعديل طعام محفوظ
+foodlog_manual_name = الاسم
+foodlog_manual_values = القيم
+foodlog_manual_values_for = القيم لكمية %1$s
+foodlog_manual_save_food = حفظ كطعام خاص بي
+foodlog_manual_save_food_text = لتجده في البحث في المرة القادمة
+
+# Daily goal
+foodlog_goal_title = الهدف اليومي
+foodlog_goal_profile_text = السعرات الحرارية والعناصر الغذائية لعلامة التبويب «الطعام»
+foodlog_goal_auto = تلقائي
+foodlog_goal_manual = يدوي
+foodlog_goal_aim = هدفك
+foodlog_goal_lose = إنقاص الوزن
+foodlog_goal_maintain = الحفاظ على الوزن
+foodlog_goal_gain = زيادة الوزن
+foodlog_goal_weight = وزنك
+foodlog_goal_weight_text = لا يوجد قياس وزن بعد: اكتب وزنك لحساب الهدف.
+foodlog_goal_needs_weight = اكتب وزنك لمعرفة هدفك.
+foodlog_goal_how = طريقة الحساب
+foodlog_goal_bmr_scale = السعرات أثناء الراحة (ميزانك)
+foodlog_goal_bmr_formula = السعرات أثناء الراحة (حسب الوزن والطول والعمر والجنس)
+foodlog_goal_resting = يوم هادئ (× 1.2)
+foodlog_goal_active = نشاط اليوم (Health Connect)
+foodlog_plus_kcal = + %1$s سعرة حرارية
+foodlog_goal_light = يوم قليل النشاط (× 1.375)
+foodlog_goal_no_activity = في غياب نشاط اليوم من Health Connect، يُفترض أنه يوم قليل النشاط.
+foodlog_goal_maintenance = للحفاظ على وزنك
+foodlog_goal_lose_adjust = لإنقاص الوزن، أقل بنسبة 15%.
+foodlog_goal_gain_adjust = لزيادة الوزن، أكثر بنسبة 10%.
+foodlog_goal_result = هدفك: %1$s سعرة حرارية يوميًا
+foodlog_goal_targets = الأهداف
+foodlog_goal_protein_per_kg = البروتين (%1$s غ لكل كغ)
+foodlog_goal_fat_share = الدهون (30% من السعرات)
+foodlog_goal_carbs_rest = الكربوهيدرات (الباقي)
+foodlog_goal_limits = الحدود القصوى
+foodlog_goal_sugars_limit = السكريات (10% من السعرات)
+foodlog_goal_sat_fat_limit = الدهون المشبعة (10% من السعرات)
+foodlog_less_than = أقل من %1$s
+foodlog_at_least = %1$s على الأقل
+foodlog_goal_manual_text = أرقامك الخاصة: السعرات الحرارية والعناصر الغذائية التي تريد متابعتها (ويُحسب الباقي تلقائيًا).
+foodlog_goal_disclaimer = هذا تقدير للبالغين الأصحاء، وليس نصيحة طبية. إذا كانت لديك حالة صحية، أو في حالة الحمل، أو إذا كنت تتبع نظامًا غذائيًا، فاستشر مختصًا.
+
+# Hoy's card
+foodlog_today_title = طعام اليوم
+foodlog_today_of = %1$s / %2$s سعرة حرارية
+foodlog_today_open = فتح «الطعام»
+
+# Health Connect
+hc_type_nutrition = التغذية
+hc_meals_export_title = حفظ الوجبات في Health Connect
+hc_meals_export_text = يُحفظ كل طعام تسجّله كبيانات تغذية (السعرات الحرارية والبروتين والكربوهيدرات والسكريات والدهون والدهون المشبعة والألياف والصوديوم) ضمن وجبته. إذا عدّلته أو حذفته، فسيُحدَّث Health Connect أيضًا.
+hc_meals_export_missing_permission = اسمح لتطبيق Fortia بكتابة التغذية في Health Connect لحفظ وجباتك هناك.
+hc_meals_export_denied = إذا لم تُفتح نافذة الأذونات، فاسمح بـ«التغذية» لتطبيق Fortia في Health Connect.
+hc_meals_export_off = لا تُحفظ الوجبات الجديدة. أما الموجودة في Health Connect فتبقى هناك.
+hc_meals_export_count_none = لا توجد وجبات في Health Connect بعد.
+hc_meals_export_count{zero} = لا توجد أطعمة في Health Connect بعد.
+hc_meals_export_count{one} = طعام واحد في Health Connect.
+hc_meals_export_count{two} = طعامان في Health Connect.
+hc_meals_export_count{few} = %1$d أطعمة في Health Connect.
+hc_meals_export_count{many} = %1$d طعامًا في Health Connect.
+hc_meals_export_count{other} = %1$d طعام في Health Connect.
+health_rationale_write_meals = إذا سمحت بذلك، فسيكتب Fortia أيضًا الأطعمة التي تسجّلها (التغذية) لكي تحتسبها التطبيقات الأخرى. ولا يقرأ بيانات التغذية الخاصة بك أبدًا.
+
+# Open-source licences
+notice_litert = يشغّل نموذجنا للتعرّف على الطعام على الهاتف.
+notice_zxing = يقرأ الرموز الشريطية للمنتجات من صورة.
+open_source_food_data = بيانات الأطعمة
+notice_open_food_facts = منتجات معبأة يُعثر عليها عبر رمزها الشريطي. البيانات © المساهمون في Open Food Facts، بموجب Open Database License (ODbL).
+notice_usda = القيم الغذائية لقائمة الأطعمة: U.S. Department of Agriculture, Agricultural Research Service, FoodData Central. ملكية عامة (CC0).
+notice_ciqual = القيم الغذائية لقائمة الأطعمة: Anses، جدول Ciqual الفرنسي لتركيب الأغذية، بموجب Licence Ouverte / Etalab 2.0.
+notice_food_model_name = نموذج Fortia للتعرّف على الطعام
+notice_food_model_license = نموذجنا الخاص (راجع بطاقة النموذج)
+notice_food_model = نموذجنا الخاص، مدرَّب على صور من Open Images (CC BY 2.0) وWikimedia Commons (تراخيص حرة)؛ وتُنشر قائمة الصور ومؤلفيها مع الشيفرة المصدرية.

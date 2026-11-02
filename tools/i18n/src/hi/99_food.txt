@@ -1,0 +1,250 @@
+# The Comida (food log) tab: log what you eat from a photo (recognized on the phone), a barcode, a search or by hand;
+# the day with its meals and totals; the daily goal; saving meals to Health Connect. Food and group names are in 97_foods.txt.
+
+# Bottom bar: Hoy · Entreno · Comida · Progreso · Perfil (five items: very little room, one short word)
+nav_food = खाना
+
+# Units next to numbers ("150 g", "250 ml"); the unit alone as a field suffix
+unit_g = g
+unit_ml = ml
+value_g = %1$s g
+value_ml = %1$s ml
+
+# Portion names of the catalog (one portion; the amount shows next to it: "Plate · 350 g", "2 × Slice · 60 g")
+food_portion_unit = पीस
+food_portion_piece = टुकड़ा
+food_portion_slice = स्लाइस
+food_portion_plate = प्लेट
+food_portion_small_plate = छोटी प्लेट
+food_portion_bowl = कटोरी
+food_portion_cup = कप
+food_portion_glass = गिलास
+food_portion_can = कैन
+food_portion_bottle = बोतल
+food_portion_tbsp = बड़ा चम्मच
+food_portion_tsp = छोटा चम्मच
+food_portion_handful = मुट्ठी
+food_portion_serving = सर्विंग
+
+# Meals of the day (sections of the day, chips of the confirm page). In Spanish "Comida" is the tab, so lunch is "Almuerzo"
+foodlog_meal_breakfast = नाश्ता
+foodlog_meal_lunch = लंच
+foodlog_meal_snack = स्नैक
+foodlog_meal_dinner = डिनर
+foodlog_meal_other = अन्य
+
+# The eight values of the nutrition label
+foodlog_nutrient_kcal = कैलोरी
+foodlog_nutrient_protein = प्रोटीन
+foodlog_nutrient_carbs = कार्बोहाइड्रेट
+foodlog_nutrient_sugars = शुगर
+foodlog_nutrient_fat = वसा
+foodlog_nutrient_sat_fat = संतृप्त वसा
+foodlog_nutrient_fiber = फ़ाइबर
+foodlog_nutrient_salt = नमक
+
+# The day: navigation (icon buttons for TalkBack), summary card ("Eaten 1,250 kcal · of 2,300 kcal", ring "1,050 left")
+foodlog_previous_day = पिछला दिन
+foodlog_next_day = अगला दिन
+foodlog_eaten = खाया
+foodlog_goal_of = %1$s kcal में से
+foodlog_left = बाकी
+foodlog_over = ज़्यादा
+foodlog_left_desc = %2$s kcal में से %1$s खाया, %3$s kcal बाकी
+foodlog_over_desc = %2$s kcal में से %1$s खाया, लक्ष्य से %3$s kcal ज़्यादा
+foodlog_no_goal = कितना बाकी है, यह देखने के लिए रोज़ का लक्ष्य सेट करें।
+foodlog_set_goal = लक्ष्य सेट करें
+# A nutrient against its target or limit: "45 / 120 g"; TalkBack: "Sugars: 30 / 50 g, limit" / "…, over the limit"
+foodlog_value_of_target = %1$s / %2$s
+foodlog_limit_desc = %1$s: %2$s, सीमा
+foodlog_limit_over_desc = %1$s: %2$s, सीमा से ज़्यादा
+# TalkBack reads a label with its value: "Protein: 45 / 120 g", "Food today: 1,250 / 2,300 kcal"
+foodlog_label_value = %1$s: %2$s
+foodlog_more = और देखें
+foodlog_less = कम देखें
+# An entry of the list: "2 × Slice · 60 g"; TalkBack action on a row
+foodlog_portion_amount = %1$s × %2$s · %3$s
+foodlog_edit_entry = बदलाव करें
+# A day without entries (today / another day) and how to start, in one line
+foodlog_empty_today = आज कुछ भी दर्ज नहीं किया
+foodlog_empty_day = इस दिन कुछ भी दर्ज नहीं किया
+foodlog_empty_text = अपनी प्लेट की फ़ोटो लें: Fortia बताता है कि यह क्या है और आप पुष्टि करते हैं।
+foodlog_add_photo_short = फ़ोटो
+foodlog_add_search_short = खोजें
+# Under the day (the values are estimates)
+foodlog_estimates_note = ये वैल्यू खाद्य तालिकाओं और प्रोडक्ट लेबल से लिए गए अनुमान हैं, चिकित्सा सलाह नहीं।
+# The entry deleted (with its name) and the snackbar's action
+foodlog_deleted = %1$s मिटाया गया
+foodlog_undo = पहले जैसा करें
+# Snackbar when a change could not be saved (the food log's storage refused it); the Comida tab when it cannot be opened at all
+foodlog_write_failed = बदलाव सेव नहीं हो सका। फिर से कोशिश करें।
+foodlog_db_error = आपके खाने का रिकॉर्ड नहीं खुल सका
+
+# The add button and its sheet
+foodlog_add = जोड़ें
+foodlog_add_title = खाना जोड़ें
+foodlog_add_photo = प्लेट की फ़ोटो
+foodlog_add_photo_text = आपके फ़ोन पर ही पहचाना जाता है; फ़ोटो फ़ोन से बाहर नहीं जाती
+foodlog_add_gallery = गैलरी से फ़ोटो
+foodlog_add_gallery_text = पहले से ली गई फ़ोटो
+foodlog_add_barcode = बारकोड
+foodlog_add_barcode_text = पैकेट के बारकोड की फ़ोटो लें
+foodlog_add_barcode_gallery = गैलरी से बारकोड की फ़ोटो
+foodlog_add_search = फ़ूड आइटम खोजें
+foodlog_add_search_text = खाने की चीज़ें, व्यंजन और आपके अपने फ़ूड आइटम
+foodlog_add_manual = खुद दर्ज करें
+foodlog_add_manual_text = नाम, मात्रा और कैलोरी
+foodlog_camera_unavailable = कोई भी ऐप फ़ोटो नहीं ले सकता। गैलरी से कोई फ़ोटो चुनें।
+
+# The photo page: the photo, the five suggestions with a hint (never a %), "Other…", no food
+foodlog_photo_title = प्लेट में क्या है?
+foodlog_photo_desc = खाने की फ़ोटो
+foodlog_photo_recognizing = खाना पहचाना जा रहा है…
+foodlog_photo_question = चुनें कि यह क्या है
+foodlog_photo_question_more = प्लेट में और कुछ?
+foodlog_hint_very_likely = बहुत संभावित
+foodlog_hint_likely = संभावित
+foodlog_hint_possible = शायद
+foodlog_photo_other = कुछ और…
+# The same button when there are no suggestions (no food seen, recognition not available)
+foodlog_photo_search = फ़ूड आइटम खोजें
+foodlog_photo_not_food = फ़ोटो में खाना नहीं दिख रहा। इसके बजाय उसे खोजें।
+foodlog_photo_no_model = फ़ोटो से पहचान उपलब्ध नहीं है। फ़ूड आइटम खोजें।
+foodlog_photo_unreadable = फ़ोटो नहीं खुल सकी।
+foodlog_photo_gone = फ़ोटो अब यहां नहीं है।
+foodlog_photo_private = फ़ोटो आपके फ़ोन पर ही प्रोसेस होती है और वहीं रहती है।
+# After a food is added from the photo ("Added: Steak and Chips"), to add the next one of the same plate
+foodlog_photo_added = जोड़ा गया: %1$s
+foodlog_photo_add_another = इस फ़ोटो से एक और फ़ूड आइटम जोड़ें
+foodlog_done = हो गया
+
+# Search
+foodlog_search_title = खोजें
+foodlog_search_hint = फ़ूड आइटम या व्यंजन
+foodlog_search_clear = साफ़ करें
+foodlog_search_recent = हाल के
+foodlog_search_none = “%1$s” से कोई फ़ूड आइटम मेल नहीं खाता।
+foodlog_create_food = अपना फ़ूड आइटम बनाएं
+# The calories of a food under its name: "250 kcal per 100 g"
+foodlog_kcal_per_100g = %1$s kcal प्रति 100 g
+foodlog_kcal_per_100ml = %1$s kcal प्रति 100 ml
+# The user's own foods (and products kept from a barcode) in the results: long press for a menu (TalkBack: its action), then a confirmation
+foodlog_food_options = बदलाव करें या मिटाएं
+foodlog_food_edit = फ़ूड आइटम में बदलाव करें
+foodlog_food_delete = फ़ूड आइटम मिटाएं
+foodlog_food_delete_title = “%1$s” मिटाएं?
+foodlog_food_delete_text = यह अब खोज में नहीं दिखेगा। जो खाना आप इसके साथ पहले दर्ज कर चुके हैं, उसकी वैल्यू वही रहेंगी।
+
+# Barcode: reading the photo, looking it up in Open Food Facts (keep the name), results
+foodlog_barcode_title = बारकोड
+foodlog_barcode_reading = बारकोड पढ़ा जा रहा है…
+foodlog_barcode_looking_up = Open Food Facts में %1$s खोजा जा रहा है…
+foodlog_barcode_not_read = फ़ोटो में कोई बारकोड नहीं मिला
+foodlog_barcode_not_read_text = पास से और साफ़ फ़ोटो लें, या बार के नीचे लिखे नंबर टाइप करें।
+foodlog_barcode_type = बारकोड नंबर
+foodlog_barcode_invalid = नंबर जांचें: इसमें 8, 12 या 13 अंक होते हैं।
+foodlog_barcode_search = खोजें
+foodlog_barcode_not_found = प्रोडक्ट नहीं मिला
+foodlog_barcode_not_found_text = Open Food Facts में अभी %1$s नहीं है। इसे खुद दर्ज करें: यह अगली बार के लिए सेव रहेगा।
+foodlog_barcode_offline = कनेक्शन नहीं है
+foodlog_barcode_offline_text = इंटरनेट के बिना %1$s नहीं खोजा जा सकता। फिर से कोशिश करें या इसे खुद दर्ज करें।
+foodlog_barcode_failed = Open Food Facts से जवाब नहीं मिला
+foodlog_barcode_code = बारकोड %1$s
+foodlog_values_per_100g = प्रति 100 g
+foodlog_values_per_100ml = प्रति 100 ml
+# Values the product page doesn't give ("Missing: sugars and salt")
+foodlog_barcode_missing = जानकारी नहीं: %1$s
+foodlog_barcode_use = यह प्रोडक्ट इस्तेमाल करें
+foodlog_barcode_complete = वैल्यू पूरी करें
+# Required attribution of the product data (keep "Open Food Facts" and "ODbL")
+foodlog_off_attribution = डेटा: Open Food Facts (ODbL)
+
+# Confirm / edit page: amount (portion chips "Plate · 350 g", count "2 × Plate", grams), meal, when, values
+foodlog_confirm_title = पुष्टि करें
+foodlog_edit_title = फ़ूड आइटम में बदलाव करें
+foodlog_amount = मात्रा
+foodlog_portion_chip = %1$s · %2$s
+foodlog_portion_count = %1$s × %2$s
+foodlog_portion_less = कम करें
+foodlog_portion_more = बढ़ाएं
+foodlog_grams = ग्राम
+foodlog_millilitres = मिलीलीटर
+foodlog_meal = भोजन
+
+# Manual entry (values for the amount typed) and completing a product's missing values (per 100 g)
+foodlog_manual_title = खुद दर्ज करें
+foodlog_complete_title = वैल्यू पूरी करें
+# The same form opened from "Edit food" in the search (saves the food, logs nothing)
+foodlog_edit_food_title = सेव किया गया फ़ूड आइटम बदलें
+foodlog_manual_name = नाम
+foodlog_manual_values = वैल्यू
+foodlog_manual_values_for = %1$s के लिए वैल्यू
+foodlog_manual_save_food = मेरे फ़ूड आइटम के रूप में सेव करें
+foodlog_manual_save_food_text = ताकि अगली बार यह खोज में मिल जाए
+
+# The daily goal page (top bar action of Comida, and a row in Perfil under the training settings); "Automatic" / "Manual"
+foodlog_goal_title = रोज़ का लक्ष्य
+foodlog_goal_profile_text = खाना टैब के लिए कैलोरी और पोषक तत्व
+foodlog_goal_auto = ऑटोमैटिक
+foodlog_goal_manual = मैन्युअल
+foodlog_goal_aim = आपका मकसद
+foodlog_goal_lose = वज़न घटाना
+foodlog_goal_maintain = वज़न बनाए रखना
+foodlog_goal_gain = वज़न बढ़ाना
+foodlog_goal_weight = आपका वज़न
+foodlog_goal_weight_text = अभी तक कोई माप नहीं है: लक्ष्य निकालने के लिए अपना वज़न टाइप करें।
+foodlog_goal_needs_weight = अपना लक्ष्य देखने के लिए अपना वज़न टाइप करें।
+# How it is calculated, in plain words (one line each, the value on the right)
+foodlog_goal_how = यह कैसे निकाला जाता है
+foodlog_goal_bmr_scale = आराम की स्थिति में कैलोरी (आपका स्केल)
+foodlog_goal_bmr_formula = आराम की स्थिति में कैलोरी (वज़न, लंबाई, उम्र और लिंग से)
+foodlog_goal_resting = आराम वाला दिन (× 1.2)
+foodlog_goal_active = आज की गतिविधि (Health Connect)
+# The calories the activity adds: "+ 420 kcal"
+foodlog_plus_kcal = + %1$s kcal
+foodlog_goal_light = थोड़ा सक्रिय दिन (× 1.375)
+foodlog_goal_no_activity = Health Connect से आज की गतिविधि न मिलने पर, थोड़ा सक्रिय दिन माना जाता है।
+foodlog_goal_maintenance = अपना वज़न बनाए रखने के लिए
+foodlog_goal_lose_adjust = वज़न घटाने के लिए, 15% कम।
+foodlog_goal_gain_adjust = वज़न बढ़ाने के लिए, 10% ज़्यादा।
+foodlog_goal_result = आपका लक्ष्य: रोज़ %1$s kcal
+foodlog_goal_targets = टारगेट
+foodlog_goal_protein_per_kg = प्रोटीन (%1$s g प्रति kg)
+foodlog_goal_fat_share = वसा (कैलोरी का 30%)
+foodlog_goal_carbs_rest = कार्बोहाइड्रेट (बाकी)
+foodlog_goal_limits = सीमाएं
+foodlog_goal_sugars_limit = शुगर (कैलोरी का 10%)
+foodlog_goal_sat_fat_limit = संतृप्त वसा (कैलोरी का 10%)
+foodlog_less_than = %1$s से कम
+foodlog_at_least = कम से कम %1$s
+foodlog_goal_manual_text = आपके अपने नंबर: कैलोरी, और वे पोषक तत्व जिन्हें आप ट्रैक करना चाहते हैं (बाकी अपने आप निकाले जाते हैं)।
+foodlog_goal_disclaimer = यह स्वस्थ वयस्कों के लिए एक अनुमान है, चिकित्सा सलाह नहीं। अगर आपको कोई बीमारी है, आप गर्भवती हैं या कोई डाइट फ़ॉलो करते हैं, तो किसी विशेषज्ञ से सलाह लें।
+
+# Hoy's card: "Food today · 1,250 / 2,300 kcal"; TalkBack action
+foodlog_today_title = आज का खाना
+foodlog_today_of = %1$s / %2$s kcal
+foodlog_today_open = खाना खोलें
+
+# Health Connect: the switch next to "Save workouts to Health Connect" (same style as 52_health_training.txt)
+hc_type_nutrition = पोषण
+hc_meals_export_title = खाना Health Connect में सेव करें
+hc_meals_export_text = आपका दर्ज किया हर फ़ूड आइटम उसके भोजन के पोषण (कैलोरी, प्रोटीन, कार्बोहाइड्रेट, शुगर, वसा, संतृप्त वसा, फ़ाइबर और सोडियम) के रूप में सेव होता है। अगर आप उसमें बदलाव करते हैं या उसे मिटाते हैं, तो Health Connect भी अपडेट हो जाता है।
+hc_meals_export_missing_permission = अपना खाना Health Connect में सेव करने के लिए Fortia को वहां पोषण लिखने की अनुमति दें।
+hc_meals_export_denied = अगर अनुमति वाली विंडो नहीं खुलती, तो Health Connect में Fortia के लिए “पोषण” की अनुमति दें।
+hc_meals_export_off = नया खाना सेव नहीं होता। जो पहले से Health Connect में है, वह वहीं रहता है।
+hc_meals_export_count_none = अभी तक Health Connect में कोई खाना नहीं है।
+hc_meals_export_count{one} = Health Connect में %1$d फ़ूड आइटम है।
+hc_meals_export_count{other} = Health Connect में %1$d फ़ूड आइटम हैं।
+# Health Connect's "Why does Fortia ask for these permissions?" page (one paragraph more)
+health_rationale_write_meals = अगर आप अनुमति देते हैं, तो Fortia आपके दर्ज किए गए फ़ूड आइटम (पोषण) भी लिखता है, ताकि दूसरे ऐप उन्हें गिन सकें। यह आपका पोषण डेटा कभी नहीं पढ़ता।
+
+# Profile → Open-source licences: the libraries and the food data (keep names and licence names)
+notice_litert = हमारा खाना पहचानने वाला मॉडल फ़ोन पर चलाता है।
+notice_zxing = फ़ोटो से प्रोडक्ट के बारकोड पढ़ता है।
+open_source_food_data = खाने का डेटा
+notice_open_food_facts = बारकोड से मिलने वाले पैक्ड प्रोडक्ट। डेटा © Open Food Facts योगदानकर्ता, Open Database License (ODbL) के तहत।
+notice_usda = फ़ूड सूची की पोषक वैल्यू: U.S. Department of Agriculture, Agricultural Research Service, FoodData Central. पब्लिक डोमेन (CC0)।
+notice_ciqual = फ़ूड सूची की पोषक वैल्यू: Anses, Ciqual फ़्रेंच खाद्य संरचना तालिका, Licence Ouverte / Etalab 2.0 के तहत।
+notice_food_model_name = Fortia का खाना पहचानने वाला मॉडल
+notice_food_model_license = हमारा अपना मॉडल (इसका मॉडल कार्ड देखें)
+notice_food_model = हमारा अपना मॉडल, जिसे Open Images (CC BY 2.0) और Wikimedia Commons (मुक्त लाइसेंस) की तस्वीरों पर ट्रेन किया गया है; तस्वीरों और उनके लेखकों की सूची सोर्स कोड के साथ प्रकाशित है।

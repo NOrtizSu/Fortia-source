@@ -1,0 +1,14 @@
+# Export venv (separate from training: TensorFlow and PyTorch/ONNX pin different protobuf versions).
+# CPU only. Used by export.py tflite and parity.py.
+tensorflow-cpu==2.21.0
+tf_keras==2.21.0
+onnx==1.23.2
+onnx2tf==1.28.8
+onnxsim==0.8.1
+onnx_graphsurgeon==0.6.1
+sng4onnx==2.0.1
+psutil==7.2.2
+ai-edge-litert==2.3.0
+numpy==2.4.6
+pandas==3.1.0
+pillow==13.0.0

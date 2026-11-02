@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The food catalog finds the names of its foods and groups by name (FoodCatalog: food_<id>,
+     food_group_<group>), so resource shrinking must keep them; the portion names are referenced in code. -->
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:keep="@string/food_*" />

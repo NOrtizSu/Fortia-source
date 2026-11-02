@@ -1,5 +1,6 @@
 package com.enjoyyourtime.globalfitness.ui.navigation
 
+import com.enjoyyourtime.globalfitness.ui.food.FoodRoutes
 import com.enjoyyourtime.globalfitness.ui.training.TrainingRoutes
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
@@ -8,9 +9,10 @@ import org.junit.Test
 
 class DestinationsTest {
     @Test
-    fun fourSectionsInBarOrder() {
-        assertEquals(listOf(TopLevel.TODAY, TopLevel.TRAINING, TopLevel.PROGRESS, TopLevel.PROFILE), TopLevel.entries)
-        assertEquals(listOf("hoy", "entreno", "progreso", "perfil"), TopLevel.entries.map { it.route })
+    fun fiveSectionsInBarOrder() {
+        // Comida sits between Entreno and Progreso.
+        assertEquals(listOf(TopLevel.TODAY, TopLevel.TRAINING, TopLevel.FOOD, TopLevel.PROGRESS, TopLevel.PROFILE), TopLevel.entries)
+        assertEquals(listOf("hoy", "entreno", "comida", "progreso", "perfil"), TopLevel.entries.map { it.route })
     }
 
     @Test
@@ -21,6 +23,7 @@ class DestinationsTest {
         listOf(Routes.DEVICES, Routes.ACCOUNT, Routes.REMOVE_ADS, Routes.PRIVACY_POLICY, Routes.LICENSES).forEach { assertNull(TopLevel.of(it)) }
         listOf(TrainingRoutes.EXERCISE, TrainingRoutes.WORKOUT, TrainingRoutes.CATALOG, TrainingRoutes.HISTORY, TrainingRoutes.SETTINGS)
             .forEach { assertNull(it, TopLevel.of(it)) }
+        FOOD_ROUTES.forEach { assertNull(it, TopLevel.of(it)) }
         // The former sections are gone (Body and Activity are Progreso's tabs, Devices a sub-page).
         assertNull(TopLevel.of("cuerpo"))
         assertNull(TopLevel.of("actividad"))
@@ -30,9 +33,12 @@ class DestinationsTest {
     fun routesAreUnique() {
         val all = TopLevel.entries.map { it.route } +
             listOf(Routes.DEVICES, Routes.ACCOUNT, Routes.REMOVE_ADS, Routes.PRIVACY_POLICY, Routes.LICENSES) +
-            listOf(TrainingRoutes.EXERCISE, TrainingRoutes.WORKOUT, TrainingRoutes.CATALOG, TrainingRoutes.HISTORY, TrainingRoutes.SETTINGS)
+            listOf(TrainingRoutes.EXERCISE, TrainingRoutes.WORKOUT, TrainingRoutes.CATALOG, TrainingRoutes.HISTORY, TrainingRoutes.SETTINGS) +
+            FOOD_ROUTES
         assertEquals(all.size, all.toSet().size)
     }
+
+    private val FOOD_ROUTES = listOf(FoodRoutes.PHOTO, FoodRoutes.SEARCH, FoodRoutes.BARCODE, FoodRoutes.CONFIRM, FoodRoutes.MANUAL, FoodRoutes.GOAL, FoodRoutes.EDIT)
 
     @Test
     fun barIconsBuild() {

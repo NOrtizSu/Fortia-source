@@ -17,11 +17,16 @@ import androidx.compose.foundation.layout.ime
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.union
+import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.text.BasicText
+import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.LocalContentColor
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -43,10 +48,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.isSpecified
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.LifecycleResumeEffect
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -69,6 +78,11 @@ import com.enjoyyourtime.globalfitness.ui.body.ChartRange
 import com.enjoyyourtime.globalfitness.ui.body.ManualEntryDialog
 import com.enjoyyourtime.globalfitness.ui.components.LocalAppSnackbar
 import com.enjoyyourtime.globalfitness.ui.devices.DevicesScreen
+import com.enjoyyourtime.globalfitness.ui.food.FoodHost
+import com.enjoyyourtime.globalfitness.ui.food.FoodRoutes
+import com.enjoyyourtime.globalfitness.ui.food.FoodScreen
+import com.enjoyyourtime.globalfitness.ui.food.foodGraph
+import com.enjoyyourtime.globalfitness.ui.food.foodViewModel
 import com.enjoyyourtime.globalfitness.ui.health.ActivityScreen
 import com.enjoyyourtime.globalfitness.ui.health.HealthViewModel
 import com.enjoyyourtime.globalfitness.ui.navigation.LocalSnackbarClearance
@@ -97,7 +111,7 @@ import com.enjoyyourtime.globalfitness.ui.training.trainingGraph
 import kotlinx.coroutines.flow.StateFlow
 
 /**
- * Single-activity root: loading → onboarding (first launch) → the four sections. [workoutToOpen]: a
+ * Single-activity root: loading → onboarding (first launch) → the five sections. [workoutToOpen]: a
  * workout the notification asked to open, opened once the sections show ([onWorkoutOpened]).
  */
 @Composable
@@ -195,6 +209,8 @@ private fun MainScaffold(
     var bodyMetric by rememberSaveable { mutableStateOf(Metric.WEIGHT) }
     var bodyRange by rememberSaveable { mutableStateOf(ChartRange.M3) }
     var showManual by rememberSaveable { mutableStateOf(false) }
+    // Comida's "Add" button lives in the scaffold (the app-wide snackbar moves it up) and opens the tab's sheet.
+    var addFood by rememberSaveable { mutableStateOf(false) }
     // Hoisted so Hoy can open Progreso on a given tab (a metric → Cuerpo, "View activity" → Actividad).
     var progressTab by rememberSaveable { mutableStateOf(ProgressTab.MUSCLES) }
     val progressLists = rememberProgressLists()
@@ -225,8 +241,11 @@ private fun MainScaffold(
 
     val openWearable: (String) -> Unit = { id -> context.startActivity(WearableActivity.intent(context, id)) }
     // The health view model outlives the screens: refresh "today" (and band.db) on every resume.
+    val foodVm = foodViewModel()
     LifecycleResumeEffect(Unit) {
         healthVm.onResume()
+        // Comida and Hoy's card follow midnight and a change of language.
+        foodVm.onResume()
         onPauseOrDispose { }
     }
 
@@ -245,7 +264,7 @@ private fun MainScaffold(
                                     selected = selected,
                                     onClick = { navController.navigateToSection(item) },
                                     icon = { Icon(if (selected) item.selectedIcon else item.icon, contentDescription = null) },
-                                    label = { Text(stringResource(item.label), maxLines = 1, overflow = TextOverflow.Ellipsis) },
+                                    label = { NavLabel(stringResource(item.label)) },
                                 )
                             }
                         }
@@ -260,6 +279,12 @@ private fun MainScaffold(
                         // Named for TalkBack while only the icon shows.
                         icon = { Icon(Icons.Filled.Add, contentDescription = if (manualFabExpanded) null else stringResource(R.string.action_add_manual_weight)) },
                         text = { Text(stringResource(R.string.action_add_manual_weight)) },
+                    )
+                } else if (section == TopLevel.FOOD) {
+                    ExtendedFloatingActionButton(
+                        onClick = { addFood = true },
+                        icon = { Icon(Icons.Filled.Add, contentDescription = null) },
+                        text = { Text(stringResource(R.string.foodlog_add)) },
                     )
                 }
             },
@@ -291,10 +316,13 @@ private fun MainScaffold(
                     val suggestion by vm.scaleSuggestion.collectAsStateWithLifecycle()
                     val state by vm.uiState.collectAsStateWithLifecycle()
                     val muscles by musclesVm.state.collectAsStateWithLifecycle()
+                    val food by foodViewModel().today.collectAsStateWithLifecycle()
                     TodayScreen(
                         state = state,
                         status = TodayStatus(scanStatus, live, sessions, health, dashboard, user, cloud, wearable, suggestion),
                         muscles = muscles,
+                        food = food,
+                        onOpenFood = { navController.navigateToSection(TopLevel.FOOD) },
                         access = access,
                         onRetryScan = vm::refreshScanner,
                         onConnectHealth = connectHealth,
@@ -317,6 +345,9 @@ private fun MainScaffold(
                 }
                 composable(TopLevel.TRAINING.route) {
                     TrainingScreen(onOpen = openRoute)
+                }
+                composable(TopLevel.FOOD.route) {
+                    FoodScreen(onOpen = openRoute, adding = addFood, onAdding = { addFood = it })
                 }
                 composable(TopLevel.PROGRESS.route) {
                     val state by vm.uiState.collectAsStateWithLifecycle()
@@ -359,6 +390,7 @@ private fun MainScaffold(
                         onConnectHealth = connectHealth,
                         onOpenDevices = { navController.openSubPage(Routes.DEVICES) },
                         onOpenTrainingSettings = { navController.openSubPage(TrainingRoutes.SETTINGS) },
+                        onOpenFoodGoal = { navController.openSubPage(FoodRoutes.GOAL) },
                         onOpenAchievements = { navController.openSubPage(TrainingRoutes.ACHIEVEMENTS) },
                         onOpenAccount = { navController.openSubPage(Routes.ACCOUNT) },
                         onOpenRemoveAds = { navController.openSubPage(Routes.REMOVE_ADS) },
@@ -374,12 +406,16 @@ private fun MainScaffold(
                     DevicesScreen(vm, healthVm, onConnectHealth = connectHealth, onOpenWearable = openWearable, onBack = back)
                 }
                 trainingGraph(navController)
+                foodGraph(navController)
             }
         }
     }
 
     // Once per install, after the start's ad consent: may the music cards load Spotify's covers?
     SpotifyCoversQuestion(onMainSection = section != null)
+    // After the first meal saved with Health Connect set up: may Fortia write nutrition? (never blocks the save)
+    // Also the message when a change to the food log could not be saved.
+    FoodHost()
     if (showManual) {
         ManualEntryDialog(
             onSave = { weight, timestamp ->
@@ -390,6 +426,28 @@ private fun MainScaffold(
         )
     }
 }
+
+/**
+ * A bottom bar label on one line: five sections leave about 62 dp each at 360 dp, so long words
+ * ("Fortschritt", "Тренировки", "الملف الشخصي") shrink a little instead of being cut. The bar
+ * measures its labels without a width limit, so the item's share of the window is the limit.
+ */
+@Composable
+private fun NavLabel(text: String) {
+    val window = LocalWindowInfo.current.containerSize.width
+    val itemWidth = with(LocalDensity.current) { ((window.toDp() - NAV_BAR_INSETS) / TopLevel.entries.size).coerceAtLeast(40.dp) }
+    BasicText(
+        text,
+        modifier = Modifier.widthIn(max = itemWidth),
+        style = LocalTextStyle.current.copy(color = LocalContentColor.current),
+        maxLines = 1,
+        overflow = TextOverflow.Ellipsis,
+        autoSize = TextAutoSize.StepBased(minFontSize = 9.sp, maxFontSize = LocalTextStyle.current.fontSize.takeIf { it.isSpecified } ?: 12.sp, stepSize = 0.5.sp),
+    )
+}
+
+/** The bar's side padding and the gaps between its items (Material 3: 8 dp each). */
+private val NAV_BAR_INSETS = 48.dp
 
 /** The workout's page: back to it when it is already open under other pages, else opened on top (never twice). */
 private fun NavHostController.openWorkout(id: String) {

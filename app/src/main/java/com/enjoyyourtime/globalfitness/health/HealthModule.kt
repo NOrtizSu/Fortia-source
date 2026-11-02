@@ -5,6 +5,7 @@ import android.app.Application
 import android.content.Context
 import android.os.Bundle
 import com.enjoyyourtime.globalfitness.data.Repository
+import com.enjoyyourtime.globalfitness.food.FoodModule
 import com.enjoyyourtime.globalfitness.scale.ScaleRegistry
 import com.enjoyyourtime.globalfitness.training.TrainingModule
 import kotlinx.coroutines.CoroutineScope
@@ -21,6 +22,7 @@ class HealthModule(
     scales: ScaleRegistry,
     private val scope: CoroutineScope,
     training: TrainingModule,
+    food: FoodModule,
 ) : Application.ActivityLifecycleCallbacks {
 
     val cache = HealthCache(context)
@@ -39,9 +41,13 @@ class HealthModule(
         exerciseName = { it.resolve(context) },
     )
 
+    /** The meals of the food log as nutrition records (write only). */
+    val foodExporter = FoodExporter(gateway, food.repository, food.settings, scope, installId = { food.installId })
+
     init {
         exporter.start()
         workoutExporter.start()
+        foodExporter.start()
     }
 
     /** Refreshes availability / permissions, then syncs if the last attempt is old enough. */
@@ -50,6 +56,7 @@ class HealthModule(
             gateway.refresh()
             sync.syncIfStale()
             workoutExporter.onForeground()
+            foodExporter.onForeground()
         }
     }
 
