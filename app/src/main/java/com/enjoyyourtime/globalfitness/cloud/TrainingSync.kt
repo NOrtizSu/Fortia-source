@@ -88,7 +88,8 @@ class TrainingSync(
         val stored = bases.loadTrainingBase(uid)
         val mode = TrainingMerge.modeFor(stored, datasetId)
         val trusted = mode == TrainingMode.MERGE && stored?.trustedFor(datasetId) == true
-        val previous = stored.takeIf { trusted }
+        // Saved by an older version: its read-only marks are dropped and everything is read again (TrainingBase.forReader).
+        val previous = stored.takeIf { trusted }?.forReader()
         val pendingSince = stored?.pendingSince.takeIf { mode != TrainingMode.MERGE }
         val inFlight = stored?.photosInFlight.orEmpty()
         val hashes = HashMap(stored?.photoFiles.orEmpty())

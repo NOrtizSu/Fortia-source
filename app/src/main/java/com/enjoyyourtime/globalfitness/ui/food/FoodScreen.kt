@@ -352,10 +352,10 @@ private fun EntryRow(e: FoodEntry, onClick: () -> Unit) {
     ListItem(
         headlineContent = { Text(vm.entryName(e), maxLines = 2, overflow = TextOverflow.Ellipsis) },
         supportingContent = {
-            // A dish whose ingredients were changed says so ("Plate · 368 g · Adjusted").
+            // A dish whose ingredients or values were changed says so ("Plate · 368 g · Adjusted").
             val amount = FoodFormat.entryAmount(e)
             Text(
-                if (e.adjustments.isEmpty()) amount else stringResource(R.string.foodlog_entry_adjusted, amount),
+                if (e.adjustments.isEmpty() && !e.valuesEdited) amount else stringResource(R.string.foodlog_entry_adjusted, amount),
                 style = MaterialTheme.typography.bodyMedium.merge(TabularNumbers),
             )
         },

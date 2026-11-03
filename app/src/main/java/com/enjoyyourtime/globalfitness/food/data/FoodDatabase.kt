@@ -7,15 +7,9 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import androidx.core.database.sqlite.transaction
 import com.enjoyyourtime.globalfitness.food.model.CustomFood
-import com.enjoyyourtime.globalfitness.food.model.CustomFoodSource
-import com.enjoyyourtime.globalfitness.food.model.EntrySource
 import com.enjoyyourtime.globalfitness.food.model.FoodEntry
 import com.enjoyyourtime.globalfitness.food.model.FoodTombstones
-import com.enjoyyourtime.globalfitness.food.model.FoodUnit
-import com.enjoyyourtime.globalfitness.food.model.Meal
 import com.enjoyyourtime.globalfitness.food.model.Nutrient
-import com.enjoyyourtime.globalfitness.food.model.Nutrients
-import com.enjoyyourtime.globalfitness.food.model.PortionKey
 import com.enjoyyourtime.globalfitness.training.model.Tombstone
 
 /**
@@ -28,9 +22,15 @@ import com.enjoyyourtime.globalfitness.training.model.Tombstone
  * Version 2 (1.6.0): the fourteen nutrients beyond the label in both tables, and the entry's changed
  * ingredients ([AdjustmentsColumn]) and photo grams estimate. They come after the version 1 columns,
  * as `ALTER TABLE` adds them, so a new file and an upgraded one have the same layout.
+ *
+ * Version 3 (1.7.0): whether the entry's values were typed by hand (`values_edited`, 1 or 0; NULL
+ * reads as 0), and when a product was last asked again (`checked_at` in custom_foods, local only),
+ * after the version 2 columns. 1.6.0 opens such a file as it is; a row it rewrites then loses them
+ * (its values stay), which only means the next entry of that food starts from the food's own values,
+ * or that the product is asked again a little earlier.
  */
 object FoodSchema {
-    const val VERSION = 2
+    const val VERSION = 3
 
     /** The eight nutrient columns of version 1, in [Nutrient] order. */
     val NUTRIENT_COLUMNS = Nutrient.LABEL.map { it.code }
@@ -47,15 +47,27 @@ object FoodSchema {
     private val ENTRY_V2: List<Pair<String, String>> =
         EXTRA_NUTRIENT_COLUMNS.map { it to "REAL" } + listOf("adjustments" to "TEXT", "estimated_amount" to "REAL")
 
+    /** Columns version 3 adds to food_entries. */
+    private val ENTRY_V3: List<Pair<String, String>> = listOf("values_edited" to "INTEGER")
+
+    /** Every column added to food_entries after version 1, in order. */
+    private val ENTRY_ADDED = ENTRY_V2 + ENTRY_V3
+
     private val CUSTOM_FOOD_V1 = listOf("id", "name", "brand", "barcode", "unit") + NUTRIENT_COLUMNS +
         listOf("portion", "source", "created_at", "updated_at")
 
     /** Columns version 2 adds to custom_foods. */
     private val CUSTOM_FOOD_V2: List<Pair<String, String>> = EXTRA_NUTRIENT_COLUMNS.map { it to "REAL" }
 
-    val ENTRY_COLUMNS = ENTRY_V1 + ENTRY_V2.map { it.first }
+    /** Columns version 3 adds to custom_foods. */
+    private val CUSTOM_FOOD_V3: List<Pair<String, String>> = listOf("checked_at" to "INTEGER")
 
-    val CUSTOM_FOOD_COLUMNS = CUSTOM_FOOD_V1 + CUSTOM_FOOD_V2.map { it.first }
+    /** Every column added to custom_foods after version 1, in order. */
+    private val CUSTOM_FOOD_ADDED = CUSTOM_FOOD_V2 + CUSTOM_FOOD_V3
+
+    val ENTRY_COLUMNS = ENTRY_V1 + ENTRY_ADDED.map { it.first }
+
+    val CUSTOM_FOOD_COLUMNS = CUSTOM_FOOD_V1 + CUSTOM_FOOD_ADDED.map { it.first }
 
     private val nutrientDefs = NUTRIENT_COLUMNS.joinToString(",\n") { "    $it REAL" }
 
@@ -82,7 +94,7 @@ object FoodSchema {
             model_confidence REAL,
             created_at INTEGER NOT NULL,
             updated_at INTEGER NOT NULL,
-        ${defs(ENTRY_V2)}
+        ${defs(ENTRY_ADDED)}
         )
         """.trimIndent(),
         "CREATE INDEX IF NOT EXISTS idx_food_entries_eaten ON food_entries(eaten_at)",
@@ -98,7 +110,7 @@ object FoodSchema {
             source TEXT NOT NULL,
             created_at INTEGER NOT NULL,
             updated_at INTEGER NOT NULL,
-        ${defs(CUSTOM_FOOD_V2)}
+        ${defs(CUSTOM_FOOD_ADDED)}
         )
         """.trimIndent(),
         "CREATE INDEX IF NOT EXISTS idx_custom_foods_barcode ON custom_foods(barcode)",
@@ -136,8 +148,8 @@ object FoodSchema {
     fun upgrade(sql: Sql, oldVersion: Int) {
         if (oldVersion >= VERSION) return
         CREATE.forEach(sql::exec)
-        addMissing(sql, "food_entries", ENTRY_V2)
-        addMissing(sql, "custom_foods", CUSTOM_FOOD_V2)
+        addMissing(sql, "food_entries", ENTRY_ADDED)
+        addMissing(sql, "custom_foods", CUSTOM_FOOD_ADDED)
     }
 
     private fun addMissing(sql: Sql, table: String, columns: List<Pair<String, String>>) {
@@ -182,58 +194,14 @@ class FoodDatabase(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
 
     override fun loadEntries(): List<FoodEntry> =
         readableDatabase.rawQuery("SELECT ${FoodSchema.ENTRY_COLUMNS.joinToString()} FROM food_entries ORDER BY eaten_at, id", null).use { c ->
-            val i = Columns(FoodSchema.ENTRY_COLUMNS)
-            buildList {
-                while (c.moveToNext()) {
-                    add(
-                        FoodEntry(
-                            id = c.getString(i["id"]),
-                            eatenAt = c.getLong(i["eaten_at"]),
-                            zoneOffsetSeconds = c.getInt(i["zone_offset"]),
-                            meal = Meal.fromCode(c.getString(i["meal"])),
-                            foodId = c.stringOrNull(i["food_id"]),
-                            customFoodId = c.stringOrNull(i["custom_food_id"]),
-                            name = c.getString(i["name"]),
-                            amount = c.getDouble(i["amount"]),
-                            unit = FoodUnit.fromCode(c.getString(i["unit"])),
-                            portionKey = PortionKey.fromCode(c.stringOrNull(i["portion_key"])),
-                            portionCount = c.doubleOrNull(i["portion_count"]),
-                            nutrients = c.nutrients(i),
-                            source = EntrySource.fromCode(c.getString(i["source"])),
-                            photo = c.stringOrNull(i["photo"]),
-                            modelLabel = c.stringOrNull(i["model_label"]),
-                            modelConfidence = c.doubleOrNull(i["model_confidence"]),
-                            createdAt = c.getLong(i["created_at"]),
-                            updatedAt = c.getLong(i["updated_at"]),
-                            adjustments = AdjustmentsColumn.decode(c.stringOrNull(i["adjustments"])),
-                            estimatedAmount = c.doubleOrNull(i["estimated_amount"]),
-                        ),
-                    )
-                }
-            }
+            val row = c.row(FoodSchema.ENTRY_COLUMNS)
+            buildList { while (c.moveToNext()) add(FoodRows.entryOf(row)) }
         }
 
     override fun loadCustomFoods(): List<CustomFood> =
         readableDatabase.rawQuery("SELECT ${FoodSchema.CUSTOM_FOOD_COLUMNS.joinToString()} FROM custom_foods ORDER BY created_at, id", null).use { c ->
-            val i = Columns(FoodSchema.CUSTOM_FOOD_COLUMNS)
-            buildList {
-                while (c.moveToNext()) {
-                    add(
-                        CustomFood(
-                            id = c.getString(i["id"]),
-                            name = c.getString(i["name"]),
-                            brand = c.stringOrNull(i["brand"]),
-                            barcode = c.stringOrNull(i["barcode"]),
-                            unit = FoodUnit.fromCode(c.getString(i["unit"])),
-                            per100 = c.nutrients(i),
-                            portion = c.doubleOrNull(i["portion"]),
-                            source = CustomFoodSource.fromCode(c.getString(i["source"])),
-                            createdAt = c.getLong(i["created_at"]),
-                            updatedAt = c.getLong(i["updated_at"]),
-                        ),
-                    )
-                }
-            }
+            val row = c.row(FoodSchema.CUSTOM_FOOD_COLUMNS)
+            buildList { while (c.moveToNext()) add(FoodRows.customFoodOf(row)) }
         }
 
     override fun loadTombstones(): List<Tombstone> =
@@ -244,7 +212,7 @@ class FoodDatabase(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
     override fun loadExportLedger(): Map<String, ExportLedgerEntry> =
         readableDatabase.rawQuery("SELECT entry_id, version, record_id, exported_at, device FROM hc_export", null).use { c ->
             buildMap {
-                while (c.moveToNext()) put(c.getString(0), ExportLedgerEntry(c.getString(0), c.getLong(1), c.stringOrNull(2), c.getLong(3), c.getString(4)))
+                while (c.moveToNext()) put(c.getString(0), ExportLedgerEntry(c.getString(0), c.getLong(1), if (c.isNull(2)) null else c.getString(2), c.getLong(3), c.getString(4)))
             }
         }
 
@@ -315,55 +283,13 @@ class FoodDatabase(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
     }
 
     private fun SQLiteDatabase.writeEntry(e: FoodEntry) {
-        insertWithOnConflict(
-            "food_entries",
-            null,
-            ContentValues().apply {
-                put("id", e.id)
-                put("eaten_at", e.eatenAt)
-                put("zone_offset", e.zoneOffsetSeconds)
-                put("meal", e.meal.code)
-                putText("food_id", e.foodId)
-                putText("custom_food_id", e.customFoodId)
-                put("name", e.name)
-                put("amount", e.amount)
-                put("unit", e.unit.code)
-                putText("portion_key", e.portionKey?.code)
-                putDouble("portion_count", e.portionCount)
-                putNutrients(e.nutrients)
-                put("source", e.source.code)
-                putText("photo", e.photo)
-                putText("model_label", e.modelLabel)
-                putDouble("model_confidence", e.modelConfidence)
-                put("created_at", e.createdAt)
-                put("updated_at", e.updatedAt)
-                putText("adjustments", AdjustmentsColumn.encode(e.adjustments))
-                putDouble("estimated_amount", e.estimatedAmount)
-            },
-            SQLiteDatabase.CONFLICT_REPLACE,
-        )
+        insertWithOnConflict("food_entries", null, FoodRows.entryRow(e).toContentValues(), SQLiteDatabase.CONFLICT_REPLACE)
         // An entry restored (undo) or recreated after a deletion is live again.
         delete("tombstones", "kind = ? AND id = ?", arrayOf(FoodTombstones.ENTRY, e.id))
     }
 
     private fun SQLiteDatabase.writeCustomFood(f: CustomFood) {
-        insertWithOnConflict(
-            "custom_foods",
-            null,
-            ContentValues().apply {
-                put("id", f.id)
-                put("name", f.name)
-                putText("brand", f.brand)
-                putText("barcode", f.barcode)
-                put("unit", f.unit.code)
-                putNutrients(f.per100)
-                putDouble("portion", f.portion)
-                put("source", f.source.code)
-                put("created_at", f.createdAt)
-                put("updated_at", f.updatedAt)
-            },
-            SQLiteDatabase.CONFLICT_REPLACE,
-        )
+        insertWithOnConflict("custom_foods", null, FoodRows.customFoodRow(f).toContentValues(), SQLiteDatabase.CONFLICT_REPLACE)
         delete("tombstones", "kind = ? AND id = ?", arrayOf(FoodTombstones.CUSTOM_FOOD, f.id))
     }
 
@@ -380,28 +306,33 @@ class FoodDatabase(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, 
         )
     }
 
-    /** Every nutrient column (the column is the nutrient's code). */
-    private fun ContentValues.putNutrients(n: Nutrients) {
-        for (nutrient in Nutrient.entries) putDouble(nutrient.code, n[nutrient])
+    /** A row of [FoodRows] as the values of an insert. */
+    private fun Map<String, Any?>.toContentValues() = ContentValues().apply {
+        for ((key, v) in this@toContentValues) {
+            when (v) {
+                null -> putNull(key)
+                is String -> put(key, v)
+                is Long -> put(key, v)
+                is Int -> put(key, v)
+                is Double -> put(key, v)
+                else -> error("Unexpected value for $key: $v")
+            }
+        }
     }
 
-    /** The nutrient columns of a row read with the column list [i]. */
-    private fun Cursor.nutrients(i: Columns) = Nutrients.of { doubleOrNull(i[it.code]) }
-
-    /** Column positions of a SELECT by name. */
-    private class Columns(names: List<String>) {
-        private val index = names.withIndex().associate { (i, name) -> name to i }
-
-        operator fun get(name: String): Int = index.getValue(name)
+    /** Reads the current row of a SELECT of [names] by column name (null, Long, Double or String). */
+    private fun Cursor.row(names: List<String>): (String) -> Any? {
+        val index = names.withIndex().associate { (i, name) -> name to i }
+        return { name ->
+            val i = index.getValue(name)
+            when (getType(i)) {
+                Cursor.FIELD_TYPE_NULL -> null
+                Cursor.FIELD_TYPE_INTEGER -> getLong(i)
+                Cursor.FIELD_TYPE_FLOAT -> getDouble(i)
+                else -> getString(i)
+            }
+        }
     }
-
-    private fun ContentValues.putDouble(key: String, v: Double?) = if (v == null) putNull(key) else put(key, v)
-
-    private fun ContentValues.putText(key: String, v: String?) = if (v == null) putNull(key) else put(key, v)
-
-    private fun Cursor.doubleOrNull(i: Int): Double? = if (isNull(i)) null else getDouble(i)
-
-    private fun Cursor.stringOrNull(i: Int): String? = if (isNull(i)) null else getString(i)
 
     companion object {
         const val DB_NAME = "food.db"

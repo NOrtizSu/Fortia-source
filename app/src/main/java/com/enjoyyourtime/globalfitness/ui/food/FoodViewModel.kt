@@ -26,10 +26,14 @@ import com.enjoyyourtime.globalfitness.food.data.GoalSettings
 import com.enjoyyourtime.globalfitness.food.data.MealPhotos
 import com.enjoyyourtime.globalfitness.food.domain.AdjustedDish
 import com.enjoyyourtime.globalfitness.food.domain.DayLog
+import com.enjoyyourtime.globalfitness.food.domain.DraftAmount
 import com.enjoyyourtime.globalfitness.food.domain.DraftOption
 import com.enjoyyourtime.globalfitness.food.domain.FoodDrafts
 import com.enjoyyourtime.globalfitness.food.domain.FoodMath
+import com.enjoyyourtime.globalfitness.food.domain.FoodRecall
+import com.enjoyyourtime.globalfitness.food.domain.IngredientChoice
 import com.enjoyyourtime.globalfitness.food.domain.IngredientInfo
+import com.enjoyyourtime.globalfitness.food.domain.Recall
 import com.enjoyyourtime.globalfitness.food.domain.RecipeMath
 import com.enjoyyourtime.globalfitness.food.domain.GoalAim
 import com.enjoyyourtime.globalfitness.food.domain.GoalBreakdown
@@ -157,11 +161,15 @@ data class PlateItem(
     val amountText: String,
     /** The user typed the amount: another food chosen keeps it. */
     val amountTyped: Boolean = false,
-    /** The grams suggestion for [food] (null: the amount is its portion). */
+    /** The user chose the photo's suggestion ("Use") over last time's amount: another food chosen gets its own suggestion. */
+    val amountFromEstimate: Boolean = false,
+    /** The grams suggestion for [food] (null: none, or the amount was typed). */
     val estimate: Double? = null,
     val included: Boolean,
     /** Logged by "Add all" already. */
     val added: Boolean = false,
+    /** What [food] takes from its last entry: the amount (unless typed), ingredient changes and values typed by hand. */
+    val recall: Recall? = null,
 ) {
     val amount: Double? get() = Fmt.parseDecimal(amountText)?.takeIf { it > 0 && it < 10_000 }
 }
@@ -195,14 +203,25 @@ data class FoodDraft(
     val estimatedAmount: Double? = null,
     /** The photo's estimator: another variant chosen gets its own suggestion (its portion differs). */
     val grams: GramsEstimator? = null,
+    /** What a new entry of [item] took from its last one ("as last time"); [amount], [portion] and the ingredients start with it. */
+    val recall: Recall? = null,
+    /** The food's own values (what "Restore" brings back): those of an edited entry's food today, null when it is no longer known. */
+    val own: Nutrients? = item.per100,
+    /** The edited entry had values typed by hand. */
+    val valuesEdited: Boolean = false,
 ) {
     /** [item] and its recipe as an option (it may have no variants). */
-    val current: DraftOption get() = DraftOption(item, recipe)
+    val current: DraftOption get() = DraftOption(item, recipe, recall, own)
+
+    /** The ingredient choices the screen starts with: the edited entry's changes, else those recalled. */
+    val startChoices: Map<String, IngredientChoice>
+        get() = if (adjustments.isNotEmpty()) adjustments.associate { it.ingredient to IngredientChoice.of(it) } else recall?.choices.orEmpty()
 }
 
 /**
- * What the confirm screen saves: the food (the draft's, or another of its variants), the amount of
- * the dish, its changed ingredients, the portion, the meal and the time.
+ * What the confirm screen saves: the food (the draft's, or another of its variants, with the values
+ * per 100 g it is logged with: its own or those typed by hand), the amount of the dish, its changed
+ * ingredients, the portion, the meal and the time.
  */
 data class DraftChoice(
     val item: FoodItem,
@@ -214,6 +233,8 @@ data class DraftChoice(
     val eatenAt: Long,
     /** The photo's grams suggestion for [item], kept with the entry for quality stats. */
     val estimatedAmount: Double? = null,
+    /** Some values were typed by hand (see [FoodEntry.valuesEdited]). */
+    val valuesEdited: Boolean = false,
 )
 
 enum class SaveStatus { SAVING, SAVED, FAILED }
@@ -285,7 +306,8 @@ sealed interface BarcodeState {
 
     data class LookingUp(val code: String) : BarcodeState
 
-    data class Found(val code: String, val item: FoodItem, val missing: List<Nutrient>, val fromCache: Boolean) : BarcodeState
+    /** [last]: the product's last entry, if it was logged before. */
+    data class Found(val code: String, val item: FoodItem, val missing: List<Nutrient>, val fromCache: Boolean, val last: FoodEntry? = null) : BarcodeState
 
     data class NotFound(val code: String) : BarcodeState
 
@@ -570,18 +592,38 @@ class FoodViewModel(private val container: AppContainer, private val state: Save
         }
     }
 
-    /** [item] with [chosen] as its food: its variants, and its grams suggestion unless the user typed the amount. */
+    /**
+     * [item] with [chosen] as its food: its variants, what it takes from its last entry, and the
+     * amount (last time's, else the grams suggestion, else its portion) unless the user typed it.
+     */
     private fun withFood(item: PlateItem, chosen: FoodItem?): PlateItem {
-        if (chosen == null) return item.copy(food = null, variants = emptyList(), estimate = null)
+        if (chosen == null) return item.copy(food = null, variants = emptyList(), estimate = null, recall = null)
         val variants = chosen.foodId?.let { id -> FoodCatalog.variantsOf(id, catalogFoods.value).map { FoodItem.of(it, food.catalog.name(it.id)) } }.orEmpty()
-        val start = FoodDrafts.plateAmount(chosen, item.recognition?.grams, item.share, item.amount.takeIf { item.amountTyped })
+        val recall = recallFor(chosen, recipeOf(chosen))
+        // "Use" taken: the photo's suggestion for this food too, not its last entry's amount.
+        val start = FoodDrafts.plateAmount(chosen, item.recognition?.grams, item.share, item.amount.takeIf { item.amountTyped }, recall.takeUnless { item.amountFromEstimate })
         return item.copy(
             food = chosen,
             variants = variants,
             estimate = start.estimate.takeUnless { item.amountTyped },
             amountText = if (item.amountTyped) item.amountText else FoodFormat.count(FoodMath.round1(start.amount)),
             included = true,
+            recall = recall,
         )
+    }
+
+    /** The ingredients of a catalog dish that the catalog knows (none for anything else). */
+    private fun recipeOf(item: FoodItem): List<RecipeIngredient> =
+        item.foodId?.let { catalogRecipes.value[it] }.orEmpty().filter { it.ingredient in catalogFoods.value }
+
+    /**
+     * What a new entry of [item] takes from its last entry, or null when it was never logged. A
+     * custom food changed since then has its own values (not those typed then).
+     */
+    private fun recallFor(item: FoodItem, recipe: List<RecipeIngredient>): Recall? {
+        val last = FoodRecall.lastEntry(repository.entries.value, item.ref) ?: return null
+        val changedAt = item.customFoodId?.let(repository::customFood)?.updatedAt
+        return FoodRecall.recall(item, last, recipe, { catalogFoods.value[it]?.per100 }, changedAt)
     }
 
     private fun updateItem(id: Int, transform: (PlateItem) -> PlateItem) {
@@ -597,7 +639,19 @@ class FoodViewModel(private val container: AppContainer, private val state: Save
     /** Another food (a variant, or one from the search) for item [id]. */
     fun chooseItemFood(id: Int, item: FoodItem) = updateItem(id) { withFood(it, item) }
 
-    fun setItemAmount(id: Int, text: String) = updateItem(id) { it.copy(amountText = text.take(7), amountTyped = true, estimate = null) }
+    fun setItemAmount(id: Int, text: String) = updateItem(id) { it.copy(amountText = text.take(7), amountTyped = true, amountFromEstimate = false, estimate = null) }
+
+    /** "Use" the photo's grams suggestion for item [id] instead of last time's amount (another food chosen then gets its own). */
+    fun useItemEstimate(id: Int) = updateItem(id) { item ->
+        item.estimate?.let { item.copy(amountText = FoodFormat.count(FoodMath.round1(it)), amountTyped = false, amountFromEstimate = true) } ?: item
+    }
+
+    /** "Use usual values" on item [id]: nothing from its last entry (the photo's suggestion or its portion, its own values). */
+    fun useItemUsual(id: Int) = updateItem(id) { item ->
+        val f = item.food ?: return@updateItem item
+        val start = FoodDrafts.plateAmount(f, item.recognition?.grams, item.share, typed = null)
+        item.copy(recall = null, amountTyped = false, amountFromEstimate = false, estimate = start.estimate, amountText = FoodFormat.count(FoodMath.round1(start.amount)))
+    }
 
     fun setItemIncluded(id: Int, included: Boolean) = updateItem(id) { it.copy(included = included && it.food != null) }
 
@@ -636,7 +690,8 @@ class FoodViewModel(private val container: AppContainer, private val state: Save
                 val amount = item.amount ?: continue
                 val photo = withContext(Dispatchers.IO) { runCatching { photos.store(item.crop) }.getOrNull() }
                 photo?.let(savingPhotos::add)
-                val portion = FoodDrafts.defaultPortion(f)?.takeIf { it.amount == amount }
+                // As the confirm screen would: last time's ingredient changes and values typed by hand included.
+                val dish = FoodDrafts.plateDish(f, amount, item.recall, recipeOf(f)) { catalogFoods.value[it]?.per100 }
                 val entry = try {
                     writing {
                         repository.addEntry(
@@ -648,18 +703,20 @@ class FoodViewModel(private val container: AppContainer, private val state: Save
                                 foodId = f.foodId,
                                 customFoodId = f.customFoodId,
                                 name = f.name,
-                                amount = amount,
+                                amount = dish.amount,
                                 unit = f.unit,
-                                portionKey = portion?.key,
-                                portionCount = portion?.let { 1.0 },
-                                nutrients = FoodMath.nutrientsFor(f.per100, amount),
+                                portionKey = dish.portion?.key,
+                                portionCount = dish.portionCount,
+                                nutrients = dish.nutrients,
                                 source = EntrySource.PHOTO,
                                 photo = photo,
                                 modelLabel = item.recognition?.topLabel,
                                 modelConfidence = item.recognition?.topConfidence?.toDouble(),
                                 createdAt = 0,
                                 updatedAt = 0,
+                                adjustments = dish.adjustments,
                                 estimatedAmount = item.recognition?.grams?.estimate(f.portion, item.share),
+                                valuesEdited = dish.valuesEdited,
                             ),
                         )
                     }
@@ -697,7 +754,7 @@ class FoodViewModel(private val container: AppContainer, private val state: Save
         val session = _photo.value ?: return false
         val catalog = catalogFoods.value[label] ?: return false
         val item = FoodItem.of(catalog, food.catalog.name(label))
-        startDraft(item, EntrySource.PHOTO, session, estimate = session.recognition?.grams?.estimate(item.portion, 1.0), grams = session.recognition?.grams)
+        startDraft(item, EntrySource.PHOTO, session, estimate = session.recognition?.grams?.estimate(item.portion, 1.0), grams = session.recognition?.grams, recall = true)
         return true
     }
 
@@ -755,7 +812,7 @@ class FoodViewModel(private val container: AppContainer, private val state: Save
         }
         // The photo's picture estimates this food too (its own portion).
         val grams = session?.recognition?.grams
-        startDraft(item, source, session, estimate = grams?.estimate(item.portion, 1.0), grams = grams)
+        startDraft(item, source, session, estimate = grams?.estimate(item.portion, 1.0), grams = grams, recall = true)
         return true
     }
 
@@ -831,7 +888,8 @@ class FoodViewModel(private val container: AppContainer, private val state: Save
     private suspend fun lookUp(scanned: String) {
         val code = BarcodeReader.canonical(scanned)
         repository.customFoodByBarcode(code)?.let { cached ->
-            _barcode.value = BarcodeState.Found(code, FoodItem.of(cached), missingOf(cached.per100), fromCache = true)
+            val last = FoodRecall.lastEntry(repository.entries.value, FoodRef.Custom(cached.id))
+            _barcode.value = BarcodeState.Found(code, FoodItem.of(cached), missingOf(cached.per100), fromCache = true, last = last)
             if (OffCache.needsRefresh(cached, System.currentTimeMillis())) refresh(code, cached)
             return
         }
@@ -874,7 +932,7 @@ class FoodViewModel(private val container: AppContainer, private val state: Save
 
     fun useBarcodeProduct() {
         val found = _barcode.value as? BarcodeState.Found ?: return
-        startDraft(found.item, EntrySource.BARCODE, null)
+        startDraft(found.item, EntrySource.BARCODE, null, recall = true)
     }
 
     /** "Complete the values" of a product with missing ones, or "Enter manually" for one not found. */
@@ -1002,8 +1060,10 @@ class FoodViewModel(private val container: AppContainer, private val state: Save
     private fun nextSerial(): Long = (++serial).also { state[KEY_SERIAL] = it }
 
     /**
-     * A new draft of [item]. [amount]: a fixed amount (a product's values just completed for it); else
-     * the photo's [estimate] when there is one (a suggestion: the screen says so), else the food's
+     * A new draft of [item]. [amount]: a fixed amount (a product's values just completed for it); else,
+     * with [recall], as the food's last entry when it was logged before (its amount, ingredient
+     * changes and values typed by hand; each variant offered as its own last entry); else the
+     * photo's [estimate] when there is one (a suggestion: the screen says so), else the food's
      * default portion.
      */
     private fun startDraft(
@@ -1013,19 +1073,20 @@ class FoodViewModel(private val container: AppContainer, private val state: Save
         amount: Double? = null,
         estimate: Double? = null,
         grams: GramsEstimator? = null,
+        recall: Boolean = false,
     ) {
-        val portion = FoodDrafts.defaultPortion(item)
         val now = System.currentTimeMillis()
         val eatenAt = session?.eatenAt ?: eatenAtFor(_day.value, now)
-        val fixed = amount ?: estimate
         val shape = FoodDrafts.shape(item, catalogFoods.value, catalogRecipes.value, food.catalog::name)
+        val asLast = if (recall && amount == null) recallFor(item, shape.recipe) else null
+        val start = if (amount != null) DraftAmount(amount, null, null) else FoodDrafts.startAmount(item, asLast, estimate)
         _draft.value = FoodDraft(
             editingId = null,
             item = item,
             source = source,
-            amount = fixed ?: FoodDrafts.defaultAmount(item),
-            portion = portion.takeIf { fixed == null },
-            portionCount = if (fixed == null && portion != null) 1.0 else null,
+            amount = start.amount,
+            portion = start.portion,
+            portionCount = start.portionCount,
             meal = session?.meal ?: defaultMeal(eatenAt),
             eatenAt = eatenAt,
             photo = session?.photo,
@@ -1033,10 +1094,17 @@ class FoodViewModel(private val container: AppContainer, private val state: Save
             modelConfidence = session?.recognition?.topConfidence?.toDouble(),
             serial = nextSerial(),
             recipe = shape.recipe,
-            options = shape.options,
+            options = shape.options.map { o ->
+                when {
+                    o.item.ref == item.ref -> o.copy(recall = asLast)
+                    recall && amount == null -> o.copy(recall = recallFor(o.item, o.recipe))
+                    else -> o
+                }
+            },
             ingredients = shape.ingredients,
             estimatedAmount = estimate.takeIf { amount == null },
             grams = grams.takeIf { amount == null },
+            recall = asLast,
         )
     }
 
@@ -1062,10 +1130,12 @@ class FoodViewModel(private val container: AppContainer, private val state: Save
             custom != null -> FoodItem.of(custom)
             else -> FoodItem(FoodRef.of(e.foodId, e.customFoodId), e.name, null, e.unit, per100, dishAmount, emptyList(), null)
         }
-        // The values logged stay the entry's own (a newer catalog never rewrites them).
+        // The values logged stay the entry's own (a newer catalog never rewrites them); "Restore" brings
+        // back the food's own ones, while it is still known. Editing never recalls another entry.
         val item = base.copy(name = entryName(e), per100 = per100, unit = e.unit)
+        val own = (catalog?.per100 ?: custom?.per100)?.takeIf { (catalog?.unit ?: custom?.unit) == e.unit }
         val shape = FoodDrafts.shape(item, catalogFoods, catalogRecipes.value, food.catalog::name, adjustments, dishAmount)
-        _draft.value = FoodDraft(
+        val draft = FoodDraft(
             editingId = id,
             item = item,
             source = e.source,
@@ -1083,7 +1153,11 @@ class FoodViewModel(private val container: AppContainer, private val state: Save
             ingredients = shape.ingredients,
             adjustments = adjustments,
             estimatedAmount = e.estimatedAmount,
+            own = own,
+            valuesEdited = e.valuesEdited,
         )
+        // The entry's own option is the draft's (its values, the food's own ones to restore).
+        _draft.value = draft.copy(options = draft.options.map { if (it.item.ref == item.ref) draft.current else it })
         return true
     }
 
@@ -1133,6 +1207,7 @@ class FoodViewModel(private val container: AppContainer, private val state: Save
                     portionCount = c.portionCount,
                     nutrients = dish.nutrients,
                     adjustments = c.adjustments,
+                    valuesEdited = c.valuesEdited,
                 )
             }
             return
@@ -1159,6 +1234,7 @@ class FoodViewModel(private val container: AppContainer, private val state: Save
                 updatedAt = 0,
                 adjustments = c.adjustments,
                 estimatedAmount = c.estimatedAmount,
+                valuesEdited = c.valuesEdited,
             ),
         )
         settings.markUsed()

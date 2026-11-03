@@ -65,9 +65,8 @@ object TrainingCodec {
      * keeps the document read-only ([RemoteDocs.readOnly]): it still lists the exercise (as "Other",
      * its workouts and routines keep it), but never overwrites the cloud copy; its own edits of that
      * exercise stay on that phone, a deletion still syncs. Every other document stays at
-     * [TRAINING_SCHEMA_VERSION], so 1.3.0 keeps writing them. Accepted gap: a 1.3.0 phone keeps its
-     * local "Other" copy after updating, until the exercise changes again on any phone (incremental
-     * pulls do not read an unchanged document again).
+     * [TRAINING_SCHEMA_VERSION], so 1.3.0 keeps writing them. A phone updated from an older version
+     * reads everything again once ([TrainingBase.forReader]), so it gets the full copy and its marks go.
      */
     const val SPORT_SCHEMA_VERSION = 2
 

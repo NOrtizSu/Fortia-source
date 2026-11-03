@@ -3294,6 +3294,19 @@
     <plurals name="foodlog_plate_as_items">
         <item quantity="other">%1$d 品を個別に見る</item>
     </plurals>
+    <string name="foodlog_values_edit">値を編集</string>
+    <string name="foodlog_values_follow">表示中の量に対する値です。量や材料を変えると、値も変わります。</string>
+    <string name="foodlog_values_restore">元に戻す</string>
+    <string name="foodlog_values_edited">手動で変更した値</string>
+    <string name="foodlog_values_kept">%1$s で保存されます（変更した材料だけでこれより多くなります）</string>
+    <string name="foodlog_recall_title">前回と同じ（%1$s）</string>
+    <string name="foodlog_recall_text">前回から：%1$s</string>
+    <string name="foodlog_recall_amount">量</string>
+    <string name="foodlog_recall_values">入力した値</string>
+    <string name="foodlog_recall_ingredients">材料</string>
+    <string name="foodlog_recall_reset">前回を使わない</string>
+    <string name="foodlog_estimated_use">使う</string>
+    <string name="foodlog_barcode_last_time">前回：%1$s</string>
     <string name="music_title">今日の音楽</string>
     <string name="music_attribution">Spotify のプレイリスト</string>
     <string name="music_open">Spotify で開く</string>

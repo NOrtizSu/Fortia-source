@@ -3474,6 +3474,19 @@
         <item quantity="many">Показать %1$d продуктов по отдельности</item>
         <item quantity="other">Показать %1$d продукта по отдельности</item>
     </plurals>
+    <string name="foodlog_values_edit">Изменить значения</string>
+    <string name="foodlog_values_follow">Для указанного количества. Если изменить количество или ингредиенты, значения пересчитаются.</string>
+    <string name="foodlog_values_restore">Восстановить</string>
+    <string name="foodlog_values_edited">Значения изменены вами</string>
+    <string name="foodlog_values_kept">Сохранится %1$s: изменённые ингредиенты уже дают больше</string>
+    <string name="foodlog_recall_title">Как в прошлый раз (%1$s)</string>
+    <string name="foodlog_recall_text">Как тогда: %1$s</string>
+    <string name="foodlog_recall_amount">количество</string>
+    <string name="foodlog_recall_values">ваши значения</string>
+    <string name="foodlog_recall_ingredients">ингредиенты</string>
+    <string name="foodlog_recall_reset">Не учитывать прошлый раз</string>
+    <string name="foodlog_estimated_use">Использовать</string>
+    <string name="foodlog_barcode_last_time">В прошлый раз: %1$s</string>
     <string name="music_title">Музыка на сегодня</string>
     <string name="music_attribution">Плейлисты Spotify</string>
     <string name="music_open">Открыть в Spotify</string>

@@ -1,15 +1,25 @@
 package com.enjoyyourtime.globalfitness.health
 
 import androidx.health.connect.client.records.MealType
+import com.enjoyyourtime.globalfitness.food.FakeFoodStore
 import com.enjoyyourtime.globalfitness.food.data.ExportLedgerEntry
+import com.enjoyyourtime.globalfitness.food.data.FoodRepository
 import com.enjoyyourtime.globalfitness.food.model.Meal
 import com.enjoyyourtime.globalfitness.food.model.Nutrients
 import com.enjoyyourtime.globalfitness.food.testEntry
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.test.StandardTestDispatcher
+import kotlinx.coroutines.test.advanceUntilIdle
+import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
+@OptIn(ExperimentalCoroutinesApi::class)
 class FoodExportPlanTest {
     private fun ledger(id: String, version: Long) = id to ExportLedgerEntry(id, version, "hc-$id", 0, "install")
 
@@ -20,6 +30,35 @@ class FoodExportPlanTest {
         assertEquals(listOf("new", "edited"), plan.writes.map { it.entryId })
         assertEquals(listOf("gone"), plan.deletes)
         assertEquals(3, plan.savedCount)
+    }
+
+    @Test
+    fun valuesTypedByHandAreWrittenAgainWithTheNewValues() = runTest {
+        val dispatcher = StandardTestDispatcher(testScheduler)
+        val scope = CoroutineScope(SupervisorJob() + dispatcher)
+        var now = 1_000L
+        val repo = FoodRepository(FakeFoodStore(), scope, io = dispatcher, clock = { now }, newId = { "e1" })
+        advanceUntilIdle()
+        val logged = repo.addEntry(testEntry())
+        val exported = mapOf(ledger(logged.id, logged.updatedAt))
+        assertTrue("written once, nothing more to do", FoodExportPlanner.plan(repo.entries.value, exported, writeEnabled = true).isEmpty)
+        // Its kcal and protein typed by hand on the confirm page (at the same instant: still a newer version).
+        val edited = repo.updateEntry(logged.id) { it.copy(nutrients = it.nutrients.copy(kcal = 420.0, protein = 25.0), valuesEdited = true) }!!
+        val plan = FoodExportPlanner.plan(repo.entries.value, exported, writeEnabled = true)
+        val write = plan.writes.single()
+        assertEquals(logged.id, write.entryId)
+        assertTrue(write.version > logged.updatedAt)
+        assertEquals(420.0, write.energyKcal!!, 0.0)
+        assertEquals(25.0, write.proteinG!!, 0.0)
+        assertEquals("the same record, replaced", 1, plan.savedCount)
+        assertEquals(420.0, FoodExportPlanner.buildRecord(write).energy!!.inKilocalories, 1e-9)
+        // Once written, nothing more; "Restore" is another edit, written again.
+        assertTrue(FoodExportPlanner.plan(repo.entries.value, mapOf(ledger(edited.id, edited.updatedAt)), writeEnabled = true).isEmpty)
+        now += 1
+        val restored = repo.updateEntry(logged.id) { it.copy(nutrients = logged.nutrients, valuesEdited = false) }!!
+        assertEquals(300.0, FoodExportPlanner.plan(repo.entries.value, mapOf(ledger(edited.id, edited.updatedAt)), writeEnabled = true).writes.single().energyKcal!!, 0.0)
+        assertTrue(restored.updatedAt > edited.updatedAt)
+        scope.cancel()
     }
 
     @Test

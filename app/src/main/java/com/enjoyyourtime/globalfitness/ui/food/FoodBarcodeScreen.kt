@@ -105,6 +105,8 @@ fun FoodBarcodeScreen(onOpen: (String) -> Unit, onBack: () -> Unit) {
                             Text(item.name, style = MaterialTheme.typography.titleLarge)
                             item.brand?.let { FoodSupporting(it) }
                             FoodSupporting(stringResource(R.string.foodlog_barcode_code, s.code))
+                            // Logged before: "Use this product" starts as that time ("Last time: 2 × Serving · 60 g").
+                            s.last?.let { FoodSupporting(stringResource(R.string.foodlog_barcode_last_time, FoodFormat.entryAmount(it))) }
                             Text(
                                 stringResource(if (item.unit == FoodUnit.ML) R.string.foodlog_values_per_100ml else R.string.foodlog_values_per_100g),
                                 style = MaterialTheme.typography.titleSmall,

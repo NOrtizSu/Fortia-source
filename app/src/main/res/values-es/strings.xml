@@ -3414,6 +3414,19 @@
         <item quantity="many">Ver los %1$d alimentos por separado</item>
         <item quantity="other">Ver los %1$d alimentos por separado</item>
     </plurals>
+    <string name="foodlog_values_edit">Editar valores</string>
+    <string name="foodlog_values_follow">Para la cantidad indicada. Si cambias la cantidad o los ingredientes, los valores se recalculan.</string>
+    <string name="foodlog_values_restore">Restaurar</string>
+    <string name="foodlog_values_edited">Valores cambiados por ti</string>
+    <string name="foodlog_values_kept">Se guarda %1$s: los ingredientes cambiados ya suman más</string>
+    <string name="foodlog_recall_title">Como la última vez (%1$s)</string>
+    <string name="foodlog_recall_text">Igual que entonces: %1$s</string>
+    <string name="foodlog_recall_amount">cantidad</string>
+    <string name="foodlog_recall_values">tus valores</string>
+    <string name="foodlog_recall_ingredients">ingredientes</string>
+    <string name="foodlog_recall_reset">Ignorar la última vez</string>
+    <string name="foodlog_estimated_use">Usar</string>
+    <string name="foodlog_barcode_last_time">La última vez: %1$s</string>
     <string name="music_title">Música para hoy</string>
     <string name="music_attribution">Listas de Spotify</string>
     <string name="music_open">Abrir en Spotify</string>

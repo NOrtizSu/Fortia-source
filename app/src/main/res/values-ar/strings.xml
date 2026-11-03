@@ -3594,6 +3594,19 @@
         <item quantity="many">عرض كل طعام على حدة (%1$d)</item>
         <item quantity="other">عرض كل طعام على حدة (%1$d)</item>
     </plurals>
+    <string name="foodlog_values_edit">تعديل القيم</string>
+    <string name="foodlog_values_follow">للكمية المعروضة. إذا غيّرت الكمية أو المكونات، تتغير القيم تبعًا لذلك.</string>
+    <string name="foodlog_values_restore">استعادة</string>
+    <string name="foodlog_values_edited">قيم غيّرتها بنفسك</string>
+    <string name="foodlog_values_kept">سيُحفظ %1$s: المكونات المعدّلة وحدها تضيف أكثر من ذلك</string>
+    <string name="foodlog_recall_title">كالمرة السابقة (%1$s)</string>
+    <string name="foodlog_recall_text">كما في تلك المرة: %1$s</string>
+    <string name="foodlog_recall_amount">الكمية</string>
+    <string name="foodlog_recall_values">قيمك</string>
+    <string name="foodlog_recall_ingredients">المكونات</string>
+    <string name="foodlog_recall_reset">تجاهل المرة السابقة</string>
+    <string name="foodlog_estimated_use">استخدام</string>
+    <string name="foodlog_barcode_last_time">آخر مرة: %1$s</string>
     <string name="music_title">موسيقى اليوم</string>
     <string name="music_attribution">قوائم تشغيل Spotify</string>
     <string name="music_open">افتح في Spotify</string>

@@ -3294,6 +3294,19 @@
     <plurals name="foodlog_plate_as_items">
         <item quantity="other">逐一查看这 %1$d 种食物</item>
     </plurals>
+    <string name="foodlog_values_edit">编辑数值</string>
+    <string name="foodlog_values_follow">按当前分量计算。修改分量或配料后，数值会随之更新。</string>
+    <string name="foodlog_values_restore">恢复</string>
+    <string name="foodlog_values_edited">你修改过的数值</string>
+    <string name="foodlog_values_kept">将保存为 %1$s：修改的配料本身已超过此值</string>
+    <string name="foodlog_recall_title">与上次相同（%1$s）</string>
+    <string name="foodlog_recall_text">沿用上次：%1$s</string>
+    <string name="foodlog_recall_amount">分量</string>
+    <string name="foodlog_recall_values">你的数值</string>
+    <string name="foodlog_recall_ingredients">配料</string>
+    <string name="foodlog_recall_reset">忽略上次</string>
+    <string name="foodlog_estimated_use">使用</string>
+    <string name="foodlog_barcode_last_time">上次：%1$s</string>
     <string name="music_title">今日音乐</string>
     <string name="music_attribution">Spotify 歌单</string>
     <string name="music_open">在 Spotify 中打开</string>

@@ -96,8 +96,18 @@ data class FoodBase(
     val entries: Map<FoodDocKey, String> = emptyMap(),
     /** Documents written by a newer app version: never overwritten by this one. */
     val readOnly: Set<FoodDocKey> = emptySet(),
+    /** The highest document version ([FoodCodec.FOOD_SCHEMA_VERSION]) of the app that saved this base; 0 before 1.7.0. */
+    val schema: Int = FoodCodec.FOOD_SCHEMA_VERSION,
 ) {
     fun trustedFor(datasetId: String): Boolean = pending == null && datasetId.isNotEmpty() && datasetKey == datasetId
+
+    /**
+     * This base as this app uses it: one saved by an app that read fewer document versions marked
+     * documents read-only that this one reads in full, and its cursors skip them. Those marks are
+     * dropped and the next read is whole, so they are read again and can be written.
+     */
+    fun forReader(readerSchema: Int = FoodCodec.FOOD_SCHEMA_VERSION): FoodBase =
+        if (schema >= readerSchema) this else copy(cursors = emptyMap(), readOnly = emptySet(), schema = readerSchema)
 
     fun cursorsOrFull(trusted: Boolean): FoodCursors =
         if (!trusted) FoodCursors.FULL else FoodCursors(cursors[FoodKind.ENTRY], cursors[FoodKind.CUSTOM_FOOD])
@@ -111,6 +121,7 @@ object FoodBaseCodec {
     fun encode(base: FoodBase): String = buildString {
         line("v", VERSION)
         line("dataset", base.datasetKey)
+        line("schema", base.schema.toString())
         base.pending?.let { pending ->
             if (base.pendingSince != null) line("pending", pending.code, base.pendingSince.toString()) else line("pending", pending.code)
         }
@@ -123,6 +134,8 @@ object FoodBaseCodec {
     fun decode(text: String): FoodBase? {
         var version: String? = null
         var dataset: String? = null
+        // A base of 1.5.0 or 1.6.0 has no such line.
+        var schema = 0
         var pending: TrainingMode? = null
         var pendingSince: Long? = null
         val cursors = HashMap<FoodKind, Long>()
@@ -134,6 +147,7 @@ object FoodBaseCodec {
             when (parts[0]) {
                 "v" -> version = parts.getOrNull(1)
                 "dataset" -> dataset = parts.getOrNull(1)
+                "schema" -> schema = parts.getOrNull(1)?.toIntOrNull() ?: 0
                 "pending" -> {
                     pending = TrainingMode.fromCode(parts.getOrNull(1))
                     pendingSince = parts.getOrNull(2)?.toLongOrNull()
@@ -154,7 +168,7 @@ object FoodBaseCodec {
             }
         }
         if (version != VERSION || dataset.isNullOrEmpty()) return null
-        return FoodBase(dataset, pending, pendingSince, cursors, entries, readOnly)
+        return FoodBase(dataset, pending, pendingSince, cursors, entries, readOnly, schema)
     }
 
     private fun StringBuilder.line(vararg fields: String) {

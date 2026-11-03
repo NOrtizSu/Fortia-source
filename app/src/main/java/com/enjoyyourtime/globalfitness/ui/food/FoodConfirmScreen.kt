@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
@@ -39,6 +40,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableDoubleStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -50,6 +52,7 @@ import androidx.compose.ui.platform.LocalAccessibilityManager
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDirection
@@ -61,7 +64,9 @@ import com.enjoyyourtime.globalfitness.food.domain.FoodDrafts
 import com.enjoyyourtime.globalfitness.food.domain.FoodMath
 import com.enjoyyourtime.globalfitness.food.domain.IngredientChoice
 import com.enjoyyourtime.globalfitness.food.domain.IngredientInfo
+import com.enjoyyourtime.globalfitness.food.domain.Recall
 import com.enjoyyourtime.globalfitness.food.domain.RecipeMath
+import com.enjoyyourtime.globalfitness.food.domain.ValueEdits
 import com.enjoyyourtime.globalfitness.food.model.AdjustLevel
 import com.enjoyyourtime.globalfitness.food.model.FoodUnit
 import com.enjoyyourtime.globalfitness.food.model.IngredientAdjustment
@@ -76,12 +81,15 @@ import com.enjoyyourtime.globalfitness.ui.components.InfoRow
 import com.enjoyyourtime.globalfitness.ui.components.TimeInputDialog
 import com.enjoyyourtime.globalfitness.ui.theme.TabularNumbers
 import java.time.LocalDate
+import kotlin.math.abs
 
 /**
  * Confirm a food (or edit an entry): which variant of a dish, how much (a portion of the catalog with
  * a count, or grams / ml with quick steps; the photo's estimate as a suggestion), the dish's
  * ingredients (more or less oil, no bread…), the meal (by time of day unless changed), when, and the
- * values it gives, live. [editId]: the entry being edited (opened from the day view), null for a new one.
+ * values it gives, live; those values can be typed by hand ("Edit values", for the amount shown). A
+ * food logged before starts as its last entry ("As last time", with "Ignore last time").
+ * [editId]: the entry being edited (opened from the day view), null for a new one.
  */
 @Composable
 fun FoodConfirmScreen(editId: String?, onSaved: (fromPhoto: Boolean) -> Unit, onBack: () -> Unit) {
@@ -110,8 +118,18 @@ fun FoodConfirmScreen(editId: String?, onSaved: (fromPhoto: Boolean) -> Unit, on
     var mealCode by rememberSaveable(key) { mutableStateOf(d.meal.code) }
     var eatenAt by rememberSaveable(key) { mutableLongStateOf(d.eatenAt) }
     var more by rememberSaveable(key) { mutableStateOf(false) }
-    var choicesCode by rememberSaveable(key) { mutableStateOf(IngredientChoices.encode(d.adjustments.associate { it.ingredient to IngredientChoice.of(it) })) }
-    var ingredientsOpen by rememberSaveable(key) { mutableStateOf(d.adjustments.isNotEmpty()) }
+    var choicesCode by rememberSaveable(key) { mutableStateOf(IngredientChoices.encode(d.startChoices)) }
+    var ingredientsOpen by rememberSaveable(key) { mutableStateOf(d.startChoices.isNotEmpty()) }
+    // As the food's last entry until "Ignore last time" (another variant: as its own last entry).
+    var recallOff by rememberSaveable(key) { mutableStateOf(false) }
+    // Values typed by hand, per 100 g of the dish ([ValueFields]); "Restore" taken ([ValueEdits.values]).
+    var overridesCode by rememberSaveable(key) { mutableStateOf("") }
+    var restored by rememberSaveable(key) { mutableStateOf(false) }
+    var editValues by rememberSaveable(key) { mutableStateOf(false) }
+    // The texts of the value fields typed by the user, while the amount, ingredients and food stay those they were typed for.
+    var valueTexts by rememberSaveable(key) { mutableStateOf("") }
+    var valueTextsFor by rememberSaveable(key) { mutableStateOf("") }
+    var valuesReset by rememberSaveable(key) { mutableIntStateOf(0) }
     // The meal follows the time chosen until the user picks one.
     var mealPicked by rememberSaveable(key) { mutableStateOf(false) }
     // The amount follows the photo's suggestion (for each variant) until the user sets one.
@@ -137,12 +155,64 @@ fun FoodConfirmScreen(editId: String?, onSaved: (fromPhoto: Boolean) -> Unit, on
     val dishAmount = Fmt.parseDecimal(amountText)?.takeIf { it > 0 && it < MAX_AMOUNT }
     val choices = IngredientChoices.decode(choicesCode)
     val adjustments = dishAmount?.let { RecipeMath.adjustments(option.recipe, it, choices) }.orEmpty()
-    val dish = dishAmount?.let { RecipeMath.apply(item.per100, it, adjustments) { id -> d.ingredients[id]?.per100 } }
+    val ingredientPer100 = { id: String -> d.ingredients[id]?.per100 }
+    val recall = option.recall?.takeIf { !recallOff && d.editingId == null }
+    // The values per 100 g: the food's own (or the edited entry's), or those typed last time; then those typed now.
+    val valueBase = ValueEdits.base(option, recall, editingEntry = d.editingId != null && item.ref == d.item.ref, entryEdited = d.valuesEdited)
+    val overrides = ValueFields.decodeOverrides(overridesCode)
+    val per100 = ValueEdits.values(valueBase, restored, overrides)
+    val dish = dishAmount?.let { RecipeMath.apply(per100, it, adjustments, ingredientPer100) }
     val nutrients = dish?.nutrients
+    val reference = dishAmount?.let { a -> valueBase.reference?.let { RecipeMath.apply(it, a, adjustments, ingredientPer100).nutrients } }
+    val valuesEdited = nutrients != null && ValueEdits.savedEdited(valueBase, restored, overrides, nutrients, reference, hasFood = item.ref != null)
+    val restorable = ValueEdits.restorable(valueBase, restored, overrides)
+    // The value fields show what was typed for this amount, ingredients and food, else the values as they are now.
+    val valuesContext = listOf(amountText, choicesCode, optionId, restored, recallOff, valuesReset).joinToString("|")
+    val typed = if (valueTextsFor == valuesContext) ValueFields.decodeTexts(valueTexts) else emptyMap()
+    val invalidValues = editValues && typed.values.any { it.isNotBlank() && ValueFields.parse(it) == null }
     val unitLabel = stringResource(if (item.unit == FoodUnit.ML) R.string.unit_ml else R.string.unit_g)
     // The photo's suggestion for the food shown (each variant has its own portion, so its own estimate);
     // an entry being edited keeps the one it was logged with.
     val estimate = if (d.editingId != null) d.estimatedAmount else d.grams?.estimate(item.portion, 1.0) ?: d.estimatedAmount.takeIf { item.ref == d.item.ref }
+
+    fun valueText(n: Nutrient): String = typed[n] ?: nutrients?.get(n)?.let { FoodFormat.field(n, it) }.orEmpty()
+
+    /** A value typed under what the ingredient changes alone add: what is kept instead (null when it is what was typed). */
+    fun kept(n: Nutrient): Double? {
+        val value = typed[n]?.let(ValueFields::parse) ?: return null
+        return nutrients?.get(n)?.let { ValueEdits.keptInstead(n, value, it) }
+    }
+
+    /** A value typed for the amount shown: kept as the dish's own value per 100 g (a cleared field is unknown). */
+    fun typeValue(n: Nutrient, raw: String) {
+        val text = ValueFields.clean(raw)
+        valueTexts = ValueFields.encodeTexts(typed + (n to text))
+        valueTextsFor = valuesContext
+        val a = dishAmount ?: return
+        val total = if (text.isBlank()) null else ValueFields.parse(text) ?: return
+        overridesCode = ValueFields.encodeOverrides(overrides + (n to total?.let { ValueEdits.per100Of(n, it, a, adjustments, ingredientPer100) }))
+    }
+
+    /** "Restore": nothing typed now, and the food's own values again when the values were typed by hand before. */
+    fun restoreValues() {
+        overridesCode = ""
+        if (valueBase.restore != null) restored = true
+        valuesReset++
+    }
+
+    /** "Ignore last time": nothing from the last entry (the photo's suggestion or the default portion, the food's values, no changes). */
+    fun useUsual() {
+        recallOff = true
+        restored = false
+        overridesCode = ""
+        choicesCode = ""
+        amountSet = false
+        valuesReset++
+        val start = FoodDrafts.startAmount(item, null, estimate)
+        portionCode = start.portion?.key?.code
+        count = start.portionCount ?: 1.0
+        amountText = FoodFormat.count(FoodMath.round1(start.amount))
+    }
 
     fun setPortion(code: String?, newCount: Double) {
         portionCode = code
@@ -155,21 +225,24 @@ fun FoodConfirmScreen(editId: String?, onSaved: (fromPhoto: Boolean) -> Unit, on
     fun switchTo(o: DraftOption) {
         if (o.item.foodId == optionId) return
         optionId = o.item.foodId
-        // Another dish: its own ingredients, all as usual.
-        choicesCode = ""
+        // Another dish: its own ingredients and values, all as usual, or as its own last entry.
+        val last = o.recall?.takeIf { d.editingId == null }
+        // The amount shown was the previous dish's last entry's: this one starts with its own defaults.
+        val fromRecall = recall != null && !amountSet
+        choicesCode = IngredientChoices.encode(last?.choices.orEmpty())
+        overridesCode = ""
+        restored = false
+        recallOff = false
+        valuesReset++
         val suggested = d.grams?.estimate(o.item.portion, 1.0).takeIf { !amountSet && d.editingId == null }
-        val p = FoodDrafts.portionAfterSwitch(o.item, portionCode)
-        when {
-            suggested != null -> {
-                portionCode = null
-                amountText = FoodFormat.count(FoodMath.round1(suggested))
-            }
-            p != null -> {
-                portionCode = p.key.code
-                amountText = FoodFormat.count(FoodMath.amountOf(p, count))
-            }
-            else -> portionCode = null
+        val start = FoodDrafts.switchAmount(o.item, last, fromRecall, suggested, portionCode, count)
+        if (start == null) {
+            portionCode = null
+            return
         }
+        portionCode = start.portion?.key?.code
+        start.portionCount?.let { count = it }
+        amountText = FoodFormat.count(FoodMath.round1(start.amount))
     }
 
     FoodSubPage(
@@ -188,10 +261,15 @@ fun FoodConfirmScreen(editId: String?, onSaved: (fromPhoto: Boolean) -> Unit, on
                 Button(
                     onClick = {
                         val a = dishAmount ?: return@Button
-                        if (saving) return@Button
-                        vm.saveDraft(DraftChoice(item, a, adjustments, portion?.key, if (portion != null) count else null, Meal.fromCode(mealCode), eatenAt, estimate))
+                        if (saving || invalidValues) return@Button
+                        vm.saveDraft(
+                            DraftChoice(
+                                item.copy(per100 = per100), a, adjustments, portion?.key, if (portion != null) count else null, Meal.fromCode(mealCode), eatenAt, estimate,
+                                valuesEdited = valuesEdited,
+                            ),
+                        )
                     },
-                    enabled = dishAmount != null && !saving,
+                    enabled = dishAmount != null && !saving && !invalidValues,
                     modifier = Modifier.fillMaxWidth().navigationBarsPadding().padding(16.dp).heightIn(min = 48.dp),
                 ) { Text(stringResource(R.string.action_save)) }
             }
@@ -207,8 +285,12 @@ fun FoodConfirmScreen(editId: String?, onSaved: (fromPhoto: Boolean) -> Unit, on
                 Column(Modifier.weight(1f)) {
                     Text(item.name, style = MaterialTheme.typography.titleLarge)
                     item.brand?.let { FoodSupporting(it) }
-                    item.per100.kcal?.let { FoodSupporting(stringResource(FoodFormat.kcalPer100Res(item.unit), FoodFormat.kcal(it))) }
+                    per100.kcal?.let { FoodSupporting(stringResource(FoodFormat.kcalPer100Res(item.unit), FoodFormat.kcal(it))) }
                 }
+            }
+
+            recall?.let { r ->
+                RecallNote(r, amount = true, values = r.per100 != null && !restored, onUsual = { useUsual() })
             }
 
             if (d.options.size > 1) {
@@ -281,7 +363,17 @@ fun FoodConfirmScreen(editId: String?, onSaved: (fromPhoto: Boolean) -> Unit, on
                     ) { Text(Fmt.signed(step.toDouble(), 0), style = MaterialTheme.typography.labelLarge.merge(TabularNumbers)) }
                 }
             }
-            estimate?.let { EstimateNote(it, item.unit) }
+            estimate?.let { e ->
+                val suggested = FoodMath.round1(e)
+                // Another amount shows (last time's, or one typed): "Use" switches to the photo's suggestion.
+                val use = {
+                    amountText = FoodFormat.count(suggested)
+                    portionCode = null
+                    amountSet = true
+                }
+                val offer = d.editingId == null && (dishAmount == null || abs(dishAmount - suggested) >= 0.05)
+                EstimateNote(e, item.unit, explain = !offer, onUse = use.takeIf { offer })
+            }
 
             val adjustable = option.recipe.filter { it.adjustable && it.ingredient in d.ingredients }
             if (adjustable.isNotEmpty()) {
@@ -323,20 +415,64 @@ fun FoodConfirmScreen(editId: String?, onSaved: (fromPhoto: Boolean) -> Unit, on
 
             AppCard {
                 Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(2.dp)) {
-                    Text(
-                        nutrients?.kcal?.let { stringResource(R.string.value_kcal, FoodFormat.kcal(it)) } ?: "—",
-                        style = MaterialTheme.typography.headlineSmall.merge(TabularNumbers),
-                    )
-                    for (n in Nutrient.MAIN.drop(1)) NutrientLine(n, nutrients?.get(n))
-                    AnimatedVisibility(more) {
-                        Column {
-                            for (n in Nutrient.MORE) NutrientLine(n, nutrients?.get(n))
-                            nutrients?.let { ExtraNutrientRows(it) }
+                    if (editValues) {
+                        // The values for the amount shown, as fields (more of them under "More").
+                        for (n in Nutrient.MAIN) ValueField(n, valueText(n), kept(n), enabled = dishAmount != null) { typeValue(n, it) }
+                        AnimatedVisibility(more) {
+                            Column {
+                                for (n in Nutrient.MORE) ValueField(n, valueText(n), kept(n), enabled = dishAmount != null) { typeValue(n, it) }
+                                for ((title, list) in NUTRIENT_GROUPS) {
+                                    Text(
+                                        stringResource(title),
+                                        style = MaterialTheme.typography.titleSmall,
+                                        color = MaterialTheme.colorScheme.primary,
+                                        modifier = Modifier.padding(top = 8.dp).semantics { heading() },
+                                    )
+                                    for (n in list) ValueField(n, valueText(n), kept(n), enabled = dishAmount != null) { typeValue(n, it) }
+                                }
+                            }
+                        }
+                    } else {
+                        Text(
+                            nutrients?.kcal?.let { stringResource(R.string.value_kcal, FoodFormat.kcal(it)) } ?: "—",
+                            style = MaterialTheme.typography.headlineSmall.merge(TabularNumbers),
+                        )
+                        for (n in Nutrient.MAIN.drop(1)) NutrientLine(n, nutrients?.get(n))
+                        AnimatedVisibility(more) {
+                            Column {
+                                for (n in Nutrient.MORE) NutrientLine(n, nutrients?.get(n))
+                                nutrients?.let { ExtraNutrientRows(it) }
+                            }
                         }
                     }
                     TextButton(onClick = { more = !more }, modifier = Modifier.heightIn(min = 48.dp)) {
                         Text(stringResource(if (more) R.string.foodlog_less else R.string.foodlog_more))
                         Icon(if (more) AppIcons.ExpandLess else AppIcons.ExpandMore, contentDescription = null)
+                    }
+                    when {
+                        editValues -> FoodSupporting(stringResource(R.string.foodlog_values_follow))
+                        valuesEdited -> FoodSupporting(stringResource(R.string.foodlog_values_edited))
+                    }
+                    FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        TextButton(
+                            onClick = {
+                                // Closing the fields: what shows is what was kept (a text that is not a number changed nothing).
+                                if (editValues) valueTextsFor = ""
+                                editValues = !editValues
+                            },
+                            enabled = !editValues || !invalidValues,
+                            modifier = Modifier.heightIn(min = 48.dp),
+                        ) {
+                            if (!editValues) {
+                                Icon(Icons.Filled.Edit, contentDescription = null, modifier = Modifier.padding(end = 8.dp).size(18.dp))
+                            }
+                            Text(stringResource(if (editValues) R.string.foodlog_done else R.string.foodlog_values_edit))
+                        }
+                        if (restorable) {
+                            TextButton(onClick = { restoreValues() }, modifier = Modifier.heightIn(min = 48.dp)) {
+                                Text(stringResource(R.string.foodlog_values_restore))
+                            }
+                        }
                     }
                     if (item.fromOpenFoodFacts) {
                         Text(stringResource(R.string.foodlog_off_attribution), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
@@ -366,17 +502,72 @@ fun FoodConfirmScreen(editId: String?, onSaved: (fromPhoto: Boolean) -> Unit, on
     }
 }
 
-/** "≈ 180 g (estimated)" under the amount: the photo's suggestion, which the user confirms or changes. */
+/**
+ * "≈ 180 g (estimated)" under the amount: the photo's suggestion, which the user confirms or changes;
+ * with [onUse] (another amount shows, such as last time's) a "Use" button switches to it.
+ */
 @Composable
-internal fun EstimateNote(estimate: Double, unit: FoodUnit, modifier: Modifier = Modifier, explain: Boolean = true) {
-    Column(modifier, verticalArrangement = Arrangement.spacedBy(2.dp)) {
-        Text(
-            stringResource(R.string.foodlog_estimated, FoodFormat.quantity(FoodMath.round1(estimate), unit)),
-            style = MaterialTheme.typography.bodyMedium.merge(TabularNumbers),
-            color = MaterialTheme.colorScheme.primary,
-        )
-        if (explain) FoodSupporting(stringResource(R.string.foodlog_estimated_text))
+internal fun EstimateNote(estimate: Double, unit: FoodUnit, modifier: Modifier = Modifier, explain: Boolean = true, onUse: (() -> Unit)? = null) {
+    Row(modifier, verticalAlignment = Alignment.CenterVertically) {
+        Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(2.dp)) {
+            Text(
+                stringResource(R.string.foodlog_estimated, FoodFormat.quantity(FoodMath.round1(estimate), unit)),
+                style = MaterialTheme.typography.bodyMedium.merge(TabularNumbers),
+                color = MaterialTheme.colorScheme.primary,
+            )
+            if (explain) FoodSupporting(stringResource(R.string.foodlog_estimated_text))
+        }
+        if (onUse != null) {
+            TextButton(onClick = onUse, modifier = Modifier.heightIn(min = 48.dp)) { Text(stringResource(R.string.foodlog_estimated_use)) }
+        }
     }
+}
+
+/**
+ * "As last time (Mon 2 Nov)": a food logged before starts as its last entry; says what it took from
+ * it ([amount], the values typed by hand ([values]), the ingredients changed) and offers "Ignore
+ * last time" ([onUsual]).
+ */
+@Composable
+internal fun RecallNote(recall: Recall, amount: Boolean, values: Boolean, onUsual: () -> Unit, modifier: Modifier = Modifier) {
+    val parts = listOfNotNull(
+        R.string.foodlog_recall_amount.takeIf { amount },
+        R.string.foodlog_recall_values.takeIf { values },
+        R.string.foodlog_recall_ingredients.takeIf { recall.choices.isNotEmpty() },
+    ).map { stringResource(it) }
+    AppCard(modifier, containerColor = MaterialTheme.colorScheme.secondaryContainer) {
+        Column(Modifier.padding(start = 16.dp, end = 8.dp, top = 12.dp, bottom = 4.dp)) {
+            val color = MaterialTheme.colorScheme.onSecondaryContainer
+            // "mar, 3 nov", with the year when it is another year's.
+            val date = if (recall.date.year == LocalDate.now().year) Fmt.weekdayDayMonth(recall.date) else Fmt.date(recall.date)
+            Text(stringResource(R.string.foodlog_recall_title, date), style = MaterialTheme.typography.titleSmall, color = color)
+            if (parts.isNotEmpty()) {
+                Text(stringResource(R.string.foodlog_recall_text, Fmt.list(parts)), style = MaterialTheme.typography.bodyMedium, color = color)
+            }
+            TextButton(onClick = onUsual, modifier = Modifier.heightIn(min = 48.dp)) { Text(stringResource(R.string.foodlog_recall_reset)) }
+        }
+    }
+}
+
+/**
+ * A value of the values card as a field: for the amount shown, in its unit; empty is unknown. [kept]:
+ * what is saved instead of a value typed under what the changed ingredients alone add.
+ */
+@Composable
+private fun ValueField(n: Nutrient, text: String, kept: Double?, enabled: Boolean, onChange: (String) -> Unit) {
+    OutlinedTextField(
+        value = text,
+        onValueChange = onChange,
+        singleLine = true,
+        enabled = enabled,
+        label = { Text(stringResource(FoodFormat.nutrientRes(n))) },
+        suffix = { Text(stringResource(FoodFormat.unitRes(n))) },
+        supportingText = kept?.let { { Text(stringResource(R.string.foodlog_values_kept, FoodFormat.value(n, it))) } },
+        isError = text.isNotBlank() && ValueFields.parse(text) == null,
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal, imeAction = ImeAction.Next),
+        textStyle = LocalTextStyle.current.merge(TabularNumbers),
+        modifier = Modifier.fillMaxWidth().padding(vertical = 2.dp),
+    )
 }
 
 /**
@@ -535,6 +726,50 @@ internal object IngredientChoices {
         }.toMap()
     }
 }
+
+/**
+ * The values card's fields as saveable text: the values typed (per 100 g, `code=value`, empty for
+ * unknown) and the texts of the fields typed (`code=text`), `;` between.
+ */
+internal object ValueFields {
+    /** Above this a value typed is not food. */
+    private const val MAX_VALUE = 100_000.0
+
+    fun encodeOverrides(overrides: Map<Nutrient, Double?>): String = overrides.entries.joinToString(";") { (n, v) -> "${n.code}=${v?.toString().orEmpty()}" }
+
+    fun decodeOverrides(text: String): Map<Nutrient, Double?> = parts(text) { v ->
+        if (v.isEmpty()) Present(null) else v.toDoubleOrNull()?.takeIf { it.isFinite() && it >= 0 }?.let { Present(it) }
+    }
+
+    fun encodeTexts(texts: Map<Nutrient, String>): String = texts.entries.joinToString(";") { (n, t) -> "${n.code}=${clean(t)}" }
+
+    fun decodeTexts(text: String): Map<Nutrient, String> = parts(text) { Present(clean(it)) }
+
+    /** What a number field keeps of a text: digits (of any script) and decimal separators. */
+    fun clean(text: String): String = text.filter { it.isDigit() || it == ',' || it == '.' || it == '٫' }.take(8)
+
+    /** A value typed, or null when it is not one (empty fields are unknown, see the callers). */
+    fun parse(text: String): Double? = Fmt.parseDecimal(text)?.takeIf { it >= 0 && it < MAX_VALUE }
+
+    private class Present<T>(val value: T)
+
+    private fun <T> parts(text: String, value: (String) -> Present<T>?): Map<Nutrient, T> {
+        if (text.isEmpty()) return emptyMap()
+        val out = LinkedHashMap<Nutrient, T>()
+        for (part in text.split(';')) {
+            val n = Nutrient.entries.firstOrNull { it.code == part.substringBefore('=', "") } ?: continue
+            value(part.substringAfter('=', "")).let { if (it != null) out[n] = it.value }
+        }
+        return out
+    }
+}
+
+/** The values beyond the label in their groups, with their headings (as [ExtraNutrientRows] shows them). */
+private val NUTRIENT_GROUPS = listOf(
+    R.string.foodlog_nutrients_fats to Nutrient.FATS,
+    R.string.foodlog_nutrients_minerals to Nutrient.MINERALS,
+    R.string.foodlog_nutrients_vitamins to Nutrient.VITAMINS,
+)
 
 @Composable
 private fun NutrientLine(n: Nutrient, v: Double?) {

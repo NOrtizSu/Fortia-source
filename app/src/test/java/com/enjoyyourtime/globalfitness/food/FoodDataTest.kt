@@ -3,14 +3,19 @@ package com.enjoyyourtime.globalfitness.food
 import com.enjoyyourtime.globalfitness.food.data.AdjustmentsColumn
 import com.enjoyyourtime.globalfitness.food.data.FoodBatch
 import com.enjoyyourtime.globalfitness.food.data.FoodRepository
+import com.enjoyyourtime.globalfitness.food.data.FoodRows
 import com.enjoyyourtime.globalfitness.food.data.FoodSchema
 import com.enjoyyourtime.globalfitness.food.data.FoodVersions
+import com.enjoyyourtime.globalfitness.food.domain.FoodRecall
 import com.enjoyyourtime.globalfitness.food.model.CustomFood
 import com.enjoyyourtime.globalfitness.food.model.CustomFoodSource
+import com.enjoyyourtime.globalfitness.food.model.FoodItem
 import com.enjoyyourtime.globalfitness.food.model.FoodTombstones
 import com.enjoyyourtime.globalfitness.food.model.FoodUnit
 import com.enjoyyourtime.globalfitness.food.model.IngredientAdjustment
 import com.enjoyyourtime.globalfitness.food.model.Nutrients
+import com.enjoyyourtime.globalfitness.food.off.OffCache
+import com.enjoyyourtime.globalfitness.food.off.OffProduct
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.SupervisorJob
@@ -147,6 +152,81 @@ class FoodDataTest {
         }
     }
 
+    /** food_entries as 1.6.0 created it (version 2), verbatim; its other tables are those of [v1Schema] plus the extra nutrients. */
+    private val v2Entries = """
+        CREATE TABLE IF NOT EXISTS food_entries (
+            id TEXT PRIMARY KEY, eaten_at INTEGER NOT NULL, zone_offset INTEGER NOT NULL, meal TEXT NOT NULL,
+            food_id TEXT, custom_food_id TEXT, name TEXT NOT NULL, amount REAL NOT NULL, unit TEXT NOT NULL,
+            portion_key TEXT, portion_count REAL,
+            kcal REAL, protein REAL, carbs REAL, sugars REAL, fat REAL, sat_fat REAL, fiber REAL, salt REAL,
+            source TEXT NOT NULL, photo TEXT, model_label TEXT, model_confidence REAL, created_at INTEGER NOT NULL, updated_at INTEGER NOT NULL,
+            mono_fat REAL, poly_fat REAL, cholesterol REAL, potassium REAL, calcium REAL, iron REAL, magnesium REAL, zinc REAL,
+            vit_a REAL, vit_c REAL, vit_d REAL, vit_e REAL, vit_b12 REAL, folate REAL, adjustments TEXT, estimated_amount REAL
+        )
+        """
+
+    private fun v2Schema(db: Connection) {
+        db.createStatement().execute(v2Entries)
+        v1Schema.drop(1).forEach { db.createStatement().execute(it) }
+        for (c in FoodSchema.EXTRA_NUTRIENT_COLUMNS) db.createStatement().execute("ALTER TABLE custom_foods ADD COLUMN $c REAL")
+    }
+
+    @Test
+    fun aFileOf160UpgradesKeepingItsRows() {
+        DriverManager.getConnection("jdbc:sqlite::memory:").use { db ->
+            v2Schema(db)
+            db.createStatement().execute(
+                "INSERT INTO food_entries (id, eaten_at, zone_offset, meal, name, amount, unit, kcal, calcium, source, created_at, updated_at, adjustments) " +
+                    "VALUES ('e1', 5, 3600, 'lunch', 'Paella', 350, 'g', 553, 40, 'photo', 5, 6, 'olive_oil,17.5,35.0,2.0')",
+            )
+            val sql = sql(db)
+            FoodSchema.upgrade(sql, 2)
+            assertEquals(
+                listOf("ALTER TABLE food_entries ADD COLUMN values_edited INTEGER", "ALTER TABLE custom_foods ADD COLUMN checked_at INTEGER"),
+                sql.statements.filter { it.startsWith("ALTER") },
+            )
+            assertEquals("the same columns as a file created by this version", FoodSchema.ENTRY_COLUMNS, columns(db, "food_entries"))
+            assertEquals(FoodSchema.CUSTOM_FOOD_COLUMNS, columns(db, "custom_foods"))
+            db.createStatement().executeQuery("SELECT ${FoodSchema.ENTRY_COLUMNS.joinToString()} FROM food_entries").use { rs ->
+                assertTrue(rs.next())
+                assertEquals(40.0, rs.getDouble("calcium"), 0.0)
+                assertEquals("olive_oil,17.5,35.0,2.0", rs.getString("adjustments"))
+                assertNull("an old entry: not typed by hand", rs.getObject("values_edited"))
+            }
+        }
+    }
+
+    @Test
+    fun aFileOf170OpenedBy160AndBackAgain() {
+        DriverManager.getConnection("jdbc:sqlite::memory:").use { db ->
+            FoodSchema.CREATE.forEach { db.createStatement().execute(it) }
+            db.createStatement().execute(
+                "INSERT INTO food_entries (id, eaten_at, zone_offset, meal, name, amount, unit, kcal, source, created_at, updated_at, values_edited) " +
+                    "VALUES ('typed', 5, 3600, 'lunch', 'Paella', 350, 'g', 600, 'search', 5, 6, 1)",
+            )
+            // 1.6.0 opens it as it is (no downgrade step) and rewrites a row with the columns it knows (REPLACE).
+            val known = FoodSchema.ENTRY_COLUMNS - "values_edited"
+            db.createStatement().execute(
+                "INSERT OR REPLACE INTO food_entries (id, eaten_at, zone_offset, meal, name, amount, unit, kcal, source, created_at, updated_at) " +
+                    "VALUES ('typed', 5, 3600, 'dinner', 'Paella', 350, 'g', 600, 'search', 5, 7)",
+            )
+            db.createStatement().executeQuery("SELECT ${known.joinToString()} FROM food_entries").use { rs ->
+                assertTrue("1.6.0 still reads every column it knows", rs.next())
+                assertEquals("dinner", rs.getString("meal"))
+            }
+            // Android then marks the file version 2: this version upgrades it again without failing or adding twice.
+            val sql = sql(db)
+            FoodSchema.upgrade(sql, 2)
+            assertTrue(sql.statements.none { it.startsWith("ALTER") })
+            assertEquals(FoodSchema.ENTRY_COLUMNS, columns(db, "food_entries"))
+            db.createStatement().executeQuery("SELECT values_edited, kcal FROM food_entries WHERE id = 'typed'").use { rs ->
+                assertTrue(rs.next())
+                assertNull("the rewritten row lost the mark (its values stay)", rs.getObject(1))
+                assertEquals(600.0, rs.getDouble(2), 0.0)
+            }
+        }
+    }
+
     @Test
     fun upgradeStepsAreSafeToRunAgain() {
         DriverManager.getConnection("jdbc:sqlite::memory:").use { db ->
@@ -159,6 +239,47 @@ class FoodDataTest {
                 rs.next()
                 assertEquals(1, rs.getInt(1))
             }
+        }
+    }
+
+    /** [row] stored in [table] with a plain INSERT (as FoodDatabase's insert does it on the phone). */
+    private fun insert(db: Connection, table: String, row: Map<String, Any?>) {
+        val columns = row.keys.toList()
+        db.prepareStatement("INSERT OR REPLACE INTO $table (${columns.joinToString()}) VALUES (${columns.joinToString { "?" }})").use { st ->
+            columns.forEachIndexed { i, c -> st.setObject(i + 1, row[c]) }
+            st.executeUpdate()
+        }
+    }
+
+    private fun <T> readAll(db: Connection, table: String, columns: List<String>, of: ((String) -> Any?) -> T): List<T> =
+        db.createStatement().executeQuery("SELECT ${columns.joinToString()} FROM $table ORDER BY id").use { rs ->
+            buildList { while (rs.next()) add(of { name -> rs.getObject(name) }) }
+        }
+
+    @Test
+    fun rowsRoundTripThroughARealDatabase() {
+        DriverManager.getConnection("jdbc:sqlite::memory:").use { db ->
+            FoodSchema.CREATE.forEach { db.createStatement().execute(it) }
+            val typed = testEntry(id = "e1", updatedAt = 7).copy(
+                nutrients = Nutrients(kcal = 640.0, protein = 30.0, calcium = 40.0),
+                adjustments = listOf(IngredientAdjustment("olive_oil", 17.5, 35.0, 2.0)),
+                estimatedAmount = 180.0,
+                valuesEdited = true,
+                photo = "meal_1.jpg",
+            )
+            val plain = testEntry(id = "e2", updatedAt = 8)
+            insert(db, "food_entries", FoodRows.entryRow(typed))
+            insert(db, "food_entries", FoodRows.entryRow(plain))
+            assertEquals(listOf(typed, plain), readAll(db, "food_entries", FoodSchema.ENTRY_COLUMNS, FoodRows::entryOf))
+            // A row written by 1.6.0 (no values_edited) reads as not typed by hand.
+            db.createStatement().execute("UPDATE food_entries SET values_edited = NULL WHERE id = 'e1'")
+            assertFalse(readAll(db, "food_entries", FoodSchema.ENTRY_COLUMNS, FoodRows::entryOf).first().valuesEdited)
+
+            val checked = CustomFood("c1", "Galletas", "Marca", "841", FoodUnit.G, Nutrients(kcal = 436.0, iron = 2.0), 25.0, CustomFoodSource.OFF, 1, 2, checkedAt = 99)
+            val never = checked.copy(id = "c2", checkedAt = null)
+            insert(db, "custom_foods", FoodRows.customFoodRow(checked))
+            insert(db, "custom_foods", FoodRows.customFoodRow(never))
+            assertEquals(listOf(checked, never), readAll(db, "custom_foods", FoodSchema.CUSTOM_FOOD_COLUMNS, FoodRows::customFoodOf))
         }
     }
 
@@ -244,6 +365,38 @@ class FoodDataTest {
         assertNull(repo.customFoodByBarcode("000"))
         repo.deleteCustomFood(f.id)
         assertEquals(listOf(newer, upc), repo.customFoods.value)
+    }
+
+    @Test
+    fun aProductAskedAgainThatDidNotChangeKeepsItsVersionAndTheValuesTypedForIt() = runTest {
+        val repo = repo()
+        advanceUntilIdle()
+        // A product Open Food Facts gives without kcal: the user typed them when logging it.
+        val product = repo.addCustomFood(food().copy(per100 = Nutrients(salt = 0.5), checkedAt = now))
+        val item = FoodItem.of(product)
+        now += 10
+        val typed = repo.addEntry(
+            testEntry().copy(foodId = null, customFoodId = product.id, amount = 25.0, nutrients = Nutrients(kcal = 110.0, salt = 0.125), valuesEdited = true),
+        )
+        assertTrue(OffCache.needsRefresh(product, now))
+        // Scanned again: Open Food Facts still has no kcal. Only the check time moves.
+        now += 10
+        val same = OffProduct("841", "Galletas", "Marca", FoodUnit.G, Nutrients(salt = 0.5), 25.0)
+        val checked = repo.updateCustomFood(product.id) { OffCache.refreshed(it, same, now) }!!
+        assertEquals("no new version: nothing to back up", product.updatedAt, checked.updatedAt)
+        assertEquals(now, checked.checkedAt)
+        val again = FoodRecall.recall(item, typed, emptyList(), { null }, foodUpdatedAt = checked.updatedAt)
+        assertEquals("the kcal typed last time are kept", 440.0, again.per100!!.kcal!!, 1e-9)
+        // Open Food Facts knows the kcal now: a new version, so the food's own values from now on.
+        now += 10
+        val changed = repo.updateCustomFood(product.id) { OffCache.refreshed(it, same.copy(per100 = Nutrients(kcal = 450.0, salt = 0.5)), now) }!!
+        assertTrue(changed.updatedAt > typed.updatedAt)
+        assertNull(FoodRecall.recall(FoodItem.of(changed), typed, emptyList(), { null }, foodUpdatedAt = changed.updatedAt).per100)
+        // The cloud copy of the product never carries the check time; this phone's stays.
+        val fromCloud = changed.copy(name = "Galletas María", checkedAt = null, updatedAt = changed.updatedAt + 100)
+        repo.applyRemoteIfUnchanged(FoodBatch(upsertCustomFoods = listOf(fromCloud)), FoodVersions(customFoods = mapOf(changed.id to changed.updatedAt)))
+        assertEquals(now, repo.customFood(changed.id)!!.checkedAt)
+        assertEquals("Galletas María", repo.customFood(changed.id)!!.name)
     }
 
     @Test

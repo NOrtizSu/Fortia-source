@@ -92,7 +92,7 @@ class FoodSyncTest {
         }
     }
 
-    private class Phone(val store: FakeFoodStore, val repo: FoodRepository, val sync: FoodSync, val deletedPhotos: MutableList<String>)
+    private class Phone(val store: FakeFoodStore, val repo: FoodRepository, val sync: FoodSync, val deletedPhotos: MutableList<String>, val bases: FakeBases)
 
     private fun TestScope.phone(cloud: FakeCloud): Phone {
         val dispatcher = StandardTestDispatcher(testScheduler)
@@ -100,8 +100,9 @@ class FoodSyncTest {
         val store = FakeFoodStore()
         val repo = FoodRepository(store, scope, io = dispatcher, clock = { now }, newId = { "id${ids++}" })
         val deleted = mutableListOf<String>()
-        val sync = FoodSync(repo, { deleted += it }, cloud, FakeBases(), clock = { now }, io = dispatcher, compute = dispatcher)
-        return Phone(store, repo, sync, deleted)
+        val bases = FakeBases()
+        val sync = FoodSync(repo, { deleted += it }, cloud, bases, clock = { now }, io = dispatcher, compute = dispatcher)
+        return Phone(store, repo, sync, deleted, bases)
     }
 
     private suspend fun Phone.syncNow() = sync.sync(uid, dataset)
@@ -299,7 +300,7 @@ class FoodSyncTest {
         assertEquals(f, (FoodCodec.customFoodFromMap("c1", FoodCodec.customFoodToMap(f), null) as Decoded.Live).record)
         assertEquals(1, FoodCodec.customFoodToMap(f.copy(per100 = Nutrients(kcal = 436.0)))[FirestoreCodec.F_SCHEMA])
         // A document of a later version is read but kept read-only.
-        assertTrue(FoodCodec.isNewerSchema(map + (FirestoreCodec.F_SCHEMA to 3)))
+        assertTrue(FoodCodec.isNewerSchema(map + (FirestoreCodec.F_SCHEMA to FoodCodec.FOOD_SCHEMA_VERSION + 1)))
     }
 
     @Test
@@ -370,6 +371,99 @@ class FoodSyncTest {
     }
 
     @Test
+    fun valuesTypedByHandRoundTripAndAreReadOnlyForOlderVersions() {
+        val e = extendedEntry("e1").copy(valuesEdited = true)
+        val map = FoodCodec.entryToMap(e)
+        assertEquals(FoodCodec.EDITED_SCHEMA_VERSION, map[FirestoreCodec.F_SCHEMA])
+        assertEquals(true, map["valuesEdited"])
+        assertEquals(e, (FoodCodec.entryFromMap("e1", map, 9L) as Decoded.Live).record)
+        assertFalse("this version reads and writes it in full", FoodCodec.isNewerSchema(map))
+        // 1.6.0 writes up to version 2 and 1.5.0 up to 1: above that a document is read-only for them,
+        // so neither can rewrite it without the mark.
+        assertTrue((map[FirestoreCodec.F_SCHEMA] as Int) > FoodCodec.EXTENDED_SCHEMA_VERSION)
+        assertEquals(FoodCodec.EDITED_SCHEMA_VERSION, FoodCodec.entryToMap(testEntry(id = "e2").copy(valuesEdited = true))[FirestoreCodec.F_SCHEMA])
+        // Without the mark: versions 1 and 2 as before, the field written as false (a merged write clears it).
+        val plain = FoodCodec.entryToMap(testEntry(id = "e3"))
+        assertEquals(1, plain[FirestoreCodec.F_SCHEMA])
+        assertEquals(false, plain["valuesEdited"])
+        assertEquals(FoodCodec.EXTENDED_SCHEMA_VERSION, FoodCodec.entryToMap(extendedEntry("e4"))[FirestoreCodec.F_SCHEMA])
+        // A document of 1.5.0 or 1.6.0 (no field) reads as not typed; the mark changes the version only when set.
+        assertFalse((FoodCodec.entryFromMap("e3", plain - "valuesEdited", null) as Decoded.Live).record.valuesEdited)
+        val x = extendedEntry("e1")
+        assertTrue(FoodMerge.versionOf(x) != FoodMerge.versionOf(x.copy(valuesEdited = true)))
+    }
+
+    @Test
+    fun valuesTypedByHandSyncAndTheirMarkIsCleared() = runTest {
+        val cloud = FakeCloud()
+        val a = phone(cloud)
+        advanceUntilIdle()
+        val meal = a.repo.addEntry(testEntry().copy(nutrients = Nutrients(kcal = 640.0, protein = 30.0), valuesEdited = true))
+        assertFalse(a.syncNow())
+        assertEquals(3, cloud.live(FoodKind.ENTRY).getValue(meal.id)[FirestoreCodec.F_SCHEMA])
+        val b = phone(cloud)
+        advanceUntilIdle()
+        assertFalse(b.syncNow())
+        assertEquals(listOf(meal), b.repo.entries.value)
+        assertTrue(b.repo.entry(meal.id)!!.valuesEdited)
+        // "Restore" on B: the document goes back to version 1 and loses the mark on A too.
+        now += 60_000
+        b.repo.updateEntry(meal.id) { it.copy(nutrients = testEntry().nutrients, valuesEdited = false) }
+        assertFalse(b.syncNow())
+        val doc = cloud.live(FoodKind.ENTRY).getValue(meal.id)
+        assertEquals(1, doc[FirestoreCodec.F_SCHEMA])
+        assertEquals(false, doc["valuesEdited"])
+        assertFalse(a.syncNow())
+        assertFalse(a.repo.entry(meal.id)!!.valuesEdited)
+        assertEquals(300.0, a.repo.entry(meal.id)!!.nutrients.kcal!!, 0.0)
+    }
+
+    @Test
+    fun aPhoneUpdatedFrom160ReadsAgainWhatItKeptReadOnly() = runTest {
+        val cloud = FakeCloud()
+        val a = phone(cloud)
+        advanceUntilIdle()
+        val meal = a.repo.addEntry(testEntry().copy(nutrients = Nutrients(kcal = 640.0, protein = 30.0), valuesEdited = true))
+        assertFalse(a.syncNow())
+        // An incremental read from there no longer returns the document (well past the overlap of the pulls).
+        val past = 10 * 3_600_000L
+        // Phone B as 1.6.0 left it: the document (version 3) read without the mark it does not know,
+        // kept read-only, its cursor past it, and a base without the reader's version.
+        val b = phone(cloud)
+        b.store.upsertEntry(meal.copy(valuesEdited = false))
+        val old = FoodBase(
+            datasetKey = dataset,
+            cursors = mapOf(FoodKind.ENTRY to cloud.serverTime + past, FoodKind.CUSTOM_FOOD to cloud.serverTime + past),
+            entries = mapOf(FoodDocKey(FoodKind.ENTRY, meal.id) to FoodMerge.versionOf(meal.copy(valuesEdited = false))),
+            readOnly = setOf(FoodDocKey(FoodKind.ENTRY, meal.id)),
+        )
+        b.bases.texts[uid] = FoodBaseCodec.encode(old).lineSequence().filterNot { it.startsWith("schema") }.joinToString("\n")
+        assertEquals(0, b.bases.loadFoodBase(uid)!!.schema)
+        advanceUntilIdle()
+        // Updated: the first sync reads everything again, so the mark arrives and the document is no longer read-only.
+        assertFalse(b.syncNow())
+        assertTrue(b.repo.entry(meal.id)!!.valuesEdited)
+        val saved = b.bases.loadFoodBase(uid)!!
+        assertEquals(FoodCodec.FOOD_SCHEMA_VERSION, saved.schema)
+        assertTrue(saved.readOnly.isEmpty())
+        // A later edit on B goes up.
+        now += 60_000
+        b.repo.updateEntry(meal.id) { it.copy(amount = 200.0) }
+        assertFalse(b.syncNow())
+        assertEquals(200.0, cloud.live(FoodKind.ENTRY).getValue(meal.id)["amount"])
+        assertEquals(true, cloud.live(FoodKind.ENTRY).getValue(meal.id)["valuesEdited"])
+    }
+
+    @Test
+    fun aProductsCheckTimeStaysOnThePhone() {
+        val f = CustomFood("c1", "Galletas", null, "841", FoodUnit.G, Nutrients(kcal = 436.0), 25.0, CustomFoodSource.OFF, 5, 9, checkedAt = 50)
+        val map = FoodCodec.customFoodToMap(f)
+        assertTrue(map.keys.none { it.contains("check", ignoreCase = true) })
+        assertEquals("not part of the version either", FoodMerge.versionOf(f.copy(checkedAt = null)), FoodMerge.versionOf(f))
+        assertEquals(f.copy(checkedAt = null), (FoodCodec.customFoodFromMap("c1", map, null) as Decoded.Live).record)
+    }
+
+    @Test
     fun baseCodecRoundTrip() {
         val base = FoodBase(
             datasetKey = "ds",
@@ -381,5 +475,13 @@ class FoodSyncTest {
         )
         assertEquals(base, FoodBaseCodec.decode(FoodBaseCodec.encode(base)))
         assertNull(FoodBaseCodec.decode("v\t9\ndataset\tx\n"))
+        // A base of 1.6.0 (no reader version): read whole once, its read-only marks forgotten.
+        val old = FoodBaseCodec.decode("v\t1\ndataset\tds\ncursor\te\t10\nro\te\tc\n")!!
+        assertEquals(0, old.schema)
+        val updated = old.forReader()
+        assertEquals(FoodCursors.FULL, updated.cursorsOrFull(trusted = true))
+        assertTrue(updated.readOnly.isEmpty())
+        assertEquals(FoodCodec.FOOD_SCHEMA_VERSION, updated.schema)
+        assertEquals("a base of this version stays as it is", base, base.forReader())
     }
 }

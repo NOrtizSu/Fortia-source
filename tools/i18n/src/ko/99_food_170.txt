@@ -1,0 +1,27 @@
+# Comida in 1.7.0: changing a food's values by hand when logging it, and a food logged before starting as that time.
+# The rest of the food log is in 99_food.txt and 99_food_160.txt.
+
+# The values card of the confirm page: "Edit values" turns its lines into fields, typed for the amount shown;
+# "Restore" brings back the food's own values; the line shown while the values are ones typed by hand;
+# under a field, the value saved when the one typed is less than the changed ingredients alone add ("Saved as 2 g: …")
+foodlog_values_edit = 값 편집
+foodlog_values_follow = 표시된 양 기준입니다. 양이나 재료를 바꾸면 값도 다시 계산됩니다.
+foodlog_values_restore = 복원
+foodlog_values_edited = 직접 변경한 값
+foodlog_values_kept = %1$s(으)로 저장됩니다: 바꾼 재료만으로 더 많습니다
+
+# A food logged before starts as its last entry: "As last time (Mon 2 Nov)", then what it took from it
+# ("Same as then: amount, your values and ingredients", the three words joined as a list; the date has its year when it
+# is another year's), and a button that starts as if it was never logged (amount, values and ingredients as usual)
+foodlog_recall_title = 지난번과 같이(%1$s)
+foodlog_recall_text = 지난번과 동일: %1$s
+foodlog_recall_amount = 양
+foodlog_recall_values = 내 값
+foodlog_recall_ingredients = 재료
+foodlog_recall_reset = 지난번 무시
+
+# Button next to the photo's grams suggestion when another amount shows ("≈ 180 g (estimated)  Use")
+foodlog_estimated_use = 사용
+
+# A product found by its barcode that was logged before: how much last time ("Last time: 2 × Serving · 60 g")
+foodlog_barcode_last_time = 지난번: %1$s

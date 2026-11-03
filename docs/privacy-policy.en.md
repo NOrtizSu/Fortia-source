@@ -97,7 +97,7 @@ If you sign in with Google (through Firebase Authentication):
   different people is never mixed), your measurements (date, weight, impedance, body composition
   reported by the scale, source and scale model) and your configured scales (model, name and user
   number on the scale), your workouts, your routines and your own machines and exercises with their notes,
-  favourites and photos, and what you log in Food (foods, amounts, values, the ingredients you change and your own foods), **without
+  favourites and photos, and what you log in Food (foods, amounts, values and whether you changed them by hand, the ingredients you change and your own foods), **without
   the photos of your meals**. The band key, the encryption keys, PINs or pairing keys of the scales, the
   Bluetooth addresses, Health Connect data and phone-specific settings are **not** uploaded.
   If you bought "Remove ads", an informational `premium` flag is also stored.

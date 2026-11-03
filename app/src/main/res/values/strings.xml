@@ -3591,6 +3591,29 @@
         <item quantity="one">See the %1$d food on its own</item>
         <item quantity="other">See the %1$d foods one by one</item>
     </plurals>
+    <!-- Comida in 1.7.0: changing a food's values by hand when logging it, and a food logged before starting as that time. -->
+    <!-- The rest of the food log is in 99_food.txt and 99_food_160.txt. -->
+    <!-- The values card of the confirm page: "Edit values" turns its lines into fields, typed for the amount shown; -->
+    <!-- "Restore" brings back the food's own values; the line shown while the values are ones typed by hand; -->
+    <!-- under a field, the value saved when the one typed is less than the changed ingredients alone add ("Saved as 2 g: …") -->
+    <string name="foodlog_values_edit">Edit values</string>
+    <string name="foodlog_values_follow">For the amount shown. If you change the amount or the ingredients, the values follow.</string>
+    <string name="foodlog_values_restore">Restore</string>
+    <string name="foodlog_values_edited">Values changed by you</string>
+    <string name="foodlog_values_kept">Saved as %1$s: the changed ingredients alone add more</string>
+    <!-- A food logged before starts as its last entry: "As last time (Mon 2 Nov)", then what it took from it -->
+    <!-- ("Same as then: amount, your values and ingredients", the three words joined as a list; the date has its year when it -->
+    <!-- is another year's), and a button that starts as if it was never logged (amount, values and ingredients as usual) -->
+    <string name="foodlog_recall_title">As last time (%1$s)</string>
+    <string name="foodlog_recall_text">Same as then: %1$s</string>
+    <string name="foodlog_recall_amount">amount</string>
+    <string name="foodlog_recall_values">your values</string>
+    <string name="foodlog_recall_ingredients">ingredients</string>
+    <string name="foodlog_recall_reset">Ignore last time</string>
+    <!-- Button next to the photo's grams suggestion when another amount shows ("≈ 180 g (estimated)  Use") -->
+    <string name="foodlog_estimated_use">Use</string>
+    <!-- A product found by its barcode that was logged before: how much last time ("Last time: 2 × Serving · 60 g") -->
+    <string name="foodlog_barcode_last_time">Last time: %1$s</string>
     <!-- Music for today: five Spotify workout playlists a day, chosen by the day's training, on Hoy, the Entreno tab and the workout in progress -->
     <!-- Title of the card and of the sheet; also the workout's top-bar button, read by TalkBack -->
     <string name="music_title">Music for today</string>

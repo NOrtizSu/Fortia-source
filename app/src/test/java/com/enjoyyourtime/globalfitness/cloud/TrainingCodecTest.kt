@@ -373,6 +373,15 @@ class TrainingCodecTest {
         // A base saved before routines were synced has no cursor for them: they are read whole.
         val beforeRoutines = TrainingBaseCodec.decode("v\t1\ndataset\tds-1\ncursor\tw\t5\ncursor\tc\t6\ncursor\tn\t7\n")!!
         assertEquals(TrainingCursors(5L, 6L, 7L, routines = null), beforeRoutines.cursorsOrFull(trusted = true))
+        // A base saved before the reader's version was stored (it may hold read-only marks of documents
+        // this version reads in full): read whole once, the marks forgotten; one of this version stays.
+        val old = TrainingBaseCodec.decode("v\t1\ndataset\tds-1\ncursor\tw\t5\nro\tc\tu:2\n")!!
+        assertEquals(0, old.schema)
+        val updated = old.forReader()
+        assertEquals(TrainingCursors.FULL, updated.cursorsOrFull(trusted = true))
+        assertTrue(updated.readOnly.isEmpty())
+        assertEquals(TrainingCodec.READABLE_SCHEMA_VERSION, TrainingBaseCodec.decode(TrainingBaseCodec.encode(updated))!!.schema)
+        assertEquals(base.copy(cursors = mapOf(TrainingKind.WORKOUT to 5L)), base.copy(cursors = mapOf(TrainingKind.WORKOUT to 5L)).forReader())
     }
 
     /** What Firestore hands back: whole numbers as Long, decimals as Double. */

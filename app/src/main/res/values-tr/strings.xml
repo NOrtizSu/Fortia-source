@@ -3354,6 +3354,19 @@
         <item quantity="one">%1$d yiyeceği ayrı gör</item>
         <item quantity="other">%1$d yiyeceği tek tek gör</item>
     </plurals>
+    <string name="foodlog_values_edit">Değerleri düzenle</string>
+    <string name="foodlog_values_follow">Gösterilen miktar için. Miktarı veya malzemeleri değiştirirseniz değerler yeniden hesaplanır.</string>
+    <string name="foodlog_values_restore">Geri yükle</string>
+    <string name="foodlog_values_edited">Sizin değiştirdiğiniz değerler</string>
+    <string name="foodlog_values_kept">%1$s olarak kaydedilir: değiştirilen malzemeler zaten daha fazlasını getiriyor</string>
+    <string name="foodlog_recall_title">Geçen seferki gibi (%1$s)</string>
+    <string name="foodlog_recall_text">O zamanki gibi: %1$s</string>
+    <string name="foodlog_recall_amount">miktar</string>
+    <string name="foodlog_recall_values">değerleriniz</string>
+    <string name="foodlog_recall_ingredients">malzemeler</string>
+    <string name="foodlog_recall_reset">Geçen seferi yok say</string>
+    <string name="foodlog_estimated_use">Kullan</string>
+    <string name="foodlog_barcode_last_time">Geçen sefer: %1$s</string>
     <string name="music_title">Bugün için müzik</string>
     <string name="music_attribution">Spotify çalma listeleri</string>
     <string name="music_open">Spotify\'da aç</string>

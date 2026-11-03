@@ -3294,6 +3294,19 @@
     <plurals name="foodlog_plate_as_items">
         <item quantity="other">Xem riêng từng món (%1$d)</item>
     </plurals>
+    <string name="foodlog_values_edit">Sửa giá trị</string>
+    <string name="foodlog_values_follow">Cho lượng đang hiển thị. Nếu bạn thay đổi lượng hoặc nguyên liệu, các giá trị sẽ tự cập nhật.</string>
+    <string name="foodlog_values_restore">Khôi phục</string>
+    <string name="foodlog_values_edited">Giá trị do bạn thay đổi</string>
+    <string name="foodlog_values_kept">Sẽ lưu %1$s: riêng nguyên liệu đã thay đổi đã nhiều hơn</string>
+    <string name="foodlog_recall_title">Như lần trước (%1$s)</string>
+    <string name="foodlog_recall_text">Giống lần đó: %1$s</string>
+    <string name="foodlog_recall_amount">lượng</string>
+    <string name="foodlog_recall_values">giá trị của bạn</string>
+    <string name="foodlog_recall_ingredients">nguyên liệu</string>
+    <string name="foodlog_recall_reset">Bỏ qua lần trước</string>
+    <string name="foodlog_estimated_use">Dùng</string>
+    <string name="foodlog_barcode_last_time">Lần trước: %1$s</string>
     <string name="music_title">Nhạc hôm nay</string>
     <string name="music_attribution">Danh sách phát Spotify</string>
     <string name="music_open">Mở trong Spotify</string>

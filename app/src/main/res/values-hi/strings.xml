@@ -3354,6 +3354,19 @@
         <item quantity="one">%1$d फ़ूड आइटम अलग से देखें</item>
         <item quantity="other">सभी %1$d फ़ूड आइटम एक-एक करके देखें</item>
     </plurals>
+    <string name="foodlog_values_edit">वैल्यू बदलें</string>
+    <string name="foodlog_values_follow">दिखाई गई मात्रा के लिए। मात्रा या सामग्री बदलने पर वैल्यू अपने आप बदल जाएंगी।</string>
+    <string name="foodlog_values_restore">रीस्टोर करें</string>
+    <string name="foodlog_values_edited">आपके बदले हुए वैल्यू</string>
+    <string name="foodlog_values_kept">%1$s सेव होगा: बदली गई सामग्री से ही इससे ज़्यादा होता है</string>
+    <string name="foodlog_recall_title">पिछली बार की तरह (%1$s)</string>
+    <string name="foodlog_recall_text">उस दिन जैसा: %1$s</string>
+    <string name="foodlog_recall_amount">मात्रा</string>
+    <string name="foodlog_recall_values">आपकी वैल्यू</string>
+    <string name="foodlog_recall_ingredients">सामग्री</string>
+    <string name="foodlog_recall_reset">पिछली बार को छोड़ें</string>
+    <string name="foodlog_estimated_use">इस्तेमाल करें</string>
+    <string name="foodlog_barcode_last_time">पिछली बार: %1$s</string>
     <string name="music_title">आज का म्यूज़िक</string>
     <string name="music_attribution">Spotify प्लेलिस्ट</string>
     <string name="music_open">Spotify में खोलें</string>

@@ -164,11 +164,17 @@ class FoodRepository(
         food
     }
 
+    /**
+     * Applies [transform] and stores the result with a new updatedAt, unless only its local check time
+     * changed (a product asked again that is still the same: no new version, nothing to back up).
+     */
     suspend fun updateCustomFood(id: String, transform: (CustomFood) -> CustomFood): CustomFood? = write {
         val current = _customFoods.value.firstOrNull { it.id == id } ?: return@write null
-        val changed = transform(current)
+        val changed = transform(current).let { it.copy(name = it.name.trim()) }
         if (changed == current) return@write current
-        val stored = changed.copy(id = id, name = changed.name.trim(), createdAt = current.createdAt, updatedAt = maxOf(clock(), current.updatedAt + 1))
+        val newVersion = changed.copy(checkedAt = current.checkedAt) != current
+        val updatedAt = if (newVersion) maxOf(clock(), current.updatedAt + 1) else current.updatedAt
+        val stored = changed.copy(id = id, createdAt = current.createdAt, updatedAt = updatedAt)
         withContext(io) { store.upsertCustomFood(stored) }
         _customFoods.value = _customFoods.value.map { if (it.id == id) stored else it }
         stored
@@ -226,13 +232,15 @@ class FoodRepository(
         if (batch.isEmpty) return batch to emptyList()
         return write(ChangeOrigin.CLOUD) {
             val entries = _entries.value.associateBy { it.id }
-            val foods = _customFoods.value.associate { it.id to it.updatedAt }
+            val foods = _customFoods.value.associateBy { it.id }
             val safe = FoodBatch(
                 upsertEntries = batch.upsertEntries.filter { entries[it.id]?.updatedAt == seen.entries[it.id] }
                     .map { e -> e.copy(photo = entries[e.id]?.photo) },
                 removeEntries = batch.removeEntries.filter { entries[it]?.updatedAt == seen.entries[it] },
-                upsertCustomFoods = batch.upsertCustomFoods.filter { foods[it.id] == seen.customFoods[it.id] },
-                removeCustomFoods = batch.removeCustomFoods.filter { foods[it] == seen.customFoods[it] },
+                // A product from the cloud keeps when this phone last asked Open Food Facts about it.
+                upsertCustomFoods = batch.upsertCustomFoods.filter { foods[it.id]?.updatedAt == seen.customFoods[it.id] }
+                    .map { f -> f.copy(checkedAt = foods[f.id]?.checkedAt) },
+                removeCustomFoods = batch.removeCustomFoods.filter { foods[it]?.updatedAt == seen.customFoods[it] },
             )
             if (safe.isEmpty) return@write safe to emptyList()
             withContext(io) { store.applyBatch(safe) }

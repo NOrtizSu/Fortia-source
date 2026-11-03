@@ -98,7 +98,7 @@ Si inicias sesión con Google (mediante Firebase Authentication):
   peso, impedancia, composición corporal que dé la báscula, origen y modelo de báscula) y tus
   básculas configuradas (modelo, nombre y número de usuario en la báscula), tus entrenos, tus rutinas, tus
   máquinas y ejercicios propios con sus notas, favoritos y fotos, y lo que anotas en Comida (alimentos,
-  cantidades, valores, los ingredientes que cambies y tus alimentos propios), **sin las fotos de tus platos**. **No** se suben la
+  cantidades, valores y si los cambiaste a mano, los ingredientes que cambies y tus alimentos propios), **sin las fotos de tus platos**. **No** se suben la
   clave de la pulsera, las claves de cifrado, PIN o claves de emparejamiento de las básculas, las
   direcciones Bluetooth, los datos de Health Connect ni ajustes propios del teléfono.
   Si has comprado «Quitar anuncios», se guarda además un indicador informativo `premium`.
@@ -215,7 +215,7 @@ importante, te avisaremos en la app.
 
 # Fortia Privacy Policy (English)
 
-Last updated: 2 November 2026 · Contact: **enjoyyourtime.online@gmail.com**
+Last updated: 3 November 2026 · Contact: **enjoyyourtime.online@gmail.com**
 
 **Controller.** Fortia (formerly GlobalFitness) is published by **Enjoy Your Time**, the data controller. Contact:
 **enjoyyourtime.online@gmail.com**.

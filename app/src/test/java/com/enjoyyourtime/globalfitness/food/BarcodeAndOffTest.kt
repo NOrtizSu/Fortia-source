@@ -180,6 +180,9 @@ class BarcodeAndOffTest {
         assertTrue("no kcal", OffCache.needsRefresh(kept(kcal = null, updatedAt = now), now))
         assertFalse("the user's own values are not replaced for their age", OffCache.needsRefresh(kept(source = CustomFoodSource.USER, updatedAt = now - 300 * day), now))
         assertFalse("a food without barcode", OffCache.needsRefresh(kept(updatedAt = 0).copy(barcode = null), now))
+        // The last check counts, not the last change: a product asked again that was still the same.
+        assertFalse("checked lately", OffCache.needsRefresh(kept(updatedAt = now - 300 * day).copy(checkedAt = now - 10 * day), now))
+        assertTrue("checked long ago", OffCache.needsRefresh(kept(updatedAt = now - 300 * day).copy(checkedAt = now - 91 * day), now))
     }
 
     @Test
@@ -192,7 +195,11 @@ class BarcodeAndOffTest {
         assertEquals(Nutrients(kcal = 440.0, sugars = 22.0, fiber = 3.0), r.per100)
         assertEquals(30.0, r.portion!!, 0.0)
         assertEquals(CustomFoodSource.OFF, r.source)
-        assertEquals("marked checked even when nothing changed", 120L, OffCache.refreshed(r, p, now = 120).updatedAt)
+        assertEquals(99L, r.checkedAt)
+        // Asked again, nothing new: only the check time moves (no new version, see FoodRepository.updateCustomFood).
+        val again = OffCache.refreshed(r, p, now = 120)
+        assertEquals(120L, again.checkedAt)
+        assertEquals(r.copy(checkedAt = 120L), again)
         // Values per 100 ml do not mix with values per 100 g.
         val drink = OffCache.refreshed(cached, p.copy(unit = FoodUnit.ML, serving = null), now = 99)
         assertEquals(Nutrients(kcal = 440.0, sugars = 22.0), drink.per100)

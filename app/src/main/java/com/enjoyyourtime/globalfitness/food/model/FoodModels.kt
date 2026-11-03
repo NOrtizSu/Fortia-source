@@ -294,7 +294,13 @@ data class CustomFood(
     val portion: Double?,
     val source: CustomFoodSource,
     val createdAt: Long,
+    /** The last real change of the food (a new version for the backup; entries logged before it used older values). */
     val updatedAt: Long,
+    /**
+     * When Open Food Facts was last asked about this product (on this phone only, never backed up and
+     * no new version: a refresh that changes nothing only moves this). Null: not since it was stored.
+     */
+    val checkedAt: Long? = null,
 )
 
 /** What an entry was logged from: a catalog food or a custom food (a quick manual entry has none). */
@@ -426,6 +432,11 @@ data class FoodEntry(
     val adjustments: List<IngredientAdjustment> = emptyList(),
     /** The grams (ml) the photo suggested, whatever the user then logged (for later quality stats). */
     val estimatedAmount: Double? = null,
+    /**
+     * Some of [nutrients] were typed by hand (they differ from what the food's own values give): a
+     * new entry of the same food starts from them ("as last time").
+     */
+    val valuesEdited: Boolean = false,
 ) {
     /** The amount of the dish itself, before its ingredients were changed. */
     val dishAmount: Double get() = amount - adjustments.sumOf { it.delta }

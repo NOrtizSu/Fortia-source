@@ -3294,6 +3294,19 @@
     <plurals name="foodlog_plate_as_items">
         <item quantity="other">음식 %1$d개 따로 보기</item>
     </plurals>
+    <string name="foodlog_values_edit">값 편집</string>
+    <string name="foodlog_values_follow">표시된 양 기준입니다. 양이나 재료를 바꾸면 값도 다시 계산됩니다.</string>
+    <string name="foodlog_values_restore">복원</string>
+    <string name="foodlog_values_edited">직접 변경한 값</string>
+    <string name="foodlog_values_kept">%1$s(으)로 저장됩니다: 바꾼 재료만으로 더 많습니다</string>
+    <string name="foodlog_recall_title">지난번과 같이(%1$s)</string>
+    <string name="foodlog_recall_text">지난번과 동일: %1$s</string>
+    <string name="foodlog_recall_amount">양</string>
+    <string name="foodlog_recall_values">내 값</string>
+    <string name="foodlog_recall_ingredients">재료</string>
+    <string name="foodlog_recall_reset">지난번 무시</string>
+    <string name="foodlog_estimated_use">사용</string>
+    <string name="foodlog_barcode_last_time">지난번: %1$s</string>
     <string name="music_title">오늘의 음악</string>
     <string name="music_attribution">Spotify 플레이리스트</string>
     <string name="music_open">Spotify에서 열기</string>

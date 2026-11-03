@@ -83,6 +83,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.enjoyyourtime.globalfitness.R
+import com.enjoyyourtime.globalfitness.food.domain.ValueEdits
 import com.enjoyyourtime.globalfitness.food.model.FoodEntry
 import com.enjoyyourtime.globalfitness.food.model.FoodUnit
 import com.enjoyyourtime.globalfitness.food.model.Meal
@@ -370,6 +371,17 @@ object FoodFormat {
 
     /** mg and µg: like [grams], grouped from a thousand ("1.082 mg"). */
     private fun micro(v: Double): String = if (abs(v) >= 1000) Fmt.count(v.roundToLong()) else grams(v)
+
+    /** A value in its field on the confirm page ("640", "12,5", "0,42"): as [ValueEdits.rounded], no grouping, no trailing zeros. */
+    fun field(n: Nutrient, v: Double): String {
+        val r = ValueEdits.rounded(n, v)
+        val decimals = when {
+            abs(r * 10 - Math.round(r * 10)) > 1e-6 -> 2
+            abs(r - Math.round(r)) > 1e-6 -> 1
+            else -> 0
+        }
+        return Fmt.num(r, decimals)
+    }
 
     /** [value], marked "≥ …" when it adds up only the foods that have it ([partial]). */
     fun value(n: Nutrient, v: Double, partial: Boolean): String =

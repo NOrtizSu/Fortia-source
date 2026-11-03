@@ -3294,6 +3294,19 @@
     <plurals name="foodlog_plate_as_items">
         <item quantity="other">Lihat %1$d makanan satu per satu</item>
     </plurals>
+    <string name="foodlog_values_edit">Edit nilai</string>
+    <string name="foodlog_values_follow">Untuk jumlah yang ditampilkan. Jika Anda mengubah jumlah atau bahan, nilainya ikut dihitung ulang.</string>
+    <string name="foodlog_values_restore">Pulihkan</string>
+    <string name="foodlog_values_edited">Nilai diubah oleh Anda</string>
+    <string name="foodlog_values_kept">Disimpan %1$s: bahan yang diubah saja sudah lebih dari itu</string>
+    <string name="foodlog_recall_title">Seperti terakhir kali (%1$s)</string>
+    <string name="foodlog_recall_text">Sama seperti saat itu: %1$s</string>
+    <string name="foodlog_recall_amount">jumlah</string>
+    <string name="foodlog_recall_values">nilai Anda</string>
+    <string name="foodlog_recall_ingredients">bahan</string>
+    <string name="foodlog_recall_reset">Abaikan terakhir kali</string>
+    <string name="foodlog_estimated_use">Gunakan</string>
+    <string name="foodlog_barcode_last_time">Terakhir kali: %1$s</string>
     <string name="music_title">Musik hari ini</string>
     <string name="music_attribution">Playlist Spotify</string>
     <string name="music_open">Buka di Spotify</string>

@@ -33,16 +33,18 @@ object OffCache {
 
     /**
      * Whether a scan of [f] asks Open Food Facts again: incomplete, or a product of Open Food Facts not
-     * checked for [MAX_AGE_MS] (the user's own foods are never replaced just for their age).
+     * checked for [MAX_AGE_MS] (its last check, else its last change; the user's own foods are never
+     * replaced just for their age).
      */
     fun needsRefresh(f: CustomFood, now: Long): Boolean =
-        f.barcode != null && (incomplete(f) || f.source == CustomFoodSource.OFF && now - f.updatedAt > MAX_AGE_MS)
+        f.barcode != null && (incomplete(f) || f.source == CustomFoodSource.OFF && now - (f.checkedAt ?: f.updatedAt) > MAX_AGE_MS)
 
     /**
      * [cached] with what Open Food Facts says now: its name, brand, serving and values where it gives
      * them, the cached ones (maybe completed by the user) elsewhere. Values per 100 g and per 100 ml do
      * not mix: a product now measured in the other unit takes only the new values. [now] marks it
-     * checked (stored even when nothing else changed, so it is not asked again at every scan).
+     * checked ([CustomFood.checkedAt]); its [CustomFood.updatedAt] is the repository's, moved only
+     * when something else changed (an entry logged with values typed by hand keeps them for the next one).
      */
     fun refreshed(cached: CustomFood, p: OffProduct, now: Long): CustomFood {
         val unitChanged = !p.per100.isEmpty && p.unit != cached.unit
@@ -57,7 +59,7 @@ object OffCache {
             portion = p.serving ?: cached.portion.takeUnless { unitChanged },
             // Data of Open Food Facts now: shown with its ODbL attribution.
             source = if (fromOff) CustomFoodSource.OFF else cached.source,
-            updatedAt = now,
+            checkedAt = now,
         )
     }
 }

@@ -34,6 +34,11 @@ import com.enjoyyourtime.globalfitness.food.model.PortionKey
  * custom food with such values, are written at [EXTENDED_SCHEMA_VERSION]. 1.5.0 reads them (with the
  * label's values) but never writes them back: an edit there would rescale only the values it knows,
  * or drop the changed ingredients. Everything else stays at version 1, so 1.5.0 keeps writing it.
+ *
+ * Version 3 (1.7.0): an entry whose values were typed by hand (`valuesEdited`) is written at
+ * [EDITED_SCHEMA_VERSION]. 1.5.0 and 1.6.0 read it (its values are a plain snapshot) but never write
+ * it back, so they cannot drop the mark. Entries without it keep versions 1 and 2 as before (the field
+ * is written as false: a merged write must clear it).
  */
 object FoodCodec {
     /** Documents 1.5.0 can keep in full. */
@@ -42,8 +47,11 @@ object FoodCodec {
     /** Documents with data of 1.6.0 (see the class comment). */
     const val EXTENDED_SCHEMA_VERSION = 2
 
+    /** Entries with values typed by hand (1.7.0, see the class comment). */
+    const val EDITED_SCHEMA_VERSION = 3
+
     /** The highest version this app reads and writes in full: documents above it are newer ([isNewerSchema]). */
-    const val FOOD_SCHEMA_VERSION = EXTENDED_SCHEMA_VERSION
+    const val FOOD_SCHEMA_VERSION = EDITED_SCHEMA_VERSION
 
     fun isNewerSchema(data: Map<String, Any?>): Boolean = ((data[F_SCHEMA] as? Number)?.toInt() ?: 1) > FOOD_SCHEMA_VERSION
 
@@ -77,7 +85,11 @@ object FoodCodec {
     // ---- Entries -------------------------------------------------------------------------------
 
     /** The version an entry's document is written with. */
-    fun schemaOf(e: FoodEntry): Int = if (e.hasExtendedData) EXTENDED_SCHEMA_VERSION else BASE_SCHEMA_VERSION
+    fun schemaOf(e: FoodEntry): Int = when {
+        e.valuesEdited -> EDITED_SCHEMA_VERSION
+        e.hasExtendedData -> EXTENDED_SCHEMA_VERSION
+        else -> BASE_SCHEMA_VERSION
+    }
 
     fun schemaOf(f: CustomFood): Int = if (f.per100.hasExtra) EXTENDED_SCHEMA_VERSION else BASE_SCHEMA_VERSION
 
@@ -101,6 +113,7 @@ object FoodCodec {
         put("modelConfidence", e.modelConfidence)
         put("adjustments", e.adjustments.map(::adjustmentToMap))
         put("estimatedAmount", e.estimatedAmount)
+        put("valuesEdited", e.valuesEdited)
         put("createdAt", e.createdAt)
         put(F_EDITED_AT, e.updatedAt)
     }
@@ -135,6 +148,7 @@ object FoodCodec {
                 updatedAt = updatedAt,
                 adjustments = (data["adjustments"] as? List<*>).orEmpty().mapNotNull { adjustmentFromMap(it as? Map<*, *>) }.distinctBy { it.ingredient },
                 estimatedAmount = double(data["estimatedAmount"])?.takeIf { it > 0 && it < MAX_FIELD },
+                valuesEdited = data["valuesEdited"] == true,
             ),
         )
     }

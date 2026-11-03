@@ -59,12 +59,14 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.enjoyyourtime.globalfitness.R
+import com.enjoyyourtime.globalfitness.food.domain.FoodMath
 import com.enjoyyourtime.globalfitness.food.model.FoodUnit
 import com.enjoyyourtime.globalfitness.food.model.Meal
 import com.enjoyyourtime.globalfitness.food.recognition.RecognitionMath
 import com.enjoyyourtime.globalfitness.ui.Fmt
 import com.enjoyyourtime.globalfitness.ui.components.AppCard
 import com.enjoyyourtime.globalfitness.ui.theme.TabularNumbers
+import kotlin.math.abs
 
 /**
  * A meal photo and what the recognizer saw in it: the five most likely foods with a plain hint of how
@@ -251,8 +253,8 @@ fun FoodPhotoScreen(onOpen: (String) -> Unit, onDone: () -> Unit) {
 
 /**
  * One food of the plate: its crop, the food chosen (or "what is it?"), whether "Add all" adds it, the
- * three best suggestions and "Other…", the variants of the food chosen and its amount (the photo's
- * suggestion, marked, or the food's portion).
+ * three best suggestions and "Other…", the variants of the food chosen and its amount (last time's
+ * when it was logged before, else the photo's suggestion, marked, or the food's portion).
  */
 @Composable
 private fun PlateItemCard(item: PlateItem, onSearch: () -> Unit) {
@@ -331,7 +333,17 @@ private fun PlateItemCard(item: PlateItem, onSearch: () -> Unit) {
                     textStyle = MaterialTheme.typography.bodyLarge.merge(TabularNumbers),
                     modifier = Modifier.fillMaxWidth(),
                 )
-                item.estimate?.let { EstimateNote(it, food.unit, explain = false) }
+                item.estimate?.let { e ->
+                    val amount = item.amount
+                    EstimateNote(
+                        e, food.unit, explain = false,
+                        onUse = { vm.useItemEstimate(item.id) }.takeIf { amount == null || abs(amount - FoodMath.round1(e)) >= 0.05 },
+                    )
+                }
+                // Logged before: "Add all" logs it as last time (its amount unless typed, ingredients, values).
+                item.recall?.let { r ->
+                    RecallNote(r, amount = !item.amountTyped && !item.amountFromEstimate, values = r.per100 != null, onUsual = { vm.useItemUsual(item.id) })
+                }
             }
         }
     }

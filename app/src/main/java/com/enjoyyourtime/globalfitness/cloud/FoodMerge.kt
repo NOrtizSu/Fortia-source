@@ -41,6 +41,7 @@ object FoodMerge {
      * "<updatedAt>.<sha1 of the content>"; the local photo does not count. The data 1.6.0 added (the
      * values beyond the label, changed ingredients, the photo's grams estimate) counts only when there
      * is some: an entry without it has the version 1.5.0 agreed on, so updating the app re-uploads nothing.
+     * The same for 1.7.0's mark of values typed by hand: it counts only when set.
      */
     fun versionOf(e: FoodEntry): String {
         val c = TrainingMerge.Canon().l(e.eatenAt).l(e.zoneOffsetSeconds.toLong()).s(e.meal.code).s(e.foodId).s(e.customFoodId).s(e.name)
@@ -53,6 +54,7 @@ object FoodMerge {
             for (a in e.adjustments) c.s(a.ingredient).d(a.baseGrams).d(a.grams).d(a.factor)
         }
         if (e.estimatedAmount != null) c.s("estimated").d(e.estimatedAmount)
+        if (e.valuesEdited) c.s("edited")
         return "${e.updatedAt}.${c.digest()}"
     }
 
