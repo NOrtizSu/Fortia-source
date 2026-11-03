@@ -3,6 +3,7 @@ package com.enjoyyourtime.globalfitness.cloud
 import com.enjoyyourtime.globalfitness.food.data.FoodBatch
 import com.enjoyyourtime.globalfitness.food.model.CustomFood
 import com.enjoyyourtime.globalfitness.food.model.FoodEntry
+import com.enjoyyourtime.globalfitness.food.model.Nutrient
 import com.enjoyyourtime.globalfitness.food.model.Nutrients
 import com.enjoyyourtime.globalfitness.training.model.Tombstone as LocalTombstone
 
@@ -36,12 +37,22 @@ object FoodMerge {
     fun modeFor(base: FoodBase?, datasetId: String): TrainingMode =
         base?.pending?.takeIf { base.datasetKey == datasetId } ?: TrainingMode.MERGE
 
-    /** "<updatedAt>.<sha1 of the content>"; the local photo does not count. */
+    /**
+     * "<updatedAt>.<sha1 of the content>"; the local photo does not count. The data 1.6.0 added (the
+     * values beyond the label, changed ingredients, the photo's grams estimate) counts only when there
+     * is some: an entry without it has the version 1.5.0 agreed on, so updating the app re-uploads nothing.
+     */
     fun versionOf(e: FoodEntry): String {
         val c = TrainingMerge.Canon().l(e.eatenAt).l(e.zoneOffsetSeconds.toLong()).s(e.meal.code).s(e.foodId).s(e.customFoodId).s(e.name)
             .d(e.amount).s(e.unit.code).s(e.portionKey?.code).d(e.portionCount)
         nutrients(c, e.nutrients)
         c.s(e.source.code).s(e.modelLabel).d(e.modelConfidence).l(e.createdAt)
+        extraNutrients(c, e.nutrients)
+        if (e.adjustments.isNotEmpty()) {
+            c.s("adjustments")
+            for (a in e.adjustments) c.s(a.ingredient).d(a.baseGrams).d(a.grams).d(a.factor)
+        }
+        if (e.estimatedAmount != null) c.s("estimated").d(e.estimatedAmount)
         return "${e.updatedAt}.${c.digest()}"
     }
 
@@ -49,11 +60,18 @@ object FoodMerge {
         val c = TrainingMerge.Canon().s(f.name).s(f.brand).s(f.barcode).s(f.unit.code)
         nutrients(c, f.per100)
         c.d(f.portion).s(f.source.code).l(f.createdAt)
+        extraNutrients(c, f.per100)
         return "${f.updatedAt}.${c.digest()}"
     }
 
     private fun nutrients(c: TrainingMerge.Canon, n: Nutrients) {
-        c.d(n.kcal).d(n.protein).d(n.carbs).d(n.sugars).d(n.fat).d(n.satFat).d(n.fiber).d(n.salt)
+        for (nutrient in Nutrient.LABEL) c.d(n[nutrient])
+    }
+
+    private fun extraNutrients(c: TrainingMerge.Canon, n: Nutrients) {
+        if (!n.hasExtra) return
+        c.s("extra")
+        for (nutrient in Nutrient.EXTRA) c.d(n[nutrient])
     }
 
     /**

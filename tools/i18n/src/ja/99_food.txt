@@ -209,7 +209,7 @@ foodlog_today_open = 食事を開く
 # Health Connect
 hc_type_nutrition = 栄養
 hc_meals_export_title = 食事を Health Connect に保存
-hc_meals_export_text = 記録した各食品は、その食事の栄養（カロリー、タンパク質、炭水化物、糖類、脂質、飽和脂肪酸、食物繊維、ナトリウム）として保存されます。編集または削除すると、Health Connect も更新されます。
+hc_meals_export_text = 記録した各食品は、その食事の栄養として保存されます（カロリー、タンパク質、炭水化物、糖類、脂質、飽和脂肪酸、食物繊維、ナトリウム。食品にデータがあれば、コレステロール、一価・多価不飽和脂肪酸、ミネラル、ビタミンも）。編集または削除すると、Health Connect も更新されます。
 hc_meals_export_missing_permission = 食事を Health Connect に保存するには、Fortia に Health Connect への栄養の書き込みを許可してください。
 hc_meals_export_denied = 権限の画面が開かない場合は、Health Connect で Fortia に「栄養」を許可してください。
 hc_meals_export_off = 新しい食事は保存されません。Health Connect にすでにある食事はそのまま残ります。
@@ -226,4 +226,4 @@ notice_usda = 食品リストの栄養価：U.S. Department of Agriculture, Agri
 notice_ciqual = 食品リストの栄養価：Anses、Ciqual フランス食品成分表、Licence Ouverte / Etalab 2.0 に基づく。
 notice_food_model_name = Fortia 食品認識モデル
 notice_food_model_license = 独自モデル（モデルカードを参照）
-notice_food_model = Open Images（CC BY 2.0）と Wikimedia Commons（フリーライセンス）の画像で学習した独自モデルです。画像とその作者のリストはソースコードとともに公開されています。
+notice_food_model = MobileNetV4（timm、Apache-2.0）と Ultralytics YOLO11n（AGPL-3.0）をベースに、Open Images（CC BY 2.0）、Wikimedia Commons（フリーライセンス）、MyFoodRepo（CC BY 4.0）の画像で学習した独自モデルです。重さの推定は Nutrition5k（CC BY 4.0）で調整しています。画像とその作者のリストはソースコードとともに公開されています。

@@ -33,3 +33,5 @@ ex_martial_arts = Arts martiaux
 # Others
 ex_climbing = Escalade
 ex_golf = Golf
+ex_nordic_walking = Marche nordique
+ex_stair_climbing = Montée d'escaliers

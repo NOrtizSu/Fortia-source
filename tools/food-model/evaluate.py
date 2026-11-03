@@ -8,9 +8,10 @@
 - min_confidence suggestion: the probability under which the app should say "no food recognised" when even
   the best food class is that unsure (keeps >= 99 % of the food test photos above it).
 
-Writes <run>/eval/{metrics.json,per_class.csv,confusions.csv,test_logits.npy,test_labels.npy}.
+Writes <run>/eval/{metrics.json,per_class.csv,confusions.csv,test_logits.npy,test_labels.npy}
+(--test test_v1.csv --tag v1: <run>/eval_v1/..., the v1 test photos, for the comparison with the v1 model).
 
-usage: python evaluate.py --work D:/FoodML --run run1 --classes classes.csv
+usage: python evaluate.py --work D:/FoodML --run run1 --classes classes.csv [--test test.csv --tag ""]
 """
 import argparse
 import csv
@@ -25,7 +26,7 @@ import torch
 from torch.utils.data import DataLoader
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from train import Photos, eval_tf, evaluate  # noqa: E402
+from train import Photos, configure_from_checkpoint, eval_tf, evaluate  # noqa: E402
 
 NOT_FOOD = "_not_food"
 # Dishes and foods typical of Spain / southern Europe, reported separately.
@@ -35,7 +36,8 @@ suckling_pig meatballs breaded_cutlet baguette_sandwich bread_with_tomato flan c
 french_toast turron custard_tart sangria vermouth horchata gin_tonic coffee_with_milk espresso ratatouille
 potato_salad fritters swiss_roll mille_feuille sponge_cake muffin green_salad grilled_fish steak roast_chicken
 fried_egg olives cheese bread baguette pizza lasagna cannelloni pasta_tomato carbonara risotto tiramisu
-spaghetti_bolognese greek_salad caprese_salad moussaka quiche soup cream_soup fish_soup""".split()
+spaghetti_bolognese greek_salad caprese_salad moussaka quiche soup cream_soup fish_soup ham sobrasada cocido
+migas pimientos_de_padron huevos_rotos salmorejo fideua ensaimada chickpeas canned_tuna""".split()
 
 
 def nll(logits, labels, t):
@@ -80,22 +82,27 @@ def main():
     ap.add_argument("--run", default="run1")
     ap.add_argument("--ckpt", default="best.pt")
     ap.add_argument("--classes", default="classes.csv")
+    ap.add_argument("--runs", default="", help="runs folder (default <work>/runs)")
+    ap.add_argument("--data", default="", help="dataset folder (default <work>/<dataset>)")
+    ap.add_argument("--test", default="test.csv")
+    ap.add_argument("--tag", default="")
     a = ap.parse_args()
     rows = list(csv.DictReader(open(a.classes, encoding="utf-8")))
     ids = [r["id"] for r in rows]
     group = {r["id"]: r["group"] for r in rows}
-    run = os.path.join(a.work, "runs", a.run)
-    out = os.path.join(run, "eval")
+    run = os.path.join(a.runs or os.path.join(a.work, "runs"), a.run)
+    out = os.path.join(run, "eval" + (f"_{a.tag}" if a.tag else ""))
+    data = a.data or os.path.join(a.work, a.dataset)
     os.makedirs(out, exist_ok=True)
     ck = torch.load(os.path.join(run, a.ckpt), map_location="cpu")
+    configure_from_checkpoint(ck)
     model = timm.create_model(ck["model"], pretrained=False, num_classes=ck["n_classes"])
     model.load_state_dict(ck["state_dict"])
     device = torch.device("cuda")
     model.to(device)
     res = {}
-    for split in ("val", "test"):
-        dl = DataLoader(Photos(os.path.join(a.work, a.dataset, f"{split}.csv"), eval_tf(), packed=False), 256,
-                        num_workers=3)
+    for split, fn in (("val", "val.csv"), ("test", a.test)):
+        dl = DataLoader(Photos(os.path.join(data, fn), eval_tf(), packed=False), 256, num_workers=3)
         _, _, logits, labels = evaluate(model, dl, device, ck["n_classes"])
         res[split] = (logits, labels)
     vl, vy = res["val"]

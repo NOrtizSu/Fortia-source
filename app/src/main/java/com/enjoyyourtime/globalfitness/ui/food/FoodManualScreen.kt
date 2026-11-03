@@ -66,7 +66,7 @@ fun FoodManualScreen(onOpen: (String) -> Unit, onBack: () -> Unit) {
         rememberSaveable(key, n) { mutableStateOf(draft.values[n]?.let { if (n == Nutrient.KCAL) Fmt.num(it, 0) else FoodFormat.count(it) }.orEmpty()) }
     }
     var save by rememberSaveable(key) { mutableStateOf(draft.saveAsFood) }
-    var more by rememberSaveable(key) { mutableStateOf(Nutrient.MORE.any { draft.values[it] != null }) }
+    var more by rememberSaveable(key) { mutableStateOf((Nutrient.MORE + Nutrient.EXTRA).any { draft.values[it] != null }) }
     val completing = draft.completing
     val editOnly = draft.editOnly
     val unit = FoodUnit.fromCode(unitCode)
@@ -155,6 +155,17 @@ fun FoodManualScreen(onOpen: (String) -> Unit, onBack: () -> Unit) {
             AnimatedVisibility(more) {
                 Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
                     for (n in Nutrient.MORE) ValueField(n, values.getValue(n).value, required = false) { values.getValue(n).value = it }
+                    // The values beyond the label, all optional (a product label rarely has them).
+                    Heading(stringResource(R.string.foodlog_more_nutrients))
+                    FoodSupporting(stringResource(R.string.foodlog_more_nutrients_text))
+                    for ((title, list) in listOf(
+                        R.string.foodlog_nutrients_fats to Nutrient.FATS,
+                        R.string.foodlog_nutrients_minerals to Nutrient.MINERALS,
+                        R.string.foodlog_nutrients_vitamins to Nutrient.VITAMINS,
+                    )) {
+                        Text(stringResource(title), style = MaterialTheme.typography.titleSmall, color = MaterialTheme.colorScheme.primary)
+                        for (n in list) ValueField(n, values.getValue(n).value, required = false) { values.getValue(n).value = it }
+                    }
                 }
             }
             TextButton(onClick = { more = !more }, modifier = Modifier.heightIn(min = 48.dp)) {
@@ -185,7 +196,7 @@ private fun ValueField(n: Nutrient, value: String, required: Boolean, onChange: 
         onValueChange = { onChange(it.take(7)) },
         singleLine = true,
         label = { Text(if (required) stringResource(R.string.common_required_mark, label) else label) },
-        suffix = { Text(stringResource(if (n == Nutrient.KCAL) R.string.unit_kcal else R.string.unit_g)) },
+        suffix = { Text(stringResource(FoodFormat.unitRes(n))) },
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
         modifier = Modifier.fillMaxWidth(),
     )

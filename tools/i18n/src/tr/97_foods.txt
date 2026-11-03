@@ -106,6 +106,14 @@ food_endive = Hindiba
 food_sauerkraut = Lahana turşusu
 food_pickles = Kornişon turşu
 food_seaweed = Deniz yosunu
+food_zucchini_raw = Kabak (çiğ)
+food_eggplant_raw = Patlıcan (çiğ)
+food_broccoli_raw = Brokoli (çiğ)
+food_cabbage_raw = Lahana (çiğ)
+food_carrot_cooked = Haşlanmış havuç
+food_bean_sprouts = Soya filizi
+food_canned_tomato = Domates konservesi
+food_fennel = Rezene
 food_roasted_peppers = Közlenmiş biber
 
 # Bread, cereals and pasta
@@ -144,6 +152,10 @@ food_muesli = Müsli
 food_granola = Granola
 food_wheat_flour = Buğday unu
 food_rice_cakes = Pirinç patlağı
+food_breadcrumbs = Galeta unu
+food_corn_starch = Mısır nişastası
+food_puff_pastry = Milföy hamuru (çiğ)
+food_polenta = Polenta
 
 # Legumes
 food_edamame = Edamame
@@ -159,6 +171,7 @@ food_tofu = Tofu
 food_lentils_dry = Mercimek (çiğ)
 food_chickpeas_dry = Nohut (çiğ)
 food_white_beans_dry = Kuru fasulye (çiğ)
+food_lentils_vegetable = Etsiz mercimek yemeği
 
 # Meat and cold cuts
 food_steak = Biftek
@@ -205,6 +218,19 @@ food_frankfurters = Frankfurter sosis
 food_bacon = Domuz pastırması
 food_black_pudding = Kan sosisi
 food_pork_pate = Pate
+food_chicken_raw = Tavuk parçaları (çiğ)
+food_chicken_leg_raw = Tavuk but (çiğ)
+food_rabbit_raw = Tavşan eti (çiğ)
+food_beef_raw = Dana but (çiğ)
+food_beef_stewing_raw = Kuşbaşı dana eti (çiğ)
+food_minced_beef_15_raw = %15 yağlı dana kıyma (çiğ)
+food_pork_shoulder_raw = Yağsız domuz eti (çiğ)
+food_salted_pork_belly = Tuzlanmış domuz karın eti
+food_black_pudding_raw = Kan sosisi (çiğ)
+food_back_bacon = Domuz sırt pastırması
+food_tripe = Haşlanmış dana işkembesi
+food_sobrasada = Sobrasada (sürülebilir sucuk)
+food_veal_escalope_raw = Dana eskalop (çiğ)
 
 # Fish and seafood
 food_salmon = Somon
@@ -237,6 +263,13 @@ food_octopus = Ahtapot
 food_surimi = Yengeç çubuğu
 food_sushi = Suşi
 food_sashimi = Saşimi
+food_hake_raw = Berlam (çiğ)
+food_squid_raw = Kalamar (çiğ)
+food_prawns_raw = Karides (çiğ)
+food_mussels_raw = Midye içi (çiğ)
+food_anchovy_raw = Hamsi (çiğ)
+food_boiled_octopus = Haşlanmış ahtapot
+food_breaded_fish = Pane balık (kızarmış)
 
 # Eggs
 food_egg = Yumurta
@@ -248,6 +281,9 @@ food_spanish_omelette = Patatesli İspanyol omleti
 food_poached_egg = Poşe yumurta
 food_deviled_eggs = Dolgulu yumurta
 food_egg_whites = Yumurta akı
+food_egg_yolk = Yumurta sarısı
+food_omelette_ham_cheese = Jambonlu kaşarlı omlet
+food_shakshuka = Shakshuka (domates soslu yumurta)
 
 # Dairy
 food_milk = Yarım yağlı süt
@@ -280,6 +316,7 @@ food_butter = Tereyağı
 food_whipped_cream = Krem şanti
 food_cooking_cream = Sıvı krema
 food_whey_protein = Whey protein tozu
+food_condensed_milk = Kondanse süt
 
 # Oils, fats and nuts
 food_olives = Zeytin
@@ -368,6 +405,8 @@ food_ice_cream = Dondurma
 food_ice_cream_cone = Külah dondurma
 food_ice_pop = Meyve buzu
 food_sorbet = Sorbe veya granita
+food_churros_with_sugar = Şekerli churros
+food_ensaimada = Ensaimada (Mayorka çöreği)
 
 # Drinks
 food_water = Su
@@ -416,6 +455,20 @@ food_cocktail = Kokteyl
 food_mojito = Mojito
 food_gin_tonic = Cin tonik
 food_rum_and_cola = Rom kola
+food_rum = Rom
+food_gin = Cin
+food_vodka = Votka
+food_coffee_with_whole_milk = Tam yağlı sütlü kahve
+food_coffee_with_skimmed_milk = Yağsız sütlü kahve
+food_coffee_with_oat_drink = Yulaf sütlü kahve
+food_coffee_with_soy_drink = Soya sütlü kahve
+food_coffee_with_milk_sugar = Şekerli sütlü kahve
+food_cafe_bombon = Café bombón (kondanse sütlü espresso)
+food_espresso_with_sugar = Şekerli espresso
+food_carajillo = Carajillo (alkollü kahve)
+food_brandy = Brendi (konyak)
+food_clara = Limonatalı bira
+food_kalimotxo = Kalimotxo (kolalı şarap)
 
 # Dishes
 food_baked_potato = Fırında patates
@@ -439,6 +492,14 @@ food_noodle_soup = Erişte çorbası
 food_ramen = Ramen
 food_pho = Pho çorbası
 food_bibimbap = Bibimbap
+food_paella_valenciana = Valensiya usulü paella
+food_paella_seafood = Deniz ürünlü paella
+food_arroz_negro = Mürekkepli siyah pilav
+food_fideua = Fideuà (deniz ürünlü şehriye)
+food_carbonara_italian = İtalyan usulü karbonara
+food_pasta_tomato_chorizo = Domatesli chorizolu makarna
+food_gnocchi = Gnocchi
+food_onigiri = Onigiri
 food_eggs_benedict = Benedict yumurta
 food_tandoori_chicken = Tandoori tavuk
 food_sweet_sour_chicken = Tatlı ekşi soslu tavuk
@@ -500,6 +561,12 @@ food_steamed_buns = Bao (buharda çörek)
 food_tempura = Tempura
 food_dolma = Yaprak sarma
 food_hot_pot = Hot pot
+food_green_salad_plain = Sossuz yeşil salata
+food_ensalada_mixta_plain = Sossuz karışık salata
+food_pumpkin_cream = Balkabağı çorbası
+food_vichyssoise = Pırasalı patates çorbası
+food_mixed_vegetables = Karışık sebze sote
+food_acai_bowl = Açaí veya smoothie bowl
 
 # Fast food
 food_chicken_nuggets = Tavuk nugget
@@ -518,6 +585,20 @@ food_quesadilla = Quesadilla
 food_kebab = Döner
 food_french_fries = Patates kızartması
 food_nachos = Peynirli nachos
+food_pizza_margherita = Margarita pizza
+food_pizza_pepperoni = Pepperoni pizza
+food_pizza_four_cheese = Dört peynirli pizza
+food_pizza_ham = Jambonlu kaşarlı pizza
+food_pizza_barbecue = Etli pizza (barbekü)
+food_pizza_vegetable = Sebzeli pizza
+food_cheeseburger = Cheeseburger
+food_bacon_cheeseburger = Bacon cheeseburger
+food_chicken_burger = Tavuk burger
+food_sandwich_vegetal = Sebzeli sandviç
+food_omelette_baguette = İspanyol omletli baget sandviç
+food_calamari_baguette = Kalamarlı baget sandviç
+food_pork_loin_baguette = Domuz kontrfileli baget sandviç
+food_cheese_baguette = Peynirli baget sandviç
 
 # Snacks
 food_potato_chips = Cips
@@ -537,6 +618,7 @@ food_falafel = Falafel
 food_onion_rings = Soğan halkası
 food_pakora = Pakora
 food_arancini = Arancini
+food_samosa = Samosa
 
 # Sauces and dressings
 food_hummus = Humus
@@ -556,3 +638,6 @@ food_salsa = Salsa veya pico de gallo
 food_tzatziki = Cacık
 food_balsamic_vinegar = Balzamik sirke
 food_salt = Tuz
+food_paprika = Toz kırmızı biber
+food_vinegar = Sirke
+food_lime_juice = Misket limonu suyu

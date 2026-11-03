@@ -1,0 +1,125 @@
+# Search words of built-in exercises and sports: exa_<catalog id> (training/catalog/ExerciseAliases.kt). Never shown:
+# the exercise search also looks in them, so an exercise is found by the other words people use for it (gym slang,
+# brand names, verbs, the singular or plural). Comma-separated, lower case is fine; translate the idea, not word for word.
+
+# Walking, running and the other activities
+exa_outdoor_walk = مشي, المشي, يمشي, أمشي, سير, تمشية, مشي سريع, walking
+exa_hiking = هايكنج, هايكنغ, مشي جبلي, رحلة مشي, المشي في الطبيعة, جبل, trekking
+exa_nordic_walking = المشي الاسكندنافي, مشي بالعصي, عصي المشي, نوردك, nordic walking
+exa_stair_climbing = درج, سلالم, صعود السلالم, طلوع الدرج, درجات
+exa_outdoor_run = جري, الجري, ركض, هرولة, أجري, أركض, running
+exa_outdoor_cycling = دراجة, دراجة هوائية, عجلة, بسكليت, ركوب الدراجة, دراجة جبلية, cycling
+exa_swimming = سباحة, السباحة, أسبح, مسبح, حمام سباحة, أطوال
+
+# Cardio machines
+exa_treadmill = تريدميل, مشاية, سير كهربائي, جري, ركض, هرولة
+exa_treadmill_walk = مشي, المشي, تريدميل, مشاية, سير كهربائي
+exa_incline_treadmill_walk = مشي مائل, منحدر, ميل, طلعة, تريدميل, 12-3-30
+exa_curved_treadmill = تريدميل منحني, تريدميل يدوي, بدون كهرباء, عدو سريع, سبرنت, assault runner
+exa_stationary_bike = دراجة, دراجة تمارين, عجلة ثابتة, سيكل, بسكليت
+exa_spin_bike = سبينينغ, سبينينج, سبين, دراجة, عجلة
+exa_recumbent_bike = دراجة, دراجة بمسند ظهر, دراجة جلوس, عجلة
+exa_air_bike = أسولت بايك, دراجة المروحة, assault bike, echo bike, air bike
+exa_elliptical = إليبتيكال, أوربتريك, جهاز بيضاوي, كروس ترينر
+exa_rowing_machine = تجديف, جهاز التجديف, روينغ, مجداف, rower
+exa_stair_climber = ستير ماستر, stairmaster, جهاز الدرج, سلالم, درج
+exa_ski_erg = سكي إرج, سكي, تزلج, skierg
+
+# Machines and cables
+exa_pec_deck = فراشة, بترفلاي, butterfly, تفتيح, جهاز الصدر
+exa_reverse_pec_deck = فراشة عكسية, كتف خلفي, رفرفة خلفية, ريفيرس فلاي
+exa_leg_press_machine = ليج برس, ليغ بريس, دفع الأرجل, ضغط رجل, 45
+exa_hip_abductor_machine = أبداكتور, فتح الفخذين, تبعيد, خارج الفخذ, abductor
+exa_hip_adductor_machine = أداكتور, ضم الفخذين, تقريب, داخل الفخذ, adductor
+exa_iso_lateral_chest_press = هامر, هامر سترينث, ضغط صدر بالأقراص, hammer strength
+exa_high_row_machine = هامر, هامر سترينث, تجديف علوي, سحب عالي
+exa_t_bar_row_machine = تي بار, جهاز تي بار, تجديف, t bar
+exa_standing_leg_curl_machine = ثني الساق, ليج كيرل, هامسترينج, خلفية الفخذ, رجل خلفي
+exa_lat_pulldown_machine = سحب أمامي, سحب علوي, لات, بول داون, ظهر
+exa_seated_cable_row = سحب أرضي, تجديف أرضي, تجديف جالس, لو رو, روينج
+exa_cable_crossover = كروس أوفر, كروس, تفتيح كابل, crossover
+exa_face_pull = فيس بول, سحب للوجه, حبل, face pull
+exa_reverse_grip_lat_pulldown = سحب عكسي, قبضة معكوسة, سحب أمامي عكسي, underhand
+exa_cable_chest_press = ضغط صدر بالكابل, ضغط واقف, كابل صدر
+exa_cable_reverse_fly = كتف خلفي, رفرفة خلفية, فراشة عكسية, كروس عكسي
+exa_cable_y_raise = رفع y, رفع واي, y raise, كتف
+exa_cable_upright_row = سحب للذقن, سحب للصدر, أبرايت رو, upright row
+
+# Free weights
+exa_barbell_bench_press = بنش, بنش برس, ضغط صدر, بنش مستوي, bench
+exa_barbell_back_squat = سكوات, اسكوات, سكوات خلفي, قرفصاء, squat
+exa_barbell_deadlift = ديدلفت, ديد لفت, رفعة ميتة, الرفعة الميتة, deadlift
+exa_barbell_overhead_press = ميليتري برس, ضغط عسكري, ضغط أكتاف, أوفرهيد برس, ohp
+exa_skull_crusher = سكل كرشر, ضغط فرنسي, فرنسي, ترايسبس مستلقي
+exa_barbell_hip_thrust = هيب ثرست, دفع الورك, جسر, أرداف, glute bridge
+exa_bulgarian_split_squat = بلغاري, سكوات بلغاري, سبليت سكوات, طعن بقدم مرفوعة
+exa_kettlebell_swing = كيتل بيل, كتلبل, أرجحة, سوينغ, swing
+exa_smith_reverse_lunge = طعن خلفي, لانجز, لنجز, سميث
+exa_landmine_squat = لاندماين, سكوات لاندماين, غوبلت, landmine
+exa_overhead_squat = أوفرهيد سكوات, سكوات فوق الرأس, ohs
+exa_thruster = ثراستر, ثرستر, ثراسترز, thruster
+exa_push_press = بوش برس, بوش بريس, ضغط بالدفع, push press
+exa_power_clean = كلين, باور كلين, رفع أثقال أولمبي, clean
+exa_hang_clean = كلين, هانج كلين, هانغ كلين, رفع أثقال أولمبي
+exa_power_snatch = سناتش, خطف, باور سناتش, رفع أثقال أولمبي
+exa_dumbbell_floor_press = فلور برس, ضغط أرضي, ضغط على الأرض, floor press
+exa_incline_dumbbell_fly = تفتيح مائل, تفتيح عالي, صدر علوي, incline fly
+exa_walking_lunge = لانجز, طعن بالمشي, طعن متحرك, لنجز مشي
+exa_dumbbell_snatch = سناتش, خطف بالدمبل, سناتش بيد واحدة, db snatch
+exa_kettlebell_high_pull = سحب عالي, سومو هاي بول, كيتل بيل, high pull
+
+# Bodyweight and calisthenics
+exa_push_up = ضغط, ضغطات, تمرين الضغط, بوش اب, push up
+exa_pull_up = عقلة, العقلة, عقل, بول اب, pull up
+exa_parallel_bar_dip = ديبس, غطس, متوازي, متوازيين, dips
+exa_burpee = بيربي, بربي, بيربيز, burpee
+exa_mountain_climber = ماونتن كلايمبر, متسلق الجبال, متسلق, climbers
+exa_plank = بلانك, البلانك, لوح, ثبات البطن, plank
+exa_farmers_carry = مشية المزارع, فارمر ووك, حمل الدمبل, farmer walk
+exa_archer_push_up = ضغط الرامي, رامي, آرتشر, archer
+exa_ring_dip = حلقات, ديبس حلقات, غطس, rings
+exa_neutral_grip_pull_up = عقلة محايدة, قبضة متوازية, عقلة هامر, عقلة
+exa_suspension_row = trx, تي ار اكس, حبال التعليق, تجديف حلقات
+exa_sissy_squat = سيسي, سيسي سكوات, sissy
+exa_toes_to_bar = توز تو بار, t2b, toes to bar, القدمين للبار
+exa_ghd_sit_up = ghd, جي اتش دي, سيت اب, بطن
+
+# Conditioning and HIIT
+exa_jump_rope = نط الحبل, حبل, قفز بالحبل, نط, دبل اندر, skipping
+exa_jumping_jack = جامبينغ جاك, جمبنج جاك, قفز مفتوح, jumping jacks
+exa_high_knees = رفع الركب, جري في المكان, هاي نيز, ركب عالية
+exa_butt_kicks = بت كيكس, ركل المؤخرة, الكعب للأرداف, كعب
+exa_box_jump = بوكس جمب, صندوق, قفز على الصندوق, بلايومتريك
+exa_tuck_jump = تك جمب, قفز مع ضم الركب, قفزة الركبتين
+exa_skater_jump = متزلج, سكيتر, قفز جانبي, قفزات جانبية
+exa_bear_crawl = زحف, مشية الدب, دب, bear crawl
+exa_shadow_boxing = ملاكمة, بوكس, لكمات, شادو بوكسينغ, ملاكمة وهمية
+exa_step_aerobics = ستيب, ايروبيك, ايروبكس, صعود ونزول
+exa_battle_ropes = حبال, باتل روب, حبال المعركة, موجات, battle ropes
+exa_sled_push = زلاجة, سليد, براولر, prowler, دفع
+exa_sled_drag = زلاجة, سليد, سحب الزلاجة, سحب للخلف
+exa_wall_ball = وول بول, كرة طبية, رمي الكرة على الحائط, wall ball
+exa_medicine_ball_slam = سلام بول, ضرب الكرة بالأرض, كرة طبية, slam ball
+exa_medicine_ball_rotational_throw = رمي جانبي, رمي دوراني, كرة طبية, دوران
+exa_sandbag_carry = كيس رمل, ساندباج, ساندباغ, حمل الكيس
+
+# Stretching, mobility and foam rolling
+exa_ankle_dorsiflexion_mobilization = مرونة الكاحل, حركية الكاحل, كاحل, الركبة للحائط
+exa_hip_90_90 = 90 90, مرونة الورك, حركية الورك, ورك
+exa_deep_squat_hold = قرفصاء, سكوات عميق, جلسة القرفصاء, سكوات آسيوي
+exa_hip_cars = دوائر الورك, تدوير الورك, دوران الورك, cars
+exa_shoulder_cars = دوائر الكتف, تدوير الكتف, تدوير الذراعين, cars
+exa_thread_the_needle = الخيط والإبرة, دوران صدري, لف أعلى الظهر
+exa_cobra_stretch = كوبرا, الكلب المتجه للأعلى, إطالة البطن
+exa_downward_dog = الكلب المتجه للأسفل, داون دوغ, يوغا, الكلب
+exa_standing_quad_stretch = إطالة الفخذ الأمامي, إطالة الفخذ, إطالة كوادز
+exa_lying_spinal_twist = لف الظهر, لف العمود الفقري, التواء, إطالة الظهر
+exa_figure_four_stretch = الرقم 4, العضلة الكمثرية, إطالة الأرداف, figure 4
+exa_wrist_mobility = إطالة الرسغ, إحماء الرسغين, معصم, رسغ
+exa_foam_roll_quads = فوم رولر, رولر, أسطوانة, تدليك ذاتي, تحرير اللفافة, مساج
+exa_foam_roll_hamstrings = فوم رولر, رولر, أسطوانة, تدليك ذاتي, تحرير اللفافة, مساج
+exa_foam_roll_calves = فوم رولر, رولر, أسطوانة, تدليك ذاتي, تحرير اللفافة, مساج
+exa_foam_roll_glutes = فوم رولر, رولر, أسطوانة, تدليك ذاتي, تحرير اللفافة, العضلة الكمثرية
+exa_foam_roll_it_band = فوم رولر, رولر, أسطوانة, تدليك ذاتي, تحرير اللفافة, الشريط الحرقفي, itb
+exa_foam_roll_upper_back = فوم رولر, رولر, أسطوانة, تدليك ذاتي, تحرير اللفافة, الظهر العلوي
+exa_foam_roll_lats = فوم رولر, رولر, أسطوانة, تدليك ذاتي, تحرير اللفافة, مساج

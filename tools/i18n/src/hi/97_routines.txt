@@ -14,3 +14,7 @@ routine_glutes = ग्लूट्स
 routine_core = कोर और एब्स
 routine_mobility = मोबिलिटी और स्ट्रेचिंग
 routine_cardio_mix = कार्डियो मशीनें
+
+# 1.6.0
+routine_foam_rolling = फ़ोम रोलर रिकवरी
+routine_hiit = HIIT, बिना उपकरण

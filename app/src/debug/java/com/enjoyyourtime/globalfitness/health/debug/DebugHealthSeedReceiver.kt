@@ -117,7 +117,12 @@ class DebugHealthSeedReceiver : BroadcastReceiver() {
                 TAG,
                 line(r, "\"${r.name}\" meal=${r.mealType} energy=${r.energy?.inKilocalories} kcal protein=${r.protein?.inGrams} g " +
                     "carbs=${r.totalCarbohydrate?.inGrams} g sugar=${r.sugar?.inGrams} g fat=${r.totalFat?.inGrams} g " +
-                    "satFat=${r.saturatedFat?.inGrams} g fiber=${r.dietaryFiber?.inGrams} g sodium=${r.sodium?.inGrams} g"),
+                    "satFat=${r.saturatedFat?.inGrams} g fiber=${r.dietaryFiber?.inGrams} g sodium=${r.sodium?.inGrams} g " +
+                    "mono=${r.monounsaturatedFat?.inGrams} g poly=${r.polyunsaturatedFat?.inGrams} g cholesterol=${r.cholesterol?.inMilligrams} mg " +
+                    "potassium=${r.potassium?.inMilligrams} mg calcium=${r.calcium?.inMilligrams} mg iron=${r.iron?.inMilligrams} mg " +
+                    "magnesium=${r.magnesium?.inMilligrams} mg zinc=${r.zinc?.inMilligrams} mg vitA=${r.vitaminA?.inMicrograms} µg " +
+                    "vitC=${r.vitaminC?.inMilligrams} mg vitD=${r.vitaminD?.inMicrograms} µg vitE=${r.vitaminE?.inMilligrams} mg " +
+                    "vitB12=${r.vitaminB12?.inMicrograms} µg folate=${r.folate?.inMicrograms} µg"),
             )
         }
     }

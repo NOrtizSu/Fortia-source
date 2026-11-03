@@ -14,7 +14,7 @@ import kotlin.math.sqrt
  * Places the torso for a hinge holding a weight at [bar] with nearly straight arms: the spine
  * leans [lean] degrees and the shoulders sit [ahead] metres in front of the hands.
  */
-private fun FrameBuilder.hingeTo(bar: V3, lean: Float, ahead: Float, handZ: Float) {
+internal fun FrameBuilder.hingeTo(bar: V3, lean: Float, ahead: Float, handZ: Float) {
     val basis = Basis.UPRIGHT.pitch(lean)
     val lateral = abs(handZ - BodySize.SHOULDER_HALF)
     val shoulderY = bar.y + armReach(lateral, ahead, straightness = 0.985f)

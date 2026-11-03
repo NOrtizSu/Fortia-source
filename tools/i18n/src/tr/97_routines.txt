@@ -13,4 +13,6 @@ routine_arms = Kol
 routine_glutes = Kalça
 routine_core = Core ve karın
 routine_mobility = Mobilite ve germe
+routine_foam_rolling = Foam roller ile toparlanma
+routine_hiit = Ekipmansız HIIT
 routine_cardio_mix = Kardiyo makineleri

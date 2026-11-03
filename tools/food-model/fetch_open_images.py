@@ -85,6 +85,10 @@ def main():
     os.makedirs(img_dir, exist_ok=True)
     asg = pd.read_parquet(os.path.join(oi, "assign.parquet"))
     asg = asg.sample(frac=1.0, random_state=11)
+    # photos already on disk first (a rerun with a higher cap or a changed class list keeps the earlier photos)
+    have = {os.path.splitext(f)[0] for f in os.listdir(img_dir)}
+    asg["_have"] = asg.ImageID.isin(have)
+    asg = asg.sort_values("_have", ascending=False, kind="stable").drop(columns="_have")
     caps = asg.cls.map(lambda c: a.not_food if c == NOT_FOOD else a.cap)
     asg = asg[asg.groupby("cls").cumcount() < caps]
     print(len(asg), "photos to fetch", flush=True)

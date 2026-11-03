@@ -249,3 +249,93 @@ ex_cross_body_shoulder_stretch = Alongamento do ombro cruzado
 ex_triceps_stretch = Alongamento do tríceps atrás da cabeça
 ex_shoulder_dislocate = Dislocates de ombro com banda
 ex_neck_stretch = Alongamento lateral do pescoço
+
+# Machines
+ex_iso_lateral_chest_press = Supino isolateral (discos)
+ex_high_row_machine = High row na máquina
+ex_t_bar_row_machine = Remada em barra T com apoio de peito
+ex_standing_leg_curl_machine = Curl femoral em pé
+
+# Cable
+ex_reverse_grip_lat_pulldown = Puxada à frente pega supinada
+ex_cable_chest_press = Supino em pé na polia
+ex_cable_reverse_fly = Crucifixo invertido na polia
+ex_cable_y_raise = Elevação em Y na polia
+ex_cable_upright_row = Remada alta na polia
+
+# Smith machine
+ex_smith_reverse_lunge = Afundos inversos na Smith
+
+# Barbell and EZ bar
+ex_landmine_squat = Agachamento landmine
+ex_overhead_squat = Agachamento overhead
+ex_thruster = Thruster com barra
+ex_push_press = Push press
+ex_power_clean = Power clean
+ex_hang_clean = Hang clean
+ex_power_snatch = Power snatch
+
+# Dumbbells
+ex_dumbbell_floor_press = Supino no chão com halteres
+ex_incline_dumbbell_fly = Crucifixo inclinado com halteres
+ex_walking_lunge = Afundos a caminhar com halteres
+ex_dumbbell_snatch = Snatch com halter
+
+# Kettlebells
+ex_kettlebell_high_pull = High pull com kettlebell
+
+# Bodyweight
+ex_archer_push_up = Flexões arqueiro
+ex_ring_dip = Mergulhos nas argolas
+ex_neutral_grip_pull_up = Elevações pega neutra
+ex_suspension_row = Remada no TRX
+ex_sissy_squat = Agachamento sissy
+ex_toes_to_bar = Pés à barra (toes-to-bar)
+ex_ghd_sit_up = Abdominais na GHD
+
+# Conditioning and HIIT
+ex_jump_rope = Saltar à corda
+ex_jumping_jack = Polichinelos (jumping jacks)
+ex_high_knees = Joelhos altos (skipping)
+ex_butt_kicks = Calcanhares aos glúteos
+ex_box_jump = Salto para a caixa
+ex_tuck_jump = Salto com joelhos ao peito
+ex_skater_jump = Saltos de patinador
+ex_bear_crawl = Bear crawl (passo do urso)
+ex_shadow_boxing = Boxe de sombra
+ex_step_aerobics = Step aeróbico
+ex_battle_ropes = Cordas de batalha (battle ropes)
+ex_sled_push = Empurrar o trenó
+ex_sled_drag = Arrastar o trenó para trás
+
+# Medicine ball and sandbag
+ex_wall_ball = Wall ball (lançamento à parede)
+ex_medicine_ball_slam = Slam com bola medicinal
+ex_medicine_ball_rotational_throw = Lançamento rotacional com bola medicinal
+ex_sandbag_carry = Caminhada com saco de areia abraçado
+
+# Stretching and mobility: logged by time, not training volume (no hard sets, recovery or records)
+ex_ankle_dorsiflexion_mobilization = Mobilidade do tornozelo com joelho à parede
+ex_hip_90_90 = Transições de anca 90/90
+ex_deep_squat_hold = Agachamento profundo estático
+ex_hip_cars = Círculos de anca controlados (CARs)
+ex_shoulder_cars = Círculos de ombro controlados (CARs)
+ex_thread_the_needle = Enfiar a agulha
+ex_cobra_stretch = Postura da cobra
+ex_downward_dog = Cão a olhar para baixo
+ex_standing_quad_stretch = Alongamento do quadríceps em pé
+ex_lying_spinal_twist = Torção da coluna deitado
+ex_figure_four_stretch = Alongamento do glúteo em figura de 4
+ex_wrist_mobility = Mobilidade dos pulsos
+ex_foam_roll_quads = Foam roller: quadríceps
+ex_foam_roll_hamstrings = Foam roller: isquiotibiais
+ex_foam_roll_calves = Foam roller: gémeos
+ex_foam_roll_glutes = Foam roller: glúteos
+ex_foam_roll_it_band = Foam roller: banda iliotibial (lateral da coxa)
+ex_foam_roll_upper_back = Foam roller: parte superior das costas
+ex_foam_roll_lats = Foam roller: dorsais
+
+# Cardio machines
+ex_treadmill_walk = Caminhada na passadeira
+ex_incline_treadmill_walk = Caminhada na passadeira inclinada
+ex_curved_treadmill = Passadeira curva (sem motor)

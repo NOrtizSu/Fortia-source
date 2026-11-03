@@ -34,3 +34,7 @@ ex_martial_arts = 武术
 # Others
 ex_climbing = 攀岩
 ex_golf = 高尔夫
+
+# Added in 1.6.0
+ex_nordic_walking = 北欧式健走
+ex_stair_climbing = 爬楼梯

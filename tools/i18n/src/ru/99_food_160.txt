@@ -1,0 +1,85 @@
+# Comida in 1.6.0: more nutrients per food, variants of a dish, changing a dish's ingredients when logging it,
+# several foods in one photo and the photo's grams suggestion. The rest of the food log is in 99_food.txt.
+
+# Units of the new values ("350 mg", "2.4 µg"); the unit alone as a field suffix
+unit_mg = мг
+unit_ug = мкг
+value_mg = %1$s мг
+value_ug = %1$s мкг
+
+# The values beyond the nutrition label (food tables give them; product labels rarely do)
+foodlog_nutrient_mono_fat = Мононенасыщенные жиры
+foodlog_nutrient_poly_fat = Полиненасыщенные жиры
+foodlog_nutrient_cholesterol = Холестерин
+foodlog_nutrient_potassium = Калий
+foodlog_nutrient_calcium = Кальций
+foodlog_nutrient_iron = Железо
+foodlog_nutrient_magnesium = Магний
+foodlog_nutrient_zinc = Цинк
+foodlog_nutrient_vit_a = Витамин A
+foodlog_nutrient_vit_c = Витамин C
+foodlog_nutrient_vit_d = Витамин D
+foodlog_nutrient_vit_e = Витамин E
+foodlog_nutrient_vit_b12 = Витамин B12
+foodlog_nutrient_folate = Фолаты (B9)
+# Small headings of those values (day summary under "More", the food's values, the manual form)
+foodlog_nutrients_fats = Жиры подробно
+foodlog_nutrients_minerals = Минералы
+foodlog_nutrients_vitamins = Витамины
+# A day total that adds up only the foods that have that value ("≥ 45 g"), and the line that explains the sign
+foodlog_partial_value = ≥ %1$s
+foodlog_partial_note = ≥: не у всех продуктов есть это значение, поэтому итог не меньше указанного.
+# The manual form: the optional values beyond the label
+foodlog_more_nutrients = Другие нутриенты
+foodlog_more_nutrients_text = Необязательно: только если вы их знаете.
+
+# Variants of a dish (paella: seafood, mixed…): a heading and the chip of the usual one (gender-neutral in Spanish)
+foodlog_variants = Вариант
+foodlog_variant_typical = Обычный
+
+# The ingredients of a dish on the confirm page: closed it says what changed ("Changed: Olive oil 35 g, Bread 0 g")
+foodlog_ingredients = Ингредиенты
+foodlog_ingredients_adjust = Настроить
+foodlog_ingredients_usual = Обычный рецепт
+foodlog_ingredients_changed = Изменено: %1$s
+foodlog_ingredients_text = Измените то, что было в вашей тарелке (больше или меньше масла, без хлеба…): значения пересчитаются.
+# An ingredient with its amount ("Olive oil 35 g"); under its name, its usual amount for the amount logged
+foodlog_label_amount = %1$s %2$s
+foodlog_ingredient_usual = Обычно %1$s
+# The pencil button next to an ingredient's amount (TalkBack): type another amount of it
+foodlog_ingredient_type = Ввести количество: %1$s
+# The weight of the dish once its ingredients changed ("Total: 368 g")
+foodlog_total_weight = Итого: %1$s
+# How much of an ingredient (chips: none, half, normal, one and a half, double); TalkBack reads the _desc ones
+foodlog_level_none = Нет
+foodlog_level_half = ½
+foodlog_level_normal = Норма
+foodlog_level_one_half = 1½
+foodlog_level_double = ×2
+foodlog_level_half_desc = Половина
+foodlog_level_one_half_desc = В полтора раза больше
+foodlog_level_double_desc = Вдвое больше
+# A logged dish whose ingredients were changed, in the day's list ("Plate · 368 g · Adjusted")
+foodlog_entry_adjusted = %1$s · Изменено
+
+# The photo's grams suggestion next to the amount: a suggestion only, the user confirms or changes it
+foodlog_estimated = ≈ %1$s (оценка)
+foodlog_estimated_text = Оценено по фото. Проверьте и при необходимости измените.
+
+# Several foods found on one plate: one card each (its crop, three suggestions, "Other…", its amount), then "Add all (3)"
+foodlog_plate_title{one} = %1$d продукт на тарелке
+foodlog_plate_title{few} = %1$d продукта на тарелке
+foodlog_plate_title{many} = %1$d продуктов на тарелке
+foodlog_plate_title{other} = %1$d продукта на тарелке
+foodlog_plate_text = Проверьте каждый: что это и сколько. Снимите отметку с того, что не хотите добавлять.
+foodlog_plate_item_desc = Продукт %1$d с фото
+foodlog_plate_unknown = Что это?
+foodlog_plate_unknown_text = Не распознано: выберите через «Другое…».
+foodlog_plate_item_added = Добавлено
+foodlog_plate_add_all = Добавить все (%1$d)
+# The whole photo as one dish (today's five suggestions), and back to the foods one by one (always 2 or more)
+foodlog_plate_as_one = Считать одним блюдом
+foodlog_plate_as_items{one} = Показать %1$d продукт по отдельности
+foodlog_plate_as_items{few} = Показать %1$d продукта по отдельности
+foodlog_plate_as_items{many} = Показать %1$d продуктов по отдельности
+foodlog_plate_as_items{other} = Показать %1$d продукта по отдельности

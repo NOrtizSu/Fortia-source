@@ -1,0 +1,125 @@
+# Search words of built-in exercises and sports: exa_<catalog id> (training/catalog/ExerciseAliases.kt). Never shown:
+# the exercise search also looks in them, so an exercise is found by the other words people use for it (gym slang,
+# brand names, verbs, the singular or plural). Comma-separated, lower case is fine; translate the idea, not word for word.
+
+# Walking, running and the other activities
+exa_outdoor_walk = ходить, прогулка, гулять, пешком, шаги, быстрая ходьба, спортивная ходьба, walking
+exa_hiking = поход, хайкинг, треккинг, горы, поход в горы, туризм
+exa_nordic_walking = скандинавка, нордическая ходьба, ходьба с палками, палки, nordic walking
+exa_stair_climbing = лестница, ступеньки, ступени, по лестнице, этажи, подниматься по лестнице
+exa_outdoor_run = бег, бегать, пробежка, джоггинг, бег трусцой, running
+exa_outdoor_cycling = велосипед, велик, вело, велопрогулка, шоссейник, горный велосипед, мтб
+exa_swimming = плавать, бассейн, плаванье, заплыв, кроль
+
+# Cardio machines
+exa_treadmill = бег, бегать, дорожка, беговая, бег трусцой, бег на дорожке
+exa_treadmill_walk = ходьба, ходить, дорожка, беговая, прогулка, шаги
+exa_incline_treadmill_walk = ходьба в гору, в горку, наклон, уклон, подъем, 12-3-30
+exa_curved_treadmill = механическая дорожка, изогнутая дорожка, дорожка без мотора, assault runner, спринт, бег
+exa_stationary_bike = велосипед, велик, вело, велотренажер, кардио
+exa_spin_bike = спиннинг, сайкл, сайклинг, велосипед, вело, групповой сайкл
+exa_recumbent_bike = велосипед, вело, лежачий велотренажер, велотренажер со спинкой
+exa_air_bike = эйрбайк, assault bike, велосипед с вентилятором, фан байк, echo bike
+exa_elliptical = эллипс, орбитрек, эллипсоид, кросс-тренажер
+exa_rowing_machine = гребля, грести, гребец, концепт, эргометр
+exa_stair_climber = лестница, ступеньки, stairmaster, стэйрмастер, лестничный тренажер
+exa_ski_erg = лыжи, скиерг, skierg, лыжный эргометр
+
+# Machines and cables
+exa_pec_deck = бабочка, батерфляй, сведение рук в тренажере, пек дек, грудь
+exa_reverse_pec_deck = задняя дельта, задние дельты, разведение рук в тренажере, реверс бабочка
+exa_leg_press_machine = платформа, жим платформы, жим ногами 45, ноги
+exa_hip_abductor_machine = отведение, разведение ног, средняя ягодичная, внешняя сторона бедра
+exa_hip_adductor_machine = приведение, сведение ног, внутренняя сторона бедра, приводящие
+exa_iso_lateral_chest_press = хаммер, hammer strength, рычажный жим, жим от груди с блинами
+exa_high_row_machine = хаммер, hammer strength, рычажная тяга, тяга сверху
+exa_t_bar_row_machine = т-гриф, тренажер т-гриф, тяга с упором грудью, спина
+exa_standing_leg_curl_machine = сгибание ноги, сгибание стоя, бицепс бедра, задняя поверхность бедра
+exa_lat_pulldown_machine = верхний блок, вертикальная тяга, тяга к груди, широчайшие, тяга сверху
+exa_seated_cable_row = нижний блок, горизонтальная тяга, тяга к поясу, гребля сидя
+exa_cable_crossover = кроссовер, сведение в кроссовере, сведение рук, грудь
+exa_face_pull = фейс пул, face pull, тяга каната к лицу, задняя дельта
+exa_reverse_grip_lat_pulldown = обратный хват, супинированный хват, верхний блок обратным хватом, тяга к груди
+exa_cable_chest_press = жим в кроссовере, жим стоя, жим на блоках, грудь
+exa_cable_reverse_fly = обратная разводка, задняя дельта, разведение в кроссовере, обратный кроссовер
+exa_cable_y_raise = y raise, y-подъем, буква y, игрек, плечи
+exa_cable_upright_row = протяжка, тяга к подбородку, трапеции, дельты
+
+# Free weights
+exa_barbell_bench_press = жим лежа, жим, бенч, жим штанги лежа, грудь
+exa_barbell_back_squat = присед, приседания, приседания со штангой на спине, сквот, ноги
+exa_barbell_deadlift = становая, становуха, дэдлифт, классическая тяга
+exa_barbell_overhead_press = жим стоя, жим над головой, жим штанги стоя, военный жим, ohp
+exa_skull_crusher = французский, французский жим лежа, разгибание рук лежа, трицепс
+exa_barbell_hip_thrust = хип траст, хиптраст, подъем таза, ягодицы
+exa_bulgarian_split_squat = болгарка, болгарские, сплит присед, выпады с ногой на скамье
+exa_kettlebell_swing = свинг, свинги, kb swing, гиря
+exa_smith_reverse_lunge = выпады назад, обратные выпады, смит, выпады в смите
+exa_landmine_squat = ландмайн, landmine, присед с грифом, гоблет ландмайн
+exa_overhead_squat = оверхед, ohs, присед над головой, кроссфит
+exa_thruster = трастеры, thruster, присед с жимом, кроссфит
+exa_push_press = швунг, пуш пресс, push press, жим с толчком ногами
+exa_power_clean = взятие на грудь, пауэр клин, power clean, тяжелая атлетика, кроссфит
+exa_hang_clean = взятие на грудь, взятие с виса, хэнг клин, тяжелая атлетика, кроссфит
+exa_power_snatch = рывок, рывок штанги, пауэр снэтч, тяжелая атлетика, кроссфит
+exa_dumbbell_floor_press = жим на полу, флор пресс, floor press, трицепс
+exa_incline_dumbbell_fly = разводка на наклонной, разводка под углом, верх груди, грудь
+exa_walking_lunge = выпады в ходьбе, шагающие выпады, выпады шагами, ноги
+exa_dumbbell_snatch = рывок одной рукой, снэтч, db snatch, кроссфит
+exa_kettlebell_high_pull = протяжка, протяжка сумо, high pull, гиря
+
+# Bodyweight and calisthenics
+exa_push_up = отжимание, отжиматься, отжимания от пола, пушап, грудь
+exa_pull_up = подтягивание, подтягиваться, турник, перекладина, пулап
+exa_parallel_bar_dip = брусья, дипсы, дипы, трицепс
+exa_burpee = берпи, бурпи, burpee, кроссфит
+exa_mountain_climber = альпинист, бег в упоре лежа, климберы, mountain climber
+exa_plank = планка на локтях, планка на предплечьях, статика, кор
+exa_farmers_carry = фермерская прогулка, фермер, переноска гантелей, хват, farmer walk
+exa_archer_push_up = лучник, отжимания лучником, archer
+exa_ring_dip = кольца, гимнастические кольца, брусья на кольцах, дипсы на кольцах
+exa_neutral_grip_pull_up = нейтральный хват, параллельный хват, подтягивания параллельным хватом, турник
+exa_suspension_row = trx, петли, тяга в петлях, тяга на кольцах
+exa_sissy_squat = сисси, sissy, сисси присед, квадрицепс
+exa_toes_to_bar = t2b, toes to bar, носки к турнику, ноги к перекладине
+exa_ghd_sit_up = ghd, гхд, глют хам, пресс, кроссфит
+
+# Conditioning and HIIT
+exa_jump_rope = скакалка, прыгать на скакалке, двойные прыжки, двойные, кардио
+exa_jumping_jack = джампинг джек, звездочка, прыжки звездочка, ноги вместе ноги врозь, разминка
+exa_high_knees = бег на месте, колени вверх, высоко колени, скиппинг, разминка
+exa_butt_kicks = захлест, захлест голени, пятки к ягодицам, разминка
+exa_box_jump = тумба, прыжки на тумбу, бокс джамп, прыжки на ящик, плиометрика
+exa_tuck_jump = колени к груди, группировка, прыжки в группировке, плиометрика
+exa_skater_jump = конькобежец, скейтер, прыжки в стороны, боковые прыжки
+exa_bear_crawl = медведь, медвежья походка, медвежий шаг, ползание, ходьба на четвереньках
+exa_shadow_boxing = бокс, удары, боксировать, шэдоу, кардио
+exa_step_aerobics = степ, степ-платформа, аэробика, степ класс
+exa_battle_ropes = канаты, канат, волны, батл ропс, battle ropes
+exa_sled_push = сани, салазки, проулер, prowler, толкать сани
+exa_sled_drag = сани, салазки, тянуть сани, ходьба спиной вперед
+exa_wall_ball = уолбол, волбол, медбол, броски в стену, кроссфит, wall ball
+exa_medicine_ball_slam = слэмбол, слэм, медбол, бросок в пол, slam ball
+exa_medicine_ball_rotational_throw = медбол, боковой бросок, бросок с поворотом, вращение корпуса
+exa_sandbag_carry = мешок, мешок с песком, сэндбэг, sandbag, переноска мешка
+
+# Stretching, mobility and foam rolling
+exa_ankle_dorsiflexion_mobilization = голеностоп, мобильность голеностопа, дорсифлексия, колено к стене
+exa_hip_90_90 = 90 90, 90/90, мобильность таза, тазобедренные, ротация бедра
+exa_deep_squat_hold = азиатский присед, корточки, на корточках, глубокий присед
+exa_hip_cars = cars, вращение бедра, круги коленом, суставная гимнастика, мобильность
+exa_shoulder_cars = cars, круги руками, вращение плечом, круги плечами, суставная гимнастика
+exa_thread_the_needle = нитка в иголку, иголка, скручивание на четвереньках, грудной отдел, йога
+exa_cobra_stretch = кобра, собака мордой вверх, прогиб, йога
+exa_downward_dog = собака, собака вниз, шванасана, йога
+exa_standing_quad_stretch = растяжка бедра, пятка к ягодице, передняя поверхность бедра, квадрицепс
+exa_lying_spinal_twist = скрутка, скрутка лежа, твист, поясница, йога
+exa_figure_four_stretch = четверка, грушевидная, грушевидная мышца, растяжка ягодицы
+exa_wrist_mobility = запястья, разминка запястий, растяжка запястий, кисти
+exa_foam_roll_quads = мфр, ролик, роллинг, самомассаж, миофасциальный релиз, фоам роллер
+exa_foam_roll_hamstrings = мфр, ролик, роллинг, самомассаж, миофасциальный релиз, фоам роллер
+exa_foam_roll_calves = мфр, ролик, роллинг, самомассаж, миофасциальный релиз, фоам роллер
+exa_foam_roll_glutes = мфр, ролик, роллинг, самомассаж, миофасциальный релиз, фоам роллер, грушевидная
+exa_foam_roll_it_band = мфр, ролик, роллинг, самомассаж, миофасциальный релиз, фоам роллер, ит тракт
+exa_foam_roll_upper_back = мфр, ролик, роллинг, самомассаж, миофасциальный релиз, фоам роллер, грудной отдел
+exa_foam_roll_lats = мфр, ролик, роллинг, самомассаж, миофасциальный релиз, фоам роллер

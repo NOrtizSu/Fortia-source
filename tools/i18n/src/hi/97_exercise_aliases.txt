@@ -1,0 +1,125 @@
+# Search words of built-in exercises and sports: exa_<catalog id> (training/catalog/ExerciseAliases.kt). Never shown:
+# the exercise search also looks in them, so an exercise is found by the other words people use for it (gym slang,
+# brand names, verbs, the singular or plural). Comma-separated, lower case is fine; translate the idea, not word for word.
+
+# Walking, running and the other activities
+exa_outdoor_walk = वॉक, वॉकिंग, सैर, टहलना, चलना, पैदल, ब्रिस्क वॉक, walk
+exa_hiking = ट्रेकिंग, ट्रेक, हाइक, पहाड़ पर चलना, पहाड़ी रास्ता, hiking
+exa_nordic_walking = नॉर्डिक वॉक, पोल वॉकिंग, पोल, छड़ी लेकर चलना, nordic walking
+exa_stair_climbing = सीढ़ी, सीढ़ियां, सीढ़ियां चढ़ना, स्टेयर्स, स्टेप्स
+exa_outdoor_run = दौड़, दौड़ना, रनिंग, जॉगिंग, रन, running
+exa_outdoor_cycling = साइकिल, साइकिलिंग, साइकिल चलाना, बाइक, राइड, mtb
+exa_swimming = तैरना, स्विमिंग, स्विम, पूल, लैप्स
+
+# Cardio machines
+exa_treadmill = रनिंग मशीन, दौड़, रनिंग, जॉगिंग, treadmill
+exa_treadmill_walk = वॉक, वॉकिंग, चलना, रनिंग मशीन, treadmill
+exa_incline_treadmill_walk = इनक्लाइन वॉक, चढ़ाई, अपहिल वॉक, ढलान, 12-3-30
+exa_curved_treadmill = मैनुअल ट्रेडमिल, बिना मोटर वाली ट्रेडमिल, कर्व्ड, स्प्रिंट, assault runner
+exa_stationary_bike = साइकिल, एक्सरसाइज़ साइकिल, जिम साइकिल, बाइक, साइकिलिंग
+exa_spin_bike = स्पिनिंग, स्पिन क्लास, इंडोर साइकिलिंग, साइकिल, बाइक
+exa_recumbent_bike = साइकिल, बाइक, बैक सपोर्ट वाली साइकिल, सीटेड बाइक
+exa_air_bike = असॉल्ट बाइक, फ़ैन बाइक, एको बाइक, assault bike
+exa_elliptical = क्रॉस ट्रेनर, एलिप्टिकल, इलिप्टिकल ट्रेनर, cross trainer
+exa_rowing_machine = रोवर, रोइंग, रो, अर्ग, rower
+exa_stair_climber = स्टेयरमास्टर, स्टेपमिल, सीढ़ी मशीन, सीढ़ियां, stairmaster
+exa_ski_erg = स्कीअर्ग, स्की, skierg
+
+# Machines and cables
+exa_pec_deck = बटरफ़्लाई, फ़्लाई मशीन, चेस्ट फ़्लाई, पेक फ़्लाई
+exa_reverse_pec_deck = रियर डेल्ट मशीन, रिवर्स फ़्लाई, रियर डेल्ट
+exa_leg_press_machine = लेग स्लेज, 45 डिग्री प्रेस, लेग प्रेस मशीन, leg press
+exa_hip_abductor_machine = आउटर थाई, बाहरी जांघ, एब्डक्शन, एब्डक्टर
+exa_hip_adductor_machine = इनर थाई, अंदरूनी जांघ, एडक्शन, एडक्टर
+exa_iso_lateral_chest_press = हैमर स्ट्रेंथ, हैमर, प्लेट लोडेड चेस्ट प्रेस, hammer strength
+exa_high_row_machine = हैमर स्ट्रेंथ, हैमर, हाई रो, hammer strength
+exa_t_bar_row_machine = टी-बार मशीन, टी बार, t bar
+exa_standing_leg_curl_machine = हैमस्ट्रिंग कर्ल, लेग कर्ल, खड़े होकर लेग कर्ल
+exa_lat_pulldown_machine = पुलडाउन, लैट पुल, लैट्स, बैक
+exa_seated_cable_row = लो रो, केबल रो, सीटेड रो, row
+exa_cable_crossover = क्रॉसओवर, केबल फ़्लाई, cable fly
+exa_face_pull = रोप फ़ेस पुल, रोप पुल, face pull
+exa_reverse_grip_lat_pulldown = अंडरहैंड पुलडाउन, सुपिनेटेड पुलडाउन, रिवर्स पुलडाउन
+exa_cable_chest_press = स्टैंडिंग चेस्ट प्रेस, केबल प्रेस, चेस्ट प्रेस
+exa_cable_reverse_fly = रियर डेल्ट केबल फ़्लाई, रिवर्स क्रॉसओवर, रियर डेल्ट
+exa_cable_y_raise = वाई रेज़, y रेज़, y raise
+exa_cable_upright_row = अपराइट रो, upright row
+
+# Free weights
+exa_barbell_bench_press = बेंच, बेंच प्रेस, चेस्ट प्रेस, bench press
+exa_barbell_back_squat = स्क्वाट, बैक स्क्वाट, squat
+exa_barbell_deadlift = कन्वेंशनल डेडलिफ़्ट, डेडलिफ़्ट, deadlift
+exa_barbell_overhead_press = मिलिट्री प्रेस, ohp, ओएचपी, शोल्डर प्रेस
+exa_skull_crusher = लाइंग ट्राइसेप्स एक्सटेंशन, फ़्रेंच प्रेस, skull crusher
+exa_barbell_hip_thrust = ग्लूट ब्रिज, हिप थ्रस्ट, hip thrust
+exa_bulgarian_split_squat = स्प्लिट स्क्वाट, बल्गेरियन, रियर फ़ुट एलिवेटेड
+exa_kettlebell_swing = kb स्विंग, स्विंग, kettlebell swing
+exa_smith_reverse_lunge = रिवर्स लंज, लंजेस, lunge
+exa_landmine_squat = लैंडमाइन गॉब्लेट स्क्वाट, लैंडमाइन, landmine
+exa_overhead_squat = ohs, ओवरहेड स्क्वाट, overhead squat
+exa_thruster = थ्रस्टर्स, थ्रस्टर, thruster
+exa_push_press = लेग ड्राइव ओवरहेड प्रेस, पुश प्रेस, push press
+exa_power_clean = क्लीन, ओलंपिक लिफ़्टिंग, वेटलिफ़्टिंग, clean
+exa_hang_clean = क्लीन, ओलंपिक लिफ़्टिंग, वेटलिफ़्टिंग, clean
+exa_power_snatch = स्नैच, ओलंपिक लिफ़्टिंग, वेटलिफ़्टिंग, snatch
+exa_dumbbell_floor_press = फ़्लोर प्रेस, ज़मीन पर प्रेस, floor press
+exa_incline_dumbbell_fly = इनक्लाइन फ़्लाई, अपर चेस्ट फ़्लाई, incline fly
+exa_walking_lunge = वॉकिंग लंजेस, लंज वॉक, चलते हुए लंज
+exa_dumbbell_snatch = db स्नैच, वन आर्म स्नैच, स्नैच
+exa_kettlebell_high_pull = सूमो हाई पुल, हाई पुल, high pull
+
+# Bodyweight and calisthenics
+exa_push_up = पुशअप, प्रेस-अप, push up, pushup
+exa_pull_up = पुलअप, चिन, pull up
+exa_parallel_bar_dip = डिप्स, पैरलल बार, dips
+exa_burpee = बर्पीज़, स्क्वाट थ्रस्ट, burpee
+exa_mountain_climber = क्लाइंबर्स, माउंटेन क्लाइंबर्स, mountain climber
+exa_plank = फ़्रंट प्लैंक, फ़ोरआर्म प्लैंक, plank
+exa_farmers_carry = फ़ार्मर्स वॉक, फ़ार्मर वॉक, farmer walk
+exa_archer_push_up = आर्चर, archer push up
+exa_ring_dip = रिंग्स, rings
+exa_neutral_grip_pull_up = हैमर ग्रिप पुल-अप, पैरलल ग्रिप, न्यूट्रल ग्रिप
+exa_suspension_row = trx, टीआरएक्स, रिंग रो
+exa_sissy_squat = सिसी, sissy
+exa_toes_to_bar = t2b, toes to bar
+exa_ghd_sit_up = ग्लूट हैम डेवलपर, ghd
+
+# Conditioning and HIIT
+exa_jump_rope = स्किपिंग, रस्सी कूद, रस्सी, स्किपिंग रोप, डबल अंडर
+exa_jumping_jack = स्टार जंप, जंपिंग जैक्स, jumping jacks
+exa_high_knees = एक जगह दौड़ना, नी ड्राइव, high knees
+exa_butt_kicks = हील फ़्लिक्स, बट किक, butt kicks
+exa_box_jump = प्लायो बॉक्स, प्लायोमेट्रिक्स, box jump
+exa_tuck_jump = नी टक, tuck jump
+exa_skater_jump = स्केटर्स, लेटरल बाउंड, skater
+exa_bear_crawl = क्रॉल, रेंगना, bear crawl
+exa_shadow_boxing = बॉक्सिंग, पंच, मुक्के, shadow boxing
+exa_step_aerobics = स्टेप क्लास, स्टेप-अप, एरोबिक्स, step
+exa_battle_ropes = रोप्स, रोप वेव्स, battle ropes
+exa_sled_push = प्राउलर, स्लेज, prowler
+exa_sled_drag = स्लेज पुल, बैकवर्ड ड्रैग, स्लेज
+exa_wall_ball = वॉल बॉल्स, मेडिसिन बॉल, wall ball
+exa_medicine_ball_slam = स्लैम बॉल, बॉल स्लैम, slam ball
+exa_medicine_ball_rotational_throw = साइड थ्रो, रोटेशनल थ्रो, मेडिसिन बॉल
+exa_sandbag_carry = सैंडबैग, रेत का बोरा, sandbag
+
+# Stretching, mobility and foam rolling
+exa_ankle_dorsiflexion_mobilization = एंकल मोबिलिटी, डॉर्सिफ़्लेक्शन, टखना, टखने की मोबिलिटी
+exa_hip_90_90 = 90 90, हिप मोबिलिटी, कूल्हे की मोबिलिटी
+exa_deep_squat_hold = स्क्वाट होल्ड, एशियन स्क्वाट, उकड़ू बैठना, मलासन
+exa_hip_cars = हिप सर्कल, कूल्हे घुमाना, cars
+exa_shoulder_cars = आर्म सर्कल, शोल्डर सर्कल, कंधे घुमाना, cars
+exa_thread_the_needle = थोरैसिक रोटेशन, ऊपरी पीठ का ट्विस्ट
+exa_cobra_stretch = भुजंगासन, कोबरा, अपवर्ड डॉग
+exa_downward_dog = अधोमुख श्वानासन, डाउन डॉग, योग
+exa_standing_quad_stretch = क्वाड स्ट्रेच, जांघ का स्ट्रेच, quad stretch
+exa_lying_spinal_twist = सुपाइन ट्विस्ट, स्पाइन ट्विस्ट, कमर का ट्विस्ट
+exa_figure_four_stretch = फ़िगर 4, पिरिफ़ॉर्मिस, figure 4
+exa_wrist_mobility = रिस्ट स्ट्रेच, कलाई का वार्म-अप, कलाई
+exa_foam_roll_quads = फ़ोम रोलिंग, रोलर, मायोफ़ेशियल रिलीज़, smr, सेल्फ़ मसाज, foam roller
+exa_foam_roll_hamstrings = फ़ोम रोलिंग, रोलर, मायोफ़ेशियल रिलीज़, smr, सेल्फ़ मसाज, foam roller
+exa_foam_roll_calves = फ़ोम रोलिंग, रोलर, मायोफ़ेशियल रिलीज़, smr, सेल्फ़ मसाज, foam roller
+exa_foam_roll_glutes = फ़ोम रोलिंग, रोलर, मायोफ़ेशियल रिलीज़, smr, पिरिफ़ॉर्मिस, foam roller
+exa_foam_roll_it_band = फ़ोम रोलिंग, रोलर, मायोफ़ेशियल रिलीज़, smr, आईटी बैंड, itb
+exa_foam_roll_upper_back = फ़ोम रोलिंग, रोलर, मायोफ़ेशियल रिलीज़, smr, थोरैसिक, foam roller
+exa_foam_roll_lats = फ़ोम रोलिंग, रोलर, मायोफ़ेशियल रिलीज़, smr, सेल्फ़ मसाज, foam roller

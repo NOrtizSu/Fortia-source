@@ -1,181 +1,244 @@
-# Model card: Fortia food recognizer (`food_model.tflite`)
+# Model card: Fortia food models v2 (`food_model.tflite`, `food_detector.tflite`)
+
+Models for the Comida tab since 1.6.0. Everything runs on the phone, offline; the photo never leaves the device.
+The 1.5.0 model (EfficientNet-Lite0, 300 classes, 4.3 MB, test top-1 50 % / top-5 77 %) is replaced; its numbers
+are quoted below where they help the comparison.
 
 ## Summary
 
-| | |
-|---|---|
-| What | Image classifier: photo of a meal → probabilities over **300 foods/dishes + `_not_food`** (`classes.csv`, in output order) |
-| Use in the app | Comida tab: the top 5 are shown as suggestions; **the user always confirms** (or searches). Runs on the phone, offline; the photo never leaves the device. |
-| Architecture | EfficientNet-Lite0 (3.8 M parameters with this head), 224 × 224 RGB input, new 301-way linear head |
-| Starting weights | ImageNet-1k EfficientNet-Lite0 by Google (Apache-2.0), via timm `tf_efficientnet_lite0.in1k` |
-| Training photos | 127 281 photos (Open Images V7 96 503, CC BY 2.0; Wikimedia Commons 30 778, CC0/PD/CC BY/CC BY-SA) |
-| File | 4.3 MB (4 343 160 bytes), TFLite with int8 weights and activations, float32 input/output (LiteRT) |
-| Test accuracy | **top-1 50 %, top-5 77 %** (int8 TFLite: 49.8 % / 77.2 %) on 10 157 held-out photos |
-| Trained | 2026-11-01/02, `tools/food-model/train.py` (runs `run2` + `run2b`, then `drop_classes.py` → `final`) |
+| | Classifier `food_model.tflite` | Detector `food_detector.tflite` |
+|---|---|---|
+| What | photo or item crop → **329 foods/dishes + `_not_food`** (`classes.csv`, output order); 2nd output `log_grams` (grams suggestion) | photo → up to 10 "food item" boxes (one class), NMS in the graph |
+| Use in the app | top 5 shown, **the user confirms**; the grams estimate only pre-fills the amount ("≈ 180 g (estimated)") | ≥ 2 items → each is cropped and classified ("several foods per photo"); 0-1 → the whole photo |
+| Architecture | MobileNetV4-Conv-Medium (8.9 M parameters with this head), 320 × 320 input | YOLO11n (2.6 M parameters), 320 × 320 input |
+| Starting weights | timm `mobilenetv4_conv_medium.e250_r384_in12k_ft_in1k` (ImageNet-12k + 1k, Apache-2.0) | Ultralytics YOLO11n COCO (AGPL-3.0) |
+| Training data | 205 k training pictures: Open Images V7 photos and box crops (CC BY 2.0 / CC BY 4.0), Wikimedia Commons (CC0/PD/CC BY/CC BY-SA), MyFoodRepo item crops (CC BY 4.0); grams head: Nutrition5k (CC BY 4.0) | 108 k photos: Open Images V7 boxes, MyFoodRepo polygons → boxes |
+| File | **fp16** TFLite, 17.7 MB, float32 input/outputs (int8 loses 16 points, see "Export") | fp16 TFLite, 5.3 MB (int8 breaks its scores) |
+| Test | top-1 **56.4 %**, top-5 **81.7 %** (15 763 pictures, PyTorch); on the 1.5.0 test photos **54.3 % / 80.5 %** (1.5.0 model: 50.5 % / 77.3 %) | MyFoodRepo phone photos, at the shipped threshold: 1 item P 0.86 R 0.96; 2-3 items P 0.82 R 0.59; 4+ items P 0.82 R 0.31 |
+| Trained | 2026-11-02/03, `tools/food-model/` (`train.py` run `cls2`, `train_detector.py` run `det1`, `grams.py`) | |
+
+The targets were top-1 ≥ 60 % / top-5 ≥ 85 %; **they were not reached** (56.4 / 81.7 on the new test set, 54.3 /
+80.5 on the comparable 1.5.0 test photos: +3.8 / +3.2 points over 1.5.0, with 29 more classes).
 
 ## Intended use and limits
 
-- Meant for: one dish or one food per photo, taken from above or at an angle, as people photograph their
-  plate. The answer is a **suggestion**; nutrients come from the food catalogue and the portion the user picks.
-- Not meant for: estimating portions or calories from the photo (it doesn't), mixed plates with several
-  dishes (it names one of them at best), packaged products (use the barcode), drinks in opaque cups, medical
-  or dietary decisions.
-- Classes are visual groups: several similar foods share one class when they look alike or have nearly the
-  same nutrients (e.g. `peach` = peach/nectarine, `wrap` = wrap/burrito, `bread_with_tomato` = pan con tomate /
-  bruschetta, `cured_ham` = jamón serrano/prosciutto, `lentils` = lentil stew/dal, `fruitcake` = panettone/plum
-  cake). The catalogue gives each the typical Spanish version.
-- `_not_food` is learnt from photos verified to contain no food (people, places, objects; a fifth of them with
-  tableware, a table, a kitchen or packaging in view). The app also says "no food recognised" when the best food
-  probability is below `min_confidence`.
+- Suggestions only. The user always confirms the food and the amount; nothing is logged automatically.
+- Meant for meal photos from above or at an angle; several foods on a plate are found by the detector (2-6 items).
+- **Grams**: a rough suggestion from the picture's content, calibrated on one cafeteria dataset (see below). It
+  does not know the real size of anything in the photo; a close-up of a small bowl and a wide shot of a big plate
+  can look alike. The user's amount always wins.
+- Not meant for: packaged products (barcode), drinks in opaque cups, medical or dietary decisions.
+- Classes are visual groups (e.g. `potato` = boiled/cooked potato, `couscous` also bulgur, `water` = a glass of
+  still or sparkling water, `mixed_vegetables` = cooked mixed vegetables / menestra); the catalog's variants
+  (paella de marisco, salmorejo for gazpacho…) are offered by the app after recognition.
+
+## Classes (v2)
+
+`classes.csv` / `.omc/handoffs/2026-11-02/food_classes_v2.csv`: **300 kept** (no id renamed or removed), **19
+recovered** from the 47 dropped in 1.5.0 (dates, raisins, leek, sauerkraut, chickpeas, pain au chocolat, brown
+rice, cooked ham, feta, goat cheese, almonds, walnuts, peanuts, cashews, hazelnuts, honey, chocolate spread,
+tabbouleh, spaghetti bolognese) and **10 new** (water, quinoa, canned tuna, ketchup, fennel, mixed cooked
+vegetables, rosé wine, endive, samosa, onigiri), + `_not_food`. Rule as in 1.5.0: a class needs ≥ 150 training
+pictures. Still under it (non-visual in the catalog): 27 of the 1.5.0 drops (e.g. patatas bravas 143, chestnuts
+145, celery 142, edamame 146, clam chowder 132, deviled eggs 133, pork belly 130, moussaka 119, turrón 110,
+horchata 101) and the Spanish dishes Commons and Open Images cannot fill (cocido 53, migas 60, fideuà 55,
+sobrasada 51, pimientos de Padrón 41, huevos rotos 18, salmorejo 16, ensaimada 16), gnocchi, polenta, shakshuka,
+açaí bowl. `dolma` stays out (its Open Images label shows grapevines).
 
 ## Data
 
-**Sources (licence-clean only).** Open Images V7 human-verified image-level labels (photos listed as CC BY 2.0
-by their Flickr authors) and Wikimedia Commons food categories (only files whose licence is CC0, public domain,
-CC BY or CC BY-SA). No research-only datasets (Food-101, UEC-Food, ISIA, Food2K…). Every photo used is listed
-with author, licence and source page in `docs/third-party/food-model/images.csv.gz`.
+**Sources (licence-clean only; details and every picture: `docs/third-party/food-model/`).**
 
-**Class selection.** ~350 candidates useful to a Spanish/European user first, then global
-(`classes_config.py`), each mapped to the Open Images labels and Commons categories that show it. Open Images
-photos often carry several food labels; a rank decides (specific dish > dish > single food > ingredient) and
-photos with two labels of the same rank are not used. Commons files filed under two classes go to the more
-specific one. Commons categories also contain plants, markets, illustrations and old catalogue scans: only
-photos ≥ 240 px are kept, nearly colourless ones (scans, engravings, black-and-white photos) are dropped, and
-for single foods the "… dishes"/"… soup"/"… cake" subcategories are skipped. After review, the Commons photos
-of honey, dates, nuts, chocolate spread, ham, sardines and cider were removed (mostly dishes or sweets that
-merely contain the food).
+- Open Images V7: human-verified image-level labels (cap raised from 1 000 to 1 500 photos per class, the v2
+  candidate labels added) and, new, the **human-drawn boxes** of food/drink classes (114 k photos with 1-12 items
+  after removing "container" boxes such as a plate around several foods).
+- Wikimedia Commons: the 1.5.0 categories plus categories for the recovered and new classes; after review, the
+  ketchup category was dropped (bottles, hot sauces, street scenes).
+- **MyFoodRepo / Food Recognition Benchmark 2022** (AIcrowd; v2.0, 39 962 + 1 000 photos taken with a phone app,
+  every food segmented; CC BY 4.0): 84 k items whose class maps to ours (`frb_map.py`).
+- **Nutrition5k** (Google, CC BY 4.0): 3 262 overhead photos of cafeteria dishes with their weighed mass (grams
+  head only).
+- No research-only datasets (Food-101, UEC-Food, ISIA, Food2K…).
 
-**Dataset.** Near-duplicates (64-bit difference hash, Hamming ≤ 4) are merged so that no near-identical photo
-sits in two splits; groups with conflicting labels are dropped. At most 1 000 photos per class (4 000 for
-`_not_food`), split per class into test 8 % (min 12), val 5 % (min 8) and train. Classes with fewer than 150
-training photos were dropped (47 candidates, e.g. raisins, leek, kale, celery, chickpeas, edamame, sauerkraut,
-pork belly, black pudding, feta, goat cheese, nuts by kind, honey, turrón, patatas bravas, onion rings,
-arancini, minestrone, French onion soup, moussaka, spaghetti bolognese, cannelloni, horchata, cider,
-mille-feuille; they stay in the food catalogue as non-visual foods).
+**Item crops.** The classifier also learns the multi-item flow: every MyFoodRepo food and every specific Open
+Images food box on a photo with 2+ items is cut out exactly as the app cuts a detector box (square, 10 % margin),
+47 k + 21 k training crops.
 
-| Split | Photos |
-|---|---|
-| train | 110 730 |
-| val | 6 363 |
-| test | 10 188 (10 157 without `dolma`, see below) |
+**Dataset.** The 1.5.0 photos keep their split and label (so the 1.5.0 test photos remain a fair comparison).
+New photos are merged with them by near-duplicate hashing (a new copy of an old photo is dropped); crops follow
+their source photo's split; MyFoodRepo's validation photos are test. At most 1 500 pictures per class (5 000 for
+`_not_food`).
 
-Photos per class: median 340, minimum 186 (the smallest: calzone, danish pastry, chicken soup, pulled pork,
-couscous, ~190 each), maximum 1 000; `_not_food` 3 765.
-
-**Removed after training: `dolma`.** Its Open Images label ("Grape leaves") turned out to be photos of
-grapevines, not stuffed vine leaves (found through the grapes → dolma confusions). Its output row was cut from
-the classifier (`drop_classes.py`; the other outputs are unchanged) and its test photos are not counted.
-
-## Training
-
-- timm `tf_efficientnet_lite0.in1k`, dropout 0.2, stochastic depth 0.1; static TF-style "SAME" padding for
-  export.
-- 25 epochs, batch 64, AdamW (lr 3e-4, weight decay 0.02, 1 warm-up epoch, cosine to 1 %), label smoothing
-  0.1, gradient clipping 5, mixed precision (fp16), weight EMA (0.9998) — the checkpoint with the best val
-  top-1 (EMA or raw) is kept.
-- Square-root class-balanced sampling (each photo drawn Poisson(n_class^-0.5 · k) times per epoch).
-- Augmentation for phone photos: random resized crop (25–100 % of the area, aspect 3:4–4:3), horizontal flip,
-  random 90° rotations (top-down plates), TrivialAugmentWide (brightness, colour, contrast, sharpness,
-  posterize, small rotations/shears…), random erasing.
-- RTX 2060 SUPER, ~3.7 min per epoch (`run2`, best val top-1 46.7 % at epoch 13, EMA weights).
-- `_not_food` follow-up (`run2b`): 3 more epochs from that checkpoint (lr 1e-4, EMA 0.999) sampling `_not_food`
-  photos 6 × more often — it had caught only 44 % of the non-food test photos. Then `drop_classes.py` removed
-  `dolma` and added −1.0 to the `_not_food` logit, the balance chosen between catching non-food photos and not
-  rejecting food photos (see below).
-- Calibration: temperature scaling fitted on val (NLL): **T = 0.94**. The model was already well calibrated
-  (expected calibration error on test 0.023 before, 0.028 after — T ≈ 1 either way).
-
-## Results (held-out test split, 10 157 photos)
-
-PyTorch model, the app's preprocessing:
-
-| | top-1 | top-5 |
+| Split | Pictures | of which crops |
 |---|---|---|
-| All test photos (300 foods + `_not_food`) | **50.5 %** | **77.3 %** |
-| Food photos only (9 856) | 50.1 % | 76.9 % |
-| Spanish / southern European dishes and foods (61 classes, 1 952 photos) | 46.9 % | 76.5 % |
+| train | 205 473 | 68 269 |
+| val | 11 700 | 3 742 |
+| test | 15 763 | 3 152 |
 
-Per food group (top-1 / top-5, test photos): vegetables 62.7 / 81.1 (1 023) · fish 59.9 / 82.2 (494) ·
-fruit 59.6 / 77.9 (1 333) · fast food 51.1 / 81.7 (597) · eggs 51.0 / 77.5 (204) · snacks 50.6 / 74.7 (316) ·
-sweets 50.3 / 76.0 (1 631) · drinks 47.9 / 79.4 (922) · dishes 44.9 / 76.9 (1 594) · legumes 44.6 / 77.0 (74) ·
-meat 41.7 / 75.3 (667) · dairy 39.7 / 66.8 (232) · fats & nuts 36.8 / 61.8 (68) · sauces 34.6 / 64.7 (133) ·
-grains 32.8 / 67.8 (568).
+## Classifier training
 
-Per class: median top-5 77.8 %; 29 classes ≥ 90 % top-5, 3 below 50 % (custard, bread, cottage cheese).
-Some Spanish ones (top-1 / top-5): flan 76 / 95, coffee with milk 75 / 91, croquettes 59 / 90, paella 64 / 89,
-breaded cutlet 54 / 86, baguette sandwich (bocadillo) 41 / 85, suckling pig 75 / 83, lentils 30 / 82, bean
-stew (fabada) 59 / 82, churros 63 / 81, chorizo 36 / 79, Spanish omelette 48 / 78, calamari 48 / 78,
-octopus 55 / 77, cured ham 43 / 77, fried fish 54 / 75, sangria 29 / 74, gazpacho 24 / 71, custard
-(natillas) 7 / 37.
+- timm `mobilenetv4_conv_medium.e250_r384_in12k_ft_in1k`, new 330-way head, dropout 0.2, stochastic depth 0.1.
+- 24 epochs, batch 64, AdamW, **backbone lr 6e-5, head lr 1e-3, head initialised at zero**, weight decay 0.05,
+  1 warm-up epoch, cosine; label smoothing 0.1; EMA 0.9998 (the best checkpoint is the EMA of epoch 18, val top-1
+  53.4 %). Progressive resizing: 224 px for the first 12 epochs, 256 px after. Square-root class-balanced
+  sampling, `_not_food` sampled 3 × more. Augmentation as 1.5.0 (random resized crop 25-100 %, flips, 90°
+  rotations, TrivialAugmentWide, random erasing). RTX 2060 SUPER, ~7.5 min per epoch.
+- The v1 recipe (AdamW 3e-4 on everything, random head) destroyed MobileNetV4's pretrained features (val top-1
+  11 % after 2 epochs): its random head produced huge first gradients. A/B on 600 steps: 0.4 % (v1 recipe) → 24.5 %
+  (low backbone lr + zero head).
+- **Evaluated at 320 px** (resize the short side to 366, centre crop 320) although trained at 256: +1.7 / +1.8
+  points on the 1.5.0 test photos (54.3 / 80.5 vs 52.6 / 78.7 at 256; FixRes effect), for 1.56 × the compute.
+- `_not_food` logit shifted by −0.75 (balance below). Temperature scaling on val: **T = 0.78** (expected
+  calibration error on test 0.130 → 0.034).
 
-Worst 30 classes by top-1 (top-1 / top-5): custard 7/37, bread 9/45, cupcake 10/62, nuts 10/55, lamb 11/54,
-garlic bread 12/59, cottage cheese 12/38, soft drink 13/61, soup 17/70, toast 18/52, sautéed potatoes 18/52,
-juice 19/52, mayonnaise 19/61, green salad 19/61, pilaf 20/70, pasta 21/84, mozzarella 22/56, stew 22/52,
-cream cheese 22/56, focaccia 22/61, hot chocolate 22/85, guacamole 23/54, dulce de leche 23/71, gazpacho 23/71,
-tortilla chips 24/62, tandoori chicken 24/71, flour tortilla 24/52, sweet pie 24/64, crisps 26/58, danish
-pastry 27/67. Generic classes (bread, soup, salad, pasta, stew, juice) lose top-1 to their specific
-neighbours (wholemeal bread, chicken soup, Caesar salad, carbonara…), which is why their top-5 stays higher.
+## Classifier results (PyTorch, the app's preprocessing at 320 px)
 
-Main confusions (test photos): orange → mandarin 14, pasta → carbonara 14, orange → not food 12, cake → not
-food 12, sausages ↔ chorizo 10 + 8, baguette sandwich → hamburger 10 / → sandwich 10 / → hot dog 9,
-sandwich → baguette sandwich 9, pasta → pasta salad 9, cheese → parmesan 9, sorbet → ice cream 9, soup →
-chicken soup 9, noodle soup → pho 9, juice → not food 9, bread → wholemeal bread 8, wholemeal bread → loaf
-cake 8, pad thai → noodles 8, spirits → beer 8, soft drink → cola 8.
+| Test set | Pictures | top-1 | top-5 |
+|---|---|---|---|
+| v2 test (photos + crops) | 15 763 | **56.4 %** | **81.7 %** |
+| — Open Images photos | 8 220 | 55.7 % | 82.9 % |
+| — Commons photos | 4 391 | 50.9 % | 74.1 % |
+| — MyFoodRepo item crops (phone photos) | 1 236 | 57.1 % | 84.2 % |
+| — Open Images box crops | 1 916 | 71.2 % | 92.2 % |
+| 1.5.0 test photos (same photos, same labels) | 10 157 | **54.3 %** | **80.5 %** |
+| 1.5.0 model on the same photos | 10 157 | 50.5 % | 77.3 % |
+| Spanish / southern European classes (v2 test) | 2 993 | 54.1 % | 81.2 % |
 
-**Not food** (301 non-food test photos): `_not_food` wins on 61.8 % of them (precision 50.4 %), and on 1.9 % of
-the food photos (a third of those still have the right food in the top 5). With `min_confidence` = 0.05 the
-app adds no further rejections on this test set (the best food probability is under 0.069 for 1 % of the food
-photos; 0.10 would reject 3.9 % of the food photos and catch 65.8 % of the non-food ones). Trade-off of the
-`_not_food` logit shift, test set: −0 → 76 % / 3.0 %, −1.0 (chosen) → 62 % / 1.9 %, −2.0 → 40 % / 1.0 %
-(non-food caught / food photos rejected).
+Per food group (v2 test, top-1 / top-5): vegetables 67.7 / 84.8 · fish 65.9 / 86.3 · fruit 65.3 / 84.0 · fast
+food 63.2 / 88.3 · eggs 58.7 / 82.9 · legumes 56.4 / 81.2 · snacks 55.3 / 77.6 · sweets 53.5 / 80.0 · drinks
+52.0 / 84.2 · dishes 50.3 / 79.7 · meat 46.4 / 78.3 · sauces 45.2 / 70.3 · fats & nuts 44.0 / 67.6 · dairy
+41.7 / 71.9 · grains 40.0 / 75.6. On the 1.5.0 test photos (1.5.0 model → v2, top-1) most groups gained: fast
+food 51 → 61 %, dishes 45 → 50 %, vegetables 63 → 68 %, eggs 51 → 56 %, snacks 51 → 57 %, fats & nuts 37 → 43 %,
+grains 33 → 37 %; legumes stayed at 45 % and dairy lost (40 → 36 %).
+
+Per class (v2 test): median top-5 80.9 %; 61 classes ≥ 90 % top-5, 5 below 50 %. Some Spanish ones (top-1 /
+top-5): paella 80 / 90, coffee with milk 80 / 95, suckling pig 83 / 92, flan 71 / 86, cured ham 68 / 93, lentils
+57 / 83, bocadillo 56 / 94, croquettes 53 / 80, bean stew 53 / 73, churros 50 / 75, chorizo 49 / 81, Spanish
+omelette 48 / 87, breaded cutlet 47 / 80, calamari 46 / 82, octopus 46 / 68, gazpacho 41 / 65, fried fish
+36 / 76, sangria 34 / 76, custard (natillas) 10 / 48. New and recovered classes (few test pictures each, so
+rough): chickpeas 67 / 83, canned tuna 70 / 90, water 65 / 90, ketchup 67 / 83, samosa 77 / 85, feta 63 / 74,
+walnuts 59 / 73, honey 60 / 60, chocolate spread 56 / 81, almonds 36 / 64, peanuts 35 / 50, hazelnuts 12 / 35,
+mixed vegetables 23 / 79, goat cheese 0 / 0 (2 test pictures).
+
+Worst 20 by top-1 (top-1 / top-5): goat cheese 0/0, cupcake 10/71, custard 10/48, hazelnuts 12/35, cream cheese
+12/60, danish pastry 13/67, chicken soup 13/73, quinoa 14/71, brown rice 17/100, bread 17/59, grilled chicken
+18/71, mozzarella 19/58, lemonade 19/74, leek 20/60, noodles 20/66, green salad 21/63, dates 22/56, mixed
+vegetables 23/79, pork chop 23/63, garlic bread 24/53. Main confusions: doughnut → bagel 35, sandwich → baguette
+sandwich 19, courgette → cucumber 18, orange → not food 17, grapefruit → lemon 15, orange → grapefruit 14, pasta
+→ carbonara 14, cake → not food 14, juice → cocktail 13, orange → mandarin 12, hot chocolate → coffee with milk 12.
+
+**Not food** (v2 test): `_not_food` wins on 71.6 % of the non-food pictures (1.5.0: 61.8 %) and on 1.8 % of the
+food pictures (1.5.0: 1.9 %), precision 50.8 %. Shift of the `_not_food` logit (non-food caught / food rejected):
+0 → 78.8 % / 2.5 %, −0.5 → 73.6 % / 2.1 %, **−0.75 (shipped) → 71.6 % / 1.8 %**, −1.0 → 67.4 % / 1.6 %.
+`min_confidence` 0.05 (1 % of the food pictures have a best food probability under 0.061).
+
+## Detector
+
+- Data: MyFoodRepo (every food segmented; sauces, dressings, herbs and seeds on another food give no box: the
+  user logs "pasta with tomato sauce", not two things) + Open Images food boxes (the most specific box of an
+  object, no "container" boxes around several foods, no drawings, 1-12 items) + 3 000 no-food photos as
+  background. Every photo **stretched to a square**, as the app does. 108 k training, 3.9 k val, 9.5 k test.
+- YOLO11n from COCO, one class, 30 epochs at 320 px, batch 64, mosaic (off for the last 10), flips up/down and
+  left/right; ~6-10 min per epoch. Val mAP50 0.67, mAP50-95 0.51.
+- **Container rule** (`group_suppression` in the json, `compare_group_rules.py`): a box holding ≥ 2 other kept
+  boxes (each ≥ 80 % inside it) is dropped and the inner boxes kept, so a pile of potato pieces is not counted
+  twice (pile + pieces) and no box is left around a mixed plate. Compared on val/test with the true boxes: box F1
+  on MyFoodRepo test 0.667 (no rule), **0.656 (this rule)**, 0.649 (keep the big box instead), 0.661 (drop only
+  when the pieces cover ≥ 50 % of it); the app's flow choice is unchanged (75.5 %); grams per plate within noise
+  between rules (29.2 % vs 28.5 % without). The table below is without the rule (box F1 −1 point with it).
+- App rules evaluated (`train_detector.py`): NMS IoU 0.5, score ≥ threshold, boxes shorter than 6 % of the
+  photo's short side dropped, at most 6 items; "multi-item flow" = 2+ boxes. Threshold **0.25** chosen on val
+  (the share of photos sent to the right flow is flat between 0.2 and 0.3; 0.25 has the higher precision).
+
+Test, exported fp16 TFLite (= PyTorch within 0.5 point), threshold 0.25 — precision / recall of the boxes (IoU
+≥ 0.5) and how often the app picks the right flow:
+
+| Photos | MyFoodRepo test (phone meal photos) | Open Images test |
+|---|---|---|
+| 1 item | P 0.86, R 0.96, single flow kept 89 % (569) | P 0.65, R 0.90, 81 % (5 202) |
+| 2-3 items | P 0.82, R 0.59, multi flow 53 % (260) | P 0.74, R 0.61, 59 % (1 954) |
+| 4+ items | P 0.82, R 0.31 (at most 6 found), multi flow 64 % (167) | P 0.76, R 0.36, 73 % (1 343) |
+
+Open Images "precision" is lower partly because its boxes are incomplete (foods the annotators did not label
+count as false positives). In practice: a single dish is rarely split; on plates with 2-3 foods the detector
+finds both/all about 6 times in 10, so about half of such photos still go to the single flow (where the top-5
+and search remain). The int8 version lost most of its recall (the score tensor quantises badly), hence fp16.
+
+## Grams estimate
+
+Method (`grams.py`, contract `grams_contract.md`): a linear head on the classifier's pooled features gives `y` =
+log grams of the food in the picture; trained on Nutrition5k so that the photo's estimate matches the weighed
+dish mass (single flow: the whole photo; multi flow: the sum of the items' estimates, with the detector's rules
+and the container rule applied as in the app); every dish is also shown "closer" (the central 65 % of the photo)
+with the same mass, so the head can't rely on the rig's fixed camera distance. The app computes
+`ln est = b0 + b_model·y + b_portion·ln(portion) + b_share·ln(share)` with **b0 0.548, b_model 0.882, b_portion
+0.040, b_share 0.389** (fitted on held-out training dishes), clamps it to **0.1-4 × the catalog portion** (the
+floor chosen on held-out dishes including one food in several pieces; 0.25 lifted every potato piece to a
+quarter portion) and 5-1 500 g, rounds to 5 g. `enabled` = true.
+
+Nutrition5k test dishes (506; official split), median absolute % error of the suggested amount and share within
+±25 % — per plate (the suggested total) and per item (dishes of one food, ≥ 90 % of the mass one ingredient):
+
+| | Estimate (app formula) | Catalog default portion of the recognised food (today) | A constant (median mass) |
+|---|---|---|---|
+| Plate, whole photo (single flow), 338 | **33.1 %** (37 % within ±25 %) | 55.0 % (23 %) | 58.9 % |
+| Plate, item crops (multi flow), 168 | **26.3 %** (49 %) | 68.1 % (18 %) | 42.3 % |
+| Plate, all, 506 | **29.2 %** (41 %) | 60.1 % (22 %) | 50.6 % |
+| Item: one food found alone, its crop, 132 | **27.0 %** (45 %) | 74.2 % (23 %) | 138 % |
+| Item: one food in pieces, summed, 35 | **30.9 %** (40 %) | 241 % (9 %) | 146 % |
+| Plate, all, camera nearer (central 65 %) | 31.7 % (41 %) | 72.0 % (18 %) | 50.6 % |
+
+So on Nutrition5k the estimate halves the error of the default portion (which badly overshoots when one food
+is split into pieces), and it degrades little when the plate fills more of the photo. **Limits**: one cafeteria, one rig, overhead photos, Californian dishes; on phone photos
+the error will be higher than this (no ground truth was available to measure it). It is a suggestion the user
+confirms.
 
 ## Export and runtime
 
-ONNX (opset 17, the TF-style padding folded into the convolutions) → onnx2tf 1.28.8 / TensorFlow 2.21 →
-TFLite, int8 calibrated on 500 val photos (per-channel). Checked with `parity.py` on all 10 157 test photos,
-preprocessing written from `food_model.json` (PIL + numpy), LiteRT interpreter (XNNPACK), on the training
-PC's desktop CPU (not a phone):
+See the README for the commands. Classifier: ONNX (opset 17) → onnx2tf 1.28.8 / TensorFlow 2.21 → TFLite, float32
+input and outputs, logits first (index 0), `log_grams` index 1. Detector: ONNX → onnx2tf → a tf.function adding
+the NMS → TFLite fp16.
 
-| Variant | Size | top-1 | top-5 | same top-1 as PyTorch | 1 thread | 4 threads |
+**Why fp16 and not int8.** Full int8 (calibrated on 500 val pictures, per-channel weights) loses most of the
+accuracy of this MobileNetV4: onnx2tf's int8 top-1 39.7 % (PyTorch 56.4 %, 50 % agreement), the TensorFlow
+converter's int8 41 %, also with the noisiest layers kept in float (`quant_debug.py`). Each layer's own int8
+error looks normal; it accumulates through the network (activation outliers under per-tensor int8). fp16
+weights keep it exact; dynamic-range int8 (int8 weights, float activations, 9.4 MB) keeps the accuracy too but
+ran 3.7 × slower on this PC's CPU (hybrid kernels, not XNNPACK).
+
+| Variant (v2 test) | Size | top-1 | top-5 | same top-1 as PyTorch | 1 thread | 4 threads |
 |---|---|---|---|---|---|---|
-| PyTorch (reference) | — | 50.46 % | 77.26 % | — | — | — |
-| float32 | 15.0 MB | 50.46 % | 77.27 % | 99.7 % | 21.7 ms | 8.3 ms |
-| float16 | 7.5 MB | 50.43 % | 77.29 % | 99.5 % | 22.9 ms | 8.4 ms |
-| dynamic-range int8 | 4.1 MB | 50.13 % | 77.01 % | 94.4 % | 52.6 ms | 69.6 ms |
-| **int8 (shipped)** | **4.3 MB** | 49.83 % | 77.15 % | 92.3 % | **14.8 ms** | **6.6 ms** |
+| PyTorch (reference) | — | 56.4 % | 81.7 % | — | — | — |
+| float32 | 35.3 MB | 56.4 % | 81.7 % | 99.8 % | 78 ms | 23 ms |
+| **float16 (shipped)** | **17.7 MB** | 56.4 % | 81.7 % | 99.7 % | 77 ms | 23 ms |
+| dynamic-range int8 (3 000 pictures) | 9.4 MB | 57.0 % (float32: 57.3 %) | 81.6 % (81.6 %) | 93.0 % | 110 ms | 130 ms |
+| full int8 | 9.8 MB | 39.7 % | 65.2 % | 50.1 % | 38 ms | 12 ms |
 
-The shipped int8 model keeps top-5 within 0.1 point of PyTorch and is the smallest fast variant. On a
-mid-range phone (Cortex-A76/A55 class, 4 threads, XNNPACK) EfficientNet-Lite0 int8 typically runs in
-~15–40 ms; the app's emulator test of the smoke model measured 16 ms for the model.
+The `log_grams` output of the fp16 file is within 0.14 % (median; 0.55 % at the 95th percentile) of float32;
+the dynamic-range file's within 8 % (31 % at the 95th percentile). An int8 detector (the 8 worst layers kept in
+float) dropped to box F1 0.53 on MyFoodRepo test (fp16 0.66): its scores shrink, so the detector stays fp16.
+**Size: 17.7 MB + 5.3 MB = 23.0 MB, over the 20 MB budget** (the dynamic-range classifier would make it 14.7 MB).
 
-Preprocessing (in `food_model.json`, the app follows it): RGB, resize the short side to 256 (long side =
-floor(long × 256 / short), bilinear, antialiased), centre crop 224, scale to 0..1, `(x − 0.5) / 0.5`, NHWC
-float32. Output: logits; probabilities = softmax(logits / temperature).
+**Timing.** This PC (Ryzen 7 3700X, LiteRT XNNPACK, 4 threads): detector 15 ms, classifier 23 ms per picture; a
+6-item plate end to end (Python/PIL preprocessing included) 181 ms for a 640 × 480 photo, 434 ms for a 12 MP one
+(`time_pipeline.py`). Emulator (food-app2, x86-64 AVD on this PC, debug build, the shipped files, container rule
+on; models loaded when the Comida tab opens): classifier model time per crop 49-135 ms (dynamic-range int8:
+134-394 ms); whole photo as one item 139 ms; plate of 3 items 1.05 s warm / 1.49 s cold, of 6 items (12 MP
+photo) 0.99 s warm / 1.60 s cold (dynamic-range int8: 1.38 / 2.79 s and 1.84 / 2.17 s). So the warm pipeline is
+within the 1.5 s budget; a cold first photo with 3-6 items is at or just over it. Labels and grams were nearly the
+same with both files.
 
 ## Known limitations and biases
 
-- **Label noise.** Open Images labels are human-verified but multi-label; the single label per photo comes from
-  the rank heuristic. Commons categories are curated by volunteers and include photos where the food is not
-  the main subject. Test labels carry the same noise, so the test numbers are a rough estimate.
-- **Where the photos come from.** Mostly Flickr (2005–2015) and Commons, with a North-American/European
-  skew; restaurant and market photos are over-represented compared with home cooking. Spanish dishes had few
-  photos (e.g. Spanish omelette, gazpacho, croquettes, churros ~200–300 each) and several had to be dropped
-  (patatas bravas, turrón, horchata…).
-- **Look-alikes.** Orange/mandarin, sausages/chorizo, the sandwich classes, plain pasta/pasta dishes, the
-  soups, the noodle classes, sorbet/ice cream and white cheeses are often confused (see the confusion list);
-  the top 5 usually contains the right one. Generic classes (bread, soup, salad, pasta, juice) are the weakest
-  at top-1.
-- **One food per photo.** Mixed plates, several dishes on a table, or a dish with large sides get one label.
-- **Not food.** `_not_food` catches about 6 in 10 non-food photos; the rest get (low-confidence) food
-  suggestions, more often when the photo has food-like colours or shapes (fruit trees, drinks bottles, shop
-  shelves, food drawings). About 2 in 100 food photos are called "not food" (whole cakes, oranges, juices most
-  often) — the search box is the way out.
-- **Training data mistakes found late.** `dolma` (grapevines) was removed after training; the training set
-  still contained those photos, which only taught the model that grapevines are "dolma" (now hidden, so they
-  go to grapes). Other classes may hide similar label problems; the worst-class list above is where to look.
-- The model knows only these 301 classes; anything else gets the most similar class — hence the search box.
-
-## Reproduce
-
-See `tools/food-model/README.md`. Data, virtualenvs and checkpoints live outside the repository
-(`D:\FoodML`).
+- **Label noise** as in 1.5.0 (Open Images rank heuristic, Commons categories, MyFoodRepo's Swiss food ontology
+  mapped to our classes by hand). Test labels carry the same noise.
+- **Where the photos come from.** Flickr (2005-2015), Commons, and MyFoodRepo (Swiss volunteers' phone photos,
+  mostly home meals: bread, cheese, coffee, salads are over-represented there). Spanish dishes still have few
+  photos (several could not become classes).
+- **Few test pictures** for many new/recovered classes (their photos are mostly MyFoodRepo crops whose test part
+  is MyFoodRepo's small validation set): their per-class numbers are rough.
+- **Look-alikes** (doughnut/bagel, citrus fruits, sandwich types, plain/sauced pasta, cheeses, nuts by kind).
+- **Detector** misses about 4 in 10 foods on plates with 2-3 foods and most small extras on busy breakfast
+  tables; 6 items at most.
+- **Grams**: see above; the estimate is for the food's typical density (ml shown for drinks).
+- **Size and speed**: the fp16 classifier is 4 × the 1.5.0 file and ~3.5 × its compute per picture; see "Export".

@@ -1,0 +1,125 @@
+# Search words of built-in exercises and sports: exa_<catalog id> (training/catalog/ExerciseAliases.kt). Never shown:
+# the exercise search also looks in them, so an exercise is found by the other words people use for it (gym slang,
+# brand names, verbs, the singular or plural). Comma-separated, lower case is fine; translate the idea, not word for word.
+
+# Walking, running and the other activities
+exa_outdoor_walk = spacer, spacerować, chodzenie, chodzić, chód, marsz, maszerować, szybki marsz, przechadzka, walking
+exa_hiking = wędrówka, wędrówki, trekking, turystyka piesza, chodzenie po górach, góry, szlak, hiking
+exa_nordic_walking = nordic, kijki, marsz z kijkami, chodzenie z kijkami, kije
+exa_stair_climbing = schody, schodki, wchodzenie na schody, stopnie, piętra
+exa_outdoor_run = bieganie, biegać, bieg, jogging, trucht, truchtać, running
+exa_outdoor_cycling = rower, rowerek, kolarstwo, jazda rowerem, rower szosowy, szosa, góral, mtb
+exa_swimming = pływać, basen, długości, kraul, żabka
+
+# Cardio machines
+exa_treadmill = bieganie, bieg, biegać, trucht, jogging
+exa_treadmill_walk = marsz, chodzenie, chód, spacer, walking
+exa_incline_treadmill_walk = marsz pod górę, chodzenie pod górę, nachylenie, wzniesienie, incline walk, 12-3-30
+exa_curved_treadmill = bieżnia manualna, bieżnia mechaniczna, bez silnika, assault runner, sprint, bieganie
+exa_stationary_bike = rowerek, rower treningowy, rowerek stacjonarny, pedałowanie, kręcenie
+exa_spin_bike = spinning, kolarstwo indoor, indoor cycling, zajęcia rowerowe, rowerek
+exa_recumbent_bike = rowerek, rower leżący, rower z oparciem
+exa_air_bike = assault bike, fan bike, echo bike, rower powietrzny
+exa_elliptical = orbitrek eliptyczny, eliptyk, trenażer eliptyczny, cross trainer
+exa_rowing_machine = wioślarz, ergometr, wiosłowanie, concept2, erg
+exa_stair_climber = schody, schodki, stairmaster, stepmill, maszyna ze schodkami
+exa_ski_erg = skierg, narty, biegówki, ski
+
+# Machines and cables
+exa_pec_deck = motylek, peck deck, rozpiętki na maszynie, maszyna do rozpiętek
+exa_reverse_pec_deck = tylne aktony, tył barków, odwrotny motylek, reverse fly
+exa_leg_press_machine = leg press, suwnica skośna, suwnica 45, prasa do nóg
+exa_hip_abductor_machine = odwodziciele, odwodzenie, zewnętrzna strona ud, pośladek średni, abduktory
+exa_hip_adductor_machine = przywodziciele, przywodzenie, wewnętrzna strona ud, adduktory
+exa_iso_lateral_chest_press = hammer, hammer strength, wyciskanie na hammerze, maszyna na talerze
+exa_high_row_machine = hammer, hammer strength, high row, wiosłowanie na hammerze
+exa_t_bar_row_machine = t-bar, t bar, maszyna t-bar, wiosłowanie z podparciem
+exa_standing_leg_curl_machine = leg curl, tył uda, uginanie na stojąco, jednonóż
+exa_lat_pulldown_machine = wyciąg górny, lat pulldown, ściąganie, plecy, drążek wyciągu
+exa_seated_cable_row = przyciąganie linki, low row, cable row, wiosłowanie na wyciągu
+exa_cable_crossover = brama, bramka, rozpiętki na bramie, crossover
+exa_face_pull = facepull, lina do twarzy, przyciąganie liny do twarzy
+exa_reverse_grip_lat_pulldown = podchwyt, ściąganie podchwytem, odwrócony chwyt, supinowany chwyt
+exa_cable_chest_press = wyciskanie na wyciągu, wyciskanie stojąc, chest press
+exa_cable_reverse_fly = tylne aktony, tył barków, odwrotna brama, reverse fly
+exa_cable_y_raise = y raise, unoszenie w y, wznosy y, litera y
+exa_cable_upright_row = upright row, wiosłowanie pionowe, pod brodę
+
+# Free weights
+exa_barbell_bench_press = ławka, ława, klata, wyciskanie na ławce, wyciskanie płaskie, bench press, bench
+exa_barbell_back_squat = przysiad tylny, przysiady, squat, back squat
+exa_barbell_deadlift = martwy, mc, martwy ciąg klasyczny, deadlift
+exa_barbell_overhead_press = ohp, military press, wyciskanie nad głowę, wyciskanie stojąc, shoulder press
+exa_skull_crusher = francuz, łamacz czaszek, skull crusher, prostowanie ramion leżąc
+exa_barbell_hip_thrust = wypychanie bioder, unoszenie bioder, mostek, hip thrusty
+exa_bulgarian_split_squat = bułgary, bułgarski, wykrok bułgarski, split squat, noga na ławce
+exa_kettlebell_swing = kb swing, swingi, wymachy kettlebell, kettla, odważnik
+exa_smith_reverse_lunge = zakroki, wykroki w tył, wykrok wsteczny, reverse lunge
+exa_landmine_squat = landmine goblet squat, przysiad z końcem sztangi, przysiad z landmine
+exa_overhead_squat = ohs, overhead squat, przysiad nad głową
+exa_thruster = thrustery, trustery, przysiad z wyciskaniem
+exa_push_press = wyciskanie z podbiciem, wyciskanie z nóg, wybicie nogami
+exa_power_clean = zarzut, power clean, podnoszenie ciężarów, olimpijskie
+exa_hang_clean = zarzut, hang clean, podnoszenie ciężarów, olimpijskie
+exa_power_snatch = rwanie, power snatch, podnoszenie ciężarów, olimpijskie
+exa_dumbbell_floor_press = floor press, wyciskanie z podłogi, wyciskanie leżąc na ziemi
+exa_incline_dumbbell_fly = rozpiętki skośne, rozpiętki na skosie, incline fly
+exa_walking_lunge = wykroki w marszu, chodzone wykroki, walking lunges
+exa_dumbbell_snatch = rwanie hantlem, rwanie jednorącz, db snatch
+exa_kettlebell_high_pull = high pull, przyciąganie sumo, kettla, odważnik
+
+# Bodyweight and calisthenics
+exa_push_up = pompka, pompeczki, push up, pushup
+exa_pull_up = drążek, podciąganie na drążku, pull up, pullup
+exa_parallel_bar_dip = dipy, dips, poręcze
+exa_burpee = burpeesy, padnij powstań, burpi
+exa_mountain_climber = mountain climbers, climbersy, bieg w podporze
+exa_plank = plank, planka, podpór, deska na przedramionach
+exa_farmers_carry = farmer walk, farmer's walk, spacer rolnika, chód farmera
+exa_archer_push_up = łucznik, archer, pompki łucznicze
+exa_ring_dip = kółka, kółka gimnastyczne, dipy na kółkach, ring dips
+exa_neutral_grip_pull_up = chwyt neutralny, chwyt młotkowy, podciąganie młotkowe, uchwyty równoległe
+exa_suspension_row = trx, taśmy, wiosłowanie na taśmach, ring row
+exa_sissy_squat = sissy, sissy squat, przysiad sissy, ławka sissy
+exa_toes_to_bar = t2b, toes to bar, nogi do drążka
+exa_ghd_sit_up = ghd, glute ham developer, brzuszki ghd
+
+# Conditioning and HIIT
+exa_jump_rope = skakanie, skakanie na skakance, skakać, double unders, podwójne przeskoki, jump rope
+exa_jumping_jack = pajacyk, pajace, jumping jacks
+exa_high_knees = wysokie kolana, bieg w miejscu, kolana do góry, skip, skipy
+exa_butt_kicks = pięty do pośladków, butt kicks, skip, skipy
+exa_box_jump = skrzynia, skoki na skrzynię, pliometria, plyo box, box jump
+exa_tuck_jump = skok z kolanami, kolana do klatki, tuck jump
+exa_skater_jump = łyżwiarz, łyżwiarze, skoki boczne, skaters
+exa_bear_crawl = niedźwiedź, misiek, chód na czworakach, bear crawl
+exa_shadow_boxing = boks, ciosy, cień, shadow boxing
+exa_step_aerobics = step, aerobik, zajęcia step, wchodzenie na step
+exa_battle_ropes = liny, battle rope, liny bojowe, fale
+exa_sled_push = sanie, sanki, prowler, pchanie sanek
+exa_sled_drag = sanie, sanki, ciągnięcie sanek, ciąganie
+exa_wall_ball = wall balls, piłka lekarska, rzut do ściany, rzuty piłką
+exa_medicine_ball_slam = slam ball, slamy, rzut o ziemię, piłka lekarska
+exa_medicine_ball_rotational_throw = rzut boczny, rzut z rotacją, rzut skrętny, piłka lekarska
+exa_sandbag_carry = sandbag, worek z piaskiem, noszenie worka, bear hug
+
+# Stretching, mobility and foam rolling
+exa_ankle_dorsiflexion_mobilization = mobilność kostki, mobilizacja stawu skokowego, zgięcie grzbietowe, kostka
+exa_hip_90_90 = 90 90, 90/90, mobilność bioder, biodra
+exa_deep_squat_hold = przysiad azjatycki, głęboki przysiad, kucanie, kucki
+exa_hip_cars = krążenia bioder, cars, kontrolowane rotacje, rotacje biodra
+exa_shoulder_cars = krążenia ramion, krążenia barków, cars, rotacje barku
+exa_thread_the_needle = rotacja piersiowa, skręt piersiowy, odcinek piersiowy
+exa_cobra_stretch = kobra, pies z głową w górę, upward dog, joga
+exa_downward_dog = pies, down dog, joga, adho mukha
+exa_standing_quad_stretch = rozciąganie czworogłowych, czworogłowy, przód uda
+exa_lying_spinal_twist = skręt, skręt kręgosłupa, skręt leżąc
+exa_figure_four_stretch = czwórka, figure 4, gruszkowaty, mięsień gruszkowaty
+exa_wrist_mobility = rozciąganie nadgarstków, rozgrzewka nadgarstków, nadgarstki
+exa_foam_roll_quads = roller, foam roller, wałek, rolowanie, automasaż, masaż powięziowy
+exa_foam_roll_hamstrings = roller, foam roller, wałek, rolowanie, automasaż, masaż powięziowy
+exa_foam_roll_calves = roller, foam roller, wałek, rolowanie, automasaż, masaż powięziowy
+exa_foam_roll_glutes = roller, foam roller, wałek, rolowanie, automasaż, masaż powięziowy, gruszkowaty
+exa_foam_roll_it_band = roller, foam roller, wałek, rolowanie, automasaż, masaż powięziowy, itb, pasmo biodrowo-piszczelowe
+exa_foam_roll_upper_back = roller, foam roller, wałek, rolowanie, automasaż, masaż powięziowy, plecy, odcinek piersiowy
+exa_foam_roll_lats = roller, foam roller, wałek, rolowanie, automasaż, masaż powięziowy

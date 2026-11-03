@@ -1,0 +1,81 @@
+# Comida in 1.6.0: more nutrients per food, variants of a dish, changing a dish's ingredients when logging it,
+# several foods in one photo and the photo's grams suggestion. The rest of the food log is in 99_food.txt.
+
+# Units of the new values ("350 mg", "2.4 µg"); the unit alone as a field suffix
+unit_mg = mg
+unit_ug = µg
+value_mg = %1$s mg
+value_ug = %1$s µg
+
+# The values beyond the nutrition label (food tables give them; product labels rarely do)
+foodlog_nutrient_mono_fat = मोनोअनसैचुरेटेड वसा
+foodlog_nutrient_poly_fat = पॉलीअनसैचुरेटेड वसा
+foodlog_nutrient_cholesterol = कोलेस्ट्रॉल
+foodlog_nutrient_potassium = पोटैशियम
+foodlog_nutrient_calcium = कैल्शियम
+foodlog_nutrient_iron = आयरन
+foodlog_nutrient_magnesium = मैग्नीशियम
+foodlog_nutrient_zinc = ज़िंक
+foodlog_nutrient_vit_a = विटामिन A
+foodlog_nutrient_vit_c = विटामिन C
+foodlog_nutrient_vit_d = विटामिन D
+foodlog_nutrient_vit_e = विटामिन E
+foodlog_nutrient_vit_b12 = विटामिन B12
+foodlog_nutrient_folate = फ़ोलेट
+# Small headings of those values (day summary under "More", the food's values, the manual form)
+foodlog_nutrients_fats = वसा का ब्योरा
+foodlog_nutrients_minerals = मिनरल्स
+foodlog_nutrients_vitamins = विटामिन्स
+# A day total that adds up only the foods that have that value ("≥ 45 g"), and the line that explains the sign
+foodlog_partial_value = ≥ %1$s
+foodlog_partial_note = ≥: कुछ फ़ूड आइटम में इसकी वैल्यू नहीं है, इसलिए कुल कम से कम इतना है।
+# The manual form: the optional values beyond the label
+foodlog_more_nutrients = और पोषक तत्व
+foodlog_more_nutrients_text = वैकल्पिक: सिर्फ़ अगर आपको पता हों।
+
+# Variants of a dish (paella: seafood, mixed…): a heading and the chip of the usual one (gender-neutral in Spanish)
+foodlog_variants = प्रकार
+foodlog_variant_typical = रेगुलर
+
+# The ingredients of a dish on the confirm page: closed it says what changed ("Changed: Olive oil 35 g, Bread 0 g")
+foodlog_ingredients = सामग्री
+foodlog_ingredients_adjust = एडजस्ट करें
+foodlog_ingredients_usual = सामान्य रेसिपी
+foodlog_ingredients_changed = बदलाव: %1$s
+foodlog_ingredients_text = आपकी प्लेट में जो था उसे बदलें (कम या ज़्यादा तेल, बिना ब्रेड…): वैल्यू अपने आप बदल जाएंगी।
+# An ingredient with its amount ("Olive oil 35 g"); under its name, its usual amount for the amount logged
+foodlog_label_amount = %1$s %2$s
+foodlog_ingredient_usual = आमतौर पर %1$s
+# The pencil button next to an ingredient's amount (TalkBack): type another amount of it
+foodlog_ingredient_type = %1$s की मात्रा टाइप करें
+# The weight of the dish once its ingredients changed ("Total: 368 g")
+foodlog_total_weight = कुल: %1$s
+# How much of an ingredient (chips: none, half, normal, one and a half, double); TalkBack reads the _desc ones
+foodlog_level_none = बिना
+foodlog_level_half = ½
+foodlog_level_normal = सामान्य
+foodlog_level_one_half = 1½
+foodlog_level_double = ×2
+foodlog_level_half_desc = आधा
+foodlog_level_one_half_desc = डेढ़ गुना
+foodlog_level_double_desc = दोगुना
+# A logged dish whose ingredients were changed, in the day's list ("Plate · 368 g · Adjusted")
+foodlog_entry_adjusted = %1$s · एडजस्ट किया गया
+
+# The photo's grams suggestion next to the amount: a suggestion only, the user confirms or changes it
+foodlog_estimated = ≈ %1$s (अनुमानित)
+foodlog_estimated_text = फ़ोटो से अनुमानित। इसे जांचें और ज़रूरत हो तो बदलें।
+
+# Several foods found on one plate: one card each (its crop, three suggestions, "Other…", its amount), then "Add all (3)"
+foodlog_plate_title{one} = प्लेट में %1$d फ़ूड आइटम
+foodlog_plate_title{other} = प्लेट में %1$d फ़ूड आइटम
+foodlog_plate_text = हर एक को जांचें: यह क्या है और कितना है। जो नहीं जोड़ना चाहते, उसका निशान हटा दें।
+foodlog_plate_item_desc = फ़ोटो का फ़ूड आइटम %1$d
+foodlog_plate_unknown = यह क्या है?
+foodlog_plate_unknown_text = पहचाना नहीं गया: इसे “कुछ और…” से चुनें।
+foodlog_plate_item_added = जोड़ा गया
+foodlog_plate_add_all = सब जोड़ें (%1$d)
+# The whole photo as one dish (today's five suggestions), and back to the foods one by one (always 2 or more)
+foodlog_plate_as_one = एक व्यंजन के रूप में देखें
+foodlog_plate_as_items{one} = %1$d फ़ूड आइटम अलग से देखें
+foodlog_plate_as_items{other} = सभी %1$d फ़ूड आइटम एक-एक करके देखें

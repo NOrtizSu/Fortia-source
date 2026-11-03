@@ -1,511 +1,596 @@
-id	group	unit	kcal	protein	carbs	sugars	fat	sat_fat	fiber	salt	portion	portions	visual	source
-apple	fruit	g	54	0.3	11.6	10.6	0.3	0.1	1.4	0	150	unit:150	1	ciqual:13039
-pear	fruit	g	57	0.4	12.3	9.8	0.3	0.1	2.9	0	150	unit:150	1	ciqual:13037
-banana	fruit	g	88	1.1	19.7	15.6	0	0	2.7	0	120	unit:120	1	ciqual:13005
-orange	fruit	g	42	0.8	8	7.6	0	0	2.7	0	150	unit:150	1	ciqual:13034
-mandarin	fruit	g	46	0.8	9.2	8.6	0	0	1.7	0	60	unit:60	1	ciqual:13024
-lemon	fruit	g	29	1.1	6.5	2.5	0.3	0	2.8	0	60	unit:60	1	fdc:167746
-lime	fruit	g	39	1.1	3.1	2.1	0	0	4.3	0	50	unit:50	1	ciqual:13067
-grapefruit	fruit	g	34	0.8	5.9	5.9	0	0	1.1	0	250	unit:250	1	ciqual:13040
-strawberry	fruit	g	35	0.6	6	5.6	0	0	3.8	0	150	bowl:150|unit:15	1	ciqual:13014
-grapes	fruit	g	71	0.7	16.3	15.4	0.3	0	1.1	0	120	bowl:120|handful:50	1	ciqual:13395
-watermelon	fruit	g	35	0.7	8.3	7.9	0	0	0.5	0	250	slice:250	1	ciqual:13036
-melon	fruit	g	36	0.5	8.3	8.1	0.1	0	0.8	0	200	slice:200	1	fdc:169911
-pineapple	fruit	g	52	0.3	11.7	10.5	0	0	1.2	0	100	slice:100|bowl:150	1	ciqual:13002
-kiwi	fruit	g	61	0.9	11	8.9	0.6	0.1	2.4	0	75	unit:75	1	ciqual:13021
-peach	fruit	g	38	0.9	7.6	6.8	0.3	0	1.5	0	150	unit:150	1	ciqual:13043
-nectarine	fruit	g	50	0.7	11.3	8.8	0	0	0.5	0	130	unit:130	0	ciqual:13399
-cherries	fruit	g	54	0.8	13	10	0	0	1.6	0	120	bowl:120|handful:60	1	ciqual:13008
-blueberries	fruit	g	58	0.9	10.6	10	0.3	0	2.4	0	100	bowl:100|handful:40	1	ciqual:13028
-raspberries	fruit	g	48	1.2	5.8	5.4	0.8	0.1	4.3	0	100	bowl:100|handful:40	1	ciqual:13015
-blackberries	fruit	g	46	1.1	6.5	6.1	0.7	0.1	5.2	0	100	bowl:100|handful:40	1	ciqual:13029
-mango	fruit	g	71	0.6	14.3	12.9	0	0	1.6	0	200	unit:200|bowl:150	1	ciqual:13025
-avocado	fruit	g	167	2	1.8	0.3	15.4	2.1	6.8	0	70	serving:70|unit:140	1	fdc:171706
-pomegranate	fruit	g	81	1.4	14.3	13.3	1.2	0.1	2.3	0	150	unit:150|bowl:100	1	ciqual:13018
-papaya	fruit	g	40	0.8	8.5	8.1	0	0	1.8	0	150	slice:150	1	ciqual:13035
-apricot	fruit	g	44	0.8	9	6.7	0	0	1.7	0	40	unit:40	1	ciqual:13000
-plum	fruit	g	52	0.7	9.9	9.9	0.3	0	1.4	0	60	unit:60	1	ciqual:13100
-fig	fruit	g	68	1.2	13.5	12.2	0	0	4.1	0	50	unit:50	1	ciqual:13012
-coconut	fruit	g	369	3.5	4.7	4.7	34.7	30.3	10.6	0	40	piece:40	1	ciqual:15006
-dragon_fruit	fruit	g	57	0.4	12.1	9.8	0.1	0	3.1	0	150	unit:150	1	fdc:2344729
-persimmon	fruit	g	66	0.9	14.3	13.9	0	0	3.4	0	180	unit:180	1	ciqual:13066
-lychee	fruit	g	78	1.1	16.1	15.7	0	0	2	0	10	unit:10|handful:100	1	ciqual:13023
-passion_fruit	fruit	g	102	2.1	10.9	8.5	3	0.5	6.8	0	20	unit:20	1	ciqual:13016
-kumquat	fruit	g	71	1.9	9.4	9.4	0.9	0.1	6.5	0	20	unit:20	0	fdc:168154
-jackfruit	fruit	g	95	1.7	21.8	19.1	0.6	0.2	1.5	0	150	serving:150	1	fdc:174687
-durian	fruit	g	147	1.5	23.3		5.3		3.8	0	150	serving:150	1	fdc:168192
-cherimoya	fruit	g	80	1.6	15.4	12.9	0.7	0.2	3	0	200	unit:200	0	ciqual:13056
-loquat	fruit	g	48	0.4	9.9	6.1	0.2	0	1.7	0	30	unit:30	0	ciqual:13564
-quince	fruit	g	59	0.4	12.5	6.3	0.1	0	1.9	0	150	unit:150	0	ciqual:13010
-dates	fruit	g	287	1.8	64.7	64.7	0.3	0.1	7.3	0.1	8	unit:8|handful:40	0	ciqual:13011
-raisins	fruit	g	322	3	73.2	70.3	0.9	0.3	4.2	0	30	handful:30|tbsp:10	0	ciqual:13046
-dried_fruit	fruit	g	267	2.1	61.3	52.1	0.6	0.2	6.4	0.1	30	handful:30	1	ciqual:13996
-dried_apricots	fruit	g	239	2.9	59.1	34.3	0.5	0.2	8.3	0	8	unit:8|handful:40	0	ciqual:13001
-prunes	fruit	g	229	1.6	55.4	38.1	0.4	0.2	5.1	0	10	unit:10|handful:40	0	ciqual:13042
-peaches_in_syrup	fruit	g	59	0.5	13.5	13.1	0	0	1.5	0	120	serving:120	0	ciqual:13730
-tomato	vegetables	g	18	0.5	3.4	3	0	0	1	0	150	unit:150|slice:20	1	ciqual:20276
-cherry_tomatoes	vegetables	g	32	1.3	5.6	4.8	0	0	1.2	0	100	bowl:100|unit:15	0	ciqual:20172
-cucumber	vegetables	g	17	0.7	2.9	1.7	0.1	0	0.5	0	100	small_plate:100|unit:250	1	ciqual:20019
-carrot	vegetables	g	30	0.8	5.2	4.9	0	0	2.9	0.1	80	unit:80	1	ciqual:20009
-broccoli	vegetables	g	30	3.2	1.8	1.1	0.6	0.2	2.6	0	150	small_plate:150|plate:250	1	ciqual:20351
-cauliflower	vegetables	g	21	1.6	1.6	0	0.5	0.1	2	0	150	small_plate:150|plate:250	1	ciqual:20017
-lettuce	vegetables	g	15	1.4	1.2	0.7	0.2	0	1.1	0	100	small_plate:100|handful:30	1	ciqual:20031
-arugula	vegetables	g	28	2.6	2.1	2.1	0.7	0.1	1.6	0.1	30	handful:30	0	ciqual:20217
-spinach	vegetables	g	20	3.2	0.3	0	0.1	0.1	2.7	0.1	150	small_plate:150	1	ciqual:20027
-chard	vegetables	g	20	1.9	2	1.1	0.1	0	2.1	0.4	200	small_plate:200	1	fdc:170401
-cabbage	vegetables	g	24	1	3	2.8	0.5	0.1	2.4	0.1	150	small_plate:150	1	ciqual:20015
-kale	vegetables	g	50	4.3	4.2	2.3	0.9	0.1	3.6	0.1	50	handful:50|small_plate:100	0	ciqual:20218
-bell_pepper	vegetables	g	23	0.8	3.5	1.5	0.3	0.1	1.5	0	150	unit:150	1	ciqual:20041
-green_pepper	vegetables	g	23	0.8	3.4	3	0	0	3.2	0	150	unit:150	0	ciqual:20085
-red_pepper	vegetables	g	34	1.1	6	4.8	0	0	3.2	0	200	unit:200	0	ciqual:20087
-chili_pepper	vegetables	g	37	1.9	5.8	4	0.4	0	1.5	0	10	unit:10	1	ciqual:20151
-onion	vegetables	g	39	1.1	6.3	4.8	0.6	0.2	1.7	0.1	150	unit:150|tbsp:10	1	ciqual:20034
-spring_onion	vegetables	g	31	2.6	2.9	2.1	0.5	0.1	2.6	0	20	unit:20	1	ciqual:11003
-garlic	vegetables	g	109	5.3	18.6	1.2	0	0	5.8	0	5	unit:5	1	ciqual:11000
-leek	vegetables	g	25	2.6	2.2	1.8	0	0	3.4	0	150	unit:150	0	ciqual:20327
-potato	vegetables	g	81	1.8	16.8	0.9	0.3	0.1	1.8	0.1	150	unit:150|small_plate:200	1	ciqual:4003
-potato_raw	vegetables	g	80	2	16.2	0.8	0.1	0	2.2	0	150	unit:150	0	ciqual:4008
-baked_potato	dishes	g	91	2.5	19	1.2	0.1	0	2.2	0	200	unit:200	1	ciqual:4026
-sweet_potato	vegetables	g	79	1.7	16.3	6.1	0.2	0	2.9	0.1	150	small_plate:150|unit:200	1	ciqual:4102
-pumpkin	vegetables	g	26	0.8	4.5	3.1	0.1	0	2	0	150	small_plate:150	1	ciqual:20096
-zucchini	vegetables	g	16	0.9	1.4	0	0.4	0.1	1.5	0.1	150	small_plate:150	1	ciqual:20021
-eggplant	vegetables	g	27	0.8	4.2	3.2	0.2	0	2.5	0	150	small_plate:150	1	ciqual:20002
-corn	vegetables	g	106	3.4	18.6	4.5	1.5	0.2	2.4	0	150	unit:150	1	ciqual:20049
-sweet_corn	vegetables	g	105	2.7	18.3	2.4	1.7	0.3	3.1	0.6	50	serving:50|tbsp:15|can:140	0	ciqual:20066
-mushrooms	vegetables	g	29	2.2	3	2.3	0.5	0.1	2.2	0	150	small_plate:150	1	ciqual:20102
-asparagus	vegetables	g	25	2.7	1.7	1.3	0.3	0.1	2.2	0	150	small_plate:150|unit:15	1	ciqual:20299
-white_asparagus	vegetables	g	20	1.6	1.2	1	0.7	0.2	1.6	0.7	125	small_plate:125|unit:25	0	ciqual:20076
-green_beans	vegetables	g	29	2	3	0	0.2	0	4	0	200	plate:200|small_plate:150	1	ciqual:20030
-peas	vegetables	g	61	5.8	4.7	1.7	0.9	0.2	5.8	0	100	small_plate:100	1	ciqual:20037
-artichoke	vegetables	g	33	2.5	1	1	0.3	0.1	8.3	0.2	150	small_plate:150|unit:50	1	ciqual:20000
-brussels_sprouts	vegetables	g	44	3.2	5.4	4.1	0	0	4.8	0	150	small_plate:150	1	ciqual:20309
-beetroot	vegetables	g	42	1.4	7.1	6.7	0.4	0.2	2.5	0.2	80	serving:80	1	ciqual:20003
-radish	vegetables	g	11	0.9	1.5	1.1	0	0	1.4	0	10	unit:10	1	ciqual:20045
-celery	vegetables	g	15	0.6	2.4	1.3	0	0	2.2	0.2	40	unit:40	0	ciqual:20023
-endive	vegetables	g	17	1.2	2.8	2.4	0	0	1.1	0	80	unit:80	0	ciqual:20026
-sauerkraut	vegetables	g	19	0.9	1.8	1.8	0.1	0	2.9	1.7	100	serving:100	0	fdc:169279
-pickles	vegetables	g	16	1.1	0.8	0.6	0	0	1.5	1.7	10	unit:10|serving:50	1	ciqual:11004
-seaweed	vegetables	g	41	3.5	7.2	0.6	0.5	0.1	0.7	1	50	serving:50	1	fdc:2345325
-grilled_vegetables	dishes	g	86	1.4	4.7	4.1	6.2	1	2.8	0.6	200	small_plate:200	0	recipe
-olives	fats_nuts	g	164	1.1	0.6	0	16.6	2.3	3.6	3	40	serving:40|unit:4	1	ciqual:13033
-black_olives	fats_nuts	g	182	1.4	0.3	0	18	2.2	6.5	2.1	40	serving:40|unit:4	0	ciqual:13186
-stuffed_olives	fats_nuts	g	156	2.1	1.2	0	15.2	2.6	3	2.8	40	serving:40|unit:4	0	ciqual:13147
-edamame	legumes	g	121	11.9	3.7	2.2	5.2	0.6	5.2	0	100	bowl:100	0	fdc:168411
-chickpeas	legumes	g	164	8.9	19.8	4.8	2.6	0.3	7.6	0	150	small_plate:150|plate:250	0	fdc:173757
-beans	legumes	g	112	6.8	12	0.3	1.1	0.3	13.8	0	150	small_plate:150|plate:250	1	ciqual:20502
-kidney_beans	legumes	g	116	9.6	12.3	0.5	0.6	0.2	11.6	0	150	small_plate:150|plate:250	0	ciqual:20503
-black_beans	legumes	g	132	8.9	15	0.3	0.5	0.1	8.7	0	150	small_plate:150|plate:250	0	fdc:173735
-broad_beans	legumes	g	83	8.1	9.4	0.4	0.8	0.2	3.1	0	150	small_plate:150	0	ciqual:20500
-cooked_lentils	legumes	g	125	10.1	16.2	0.2	0.6	0.1	8.5	0	150	small_plate:150|plate:250	0	ciqual:20360
-lentils	legumes	g	131	7.1	12.4	1.4	4.9	1.3	4.2	0.8	350	plate:350|small_plate:250	1	recipe
-bean_stew	dishes	g	149	8.4	9.3	0.9	7.5	2.6	3.3	0.8	350	plate:350	1	recipe
-potaje_alubias	dishes	g	117	5.6	14.1	2	2.6	0.4	4.4	0.5	350	plate:350	0	recipe
-baked_beans	legumes	g	81	4.8	11.7	3	0.5	0.2	5	0.9	150	small_plate:150	0	ciqual:20194
-hummus	sauces	g	258	8.1	9	1.7	19.9	2	5.2	1.2	50	serving:50|tbsp:15	1	ciqual:25621
-tofu	legumes	g	147	13.4	2.9	0.6	8.5	1.4	0	0	100	serving:100	1	ciqual:20904
-lentils_dry	legumes	g	327	25.1	44.5	1.1	1.8	0.2	16.3	0	70	serving:70	0	ciqual:20359
-chickpeas_dry	legumes	g	350	20.5	47.5	2.3	6	0.6	12.2	0.1	70	serving:70	0	ciqual:20516
-white_beans_dry	legumes	g	307	23.4	43.9	3.9	0.9	0.2	15.2	0	70	serving:70	0	ciqual:20501
-bread	grains	g	253	7.5	50	2.5	1.3	0.4	4.3	1.2	40	slice:40|piece:60	1	ciqual:7100
-baguette	grains	g	287	8.3	58.3	2.3	1.4	0.5	2.7	1.3	30	slice:30|piece:60|unit:250	1	ciqual:7001
-wholemeal_bread	grains	g	234	8.7	41.2	2.4	1.7	0.6	7.3	1.2	30	slice:30|piece:60	1	ciqual:7110
-bread_roll	grains	g	279	9.8	48.3	7.3	3.9	0.8	1.8	1.2	50	unit:50	1	fdc:2343134
-toast	grains	g	290	9	51.6	6.2	4	0.8	2.9	1.3	30	slice:30	1	fdc:174925
-sliced_bread	grains	g	279	7.1	50.4	6.1	4.4	0.5	2.8	1.1	25	slice:25	0	ciqual:7200
-whole_wheat_sliced_bread	grains	g	257	7.3	41.8	5.6	4.1	0.6	7.3	1.1	28	slice:28	0	ciqual:7111
-rye_bread	grains	g	260	8.3	51.5	2.4	1	0.3	4.5	1.1	30	slice:30	0	ciqual:7125
-toasts	grains	g	394	10	73.2	6.9	5.4	1.3	4.3	1.3	9	unit:9	0	ciqual:7300
-breadsticks	grains	g	428	11.4	68.8	1.9	10.5	3.2	4.3	1.9	20	handful:20|unit:5	0	ciqual:7525
-garlic_bread	grains	g	349	8.3	39.1	3.7	16.6	5.3	2.5	1.6	40	slice:40	1	fdc:2343103
-bagel	grains	g	264	10.6	50.8	8.4	1.3	0.4	1.6	1.1	100	unit:100	1	fdc:174899
-flatbread	grains	g	249	7.5	48.8	2.5	1.5	0.2	3.7	1.4	60	unit:60	1	ciqual:7180
-focaccia	grains	g	249	8.8	34	1.8	7.9	0.9	1.8	1.4	60	slice:60	1	fdc:2343089
-tortilla_wrap	grains	g	320	8	53	2.1	7.5	1.4	2.9	1.6	40	unit:40	1	ciqual:7815
-corn_tortilla	grains	g	316	6.1	58	2.4	5.6	1.1	3.6	1.1	30	unit:30	0	ciqual:7813
-rice	grains	g	155	3.2	33.2	0	0.7	0.2	1.4	0	180	plate:180|small_plate:120	1	ciqual:9104
-rice_dry	grains	g	350	7	77.5	0.1	0.8	0.2	1.5	0	80	serving:80	0	ciqual:9100
-brown_rice	grains	g	123	2.7	24	0.2	1	0.3	1.6	0	230	plate:230|small_plate:150	0	fdc:169704
-pasta	grains	g	167	6.1	31.4	0.9	1.1	0.2	2.2	0	175	plate:175|small_plate:120	1	ciqual:9811
-pasta_dry	grains	g	364	12	72.7	2.6	1.6	0.3	2.9	0	80	serving:80	0	ciqual:9810
-whole_wheat_pasta	grains	g	179	7.4	31.3	0.9	1.4	0.3	5.1	0.1	160	plate:160|small_plate:110	0	ciqual:9871
-noodles	grains	g	121	4.8	18.9	2.6	2.4	0.5	1.3	1.1	250	plate:250	1	fdc:2344282
-egg_noodles	grains	g	138	4.5	24	0.4	2.1	0.4	1.2	0	200	plate:200	0	fdc:169732
-couscous	grains	g	164	5.8	31	3.4	0.9	0.2	2.8	0	200	plate:200|small_plate:150	1	ciqual:9683
-quinoa	grains	g	149	4.7	27.9	0.9	1.1	0.1	3.8	0	180	plate:180|small_plate:120	0	ciqual:9341
-oatmeal	grains	g	110	5.1	14.9	4.8	2.8	1.1	2	0.1	225	bowl:225	1	recipe
-rolled_oats	grains	g	369	10.6	57.7	1	7.8	1.4	11.2	0	40	serving:40|tbsp:10	0	ciqual:32140
-cereal	grains	g	402	8	73.2	21.2	7.2	2	6	0.6	30	bowl:30	1	ciqual:32003
-corn_flakes	grains	g	372	6.9	82.4	4.1	0.7	0.3	4.6	1.8	30	bowl:30	0	ciqual:32014
-chocolate_cereal	grains	g	387	8.6	77.7	26.8	3.2	1.1	6.1	0.3	30	bowl:30	0	ciqual:32013
-muesli	grains	g	409	9.6	61.8	17.2	11.6	3.3	8.4	0.1	45	bowl:45	0	ciqual:32141
-granola	grains	g	442	8.7	62.7	22.4	15.7	4.4	7.1	0.1	45	bowl:45|tbsp:10	0	ciqual:32108
-wheat_flour	grains	g	346	10	71.5	1.5	1	0.2	3.5	0	10	tbsp:10|serving:100	0	ciqual:9435
-rice_cakes	grains	g	381	8.4	77.9	0.6	3	0.8	3.4	0.2	8	unit:8	0	ciqual:7352
-paella	dishes	g	169	10.9	16.2	0.5	6.6	1.3	0.6	0.8	350	plate:350	1	recipe
-fried_rice	dishes	g	174	3.8	31.4	0.6	3.2	0.5	1.1	0.9	250	plate:250	1	fdc:2344437
-risotto	dishes	g	195	5.7	30.9	0.6	5.2	2.5	0.7	0.8	300	plate:300	1	ciqual:25189
-pilaf	dishes	g	137	3.3	23.7	0.5	3	0.5	0.4	1	250	plate:250	1	fdc:2344565
-spaghetti_bolognese	dishes	g	116	5.3	13.6	2.6	4.1	1.4	1.9	0.8	350	plate:350	0	ciqual:25085
-carbonara	dishes	g	161	5.9	14.2	1.8	8.7	4.3	1.2	0.9	350	plate:350	1	ciqual:25135
-pasta_tomato	dishes	g	119	3.7	13.3	3.5	4.8	1.3	1.7	1	350	plate:350	1	fdc:2344311
-pesto_pasta	dishes	g	202	6.2	27.1	1.2	6.8	1.2	2.2	0.5	265	plate:265	1	recipe
-mac_and_cheese	dishes	g	223	8.7	21.9	2.4	10.5	5.2	1.2	0.9	300	plate:300	1	fdc:2344296
-lasagna	dishes	g	134	6.3	13.5	2.8	5.7	2.6	1.9	1	350	plate:350	1	ciqual:25081
-cannelloni	dishes	g	134	6.3	13.5	2.8	5.7	2.6	1.9	1	300	plate:300|unit:75	0	ciqual:25081
-ravioli	dishes	g	198	8	25.6	2.8	6.5	2.9	2.5	0.7	250	plate:250	1	ciqual:25216
-pad_thai	dishes	g	154	8.1	13.2	4.1	7.5	1.3	1.2	1	350	plate:350	1	fdc:2344288
-noodle_soup	dishes	g	67	1.6	8.8	0.3	2.7	1.2	0.4	0.7	400	bowl:400	1	fdc:2344633
-ramen	dishes	g	90	4.6	6.7	0.2	4.8	1.3	0.4	1	700	bowl:700	1	recipe
-pho	dishes	g	89	6.2	9.8	0.8	2.3	0.7	0.6	1	600	bowl:600	1	fdc:2342572
-bibimbap	dishes	g	139	6.5	15	1.8	5.6	1.2	1.4	0.3	510	bowl:510	1	recipe
-egg	eggs	g	140	12.8	0.1	0.1	9.8	2.6	0	0.3	50	unit:50	1	ciqual:22000
-fried_egg	eggs	g	220	12.3	0.1	0.1	19	4	0	0.3	52	unit:52	1	recipe
-boiled_egg	eggs	g	134	13.5	0.5	0.5	8.6	3.2	0	0.3	50	unit:50	1	ciqual:22010
-scrambled_eggs	eggs	g	167	11.9	0.4	0.4	13	4.5	0	0.4	120	serving:120	1	ciqual:22502
-omelette	eggs	g	196	13.8	0.9	0.3	15.3	3.3	0	0.6	110	unit:110	1	ciqual:22500
-spanish_omelette	eggs	g	175	4.9	13.8	1.2	10.5	1.9	2	0.7	156	slice:156|unit:1250	1	recipe
-poached_egg	eggs	g	139	12.5	0.9	0.4	9.5	3	0	0.2	50	unit:50	1	ciqual:22011
-eggs_benedict	dishes	g	288	13.8	7.9	1.2	22.1	10.3	0.6	1.2	155	unit:155|serving:310	1	fdc:2342655
-deviled_eggs	eggs	g	198	11.5	1.1	1.1	15.9	3.9	0	1.1	60	unit:30|serving:60	0	fdc:2342656
-egg_whites	eggs	g	47	10.3	1.1	0.7	0.2	0	0	0.4	33	unit:33	0	ciqual:22008
-steak	meat	g	182	27.1	0	0	8.2	3.4	0	0.1	200	unit:200	1	ciqual:6110
-grilled_chicken	meat	g	141	30.1	0	0	2	0.6	0	0.1	150	unit:150	1	ciqual:36018
-chicken_breast_raw	meat	g	110	23.4	0	0	1.5	0.4	0	0.1	150	serving:150	0	ciqual:36017
-chicken_thigh	meat	g	171	24.8	0	0	8	2.2	0	0.3	110	unit:110	0	ciqual:36006
-roast_chicken	meat	g	204	28.9	0	0	9.9	3.1	0	0.4	170	piece:170	1	ciqual:36005
-fried_chicken	meat	g	251	21.8	6.9	0	15	4	0.2	1.7	150	serving:150|piece:90	1	fdc:2341355
-chicken_wings	meat	g	247	23.8	0	0	16.9	5	0	0.2	150	serving:150|unit:30	1	ciqual:36033
-chicken_nuggets	fast_food	g	250	15.6	19.4	1.3	11.6	2.7	2.4	1.4	100	serving:100|unit:18	1	ciqual:36027
-tandoori_chicken	dishes	g	154	21	1.3	1.1	6.9	1.6	0.7	1.5	200	serving:200	1	recipe
-sweet_sour_chicken	dishes	g	250	10.1	22.9	11.5	12.7	1.9	1	0.6	250	plate:250	1	fdc:2341859
-stir_fry	dishes	g	98	11	4	3.4	3.5	0.5	1.9	0.6	300	plate:300	1	recipe
-turkey	meat	g	189	28.6	0.1	0	7.4	2.2	0	0.3	150	serving:150	1	fdc:171479
-turkey_breast	meat	g	124	28.5	0	0	1.1	0.5	0	0.2	120	unit:120	0	ciqual:36306
-turkey_cold_cuts	meat	g	99	20.9	0	0	1.7	0.5	0.4	1.9	12	slice:12|serving:50	0	ciqual:28964
-duck	meat	g	331	19	0	0	28.4	9.7	0	0.1	150	serving:150	1	ciqual:36200
-minced_beef	meat	g	210	26.1	0	0	11.8	4.6	0	0.2	125	serving:125	0	ciqual:6253
-minced_beef_raw	meat	g	170	20	0	0	10	3.9	0	0.2	125	serving:125	0	ciqual:6252
-burger_patty	meat	g	239	23.6	0	0	16.1	5.9	0	0.2	100	unit:100	0	ciqual:6255
-roast_beef	meat	g	126	24.1	0.3	0	3.2	0.6	0	0.2	120	serving:120|slice:30	1	ciqual:6210
-meatballs	meat	g	184	10.9	7.7	1.9	11.8	4	1.2	0.8	275	plate:275|unit:30	1	recipe
-breaded_cutlet	meat	g	271	22.9	12.6	0.5	14.1	2.4	0.9	1	150	unit:150	1	ciqual:25173
-carpaccio	meat	g	271	15.2	0.6	0.5	23	7.4	0.4	1.1	80	serving:80	0	ciqual:25538
-pork_chop	meat	g	211	29.6	0	0	10.3	4.1	0	0.1	130	unit:130	1	ciqual:28101
-pork_loin	meat	g	180	26.8	0	0	7.3	2.2	0	0.1	100	unit:100	0	fdc:168240
-pork_loin_raw	meat	g	146	22.3	0.4	0.4	6.2	2.2	0	0.2	125	serving:125	0	ciqual:28480
-pork_tenderloin	meat	g	168	26.1	0	0	7.1	2.6	0	0.1	150	serving:150	0	ciqual:28203
-ribs	meat	g	332	23.1	0	0	26.6	10.8	0	0.1	200	serving:200	1	ciqual:28401
-pork_belly	meat	g	404	26.6	0	0	32.2	11.7	0	1.1	100	serving:100	0	fdc:2341307
-pulled_pork	meat	g	226	17.6	11.9	10	11.3	4	0.3	1.5	150	serving:150	1	fdc:2341820
-suckling_pig	meat	g	292	23.3	0	0	21.4	7.9	0	0.2	200	serving:200	1	fdc:167844
-skewers	meat	g	279	26.3	0.6	0.5	19	5.5	0.5	1.5	120	unit:60|serving:120	1	recipe
-lamb	meat	g	225	26.4	0		12.5	5.1	0	0.2	150	serving:150	1	fdc:172485
-lamb_chops	meat	g	185	26.1	0	0	9	3.7	0	0.2	160	serving:160|unit:40	0	ciqual:21512
-rabbit	meat	g	167	20.5	0.5	0	9.2	3.4	0	0.2	150	serving:150	0	ciqual:34002
-mixed_grill	meat	g	250	22.7	0.6	0.5	17.4	6.6	0.1	0.9	250	serving:250	1	recipe
-korean_bbq	dishes	g	236	20.7	6.5	5.7	13.9	4.7	0.5	1.4	200	serving:200	1	recipe
-cured_ham	meat	g	235	30.4	0.8	0.4	12.3	5.2	0	5	15	slice:15|small_plate:80	1	ciqual:28845
-iberico_ham	meat	g	337	25.2	0.6	0.3	26	9.9	0	4	15	slice:15|small_plate:80	0	recipe
-ham	meat	g	125	19.5	1.7	1.7	4.5	1.8	0.1	2.4	15	slice:15|serving:50	0	ciqual:28910
-chorizo	meat	g	425	23.5	1.2	1.2	36.1	14.3	0.9	4.2	5	slice:5|serving:40	1	ciqual:30315
-salami	meat	g	457	17.7	2.6	0	41.8	16.2	0	4.1	5	slice:5|serving:40	1	ciqual:30350
-fuet	meat	g	460	27.3	4	1.2	37.1	14.5	0.6	4.8	5	slice:5|serving:40	0	ciqual:30309
-cold_cuts	meat	g	376	24.3	1.4	0.4	30.4	14	0.2	3.9	100	serving:100	1	recipe
-mortadella	meat	g	310	15.2	0.7	0.7	27.4	10.2	0	2.4	15	slice:15	0	ciqual:30789
-sausages	meat	g	283	18.8	0.8	0.4	22.4	8.3	0	2.1	50	unit:50|serving:100	1	ciqual:30005
-frankfurters	meat	g	279	13.7	3.4	1	23.4	9	0	2	40	unit:40	0	ciqual:30134
-bacon	meat	g	468	33.9	1.7	0	35.1	12	0	4.2	8	slice:8|serving:30	1	fdc:168322
-black_pudding	meat	g	246	11.9	3.8	2.9	20.3	7.5	0	1.3	30	slice:30|serving:100	0	ciqual:8704
-pork_pate	meat	g	355	10.8	2.9	1.4	33.3	11.6	0.2	1.7	15	tbsp:15|serving:25	0	ciqual:8305
-tripe_stew	dishes	g	162	11.3	2.9	0.9	11.3	3.6	0.8	1.3	300	plate:300	1	recipe
-salmon	fish	g	205	23.2	0.6	0	12.2	2.5	0	0.1	150	unit:150	1	ciqual:25996
-smoked_salmon	fish	g	184	22.2	0.1	0.1	10.5	1.8	0.3	3.1	20	slice:20|serving:50	1	ciqual:26037
-grilled_fish	fish	g	114	22	0.3	0	2.7	0.6	0	0.3	150	unit:150	1	ciqual:26249
-fried_fish	fish	g	214	18.7	8.8	0	11.4	1.7	0.3	1.2	150	serving:150	1	recipe
-fish_and_chips	fast_food	g	226	7.6	23.1	0.5	11	2.5	2.4	0.5	400	plate:400	1	recipe
-hake	fish	g	112	21.2	0	0	3	0.9	0	0.2	150	unit:150	0	ciqual:26120
-cod	fish	g	100	23.3	0	0	0.8	0.2	0	0.2	150	unit:150	0	ciqual:25997
-sea_bass	fish	g	151	22.2	1	0	6.5	1.3	0	0.2	180	unit:180	0	ciqual:27030
-sea_bream	fish	g	148	23.6	0	0	5.9	1.3	0	0.2	180	unit:180	0	ciqual:27031
-sole	fish	g	95	20.3	0	0	1.5	0.2	0	0.4	150	unit:150	0	ciqual:26059
-trout	fish	g	143	21.5	0	0	6.3	1.5	0	0.1	150	unit:150	0	ciqual:27014
-tuna_steak	fish	g	136	29.9	0	0	1.8	1	0	0.1	150	unit:150	0	ciqual:26041
-mackerel	fish	g	186	23.6	0	0	10.2	3	0	0.2	150	unit:150	0	ciqual:26020
-canned_tuna	fish	g	227	23.4	0	0	14.8	1.6	0	0.8	56	can:56	0	ciqual:26245
-canned_tuna_water	fish	g	143	26.8	0	0	3.9	1	0	0.6	56	can:56	0	ciqual:26039
-sardines	fish	g	194	25.1	0	0	10.4	3.2	0	0.4	150	serving:150|unit:35	0	ciqual:26136
-canned_sardines	fish	g	224	23.3	0.1	0	14.5	3.1	0	0.7	85	can:85	0	ciqual:26040
-anchovies	fish	g	185	15.6	0.3	0	13.4	2.6	0.1	1.8	100	small_plate:100	1	recipe
-canned_anchovies	fish	g	199	24.9	0	0	11	1.6	0	9	30	can:30|unit:4	0	ciqual:26177
-prawns	fish	g	91	20.5	0.2	0	0.8	0.3	0	1.6	100	serving:100|unit:15	1	ciqual:10007
-gambas_al_ajillo	dishes	g	231	19.2	4.4	0.1	15.1	2.4	0.4	1.4	110	serving:110	0	recipe
-mussels	fish	g	108	17.2	5.1	0	2.1	0.4	0	0.8	120	serving:120	1	ciqual:10013
-clams	fish	g	99	16.2	5.3	0	1.5	0.1	0	1.6	100	serving:100	1	ciqual:10027
-oysters	fish	g	67	8.6	3.9	0	1.9	0.3	0	1.4	15	unit:15|serving:90	1	ciqual:10011
-lobster	fish	g	91	19.6	0.1	0	1.3	0.2	0	0.9	150	serving:150	1	ciqual:10009
-crab	fish	g	124	19.5	1.8	0	4.3	0.6	0	1.2	100	serving:100	1	ciqual:10025
-calamari	fish	g	253	15	13	0	15.3	1.8	0.4	1.5	180	serving:180	1	recipe
-squid	fish	g	127	16.2	2.4	0	5.8	1	0	1.3	150	serving:150	0	recipe
-octopus	fish	g	210	27.2	4.2	0.1	9.3	1.5	0.3	1.9	200	serving:200	1	recipe
-surimi	fish	g	117	7.5	11.8	2.7	4.3	0.4	0.7	1.6	16	unit:16|serving:50	0	ciqual:26046
-sushi	fish	g	171	6.7	26.9	4.9	3.7	0.6	0.9	0.5	200	serving:200|unit:25	1	ciqual:25456
-sashimi	fish	g	153	22.8	0.5	0	6.7	1.2	0	0.1	100	serving:100	1	recipe
-ceviche	dishes	g	63	10.5	3.1	1.3	0.8	0.2	0.5	0.4	200	serving:200	1	fdc:2341887
-milk	dairy	ml	49	3.6	5.2	5.1	1.6	1	0	0.1	250	glass:250|cup:200	1	ciqual:19041
-whole_milk	dairy	ml	67	3.6	4.9	4.8	3.7	2.1	0	0.1	250	glass:250|cup:200	0	ciqual:19023
-skimmed_milk	dairy	ml	36	3.7	5.2	4.8	0	0	0	0.1	250	glass:250|cup:200	0	ciqual:19050
-yogurt	dairy	g	50	3.8	4.3	4	1.7	1.1	0	0.1	125	unit:125	1	ciqual:19593
-sweetened_yogurt	dairy	g	82	2.9	10.7	10.1	2.8	1.8	0	0.1	125	unit:125	0	ciqual:19599
-low_fat_yogurt	dairy	g	39	4.2	4.9	4.6	0	0	0	0.1	125	unit:125	0	ciqual:19594
-fruit_yogurt	dairy	g	89	3.2	12.6	11.6	2.4	1.6	0.6	0.1	125	unit:125	0	ciqual:19587
-greek_yogurt	dairy	g	103	3	3.7	3.1	8.2	5.3	0.1	0.1	125	unit:125	0	ciqual:19860
-greek_yogurt_nonfat	dairy	g	59	10.2	3.6	3.2	0.4	0.1	0	0.1	125	unit:125	0	fdc:170894
-protein_yogurt	dairy	g	75	9.3	3.5	3.5	2.7	1.9	0	0.1	125	unit:125	0	ciqual:19724
-drinking_yogurt	dairy	ml	69	3.3	11.2	10.2	0.9	0.6	0.1	0.1	100	unit:100|bottle:200	0	ciqual:19508
-kefir	dairy	ml	63	3.3	4.6	3.5	3.5	2.4	0	0.1	200	glass:200	0	ciqual:19865
-cheese	dairy	g	393	22.3	0.7	0.3	33.6	24	0	1.8	30	slice:15|serving:30	1	ciqual:12747
-cured_cheese	dairy	g	423	24.2	1	0.1	36	24.3	0	1.7	15	slice:15|serving:60	0	ciqual:12119
-fresh_cheese	dairy	g	194	12	2.5	2.2	15.2	10.7	0	0.9	60	slice:60|unit:250	0	ciqual:12805
-edam_cheese	dairy	g	320	25.7	0	0	24.4	16.7	0	2	20	slice:20	0	ciqual:12729
-cheese_slices	dairy	g	246	14.1	5.3	5	18.5	12.3	0	2.5	20	slice:20	0	ciqual:12300
-grated_cheese	dairy	g	368	27.6	0.6	0	28.2	18.1	0	0.7	30	handful:30|tbsp:7	0	ciqual:12118
-mozzarella	dairy	g	227	16.5	0.7	0.7	17.7	11.7	0	0.6	30	serving:30|unit:125	1	ciqual:19590
-parmesan	dairy	g	411	31.1	1.1	0	31	20.6	0	1.6	5	tbsp:5|slice:15	1	ciqual:12120
-feta	dairy	g	273	15.4	1.2	0.8	22.6	14.1	0	2.5	30	serving:30	0	ciqual:12060
-blue_cheese	dairy	g	361	16.8	0.7	0.2	32.5	22.5	0.1	2.1	20	slice:20	1	ciqual:12520
-brie	dairy	g	345	17.6	0.7	0.2	30.4	21.5	0.1	1.6	25	slice:25	1	ciqual:12020
-goat_cheese	dairy	g	285	18.8	0	0	23.3	16.2	0	1.6	20	slice:20	0	ciqual:12812
-cream_cheese	dairy	g	225	6.3	3.3	3.3	20.7	13	0	0.9	15	tbsp:15|serving:30	1	ciqual:12068
-cottage_cheese	dairy	g	81	10.5	4.8	4	2.3	1.2	0	0.8	100	serving:100	1	fdc:172182
-butter	dairy	g	753	0.6	0.7	0.7	83	60	0	0	10	serving:10|tbsp:12	1	ciqual:16400
-whipped_cream	dairy	g	305	2.1	10.6	10.4	28.2	18.9	0	0.1	20	serving:20	0	ciqual:19420
-cooking_cream	dairy	g	173	3	4.3	4.2	16	9.4	0	0.2	15	tbsp:15|serving:50	0	ciqual:19436
-whey_protein	dairy	g	352	78.1	3.2	0	1.6	0.8	3.1	0.4	30	serving:30	0	fdc:173180
-olive_oil	fats_nuts	g	899	0.3	0	0	99.9	15.2	0	0	12	tbsp:12|tsp:4	0	ciqual:17270
-sunflower_oil	fats_nuts	g	900	0.3	0	0	100	11.1	0	0	12	tbsp:12|tsp:4	0	ciqual:17440
-margarine	fats_nuts	g	533	0.2	0.9	0	59.8	12.1	0	1.5	10	serving:10|tbsp:12	0	fdc:173582
-nuts	fats_nuts	g	637	18.6	9.7	4.6	54.7	8.9	10.5	0.9	30	handful:30	1	ciqual:15059
-almonds	fats_nuts	g	615	18.8	9.5	4.2	51.3	4.1	12.5	0	25	handful:25	0	ciqual:15000
-walnuts	fats_nuts	g	709	13.3	6.9	3	67.3	6.5	6.7	0	25	handful:25|unit:5	0	ciqual:15005
-peanuts	fats_nuts	g	635	22.9	14.2	4.3	50.8	8.6	8.1	1.3	30	handful:30	0	ciqual:15002
-cashews	fats_nuts	g	618	17.4	21.3	6.6	48.1	8.2	8.4	0	25	handful:25	0	ciqual:15054
-pistachios	fats_nuts	g	617	18.9	15.9	7.6	49.5	6.6	9.3	1.7	30	handful:30	0	ciqual:15009
-hazelnuts	fats_nuts	g	632	14.4	7.2	4.9	56.9	4.8	11.6	0	25	handful:25	0	ciqual:15004
-chestnuts	fats_nuts	g	211	3.3	41.1	11.3	1.7	0.3	7.1	0	100	serving:100|unit:10	0	ciqual:15021
-sunflower_seeds	fats_nuts	g	626	21.2	12.7	3.3	51	2.2	8.3	5	30	handful:30	0	ciqual:15045
-pumpkin_seeds	fats_nuts	g	618	29.5	5.4	1.4	49.1	8.7	6	0	25	handful:25	0	ciqual:15064
-chia_seeds	fats_nuts	g	454	16.5	7.7		30.7	3.3	34.4	0	12	tbsp:12	0	ciqual:15047
-flax_seeds	fats_nuts	g	528	19	6.5	1.6	40.3	4.3	24.4	0.1	10	tbsp:10	0	ciqual:15034
-peanut_butter	fats_nuts	g	643	22.2	17.3	10.5	51.4	10.1	5	1.1	15	tbsp:15|tsp:5	1	ciqual:15202
-sugar	sweets	g	399	0	99.7	99.7	0	0	0	0	5	tsp:5|unit:8	0	ciqual:31016
-honey	sweets	g	331	0.7	82.1	81.1	0	0	0	0	20	tbsp:20|tsp:7	0	ciqual:31008
-jam	sweets	g	244	0.3	59.3	57.7	0.3	0.1	1.3	0	20	tbsp:20|tsp:7	1	ciqual:31006
-chocolate_spread	sweets	g	549	5	57.9	56.2	32.4	9.2	3.2	0.1	15	tbsp:15|tsp:7	0	ciqual:31032
-dulce_de_leche	sweets	g	315	6.8	55.4	49.7	7.4	4.5	0	0.3	20	tbsp:20	1	fdc:173461
-quince_paste	sweets	g	300	0.3	73.2	68.3	0.1	0	1.5	0	30	slice:30	0	recipe
-chocolate	sweets	g	552	7.6	50.4	45.2	34.2	20.3	6	0.1	20	piece:10|serving:20|unit:100	1	ciqual:31120
-dark_chocolate	sweets	g	591	10.4	26.9	17.9	46.3	28.7	12.8	0	10	piece:10|unit:100	0	ciqual:31074
-milk_chocolate	sweets	g	550	7.5	58.9	56.3	30.8	18.7	2.9	0.2	10	piece:10|unit:100	0	ciqual:31004
-bonbons	sweets	g	558	9.1	51.5	46.2	34.7	13.6	2.1	0.3	12	unit:12	1	ciqual:31063
-candy	sweets	g	339	4.9	76.9	58.4	0.5	0.3	1.5	0	30	serving:30|unit:5	1	ciqual:31060
-cocoa_powder	sweets	g	379	6.7	75.6	67.9	3.3	2.2	10.5	0.2	18	serving:18|tbsp:9	0	ciqual:18101
-cocoa_powder_pure	sweets	g	387	22.4	11.6	0.9	20.6	12.4	29.5	0.1	5	tsp:5|tbsp:8	0	ciqual:18100
-turron	sweets	g	534	14.2	38.6	35.8	33.2	2.5	6.3	0.1	30	piece:30	0	recipe
-croissant	sweets	g	412	6.3	47.6	7.9	21.1	11.6	1.8	1.3	60	unit:60	1	ciqual:7615
-pain_au_chocolat	sweets	g	423	7.5	45.4	12.8	22.5	14.7	3	1	80	unit:80	0	ciqual:7730
-pastries	sweets	g	385	7.6	49	12.9	17	8.3	2.4	1	70	unit:70	1	ciqual:7600
-brioche	sweets	g	363	8.4	52.1	13.9	13	5.1	1.9	1.1	50	unit:50	1	ciqual:7746
-danish_pastry	sweets	g	403	7	43.3	19.8	22.4	5.7	1.3	1	80	unit:80	1	fdc:2343542
-cinnamon_roll	sweets	g	452	4.5	47.4	25.7	26.6	12.6	1.2	0.8	90	unit:90	1	fdc:2343148
-palmera	sweets	g	499	5.9	47.8	21.8	30.4	14.4	5.3	1.2	70	unit:70	0	ciqual:24660
-muffin	sweets	g	441	5.6	55.3	28.4	21.6	2.8	1.4	0.9	30	unit:30|piece:100	1	ciqual:24632
-cupcake	sweets	g	352	2.8	52.6	39.5	14.8	3.5	1	0.8	80	unit:80	1	fdc:2343333
-donut	sweets	g	404	7.3	39.4	10.7	23.7	9.5	2	1.1	55	unit:55	1	ciqual:23880
-churros	sweets	g	419	6.1	46.3	23.4	22.2	9.2	2.6	0.8	100	serving:100|unit:20	1	fdc:2343553
-fritters	sweets	g	378	6.6	26.6	2.1	26.9	5.6	0.9	0.9	60	serving:60|unit:15	1	fdc:2343507
-cookie	sweets	g	496	6.9	63.8	35.4	22.8	14.2	4	0.6	12	unit:12	1	ciqual:24017
-maria_biscuits	sweets	g	450	7.8	73.4	22	13.3	8.6	2.5	1.2	7	unit:7	0	ciqual:24015
-macarons	sweets	g	448	11	56.5	51.3	19	2.5	2.9	0.2	15	unit:15	1	ciqual:23024
-meringue	sweets	g	396	4.8	93.2	87.6	0.5	0	0	0.2	15	unit:15	1	ciqual:24520
-gingerbread	sweets	g	276	3.6	44.3	28.3	9.2	2.4	1	1	50	piece:50	1	fdc:2343356
-brownie	sweets	g	458	5.9	50.6	35.1	25.4	7.3	3.4	0.3	60	unit:60	1	ciqual:23032
-cake	sweets	g	410	5.5	51.8	29.3	19.6	5.1	2.4	0.7	80	slice:80	1	ciqual:23000
-chocolate_cake	sweets	g	445	5.9	51	28.6	24	5.7	3.7	0.4	90	slice:90	1	ciqual:23585
-cheesecake	sweets	g	337	5.4	34.1	21.3	19.7	11.4	0.7	0.4	110	slice:110	1	ciqual:23001
-carrot_cake	sweets	g	373	2.5	50.6	38.5	17.5	3.2	1.1	0.7	100	slice:100	1	fdc:2343339
-sponge_cake	sweets	g	378	6.7	57.6	30.5	13.2	2.3	0.8	1.4	60	slice:60	1	ciqual:23594
-loaf_cake	sweets	g	326	4.3	53.5		10.5	2.2	1.1	0.8	60	slice:60	1	fdc:174906
-swiss_roll	sweets	g	374	4.6	57.7	33.9	12.8	2.4	4.5	0.6	60	slice:60	1	ciqual:23941
-fruitcake	sweets	g	352	6.9	50.6	25.9	12.7	7	3.4	0.5	80	slice:80	1	ciqual:7719
-fruit_pie	sweets	g	296	2.7	35.8	15.9	15.3	5.3	1.8	0.5	120	slice:120	1	fdc:2343477
-pumpkin_pie	sweets	g	249	4.8	34.6	24.6	9.8	4.1	1.7	0.6	120	slice:120	1	fdc:2343493
-tart	sweets	g	245	3.2	34.1	21.6	10	5.5	2.4	0.2	120	slice:120	1	ciqual:23498
-custard_tart	sweets	g	300	6	39.3	22.6	12.8	7.6	1.2	0.7	65	unit:65	1	recipe
-apple_strudel	sweets	g	281	2	36.4	21.1	14.1	7.6	0.8	0.3	120	slice:120	1	fdc:2343522
-mille_feuille	sweets	g	292	3.9	43.7	21.1	11.3	5.3	0.2	0.4	100	unit:100	0	ciqual:24666
-cream_puffs	sweets	g	325	4.5	25.1	16.7	22.9	14.5	0	0.3	30	unit:30|serving:90	1	ciqual:23455
-pancakes	sweets	g	282	7.4	33.2	7.1	12.1	3	2.1	1.3	150	unit:50|serving:150	1	fdc:2343787
-crepes	sweets	g	257	6.3	41.6	19.1	6.8	3.6	2.2	0.5	55	unit:55	1	ciqual:23799
-waffles	sweets	g	301	8	36.1	4.8	13.4	5.1	1.9	1	70	unit:70	1	ciqual:23850
-french_toast	sweets	g	298	6.4	34.5	16	14.6	2.7	0.9	0.5	90	unit:90	1	recipe
-scones	sweets	g	382	6.7	46.9	13.4	18.4	9.7	1.2	1.1	70	unit:70	1	fdc:2343288
-tiramisu	sweets	g	242	4.3	30.2	19.5	9.8	6.4	1.2	0.2	120	serving:120	1	ciqual:19698
-flan	sweets	g	155	4.8	21	19.3	5.7	3.5	0.3	0.1	100	unit:100	1	ciqual:39209
-creme_brulee	sweets	g	269	4.4	17.5	16.3	20.1	13.1	0.3	0.1	120	unit:120	1	ciqual:39213
-crema_catalana	sweets	g	165	4.5	23.4	19.7	5.9	2.8	0	0.1	120	unit:120	0	recipe
-custard	sweets	g	133	3.9	21.1	16	3.6	1.8	0.5	0.2	125	unit:125	1	ciqual:39214
-mousse	sweets	g	155	5.1	20.3	19.3	5.5	3.6	1.8	0.2	65	unit:65	1	ciqual:39206
-rice_pudding	sweets	g	121	3	18.9	10.8	3.4	2.1	1.2	0.1	125	unit:125|bowl:180	1	ciqual:39212
-panna_cotta	sweets	g	192	2.7	15.9	15.8	12.1	8.2	1.4	0.1	110	unit:110	1	ciqual:19685
-jelly	sweets	g	60	1.2	14.2	13.5	0	0	0	0.2	120	unit:120	1	fdc:2345870
-ice_cream	sweets	g	191	2.6	26.1	21.9	8.4	5.4	0	0.1	60	unit:60|bowl:120	1	ciqual:39515
-ice_cream_cone	sweets	g	290	3.5	36.8	25.1	13.5	9.8	0	0.1	75	unit:75	0	ciqual:39509
-ice_pop	sweets	g	84	0.2	20.5	19.4	0.2	0.1	0.3	0	60	unit:60	1	ciqual:39526
-sorbet	sweets	g	122	0.4	28.7	24.9	0.6	0.3	1	0	100	serving:100	1	ciqual:39524
-pizza	fast_food	g	234	10	27.4	3.6	8.9	4.1	2.1	1.2	120	slice:120|unit:450	1	ciqual:25516
-calzone	fast_food	g	343	14.8	29.9	0.6	17.7	5.7	1.4	1.1	300	unit:300	1	fdc:2344169
-hamburger	fast_food	g	251	13.3	29.5	6	8.4	2.8	1.8	1.2	220	unit:220	1	ciqual:25413
-hot_dog	fast_food	g	278	10.9	26.3	5.2	13.8	5.2	1.6	1.7	130	unit:130	1	ciqual:25403
-sandwich	fast_food	g	280	12.4	30.3	2	11.7	5.3	2.1	1.5	150	unit:150	1	ciqual:25522
-baguette_sandwich	fast_food	g	293	11.7	33.2	2.2	12.1	5.6	2.1	1.6	200	unit:200	1	ciqual:25543
-ham_baguette	fast_food	g	263	12	38.4	1.9	6.3	1.8	1.9	1.9	185	unit:185	0	recipe
-toasted_sandwich	fast_food	g	253	10.6	26.1	2.8	11.4	5.5	2	1.5	130	unit:130	0	ciqual:25547
-wrap	fast_food	g	234	8.6	25.2	2.3	10.4	2.4	3.1	1.4	200	unit:200	1	ciqual:25648
-tacos	fast_food	g	249	15.5	13.2	0.4	14	4.5	2.1	0.9	100	unit:100	1	fdc:2343999
-quesadilla	fast_food	g	319	13.7	26.5	2.6	16.4	8.8	2	1.7	120	unit:120	1	fdc:2344075
-kebab	fast_food	g	232	15.2	17	1.1	10.9	4.3	2.3	1.2	300	unit:300	1	ciqual:25428
-french_fries	fast_food	g	256	3.3	32.5	0.6	11.8	2.8	3.9	0.8	150	serving:150	1	recipe
-nachos	fast_food	g	265	4.6	25.8	0.5	15.6	3	2	1.4	150	serving:150	1	fdc:2344061
-potato_chips	snacks	g	532	6	51	1.5	32.7	2.9	4.7	1.6	40	serving:40|handful:15	1	ciqual:4004
-tortilla_chips	snacks	g	488	6.1	62.6	1.1	22.5	7.5	4.3	0.9	40	serving:40|handful:15	1	ciqual:38417
-popcorn	snacks	g	477	8.3	50.2	2	24.6	11.9	10.6	2.8	30	bowl:30	1	ciqual:9230
-crackers	snacks	g	442	10.4	68.6	1.6	12.3	5.7	4.1	1.9	25	serving:25|unit:5	1	ciqual:7351
-pretzel	snacks	g	345	8	67.7	0.2	4	1.3	1.7	1.9	120	unit:120	1	fdc:2343750
-corn_puffs	snacks	g	535	10.5	48.8	9.6	32.6	27.3	2.1	1.6	30	serving:30	0	ciqual:38422
-pork_rinds	snacks	g	544	61.3	0	0	31.3	11.4	0	4.5	25	serving:25	0	fdc:167961
-cereal_bar	snacks	g	451	6.6	73	32.9	14.9	7.4	4.5	0.5	25	unit:25	0	ciqual:31106
-croquettes	snacks	g	266	7.6	16.1	4.2	18.8	5.8	0.7	0.9	30	unit:30|serving:180	1	recipe
-empanada	snacks	g	263	9.2	25.5	2.4	12.9	2	1.8	0.8	160	slice:160|unit:80	1	recipe
-bread_with_tomato	snacks	g	240	5.3	37.3	2.4	7.1	1.2	2	1.4	160	unit:160	1	recipe
-canapes	snacks	g	279	10.3	33.6	2.1	11	3.1	1.8	1.3	55	unit:55|serving:220	1	recipe
-spring_rolls	snacks	g	216	7.5	22.4	2.1	10	1.8	2.8	1.2	60	unit:60	1	ciqual:25674
-falafel	snacks	g	252	8.3	18.7	1.4	14.4	1.5	7.7	1.6	100	serving:100|unit:20	1	ciqual:25571
-onion_rings	snacks	g	352	4.2	37.3	5	19.8	3.2	2.6	1.4	100	serving:100	0	fdc:2345582
-pakora	snacks	g	283	8.2	17.9	5.2	18.8	2.1	4.5	0.8	100	serving:100	1	recipe
-arancini	snacks	g	263	6.4	27.4	0.8	13.8	3.3	1.5	0.6	100	unit:100	0	recipe
-gazpacho	dishes	g	58	0.7	4.7	2.4	3.8	0.6	1	0.5	250	bowl:250|glass:200	1	recipe
-salmorejo	dishes	g	129	2.7	10.9	2.5	7.9	1.4	1.1	0.9	200	bowl:200	0	recipe
-cocido	dishes	g	169	11.5	10.6	1.2	8.3	2.5	2.8	0.8	450	plate:450	0	recipe
-migas	dishes	g	341	9.3	33.4	1.8	18.3	4.4	2.1	1.7	250	plate:250	0	recipe
-patatas_bravas	dishes	g	215	2.8	21	2	12.4	1.5	3.3	1.2	200	serving:200	0	recipe
-ratatouille	dishes	g	88	1.7	6	5.2	5.7	0.9	2.9	0.8	200	small_plate:200	1	recipe
-potato_salad	dishes	g	203	5.2	8.8	1.2	15.9	1.7	1.7	0.7	150	small_plate:150	1	recipe
-ensalada_mixta	dishes	g	86	4.5	3	1.7	5.9	1	1.1	0.6	350	plate:350	0	recipe
-green_salad	dishes	g	55	0.9	2.4	1.8	4.4	0.7	1	0.6	250	plate:250|small_plate:150	1	recipe
-caesar_salad	dishes	g	151	8.1	4.9	1.7	10	2.4	2	0.8	300	plate:300	1	ciqual:25628
-greek_salad	dishes	g	103	2.7	2.8	2.3	8.7	2.8	1.3	0.7	300	plate:300	1	recipe
-caprese_salad	dishes	g	133	6.4	2.3	2	10.9	5	0.6	0.5	250	plate:250	1	recipe
-pasta_salad	dishes	g	160	6.2	14.2	1.6	8.2	1.6	2	0.9	250	plate:250	1	ciqual:25619
-coleslaw	dishes	g	113	1.1	8.1	7.4	7.9	1.2	1.9	0.7	100	serving:100	1	fdc:2345335
-fruit_salad	dishes	g	79	0.6	18	14.2	0.2	0	1.4	0	150	bowl:150	1	ciqual:13134
-tabbouleh	dishes	g	179	4.9	23.7	4.9	6.7	0.7	2.5	1	200	plate:200	0	ciqual:25608
-pimientos_de_padron	dishes	g	126	0.9	3.8	3.4	11.2	1.7	3.6	1.8	130	serving:130	0	recipe
-huevos_rotos	dishes	g	231	8	17	0.9	13.9	2.4	2.3	1.4	320	plate:320	0	recipe
-judias_verdes_con_patatas	dishes	g	81	1.9	8.4	2.2	3.7	0.6	2.5	0.7	280	plate:280	0	recipe
-garbanzos_con_espinacas	dishes	g	146	6.4	13.5	2.9	5.5	0.8	5.4	0.6	250	plate:250|small_plate:150	0	recipe
-avocado_toast	dishes	g	247	5	23.7	2.9	13.4	2	4.8	1.3	136	unit:136	0	recipe
-toast_with_olive_oil	dishes	g	372	7.1	49.6	2	15.4	2.5	2.3	1.8	70	unit:70	0	recipe
-toast_with_butter_and_jam	dishes	g	329	5.7	52.1	14.4	10.2	7	2.1	0.8	90	unit:90	0	recipe
-arroz_a_la_cubana	dishes	g	144	3.5	21.6	4.5	4.5	0.8	1.6	0.2	420	plate:420	0	recipe
-roasted_peppers	vegetables	g	38	1.2	6.4	6	0.4	0.1	2.2	0	100	small_plate:100	0	ciqual:20088
-soup	dishes	g	37	0.8	4.5	1.6	1.5	0.6	1.2	0.7	300	bowl:300	1	ciqual:25903
-broth	dishes	g	7	1.2	0.3	0	0.1	0.1	0	0.8	300	bowl:300	0	ciqual:25947
-sopa_de_ajo	dishes	g	102	4.5	7.8	0.4	5.6	1.2	0.7	1.2	300	bowl:300	0	recipe
-cream_soup	dishes	g	47	1.4	3.7	1.6	2.7	0.7	1	0.5	300	bowl:300	1	recipe
-tomato_soup	dishes	g	36	0.8	5.9	3	0.9	0.3	1	0.6	300	bowl:300	1	ciqual:25914
-chicken_soup	dishes	g	61	5.6	4.5	0.9	2.2	0.4	0.4	0.9	300	bowl:300	1	fdc:2344639
-minestrone	dishes	g	47	1.5	5	1.5	1.9	0.2	1.7	0.8	300	bowl:300	0	ciqual:25916
-french_onion_soup	dishes	g	61	1.6	4.3	2.7	3.8	2	1.4	0.8	300	bowl:300	0	ciqual:25910
-miso_soup	dishes	g	32	2.5	1.9	0.8	1.6	0.2	0.4	1.5	250	bowl:250	1	fdc:2342931
-clam_chowder	dishes	g	62	3.3	7.2	2.7	2.1	1.1	0.3	0.7	300	bowl:300	0	fdc:2342606
-fish_soup	dishes	g	50	4.1	2.7	0.9	2.4	0.8	0.8	0.7	300	bowl:300	1	ciqual:25904
-stew	dishes	g	119	9.8	7.5	1.7	5.1	1.3	1.7	0.6	350	plate:350	1	recipe
-chili_con_carne	dishes	g	118	7.1	13	2.6	3.4	1.1	3.6	0.9	300	plate:300	1	ciqual:25111
-curry	dishes	g	106	6.5	5.1	2.6	6.5	1.6	1.4	0.9	300	plate:300	1	fdc:2341861
-moussaka	dishes	g	147	5.8	5.2	3	10.8	3.4	2.8	1	300	plate:300	0	ciqual:25123
-quiche	dishes	g	269	8.4	21.5	2	16.4	9.2	1.4	1.3	150	slice:150	1	ciqual:25405
-pot_pie	dishes	g	254	9.2	22	3.3	13.5	4.6	1.9	0.9	250	unit:250	1	fdc:2342137
-shepherds_pie	dishes	g	138	6	9.4	1.5	8.2	4.7	1.4	0.8	300	plate:300	0	ciqual:25009
-gratin	dishes	g	107	3.2	3.6	2	8.5	2.5	1.7	0.5	250	plate:250	1	ciqual:25238
-mashed_potatoes	dishes	g	117	2	11.3	1.3	6.7	3.7	1.8	0.5	200	small_plate:200	1	ciqual:4040
-fried_potatoes	dishes	g	137	2.5	17.3	2.2	5.7	1.2	2.6	0.5	200	small_plate:200	1	ciqual:4015
-potato_pancakes	dishes	g	217	2.6	25	0.3	11.5	0.9	3.2	1	100	unit:50|serving:100	1	fdc:2344971
-full_breakfast	dishes	g	163	9.8	7.6	2	9.9	3.3	1.6	1.1	515	plate:515	1	recipe
-dumplings	dishes	g	192	8.8	12.6	2.9	11.1	2.5	1.5	1.2	150	serving:150|unit:25	1	fdc:2344189
-pierogi	dishes	g	195	5.3	28.7	1.8	6.1	1.3	0.9	1.2	200	serving:200|unit:35	1	fdc:2344204
-steamed_buns	dishes	g	248	10.7	38	5.4	5	1.3	1.2	0.4	70	unit:70	1	recipe
-tempura	dishes	g	228	4	18	1.5	15	2.2	1.6	0.7	150	serving:150	1	recipe
-dolma	dishes	g	168	2.3	10.8	2.8	12	1.9	3.1	0.4	150	serving:150|unit:30	0	fdc:2344552
-hot_pot	dishes	g	61	5.1	3.4	0.8	2.8	0.9	0.7	0.5	600	bowl:600	1	recipe
-water	drinks	ml	0	0	0	0	0	0	0	0	250	glass:250|bottle:500	0	ciqual:18066
-sparkling_water	drinks	ml	0	0	0	0	0	0	0	0	250	glass:250|bottle:500	0	ciqual:18046
-espresso	drinks	ml	7	0.3	1.2	0	0.2	0.1	0	0	40	cup:40	1	ciqual:18071
-black_coffee	drinks	ml	6	0.3	1.4	0	0	0	0	0	200	cup:200	0	ciqual:18004
-coffee_with_milk	drinks	ml	40	2.8	4.3	4	1.3	0.8	0	0.1	200	cup:200	1	recipe
-cortado	drinks	ml	25	1.7	2.8	2.2	0.8	0.5	0	0	70	cup:70	0	recipe
-iced_coffee	drinks	ml	3	0.1	0.5	0	0.1	0	0	0	100	glass:100	1	recipe
-tea	drinks	ml	0	0.1	0	0	0	0	0	0	250	cup:250	1	ciqual:18020
-herbal_tea	drinks	ml	1	0	0.2	0	0	0	0	0	250	cup:250	0	ciqual:18022
-iced_tea	drinks	ml	24	0	5.9	5.8	0	0	0.1	0.1	330	can:330|glass:250	1	ciqual:18075
-hot_chocolate	drinks	ml	137	3.9	16.1	13.6	6.2	3.8	0.8	0.1	200	cup:200	1	recipe
-chocolate_milk	drinks	ml	69	3.9	9.9	9	1.5	0.9	0	0.1	250	glass:250|cup:200	0	ciqual:18104
-orange_juice	drinks	ml	47	0.7	9.6	8.7	0.2	0	0.2	0	200	glass:200	1	ciqual:2013
-juice	drinks	ml	48	0.3	11.6	10.5	0	0	0	0	200	glass:200	1	ciqual:2035
-apple_juice	drinks	ml	51	0.2	11.9	11.3	0.1	0	0.2	0	200	glass:200	0	ciqual:2074
-pineapple_juice	drinks	ml	55	0.4	12.6	12.6	0.1	0	0.2	0	200	glass:200	0	ciqual:2073
-peach_nectar	drinks	ml	53	0.2	12.7	12.5	0.1	0	0.3	0	200	glass:200	0	ciqual:2371
-fruit_nectar	drinks	ml	52	0.3	12.1	11.6	0.1	0	0.3	0	200	glass:200	0	ciqual:2061
-smoothie	drinks	ml	63	0.7	13.5	12.3	0.3	0.2	1.1	0	250	glass:250	1	ciqual:2500
-milkshake	drinks	ml	132	3.5	18.3	14.3	4.9	2.8	0.7	0.2	300	glass:300	1	ciqual:39001
-soy_drink	drinks	ml	47	3.3	3	1.8	2.1	0.3	0.8	0.1	250	glass:250	0	ciqual:18113
-oat_drink	drinks	ml	42	0.3	8	5.2	1.1	0.2	0	0.1	250	glass:250	0	ciqual:18899
-almond_drink	drinks	ml	37	1.1	0.7	0	3.3	0.3	0	0.1	250	glass:250	0	ciqual:18107
-horchata	drinks	ml	92	1.1	20.7	8.4	0.1	0	0.5	0	250	glass:250	0	fdc:2346178
-cola	drinks	ml	42	0	10.4	10.4	0	0	0	0	330	can:330|glass:250|bottle:500	1	ciqual:18018
-cola_zero	drinks	ml	1	0	0.3	0	0	0	0	0	330	can:330|glass:250|bottle:500	0	ciqual:18060
-soft_drink	drinks	ml	35	0	8.7	8.6	0	0	0	0	330	can:330|glass:250	1	ciqual:18049
-lemonade	drinks	ml	34	0	8.5	8.5	0	0	0.1	0	250	glass:250	1	ciqual:18010
-tonic_water	drinks	ml	34	0	8.5	8.5	0	0	0.1	0	200	bottle:200	0	ciqual:18344
-energy_drink	drinks	ml	43	0.1	10.6	10.6	0	0	0.1	0.1	250	can:250	0	ciqual:18352
-sports_drink	drinks	ml	22	0	5.5	5.1	0	0	0	0.1	330	can:330|bottle:500	0	ciqual:18348
-beer	drinks	ml	39	0.4	3.2	0.1	0	0	0	0	200	glass:200|can:330|bottle:330	1	ciqual:5001
-alcohol_free_beer	drinks	ml	30	0.2	6.1	3.3	0.1	0	0	0	330	can:330|glass:200	0	ciqual:5030
-red_wine	drinks	ml	75	0.2	0	0	0	0	0	0	150	glass:150|bottle:750	1	ciqual:5214
-white_wine	drinks	ml	81	0.1	2.6	1	0	0	0	0	150	glass:150|bottle:750	1	fdc:174837
-rose_wine	drinks	ml	69	0.1	1.4	1.4	0	0	0	0	150	glass:150|bottle:750	0	ciqual:5216
-sparkling_wine	drinks	ml	72	0.1	1.8	1.8	0	0	0	0	120	glass:120|bottle:750	1	ciqual:5201
-sangria	drinks	ml	91	0	11.3	9.8	0.1	0	0	0	200	glass:200	1	ciqual:1017
-tinto_de_verano	drinks	ml	54	0.1	4.2	4.2	0	0	0.1	0	250	glass:250	0	recipe
-cider	drinks	ml	37	0.1	3.7	3.3	0	0	0	0	200	glass:200|bottle:700	0	ciqual:5003
-vermouth	drinks	ml	142	0.1	11.8	11.5	0	0	0	0	100	glass:100	1	ciqual:1007
-spirits	drinks	ml	239	0	0.1	0.1	0	0	0	0	50	glass:50	1	ciqual:1005
-cocktail	drinks	ml	125	0	8	8	2.3	1.7	0.3	0	200	glass:200	1	ciqual:1012
-mojito	drinks	ml	94	0	8.4	8.4	0	0	0	0	180	glass:180	1	recipe
-gin_tonic	drinks	ml	76	0	6.7	6.7	0	0	0.1	0	250	glass:250	1	recipe
-rum_and_cola	drinks	ml	76	0	8.2	8.2	0	0	0	0	250	glass:250	0	recipe
-mayonnaise	sauces	g	692	1.3	3.4	1.2	74.5	6.8	0.3	1.4	14	tbsp:14	1	ciqual:11054
-alioli	sauces	g	480	1.1	5.4	2.6	50.2	4.8	0.3	1.8	14	tbsp:14	0	ciqual:11168
-ketchup	sauces	g	108	1.2	23.7	21.1	0.2	0	1.8	2.3	15	tbsp:15	0	ciqual:11008
-mustard	sauces	g	151	6.9	4.3	1.7	11.2	1.1	0	5.8	5	tsp:5|tbsp:15	0	ciqual:11013
-tomato_sauce	sauces	g	79	1.5	7.7	5.4	4.2	0.5	2.2	1.2	60	serving:60|tbsp:15	0	ciqual:11107
-pink_sauce	sauces	g	572	1.3	9.2	7.9	58.7	5	0.8	1.7	15	tbsp:15	0	ciqual:11244
-pesto	sauces	g	370	3.9	6.6	3.2	35.4	4.4	2.5	2.7	15	tbsp:15|serving:40	0	ciqual:11179
-bechamel	sauces	g	147	3.8	9	4.4	10.6	2.9	0.2	0.9	60	serving:60|tbsp:15	0	ciqual:11143
-soy_sauce	sauces	g	40	7.3	1.7	0	0	0	0.9	13.1	15	tbsp:15|tsp:5	0	ciqual:11104
-vinaigrette	sauces	g	471	0.7	3	2.7	50.5	5.2	0.5	2.4	15	tbsp:15	0	ciqual:11108
-bbq_sauce	sauces	g	136	0.6	30.3	27.5	0.6	0.1	1.2	1.8	15	tbsp:15	0	ciqual:11100
-guacamole	sauces	g	191	1.8	4.6	2.3	17.2	3.7	4.8	1.4	50	serving:50|tbsp:15	1	ciqual:25620
-salsa	sauces	g	17	0.7	2.6	2.1	0.1	0	1.1	1.1	50	serving:50|tbsp:15	1	fdc:2345250
-tzatziki	sauces	g	138	6.2	3.8	2.7	10.9	0.8	1.2	0.9	50	serving:50|tbsp:15	1	ciqual:19863
-balsamic_vinegar	sauces	g	92	0.7	18	18	0	0	0.8	0.1	15	tbsp:15	0	ciqual:11091
-salt	sauces	g	0	0	0	0	0	0	0	97.8	5	tsp:5	0	ciqual:11017
+id	group	unit	kcal	protein	carbs	sugars	fat	sat_fat	fiber	salt	portion	portions	visual	source	mono_fat	poly_fat	cholesterol	potassium	calcium	iron	magnesium	zinc	vit_a	vit_c	vit_d	vit_e	vit_b12	folate	variant_of
+apple	fruit	g	54	0.3	11.6	10.6	0.3	0.1	1.4	0	150	unit:150	1	ciqual:13039	0	0.1	0	119	5.34	0.1	6.47	0.03	1.78	4.6	0	0.19	0	3	
+pear	fruit	g	57	0.4	12.3	9.8	0.3	0.1	2.9	0	150	unit:150	1	ciqual:13037	0.1	0.1	0	132	6.46	0.07	8.23	0.1	1.17	4.3	0	0.12	0	7	
+banana	fruit	g	88	1.1	19.7	15.6	0	0	2.7	0	120	unit:120	1	ciqual:13005	0	0	0	320	5.1	0.2	28	0.14	2.38	7.16	0	0	0	19	
+orange	fruit	g	42	0.8	8	7.6	0	0	2.7	0	150	unit:150	1	ciqual:13034	0	0	0	180	66	0.57	15	0.25	0.21	47.5	0	0.19	0	25.9	
+mandarin	fruit	g	46	0.8	9.2	8.6	0	0	1.7	0	60	unit:60	1	ciqual:13024	0	0	0	140	23	0.09	9.3	0.1	12.3	49.2	0	0.21	0	27.6	
+lemon	fruit	g	29	1.1	6.5	2.5	0.3	0	2.8	0	60	unit:60	1	fdc:167746	0	0.1	0	138	26	0.6	8	0.06	1	53	0	0.15	0	11	
+lime	fruit	g	39	1.1	3.1	2.1	0	0	4.3	0	50	unit:50	1	ciqual:13067	0	0	0	190	57	0.2	14	0.15	1.03	29.3	0	0.45	0	36.5	
+grapefruit	fruit	g	34	0.8	5.9	5.9	0	0	1.1	0	250	unit:250	1	ciqual:13040	0	0	0	171	23	0	9.97	0	29.2	36.4	0	0.42	0	38.7	
+strawberry	fruit	g	35	0.6	6	5.6	0	0	3.8	0	150	bowl:150|unit:15	1	ciqual:13014	0	0	0	140	18	0.19	12	0.11	0.21	54	0	0.3	0	98.9	
+grapes	fruit	g	71	0.7	16.3	15.4	0.3	0	1.1	0	120	bowl:120|handful:50	1	ciqual:13395	0	0	0	193	11.2	0.23	7.38	0.03	0.99	3.03	0	0.33	0	14.9	
+watermelon	fruit	g	35	0.7	8.3	7.9	0	0	0.5	0	250	slice:250	1	ciqual:13036	0	0	0	100	6	0.16	11	0.09	102	4.26	0	0	0	36.9	
+melon	fruit	g	36	0.5	8.3	8.1	0.1	0	0.8	0	200	slice:200	1	fdc:169911	0	0.1	0	228	6	0.17	10	0.09	3	18	0	0.02	0	19	
+pineapple	fruit	g	52	0.3	11.7	10.5	0	0	1.2	0	100	slice:100|bowl:150	1	ciqual:13002	0	0	0	140	8	0.17	15	0.08	5.58	46.1	0	0	0	19.6	
+kiwi	fruit	g	61	0.9	11	8.9	0.6	0.1	2.4	0	75	unit:75	1	ciqual:13021	0.2	0.3	0	290	29	0.16	12	0.12	3.17	81.9	0	0.96	0	22.2	
+peach	fruit	g	38	0.9	7.6	6.8	0.3	0	1.5	0	150	unit:150	1	ciqual:13043	0.1	0.1	0	215	7.32	0.15	11.2	0.12	13.5	6.6	0	0.73	0	4	
+nectarine	fruit	g	50	0.7	11.3	8.8	0	0	0.5	0	130	unit:130	0	ciqual:13399	0	0	0	216	4.88	0.13	8.04	0.11	7.48	3.24	0	0.42	0	9.74	peach
+cherries	fruit	g	54	0.8	13	10	0	0	1.6	0	120	bowl:120|handful:60	1	ciqual:13008	0	0	0	190	9.9	0.17	8.8	0.06	20.2	4.09	0	0	0	6.75	
+blueberries	fruit	g	58	0.9	10.6	10	0.3	0	2.4	0	100	bowl:100|handful:40	1	ciqual:13028	0	0.2	0	77	6	0.28	6	0.16	2.67	9.7	0	0.57	0	6	
+raspberries	fruit	g	48	1.2	5.8	5.4	0.8	0.1	4.3	0	100	bowl:100|handful:40	1	ciqual:13015	0.2	0.4	0	170	16	0.4	20	0.24	8.33	18.7	0	0.88	0	38.1	
+blackberries	fruit	g	46	1.1	6.5	6.1	0.7	0.1	5.2	0	100	bowl:100|handful:40	1	ciqual:13029	0.2	0.4	0	200	31	0.4	20	0.18	13	10.1	0	1.28	0	17	
+mango	fruit	g	71	0.6	14.3	12.9	0	0	1.6	0	200	unit:200|bowl:150	1	ciqual:13025	0	0	0	150	12	0.09	11	0.11	72	25	0	2.05	0	70.2	
+avocado	fruit	g	167	2	1.8	0.3	15.4	2.1	6.8	0	70	serving:70|unit:140	1	fdc:171706	9.8	1.8	0	507	13	0.61	29	0.68	7	8.8	0	1.97	0	89	
+pomegranate	fruit	g	81	1.4	14.3	13.3	1.2	0.1	2.3	0	150	unit:150|bowl:100	1	ciqual:13018	0.1	1	0	230	9.5	0.17	12	0.22	1.01	9.02	0	0	0	8.77	
+papaya	fruit	g	40	0.8	8.5	8.1	0	0	1.8	0	150	slice:150	1	ciqual:13035	0	0	0	200	22	0.16	18	0	29.3	65.3	0	0	0	55.3	
+apricot	fruit	g	44	0.8	9	6.7	0	0	1.7	0	40	unit:40	1	ciqual:13000	0	0	0	260	15	0.19	8.4	0.09	196	2.55	0	0.7	0	7.6	
+plum	fruit	g	52	0.7	9.9	9.9	0.3	0	1.4	0	60	unit:60	1	ciqual:13100	0.1	0	0	157	6	0.17	7	0.1	15.8	9.5	0	0.26	0	5	
+fig	fruit	g	68	1.2	13.5	12.2	0	0	4.1	0	50	unit:50	1	ciqual:13012	0	0	0	230	57	0.27	22	0.16	6.13	0	0	0	0	24.5	
+coconut	fruit	g	369	3.5	4.7	4.7	34.7	30.3	10.6	0	40	piece:40	1	ciqual:15006	1.9	0.5	0	363	13.5	2.27	32	0.8	0	3.15	0	0.24	0	26	
+dragon_fruit	fruit	g	57	0.4	12.1	9.8	0.1	0	3.1	0	150	unit:150	1	fdc:2344729	0.1	0.1	0	116	9	0.18	7	0.1	1	4.3	0	0.12	0	7	
+persimmon	fruit	g	66	0.9	14.3	13.9	0	0	3.4	0	180	unit:180	1	ciqual:13066	0	0	0	160	6.9	0.06	7.2	0	15	3.41	0	0.12	0	22.1	
+lychee	fruit	g	78	1.1	16.1	15.7	0	0	2	0	10	unit:10|handful:100	1	ciqual:13023	0	0	0	200	3.6	0.26	18	0.23	0.21	19.2	0	0	0	28.3	
+passion_fruit	fruit	g	102	2.1	10.9	8.5	3	0.5	6.8	0	20	unit:20	1	ciqual:13016	0.5	1.8	0	240	8.1	0.56	26	0.76	84.2	25.6	0	0.5	0	101	
+kumquat	fruit	g	71	1.9	9.4	9.4	0.9	0.1	6.5	0	20	unit:20	0	fdc:168154	0.2	0.2	0	186	62	0.86	20	0.17	15	43.9	0	0.15	0	17	
+jackfruit	fruit	g	95	1.7	21.8	19.1	0.6	0.2	1.5	0	150	serving:150	1	fdc:174687	0.2	0.1	0	448	24	0.23	29	0.13	5	13.7	0	0.34	0	24	
+durian	fruit	g	147	1.5	23.3		5.3		3.8	0	150	serving:150	1	fdc:168192			0	436	6	0.43	30	0.28	2	19.7			0	36	
+cherimoya	fruit	g	80	1.6	15.4	12.9	0.7	0.2	3	0	200	unit:200	0	ciqual:13056	0.1	0.2	0	287	10	0.27	17	0.16	0.17	12.6	0	0.27	0	23	
+loquat	fruit	g	48	0.4	9.9	6.1	0.2	0	1.7	0	30	unit:30	0	ciqual:13564	0	0.1	0	266	16	0.28	13	0.05	13.5	1	0	0.89	0	14	
+quince	fruit	g	59	0.4	12.5	6.3	0.1	0	1.9	0	150	unit:150	0	ciqual:13010	0	0.1	0	197	11	0.7	8	0.04	0	15	0	0.55	0	3	
+dates	fruit	g	287	1.8	64.7	64.7	0.3	0.1	7.3	0.1	8	unit:8|handful:40	1	ciqual:13011	0.1		0.2	696	44.9	0.9	47.3	0.23	7.42	0	0	0.05	0	15	
+raisins	fruit	g	322	3	73.2	70.3	0.9	0.3	4.2	0	30	handful:30|tbsp:10	1	ciqual:13046	0.3	0.2	0	960	54	1.7	35	0.24	0.21	0	0	1.67	0	82	
+dried_fruit	fruit	g	267	2.1	61.3	52.1	0.6	0.2	6.4	0.1	30	handful:30	1	ciqual:13996	0.2	0.1	0.05	762	59.1	1.11	38.3	0.29	12.6	0.7	0	0.95	0	20.5	
+dried_apricots	fruit	g	239	2.9	59.1	34.3	0.5	0.2	8.3	0	8	unit:8|handful:40	0	ciqual:13001	0.1	0.2	0	1400	71	1.4	41	0.35	3.89	0	0	5.52	0	8.85	dried_fruit
+prunes	fruit	g	229	1.6	55.4	38.1	0.4	0.2	5.1	0	10	unit:10|handful:40	0	ciqual:13042	0.1	0.1	0	610	50	0.38	30	0.28	32.8	0	0	0.41	0	2.5	dried_fruit
+peaches_in_syrup	fruit	g	59	0.5	13.5	13.1	0	0	1.5	0	120	serving:120	0	ciqual:13730	0	0	0	100	10	0.13	5	0.05	21.2	2.78	0	0.49	0	8.4	
+tomato	vegetables	g	18	0.5	3.4	3	0	0	1	0	150	unit:150|slice:20	1	ciqual:20276	0	0	0	210	6.8	0.17	7	0.08	67.3	19.9	0	0.53	0	13.5	
+cherry_tomatoes	vegetables	g	32	1.3	5.6	4.8	0	0	1.2	0	100	bowl:100|unit:15	0	ciqual:20172	0	0	0	330	6.6	0.37	11	0.18	113	21.8	0	0.4	0	17.6	tomato
+cucumber	vegetables	g	17	0.7	2.9	1.7	0.1	0	0.5	0	100	small_plate:100|unit:250	1	ciqual:20019	0	0	0	157	19.2	0.13	13.6	0.1	3.75	2.8	0	0.03	0	7	
+carrot	vegetables	g	30	0.8	5.2	4.9	0	0	2.9	0.1	80	unit:80	1	ciqual:20009	0	0	0	274	36.2	0	13.6	0	1100	3.73	0	0.21	0	11.2	
+broccoli	vegetables	g	30	3.2	1.8	1.1	0.6	0.2	2.6	0	150	small_plate:150|plate:250	1	ciqual:20351	0.2	0.2	0	217	39.4	0.46	17.1	0.36	47.6	19.4	0	1.99	0	53.7	
+cauliflower	vegetables	g	21	1.6	1.6	0	0.5	0.1	2	0	150	small_plate:150|plate:250	1	ciqual:20017	0	0.2	0	238	19.2	0.31	12.9	0.22	2.08	9.7	0	0.07	0	78.8	
+lettuce	vegetables	g	15	1.4	1.2	0.7	0.2	0	1.1	0	100	small_plate:100|handful:30	1	ciqual:20031	0	0.1	0	206	64.6	1.1	14.9	0.2	303	5.53	0	0.18	0	49	
+arugula	vegetables	g	28	2.6	2.1	2.1	0.7	0.1	1.6	0.1	30	handful:30	0	ciqual:20217	0	0.3	0	369	160	1.46	47	0.47	119	15	0	0.43	0	97	lettuce
+spinach	vegetables	g	20	3.2	0.3	0	0.1	0.1	2.7	0.1	150	small_plate:150	1	ciqual:20027	0	0.1	0	396	140	2.14	54.4	0.65	134	2.1	0	2.4	0	125	
+chard	vegetables	g	20	1.9	2	1.1	0.1	0	2.1	0.4	200	small_plate:200	1	fdc:170401	0	0	0	549	58	2.26	86	0.33	306	18	0	1.89	0	9	
+cabbage	vegetables	g	24	1	3	2.8	0.5	0.1	2.4	0.1	150	small_plate:150	1	ciqual:20015	0	0	0	190	69.7	0.28	15.1	0.22	4	27.3	0	0.14	0	38	
+kale	vegetables	g	50	4.3	4.2	2.3	0.9	0.1	3.6	0.1	50	handful:50|small_plate:100	0	ciqual:20218	0.1	0.3	0	491	150	1.47	47	0.56	494	120	0	1.54	0	141	
+bell_pepper	vegetables	g	23	0.8	3.5	1.5	0.3	0.1	1.5	0	150	unit:150	1	ciqual:20041	0	0.2	0	155	7.7	0.4	11.9	0.13	70.5	121	0	1.44	0	40.7	
+green_pepper	vegetables	g	23	0.8	3.4	3	0	0	3.2	0	150	unit:150	0	ciqual:20085	0	0	0	160	6.2	0.22	7.7	0.11	12.8	26.9	0	0.28	0	55.1	bell_pepper
+red_pepper	vegetables	g	34	1.1	6	4.8	0	0	3.2	0	200	unit:200	0	ciqual:20087	0	0	0	180	4.8	0.21	8.2	0.14	46.2	121	0	3.45	0	81.8	bell_pepper
+chili_pepper	vegetables	g	37	1.9	5.8	4	0.4	0	1.5	0	10	unit:10	1	ciqual:20151	0	0.2	0	322	14	1.03	23	0.26	44.5	144	0	0.69	0	23	
+onion	vegetables	g	39	1.1	6.3	4.8	0.6	0.2	1.7	0.1	150	unit:150|tbsp:10	1	ciqual:20034	0	0	0	190	25	0	9	0.23	2.08	3.9	0	0.02	0	29.6	
+spring_onion	vegetables	g	31	2.6	2.9	2.1	0.5	0.1	2.6	0	20	unit:20	1	ciqual:11003	0.1	0.2	0	286	82	1.54	31	0.48	134	38.5	0	0.38	0	84.5	
+garlic	vegetables	g	109	5.3	18.6	1.2	0	0	5.8	0	5	unit:5	1	ciqual:11000	0	0	0	530	11	0.63	20	0.75	0.21	0	0	0	0	26.1	
+leek	vegetables	g	25	2.6	2.2	1.8	0	0	3.4	0	150	unit:150	1	ciqual:20327	0	0	0	120	35	0.45	6.5	0.14	28.6	3.79	0	0.75	0	22.8	
+potato	vegetables	g	81	1.8	16.8	0.9	0.3	0.1	1.8	0.1	150	unit:150|small_plate:200	1	ciqual:4003	0	0	0	363	5.83	0.27	17.3	0.15	0.17	2.92	0	0.01	0	31.1	
+potato_raw	vegetables	g	80	2	16.2	0.8	0.1	0	2.2	0	150	unit:150	0	ciqual:4008	0	0	0	421	14.3	0.78	22	0.35	0.08	19.7	0	0.01	0	16	
+baked_potato	dishes	g	91	2.5	19	1.2	0.1	0	2.2	0	200	unit:200	1	ciqual:4026	0	0.1	0	535	15	1.08	28	0.36	0.5	9.6	0	0.04	0	28	
+sweet_potato	vegetables	g	79	1.7	16.3	6.1	0.2	0	2.9	0.1	150	small_plate:150|unit:200	1	ciqual:4102	0	0.1	0	353	32.5	0.71	22.5	0.26	873	16.2	0	0.83	0	6	
+pumpkin	vegetables	g	26	0.8	4.5	3.1	0.1	0	2	0	150	small_plate:150	1	ciqual:20096	0	0	1.39	230	13	0.18	6.9	0.1	502	0.84	0	0.24	0	2.5	
+zucchini	vegetables	g	16	0.9	1.4	0	0.4	0.1	1.5	0.1	150	small_plate:150	1	ciqual:20021	0	0.2	0	238	19.3	0.32	22.3	0.22	14.4	2.9	0	0.12	0	32.8	
+eggplant	vegetables	g	27	0.8	4.2	3.2	0.2	0	2.5	0	150	small_plate:150	1	ciqual:20002	0	0.1	0	123	20.1	0.25	15	0.1	1.83	1.3	0	0.41	0	14	
+corn	vegetables	g	106	3.4	18.6	4.5	1.5	0.2	2.4	0	150	unit:150	1	ciqual:20049	0.4	0.6	0	218	3	0.45	26	0.62	5.5	5.5	0	0.09	0	23	
+sweet_corn	vegetables	g	105	2.7	18.3	2.4	1.7	0.3	3.1	0.6	50	serving:50|tbsp:15|can:140	0	ciqual:20066	0.2	0.4	0	224	3.51	0.35	26.9	0.39	1.83	2.1	0	0.07	0	75	
+mushrooms	vegetables	g	29	2.2	3	2.3	0.5	0.1	2.2	0	150	small_plate:150	1	ciqual:20102	0	0.2	0	356	6	1.74	12	0.87	0	4	0.2	0.01	0	18	
+asparagus	vegetables	g	25	2.7	1.7	1.3	0.3	0.1	2.2	0	150	small_plate:150|unit:15	1	ciqual:20299	0	0.2	0	220	21	0.64	10	0.49	36.5	4.73	0	1.5	0	69.9	
+white_asparagus	vegetables	g	20	1.6	1.2	1	0.7	0.2	1.6	0.7	125	small_plate:125|unit:25	0	ciqual:20076	0	0.3	0	172	16	1.83	10	0.4	41.1	18.4	0	1.22	0	96	
+green_beans	vegetables	g	29	2	3	0	0.2	0	4	0	200	plate:200|small_plate:150	1	ciqual:20030	0	0.1	0	174	55.3	0.6	22.3	0.2	11.4	5	0	0.45	0	33	
+peas	vegetables	g	61	5.8	4.7	1.7	0.9	0.2	5.8	0	100	small_plate:100	1	ciqual:20037	0	0.1	0	135	32.7	1.17	31.9	0.8	34.5	1.8	0	0	0	65.6	
+artichoke	vegetables	g	33	2.5	1	1	0.3	0.1	8.3	0.2	150	small_plate:150|unit:50	1	ciqual:20000	0	0.1	0	427	42.9	0.67	44.6	0.29	0.67	9.1	0	0.19	0	89	
+brussels_sprouts	vegetables	g	44	3.2	5.4	4.1	0	0	4.8	0	150	small_plate:150	1	ciqual:20309	0	0	0	410	35	0.51	19	0.31	18	55.4	0	0.44	0	49.3	
+beetroot	vegetables	g	42	1.4	7.1	6.7	0.4	0.2	2.5	0.2	80	serving:80	1	ciqual:20003	0.1	0.1	0	320	24	0.29	17	0.29	0.21	0	0	0	0	12.4	
+radish	vegetables	g	11	0.9	1.5	1.1	0	0	1.4	0	10	unit:10	1	ciqual:20045	0	0	0	250	15	0.4	6.2	0.08	0.21	12.2	0	0	0	95.4	
+celery	vegetables	g	15	0.6	2.4	1.3	0	0	2.2	0.2	40	unit:40	0	ciqual:20023	0	0	0	390	46	0.06	11	0.09	6.22	5.51	0	0	0	56.8	
+endive	vegetables	g	17	1.2	2.8	2.4	0	0	1.1	0	80	unit:80	1	ciqual:20026	0	0	0	150	20	0.12	8.3	0.13	0.21	2.12	0	0	0	25.6	
+sauerkraut	vegetables	g	19	0.9	1.8	1.8	0.1	0	2.9	1.7	100	serving:100	1	fdc:169279	0	0.1	0	170	30	1.47	13	0.19	1	14.7	0	0.14	0	24	
+pickles	vegetables	g	16	1.1	0.8	0.6	0	0	1.5	1.7	10	unit:10|serving:50	1	ciqual:11004	0	0	0	120	65	0.25	23	0.13	30.8	0	0	0.48	0	11.5	
+seaweed	vegetables	g	41	3.5	7.2	0.6	0.5	0.1	0.7	1	50	serving:50	1	fdc:2345325	0.1	0.1	0	165	129	2.28	77	0.89	95	15	0	0.96	0	174	
+grilled_vegetables	dishes	g	86	1.4	4.7	4.1	6.2	1	2.8	0.6	200	small_plate:200	0	recipe	4.3	0.5	0	281	16.1	0.3	16.7	0.27	19.3	44	0	2.48	0	47.7	mixed_vegetables
+olives	fats_nuts	g	164	1.1	0.6	0	16.6	2.3	3.6	3	40	serving:40|unit:4	1	ciqual:13033	10.4	1.5	1	27.3	77.8	0.3	14.6	0	1.25	2.29	0	3.3	0	0.85	
+black_olives	fats_nuts	g	182	1.4	0.3	0	18	2.2	6.5	2.1	40	serving:40|unit:4	0	ciqual:13186	10.8	1.7	0	33.6	81.5	8.17	16.6	0.16	21.1	0.27	0	5.93	0	2.66	olives
+stuffed_olives	fats_nuts	g	156	2.1	1.2	0	15.2	2.6	3	2.8	40	serving:40|unit:4	0	ciqual:13147	10.9	1.7	1.4	32.9	66.8	0.3	11.2	0.11	0	38.6	0	4.18	0.08	13.8	olives
+zucchini_raw	vegetables	g	17	1.2	1.8	1.7	0.3	0.1	1	0	250	unit:250	0	ciqual:20020	0	0.1	0	261	16	0.37	18	0.32	10	17.9	0	0.12	0	24	
+eggplant_raw	vegetables	g	23	1	2.7	2.7	0.2	0	3	0	250	unit:250	0	ciqual:20053	0	0.1	0	229	9	0.23	14	0.16	1.17	2.2	0	0.3	0	22	
+broccoli_raw	vegetables	g	32	2.9	2.2	1.7	0.4	0	2.6	0.1	150	serving:150	0	ciqual:20057	0	0.1	0	321	47.5	0.81	23	0.41	30.1	91.2	0	0.78	0	67	
+cabbage_raw	vegetables	g	24	1.4	2.7	2.7	0.1	0	2.6	0.1	150	serving:150	0	ciqual:20069	0	0.1	0	223	42.3	0.5	17.5	0.2	26.8	40.2	0	0.16	0	59.3	
+carrot_cooked	vegetables	g	30	0.3	5.7	5.1	0	0	3.3	0.1	80	serving:80	0	ciqual:20352	0	0	0	140	28	0.19	9.4	0.22	725	0.52	0	0.78	0	17.7	
+bean_sprouts	vegetables	g	28	2.6	3.4	3.4	0	0	1.7	0	50	serving:50	0	ciqual:20183	0	0	0	120	16	0.44	16	0.32	0.42	4.13	0	0.1	0	61.3	
+canned_tomato	vegetables	g	23	1.2	3.6	3.2	0	0	1.8	0.1	100	serving:100|can:390	0	ciqual:20169	0	0	0	260	20	0.39	11	0.09	165	10.5	0	1.3	0	30.2	
+fennel	vegetables	g	18	1	2.6	2.2	0	0	2.6	0.1	100	small_plate:100|unit:200	1	ciqual:20028	0	0	0	320	37	0.2	11	0.19	0.67	2.57	0	0	0	19.6	
+edamame	legumes	g	121	11.9	3.7	2.2	5.2	0.6	5.2	0	100	bowl:100	0	fdc:168411	1.3	2.2	0	436	63	2.27	64	1.37	15	6.1	0	0.68	0	311	
+chickpeas	legumes	g	164	8.9	19.8	4.8	2.6	0.3	7.6	0	150	small_plate:150|plate:250	1	fdc:173757	0.6	1.2	0	291	49	2.89	48	1.53	1	1.3	0	0.35	0	172	
+beans	legumes	g	112	6.8	12	0.3	1.1	0.3	13.8	0	150	small_plate:150|plate:250	1	ciqual:20502	0.2	0.6	0	260	120	1.7	33	0.67	0.46	0	0	0	0	31.1	
+kidney_beans	legumes	g	116	9.6	12.3	0.5	0.6	0.2	11.6	0	150	small_plate:150|plate:250	0	ciqual:20503	0.2	0.2	0	300	55	2.3	39	0.94	0.21	0	0	0	0	78.3	
+black_beans	legumes	g	132	8.9	15	0.3	0.5	0.1	8.7	0	150	small_plate:150|plate:250	0	fdc:173735	0	0.2	0	355	27	2.1	70	1.12	0	0	0	0.87	0	149	
+broad_beans	legumes	g	83	8.1	9.4	0.4	0.8	0.2	3.1	0	150	small_plate:150	0	ciqual:20500	0.1	0.5	0	200	37	1.5	37	1	17.2	0	0	0.28	0	65.3	
+cooked_lentils	legumes	g	125	10.1	16.2	0.2	0.6	0.1	8.5	0	150	small_plate:150|plate:250	0	ciqual:20360	0.1	0.2	0	215	39.3	2.45	33.9	1.25	1.39	0	0	0.53	0	50.1	
+lentils	legumes	g	131	7.1	12.4	1.4	4.9	1.3	4.2	0.8	350	plate:350|small_plate:250	1	recipe	2.6	0.8	7.12	334	29.9	1.64	28.2	0.93	82.9	5.68	0.1	0.8	0.08	32	
+bean_stew	dishes	g	143	8.6	9	0.9	7.4	2.6	3.2	0.8	350	plate:350	1	recipe	3.4	1.1	19.6	425	59.2	3.73	42.9	1.05	4.58	0.02		0.37	0.16	79	
+potaje_alubias	dishes	g	110	5.8	13.8	2	2.5	0.4	4.4	0.5	350	plate:350	0	recipe	1.7	0.3	0	534	68.8	2.56	50	0.93	96.7	6.13	0	0.69	0	95.2	bean_stew
+baked_beans	legumes	g	81	4.8	11.7	3	0.5	0.2	5	0.9	150	small_plate:150	0	ciqual:20194	0.1	0.2	0	224	34	1.19	27	2.28	5	0	0	0.15	0	12	
+hummus	sauces	g	258	8.1	9	1.7	19.9	2	5.2	1.2	50	serving:50|tbsp:15	1	ciqual:25621	6	9.8	0	312	47	2.54	75	1.44	1	0	0	1.54	0	48	
+tofu	legumes	g	147	13.4	2.9	0.6	8.5	1.4	0	0	100	serving:100	1	ciqual:20904	1.9	4.8	0	140	100	2.4	100	1.3	0.21	0	0	0.71	0	25.1	
+lentils_dry	legumes	g	327	25.1	44.5	1.1	1.8	0.2	16.3	0	70	serving:70	0	ciqual:20359	0.5	1	0	937	63.7	6.31	96.8	3.4	3.05	1.61	0	0.49	0	117	
+chickpeas_dry	legumes	g	350	20.5	47.5	2.3	6	0.6	12.2	0.1	70	serving:70	0	ciqual:20516	1.4	2.7	0	718	57	4.31	79	2.76	3.33	4	0	3.1	0	557	
+white_beans_dry	legumes	g	307	23.4	43.9	3.9	0.9	0.2	15.2	0	70	serving:70	0	ciqual:20501	0.1	0.4	0	1800	240	10.4	190	3.67	0	0	0	0.21	0	388	
+lentils_vegetable	legumes	g	111	5.7	12.7	1.5	3.2	0.5	4.3	0.6	350	plate:350	0	recipe	2.1	0.4	0	320	29.1	1.51	27.1	0.79	118	5.9	0	0.87	0	32.2	lentils
+bread	grains	g	253	7.5	50	2.5	1.3	0.4	4.3	1.2	40	slice:40|piece:60	1	ciqual:7100	0.3	0.5	0.37	190	23	1.5	33	0.88	0.21	0	0	0	0	30.2	
+baguette	grains	g	287	8.3	58.3	2.3	1.4	0.5	2.7	1.3	30	slice:30|piece:60|unit:250	1	ciqual:7001	0.3	0.5	0.08	180	22	1.2	23	0.73	0	0	0	0.32	0	26.8	
+wholemeal_bread	grains	g	234	8.7	41.2	2.4	1.7	0.6	7.3	1.2	30	slice:30|piece:60	1	ciqual:7110	0.3	0.7	0	236	83.2	2	54.2	1.2	1.25	0	0.86	0.34	0	35.6	
+bread_roll	grains	g	283	8.2	47.2	6.5	4.9	0.8	3.5	1.1	50	unit:50	1	ciqual:7259	2.1	1.4	0	130	62.7	0.82	25.5	0.75	9.25	0	0	0.52	0	8.15	
+toast	grains	g	317	9.5	64	1.4	1.3	0.5	3.7	1.5	30	slice:30	1	ciqual:7004	0.6	0.2	0	140	20	0.97	25	0.65	1	0	0	0.24	0	19.6	
+sliced_bread	grains	g	279	7.1	50.4	6.1	4.4	0.5	2.8	1.1	25	slice:25	0	ciqual:7200	1.8	1	3.2	120	88	0.7	17	0.47	0.21	0	0	0.12	0	13.3	bread
+whole_wheat_sliced_bread	grains	g	257	7.3	41.8	5.6	4.1	0.6	7.3	1.1	28	slice:28	0	ciqual:7111	2.1	1.4	0	213	42.3	1.5	52	0.88	0	0	0	0.41	0	2.3	bread
+rye_bread	grains	g	260	8.3	51.5	2.4	1	0.3	4.5	1.1	30	slice:30	0	ciqual:7125	0.3	0.3	0	170	33	1.2	27	0.86	0.21	0	0	0.26	0	49.3	bread
+toasts	grains	g	394	10	73.2	6.9	5.4	1.3	4.3	1.3	9	unit:9	0	ciqual:7300	2.7	0.9	0	160	29	1.1	24	0.79	53	0	0	0.83	0	22.3	
+breadsticks	grains	g	428	11.4	68.8	1.9	10.5	3.2	4.3	1.9	20	handful:20|unit:5	0	ciqual:7525	2.9	1.1	0	213	48	1.2	66.3	1.4		7	0	3	0.26	80	
+garlic_bread	grains	g	349	8.3	39.1	3.7	16.6	5.3	2.5	1.6	40	slice:40	1	fdc:2343103	4.7	5.4	0	103	27	3.04	23	0.87	13	0.2	0.2	1.18	0.08	122	
+bagel	grains	g	301	9.8	53	6.5	4.6	1.1	2.7	1	100	unit:100	1	ciqual:7258	0.2	0.8	0	122	37.3	1.83	36.3	0.95	0.17	0	0	0.32	0	25	
+flatbread	grains	g	249	7.5	48.8	2.5	1.5	0.2	3.7	1.4	60	unit:60	1	ciqual:7180	0.2	0.3	0	134	52.7	1	18.1	0	0	0	0	0	0	21	
+focaccia	grains	g	249	8.8	34	1.8	7.9	0.9	1.8	1.4	60	slice:60	1	fdc:2343089	5.7	1	0	114	35	3.16	20	1.33	0	0	0	1.42	0	84	
+tortilla_wrap	grains	g	320	8	53	2.1	7.5	1.4	2.9	1.6	40	unit:40	1	ciqual:7815	4.1	2	0.79	150	45	0.76	19	0.57	10.7	0	0	0	0	39.4	
+corn_tortilla	grains	g	316	6.1	58	2.4	5.6	1.1	3.6	1.1	30	unit:30	0	ciqual:7813	3.3	1.2	0	120	23	0.81	20	0.63	1.06	0	0	1.04	0	24.5	
+rice	grains	g	155	3.2	33.2	0	0.7	0.2	1.4	0	180	plate:180|small_plate:120	1	ciqual:9104	0.1	0.2	0	21.9	6.3	0	9.03	0	1.25	0	0	0	0.03	9.9	
+rice_dry	grains	g	350	7	77.5	0.1	0.8	0.2	1.5	0	80	serving:80	0	ciqual:9100	0.2	0.2	0	92.3	13.3	1.94	27.7	1.12	0	0	0	0.11	0	7.67	
+brown_rice	grains	g	123	2.7	24	0.2	1	0.3	1.6	0	230	plate:230|small_plate:150	1	fdc:169704	0.4	0.4	0	86	3	0.56	39	0.71	0	0	0	0.17	0	9	
+pasta	grains	g	167	6.1	31.4	0.9	1.1	0.2	2.2	0	175	plate:175|small_plate:120	1	ciqual:9811	0.2	0.5	0	52.1	18	0.68	21.9	0.51	1.25	0	0	0	0.01	5.2	
+pasta_dry	grains	g	364	12	72.7	2.6	1.6	0.3	2.9	0	80	serving:80	0	ciqual:9810	0.2	0.6	0	223	21	1.3	53	1.41	0	0	0	0.07	0	18	
+whole_wheat_pasta	grains	g	179	7.4	31.3	0.9	1.4	0.3	5.1	0.1	160	plate:160|small_plate:110	0	ciqual:9871	0.2	0.7	0	98.7	25.1	1.5	45.8	1.4	1.25	0	0	0.15	0.02	4.3	pasta
+noodles	grains	g	121	4.8	18.9	2.6	2.4	0.5	1.3	1.1	250	plate:250	1	fdc:2344282	0.6	1.3	0	105	21	1.07	14	0.36	9	1.7	0.1	0.3	0	28	
+egg_noodles	grains	g	134	4.6	23	0.8	2	0.4	2	0	200	plate:200	0	ciqual:9822	0.6	0.6	34.3	25	23	0.57	16	0.53	1.21	0	0	0.19	0.14	24.1	
+couscous	grains	g	164	5.8	31	3.4	0.9	0.2	2.8	0	200	plate:200|small_plate:150	1	ciqual:9683	0.2	0.5	0	133	15	0.76	25.9	0.75	1.25	0	0	0	0	3.5	
+quinoa	grains	g	149	4.7	27.9	0.9	1.1	0.1	3.8	0	180	plate:180|small_plate:120	1	ciqual:9341	0.3	0.6	0	220	23	1.6	71	1.2	0.21	0	0	0.88	0	49.9	
+oatmeal	grains	g	111	5.2	15.1	4.8	2.9	1.2	2	0.1	225	bowl:225	1	recipe	0.9	0.6	4.84	212	122	0.69	28.2	0.85	8.61	0	0	0.08	0.15	6.57	
+rolled_oats	grains	g	369	10.6	57.7	1	7.8	1.4	11.2	0	40	serving:40|tbsp:10	0	ciqual:32140	3.5	3	0	362	52	3.8	101	2.6	0	0	0	0.42	0	32	
+cereal	grains	g	402	8	73.2	21.2	7.2	2	6	0.6	30	bowl:30	1	ciqual:32003	3.1	1.5	0.81	321	165	7.91	62.3	2.33	12.4	6.04	3.15	3	0.7	194	
+corn_flakes	grains	g	372	6.9	82.4	4.1	0.7	0.3	4.6	1.8	30	bowl:30	0	ciqual:32014	0.1	0.3	0	99.6	0	0	11.7	0	9.25	0	0	5.21	0	6.95	
+chocolate_cereal	grains	g	387	8.6	77.7	26.8	3.2	1.1	6.1	0.3	30	bowl:30	0	ciqual:32013	0.8	0.7	0	453	27.7	4.3	70.4	1.4	9.25	0	0	0.56	0	16.6	
+muesli	grains	g	409	9.6	61.8	17.2	11.6	3.3	8.4	0.1	45	bowl:45	0	ciqual:32141	4.8	2.5	0.5	405	41.3	3.04	88.6	1.95	9.25	3.49	0	3.04	0	23.2	
+granola	grains	g	442	8.7	62.7	22.4	15.7	4.4	7.1	0.1	45	bowl:45|tbsp:10	0	ciqual:32108	7.1	2.5	0	325	37.9	2.7	77.8	1.8	9.25	4.24	0	2.89	0	20.2	
+wheat_flour	grains	g	346	10	71.5	1.5	1	0.2	3.5	0	10	tbsp:10|serving:100	0	ciqual:9435	0.1	0.4	0	176	25.3	1.31	30.4	0.8	0	0	0	0.5	0	18.3	
+rice_cakes	grains	g	381	8.4	77.9	0.6	3	0.8	3.4	0.2	8	unit:8	0	ciqual:7352	0.9	1	0	297	13.2	1.2	134	2.1	0	0	0	2.26	0	5.4	
+breadcrumbs	grains	g	365	9.4	74.3	4.3	1.6	0.5	5.4	0.7	10	tbsp:10	0	ciqual:7500	0.3	0.8	0	208	26.8	1.1	31.3	0.81	9.25	0	0	0	0	4.3	
+corn_starch	grains	g	365	0.3	90.4	0	0.1	0	0.9	0	10	tbsp:10	0	ciqual:9510	0	0	0	3	2	0.47	3	0.06	0	0	0	0	0	1	
+puff_pastry	grains	g	370	5.5	40	3	20	14	3	1.7	100	serving:100	0	ciqual:23424	4.9	0.8	58.8	106	20.4	0.73	17.6	0.44	232	0	0	0.79	0.03	10.3	
+polenta	grains	g	76	1.4	16.9	0.1	0	0	1.6	0	250	plate:250|small_plate:150	0	ciqual:9615	0	0	2.28	24	4.7	0.21	4	0.11	0.44	0	0	0	0.03	0	
+paella	dishes	g	169	10.9	16.2	0.5	6.6	1.3	0.6	0.8	350	plate:350	1	recipe	3.7	0.9	62.2	186	24.3	2.24	24.9	1.2	24.8	8.59	0.08	1.69	2.08	14.5	
+fried_rice	dishes	g	174	3.8	31.4	0.6	3.2	0.5	1.1	0.9	250	plate:250	1	fdc:2344437	0.6	1.1	18	69	11	0.46	10	0.69	22	3.8	0	0.13	0	6	
+risotto	dishes	g	195	5.7	30.9	0.6	5.2	2.5	0.7	0.8	300	plate:300	1	ciqual:25189	1.8	0.3	8.51	58.5	49.6	0.81	13.9	0.62	32.9	0.19	0		0.11	5.9	
+pilaf	dishes	g	137	3.3	23.7	0.5	3	0.5	0.4	1	250	plate:250	1	fdc:2344565	1.2	1.2	0	56	29	0.74	11	0.33	1	1	0	0.43	0.01	4	
+spaghetti_bolognese	dishes	g	172	8.4	18.5	2	6.6	2.2	2	0.6	330	plate:330	1	recipe	3.5	0.5	15.8	197	37	1.04	20.6	1.39	107	3.63	0.02	0.98	0.45	16.1	
+carbonara	dishes	g	217	8.6	19.8	1.9	10.9	4.6	1.4	0.7	300	plate:300	1	recipe	4	1.2	28.1	128	72.7	0.5	19.8	0.83	43.1	0.47	0.33	0.48	0.21	5.73	
+pasta_tomato	dishes	g	159	5.5	21.2	2.4	5.2	1.5	2	0.7	300	plate:300	1	recipe	2.3	1	4.46	222	68.5	0.6	23.2	0.58	22.7	1.84	0	0.92	0.1	6.55	
+pesto_pasta	dishes	g	202	6.2	27.1	1.2	6.8	1.2	2.2	0.5	265	plate:265	1	recipe	2.9	2.2	4.55	75.5	56.1	0.66	24.4	0.6	19.8	0.54	0	2.71		8.51	
+mac_and_cheese	dishes	g	223	8.7	21.9	2.4	10.5	5.2	1.2	0.9	300	plate:300	1	fdc:2344296	2.4	1.1	25	103	170	1.06	20	1.08	106	0	0.5	0.51	0.27	7	
+lasagna	dishes	g	185	10.8	9.9	3.2	10.7	4.9	1.5	1.2	350	plate:350	1	fdc:2344236	3.3	0.8	36	255	197	0.79	22	1.32	81	0.7	0	0.91	0.66	8	
+cannelloni	dishes	g	185	10.8	9.9	3.2	10.7	4.9	1.5	1.2	300	plate:300|unit:75	0	fdc:2344236	3.3	0.8	36	255	197	0.79	22	1.32	81	0.7	0	0.91	0.66	8	lasagna
+ravioli	dishes	g	198	8	25.6	2.8	6.5	2.9	2.5	0.7	250	plate:250	1	ciqual:25216	2.1	1.1	26.7	100	44.1	0.67	17.6	0.62	19.7	0	0	0.49	0.47	18.5	
+pad_thai	dishes	g	154	8.1	13.2	4.1	7.5	1.3	1.2	1	350	plate:350	1	fdc:2344288	3.2	2.2	48	152	21	0.68	25	0.69	18	4.8	0.2	1.03	0.14	24	
+noodle_soup	dishes	g	67	1.6	8.8	0.3	2.7	1.2	0.4	0.7	400	bowl:400	1	fdc:2344633	0.9	0.3	0	28	6	0.62	5	0.1	0	0	0	0.37	0.04	7	
+ramen	dishes	g	90	4.8	6.5	0.3	4.7	1.3	0.6	0.9	700	bowl:700	1	recipe	1.7	1.4	40.3	53.5	17.3	0.45	9.23	0.5	7.61	0.59	0.18		0.18	12.2	
+pho	dishes	g	89	6.2	9.8	0.8	2.3	0.7	0.6	1	600	bowl:600	1	fdc:2342572	0.9	0.4	12	99	11	0.66	10	0.7	4	1.4	0	0.2	0.4	5	
+bibimbap	dishes	g	139	6.5	15	1.8	5.6	1.2	1.4	0.3	510	bowl:510	1	recipe	1.8	1.9	46.8	166	30.4	0.91	17	1.02	116	1.19	0.21	2.06	0.4	29.5	
+paella_valenciana	dishes	g	186	10.3	16.6	0.2	8.4	2	1.3	0.5	350	plate:350	0	recipe	4.4	1.2	28	177	21	1.65	19	0.9	11.9	1.98	0.05	1.21	1	7.78	paella
+paella_seafood	dishes	g	151	7.7	19.8	0.5	4.4	0.7	0.7	0.8	350	plate:350	0	recipe	2.9	0.5	62	150	28.7	1.67	24.7	1.07	21.1	8.34	0.05	1.72	1.74	14.8	paella
+arroz_negro	dishes	g	152	6.3	20.9	0.5	4.6	0.8	0.6	0.8	350	plate:350	0	recipe	3	0.4	74.9	120	16	0.59	22.3	0.66	5.15	3.31	0.11	1.39	0.96	8.98	paella
+fideua	dishes	g	174	9.2	21.7	1.1	5.3	0.9	1.1	0.8	350	plate:350	0	recipe	3.4	0.6	66.2	179	29.1	1.03	32.5	1.08	17	5.81	0.06	1.75	0.69	13.7	paella
+carbonara_italian	dishes	g	214	11.5	20.4	0.6	8.9	3.4	1.4	0.9	270	plate:270	0	recipe	3.3	1.5	112	110	77	0.75	20.7	1.04	57.6	0	0.36	0.32	0.55	19	carbonara
+pasta_tomato_chorizo	dishes	g	184	7.2	19.4	2.3	8	2.6	1.9	1	330	plate:330	0	recipe	3.6	1.5	13.9	242	65.6	0.76	23.8	0.73	25.7	1.67	0.14	0.97	0.21	6.86	pasta_tomato
+gnocchi	dishes	g	178	5	34.1	1.1	2.1	0.3	1.8	1	250	plate:250	0	ciqual:25510	0.5	1	129	184	5.1	0.7	18.8	0.5	0		0	0.92	0.15	27.1	
+onigiri	dishes	g	185	5.1	28.4	0.1	5.3	0.6	1.2	0.6	110	unit:110	1	recipe	1.4	2.7	6.86	41.4	7.29	0.12	10.7	0.08	1.57	0	0.12	2.92	0.5	9.11	
+egg	eggs	g	140	12.8	0.1	0.1	9.8	2.6	0	0.3	50	unit:50	1	ciqual:22000	3.7	1.7	372	138	76.8	1.75	11	1.01	160	0	2	1.05	0.89	47	
+fried_egg	eggs	g	220	12.3	0.1	0.1	19	4	0	0.3	52	unit:52	1	recipe	10.5	2.3	356	132	73.5	1.67	10.5	0.97	155	0	1.91	3.14	0.85	45	
+boiled_egg	eggs	g	134	13.5	0.5	0.5	8.6	3.2	0	0.3	50	unit:50	1	ciqual:22010	4	1.4	355	120	41	1.72	14	1.27	62.4	0	1.12	1.03	1.11	44	
+scrambled_eggs	eggs	g	167	11.9	0.4	0.4	13	4.5	0	0.4	120	serving:120	1	ciqual:22502	4.9	1.8	397	133	59.1	1.94	12.2	1.35	194	0	1.8	0.98	0.93	43	
+omelette	eggs	g	196	13.8	0.9	0.3	15.3	3.3	0	0.6	110	unit:110	1	ciqual:22500	4.8	2.7	385	117	80.2	1.8	10.7	1.02	125	0	0.53	1.29	0.76	39	
+spanish_omelette	eggs	g	175	4.9	13.8	1.2	10.5	1.9	2	0.7	156	slice:156|unit:1250	1	recipe	6.7	1	89.5	394	33.1	1.05	21.4	0.55	40.2	16.3	0.48	2.05	0.21	27.7	
+poached_egg	eggs	g	139	12.5	0.9	0.4	9.5	3	0	0.2	50	unit:50	1	ciqual:22011	4	1.5	370	138	68.2	1.75	10.8	1.1	159	0	2	1.04	0.71	35	
+eggs_benedict	dishes	g	288	13.8	7.9	1.2	22.1	10.3	0.6	1.2	155	unit:155|serving:310	1	fdc:2342655	6.1	2	271	325	58	1.56	15	1.19	232	1.4	1.4	1.14	0.49	33	
+deviled_eggs	eggs	g	198	11.5	1.1	1.1	15.9	3.9	0	1.1	60	unit:30|serving:60	0	fdc:2342656	5.1	5	343	116	46	1.1	9	0.97	137	0	2	1.21	1.02	40	
+egg_whites	eggs	g	47	10.3	1.1	0.7	0.2	0	0	0.4	33	unit:33	0	ciqual:22008	0	0	0	147	6.67	0.07	9.67	0.03	0	0	0	0	0.06	7.9	
+egg_yolk	eggs	g	307	15.5	1.1	0.6	26.7	9.6	0	0	18	unit:18	0	ciqual:22002	11.7	4.2	939	43	50.2	0.7	1.5	1.1	343	0	2	2.58	3.03	159	
+omelette_ham_cheese	eggs	g	193	14.6	1.6	1.1	14.3	4.3	0	1.1	150	unit:150	0	recipe	4.4	2.1	298	173	120	1.47	14.1	1.17	113	0.53	0.48	1.03	0.69	30.6	omelette
+shakshuka	eggs	g	99	4.5	4.3	3.3	6.7	1.3	2.1	0.8	300	plate:300	0	recipe	3.8	0.8	97.3	254	36.5	0.85	12.9	0.41	138	29.7	0.52	2.7	0.23	48.6	
+steak	meat	g	182	27.1	0	0	8.2	3.4	0	0.1	200	unit:200	1	ciqual:6110	3.3	0.3	60	336	20	2.26	22	3.95	0	0	0.2	0.44	1.19	8	
+grilled_chicken	meat	g	141	30.1	0	0	2	0.6	0	0.1	150	unit:150	1	ciqual:36018	0.8	0.5	85.9	440	4.7	0.39	37	0.72	10.5	1.43	0	0.11	0.18	9.55	
+chicken_breast_raw	meat	g	110	23.4	0	0	1.5	0.4	0	0.1	150	serving:150	0	ciqual:36017	0.6	0.3	66	390	3.3	0.33	32	0.52	10.5	4.89	0	0.36	0.17	14.6	
+chicken_thigh	meat	g	171	24.8	0	0	8	2.2	0	0.3	110	unit:110	0	ciqual:36006	3.1	1.8	112	252	11.6	1.2	22.6	2.3	11.8	0	0.13	0.2	0.36	5.8	
+roast_chicken	meat	g	204	28.9	0	0	9.9	3.1	0	0.4	170	piece:170	1	ciqual:36005	4.4	2.4	117	414	19.4	0.68	39.6	1.27	48	0	1.5	0.27	0.52	5	
+fried_chicken	meat	g	251	21.8	6.9	0	15	4	0.2	1.7	150	serving:150|piece:90	1	fdc:2341355	6.8	2.8	100	264	44	0.86	24	1.26	14	0	0.1	0.49	0.4	11	
+chicken_wings	meat	g	247	23.8	0	0	16.9	5	0	0.2	150	serving:150|unit:30	1	ciqual:36033	7.7	3.6	141	212	18	0.84	19	1.64	12	0	0.2	0.69	0.35	9	
+chicken_nuggets	fast_food	g	250	15.6	19.4	1.3	11.6	2.7	2.4	1.4	100	serving:100|unit:18	1	ciqual:36027	8.1	0.3	0	270	25	1	25	0.67	27.9	0	0	2.41	0.23	10.9	
+tandoori_chicken	dishes	g	154	21	1.3	1.1	6.9	1.6	0.7	1.5	200	serving:200	1	recipe	2.9	1.3	84.9	327	44.3	1.47	29.6	2.07	21.5	5.08	0	1.27	0.46	11.6	
+sweet_sour_chicken	dishes	g	250	10.1	22.9	11.5	12.7	1.9	1	0.6	250	plate:250	1	fdc:2341859	2.7	6.4	27	158	45	2.12	15	0.42	18	2.4	0.2	0.82	0.09	6	
+stir_fry	dishes	g	98	11	4	3.4	3.5	0.5	1.9	0.6	300	plate:300	1	recipe	1	1.7	27.2	344	21.8	0.43	25.3	0.39	172	47	0	2.63	0.07	43.9	
+turkey	meat	g	189	28.6	0.1	0	7.4	2.2	0	0.3	150	serving:150	1	fdc:171479	2.6	2.1	109	239	14	1.09	30	2.48	12	0	0.4	0.07	1.02	9	
+turkey_breast	meat	g	124	28.5	0	0	1.1	0.5	0	0.2	120	unit:120	0	ciqual:36306	0.3	0.3	72.5	462	5.42	0.49	44.4	1.22	1	0.75	0	0.08	0.61	7	
+turkey_cold_cuts	meat	g	99	20.9	0	0	1.7	0.5	0.4	1.9	12	slice:12|serving:50	0	ciqual:28964	0.6	0.5	49.7	370	7.1	0.35	26	0.92	0	26.3	0	0.11	0.6	17.3	
+duck	meat	g	331	19	0	0	28.4	9.7	0	0.1	150	serving:150	1	ciqual:36200	12.9	3.7	84	204	11	2.7	16	1.86	63	0	0.1	0.7	0.3	6	
+minced_beef	meat	g	210	26.1	0	0	11.8	4.6	0	0.2	125	serving:125	0	ciqual:6253	4.9	0.4	88	333	13	2.71	22	6.37	3	0	0	0.12	2.56	8	
+minced_beef_raw	meat	g	170	20	0	0	10	3.9	0	0.2	125	serving:125	0	ciqual:6252	4.2	0.4	65	321	12	2.24	20	4.79	4	0	0.1	0.17	2.21	6	
+burger_patty	meat	g	239	23.6	0	0	16.1	5.9	0	0.2	100	unit:100	0	ciqual:6255	6.7	0.5	76.3	318	15	2.6	29.5	4.9	3	0	0	0.12	2.3	9	
+roast_beef	meat	g	126	24.1	0.3	0	3.2	0.6	0	0.2	120	serving:120|slice:30	1	ciqual:6210	0.7	0.3	18.1	369	10.1	3.1	32	5.43	0	0	0	0.2	1.3	11.7	
+meatballs	meat	g	183	10.9	7.7	1.9	11.8	4	1.2	0.8	275	plate:275|unit:30	1	recipe	6.7	0.7	47.6	257	23.9	1.44	15.7	2.33	140	2.77	0.14	1.4	0.9	16.3	
+breaded_cutlet	meat	g	271	22.9	12.6	0.5	14.1	2.4	0.9	1	150	unit:150	1	ciqual:25173	7	3.9	72.4	328	28.7	1.11	24.3	2.26	12.9	0.01	0.13	3.32	0.72	15.3	
+carpaccio	meat	g	271	15.2	0.6	0.5	23	7.4	0.4	1.1	80	serving:80	0	ciqual:25538	10	4	55.6	242	112	1.84	22.6	2.79	31.8	5.87	0.38	3.18	2.04	12	
+pork_chop	meat	g	211	29.6	0	0	10.3	4.1	0	0.1	130	unit:130	1	ciqual:28101	4.3	1.4	82.4	470	7.3	0.7	29	2.4	0	0	0.43	0	0.66	10.1	
+pork_loin	meat	g	180	26.8	0	0	7.3	2.2	0	0.1	100	unit:100	0	fdc:168240	2.6	0.8	84	356	23	0.8	26	2.22	0	0	0.7	0.1	0.54	0	
+pork_loin_raw	meat	g	146	22.3	0.4	0.4	6.2	2.2	0	0.2	125	serving:125	0	ciqual:28480	2.7	0.8	67	373	7	0.5	26	1.55	1	0	0.4	0.13	0.53	0	
+pork_tenderloin	meat	g	168	26.1	0	0	7.1	2.6	0	0.1	150	serving:150	0	ciqual:28203	2.4	0.7	78.6	344	7.27	1.1	24.6	1.98	0	0	0.2	0.08	1.02	0	
+ribs	meat	g	332	23.1	0	0	26.6	10.8	0	0.1	200	serving:200	1	ciqual:28401	13.1	2.7	98.1	226	30.4	1.2	18	3	4	0.56	0	0.34	0.67	21.9	
+pork_belly	meat	g	404	26.6	0	0	32.2	11.7	0	1.1	100	serving:100	0	fdc:2341307	14	5.4	104	284	55	1.08	20	3.52	10	0	1.6	0.28	0.89	0	
+pulled_pork	meat	g	226	17.6	11.9	10	11.3	4	0.3	1.5	150	serving:150	1	fdc:2341820	4.9	1.7	64	299	25	1.12	20	2.81	5	0.2	0.8	0.37	0.58	2	
+suckling_pig	meat	g	292	23.3	0	0	21.4	7.9	0	0.2	200	serving:200	1	fdc:167844	9.5	2.1	90	329	24	1.32	18	3.71	2	0.5	1.5	0.19	0.8	5	
+skewers	meat	g	279	26.3	0.6	0.5	19	5.5	0.5	1.5	120	unit:60|serving:120	1	recipe	9.8	3.1	81.2	590	17.6	1.09	28.6	3.22	3.54	0.01	0.79	1.77	0.72	0.64	
+lamb	meat	g	225	26.4	0	0	12.5	5.1	0	0.2	150	serving:150	1	fdc:172485	5.3	0.9	90	326	10	1.98	25	4.66	0	0		0.16	2.67	22	
+lamb_chops	meat	g	185	26.1	0	0	9	3.7	0	0.2	160	serving:160|unit:40	0	ciqual:21512	3.4	0.7	90	271	22	1.27	20	3.43	0	0		0.1	1.38	15	
+rabbit	meat	g	167	20.5	0.5	0	9.2	3.4	0	0.2	150	serving:150	0	ciqual:34002	2.6	2.1	75.9	340	13.5	2.27	21.8	1.79	0	0		1.22	2.2	0	
+mixed_grill	meat	g	250	22.7	0.6	0.5	17.4	6.6	0.1	0.9	250	serving:250	1	recipe	7.8	2.4	96.8	271	22.3	3.45	20.5	2.47	10.9	1.21		0.35	0.74	12.7	
+korean_bbq	dishes	g	236	20.7	6.5	5.7	13.9	4.7	0.5	1.4	200	serving:200	1	recipe	5.5	2	69.5	394	26.9	1.87	28.9	3.77	0.53	0.99	0.38	1.97	1.42	20.2	
+cured_ham	meat	g	235	30.4	0.8	0.4	12.3	5.2	0	5	15	slice:15|small_plate:80	1	ciqual:28845	5.8	1.4	70	510	10	1.11	25	2.81	0	0	0.9	0.28	0.88	5	
+iberico_ham	meat	g	337	25.2	0.6	0.3	26	9.9	0	4	15	slice:15|small_plate:80	0	recipe															cured_ham
+ham	meat	g	125	19.5	1.7	1.7	4.5	1.8	0.1	2.4	15	slice:15|serving:50	1	ciqual:28910	2.2	0.4	57	287	24	1.02	22	1.35	0	4	0.7	0.08	0.42	7	
+chorizo	meat	g	425	23.5	1.2	1.2	36.1	14.3	0.9	4.2	5	slice:5|serving:40	1	ciqual:30315	16.3	6.1	107	435	37	2.34	30	2.19	55.3	0	1.5	1.5	1.21	10	
+salami	meat	g	457	17.7	2.6	0	41.8	16.2	0	4.1	5	slice:5|serving:40	1	ciqual:30350	18.3	5.2	95.9	300	7.2	1	15	1.9	10.5	3.61	0.68	1.26	1.58	8.54	
+fuet	meat	g	460	27.3	4	1.2	37.1	14.5	0.6	4.8	5	slice:5|serving:40	0	ciqual:30309	17.7	4.9	79	378	13	1.3	22	4.2	0	0			2.8	2	salami
+cold_cuts	meat	g	376	24.3	1.4	0.4	30.4	14	0.2	3.9	100	serving:100	1	recipe	12.1	3.6	90.6	346	167	1.23	25.9	2.35	71	0.9	0.92	0.8	1.17	13.2	
+mortadella	meat	g	310	15.2	0.7	0.7	27.4	10.2	0	2.4	15	slice:15	0	ciqual:30789	11.5	3.4	72.5	270	36.5	0.8	26.9	1.5	7	0	0.78	0.5	0.68	31.5	
+sausages	meat	g	283	18.8	0.8	0.4	22.4	8.3	0	2.1	50	unit:50|serving:100	1	ciqual:30005	9.9	3.2	75.2	370	19	0.79	23	2	0	11	0.46	0.36	0.81	0	
+frankfurters	meat	g	279	13.7	3.4	1	23.4	9	0	2	40	unit:40	0	ciqual:30134	11.3	3.2	73.1	164	16.5	0.91	11.9	1.4	0		0.26	0.1	0.42	1.6	sausages
+bacon	meat	g	468	33.9	1.7	0	35.1	12	0	4.2	8	slice:8|serving:30	1	fdc:168322	15.5	6.1	99	499	11	0.95	31	3.06	11	0	0.4	0.42	1.09	0	
+black_pudding	meat	g	246	11.9	3.8	2.9	20.3	7.5	0	1.3	30	slice:30|serving:100	0	ciqual:8704	9.1	2.7	73.8	155	27.2	22.8	8.5	0.7	10.3	0	0.75	0.13	0.2	25.4	
+pork_pate	meat	g	355	10.8	2.9	1.4	33.3	11.6	0.2	1.7	15	tbsp:15|serving:25	0	ciqual:8305	13.5	4.2	127	144	17.6	5.32	12.3	2.09	8800	11.3	0	1.07	6.55	138	
+tripe_stew	dishes	g	162	11.3	2.9	0.9	11.3	3.6	0.8	1.3	300	plate:300	1	recipe	5.5	1.3	117	144	63.6	2.25	16.8	1.42	19.8	1.13		1.12	0.6	8.38	
+chicken_raw	meat	g	173	21.5	0.3	0	9.5	2.5	0	0.2	200	serving:200	0	ciqual:36016	3.5	1.8	77.5	263	7.5	3.41	24.5	1.5	26	1.6	0.2	0.44	2.21	6	
+chicken_leg_raw	meat	g	192	17.3	0	0	13.5	3.9	0	0.2	180	unit:180	0	ciqual:36002	6	3	92.5	280	6.7	0.68	21	1.4	33.6	3.26	0	0.74	0.4	12.9	
+rabbit_raw	meat	g	188	20.4	0.6	0	11.6	4.7	0	0.1	150	serving:150	0	ciqual:34001	3.9	2.7	58.5	330	13	1.57	19	1.57	0	0	0	0.4	2.9	0	
+beef_raw	meat	g	187	20.7	0	0	11.5	4.5	0	0.1	150	serving:150	0	ciqual:6102	5	0.4	73	327	20	1.74	22	3.82	0	0	0.4	0.35	1.49	11	
+beef_stewing_raw	meat	g	164	24	0	0	7.5	2.7	0	0.1	150	serving:150	0	ciqual:6231	2.6	0.3	64	367	18	2.1	21	5.43	2	0	0.1	0.17	2.3	3	
+minced_beef_15_raw	meat	g	215	20.2	0.5	0	14.8	6.9	0	0.1	125	serving:125	0	ciqual:6254	7.2	0.5	68	295	15	2.64	18	4.8	4	0	0.1	0.17	1.9	6	
+pork_shoulder_raw	meat	g	174	19.9	0.3	0.3	10.4	3.6	0	0.2	150	serving:150	0	ciqual:28477	4.5	2	62	427	11	0.62	20	2.41	2	0	0.6	0.17	0.55	0	
+salted_pork_belly	meat	g	270	16.8	1.3	0.6	22	8.3	0	2	50	serving:50	0	ciqual:28550	10.8	2.9	72	256	8.4	0.52	16	1.68	0	0.3		0.34	0.83	2.19	
+black_pudding_raw	meat	g	297	12.2	0.3	0.2	27.1	9.6	1.4	1.4	100	unit:100	0	ciqual:8703	10.9	3.5	82.5	162	22.4	17.4	6.84	0.37	0	0	0	0.12	0.19	2.22	
+back_bacon	meat	g	118	23.1	0.7	0	2.6	1.1	0	3.2	25	slice:25	0	ciqual:28727	1.2	0.3	47.2	470	3.8	0.4	23	1.4	10.5	6.55	0	0.45	0.38	49.1	
+tripe	meat	g	94	11.7	2	0	4.1	1.4	0	0.2	150	serving:150	0	fdc:174769	1.6	0.2	157	42	81	0.66	15	1.71	0	0		0.14	0.72	3	
+sobrasada	meat	g	554	16.9	2	1.2	52.4	18.6	3.4	3.6	20	serving:20|tbsp:15	0	recipe	24.1	7.3	71.9	559	31.8	2.62	32.8	2.31	3.88		1.95	2.99	0.48	5.33	
+veal_escalope_raw	meat	g	114	20.5	0.6	0	3.3	0.8	0	0.1	120	unit:120	0	ciqual:6521	1.2	1.3		380	9.79	1.8	21	2.56	0			0.15	2	5	
+salmon	fish	g	205	23.2	0.6	0	12.2	2.5	0	0.1	150	unit:150	1	ciqual:25996	4.6	4.1	54.5	383	10.2	0.36	28.4	0.41	69	2.45	13.1	1.14	2.8	19.7	
+smoked_salmon	fish	g	184	22.2	0.1	0.1	10.5	1.8	0.3	3.1	20	slice:20|serving:50	1	ciqual:26037	5	3	72.1	551	5.97	0.16	38.3	0.24	15.3	0	5.45	2.85	3.35	10	
+grilled_fish	fish	g	114	22	0.3	0	2.7	0.6	0	0.3	150	unit:150	1	ciqual:26249	1	0.7	65.3	334	26.4	0.44	29.3	0.61	7.96	0.51	1.86	0.38	1.98	14.9	
+fried_fish	fish	g	212	18.7	8.5	0.2	11.4	1.7	0.4	1.2	150	serving:150	1	recipe	7.6	1.1	31.1	350	28.2	1.15	26.4	0.73	1.74	0	2.13	2.52	0.99	11.1	
+fish_and_chips	fast_food	g	225	7.6	23	0.5	10.9	2.5	2.3	0.8	400	plate:400	1	recipe	4.2	3.1	18	483	19.4	0.67	27.8	0.37	8.62	9.43	0	4.4	0.99	30.5	
+hake	fish	g	112	21.2	0	0	3	0.9	0	0.2	150	unit:150	0	ciqual:26120		0.6	77.4	290	41.8	0.3	29.2	0.55	7.5	0	3.2	0.6	1.6	26.4	grilled_fish
+cod	fish	g	100	23.3	0	0	0.8	0.2	0	0.2	150	unit:150	0	ciqual:25997	0.1	0.3	51.2	327	14.4	0.2	25.4	0.5	5.16	0.53	0.63	0.6	1.75	11.4	grilled_fish
+sea_bass	fish	g	151	22.2	1	0	6.5	1.3	0	0.2	180	unit:180	0	ciqual:27030	2.4	2.1	63.3	410	11	0.28	30.3	0.42	0	0	4.15	0.97	3.7	12.6	grilled_fish
+sea_bream	fish	g	148	23.6	0	0	5.9	1.3	0	0.2	180	unit:180	0	ciqual:27031	2.4	1.8	72.4	420	13	0.2	29	0.48	0	0.59	5.71	0.65	2.37	17.2	grilled_fish
+sole	fish	g	95	20.3	0	0	1.5	0.2	0	0.4	150	unit:150	0	ciqual:26059	0.2	0.2	70.8	175	96	0.72	23.1	0.39	0	0	3.5	0.77	1.12	6	grilled_fish
+trout	fish	g	143	21.5	0	0	6.3	1.5	0	0.1	150	unit:150	0	ciqual:27014	2.2	1.9	56.9	391	60.5	0.35	28.3	0.59	9.5	2.9	15	1.9	4.56	11	grilled_fish
+tuna_steak	fish	g	136	29.9	0	0	1.8	1	0	0.1	150	unit:150	0	ciqual:26041	0.3	0.6	43.5	445	18.7	1.8	46	0.44	8	0	1.83	0.32	2.57	40.6	grilled_fish
+mackerel	fish	g	186	23.6	0	0	10.2	3	0	0.2	150	unit:150	0	ciqual:26020	3.7	2.3	75	323	15	1.57	97	1	0	0.4	12.3		12	2	
+canned_tuna	fish	g	227	23.4	0	0	14.8	1.6	0	0.8	56	can:56	1	ciqual:26245	4.6	7.9	38	210	11	1	27	0.71	0	0	1.21	8.68	4.46	6.71	
+canned_tuna_water	fish	g	143	26.8	0	0	3.9	1	0	0.6	56	can:56	0	ciqual:26039	0.9	1.4	50	207	6.26	0.76	24	0.45	6.5	0	5.08	0.88	2.53	16.3	canned_tuna
+sardines	fish	g	194	25.1	0	0	10.4	3.2	0	0.4	150	serving:150|unit:35	0	ciqual:26136	3.3	3.9	0	400	130	1.7	34	1.4	0	0	12.3	0.31	12	4	
+canned_sardines	fish	g	224	23.3	0.1	0	14.5	3.1	0	0.7	85	can:85	0	ciqual:26040	6.3	3	64.2	412	432	2.5	44	1.8	8	0	10.3	2.43	20	8.55	sardines
+anchovies	fish	g	185	15.6	0.3	0	13.4	2.6	0.1	1.8	100	small_plate:100	1	recipe	7	2	103	253	72.6	2.21	19	1.56	56.1	0.03	9.14	2.33	0.52	7.84	
+canned_anchovies	fish	g	199	24.9	0	0	11	1.6	0	9	30	can:30|unit:4	0	ciqual:26177	4.3	2.9	70	215	232	6.9	69	1.7	55	0	4.6	0.29	0.88	8	anchovies
+prawns	fish	g	91	20.5	0.2	0	0.8	0.3	0	1.6	100	serving:100|unit:15	1	ciqual:10007	0.1	0.2	162	253	177	2.24	50	0.97	5.75	0	0	1.26	1.52	14.6	
+gambas_al_ajillo	dishes	g	231	19.2	4.4	0.1	15.1	2.4	0.4	1.4	110	serving:110	0	recipe	10.7	1.4	143	303	81.7	3.11	48.9	2.73	54	0	0	4.81	0.95	20	prawns
+mussels	fish	g	108	17.2	5.1	0	2.1	0.4	0	0.8	120	serving:120	1	ciqual:10013	0.3	0.7	52.1	166	59.4	3.99	66.6	2.85	98.4	5.87	0	2.68	17.6	48	
+clams	fish	g	99	16.2	5.3	0	1.5	0.1	0	1.6	100	serving:100	1	ciqual:10027	0.1	0.4	50.5	432	72.5	9.67	12.9	2.05	81	22.1	0	1	39.5	20.1	
+oysters	fish	g	67	8.6	3.9	0	1.9	0.3	0	1.4	15	unit:15|serving:90	1	ciqual:10011	0.2	0.4	20.3	175	92.7	2.18	90.2	22.5	14.2	5.13	0	1.21	28.6	12.5	
+lobster	fish	g	91	19.6	0.1	0	1.3	0.2	0	0.9	150	serving:150	1	ciqual:10009	0.3	0.5	128	208	68.8	0.63	34.2	2.96	1	0	0	1.6	1.64	12.3	
+crab	fish	g	124	19.5	1.8	0	4.3	0.6	0	1.2	100	serving:100	1	ciqual:10025	1.3	1.4	73.3	248	53	1.62	55	4.42	26	3.6	0	2.4	6.79	25.5	
+calamari	fish	g	250	15	12.7	0.2	15.3	1.8	0.5	1.5	180	serving:180	1	recipe	4	8.3	231	239	20.3	0.39	45.9	1.18	1.9	4.4	0.34	9.41	2.95	13	
+squid	fish	g	127	16.2	2.4	0	5.8	1	0	1.3	150	serving:150	0	recipe	3.4	0.8	278	255	19.8	0.23	49.7	1.27	3.04	5.29	0.4	2.57	3.54	12.4	calamari
+octopus	fish	g	210	27.2	4.2	0.1	9.3	1.5	0.3	1.9	200	serving:200	1	recipe	5.6	1	87.3	594	98.6	8.87	56.2	3.09	1.27	7.28	0	2.98	32.7	22.3	
+surimi	fish	g	117	7.5	11.8	2.7	4.3	0.4	0.7	1.6	16	unit:16|serving:50	0	ciqual:26046	2.4	1.4	10.8	51.8	19	0.4	11.5	0.19	28	0	0	1.1	0.71	2	
+sushi	fish	g	171	6.7	26.9	4.9	3.7	0.6	0.9	0.5	200	serving:200|unit:25	1	ciqual:25456	1.7	1.2	13.1	130	16	0.25	14	0.44	16	1.11	1.14	0.33	1.36	9.19	
+sashimi	fish	g	153	22.8	0.5	0	6.7	1.2	0	0.1	100	serving:100	1	recipe	2.5	2.2	48.3	384	6.81	0.73	34.1	0.3	99.6	2.2	3.61	1.51	3.7	14.7	
+ceviche	dishes	g	63	10.5	3.1	1.3	0.8	0.2	0.5	0.4	200	serving:200	1	fdc:2341887	0.1	0.2	18	282	22	0.16	20	0.23	22	18.6	5.1	0.76	1.5	11	
+hake_raw	fish	g	83	17.6	0	0	1.4	0.2	0	0.2	170	unit:170	0	ciqual:26044	0.4	0.3	31.4	332	25.3	1	22.9	0.64	0	0	2.15	0.25	1	9	
+squid_raw	fish	g	77	14.4	2.2	0	1.2	0.3	0	0.6	150	serving:150	0	ciqual:10001	0.1	0.4	247	227	17.5	0.2	44.2	1.13	2	4.7	0.36	1.39	3.15	11	
+prawns_raw	fish	g	99	19.7	3.2	0	0.8	0.2	0	0.5	100	serving:100	0	ciqual:10021	0.2	0.4	150	278	84.8	3.21	49.8	2.81	54	0	0	1.7	1	19	
+mussels_raw	fish	g	72	11.2	2.7	0	1.8	0.4	0	0.8	100	serving:100	0	ciqual:10014	0.4	0.5	65.2	276	51.5	6.78	31	2.36	60	6.4	0	1.6	12.3	39.5	
+anchovy_raw	fish	g	129	18.6	0	0	6.1	1.6	0	0.2	100	serving:100	0	ciqual:26079	1.1	1.7	124	294	86.5	2.63	22.3	1.86	65.7	0	11	0.57	0.62	9	
+boiled_octopus	fish	g	156	29.8	4.4	0	2.1	0.5	0	1.2	150	serving:150	0	ciqual:10079	0.3	0.5	96	630	106	9.54	60	3.36	0	8	0	1.2	36	24	
+breaded_fish	fish	g	194	11.9	13.5	0.4	10	2.2	0.8	0.8	120	serving:120|unit:30	0	ciqual:26030	3.5	4.3	36	286	15.1	0.44	32.4	0.39	16	0	0	3.8	1.95	29	
+milk	dairy	ml	49	3.6	5.2	5.1	1.6	1	0	0.1	250	glass:250|cup:200	1	ciqual:19041	0.3	0	5.36	163	125	0	11	0.42	9.53	0	0	0	0.16	0.88	
+whole_milk	dairy	ml	67	3.6	4.9	4.8	3.7	2.1	0	0.1	250	glass:250|cup:200	0	ciqual:19023	0.7	0.1	12.2	162	123	0	10.8	0.42	33.9	0	0.13	0.11	0.16	0.88	milk
+skimmed_milk	dairy	ml	36	3.7	5.2	4.8	0	0	0	0.1	250	glass:250|cup:200	0	ciqual:19050	0	0	2.17	161	123	0	11.1	0.43	9.57	0	0	0	0.19	0.88	milk
+yogurt	dairy	g	61	3.5	4.7	4.7	3.3	2.1	0	0.1	125	unit:125	1	fdc:171284	0.9	0.1	13	155	121	0.05	12	0.59	27	0.5	0.1	0.06	0.37	7	
+sweetened_yogurt	dairy	g	82	2.9	10.7	10.1	2.8	1.8	0	0.1	125	unit:125	0	ciqual:19599	0.6	0.1	9.6	138	114	0	9.51	0	31.7	0	0	0	0.12	8.45	yogurt
+low_fat_yogurt	dairy	g	39	4.2	4.9	4.6	0	0	0	0.1	125	unit:125	0	ciqual:19594	0	0	2.5	196	152	0	13.9	0.55	9.25	0	0	0	0.16	7.95	yogurt
+fruit_yogurt	dairy	g	89	3.2	12.6	11.6	2.4	1.6	0.6	0.1	125	unit:125	0	ciqual:19587	0.5	0	7.8	163	118	0	11.6	0	35	0	0	0	0	9.35	yogurt
+greek_yogurt	dairy	g	103	3	3.7	3.1	8.2	5.3	0.1	0.1	125	unit:125	0	ciqual:19860	1.6	0.2	14.1	143	116	0	10.1	0	74.5	0	0	0	0.13	6.95	yogurt
+greek_yogurt_nonfat	dairy	g	59	10.2	3.6	3.2	0.4	0.1	0	0.1	125	unit:125	0	fdc:170894	0.1	0	5	141	110	0.07	11	0.52	1	0	0	0.01	0.75	7	yogurt
+protein_yogurt	dairy	g	75	9.3	3.5	3.5	2.7	1.9	0	0.1	125	unit:125	0	ciqual:19724	0.7	0.1	10	141	109	0.04	11	0.6	90	0.8	0	0.04	0.52	12	yogurt
+drinking_yogurt	dairy	ml	69	3.3	11.2	10.2	0.9	0.6	0.1	0.1	100	unit:100|bottle:200	0	ciqual:19508	0.2	0	3.89	165	147	0.28	13.8	0	9.71	0	1.08	0.82	0.15	7.51	
+kefir	dairy	ml	63	3.3	4.6	3.5	3.5	2.4	0	0.1	200	glass:200	0	ciqual:19865	1	0.1	14.4	160	131	0.05	13.1	0.45	31.5	0.31	0.1	0.09	0.19	21.6	
+cheese	dairy	g	393	22.3	0.7	0.3	33.6	24	0	1.8	30	slice:15|serving:30	1	ciqual:12747	8.7	0.9	83	86	710	0.3	30	2.58	240	0	0.2	0.5	1.2	24	
+cured_cheese	dairy	g	423	24.2	1	0.1	36	24.3	0	1.7	15	slice:15|serving:60	0	ciqual:12119	8.4	1.8	94.4	45.7	764	0.32	35.6	2.43	273	0	0.5	0.15	1.06	35.3	cheese
+fresh_cheese	dairy	g	194	12	2.5	2.2	15.2	10.7	0	0.9	60	slice:60|unit:250	0	ciqual:12805	3.8	0.6	72.1	159	170	0.26	11.9	0.4	128	0	0	0.37	0.19	47	cheese
+edam_cheese	dairy	g	320	25.7	0	0	24.4	16.7	0	2	20	slice:20	0	ciqual:12729	7.1	0.6	89	106	812	0.12	41.2	3.09	243	0	0.5	0.24	1.54	16	cheese
+cheese_slices	dairy	g	246	14.1	5.3	5	18.5	12.3	0	2.5	20	slice:20	0	ciqual:12300	4.3	0.4	60	370	436	0.12	25	1.8	161	0	0	0.53	0.56	8	cheese
+grated_cheese	dairy	g	368	27.6	0.6	0	28.2	18.1	0	0.7	30	handful:30|tbsp:7	0	ciqual:12118	6	0.6	87.9	90.4	977	0	36.3	4.3	284	0	0	1.1	1.9	8.38	cheese
+mozzarella	dairy	g	227	16.5	0.7	0.7	17.7	11.7	0	0.6	30	serving:30|unit:125	1	ciqual:19590	4.2	0.5	79	76	598	0.44	20	2.92	179	0	0.4	0.19	2.28	7	
+parmesan	dairy	g	411	31.1	1.1	0	31	20.6	0	1.6	5	tbsp:5|slice:15	1	ciqual:12120	7.2	1	95.3	110	980	0.1	40	3.9	336	0	0	0.17	2.64	16	
+feta	dairy	g	273	15.4	1.2	0.8	22.6	14.1	0	2.5	30	serving:30	1	ciqual:12060	4.9	0.5	70.2	90.1	342	0	16.2	1.8	189	0	0	0.93	0.93	17.4	
+blue_cheese	dairy	g	361	16.8	0.7	0.2	32.5	22.5	0.1	2.1	20	slice:20	1	ciqual:12520	7.8	0.8	91	129	391	0	17	2.5	226	0	0	0	0.74	47	
+brie	dairy	g	345	17.6	0.7	0.2	30.4	21.5	0.1	1.6	25	slice:25	1	ciqual:12020	7.9	0.8	193	142	420	0.42	18.4	2.35	242	0	0.39	0.47	0.76	69.6	
+goat_cheese	dairy	g	285	18.8	0	0	23.3	16.2	0	1.6	20	slice:20	1	ciqual:12812	4.9	0.6	95.9	167	190	0.22	12.7	0.61	152	0	0	0.29	0.19	76.4	
+cream_cheese	dairy	g	225	6.3	3.3	3.3	20.7	13	0	0.9	15	tbsp:15|serving:30	1	ciqual:12068	4.5	0.5	62.1	129	97.7	0	9.31	0	209	0	0	0.55	0.28	4.65	
+cottage_cheese	dairy	g	81	10.5	4.8	4	2.3	1.2	0	0.8	100	serving:100	1	fdc:172182	0.5	0.1	12	125	111	0.13	9	0.51	68	0	0	0.08	0.47	8	
+butter	dairy	g	753	0.6	0.7	0.7	83	60	0	0	10	serving:10|tbsp:12	1	ciqual:16400	19	1.8	235	36.1	19.8	0	2.63	0	927	0	0	2.04	0.1	0.85	
+whipped_cream	dairy	g	305	2.1	10.6	10.4	28.2	18.9	0	0.1	20	serving:20	0	ciqual:19420	6.7	0.7	76	147	101	0.05	11	0.37	188	0	0.4	0.64	0.29	3	
+cooking_cream	dairy	g	173	3	4.3	4.2	16	9.4	0	0.2	15	tbsp:15|serving:50	0	ciqual:19436	3.8	0.7	59	127	105	0.05	9	0.32	120	0.8	1.1	0.12	0.14	2	
+whey_protein	dairy	g	352	78.1	3.2	0	1.6	0.8	3.1	0.4	30	serving:30	0	fdc:173180	0.2	0.3	16	500	469	1.13	195	6.18	0	0	0	0	2.45	33	
+condensed_milk	dairy	g	327	7.7	56.5	56.5	7.9	5.2	0	0.2	20	tbsp:20	0	ciqual:19027	2.3	0.3	34	371	290	0.19	25.2	0.96	74.2	2.6	0.2	0.16	0.44	11	
+olive_oil	fats_nuts	g	899	0.3	0	0	99.9	15.2	0	0	12	tbsp:12|tsp:4	0	ciqual:17270	73.1	7.2	0	0	0	0	0	0	17.5	0	0	22.3	0	0	
+sunflower_oil	fats_nuts	g	900	0.3	0	0	100	11.1	0	0	12	tbsp:12|tsp:4	0	ciqual:17440	27.6	56.3	0	0	0	0	0	0	0.21	0	0	57.3	0	0	
+margarine	fats_nuts	g	533	0.2	0.9	0	59.8	12.1	0	1.5	10	serving:10|tbsp:12	0	fdc:173582	19.3	26.5	1	30	21	0	2	0	819	0.1	0	21.1	10.8	1	
+nuts	fats_nuts	g	637	18.6	9.7	4.6	54.7	8.9	10.5	0.9	30	handful:30	1	ciqual:15059	28.9	14.8	0	632	117	2.61	229	3.36	0	0.5	0	7.82	0	83	
+almonds	fats_nuts	g	615	18.8	9.5	4.2	51.3	4.1	12.5	0	25	handful:25	1	ciqual:15000	34.4	10.5	0	800	260	3.4	270	3.5	0.61	0	0	22.3	0	120	
+walnuts	fats_nuts	g	709	13.3	6.9	3	67.3	6.5	6.7	0	25	handful:25|unit:5	1	ciqual:15005	14.1	43.6	0	430	75	2.2	140	2.7	1.73	0.77	0	1.67	0	120	
+peanuts	fats_nuts	g	635	22.9	14.2	4.3	50.8	8.6	8.1	1.3	30	handful:30	1	ciqual:15002	26.1	12.5	0	531	47.4	1.2	169	2.92	0	0	0	2.5	0	66.6	
+cashews	fats_nuts	g	618	17.4	21.3	6.6	48.1	8.2	8.4	0	25	handful:25	1	ciqual:15054	29.1	8.7	0	610	39	5.4	260	5	0.66	0	0	1.33	0	30.2	
+pistachios	fats_nuts	g	617	18.9	15.9	7.6	49.5	6.6	9.3	1.7	30	handful:30	0	ciqual:15009	23.7	13.4	0	655	98.5	2.4	105	2.3	13	0	0	1.09	0	94.2	nuts
+hazelnuts	fats_nuts	g	632	14.4	7.2	4.9	56.9	4.8	11.6	0	25	handful:25	1	ciqual:15004	44.2	5.4	0	860	120	3	160	2.3	1.33	0	0	16.3	0	65.2	
+chestnuts	fats_nuts	g	211	3.3	41.1	11.3	1.7	0.3	7.1	0	100	serving:100|unit:10	0	ciqual:15021	0.3	0.6	0	627	28.5	1.1	46.4	0.72	4.17	27.6	0	0	0	140	
+sunflower_seeds	fats_nuts	g	626	21.2	12.7	3.3	51	2.2	8.3	5	30	handful:30	0	ciqual:15045	9.5	32.9	0	850	70	5	129	5.29	0.42	1.4	0	26.1	0	237	
+pumpkin_seeds	fats_nuts	g	618	29.5	5.4	1.4	49.1	8.7	6	0	25	handful:25	0	ciqual:15064	16.2	21	0	809	46	8.82	592	7.81	0.75	1.9	0	2.18	0	58	
+chia_seeds	fats_nuts	g	454	16.5	7.7		30.7	3.3	34.4	0	12	tbsp:12	0	ciqual:15047	2.3	23.7	0	407	631	7.72	335	4.58	0	1.6	0	0.5	0	49	
+flax_seeds	fats_nuts	g	528	19	6.5	1.6	40.3	4.3	24.4	0.1	10	tbsp:10	0	ciqual:15034	8.2	26.1	0	840	223	6	336	6.1	1.25	0	0	7.2	0	23.9	
+peanut_butter	fats_nuts	g	643	22.2	17.3	10.5	51.4	10.1	5	1.1	15	tbsp:15|tsp:5	1	ciqual:15202	25.5	12.3	0	558	49	1.74	168	2.51	0	0	0	9.1	0	87	
+sugar	sweets	g	399	0	99.7	99.7	0	0	0	0	5	tsp:5|unit:8	0	ciqual:31016	0	0	0	13.5	3.69	0.08	1.65	0.02	0	0	0	0	0	0	
+honey	sweets	g	331	0.7	82.1	81.1	0	0	0	0	20	tbsp:20|tsp:7	1	ciqual:31008	0	0	0	70.3	7.93	0.18	4.26	0.1	0	0.5	0	0	0	2	
+jam	sweets	g	244	0.3	59.3	57.7	0.3	0.1	1.3	0	20	tbsp:20|tsp:7	1	ciqual:31006	0.2	0	0	77	20	0.49	4	0.06	0	16.2	0	0.12	0	11	
+chocolate_spread	sweets	g	549	5	57.9	56.2	32.4	9.2	3.2	0.1	15	tbsp:15|tsp:7	1	ciqual:31032	17	4	2.25	503	99.5	3.85	97.1	1	0	0.75	0	6.6	1.68	42	
+dulce_de_leche	sweets	g	315	6.8	55.4	49.7	7.4	4.5	0	0.3	20	tbsp:20	1	fdc:173461	2.1	0.4	29	350	251	0.17	22	0.79	74	2.6	0.2	0.2	0.31	11	
+quince_paste	sweets	g	300	0.3	73.2	68.3	0.1	0	1.5	0	30	slice:30	0	recipe	0	0	0	165	11.1	0.6	7.4	0.04	0	11.9	0	0.44	0	2.38	
+chocolate	sweets	g	552	7.6	50.4	45.2	34.2	20.3	6	0.1	20	piece:10|serving:20|unit:100	1	ciqual:31120	10.9	1.3	12.8	519	142	4.96	93.2	1.6	29.1	0.76	1.12	1.28	0.38	24.9	
+dark_chocolate	sweets	g	591	10.4	26.9	17.9	46.3	28.7	12.8	0	10	piece:10|unit:100	0	ciqual:31074	14	1.5	6.07	750	62	11	200	3	10.7	0	2.16	0.67	0	52	chocolate
+milk_chocolate	sweets	g	550	7.5	58.9	56.3	30.8	18.7	2.9	0.2	10	piece:10|unit:100	0	ciqual:31004	9.5	1	22.1	510	220	3.6	59	1.1	42.8	1.58	1.5	0.45	0.54	18.7	chocolate
+bonbons	sweets	g	558	9.1	51.5	46.2	34.7	13.6	2.1	0.3	12	unit:12	1	ciqual:31063	13	1	53	297	275	1.75	52	1.55	144	0.1		1.82	0.49	9	
+candy	sweets	g	339	4.9	76.9	58.4	0.5	0.3	1.5	0	30	serving:30|unit:5	1	ciqual:31060	0.1	0	0	13	0	0	1.08	0	0	0	0	0	0	0.85	
+cocoa_powder	sweets	g	379	6.7	75.6	67.9	3.3	2.2	10.5	0.2	18	serving:18|tbsp:9	0	ciqual:18101	1	0.2	0	605	116	13	166	0.7	0	1	0	0.1	0	23	
+cocoa_powder_pure	sweets	g	387	22.4	11.6	0.9	20.6	12.4	29.5	0.1	5	tsp:5|tbsp:8	0	ciqual:18100	6.7	0.6	0	3900	140	48.5	500	6.4	0.21	0	2.73	0.61	0	107	
+turron	sweets	g	534	14.2	38.6	35.8	33.2	2.5	6.3	0.1	30	piece:30	0	recipe		7.8	0	442	152	2.13	171	1.9	0.21	0.11	0	15	0	31.6	
+croissant	sweets	g	412	6.3	47.6	7.9	21.1	11.6	1.8	1.3	60	unit:60	1	ciqual:7615	6.5	1.9	21.7	130	21	0.85	17	0.63	16.4	0	0	1.35	0.09	32.8	
+pain_au_chocolat	sweets	g	423	7.5	45.4	12.8	22.5	14.7	3	1	80	unit:80	1	ciqual:7730	5.4	0.9	69.4	160	23	4.1	29	0.78	170	0	0	0.6	0.09	33.8	
+pastries	sweets	g	385	7.6	49	12.9	17	8.3	2.4	1	70	unit:70	1	ciqual:7600	5.5	1.7	55.9	142	40.3	1.71	22.2	0.72	86.5	0.49	0.13	1.73	0.15	28	
+brioche	sweets	g	363	8.4	52.1	13.9	13	5.1	1.9	1.1	50	unit:50	1	ciqual:7746	4.7	1.6	64.4	136	34	1.24	20.5	0.74	66.5	0	0	1.78	0.21	27.9	
+danish_pastry	sweets	g	403	7	43.3	19.8	22.4	5.7	1.3	1	80	unit:80	1	fdc:2343542	12.5	2.9	21	125	71	1.96	19	0.72	6	0.1	0	0.39	0.1	33	
+cinnamon_roll	sweets	g	452	4.5	47.4	25.7	26.6	12.6	1.2	0.8	90	unit:90	1	fdc:2343148	8.7	3.7	5	102	183	1.37	14	0.53	0	0.3	0	1.15	0.16	19	
+palmera	sweets	g	499	5.9	47.8	21.8	30.4	14.4	5.3	1.2	70	unit:70	0	ciqual:24660	8.4	2.1	28	83.5	15.6	0.58	11.5	0	49.1	0	0	3.2	0.43	11.5	
+muffin	sweets	g	441	5.6	55.3	28.4	21.6	2.8	1.4	0.9	30	unit:30|piece:100	1	ciqual:24632	13.2	5.5	85.3	83	19	0.59	9.8	0.39	28.5	0	0.33	5.36	0.3	66.4	
+cupcake	sweets	g	352	2.8	52.6	39.5	14.8	3.5	1	0.8	80	unit:80	1	fdc:2343333	5.8	4.5	43	98	70	1.3	15	0.37	19	0	0.3	1.87	0.11	10	
+donut	sweets	g	404	7.3	39.4	10.7	23.7	9.5	2	1.1	55	unit:55	1	ciqual:23880	9.4	3.7	19	93	24	0.68	18	0.62	15.1	0	0	4.28	0.09	30.4	
+churros	sweets	g	378	5.8	40.9	0.9	20.6	2.3	2	0.6	100	serving:100|unit:20	1	recipe	5.6	11.5	0	101	18.6	0.77	18	0.46	0.04	0	0	11.8	0	10.5	
+fritters	sweets	g	378	6.6	26.6	2.1	26.9	5.6	0.9	0.9	60	serving:60|unit:15	1	fdc:2343507	9.8	9	67	125	64	2.1	15	0.58	76	0	0.8	3.58	0.23	13	
+cookie	sweets	g	496	6.9	63.8	35.4	22.8	14.2	4	0.6	12	unit:12	1	ciqual:24017	6.3	1	24.6	288	91.8	4.6	45.7	0.89	12.5	0	0	0.67	0	8.75	
+maria_biscuits	sweets	g	450	7.8	73.4	22	13.3	8.6	2.5	1.2	7	unit:7	0	ciqual:24015	2.8	0.6	40	150	34	0.82	18	0.52	107	0	0	0.53	0.09	19.1	
+macarons	sweets	g	448	11	56.5	51.3	19	2.5	2.9	0.2	15	unit:15	1	ciqual:23024			19.3	290	81	1.5	79.1	0.9	6.67	2.1		5.2			
+meringue	sweets	g	396	4.8	93.2	87.6	0.5	0	0	0.2	15	unit:15	1	ciqual:24520	0	0	0	89.8	4.15	0.18	4.76	0.15	0	0	0	0	0.1	6	
+gingerbread	sweets	g	276	3.6	44.3	28.3	9.2	2.4	1	1	50	piece:50	1	fdc:2343356	5	1.2	32	217	62	2.98	14	0.32	14	0.1	0.2	0.2	0.06	10	
+brownie	sweets	g	458	5.9	50.6	35.1	25.4	7.3	3.4	0.3	60	unit:60	1	ciqual:23032	12.3	4.5	67.6	330	42	5	47	0.9	30.6	0	0	3.98	0.28	10.8	
+cake	sweets	g	410	5.5	51.8	29.3	19.6	5.1	2.4	0.7	80	slice:80	1	ciqual:23000	9.5	3.6	70.7	183	33.9	2.02	20.4	0.53	56.7	0.53	0.21	3.06	0.21		
+chocolate_cake	sweets	g	445	5.9	51	28.6	24	5.7	3.7	0.4	90	slice:90	1	ciqual:23585	13.2	4.7	54.2	233	38.9	4.5	33	0.71	58.3	0	0	3.86	0.18	3.75	
+cheesecake	sweets	g	337	5.4	34.1	21.3	19.7	11.4	0.7	0.4	110	slice:110	1	ciqual:23001	4.7	1.1	86	110	55	0.34	12	0.41	176	0	0	0.9	0.2	12	
+carrot_cake	sweets	g	373	2.5	50.6	38.5	17.5	3.2	1.1	0.7	100	slice:100	1	fdc:2343339	6.1	7.1	47	78	74	0.91	6	0.28	100	0.5	0.3	2.47	0.12	13	
+sponge_cake	sweets	g	378	6.7	57.6	30.5	13.2	2.3	0.8	1.4	60	slice:60	1	ciqual:23594	4.6	2.2	102	141	31.4		9.5	0.7	44	0	0.2	0.24	0.24	13	
+loaf_cake	sweets	g	326	4.3	53.5		10.5	2.2	1.1	0.8	60	slice:60	1	fdc:174906	4.5	3.1	43	134	21	1.4	14	0.35	106	1.7			0.1	11	
+swiss_roll	sweets	g	374	4.6	57.7	33.9	12.8	2.4	4.5	0.6	60	slice:60	1	ciqual:23941	5.9	2.7	55.2	195	28.8	0.75	12.5	0	9.25	0	0	2.17	0.14	11	
+fruitcake	sweets	g	352	6.9	50.6	25.9	12.7	7	3.4	0.5	80	slice:80	1	ciqual:7719	3	1	82.1	227	39.4	1.3	19.2	0.63	58.3	0	0	1.61	0	3.7	
+fruit_pie	sweets	g	296	2.7	35.8	15.9	15.3	5.3	1.8	0.5	120	slice:120	1	fdc:2343477	6.4	2	7	80	11	1.23	8	0.22	40	0.5	0.1	0.65	0	9	
+pumpkin_pie	sweets	g	249	4.8	34.6	24.6	9.8	4.1	1.7	0.6	120	slice:120	1	fdc:2343493	3.8	1	47	204	91	1.24	19	0.51	327	2.2	0.3	0.62	0.18	15	
+tart	sweets	g	245	3.2	34.1	21.6	10	5.5	2.4	0.2	120	slice:120	1	ciqual:23498	3.2	0.7	40.4	140	22.7	0.87	11.9	0.28	49.1	5.79	0		0.12	22.8	
+custard_tart	sweets	g	300	6	39.3	22.6	12.8	7.6	1.3	0.7	65	unit:65	1	recipe	3.7	0.9	149	126	69.5	0.43	13	0.53	148	0	0.32	0.7	0.47	25.4	
+apple_strudel	sweets	g	281	2	36.4	21.1	14.1	7.6	0.8	0.3	120	slice:120	1	fdc:2343522	2.8	0.5	39	67	9	0.3	6	0.18	126	0.5	0.1	0.08	0	9	
+mille_feuille	sweets	g	292	3.9	43.7	21.1	11.3	5.3	0.2	0.4	100	unit:100	0	ciqual:24666	2.9	0.7	27	111	67.4	0	14.4	0	67.1		0	0.57	0.42	14.2	
+cream_puffs	sweets	g	325	4.5	25.1	16.7	22.9	14.5	0	0.3	30	unit:30|serving:90	1	ciqual:23455	5.9	0.9	189	360	31	0.7	10	0.1	260	0	0.3	1.25	0.17	8	
+pancakes	sweets	g	282	7.4	33.2	7.1	12.1	3	2.1	1.3	150	unit:50|serving:150	1	fdc:2343787	4.2	3.6	66	174	206	1.45	20	0.73	77	0	1	1.62	0.38	11	
+crepes	sweets	g	257	6.3	41.6	19.1	6.8	3.6	2.2	0.5	55	unit:55	1	ciqual:23799	1.6	1.6	60.9	140	75	0.56	14	0.52	23.6	0	0	1.06	0.41	17	
+waffles	sweets	g	301	8	36.1	4.8	13.4	5.1	1.9	1	70	unit:70	1	ciqual:23850	5.4	2.1	82	160	48	0.89	18	0.64	65	0	0.61	2.01	0.37	30.4	
+french_toast	sweets	g	298	6.4	34.5	16	14.6	2.7	0.9	0.5	90	unit:90	1	recipe	4	6.7	66.6	153	72.7	0.69	14.2	0.59	40.9	0	0.39	6.63	0.22	17	
+scones	sweets	g	382	6.7	46.9	13.4	18.4	9.7	1.2	1.1	70	unit:70	1	fdc:2343288	3.8	0.8	74	118	211	2.9	17	0.53	179	0	0.5	0.1	0.2	12	
+tiramisu	sweets	g	242	4.3	30.2	19.5	9.8	6.4	1.2	0.2	120	serving:120	1	ciqual:19698	2.4	0.4	44.8	230	94	0.68	18	0.46	38.5	0	0	0.86	0.08	5.52	
+flan	sweets	g	155	4.8	21	19.3	5.7	3.5	0.3	0.1	100	unit:100	1	ciqual:39209	0.8	0.1	12	150	84.9	0.32	12.8	0.31	37.7	0	0.07	0.16	0.3	8	
+creme_brulee	sweets	g	269	4.4	17.5	16.3	20.1	13.1	0.3	0.1	120	unit:120	1	ciqual:39213	6	1	193	94	64.3	0.8	7.6	0.6	179	0	0	1.17	0.35	26.2	
+crema_catalana	sweets	g	165	4.5	23.4	19.7	5.9	2.8	0	0.1	120	unit:120	0	recipe	1.9	0.5	117	132	101	0.11	8.92	0.46	65.6	0	0.33	0.38	0.48	19	
+custard	sweets	g	133	3.9	21.1	16	3.6	1.8	0.5	0.2	125	unit:125	1	ciqual:39214	0.9	0.1	12	134	115	0.8	10	0.6	33.3	0.2	0.1	0.1	0.1	22	
+mousse	sweets	g	155	5.1	20.3	19.3	5.5	3.6	1.8	0.2	65	unit:65	1	ciqual:39206	1.2	0.1	11.5	371	149	4.64	59.5	0.59	24.3	0	0	0.17	0.07	22	
+rice_pudding	sweets	g	121	3	18.9	10.8	3.4	2.1	1.2	0.1	125	unit:125|bowl:180	1	ciqual:39212	0.6	0.1	9	107	73.9	0	9.93	0	34.1	0	0	0	0	2.95	
+panna_cotta	sweets	g	192	2.7	15.9	15.8	12.1	8.2	1.4	0.1	110	unit:110	1	ciqual:19685	2.9	0.3	68	121	75.8	0.07	8.37	0.3	75.5	1.51	0.64	0.11	0.12	2.07	
+jelly	sweets	g	60	1.2	14.2	13.5	0	0	0	0.2	120	unit:120	1	fdc:2345870	0	0	0	1	3	0.02	1	0.01	0	0	0	0	0	1	
+ice_cream	sweets	g	191	2.6	26.1	21.9	8.4	5.4	0	0.1	60	unit:60|bowl:120	1	ciqual:39515	2	0.3	39.3	190	74	0.14	14.3	0.35	99.5	0	0	0.48	0.43	10	
+ice_cream_cone	sweets	g	290	3.5	36.8	25.1	13.5	9.8	0	0.1	75	unit:75	0	ciqual:39509	2.4	0.7	6.2	216	109	0.95	17.5	0.5	0.42	1	0	0.77	0.13	8	ice_cream
+ice_pop	sweets	g	84	0.2	20.5	19.4	0.2	0.1	0.3	0	60	unit:60	1	ciqual:39526	0	0	0	13	5.8	0.01	1.4	0	45.2	2.35	0	0	0	0	
+sorbet	sweets	g	122	0.4	28.7	24.9	0.6	0.3	1	0	100	serving:100	1	ciqual:39524	0.2	0	1	56.9	19.7	0.18	6.18	0.48	12.1	2.3	0	0.01	0.07	2.5	
+churros_with_sugar	sweets	g	380	5.3	45.3	8.2	19.1	2.1	1.9	0.5	108	serving:108|unit:22	0	recipe	5.2	10.7	0	94.8	17.5	0.72	16.8	0.43	0.04	0	0	10.9	0	9.7	churros
+ensaimada	sweets	g	408	7.4	57.3	16.1	15.9	5.9	2.1	0.1	80	unit:80	0	recipe	6.8	2	57.2	122	25.7	0.99	19.6	0.61	18.8	0	0.59	0.5	0.1	16.3	
+pizza	fast_food	g	234	10	27.4	3.6	8.9	4.1	2.1	1.2	120	slice:120|unit:450	1	ciqual:25516	2.9	1.1	20.5	185	193	0.76	21.7	1.34	39.6	3.39	0.16	0.83	0.36	36	
+calzone	fast_food	g	343	14.8	29.9	0.6	17.7	5.7	1.4	1.1	300	unit:300	1	fdc:2344169	6.8	3.6	46	169	177	2.64	22	2	113	0	0.3	1.3	0.53	51	
+hamburger	fast_food	g	251	13.3	29.5	6	8.4	2.8	1.8	1.2	220	unit:220	1	ciqual:25413	3.6	0.6	29	251	64	1.23	29.7	2.26	2.83	0.3	0.1	0.07	1.2	17	
+hot_dog	fast_food	g	278	10.9	26.3	5.2	13.8	5.2	1.6	1.7	130	unit:130	1	ciqual:25403	6.2	1.7	34.7	210	56	0.85	17	1.1	0	0	0	1	0.5	31.2	
+sandwich	fast_food	g	280	12.4	30.3	2	11.7	5.3	2.1	1.5	150	unit:150	1	ciqual:25522	3.6	2	39.8	189	65.6	1	20.6	1.26	142	2.63	0.36	1.45	0.41	20	
+baguette_sandwich	fast_food	g	293	11.7	33.2	2.2	12.1	5.6	2.1	1.6	200	unit:200	1	ciqual:25543	3.6	2.3	38.4	164	69.6	1	20.8	1.15	142	2.63	0.36	1.45	0.41	20	
+ham_baguette	fast_food	g	263	12	38.4	1.9	6.3	1.8	1.9	1.9	185	unit:185	0	recipe	3.4	0.8	15.2	250	17.2	1.04	21.1	1.09	7.75	2.15	0.19	0.93	0.19	19.9	baguette_sandwich
+toasted_sandwich	fast_food	g	253	10.6	26.1	2.8	11.4	5.5	2	1.5	130	unit:130	0	ciqual:25547	4.4	1.5	30.8	189	251	0	21.5	1.6	46.6	1.7	0.7	0.6	0.39	23.1	sandwich
+wrap	fast_food	g	234	8.6	25.2	2.3	10.4	2.4	3.1	1.4	200	unit:200	1	ciqual:25648	2.6	1.5	31	252	193		22	1.32	44	0	0.8	0.23	0.38	9	
+tacos	fast_food	g	249	15.5	13.2	0.4	14	4.5	2.1	0.9	100	unit:100	1	fdc:2343999	5.6	2.3	47	214	70	1.63	35	3.55	12	0	0.1	0.81	1.27	6	
+quesadilla	fast_food	g	319	13.7	26.5	2.6	16.4	8.8	2	1.7	120	unit:120	1	fdc:2344075	4.1	1.7	37	106	358	2.19	23	1.57	86	0	0.4	0.17	0.43	14	
+kebab	fast_food	g	232	15.2	17	1.1	10.9	4.3	2.3	1.2	300	unit:300	1	ciqual:25428	3.9	0.7	47.3	316	33.6	0.95	21.5	1.8	6	3.5	0	0.33	0.86	16	
+french_fries	fast_food	g	256	3.3	32.5	0.6	11.8	2.8	3.9	0.8	150	serving:150	1	recipe	5	1.9	0	679	23.7	0.9	23.2	0.36	1.24	18.9	0	5	0.04	32.1	
+nachos	fast_food	g	265	4.6	25.8	0.5	15.6	3	2	1.4	150	serving:150	1	fdc:2344061	5.2	6.4	5	79	85	0.92	32	0.7	13	0	0.1	2.3	0.06	6	
+potato_chips	snacks	g	532	6	51	1.5	32.7	2.9	4.7	1.6	40	serving:40|handful:15	1	ciqual:4004	24.2	2.1	0	1300	27	1.2	66	0.82	10.7	8.26	0	12.3	0	31.6	
+tortilla_chips	snacks	g	488	6.1	62.6	1.1	22.5	7.5	4.3	0.9	40	serving:40|handful:15	1	ciqual:38417	5.2	9.8	0	182	106	1.52	84	1.38	0.08	0	0	3.53	0.36	12	
+popcorn	snacks	g	477	8.3	50.2	2	24.6	11.9	10.6	2.8	30	bowl:30	1	ciqual:9230	7.3	3.5	0	182	9.6	2.3	108	2.48	1	0.3	0		0	43	
+crackers	snacks	g	442	10.4	68.6	1.6	12.3	5.7	4.1	1.9	25	serving:25|unit:5	1	ciqual:7351	4.4	1.8	0	159	24.8	1.2	28.9	0.87	9.25	0	0	1.59	0	5.2	
+pretzel	snacks	g	345	8	67.7	0.2	4	1.3	1.7	1.9	120	unit:120	1	fdc:2343750	1.3	1	2	86	23	3.83	21	0.92	8	0	0	0.56	0	23	
+corn_puffs	snacks	g	535	10.5	48.8	9.6	32.6	27.3	2.1	1.6	30	serving:30	0	ciqual:38422	2.8	2	7	180	53	1.69	18	0.37	13	0.1	0.1	4.18	0.2	80	
+pork_rinds	snacks	g	544	61.3	0	0	31.3	11.4	0	4.5	25	serving:25	0	fdc:167961	14.8	3.6	95	127	30	0.88	11	0.56	12	0.5	0	0.53	0.64	0	
+cereal_bar	snacks	g	451	6.6	73	32.9	14.9	7.4	4.5	0.5	25	unit:25	0	ciqual:31106	3.5	1	3.3	217	260	3.1	45	1	6.92	0	0.62	1.45	0.2	74	
+croquettes	snacks	g	265	7.5	15.9	4.3	18.8	5.8	0.8	0.9	30	unit:30|serving:180	1	recipe	6	5.6	50.6	208	103	0.41	16.2	0.74	72.8	0.14	0.31	5.9	0.26	7.38	
+empanada	snacks	g	257	9.1	24.8	2.7	12.9	2	2.1	0.8	160	slice:160|unit:80	1	recipe	7.7	2.5	40	223	24.4	0.83	21	0.57	18.3	16.2	0.35	4.3	0.91	29	
+bread_with_tomato	snacks	g	240	5.3	37.3	2.4	7.1	1.2	2	1.4	160	unit:160	1	recipe	4.7	0.8	0.05	177	15.9	0.8	16.5	0.48	22	6.18	0	1.75	0	20.8	
+canapes	snacks	g	279	10.3	33.6	2.1	11	3.1	1.8	1.3	55	unit:55|serving:220	1	recipe	4.1	3.1	17.4	187	69.1	0.9	20.9	0.85	26.3	7.5	0.18	3.67	0.46	20.3	
+spring_rolls	snacks	g	216	7.5	22.4	2.1	10	1.8	2.8	1.2	60	unit:60	1	ciqual:25674	5.6	2	20.4	210	33.6	1	23.7	0.81	57.1	0	0	1.84	0.26	29	
+falafel	snacks	g	252	8.3	18.7	1.4	14.4	1.5	7.7	1.6	100	serving:100|unit:20	1	ciqual:25571	6.4	5.8	1.95	390	57	2.1	51	1.3	2.92	0	0	6.9	0	105	
+onion_rings	snacks	g	352	4.2	37.3	5	19.8	3.2	2.6	1.4	100	serving:100	0	fdc:2345582	4.9	9.9	0	151	72	0.96	20	0.55	0	1.5	0	2.74	0	36	
+pakora	snacks	g	283	8.2	17.9	5.2	18.8	2.1	4.5	0.8	100	serving:100	1	recipe	5	10.2	0	431	41.1	2.04	70.5	1.09	78.1	5.87	0	9.99	0		
+arancini	snacks	g	263	6.4	27.4	0.8	13.8	3.3	1.5	0.6	100	unit:100	0	recipe	3.7	5.8	33.9	85.8	107	0.3	13.8	0.59	41.8	0.32	0.17	5.64	0.41	10.9	
+pizza_margherita	fast_food	g	266	11.4	31	3.6	9.7	4.5	2.3	1.5	110	slice:110|unit:440	0	fdc:2344100	2.6	1.7	17	172	188	2.48	24	1.34	69	1.4	0	0.83	0.42	40	pizza
+pizza_pepperoni	fast_food	g	282	11.7	29.7	3.3	11.9	5.1	2.3	1.7	115	slice:115|unit:460	0	fdc:2344124	3.9	2.1	25	195	153	2.52	24	1.4	70	0.9	0	0.87	0.5	36	pizza
+pizza_four_cheese	fast_food	g	280	13	27.4	3.2	12.2	6.4	2	1.5	115	slice:115|unit:460	0	recipe	3.1	1.6	25.9	165	259	2.19	24.9	1.61	94.6	1.23	0	0.78	0.58	38.1	pizza
+pizza_ham	fast_food	g	228	10.7	26.2	3.7	8.5	3.9	2	1.4	115	slice:115|unit:460	0	ciqual:25435	2.2	1	20.3	234	174	0.7	24.4	1.4	51.3	1.45	0	1.1	0.46	17	pizza
+pizza_barbecue	fast_food	g	280	11.5	28.3	3.3	12.4	5	2.3	1.6	115	slice:115|unit:460	0	fdc:2344133	4	2.4	23	197	144	2.41	24	1.32	68	1.7	0	0.91	0.48	35	pizza
+pizza_vegetable	fast_food	g	242	10.3	28.5	3.6	8.7	4	2.2	1.3	110	slice:110|unit:440	0	fdc:2344111	2.3	1.5	15	171	170	2.26	23	1.22	63	4.8	0	0.77	0.38	37	pizza
+cheeseburger	fast_food	g	251	13.4	27.5	5.9	9.3	3.6	1.7	1.3	240	unit:240	0	recipe	3.7	0.5	31.6	261	95	1.14	29.3	2.22	16	0.28	0.09	0.11	1.15	16.3	hamburger
+bacon_cheeseburger	fast_food	g	264	14.7	25.9	5.5	10.9	4.1	1.5	1.5	255	unit:255	0	recipe	4.4	0.9	35.8	276	89.8	1.13	29.4	2.27	15.7	0.26	0.11	0.13	1.14	15.2	hamburger
+chicken_burger	fast_food	g	249	12.7	23.8	2.9	11	1.9	1.2	1.2	200	unit:200	0	ciqual:25502	5.8	2.7	27.7	220	66	0.6	22	0.71	0	0	0	2.1	0.3	33.4	hamburger
+sandwich_vegetal	fast_food	g	229	7.8	20.5	3.1	12.3	1.5	1.4	0.7	195	unit:195	0	recipe	3.7	5.8	58.8	145	50	0.79	15.1	0.48	50.7	3.63	0.3	6.3	0.75	18.7	sandwich
+omelette_baguette	fast_food	g	233	6.6	37	1.8	5.8	1.1	2.4	1	230	unit:230	0	recipe	3.4	0.8	42.9	282	27.3	1.13	22.2	0.64	19.2	7.78	0.23	1.15	0.1	27.2	baguette_sandwich
+calamari_baguette	fast_food	g	289	10.9	36.1	1.3	10.6	1.3	1.6	1.4	230	unit:230	0	recipe	2.7	5.7	104	199	21.1	0.81	32.2	0.9	1.34	1.91	0.15	6.34	1.3	19.6	baguette_sandwich
+pork_loin_baguette	fast_food	g	264	14.7	35.9	1.4	6	1.4	1.7	0.8	195	unit:195	0	recipe	3	0.8	30.2	239	21.8	1.03	23.5	1.25	0.45	0	0.25	0.8	0.19	16.5	baguette_sandwich
+cheese_baguette	fast_food	g	334	12.4	41.9	1.7	12.4	7.1	1.9	1.3	168	unit:168	0	recipe	3.8	1	25.3	141	220	0.94	26	1.17	73.4	0	0.13	0.67	0.28	28.6	baguette_sandwich
+samosa	snacks	g	230	9.3	16.5	2.5	13.7	2.8	1.8	1.2	60	unit:60|serving:120	1	ciqual:25108	5.3	3.2	23	182	31	1.3	17.8	0.87	3.83	0.7	0	1.45	0.34	20	
+gazpacho	dishes	g	58	0.7	4.7	2.4	3.8	0.6	1	0.5	250	bowl:250|glass:200	1	recipe	2.7	0.3	0	169	8.77	0.18	7.34	0.1	43.9	14.5	0	1.2	0	14.4	
+salmorejo	dishes	g	129	2.7	10.9	2.5	7.9	1.4	1.1	0.9	200	bowl:200	0	recipe	5.6	0.7	14.3	194	9.84	0.38	9.46	0.27	51.8	14.3	0.06	2.07	0.06	15.3	gazpacho
+cocido	dishes	g	169	11.5	10.6	1.2	8.3	2.5	2.8	0.8	450	plate:450	0	recipe	3.7	1.4	31.5	353	25.1	2.07	26.5	1.55	74.7	10.4	0.1	0.88	0.43	95.3	
+migas	dishes	g	341	9.3	33.4	1.8	18.3	4.4	2.1	1.7	250	plate:250	0	recipe	11.3	2.1	19.9	206	19.4	1.03	19.3	0.87	9.5	3.02		2.89	0.23	22.9	
+patatas_bravas	dishes	g	215	2.8	21	2	12.4	1.5	3.3	1.2	200	serving:200	0	recipe	4.4	6	0	621	23.1	1.17	32.1	0.48	4.34	24.7	0	6.37	0	21.2	french_fries
+ratatouille	dishes	g	88	1.7	6	5.2	5.7	0.9	2.9	0.8	200	small_plate:200	1	recipe	4	0.4	0	337	23.7	0.43	17.3	0.26	107	40.3	0	2.68	0	56.1	
+potato_salad	dishes	g	203	5.2	8.8	1.2	15.9	1.7	1.7	0.7	150	small_plate:150	1	recipe	4.3	8.1	46.9	219	17.6	0.56	16.6	0.36	73.4	1.53	0.22	9.46	0.63	25.2	
+ensalada_mixta	dishes	g	86	4.5	3	1.7	5.9	1	1.1	0.6	350	plate:350	0	recipe	3.3	1.2	36.6	187	31.2	0.65	13.5	0.3	170	7.66	0.23	1.94	0.56	28.4	
+green_salad	dishes	g	55	0.9	2.4	1.8	4.4	0.7	1	0.6	250	plate:250|small_plate:150	1	recipe	3.1	0.3	0	184	34.1	0.54	11	0.14	148	8.63	0	1.17	0	27.8	
+caesar_salad	dishes	g	151	8.1	4.9	1.7	10	2.4	2	0.8	300	plate:300	1	ciqual:25628	5	2.1	40.7	300	100	0.5	19	0.69	80.2	1.11	0	2.24	0.48	29.3	
+greek_salad	dishes	g	103	2.7	2.9	2.2	8.7	2.8	1.3	0.7	300	plate:300	1	recipe	4.6	0.5	9.77	155	60.7	0.49	10.1	0.34	54	11	0	1.66	0.13	17.3	
+caprese_salad	dishes	g	133	6.4	2.3	2	10.9	5	0.6	0.5	250	plate:250	1	recipe	4.8	0.5	29	151	223	0.26	11.4	1.12	106	11.7	0.15	1.36	0.84	10.5	
+pasta_salad	dishes	g	160	6.2	14.2	1.6	8.2	1.6	2	0.9	250	plate:250	1	ciqual:25619	5	1.6	11.3	193	24	0.95	23.3	0.53	52.2	12.3	0.12	1.18	0.14	18.4	
+coleslaw	dishes	g	113	1.1	8.1	7.4	7.9	1.2	1.9	0.7	100	serving:100	1	fdc:2345335	1.7	4.4	9	151	32	0.41	10	0.18	79	24.5	0	0.85	0.02	31	
+fruit_salad	dishes	g	79	0.6	18	14.2	0.2	0	1.4	0	150	bowl:150	1	ciqual:13134	0	0.1	0	203	14.5	0.29	16.4	0.09	2.92	22.3	0	0.37	0	20.2	
+tabbouleh	dishes	g	179	4.9	23.7	4.9	6.7	0.7	2.5	1	200	plate:200	1	ciqual:25608	4.2	1.5	0.1	210	24	0.88	25	0.65	12.4	6.27	0	1.26	0	14.5	
+pimientos_de_padron	dishes	g	126	0.9	3.8	3.4	11.2	1.7	3.6	1.8	130	serving:130	0	recipe	8.2	0.8	0	179	7.19	0.25	8.68	0.13	16.3	30.1	0	2.81	0	61.7	
+huevos_rotos	dishes	g	231	8	17	0.9	13.9	2.4	2.3	1.4	320	plate:320	0	recipe	5.2	5.4	85	522	32.1	1.3	27.9	0.87	33.9	20.6	0.51	5.51	0.28	27.1	
+judias_verdes_con_patatas	dishes	g	80	1.9	8	0.3	3.8	0.6	3.1	0.7	280	plate:280	0	recipe	2.6	0.4	0	243	35.4	0.51	19.9	0.19	7.4	3.98	0	1.13	0	30.9	
+garbanzos_con_espinacas	dishes	g	146	6.4	13.5	2.9	5.5	0.8	5.4	0.6	250	plate:250|small_plate:150	0	recipe	3.2	1	0	301	71.2	2.4	45.1	1.12	40.1	1.37	0	1.85	0	137	
+avocado_toast	dishes	g	259	5.2	29.2	0.8	12.2	1.9	5.1	1.4	136	unit:136	0	recipe	8	1.3	0	323	15.6	0.74	26	0.64	4.69	4.53	0	1.94	0	54.5	toast
+toast_with_olive_oil	dishes	g	372	7.1	49.6	2	15.4	2.5	2.3	1.8	70	unit:70	0	recipe	10.6	1.5	0.06	153	18.8	1.02	19.6	0.62	2.48	0	0	3.44	0	22.8	toast
+toast_with_butter_and_jam	dishes	g	329	5.7	52.1	14.4	10.2	7	2.1	0.8	90	unit:90	0	recipe	2.4	0.6	26.2	141	21.3	0.91	16.5	0.5	103	3.6	0	0.47	0.01	20.4	toast
+arroz_a_la_cubana	dishes	g	144	3.5	21.6	4.5	4.5	0.8	1.6	0.2	420	plate:420	0	recipe	2.5	0.7	44.3	182	16.8	0.34	15.8	0.18	23.7	2.48	0.24	0.86	0.12	16.1	
+roasted_peppers	vegetables	g	38	1.2	6.4	6	0.4	0.1	2.2	0	100	small_plate:100	0	ciqual:20088	0	0.2	0	180	9	0.46	14	0.2	0	81	0	0.9	0	11	bell_pepper
+soup	dishes	g	37	0.8	4.5	1.6	1.5	0.6	1.2	0.7	300	bowl:300	1	ciqual:25903	0.6	0.1	3.7	110	14	0.14	5.3	0.11	153	5.75	0	0.62	0.05	39.8	
+broth	dishes	g	7	1.2	0.3	0	0.1	0.1	0	0.8	300	bowl:300	0	ciqual:25947	0	0	0	10	5	0.05	1	0.01	1	0	0		0.01	1	soup
+sopa_de_ajo	dishes	g	102	4.5	7.8	0.4	5.6	1.2	0.7	1.2	300	bowl:300	0	recipe	3.5	0.6	32.5	91.8	15.3	0.55	7.33	0.34	14.3	0.01	0.2		0.11	8.97	soup
+cream_soup	dishes	g	47	1.4	3.7	1.6	2.7	0.7	1	0.5	300	bowl:300	1	recipe	1.5	0.2	1.55	218	25.7	0.3	14	0.28	9.89	12.2	0	0.51	0.01	17.6	
+tomato_soup	dishes	g	36	0.8	5.9	3	0.9	0.3	1	0.6	300	bowl:300	1	ciqual:25914	0.3	0.1	2.9	130	11	0.14	5.9	0.08	151	6.4	0.6	0.69	0.01	23.8	
+chicken_soup	dishes	g	61	5.6	4.5	0.9	2.2	0.4	0.4	0.9	300	bowl:300	1	fdc:2344639	0.8	0.6	23	102	12	0.45	9	0.44	33	1.7	0	0.28	0.09	6	
+minestrone	dishes	g	47	1.5	5	1.5	1.9	0.2	1.7	0.8	300	bowl:300	0	ciqual:25916	0.6	0.2	1.5	106	33.3	0.56	12.5	0.19	73.8	1.25	0	0.67	0	10	
+french_onion_soup	dishes	g	61	1.6	4.3	2.7	3.8	2	1.4	0.8	300	bowl:300	0	ciqual:25910		0.3	0	28	12	0.27	1	0.25	1.08	0.5	0	0.11	0	6	
+miso_soup	dishes	g	32	2.5	1.9	0.8	1.6	0.2	0.4	1.5	250	bowl:250	1	fdc:2342931	0.5	0.6	4	57	16	0.32	8	0.3	1	0.1	0.1	0.21	0.13	6	
+clam_chowder	dishes	g	62	3.3	7.2	2.7	2.1	1.1	0.3	0.7	300	bowl:300	0	fdc:2342606	0.2	0.5	7	188	71	1.23	12	0.4	38	2.1	0.6	0.22	4.9	7	
+fish_soup	dishes	g	50	4.1	2.7	0.9	2.4	0.8	0.8	0.7	300	bowl:300	1	ciqual:25904	0.6	0.3	30	110	130	0.61	11	0.25	97	0	0	0.32	1.35	0	
+stew	dishes	g	118	9.8	7.2	1.6	5.1	1.4	1.7	0.6	350	plate:350	1	recipe	2.7	0.3	22.6	335	23.1	1.1	19.7	2.11	147	7.62	0.04	0.73	0.81	16.4	
+chili_con_carne	dishes	g	118	7.1	13	2.6	3.4	1.1	3.6	0.9	300	plate:300	1	ciqual:25111	1.4	0.4	14.6	282	32.8	1.6	27.3	1.2	20.4	2.25	0	0.88	0.35	44	
+curry	dishes	g	106	6.5	5.1	2.6	6.5	1.6	1.4	0.9	300	plate:300	1	fdc:2341861	2.3	2	22	280	20	0.73	18	0.53	48	8.6	0	1.32	0.08	15	
+moussaka	dishes	g	147	5.8	5.2	3	10.8	3.4	2.8	1	300	plate:300	0	ciqual:25123	3.3	2.3	19.9	268	16	0.62	17.4	1.43	12.5	3.28	0.29	1.75	0.56	20.3	
+quiche	dishes	g	269	8.4	21.5	2	16.4	9.2	1.4	1.3	150	slice:150	1	ciqual:25405	5.7	1.5	95.4	164	116	0.63	17.8	0.8	52.3	0.71	1.21	1.55	0.3	17.1	
+pot_pie	dishes	g	254	9.2	22	3.3	13.5	4.6	1.9	0.9	250	unit:250	1	fdc:2342137	5.9	1.9	29	176	39	1.39	18	0.64	123	1.5	0.3	0.47	0.15	15	
+shepherds_pie	dishes	g	138	6	9.4	1.5	8.2	4.7	1.4	0.8	300	plate:300	0	ciqual:25009	3.1	0.4	20	184	59.6	0.71	17.5	1.2	45.9	0.65	0.1	0.2	0.42	5.71	
+gratin	dishes	g	107	3.2	3.6	2	8.5	2.5	1.7	0.5	250	plate:250	1	ciqual:25238	3.9	1.8	19.7	175	83.1	0.51	16.6	0.49	74.2	12.6	0.08	1.84	0.12	41	
+mashed_potatoes	dishes	g	117	2	11.3	1.3	6.7	3.7	1.8	0.5	200	small_plate:200	1	ciqual:4040	0.9	0.1	11	284	24	0.26	18	0.27	38	6	0.2	0.12	0.07	8	
+fried_potatoes	dishes	g	137	2.5	17.3	2.2	5.7	1.2	2.6	0.5	200	small_plate:200	1	ciqual:4015	3.6	0.7	0	680	18	0.73	28	0.35	0.85	1.97	0	0.37	0	26	
+potato_pancakes	dishes	g	217	2.6	25	0.3	11.5	0.9	3.2	1	100	unit:50|serving:100	1	fdc:2344971	7.2	2.8	0	491	17	0.54	28	0.38	0	6.6	0	2.17	0	16	
+full_breakfast	dishes	g	165	9.8	8.5	1.6	9.7	3.3	1.6	1.1	515	plate:515	1	recipe	3.7	2.1	61.9	262	23.1	2.19	17.7	1.25	37.7	6.25	0.35	1.49	0.29	18.5	
+dumplings	dishes	g	192	8.8	12.6	2.9	11.1	2.5	1.5	1.2	150	serving:150|unit:25	1	fdc:2344189	4.8	3	18	301	30	0.79	22	1.77	5	8.8	0.2	1.12	0.28	19	
+pierogi	dishes	g	195	5.3	28.7	1.8	6.1	1.3	0.9	1.2	200	serving:200|unit:35	1	fdc:2344204	1.2	3.2	4	107	35	1.26	16	0.44	3	5.3	0	0.98	0.08	12	
+steamed_buns	dishes	g	240	10.5	37.1	5.9	5	1.3	1.6	0.4	70	unit:70	1	recipe	1.8	1.6	18.4	214	16.9	0.82	21.1	1.09	0.62	0.06	0.18	1.12	0.16	8.99	
+tempura	dishes	g	228	4	18	1.5	15	2.2	1.6	0.7	150	serving:150	1	recipe	5.9	5.8	36.1	185	22.3	1.6	17.3	0.41	57.1	14.4	0.19	2.5	0.06	20	
+dolma	dishes	g	168	2.3	10.8	2.8	12	1.9	3.1	0.4	150	serving:150|unit:30	0	fdc:2344552	7.9	1.3	0	152	89	1.25	26	0.34	241	5.6	0	2.87	0	24	
+hot_pot	dishes	g	60	5.4	3.1	0.7	2.6	0.8	0.7	0.4	600	bowl:600	1	recipe	0.9	0.6	13.1	127	22.5	0.76	17.5	0.8	4.24	5.85	0.07		0.22	16.2	
+green_salad_plain	dishes	g	18	1	2.6	1.9	0.2	0	1	0	230	plate:230|small_plate:140	0	recipe	0	0	0	198	36.6	0.57	11.8	0.15	159	9.32	0	0.25	0	30.1	green_salad
+ensalada_mixta_plain	dishes	g	63	4.7	3.2	1.8	3.3	0.6	1.2	0.3	330	plate:330	0	recipe	1.3	1.1	38.6	196	32.7	0.68	14.1	0.32	178	8.05	0.24	1.39	0.59	29.9	ensalada_mixta
+pumpkin_cream	dishes	g	49	0.9	5.1	2.5	2.4	0.6	1.6	0.4	300	bowl:300	0	recipe	1.4	0.2	2.46	201	17.5	0.19	8.18	0.12	314	3.4	0.03	0.54	0	6.58	cream_soup
+vichyssoise	dishes	g	63	2	5.6	1.5	3.2	2.1	1.7	0.4	300	bowl:300	0	recipe	0.7	0.1	9.94	170	27.9	0.36	9.31	0.18	38.1	6.43	0.1		0.02	13.5	cream_soup
+mixed_vegetables	dishes	g	71	2.3	2.9	1.3	4.7	0.8	4	0.6	250	plate:250|small_plate:150	1	recipe	3.2	0.4	0	210	35.8	0.54	23.2	0.32	123	5.98	0	1.52	0	44.9	
+acai_bowl	dishes	g	105	1.6	18.8	12.9	2	0.6	2.3	0	350	bowl:350	0	recipe	0.8	0.3	0	198	12.7	0.51	21.2	0.29	13.5	18.8	0		0	31	
+water	drinks	ml	0	0	0	0	0	0	0	0	250	glass:250|bottle:500	1	ciqual:18066	0	0	0	0.73	7.13	0.03	0.99	0.01	0	0	0	0	0	0	
+sparkling_water	drinks	ml	0	0	0	0	0	0	0	0	250	glass:250|bottle:500	0	ciqual:18046	0	0	0	1.25	15.4	0	3.7	0	0	0	0	0	0	0	water
+espresso	drinks	ml	7	0.3	1.2	0	0.2	0.1	0	0	40	cup:40	1	ciqual:18071	0	0.1	0	150	3.5	0	7.9	0	0.21	0	0	0	0	0	
+black_coffee	drinks	ml	6	0.3	1.4	0	0	0	0	0	200	cup:200	0	ciqual:18004	0	0	0	150	4.3	0	9.2	0	0.21	0	0	0	0	0	espresso
+coffee_with_milk	drinks	ml	41	2.9	4.4	4.1	1.3	0.8	0	0.1	200	cup:200	1	recipe	0.2	0	4.28	160	100	0	10.4	0.34	7.66	0	0	0	0.13	0.7	
+cortado	drinks	ml	25	1.7	2.9	2.2	0.8	0.5	0	0	70	cup:70	0	recipe	0.1	0.1	2.3	155	55.4	0	9.24	0.18	4.2	0	0	0	0.07	0.38	coffee_with_milk
+iced_coffee	drinks	ml	3	0.1	0.5	0	0.1	0	0	0	100	glass:100	1	recipe	0	0	0	60.4	5.68	0.02	3.75	0.01	0.08	0	0	0	0	0	
+tea	drinks	ml	0	0.1	0	0	0	0	0	0	250	cup:250	1	ciqual:18020	0	0	0	25.8	1.1	0.02	2	0.03	0	0	0	0	0	3.25	
+herbal_tea	drinks	ml	1	0	0.2	0	0	0	0	0	250	cup:250	0	ciqual:18022	0	0	0	9	2	0.08	1	0.04	0	0	0	0	0	1	tea
+iced_tea	drinks	ml	24	0	5.9	5.8	0	0	0.1	0.1	330	can:330|glass:250	1	ciqual:18075	0	0	0	13.2	2.04	0.01	1.22	0.02	0	22.8	0	0	0	0	
+hot_chocolate	drinks	ml	137	3.9	16.1	13.6	6.2	3.8	0.8	0.1	200	cup:200	1	recipe	1.5	0.2	11.3	197	118	0.35	19.7	0.58	32.5	0	0.12	0.17	0.15	2.96	
+chocolate_milk	drinks	ml	69	3.9	9.9	9	1.5	0.9	0	0.1	250	glass:250|cup:200	0	ciqual:18104	0.5	0.1	7.28	249	101	0.9	28.6	0.52	15.9	0	0.09	0.05	0.09	3.33	milk
+orange_juice	drinks	ml	47	0.7	9.6	8.7	0.2	0	0.2	0	200	glass:200	1	ciqual:2013	0	0	0	208	10.9	0.08	13.7	0.03	2.86	52	0	0.04	0	31.2	
+juice	drinks	ml	48	0.3	11.6	10.5	0	0	0	0	200	glass:200	1	ciqual:2035	0	0	0	146	5.62	0.08	7.28	0	7.36	12	0	0.21	0	0	
+apple_juice	drinks	ml	51	0.2	11.9	11.3	0.1	0	0.2	0	200	glass:200	0	ciqual:2074	0	0	0	118	4.49	0.31	4.74	0	0.6	15.1	0	0.01	0	7.02	juice
+pineapple_juice	drinks	ml	55	0.4	12.6	12.6	0.1	0	0.2	0	200	glass:200	0	ciqual:2073	0	0	0	139	8.4	0.19	14.1	0.08	0	14.6	0	0.02	0	23.9	juice
+peach_nectar	drinks	ml	53	0.2	12.7	12.5	0.1	0	0.3	0	200	glass:200	0	ciqual:2371	0	0	0	42	5.25	0.2	4.2	0.08	11.2	5.57	0	0.3	0	1.05	juice
+fruit_nectar	drinks	ml	52	0.3	12.1	11.6	0.1	0	0.3	0	200	glass:200	0	ciqual:2061	0	0	0	91.8	9.63	0	5.62	0	128	21.6	0	1.02	0	23.2	juice
+smoothie	drinks	ml	63	0.7	13.5	12.3	0.3	0.2	1.1	0	250	glass:250	1	ciqual:2500	0	0	0	173	10.1	0.25	12.1	0.07	20.8	21.2	0		0	30	
+milkshake	drinks	ml	132	3.5	18.3	14.3	4.9	2.8	0.7	0.2	300	glass:300	1	ciqual:39001	1.8	0.3	17.9	183	120	0.3	13.7	0.49	61.4	0.84	0	0.26	0.28	3.15	
+soy_drink	drinks	ml	47	3.3	3	1.8	2.1	0.3	0.8	0.1	250	glass:250	0	ciqual:18113	0.4	1.1	0	155	31.3	0.55	19.2	0.26	12.2	0	0.44	0.32	0	15	milk
+oat_drink	drinks	ml	42	0.3	8	5.2	1.1	0.2	0	0.1	250	glass:250	0	ciqual:18899	0.4	0.5	0	33	1.03	0.02	2.37	0	0.22	0	0	0.38	0	6.58	milk
+almond_drink	drinks	ml	37	1.1	0.7	0	3.3	0.3	0	0.1	250	glass:250	0	ciqual:18107	2.1	0.6	0	31.6	12.2	0.1	8.47	0.11	0.21	0	0	0.98	0	0	milk
+horchata	drinks	ml	92	1.1	20.7	8.4	0.1	0	0.5	0	250	glass:250	0	fdc:2346178	0	0	0	20.8	13.5	0.73	5.2	0.19	0	0	0	0.03	0	1.04	
+cola	drinks	ml	42	0	10.4	10.4	0	0	0	0	330	can:330|glass:250|bottle:500	1	ciqual:18018	0	0	0	2.08	2	0.11	2.54	0	0	0	0	0	0	0	
+cola_zero	drinks	ml	1	0	0.3	0	0	0	0	0	330	can:330|glass:250|bottle:500	0	ciqual:18060	0	0	0	6	2.26	0.07	2.38	0	0	0	0	0	0	0	cola
+soft_drink	drinks	ml	35	0	8.7	8.6	0	0	0	0	330	can:330|glass:250	1	ciqual:18049	0	0	0	2.08	5.2	0.06	2.08	0.1	0	0			0	0	
+lemonade	drinks	ml	34	0	8.5	8.5	0	0	0.1	0	250	glass:250	1	ciqual:18010	0	0	0	3.62	6.72	0.01	0	0	0	0	0	0	0	0	
+tonic_water	drinks	ml	34	0	8.5	8.5	0	0	0.1	0	200	bottle:200	0	ciqual:18344	0	0	0	1.03	7.7	0.03	2.52	0.02	0	0	0	0	0	0	soft_drink
+energy_drink	drinks	ml	43	0.1	10.6	10.6	0	0	0.1	0.1	250	can:250	0	ciqual:18352	0	0	0	0	0	0	0	0	0	33.3	0	1.87	1.19	31.2	soft_drink
+sports_drink	drinks	ml	22	0	5.5	5.1	0	0	0	0.1	330	can:330|bottle:500	0	ciqual:18348	0	0	0	6.36	31.6	0	16.8	0.97	0	16.3	1.53	1.94	0.32	30.6	soft_drink
+beer	drinks	ml	39	0.4	3.2	0.1	0	0	0	0	200	glass:200|can:330|bottle:330	1	ciqual:5001	0	0	0	37	6.11	0.01	7.27	0	0	0	0	0	0.02	5.7	
+alcohol_free_beer	drinks	ml	30	0.2	6.1	3.3	0.1	0	0	0	330	can:330|glass:200	0	ciqual:5030	0	0	0	29.6	4.8	0.01	6.26	0	0	0	0	0	0.01	5.05	beer
+red_wine	drinks	ml	75	0.2	0	0	0	0	0	0	150	glass:150|bottle:750	1	ciqual:5214	0	0	0	114	6.25	0.36	10.4	0	1.24	0	0	0	0	0.84	
+white_wine	drinks	ml	81	0.1	2.6	1	0	0	0	0	150	glass:150|bottle:750	1	fdc:174837	0	0	0	70.3	8.91	0.27	9.9	0.12	0	0	0	0	0	0.99	
+rose_wine	drinks	ml	69	0.1	1.4	1.4	0	0	0	0	150	glass:150|bottle:750	1	ciqual:5216	0	0	0	74.3	11.9	0.94	6.93	0.03	0	0	0	0	0	0.1	
+sparkling_wine	drinks	ml	72	0.1	1.8	1.8	0	0	0	0	120	glass:120|bottle:750	1	ciqual:5201	0	0	0	54.3	9.07	0.59	5.23	0.02	0	0	0	0	0	0.1	
+sangria	drinks	ml	91	0	11.3	9.8	0.1	0	0	0	200	glass:200	1	ciqual:1017	0	0	0	127	9.63	0.38	11	0.07	4.64	12.5	0	0.14	0	9.38	
+tinto_de_verano	drinks	ml	54	0.1	4.2	4.2	0	0	0.1	0	250	glass:250	0	recipe	0	0	0	58.7	6.48	0.18	5.2	0	0.62	0	0	0	0	0.42	sangria
+cider	drinks	ml	37	0.1	3.7	3.3	0	0	0	0	200	glass:200|bottle:700	0	ciqual:5003	0	0	0	101	7.98	0.62	3.17	0.02	0.06	10.1	0		0		
+vermouth	drinks	ml	142	0.1	11.8	11.5	0	0	0	0	100	glass:100	1	ciqual:1007	0	0	0	49.9	7.66	0.46	7.28	0.04	0	0	0	0	0	0	
+spirits	drinks	ml	239	0	0.1	0.1	0	0	0	0	50	glass:50	1	ciqual:1005	0	0	0	0.95	0	0.02	0	0.02	0	0	0	0	0	0	
+cocktail	drinks	ml	125	0	8	8	2.3	1.7	0.3	0	200	glass:200	1	ciqual:1012	0.1	0	0	73.1	8.24	0.22	8.24	0.13	0.09	5.05	0	0.02	0	12.4	
+mojito	drinks	ml	97	0	8.6	8.6	0	0	0	0	180	glass:180	1	recipe	0	0	0	15.5	10.5	0.05	3.1	0.03	0.28	3.36	0	0.02	0	1.12	
+gin_tonic	drinks	ml	78	0	6.8	6.8	0	0	0.1	0	250	glass:250	1	recipe	0	0	0	0.82	6.16	0.02	2.02	0.01	0	0	0	0	0	0	
+rum_and_cola	drinks	ml	78	0	8.3	8.3	0	0	0	0	250	glass:250	0	recipe	0	0	0	2.04	1.6	0.11	2.03	0.01	0	0	0	0	0	0	
+rum	drinks	ml	222	0	0	0	0	0	0	0	50	glass:50	0	ciqual:1004	0	0	0	1.9	0	0.11	0	0.07	0	0	0	0	0	0	spirits
+gin	drinks	ml	252	0	0	0	0	0	0	0	50	glass:50	0	ciqual:1002	0	0	0	0	0	0	0	0	0	0	0	0	0	0	spirits
+vodka	drinks	ml	238	0	0	0	0	0	0	0	50	glass:50	0	ciqual:1008	0	0	0	1.42	0	0.02	0	0.04	0	0	0	0	0	0	spirits
+coffee_with_whole_milk	drinks	ml	55	2.9	4.2	3.8	3	1.7	0	0.1	200	cup:200	0	recipe	0.5	0.1	9.72	159	98.8	0	10.2	0.34	27.2	0	0.11	0.09	0.13	0.7	coffee_with_milk
+coffee_with_skimmed_milk	drinks	ml	30	3	4.4	3.9	0.1	0	0	0.1	200	cup:200	0	recipe	0	0	1.74	159	99.2	0	10.4	0.35	7.7	0	0	0	0.15	0.7	coffee_with_milk
+coffee_with_oat_drink	drinks	ml	35	0.3	6.6	4.1	0.9	0.2	0	0.1	200	cup:200	0	recipe	0.3	0.4	0	56.4	1.52	0.02	3.48	0	0.22	0	0	0.3	0	5.27	coffee_with_milk
+coffee_with_soy_drink	drinks	ml	39	2.7	2.6	1.4	1.7	0.2	0.6	0.1	200	cup:200	0	recipe	0.4	0.9	0	154	25.7	0.44	16.9	0.21	9.77	0	0.35	0.26	0	12	coffee_with_milk
+coffee_with_milk_sugar	drinks	ml	55	2.8	8.1	7.9	1.3	0.8	0	0.1	205	cup:205	0	recipe	0.2	0	4.18	157	98.1	0	10.2	0.33	7.48	0	0	0	0.13	0.68	coffee_with_milk
+cafe_bombon	drinks	ml	160	3.8	27.6	26.9	3.9	2.5	0	0.1	63	cup:63	0	recipe	1.1	0.2	16.2	272	140	0.09	17	0.46	35.5	1.24	0.1	0.08	0.21	5.24	coffee_with_milk
+espresso_with_sugar	drinks	ml	77	0.2	18.8	17.7	0.2	0.1	0	0	45	cup:45	0	recipe	0	0.1	0	136	3.77	0.01	7.32	0	0.19	0	0	0	0	0	espresso
+carajillo	drinks	ml	85	0.2	1	0	0.1	0.1	0	0	65	cup:65	0	recipe	0	0.1	0	93.1	2.15	0	4.86	0	0.13	0	0	0	0	0	espresso
+brandy	drinks	ml	211	0	0.7	0	0	0	0	0	50	glass:50	0	ciqual:1023	0	0	0	1.9	0	0	0	0.01	0	0	0	0	0	0	spirits
+clara	drinks	ml	37	0.2	5.8	4.3	0	0	0.1	0	200	glass:200|can:330	0	recipe	0	0	0	20.3	6.41	0.01	3.64	0	0	0	0	0	0.01	2.85	beer
+kalimotxo	drinks	ml	58	0.1	5.2	5.2	0	0	0	0	250	glass:250	0	recipe	0	0	0	58	4.12	0.24	6.47	0	0.62	0	0	0	0	0.42	sangria
+mayonnaise	sauces	g	692	1.3	3.4	1.2	74.5	6.8	0.3	1.4	14	tbsp:14	1	ciqual:11054	18.6	40.8	70	28.1	17.6	0.34	6.42	0.13	11.8	0	0	47.9	0.39	0	
+alioli	sauces	g	480	1.1	5.4	2.6	50.2	4.8	0.3	1.8	14	tbsp:14	0	ciqual:11168	24.8	13.9	42	20	8	0.21	1	0.15	16	0	0.2	3.28	0.12	5	
+ketchup	sauces	g	108	1.2	23.7	21.1	0.2	0	1.8	2.3	15	tbsp:15	1	ciqual:11008	0	0.1	0	440	21.4	0.77	21.2	0.12	46.7	10.2	0	1.48	0	6.67	
+mustard	sauces	g	151	6.9	4.3	1.7	11.2	1.1	0	5.8	5	tsp:5|tbsp:15	0	ciqual:11013	5.8	2.9	0.35	205	207	2.64	98.8	1.12	0	0.3	0	0.36	0	13	
+tomato_sauce	sauces	g	79	1.5	7.7	5.4	4.2	0.5	2.2	1.2	60	serving:60|tbsp:15	0	ciqual:11107	2	1.7	0	553	24.4	0.58	24.7	0.17	21.6	5.45	0	1.44	0	9	
+pink_sauce	sauces	g	572	1.3	9.2	7.9	58.7	5	0.8	1.7	15	tbsp:15	0	ciqual:11244	13.2	30.5	26	107	17	1.18	8	0.26	14	0	0	4	0	0	
+pesto	sauces	g	370	3.9	6.6	3.2	35.4	4.4	2.5	2.7	15	tbsp:15|serving:40	0	ciqual:11179	17.7	11.7	18.2	200	150	0.59	36	0.66	82.3	3.6	0	17.9		25.8	
+bechamel	sauces	g	147	3.8	9	4.4	10.6	2.9	0.2	0.9	60	serving:60|tbsp:15	0	ciqual:11143	4.4	2.9	7	156	118	0.33	14	0.41	105	0.8	1.2	0.29	0.28	5	
+soy_sauce	sauces	g	40	7.3	1.7	0	0	0	0.9	13.1	15	tbsp:15|tsp:5	0	ciqual:11104	0	0	0	375	28.9	2.1	60.9	0.78	1.25	2.64	0	0	0	38.2	
+vinaigrette	sauces	g	471	0.7	3	2.7	50.5	5.2	0.5	2.4	15	tbsp:15	0	ciqual:11108	14.9	24.3	0	8	7.63	0	0.11	0.02	0	0	0	4.61	0	0	
+bbq_sauce	sauces	g	136	0.6	30.3	27.5	0.6	0.1	1.2	1.8	15	tbsp:15	0	ciqual:11100	0.2	0.2	0	220	46	0.93	12	0.1	7.26	0	0	1.17	0	9.28	
+guacamole	sauces	g	191	1.8	4.6	2.3	17.2	3.7	4.8	1.4	50	serving:50|tbsp:15	1	ciqual:25620	10.2	1.7	3.6	440	18	0.6	26.7	0.4	9.33	10.2	0	2.4	0	60.3	
+salsa	sauces	g	17	0.7	2.6	2.1	0.1	0	1.1	1.1	50	serving:50|tbsp:15	1	fdc:2345250	0	0.1	0	157	11	0.23	9	0.13	25	10.8	0	0.32	0	12	
+tzatziki	sauces	g	138	6.2	3.8	2.7	10.9	0.8	1.2	0.9	50	serving:50|tbsp:15	1	ciqual:19863	6.6	2.9	8.77	150	88	0.09	8.8	0.32	10.8	0.51	0	2.45	0.59	14.8	
+balsamic_vinegar	sauces	g	92	0.7	18	18	0	0	0.8	0.1	15	tbsp:15	0	ciqual:11091	0	0	0	160	18	0.95	12	0.12	0.21	0	0		0	5.5	
+salt	sauces	g	0	0	0	0	0	0	0	97.8	5	tsp:5	0	ciqual:11017	0	0	0	16.9	13.3	0.33	3.15	0.1	0	0	0	0	0	0	
+paprika	sauces	g	318	14.1	18.8	10.3	12.9	2.1	34.9	0.2	2	tsp:2	0	ciqual:11049	1.7	7.8	0	2280	229	21.1	178	4.33	0	0.9	0	29.1	0	49	
+vinegar	sauces	g	23	0	1	0	0.1	0	0	0	15	tbsp:15	0	ciqual:11018	0	0	0	20.5	6	0.24	2.5	0.02	0	0.5	0	0	0	0	
+lime_juice	sauces	g	10	0.4	1.7	1.7	0.1	0	0.4	0	15	tbsp:15	0	ciqual:2030	0	0	0	117	14	0.09	8	0.08	2.5	30	0	0.22	0	10	

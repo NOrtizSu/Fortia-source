@@ -1,15 +1,18 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 """Fine-tune an ImageNet-pretrained mobile backbone on the food dataset (GPU, mixed precision).
 
-Backbone: timm `tf_efficientnet_lite0.in1k` (port of Google's TensorFlow EfficientNet-Lite0 checkpoint,
-Apache-2.0). EfficientNet-Lite has no squeeze-excite and uses ReLU6, so it quantizes well to int8 TFLite.
+Backbones: v1 timm `tf_efficientnet_lite0.in1k` (port of Google's TensorFlow EfficientNet-Lite0 checkpoint,
+Apache-2.0; 224 px, mean = std = 0.5); v2 timm `mobilenetv4_conv_medium.e250_r384_in12k_ft_in1k` (Ross Wightman's
+ImageNet-12k + 1k weights, Apache-2.0; 256 px, ImageNet mean/std). Both have plain ReLU-type activations and no
+squeeze-excite, so they quantize well to int8 TFLite.
 
 - Augmentation for phone photos of food: random resized crop (scale 0.25-1), horizontal flip and 90-degree
   rotations (top-down plates), TrivialAugmentWide (colour, contrast, sharpness, small rotations/shears...) on
   the CPU; normalisation and random erasing batched on the GPU.
 - Square-root class-balanced sampling, label smoothing 0.1, AdamW + cosine schedule with warm-up, weight EMA.
-- Eval preprocessing (what the app does): resize the short side to 256 (= 224 / 0.875, bilinear), centre crop
-  224, scale to 0..1, normalise with mean = std = 0.5.
+- Eval preprocessing (what the app does): resize the short side to --resize (= size / 0.875, bilinear), centre
+  crop --size, scale to 0..1, normalise with the backbone's mean/std (v1: 0.5/0.5).
+- Progressive resizing (v2): --sizes 224,256 --switch 0.6 trains at 224 for the first 60 % of the epochs.
 
 usage: python train.py --work D:/FoodML --epochs 30 [--out run1] [--resume] [--max-steps N (smoke)]
 """
@@ -18,6 +21,7 @@ import io
 import json
 import math
 import os
+import sys
 import time
 from concurrent.futures import ThreadPoolExecutor
 
@@ -31,11 +35,29 @@ from timm.utils import ModelEmaV3
 from torch.utils.data import DataLoader, Dataset, IterableDataset, WeightedRandomSampler, get_worker_info
 from torchvision.transforms import v2 as T
 
-MEAN = (0.5, 0.5, 0.5)
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from food_items import fast_path  # noqa: E402
+
+MEAN = (0.5, 0.5, 0.5)  # set from the backbone by configure()
 STD = (0.5, 0.5, 0.5)
 SIZE = 224
 RESIZE = 256  # = round(SIZE / 0.875)
 THREADS_PER_WORKER = 8
+
+
+def configure(size=None, resize=None, mean=None, std=None):
+    """Sets the module's preprocessing constants (used by the transforms below and by evaluate/export/parity)."""
+    global SIZE, RESIZE, MEAN, STD
+    if size:
+        SIZE = int(size)
+        RESIZE = int(resize) if resize else int(round(SIZE / 0.875))
+    if mean is not None:
+        MEAN, STD = tuple(float(x) for x in mean), tuple(float(x) for x in std)
+
+
+def configure_from_checkpoint(ck):
+    """v2 checkpoints carry their preprocessing; v1 ones use the defaults (224 / 256 / 0.5)."""
+    configure(ck.get("size", 224), ck.get("resize", 256), ck.get("mean", (0.5,) * 3), ck.get("std", (0.5,) * 3))
 
 
 class Rot90:
@@ -44,10 +66,10 @@ class Rot90:
         return img if k == 0 else img.rotate(90 * k, expand=True)
 
 
-def train_tf():
+def train_tf(size=None):
     """CPU part of the training augmentation; returns uint8 CHW (gpu_normalize + random erasing on the GPU)."""
     return T.Compose([
-        T.RandomResizedCrop(SIZE, scale=(0.25, 1.0), ratio=(3 / 4, 4 / 3), antialias=True),
+        T.RandomResizedCrop(size or SIZE, scale=(0.25, 1.0), ratio=(3 / 4, 4 / 3), antialias=True),
         T.RandomHorizontalFlip(),
         T.RandomApply([Rot90()], p=0.25),
         T.TrivialAugmentWide(),
@@ -106,7 +128,7 @@ class Photos(Dataset):
 
     def _open(self, i):
         if self.pack is None:
-            return Image.open(self.paths[i])
+            return Image.open(fast_path(self.paths[i]))
         if not hasattr(self, "_mm"):
             # small packs (val) are read into memory once; big ones are memory-mapped
             big = os.path.getsize(self.pack) > 600 * 2**20
@@ -189,11 +211,15 @@ class PackStream(IterableDataset):
         pool.shutdown()
 
 
-def param_groups(model, wd):
-    decay, no_decay = [], []
+def param_groups(model, wd, lr, head_lr=0.0):
+    """AdamW groups: no weight decay on biases and norm weights; the classifier at head_lr (if given)."""
+    head = {id(p) for p in model.get_classifier().parameters()} if head_lr else set()
+    groups = {}
     for n, p in model.named_parameters():
-        (no_decay if p.ndim <= 1 or n.endswith(".bias") else decay).append(p)
-    return [{"params": decay, "weight_decay": wd}, {"params": no_decay, "weight_decay": 0.0}]
+        key = ("head" if id(p) in head else "body", p.ndim <= 1 or n.endswith(".bias"))
+        groups.setdefault(key, []).append(p)
+    return [{"params": ps, "weight_decay": 0.0 if nd else wd, "lr": head_lr if part == "head" else lr}
+            for (part, nd), ps in groups.items()]
 
 
 @torch.no_grad()
@@ -231,22 +257,48 @@ def main():
     ap.add_argument("--init", default="", help="start from these weights (a checkpoint of an earlier run)")
     ap.add_argument("--boost-not-food", type=float, default=1.0,
                     help="sample `_not_food` photos this many times more often")
+    ap.add_argument("--size", type=int, default=224, help="final training / eval size")
+    ap.add_argument("--resize", type=int, default=0, help="eval short side (default size / 0.875)")
+    ap.add_argument("--sizes", default="", help="progressive resizing, e.g. 224,256 (the last = --size)")
+    ap.add_argument("--switch", type=float, default=0.6, help="fraction of the epochs at the first size")
+    ap.add_argument("--norm", default="model", choices=("model", "half"),
+                    help="mean/std: the backbone's own (model) or 0.5/0.5 (half, v1)")
+    ap.add_argument("--runs", default="", help="runs folder (default <work>/runs)")
+    ap.add_argument("--drop-path", type=float, default=0.1)
+    ap.add_argument("--head-lr", type=float, default=0.0,
+                    help="learning rate of the new classifier (default: --lr). MobileNetV4 needs a low backbone lr "
+                         "(~5e-5) with a 10-20x higher head lr, else its pretrained features are lost early")
+    ap.add_argument("--zero-head", action="store_true",
+                    help="start the classifier at zero (no large random logits, no huge first gradients)")
     a = ap.parse_args()
     torch.manual_seed(0)
     np.random.seed(0)
     torch.backends.cudnn.benchmark = True
     device = torch.device("cuda")
     ds_dir = os.path.join(a.work, a.dataset)
-    out = os.path.join(a.work, "runs", a.out)
+    out = os.path.join(a.runs or os.path.join(a.work, "runs"), a.out)
     os.makedirs(out, exist_ok=True)
 
     train_csv = os.path.join(ds_dir, "train.csv")
+    probe = timm.create_model(a.model, pretrained=False)
+    cfg = probe.pretrained_cfg
+    del probe
+    mean, std = (cfg.get("mean", MEAN), cfg.get("std", STD)) if a.norm == "model" else ((0.5,) * 3, (0.5,) * 3)
+    configure(a.size, a.resize or None, mean, std)
+    sizes = [int(x) for x in a.sizes.split(",")] if a.sizes else [a.size]
+    switch_epoch = int(round(a.switch * a.epochs)) if len(sizes) > 1 else 0
+    print(f"size {SIZE} (resize {RESIZE}), mean {MEAN}, std {STD}, sizes {sizes} switch at {switch_epoch}",
+          flush=True)
     val_ds = Photos(os.path.join(ds_dir, "val.csv"), eval_tf())
-    if os.path.exists(os.path.splitext(train_csv)[0] + ".bin"):
+    def make_loader(size, first_epoch=0):
         not_food = int(pd.read_csv(train_csv).label.max())  # `_not_food` is the last label
-        train_ds = PackStream(train_csv, train_tf(), boost={not_food: a.boost_not_food})
-        train_dl = DataLoader(train_ds, a.batch, num_workers=a.workers, pin_memory=False, drop_last=True,
+        ds = PackStream(train_csv, train_tf(size), boost={not_food: a.boost_not_food})
+        ds.epoch = first_epoch
+        return ds, DataLoader(ds, a.batch, num_workers=a.workers, pin_memory=False, drop_last=True,
                               persistent_workers=True, prefetch_factor=3)
+
+    if os.path.exists(os.path.splitext(train_csv)[0] + ".bin"):
+        train_ds, train_dl = make_loader(sizes[0])
     else:
         train_ds = Photos(train_csv, train_tf())
         w = (1.0 / np.sqrt(np.bincount(train_ds.labels)))[train_ds.labels]
@@ -259,12 +311,15 @@ def main():
     print(f"{len(train_ds)} train / {len(val_ds)} val photos, {n_classes} classes", flush=True)
 
     model = timm.create_model(a.model, pretrained=not a.init, num_classes=n_classes, drop_rate=0.2,
-                              drop_path_rate=0.1)
+                              drop_path_rate=a.drop_path)
     if a.init:
         model.load_state_dict(torch.load(a.init, map_location="cpu")["state_dict"])
+    elif a.zero_head:
+        torch.nn.init.zeros_(model.get_classifier().weight)
+        torch.nn.init.zeros_(model.get_classifier().bias)
     model.to(device)
     ema = ModelEmaV3(model, decay=a.ema)
-    opt = torch.optim.AdamW(param_groups(model, a.wd), lr=a.lr, betas=(0.9, 0.999))
+    opt = torch.optim.AdamW(param_groups(model, a.wd, a.lr, a.head_lr), lr=a.lr, betas=(0.9, 0.999))
     steps_per_epoch = len(train_dl)
     total = a.epochs * steps_per_epoch
     warm = int(a.warmup * steps_per_epoch)
@@ -273,7 +328,8 @@ def main():
         0.5 * (1 + math.cos(math.pi * min(1.0, (s - warm) / max(1, total - warm)))) * 0.99 + 0.01)
     scaler = torch.amp.GradScaler()
     with open(os.path.join(out, "args.json"), "w") as f:
-        json.dump(vars(a) | {"n_classes": n_classes, "train": len(train_ds)}, f, indent=1)
+        json.dump(vars(a) | {"n_classes": n_classes, "train": len(train_ds), "mean": MEAN, "std": STD,
+                             "resize": RESIZE}, f, indent=1)
 
     best, step, log, first = 0.0, 0, [], 0
     state_path = os.path.join(out, "state.pt")
@@ -288,7 +344,14 @@ def main():
         if hasattr(train_ds, "epoch"):
             train_ds.epoch = first  # PackStream: next epoch's block order (the workers start after this)
         print(f"resumed after epoch {st['epoch']} (step {step})", flush=True)
+    cur_size = sizes[0]
     for epoch in range(first, a.epochs):
+        want = sizes[-1] if epoch >= switch_epoch and len(sizes) > 1 else sizes[0]
+        if want != cur_size:
+            del train_dl
+            train_ds, train_dl = make_loader(want, epoch)
+            cur_size = want
+            print(f"training size {want} from epoch {epoch}", flush=True)
         model.train()
         t0, seen, loss_sum = time.time(), 0, 0.0
         for x, y in train_dl:
@@ -318,7 +381,8 @@ def main():
                "top1": m1, "top5": m5, "sec": time.time() - t0}
         log.append(rec)
         print(json.dumps(rec), flush=True)
-        ck = {"model": a.model, "n_classes": n_classes, "epoch": epoch}
+        ck = {"model": a.model, "n_classes": n_classes, "epoch": epoch, "size": SIZE, "resize": RESIZE,
+              "mean": list(MEAN), "std": list(STD)}
         torch.save(ck | {"state_dict": ema.module.state_dict()}, os.path.join(out, "last_ema.pt"))
         if max(t1, m1) > best:
             best = max(t1, m1)

@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicText
@@ -63,6 +64,7 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextLayoutResult
@@ -85,11 +87,14 @@ import com.enjoyyourtime.globalfitness.food.model.FoodEntry
 import com.enjoyyourtime.globalfitness.food.model.FoodUnit
 import com.enjoyyourtime.globalfitness.food.model.Meal
 import com.enjoyyourtime.globalfitness.food.model.Nutrient
+import com.enjoyyourtime.globalfitness.food.model.NutrientUnit
+import com.enjoyyourtime.globalfitness.food.model.Nutrients
 import com.enjoyyourtime.globalfitness.food.model.PortionKey
 import com.enjoyyourtime.globalfitness.food.recognition.ConfidenceHint
 import com.enjoyyourtime.globalfitness.health.HealthPermissions
 import com.enjoyyourtime.globalfitness.ui.Fmt
 import com.enjoyyourtime.globalfitness.ui.components.AppIcons
+import com.enjoyyourtime.globalfitness.ui.components.InfoRow
 import com.enjoyyourtime.globalfitness.ui.components.LocalAppSnackbar
 import com.enjoyyourtime.globalfitness.ui.components.TopBarTitle
 import com.enjoyyourtime.globalfitness.ui.navigation.ReserveAppSnackbarSpace
@@ -227,8 +232,10 @@ fun MealThumbnail(photo: String?, size: Dp, modifier: Modifier = Modifier) {
  * turns to the error colour once passed. TalkBack reads the line as one sentence.
  */
 @Composable
-fun NutrientProgress(label: String, value: Double, target: Double?, limit: Boolean, modifier: Modifier = Modifier) {
-    val valueText = stringResource(R.string.value_g, FoodFormat.grams(value))
+fun NutrientProgress(label: String, value: Double, target: Double?, limit: Boolean, modifier: Modifier = Modifier, partial: Boolean = false) {
+    val grams = stringResource(R.string.value_g, FoodFormat.grams(value))
+    // A total that adds up only the foods that have the value: "≥ 45 g".
+    val valueText = if (partial) stringResource(R.string.foodlog_partial_value, grams) else grams
     val text = if (target != null) stringResource(R.string.foodlog_value_of_target, valueText, stringResource(R.string.value_g, FoodFormat.grams(target))) else valueText
     val over = target != null && value > target
     val description = when {
@@ -250,6 +257,34 @@ fun NutrientProgress(label: String, value: Double, target: Double?, limit: Boole
                 drawStopIndicator = {},
                 gapSize = 0.dp,
             )
+        }
+    }
+}
+
+/**
+ * The values beyond the label, in their groups (fats in detail, minerals, vitamins), each under a
+ * small heading: a group without any known value is left out; in the others an unknown value shows
+ * "—" ([knownOnly]: left out too). [partial]: values that add up only some foods ("≥ …").
+ */
+@Composable
+fun ExtraNutrientRows(values: Nutrients, knownOnly: Boolean = false, partial: Set<Nutrient> = emptySet()) {
+    val groups = listOf(
+        R.string.foodlog_nutrients_fats to Nutrient.FATS,
+        R.string.foodlog_nutrients_minerals to Nutrient.MINERALS,
+        R.string.foodlog_nutrients_vitamins to Nutrient.VITAMINS,
+    )
+    for ((title, list) in groups) {
+        val shown = list.filter { !knownOnly || values[it] != null }
+        if (shown.none { values[it] != null }) continue
+        Text(
+            stringResource(title),
+            style = MaterialTheme.typography.titleSmall,
+            color = MaterialTheme.colorScheme.primary,
+            modifier = Modifier.padding(top = 8.dp).semantics { heading() },
+        )
+        for (n in shown) {
+            val v = values[n]
+            InfoRow(stringResource(FoodFormat.nutrientRes(n)), v?.let { FoodFormat.value(n, it, n in partial) } ?: "—")
         }
     }
 }
@@ -309,6 +344,44 @@ object FoodFormat {
         Nutrient.SAT_FAT -> R.string.foodlog_nutrient_sat_fat
         Nutrient.FIBER -> R.string.foodlog_nutrient_fiber
         Nutrient.SALT -> R.string.foodlog_nutrient_salt
+        Nutrient.MONO_FAT -> R.string.foodlog_nutrient_mono_fat
+        Nutrient.POLY_FAT -> R.string.foodlog_nutrient_poly_fat
+        Nutrient.CHOLESTEROL -> R.string.foodlog_nutrient_cholesterol
+        Nutrient.POTASSIUM -> R.string.foodlog_nutrient_potassium
+        Nutrient.CALCIUM -> R.string.foodlog_nutrient_calcium
+        Nutrient.IRON -> R.string.foodlog_nutrient_iron
+        Nutrient.MAGNESIUM -> R.string.foodlog_nutrient_magnesium
+        Nutrient.ZINC -> R.string.foodlog_nutrient_zinc
+        Nutrient.VIT_A -> R.string.foodlog_nutrient_vit_a
+        Nutrient.VIT_C -> R.string.foodlog_nutrient_vit_c
+        Nutrient.VIT_D -> R.string.foodlog_nutrient_vit_d
+        Nutrient.VIT_E -> R.string.foodlog_nutrient_vit_e
+        Nutrient.VIT_B12 -> R.string.foodlog_nutrient_vit_b12
+        Nutrient.FOLATE -> R.string.foodlog_nutrient_folate
+    }
+
+    /** "12 g", "350 mg", "2,4 µg", "450 kcal" (a nutrient's value with its unit). */
+    fun value(n: Nutrient, v: Double): String = when (n.unit) {
+        NutrientUnit.KCAL -> Fmt.string(R.string.value_kcal, kcal(v))
+        NutrientUnit.G -> Fmt.string(R.string.value_g, grams(v))
+        NutrientUnit.MG -> Fmt.string(R.string.value_mg, micro(v))
+        NutrientUnit.UG -> Fmt.string(R.string.value_ug, micro(v))
+    }
+
+    /** mg and µg: like [grams], grouped from a thousand ("1.082 mg"). */
+    private fun micro(v: Double): String = if (abs(v) >= 1000) Fmt.count(v.roundToLong()) else grams(v)
+
+    /** [value], marked "≥ …" when it adds up only the foods that have it ([partial]). */
+    fun value(n: Nutrient, v: Double, partial: Boolean): String =
+        if (partial) Fmt.string(R.string.foodlog_partial_value, value(n, v)) else value(n, v)
+
+    /** The unit shown after a nutrient's field. */
+    @StringRes
+    fun unitRes(n: Nutrient): Int = when (n.unit) {
+        NutrientUnit.KCAL -> R.string.unit_kcal
+        NutrientUnit.G -> R.string.unit_g
+        NutrientUnit.MG -> R.string.unit_mg
+        NutrientUnit.UG -> R.string.unit_ug
     }
 
     @StringRes

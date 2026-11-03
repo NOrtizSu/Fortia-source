@@ -59,6 +59,39 @@ class FoodExportPlanTest {
     }
 
     @Test
+    fun theValuesBeyondTheLabelGoToTheirFieldsInGrams() {
+        val e = testEntry(id = "e2").copy(
+            nutrients = Nutrients(
+                kcal = 500.0, monoFat = 12.0, polyFat = 3.5, cholesterol = 80.0, potassium = 900.0, calcium = 250.0, iron = 4.2,
+                magnesium = 110.0, zinc = 3.1, vitA = 450.0, vitC = 35.0, vitD = 2.5, vitE = 6.0, vitB12 = 1.8, folate = 120.0,
+            ),
+        )
+        val r = FoodExportPlanner.buildRecord(FoodExportPlanner.planned(e))
+        assertEquals(12.0, r.monounsaturatedFat!!.inGrams, 1e-9)
+        assertEquals(3.5, r.polyunsaturatedFat!!.inGrams, 1e-9)
+        // mg and µg become masses: 80 mg = 0.08 g, 450 µg = 0.00045 g.
+        assertEquals(80.0, r.cholesterol!!.inMilligrams, 1e-6)
+        assertEquals(900.0, r.potassium!!.inMilligrams, 1e-6)
+        assertEquals(250.0, r.calcium!!.inMilligrams, 1e-6)
+        assertEquals(4.2, r.iron!!.inMilligrams, 1e-6)
+        assertEquals(110.0, r.magnesium!!.inMilligrams, 1e-6)
+        assertEquals(3.1, r.zinc!!.inMilligrams, 1e-6)
+        assertEquals(450.0, r.vitaminA!!.inMicrograms, 1e-3)
+        assertEquals(35.0, r.vitaminC!!.inMilligrams, 1e-6)
+        assertEquals(2.5, r.vitaminD!!.inMicrograms, 1e-3)
+        assertEquals(6.0, r.vitaminE!!.inMilligrams, 1e-6)
+        assertEquals(1.8, r.vitaminB12!!.inMicrograms, 1e-3)
+        assertEquals(120.0, r.folate!!.inMicrograms, 1e-3)
+        // Unknown values are left out; one Health Connect would refuse drops only that field.
+        val plain = FoodExportPlanner.buildRecord(FoodExportPlanner.planned(testEntry(id = "e3")))
+        assertNull(plain.calcium)
+        assertNull(plain.vitaminD)
+        val absurd = FoodExportPlanner.planned(testEntry(id = "e4").copy(nutrients = Nutrients(kcal = 1.0, potassium = 200_000.0, iron = -1.0, zinc = Double.NaN)))
+        assertTrue(absurd.extraG.isEmpty())
+        assertEquals(1.0, FoodExportPlanner.buildRecord(absurd).energy!!.inKilocalories, 1e-9)
+    }
+
+    @Test
     fun mealTypes() {
         assertEquals(MealType.MEAL_TYPE_BREAKFAST, FoodExportPlanner.mealType(Meal.BREAKFAST))
         assertEquals(MealType.MEAL_TYPE_LUNCH, FoodExportPlanner.mealType(Meal.LUNCH))

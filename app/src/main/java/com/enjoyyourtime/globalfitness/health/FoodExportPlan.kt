@@ -8,6 +8,8 @@ import androidx.health.connect.client.units.Mass
 import com.enjoyyourtime.globalfitness.food.data.ExportLedgerEntry
 import com.enjoyyourtime.globalfitness.food.model.FoodEntry
 import com.enjoyyourtime.globalfitness.food.model.Meal
+import com.enjoyyourtime.globalfitness.food.model.Nutrient
+import com.enjoyyourtime.globalfitness.food.model.NutrientUnit
 import java.time.Instant
 import java.time.ZoneOffset
 
@@ -32,6 +34,12 @@ data class PlannedNutrition(
     val fiberG: Double?,
     /** Salt / 2.5. */
     val sodiumG: Double?,
+    /**
+     * The values beyond the label that are known, in grams: mono- and polyunsaturated fat,
+     * cholesterol, minerals, vitamins ([FoodExportPlanner.buildRecord] puts each in its field of the
+     * same name; vitamin A as µg RAE and folate as µg DFE, the units Health Connect means).
+     */
+    val extraG: Map<Nutrient, Double> = emptyMap(),
 )
 
 data class FoodExportPlan(
@@ -91,8 +99,20 @@ object FoodExportPlanner {
             saturatedFatG = n.satFat?.let(::valid),
             fiberG = n.fiber?.let(::valid),
             sodiumG = n.salt?.let { valid(it * SODIUM_PER_SALT, MAX_SODIUM_G) },
+            extraG = Nutrient.EXTRA.mapNotNull { nutrient -> n[nutrient]?.let { grams(it, nutrient.unit) }?.let { g -> valid(g, maxOf(nutrient))?.let { nutrient to it } } }.toMap(),
         )
     }
+
+    /** A value in [unit] as grams (kcal are not a mass: null). */
+    fun grams(v: Double, unit: NutrientUnit): Double? = when (unit) {
+        NutrientUnit.G -> v
+        NutrientUnit.MG -> v / 1_000.0
+        NutrientUnit.UG -> v / 1_000_000.0
+        NutrientUnit.KCAL -> null
+    }
+
+    /** connect-client's limit of a field: 100 kg for fats, 100 g for cholesterol, minerals and vitamins. */
+    private fun maxOf(n: Nutrient): Double = if (n.unit == NutrientUnit.G) MAX_VALUE else MAX_MICRO_G
 
     fun mealType(meal: Meal): Int = when (meal) {
         Meal.BREAKFAST -> MealType.MEAL_TYPE_BREAKFAST
@@ -108,6 +128,7 @@ object FoodExportPlanner {
     /** connect-client's limits: energy 100,000 kcal and macronutrients 100 kg; minerals such as sodium 100 g. */
     private const val MAX_VALUE = 100_000.0
     private const val MAX_SODIUM_G = 100.0
+    private const val MAX_MICRO_G = 100.0
 
     /** The record of [p], entered by hand in the app (manual entry, like the workouts and manual weights). */
     fun buildRecord(p: PlannedNutrition): NutritionRecord {
@@ -126,10 +147,26 @@ object FoodExportPlanner {
             saturatedFat = p.saturatedFatG?.let(Mass::grams),
             dietaryFiber = p.fiberG?.let(Mass::grams),
             sodium = p.sodiumG?.let(Mass::grams),
+            monounsaturatedFat = p.extra(Nutrient.MONO_FAT),
+            polyunsaturatedFat = p.extra(Nutrient.POLY_FAT),
+            cholesterol = p.extra(Nutrient.CHOLESTEROL),
+            potassium = p.extra(Nutrient.POTASSIUM),
+            calcium = p.extra(Nutrient.CALCIUM),
+            iron = p.extra(Nutrient.IRON),
+            magnesium = p.extra(Nutrient.MAGNESIUM),
+            zinc = p.extra(Nutrient.ZINC),
+            vitaminA = p.extra(Nutrient.VIT_A),
+            vitaminC = p.extra(Nutrient.VIT_C),
+            vitaminD = p.extra(Nutrient.VIT_D),
+            vitaminE = p.extra(Nutrient.VIT_E),
+            vitaminB12 = p.extra(Nutrient.VIT_B12),
+            folate = p.extra(Nutrient.FOLATE),
             name = p.name.take(MAX_NAME),
             mealType = p.mealType,
         )
     }
+
+    private fun PlannedNutrition.extra(n: Nutrient): Mass? = extraG[n]?.let(Mass::grams)
 
     private const val MAX_NAME = 200
 }

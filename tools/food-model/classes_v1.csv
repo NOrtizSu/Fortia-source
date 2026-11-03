@@ -1,0 +1,302 @@
+id,en_name,es_name_hint,group,open_images_mids,wikimedia_categories,n_images
+apple,Apple,manzana,fruit,/m/014j1m /m/01_12b /m/052rh,Apples_as_food,1000
+banana,Banana,plátano,fruit,/m/09qck,Bananas_as_food,1000
+orange,Orange,naranja,fruit,/m/020csw /m/0545nx /m/0bv0f7 /m/0cyhj_,Oranges_as_food,1000
+mandarin,Mandarin,mandarina,fruit,/m/01b4k8 /m/01jy1_ /m/020h7v /m/0l7hb,Mandarin_oranges_as_food Clementines Tangerines,391
+lemon,Lemon,limón,fruit,/m/020cvm /m/04klfb /m/09k_b,Lemons_as_food,752
+lime,Lime,lima,fruit,/m/01mt0b /m/043b0s /m/052b2y,Limes,394
+grapefruit,Grapefruit,pomelo,fruit,/m/021fl7 /m/0hqkz,Grapefruits Pomelos_as_food Grapefruit_as_food,263
+strawberry,Strawberries,fresas,fruit,/m/07fbm7 /m/07fdc5 /m/07fdw7 /m/0fbdb,Strawberries_as_food,1000
+grapes,Grapes,uvas,fruit,/m/0388q,Grapes_as_food,936
+watermelon,Watermelon,sandía,fruit,/m/0kpqd,Watermelons_as_food,662
+melon,Melon,melón,fruit,/m/016rbg /m/025s89 /m/08b4k2 /m/0kpt_,Melons_as_food Honeydew,378
+pineapple,Pineapple,piña,fruit,/m/01drpv /m/0fp6w,Pineapples_as_food,940
+kiwi,Kiwi,kiwi,fruit,/m/04f8p,Kiwifruits_as_food,394
+pear,Pear,pera,fruit,/m/05bs88 /m/061_f,Pears_as_food,444
+peach,Peach / nectarine,melocotón / nectarina,fruit,/m/02p4s13 /m/0dj6p,Peaches Nectarines,507
+cherries,Cherries,cerezas,fruit,/m/0f8sw,Cherries_as_food,599
+blueberries,Blueberries,arándanos,fruit,/m/01cz4w /m/03j9j /m/0ftbs,Blueberries_as_food,440
+raspberries,Raspberries,frambuesas,fruit,/m/01pd2g,Raspberries,454
+blackberries,Blackberries,moras,fruit,/m/016rvq /m/017z5n /m/034p_k /m/03_2p8 /m/0gzn_w /m/0jhv_,Blackberries_as_food,432
+mango,Mango,mango,fruit,/m/0fldg,Mango_as_food,338
+avocado,Avocado,aguacate,fruit,/m/01645p,Avocado_as_food,330
+pomegranate,Pomegranate,granada,fruit,/m/0jwn_,Pomegranates_as_food,349
+papaya,Papaya,papaya,fruit,/m/0g4fr,Papaya,346
+apricot,Apricot,albaricoque,fruit,/m/0fnfy,Apricots,251
+plum,Plum,ciruela,fruit,/m/0fp5h,Plums,330
+fig,Fig,higo,fruit,/m/043nyj,Figs,270
+coconut,Coconut,coco,fruit,/m/0djtd,Coconuts_as_food,346
+dragon_fruit,Dragon fruit,pitahaya,fruit,/m/026sxn9 /m/026v4r5 /m/02qctq,Pitaya,343
+persimmon,Persimmon,caqui,fruit,/m/013v4j,Persimmon,327
+lychee,Lychee,lichi,fruit,/m/0kpjk,Lychees,224
+passion_fruit,Passion fruit,maracuyá,fruit,/m/01xbt3,Passionfruits_as_food Passion_fruit,222
+dried_fruit,Dried fruit,fruta deshidratada,fruit,/m/02npt1,Dried_fruit,360
+tomato,Tomato,tomate,vegetables,/m/025tg_m /m/07j87 /m/08b4g7 /m/09y4sj,,921
+cucumber,Cucumber,pepino,vegetables,/m/015x4r,,220
+carrot,Carrot,zanahoria,vegetables,/m/0d8jd0 /m/0fj52s,,707
+broccoli,Broccoli,brócoli,vegetables,/m/0hkxq,Broccoli_as_food,342
+cauliflower,Cauliflower,coliflor,vegetables,/m/015w7p /m/02p1q8p,Cauliflower,341
+lettuce,Lettuce / salad leaves,lechuga / hojas de ensalada,vegetables,/m/0446c0l /m/0fqlj /m/0mz_c,Lettuce,342
+spinach,Spinach,espinacas,vegetables,/m/016rh7,Spinach,346
+chard,Chard,acelgas,vegetables,/m/02nm6c,Chard,343
+cabbage,Cabbage,col / repollo,vegetables,/m/06vm6n /m/0fbw6,Cabbage,348
+bell_pepper,Bell pepper,pimiento,vegetables,/m/02lgjk /m/03qhnv4 /m/0dfxcvl /m/0dfxdfp /m/0dj2wpn /m/0jg57,,419
+chili_pepper,Chili pepper,guindilla / chile,vegetables,/m/01dk9h /m/02f1qx /m/02fpjj /m/03d4p1 /m/03gxn6 /m/09v8rjr /m/0cl4wg /m/0d77sr /m/0jtt9 /m/0mjyx,,661
+onion,Onion,cebolla,vegetables,/m/0c2qc /m/0cwzcn /m/0cwzg2 /m/0dj75,,363
+spring_onion,Spring onion,cebolleta,vegetables,/m/02bctl /m/042lv8,Scallions,355
+garlic,Garlic,ajo,vegetables,/m/0dbrl,Garlics_as_food,341
+potato,Potato,patata,vegetables,/m/04d_gxg /m/05fb1fg /m/05vtc /m/07l4_w /m/0dbl1z,,475
+sweet_potato,Sweet potato,boniato,vegetables,/m/05v687l /m/0dm32,Sweet_potatoes Baked_sweet_potatoes,328
+pumpkin,Pumpkin,calabaza,vegetables,/m/02pmq73 /m/03lnzv /m/05zsy /m/07ll5f,,935
+zucchini,Courgette,calabacín,vegetables,/m/027pcv /m/0dv0b7,,294
+eggplant,Aubergine,berenjena,vegetables,/m/0cdk2,Eggplant,321
+corn,Corn on the cob,mazorca de maíz,vegetables,/m/02qsq_1 /m/03bx3wh /m/053wn /m/0964p7 /m/0m8z7,,827
+mushrooms,Mushrooms,champiñones / setas,vegetables,/m/016yfz /m/01bjxj /m/01sbwk /m/052sf /m/05j7sp,,403
+asparagus,Asparagus,espárragos,vegetables,/m/02g7g2 /m/0cjs7,,370
+green_beans,Green beans,judías verdes,vegetables,/m/054hcy,Green_beans,353
+peas,Peas,guisantes,vegetables,/m/02rqpfq /m/0540xn /m/0g5s7,Peas,329
+artichoke,Artichoke,alcachofa,vegetables,/m/047v4b,Artichokes_as_food,349
+brussels_sprouts,Brussels sprouts,coles de Bruselas,vegetables,/m/0250zy,Brussels_sprouts_as_food,352
+beetroot,Beetroot,remolacha,vegetables,/m/01cbb3 /m/04q2scx,Beetroot,322
+radish,Radish,rábano,vegetables,/m/015x5n,Radishes,355
+olives,Olives,aceitunas,fats_nuts,/m/05mln,Olives_as_food,324
+beans,Beans,alubias,legumes,/m/01fp9 /m/02gydl /m/0446b_g,,258
+lentils,Lentil stew / dal,lentejas,legumes,/m/017kh0 /m/017z4t /m/02x33x8,Lentil_soups Lentils_(food) Dal,342
+bean_stew,Bean stew (fabada),fabada / potaje de alubias,dishes,/m/02q_fl /m/02xsv6 /m/07qv7p,Fabada Bean_stews,341
+hummus,Hummus,hummus,sauces,/m/0jzps,Hummus,350
+tofu,Tofu,tofu,legumes,/m/07s28,Tofu,328
+bread,Bread,pan,grains,/m/019xdq /m/01l99n /m/02q8hl7 /m/03dnxh /m/03gq5d8 /m/04tdfk /m/09728,,939
+wholemeal_bread,Wholemeal bread,pan integral,grains,/m/0134zdgk /m/027cb0 /m/02pb9jl /m/07qmlj /m/0cmbf0p,,495
+baguette,Baguette,barra de pan,grains,/m/01rrrx,Baguettes,341
+bread_roll,Bread roll,panecillo,grains,/m/0119x1zy /m/02rz3g /m/05d3wv /m/0fmt3x,,374
+toast,Toast,tostada,grains,/m/017z0v /m/05y5kt,Toast,334
+croissant,Croissant,cruasán,sweets,/m/015wgc,Croissants,339
+bagel,Bagel,bagel,grains,/m/01fb_0,Bagels,323
+pretzel,Pretzel,pretzel,snacks,/m/01f91_,Pretzels,340
+flatbread,Flatbread / naan,pan plano / naan,grains,/m/01j3ck /m/027ggc /m/027ggs /m/02w_bwr /m/02yhx6 /m/07hr9x /m/0l6w2,,325
+tortilla_wrap,Flour or corn tortilla,tortilla de trigo / maíz,grains,/m/05c62s6 /m/0m1h5,Tortillas,315
+focaccia,Focaccia,focaccia,grains,/m/02w9q6,Focaccia,224
+rice,White rice,arroz blanco,grains,/m/01dttb /m/02vdjb /m/04wzh2 /m/094qrr /m/09759 /m/0g9vs81,,682
+pasta,Pasta,pasta,grains,/m/0263_br /m/027rk7_ /m/02bpwp /m/02x7pff /m/03hvr6 /m/03nlz9x /m/04flxj /m/04t8sg /m/050_xm /m/052ly /m/05c5y0b /m/05f62b0 /m/05z55 /m/06_psm /m/0772h /m/078dnm /m/08pc5d /m/08vzfb /m/093b8w /m/09gb8by /m/09gpqg7,,833
+noodles,Noodles (stir-fried),fideos salteados,grains,/m/01npvx /m/026c52y /m/02hz3p /m/02ln79 /m/02z66r9 /m/047fw5r /m/04d8s2 /m/04dct7 /m/07x7yj /m/091jk8 /m/09448n /m/09clx2 /m/09jpb7 /m/09jy30 /m/0dlgzb /m/0f41s6 /m/0mfnf,,683
+oatmeal,Porridge,gachas de avena,grains,/m/01bf_1 /m/0f3fd6,Oatmeal Porridges,345
+cereal,Breakfast cereal / muesli,cereales / muesli,grains,/m/018vnz /m/020hqc /m/02z9dy /m/0l6sg,,467
+couscous,Couscous,cuscús,grains,/m/01z6s,Couscous,192
+popcorn,Popcorn,palomitas,snacks,/m/01hrv5 /m/06yjnj,,407
+crackers,Crackers,galletas saladas,snacks,/m/017mln /m/08t5qs,Crackers_(food),325
+fried_rice,Fried rice,arroz frito,dishes,/m/02jwtj /m/092hlb /m/0bbsy8 /m/0f9lr8,Fried_rice,342
+risotto,Risotto,risotto,dishes,/m/034xzm,Risotto,337
+paella,Paella,paella,dishes,/m/02q5wg8 /m/0ct59,Paella,355
+pilaf,Pilaf / biryani,arroz pilaf / biryani,dishes,/m/027sjkl /m/02pl1fs /m/02s819 /m/03_hl0 /m/03cf6xn /m/0bddyn,,371
+egg,Eggs,huevos,eggs,/m/033cnk,,576
+fried_egg,Fried egg,huevo frito,eggs,/m/01r22b,Fried_eggs,336
+boiled_egg,Boiled egg,huevo cocido,eggs,/m/09x374,Boiled_eggs,341
+scrambled_eggs,Scrambled eggs,huevos revueltos,eggs,/m/02dmw4,Scrambled_eggs,341
+omelette,Omelette,tortilla francesa,eggs,/m/016bn0 /m/03qm7wy /m/05b_5tn,Omelettes,350
+spanish_omelette,Spanish omelette,tortilla de patatas,eggs,/m/01d3ry,Spanish_omelette,288
+poached_egg,Poached egg,huevo poché,eggs,/m/0b0y41,Poached_eggs,330
+eggs_benedict,Eggs Benedict,huevos Benedict,dishes,/m/02fnxc /m/03nqmdz,,220
+steak,Steak,filete / chuletón,meat,/m/0273qgx /m/03dzf4 /m/03jmrd /m/047p8qy /m/04fyb1 /m/05853c /m/05d6hc /m/08jj0f /m/0grtl /m/0rh1hgy,Entrecôte,697
+grilled_chicken,Grilled chicken,pollo a la plancha,meat,/m/06zq8mq /m/0f25w9 /m/0k5stv1 /m/0k5sv46,Grilled_chicken,346
+roast_chicken,Roast chicken,pollo asado,meat,/m/03d1mf,Roast_chicken,343
+fried_chicken,Fried chicken,pollo frito,meat,/m/01px4b /m/026j3tg /m/02r_4gm /m/02vn28d,Fried_chicken Karaage,354
+chicken_wings,Chicken wings,alitas de pollo,meat,/m/0qf0c,Chicken_wings_as_food Buffalo_wings,334
+chicken_nuggets,Chicken nuggets,nuggets de pollo,fast_food,/m/02fjhf /m/050lqd /m/08znk6,Chicken_nuggets,351
+tandoori_chicken,Tandoori chicken,pollo tandoori,dishes,/m/037p63 /m/074fbz,,266
+sweet_sour_chicken,Sweet and sour chicken,pollo agridulce,dishes,/m/03cnxry /m/03nm_l /m/04wg4d /m/09g7kt /m/0cy07_,,410
+stir_fry,Stir-fry,salteado (wok),dishes,/m/04y5c8 /m/0d33gm /m/0dxr0 /m/0hw1x,,399
+pork_chop,Pork chop,chuleta de cerdo,meat,/m/05hc9_ /m/09mp53 /m/0g1fdw,Pork_chops,349
+ribs,Ribs,costillas,meat,/m/078k8j /m/0b9k6q /m/0fy8cb /m/0g4q3r,Pork_ribs_as_food Ribs_(food),351
+sausages,Sausages,salchichas,meat,/m/01gxnj /m/01sn4c /m/01w0td /m/01xg0j /m/025yvyg /m/0281mc3 /m/02pcnz /m/02r2g4m /m/02rwxs4 /m/02th9r /m/038d28 /m/06l9l9 /m/06r6q5 /m/079yjd /m/09370d /m/09z27p /m/0hhrcvd /m/0kdzn,,590
+hot_dog,Hot dog,perrito caliente,fast_food,/m/01b9xk /m/05_ykb /m/05ztbl /m/07bp0z /m/07jl02 /m/0ch5ncy,,440
+bacon,Bacon,beicon,meat,/m/03nllb4 /m/064m6_l /m/0h0xm,Bacon,334
+cured_ham,Cured ham,jamón serrano,meat,/m/02vvftv /m/037vsg /m/03c0tgr /m/04377b /m/04wzs6 /m/06x9vw /m/0dz0lt,Jamón,443
+chorizo,Chorizo,chorizo,meat,/m/01xg7s /m/05n016l,Chorizo,348
+salami,Salami / salchichón,salchichón / fuet,meat,/m/018dz0 /m/020lsx /m/026z81p /m/03s3rn /m/0x1y1w8,Salami Salchichón Fuet,329
+cold_cuts,Charcuterie board,tabla de embutidos,meat,/m/02lw_2 /m/07s11x,Charcuterie_boards,293
+meatballs,Meatballs,albóndigas,meat,/m/01bzmc /m/03z3dw /m/08myc3,Meatballs Albóndigas,350
+breaded_cutlet,Breaded cutlet / schnitzel,filete empanado,meat,/m/03xbgv /m/045ct5 /m/07k6c9 /m/0f99t /m/0gs1r9,Cachopo Flamenquín,344
+roast_beef,Roast beef,rosbif / asado,meat,/m/01pldp /m/01q971 /m/0272hln /m/02r3trx /m/047t99,,246
+pulled_pork,Pulled pork,cerdo desmechado,meat,/m/0985p5 /m/0cjtln,Pulled_pork,191
+kebab,Kebab / shawarma,kebab,fast_food,/m/01y28g /m/022n8y /m/02bbz9 /m/03k_qs,Kebabs Shawarma Gyros,345
+skewers,Meat skewers,brochetas / pinchos morunos,meat,/m/01crps /m/01kfp5 /m/01l5h4 /m/023kc8 /m/02p1p9m /m/02r6jrt /m/04t8p9 /m/07p9hh /m/08fjdx /m/0dyxqq,,422
+lamb,Lamb,cordero,meat,/m/01hcps,Lamb_and_mutton_dishes,346
+duck,Roast duck,pato asado,meat,/m/01pr2g /m/0272wmg /m/07pb77 /m/08gl3j,,244
+turkey,Roast turkey,pavo asado,meat,/m/0gl3jh5,Roast_turkey,325
+suckling_pig,Roast suckling pig,cochinillo asado,meat,/m/04fznhq /m/06rvrg /m/0c0qdr,Cochinillo_asado,297
+mixed_grill,Mixed grill,parrillada de carne,meat,/m/025v9kj /m/03gywp /m/0983v,,447
+korean_bbq,Korean barbecue,barbacoa coreana,dishes,/m/02flbl /m/048wpb /m/06sr5g,,566
+tripe_stew,Tripe stew,callos,dishes,/m/0592j2,Callos Tripe_soups,202
+salmon,Salmon,salmón,fish,/m/0j9qfzr,Salmon_as_food Salmon_dishes,412
+smoked_salmon,Smoked salmon,salmón ahumado,fish,/m/01hklv /m/03sw1s,,194
+grilled_fish,Grilled fish,pescado a la plancha,fish,/m/02vkskg /m/07pbfj,Grilled_fish,578
+fried_fish,Fried fish,pescado frito,fish,/m/027p4n4 /m/056ywg /m/06y1kb,Fried_fish,352
+fish_and_chips,Fish and chips,pescado con patatas fritas,fast_food,/m/0chv4,,269
+prawns,Prawns,gambas / langostinos,fish,/m/02s3cz /m/04hdl_t /m/04hdlzd /m/0b4rl8 /m/0dqc4 /m/0ll1f78 /m/0m0kxjl,Gambas_al_ajillo,752
+mussels,Mussels,mejillones,fish,/m/0127n5,Mussels_as_food Mejillones,244
+clams,Clams,almejas,fish,/m/025syg0 /m/0ffhy,Clam_dishes,305
+oysters,Oysters,ostras,fish,/m/088kg2 /m/0_cp5,,420
+lobster,Lobster,bogavante / langosta,fish,/m/02155t /m/030sld /m/0cjq5,,228
+crab,Crab,cangrejo / centollo,fish,/m/03_z1w /m/03rcbt /m/03w9fb9 /m/0n28_,,605
+calamari,Calamari,calamares,fish,/m/0879r3,Calamari Calamares_a_la_romana Fried_squid Squid_as_food Squid_dishes,341
+octopus,Octopus (pulpo a la gallega),pulpo,fish,/m/05py0,Octopus_as_food Polbo_á_feira,270
+sushi,Sushi,sushi,fish,/m/048wsd /m/07030 /m/09wzfj,,943
+sashimi,Sashimi,sashimi,fish,/m/0cjyd,,303
+anchovies,Anchovies,boquerones / anchoas,fish,/m/01j3hf /m/0j9k7k5,Boquerones_en_vinagre Anchovy_dishes Anchovies_as_food,232
+ceviche,Ceviche,ceviche,dishes,/m/0j8k6,Ceviche,343
+cheese,Cheese,queso,dairy,/m/012crnhf /m/012mpq /m/01_r_ /m/01nkt /m/01pl1k /m/026pc21 /m/02kg_6 /m/038cyj /m/03xb9f /m/04cxk82 /m/06q4_ /m/06qyn0 /m/083tpm /m/097ybm /m/0f0x2 /m/0f0xk,Manchego_cheese,538
+mozzarella,Mozzarella,mozzarella,dairy,/m/055w7,Mozzarella,284
+parmesan,Parmesan,parmesano,dairy,/m/01sbt1 /m/04tyk6 /m/068kk /m/08bgdn,,269
+blue_cheese,Blue cheese,queso azul,dairy,/m/03qp04,Blue_cheese,277
+brie,Brie / camembert,brie / camembert,dairy,/m/01482f /m/02dg27,Brie Camembert,211
+cream_cheese,Cream cheese,queso crema,dairy,/m/02kgf7 /m/02p2nn /m/03cvk1 /m/09kv6y,Cream_cheese,228
+cottage_cheese,Cottage cheese / ricotta,requesón,dairy,/m/01fd1t /m/034n3h,Cottage_cheese Ricotta,206
+yogurt,Yogurt,yogur,dairy,/m/014l8n /m/02vklym /m/03bzh0q /m/05m5qs,Yogurt,298
+milk,Milk,leche,dairy,/m/04zpv /m/0gkxv1m,,295
+butter,Butter,mantequilla,dairy,/m/05yr18_ /m/0chyh,Butter,293
+ice_cream,Ice cream,helado,sweets,/m/0105ld7g /m/020b3f /m/027kl1 /m/02fz11 /m/03rbhq /m/04fh8w /m/05n4t_w /m/09rwv9 /m/0cxn2 /m/0h1bv8c /m/0hmvxxv,,905
+ice_pop,Ice lolly,polo (helado),sweets,/m/0bftj4 /m/0gvg1g,Ice_cream_bars,238
+sorbet,Sorbet / slush,sorbete / granizado,sweets,/m/0209ts /m/02w_fpt /m/04y9npb /m/063zzw /m/0dv8l3,,534
+nuts,Mixed nuts,frutos secos,fats_nuts,/m/01lbxg /m/0ggk1v7,,248
+peanut_butter,Peanut butter,crema de cacahuete,fats_nuts,/m/01qfcj /m/05fc7x6 /m/07hr2l,Peanut_butter,276
+cake,Cake,tarta / pastel,sweets,/m/026pc7x /m/02czv8 /m/0425l8 /m/04yfd1 /m/0fszt,,842
+chocolate_cake,Chocolate cake,tarta de chocolate,sweets,/m/03cpkpj /m/03m7wd /m/05bqtc /m/05bx6n /m/079dl7,,895
+cheesecake,Cheesecake,tarta de queso,sweets,/m/02mg4z,Cheesecakes Basque_cheesecake,353
+carrot_cake,Carrot cake,tarta de zanahoria,sweets,/m/06gf2f,Carrot_cakes,230
+sponge_cake,Sponge cake,bizcocho,sweets,/m/02w6jk,Sponge_cakes,350
+cupcake,Cupcake,cupcake,sweets,/m/03p1r4,,259
+muffin,Muffin,magdalena / muffin,sweets,/m/01tcjp,Magdalenas,705
+donut,Doughnut,dónut / berlina,sweets,/m/022drf /m/09g937k /m/09gpkl7 /m/0jy4k,Rosquillas,708
+churros,Churros,churros,sweets,/m/01_8f5,Churros,206
+cookie,Biscuits / cookies,galletas,sweets,/m/010ls_cv /m/0151tr /m/01k18d /m/01tqs1 /m/021mn /m/03cr0nn /m/03p4r6 /m/03qtd73 /m/0528g3 /m/05yr0_d /m/0gxwm0 /m/0hp39 /m/0k5sl,,917
+brownie,Brownie,brownie,sweets,/m/02hlnc,Brownies,324
+chocolate,Chocolate,chocolate,sweets,/m/020vl /m/0pmlq,,555
+bonbons,Chocolates / truffles,bombones,sweets,/m/01j0r5 /m/02vy_6k /m/03ns47m /m/04kyvc /m/05hxf1 /m/066q9f /m/084n_5 /m/0cfk35,,716
+candy,Sweets / candy,golosinas / caramelos,sweets,/m/02xcpb /m/051wbqj /m/05283f /m/0gjbrsn /m/0gm28 /m/0lgk9,,937
+fruit_pie,Sweet pie,pastel dulce (pie),sweets,/m/014_z9 /m/022lvh /m/025tqsx /m/02pchp /m/0518z0 /m/0dv27g /m/0dxqz7 /m/0mjqn,,411
+pumpkin_pie,Pumpkin pie,pastel de calabaza,sweets,/m/01_3j6 /m/0fppz4,Pumpkin_pies,322
+tart,Fruit tart,tarta de fruta,sweets,/m/02l9ml /m/02zvsm /m/06rk9l /m/0cnp1y,,299
+custard_tart,Custard tart (pastel de nata),pastel de nata,sweets,/m/033rdq /m/03hfxc4 /m/060dm6,Pastéis_de_nata Egg_tarts,333
+danish_pastry,Danish pastry,pastel danés,sweets,/m/018sbr,Danish_pastry,187
+cinnamon_roll,Cinnamon roll,rollo de canela,sweets,/m/0400bw /m/0jwt1v6,Cinnamon_rolls,333
+brioche,Brioche,brioche / bollo,sweets,/m/01wwvy,Brioche,319
+scones,Scones,scones,sweets,/m/01pmj8,Scones,274
+pancakes,Pancakes,tortitas,sweets,/m/01dwwc /m/0bhl4z,,518
+crepes,Crêpes,crepes,sweets,/m/01x5j8,Crêpes,324
+waffles,Waffles,gofres,sweets,/m/01dwsz /m/05pdbjq,,509
+french_toast,French toast (torrija),torrija,sweets,/m/017z01,Torrijas French_toast,242
+tiramisu,Tiramisu,tiramisú,sweets,/m/07l4g,Tiramisu,334
+flan,Crème caramel,flan,sweets,/m/0238fz,Crème_caramel,263
+creme_brulee,Crème brûlée / crema catalana,crema catalana,sweets,/m/017bml,Crema_catalana Crème_brûlée,291
+custard,Custard (natillas),natillas,sweets,/m/0cjhhh /m/0gtcd,Natillas Custards,337
+mousse,Chocolate mousse / pudding,mousse de chocolate,sweets,/m/051vk /m/055vs5,Chocolate_mousse,252
+rice_pudding,Rice pudding,arroz con leche,sweets,/m/03gzlp,Arroz_con_leche Rice_puddings,305
+panna_cotta,Panna cotta,panna cotta,sweets,/m/03v_2q,Panna_cotta,207
+cream_puffs,Profiteroles / éclairs,profiteroles / pepito,sweets,/m/02q6ywr /m/033nb2,Profiteroles Éclairs,246
+meringue,Meringue / pavlova,merengue / pavlova,sweets,/m/011xdj /m/0hp3n,Meringue,311
+macarons,Macarons,macarons,sweets,/m/02tn68,,295
+gingerbread,Gingerbread,pan de jengibre,sweets,/m/020hpy /m/036bks,,336
+apple_strudel,Apple strudel,strudel de manzana,sweets,/m/04g0lp /m/05m8_w,Apple_strudel,234
+jelly,Jelly,gelatina,sweets,/m/03fzy,Gelatin_desserts,337
+jam,Jam,mermelada,sweets,/m/02vr79f /m/0814z1,Jam,338
+dulce_de_leche,Dulce de leche,dulce de leche,sweets,/m/0347py /m/06j8mw /m/0bpb7w,Dulce_de_leche,218
+french_fries,French fries,patatas fritas,fast_food,/m/02qbjtx /m/02y6n,,901
+potato_chips,Crisps,patatas fritas de bolsa,snacks,/m/066sg /m/0h8kwy6,,233
+tortilla_chips,Tortilla chips,totopos,snacks,/m/025t_hl /m/03rv52 /m/06y5g3,Tortilla_chips,262
+nachos,Nachos,nachos con queso,fast_food,/m/01yjq3,Nachos,348
+spring_rolls,Spring rolls,rollitos de primavera,snacks,/m/049qbg /m/04fzqn3 /m/04jm3v /m/06w6jx,,222
+dumplings,Dumplings / gyoza,gyozas / dumplings,dishes,/m/026ggg2 /m/027wmf /m/02cv5l /m/02phwyk /m/04g132 /m/04vyx3 /m/0692y9 /m/06r77g /m/08jhp4 /m/0pmbh,Gyoza,414
+pierogi,Pierogi,pierogi,dishes,/m/028ph1 /m/02cxsh /m/03cs9b /m/0573b7,Varenyky Pelmeni,262
+steamed_buns,Steamed buns (bao),bao (bollo al vapor),dishes,/m/0659_7 /m/069dmg /m/09zzf2 /m/0bhn86 /m/0g9fr1,Baozi,337
+empanada,Empanada,empanada / empanadilla,snacks,/m/02jvms,Empanadas,350
+croquettes,Croquettes,croquetas,snacks,/m/0410k9 /m/0bs9vz,Croquettes Croquetas Korokke,515
+falafel,Falafel,falafel,snacks,/m/015w3y,Falafel,224
+pakora,Pakora,pakora,snacks,/m/03kvn1 /m/03m283,Pakora,349
+tempura,Tempura,tempura,dishes,/m/012xzr,Tempura,345
+bread_with_tomato,Bread with tomato / bruschetta,pan con tomate / bruschetta,snacks,/m/05j_l5,Pa_amb_tomàquet Pan_con_tomate Bruschetta,222
+canapes,Canapés,canapés / montaditos,snacks,/m/02hh08 /m/02pp8n1 /m/04ygw50 /m/0pqdc,,486
+guacamole,Guacamole,guacamole,sauces,/m/02g30s,Guacamole,325
+salsa,Salsa / pico de gallo,salsa / pico de gallo,sauces,/m/026ym7 /m/0m1gt,Pico_de_gallo Salsa_(sauce),332
+tzatziki,Tzatziki,tzatziki,sauces,/m/0405cd /m/0hpf8,Raita Tzatziki,328
+mayonnaise,Mayonnaise / aioli,mayonesa / alioli,sauces,/m/0gdsj /m/0grq0,Mayonnaise Aioli,329
+pizza,Pizza,pizza,fast_food,/m/0663v /m/068_x /m/06wypr /m/09yjm8,,923
+calzone,Calzone,calzone,fast_food,/m/03cg_q,Calzone,186
+hamburger,Hamburger,hamburguesa,fast_food,/m/013q4y /m/027wqvm /m/02qmkz /m/03f476 /m/059qt9 /m/06zq0pr /m/0c3y3jd /m/0cc7bks /m/0cdn1,,859
+sandwich,Sandwich,sándwich,fast_food,/m/027x8l3 /m/03d0ts /m/04brsc /m/04czfcc /m/0502pq /m/063h8c /m/0696zs /m/0bbd9t /m/0l515 /m/0m06w,,874
+baguette_sandwich,Baguette sandwich,bocadillo,fast_food,/m/01zssy /m/02q4f5 /m/03ht_b /m/06pcq /m/080b05k,Bocadillos,919
+wrap,Wrap / burrito,wrap / burrito,fast_food,/m/01j3zr /m/059jcr /m/05b_rpv /m/06vgvn /m/06x5sp,,320
+tacos,Tacos,tacos,fast_food,/m/07crc /m/09g94z3 /m/0m4wc,,423
+quesadilla,Quesadilla,quesadilla,fast_food,/m/02g3bz,Quesadilla,275
+green_salad,Green salad,ensalada verde / mixta,dishes,/m/099p0c /m/0grw1 /m/0k0qpqb,,970
+caesar_salad,Caesar salad,ensalada César,dishes,/m/01_9v,,202
+greek_salad,Greek salad,ensalada griega,dishes,/m/04059x /m/0d18t1,,268
+caprese_salad,Caprese salad,ensalada caprese,dishes,/m/06gs1f,Insalata_caprese,295
+pasta_salad,Pasta salad,ensalada de pasta,dishes,/m/0gzxy_,Pasta_salad,256
+potato_salad,Potato salad (ensaladilla),ensaladilla rusa,dishes,/m/01cch6,Olivier_salad Potato_salads,319
+coleslaw,Coleslaw,ensalada de col,dishes,/m/03pn8h,Coleslaw,266
+fruit_salad,Fruit salad,macedonia,dishes,/m/02rqs9h /m/04rx8j /m/05bqh9,,473
+soup,Soup / broth,sopa / caldo,dishes,/m/01z1m1x /m/02h_mt /m/035y9b,,579
+cream_soup,Cream soup,crema de verduras,dishes,/m/02p5crg /m/03qj953 /m/06w9jt /m/07d7hg,Pumpkin_soups,416
+tomato_soup,Tomato soup,sopa de tomate,dishes,/m/09tl3w,Tomato_soup,288
+chicken_soup,Chicken soup,sopa de pollo,dishes,/m/06n9k0 /m/08dj22 /m/0ckmp,,190
+miso_soup,Miso soup,sopa de miso,dishes,/m/012xc3,Miso_soup,333
+noodle_soup,Noodle soup,sopa de fideos,dishes,/m/012y1_ /m/014jz8 /m/027rch /m/02tcfg /m/02z80b4 /m/06nk8b /m/08d_8c /m/08h816 /m/0b960h /m/0cy8mp /m/0d2xmz,,912
+ramen,Ramen,ramen,dishes,/m/09gms,Ramen,348
+pho,Pho,pho,dishes,/m/02y17j /m/0clcjj,Phos,422
+gazpacho,Gazpacho,gazpacho,dishes,/m/037rw,Gazpacho,208
+stew,Meat stew,estofado / guiso de carne,dishes,/m/01j75r /m/03pvjd /m/0fh1cm /m/0jnxw,Stews Beef_stews,339
+chili_con_carne,Chili con carne,chili con carne,dishes,/m/01rk86,Chili_con_carne,229
+curry,Curry,curry,dishes,/m/027gdv /m/02f46l /m/02slfb /m/02v8tn /m/037lls /m/03cbl9_ /m/0466rf8 /m/079_32 /m/07w4fs /m/08z2gl /m/094qt4 /m/0f7wh3 /m/0hr1s_w,,862
+lasagna,Lasagne,lasaña,dishes,/m/011jxn,,231
+carbonara,Pasta carbonara,pasta a la carbonara,dishes,/m/0273gv,Carbonara,337
+pasta_tomato,Pasta with tomato sauce,pasta con tomate,dishes,/m/03llnc /m/0413ml2 /m/04qsz7 /m/06zx72 /m/07nlyz /m/080jwwr /m/0bcc3z,,684
+pesto_pasta,Pasta with pesto,pasta al pesto,dishes,/m/01q6dt,Pesto_dishes,295
+mac_and_cheese,Macaroni and cheese,macarrones con queso,dishes,/m/029hpc,Macaroni_and_cheese,326
+ravioli,Ravioli / tortellini,raviolis / tortellini,dishes,/m/02r_dx /m/02wf2z,Ravioli_dishes Tortellini,311
+pad_thai,Pad thai,pad thai,dishes,/m/0238jq /m/0dl21s,,356
+bibimbap,Bibimbap,bibimbap,dishes,/m/03g917,Bibimbap,281
+hot_pot,Hot pot,hot pot,dishes,/m/012xb8 /m/04y0_x,,259
+quiche,Quiche,quiche,dishes,/m/01f79n /m/05v67qc,Quiches,341
+pot_pie,Pot pie,pastel de carne,dishes,/m/05j5g_ /m/06j2tt,Pot_pies Chicken_pot_pies,207
+gratin,Gratin / casserole,gratinado,dishes,/m/039jpz /m/0b8r64,Gratin Casseroles,335
+mashed_potatoes,Mashed potatoes,puré de patatas,dishes,/m/02fvjy /m/076w3k,Mashed_potatoes,339
+baked_potato,Baked potato,patata asada,dishes,/m/039blp,Baked_potatoes,240
+fried_potatoes,Sautéed potatoes,patatas salteadas,dishes,/m/02rjk4g /m/09gnq8,Fried_potatoes Home_fries Papas_arrugadas,339
+ratatouille,Ratatouille (pisto),pisto,dishes,/m/01kf7f /m/07ll3p,Ratatouille Pisto,237
+full_breakfast,Full English breakfast,desayuno inglés,dishes,/m/02qhwc4,,462
+espresso,Espresso / black coffee,café solo,drinks,/m/0271vf7 /m/0271vjb /m/02pjqs /m/08b1tb /m/08rx0_ /m/09rll6 /m/0ctfk,,339
+coffee_with_milk,Coffee with milk / cappuccino,café con leche / capuchino,drinks,/m/01nr56 /m/0296jp /m/0364jn /m/03d2qz6 /m/03fsht /m/046jml /m/04cyyh3 /m/06jdrl /m/06rqrc /m/087bpd /m/09702 /m/0h51wtr /m/0hr7kv1,Café_con_leche,804
+iced_coffee,Iced coffee,café con hielo,drinks,/m/05kbv1 /m/06b2xn /m/07fs28,Iced_coffee,338
+tea,Tea,té / infusión,drinks,/m/01mzvs /m/01xrmc /m/026071 /m/02nnw0 /m/03k459 /m/05pdq /m/07clx /m/07ql8f,,899
+iced_tea,Iced tea,té helado,drinks,/m/03qzdm,Iced_tea,335
+hot_chocolate,Hot chocolate,chocolate caliente,drinks,/m/02n3dt /m/04nw77,Hot_chocolate,342
+orange_juice,Orange juice,zumo de naranja,drinks,/m/0dwgb,Orange_juice,340
+juice,Fruit juice,zumo de frutas,drinks,/m/01z1kdw /m/02bjnm /m/04_1j33 /m/05n1hyx /m/05n4tjz /m/05n7n62 /m/05s07p /m/07hskn /m/07lym_ /m/09_mxk,,799
+smoothie,Smoothie,smoothie / batido de frutas,drinks,/m/058hry /m/0cp0f9s,Smoothies,373
+milkshake,Milkshake,batido,drinks,/m/01k17j,Milkshakes,305
+beer,Beer,cerveza,drinks,/m/01599 /m/017blf /m/03vwz /m/04lc4 /m/06z3v /m/0m09,,929
+red_wine,Red wine,vino tinto,drinks,/m/02wsb20,Glasses_of_red_wine,331
+white_wine,White wine,vino blanco,drinks,/m/02wsb25,White_wine Glasses_of_white_wine,333
+sparkling_wine,Sparkling wine / cava,cava / champán,drinks,/m/01224x /m/0f2b9,,232
+cocktail,Cocktail,cóctel,drinks,/m/015b1y /m/016sb3 /m/01w8pq /m/0207sy /m/021l45 /m/024g6 /m/024v9t /m/02m6ts /m/02q_6k_ /m/04gs17 /m/04hkqs /m/0684y /m/0fy4lk,,909
+mojito,Mojito,mojito,drinks,/m/057yl,Mojito,303
+gin_tonic,Gin and tonic,gin-tonic,drinks,/m/03dyz /m/05ss8d,Gin_and_tonic,316
+sangria,Sangria / tinto de verano,sangría / tinto de verano,drinks,/m/01n3nh /m/03yrc9 /m/0btbr0,Sangria Tinto_de_verano,390
+vermouth,Vermouth,vermut,drinks,/m/07_0d,Vermouth,282
+spirits,"Spirits (whisky, brandy)","licores (whisky, coñac)",drinks,/m/01k5m3 /m/04qgp /m/04shl0 /m/082bv /m/0c59y /m/0c93f,,861
+cola,Cola,refresco de cola,drinks,/m/01yvs /m/023ls,,569
+lemonade,Lemonade,limonada,drinks,/m/027zm8 /m/033w_3 /m/0j_1bnd,Lemonade,307
+jackfruit,Jackfruit,yaca,fruit,/m/01xcwm,Jackfruit,338
+durian,Durian,durián,fruit,/m/02dx0,Durian,286
+pickles,Pickles,encurtidos / pepinillos,vegetables,/m/06zytg /m/0dwn8,Pickles Banderillas,400
+seaweed,Seaweed,algas,vegetables,/m/02qrym0 /m/040tm1 /m/05jrv,Seaweed_salad Seaweed_as_food Seaweed_dishes Nori,320
+garlic_bread,Garlic bread,pan de ajo,grains,/m/08nk6x,Garlic_bread,211
+pastries,Pastries,bollería,sweets,/m/0277lbh /m/02rgczb /m/0cn1d /m/0hnyx,,748
+fruitcake,Fruit cake / panettone,panettone / plum cake,sweets,/m/02yz14 /m/04bh7b /m/09pwh,Panettone,368
+loaf_cake,Banana bread / loaf cake,bizcocho de plátano,sweets,/m/04cym9 /m/09693d,Banana_bread,328
+swiss_roll,Swiss roll,brazo de gitano,sweets,/m/027lzd1 /m/067b4q,Swiss_rolls Brazo_de_gitano,223
+fritters,Fritters (buñuelos),buñuelos,sweets,/m/01wydv /m/01zl9v /m/024lvg /m/091rs3,Buñuelos Beignets,339
+potato_pancakes,Potato pancakes / hash browns,tortitas de patata,dishes,/m/01ps3d /m/04shrv,Potato_pancakes Hash_browns Rösti Latkes,339
+fish_soup,Fish soup,sopa de pescado,dishes,/m/039v41,Fish_soup,336
+soft_drink,Soft drink,refresco,drinks,/m/01bg6m /m/025rtr1 /m/059r7w6 /m/06qrr /m/0ck2xc /m/0f7rp,,882
+_not_food,Not food,no es comida,,/m/02wbm (verified absent),,3765

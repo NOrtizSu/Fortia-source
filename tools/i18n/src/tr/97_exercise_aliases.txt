@@ -1,0 +1,125 @@
+# Search words of built-in exercises and sports: exa_<catalog id> (training/catalog/ExerciseAliases.kt). Never shown:
+# the exercise search also looks in them, so an exercise is found by the other words people use for it (gym slang,
+# brand names, verbs, the singular or plural). Comma-separated, lower case is fine; translate the idea, not word for word.
+
+# Walking, running and the other activities
+exa_outdoor_walk = yürümek, yürüyüş, yürü, yürüyüş yapmak, tempolu yürüyüş, hızlı yürüyüş, gezinti
+exa_hiking = trekking, hiking, doğa yürüyüşü, dağ yürüyüşü, patika, dağ
+exa_nordic_walking = nordic walking, nordik, batonla yürüyüş, yürüyüş batonu, baton
+exa_stair_climbing = merdiven, merdiven çıkmak, basamak, kat çıkmak
+exa_outdoor_run = koşu, koşmak, koş, koşu yapmak, jogging, running
+exa_outdoor_cycling = bisiklet, bisiklete binmek, pedal çevirmek, yol bisikleti, dağ bisikleti, mtb
+exa_swimming = yüzmek, yüz, havuz, kulaç
+
+# Cardio machines
+exa_treadmill = bantta koşu, koşmak, koşu, jogging
+exa_treadmill_walk = yürümek, yürüyüş, bantta yürüyüş, yürüme bandı
+exa_incline_treadmill_walk = eğimli yürüyüş, yokuş yürüyüşü, rampa, eğim, 12-3-30
+exa_curved_treadmill = manuel koşu bandı, motorsuz koşu bandı, assault runner, sprint, koşmak
+exa_stationary_bike = kondisyon bisikleti, bisiklet, pedal çevirmek
+exa_spin_bike = spinning, spin, indoor cycling, bisiklet
+exa_recumbent_bike = bisiklet, yaslanmalı bisiklet, oturmalı bisiklet
+exa_air_bike = assault bike, fan bike, echo bike, hava bisikleti
+exa_elliptical = eliptik bisiklet, orbitrek, cross trainer, eliptik makine
+exa_rowing_machine = kürek, kürek çekmek, rower, ergometre
+exa_stair_climber = stairmaster, stepmill, step makinesi, merdiven, stepper
+exa_ski_erg = skierg, kayak, kayak makinesi
+
+# Machines and cables
+exa_pec_deck = kelebek makinesi, butterfly, fly makinesi, göğüs fly
+exa_reverse_pec_deck = arka omuz makinesi, reverse fly, ters fly, arka omuz
+exa_leg_press_machine = bacak presi, 45 derece leg press, ayak presi
+exa_hip_abductor_machine = abduktor, dış bacak, bacak açma, kalça açma
+exa_hip_adductor_machine = adduktor, iç bacak, bacak kapama
+exa_iso_lateral_chest_press = hammer strength, hammer, plakalı chest press, göğüs press
+exa_high_row_machine = hammer strength, hammer, yüksek kürek
+exa_t_bar_row_machine = t-bar makinesi, t bar, t kürek
+exa_standing_leg_curl_machine = hamstring curl, arka bacak, ayakta bacak bükme
+exa_lat_pulldown_machine = pulldown, lat çekme, önden çekiş, sırt makinesi
+exa_seated_cable_row = low row, cable row, kablo kürek, oturarak kürek
+exa_cable_crossover = crossover, kablo fly, kablo çapraz
+exa_face_pull = yüze çekiş, halatla yüze çekme, arka omuz
+exa_reverse_grip_lat_pulldown = ters tutuş pulldown, alttan tutuş pulldown, supine pulldown
+exa_cable_chest_press = ayakta chest press, kablo göğüs press
+exa_cable_reverse_fly = kabloda arka omuz, reverse crossover, ters crossover
+exa_cable_y_raise = y raise, y kaldırış
+exa_cable_upright_row = upright row, çeneye çekiş
+
+# Free weights
+exa_barbell_bench_press = bench, bench press, düz bench, göğüs press
+exa_barbell_back_squat = squat, back squat, skuat, çömelme
+exa_barbell_deadlift = klasik deadlift, ölü kaldırış
+exa_barbell_overhead_press = military press, ohp, omuz press, shoulder press
+exa_skull_crusher = french press, yatarak triceps extension
+exa_barbell_hip_thrust = kalça itme, hip thrust, glute
+exa_bulgarian_split_squat = bulgar squat, bulgarian, split squat, bulgar lunge
+exa_kettlebell_swing = kb swing, kettlebell sallama, girya
+exa_smith_reverse_lunge = reverse lunge, geri lunge, geriye adım lunge
+exa_landmine_squat = landmine goblet squat, landmine
+exa_overhead_squat = ohs, baş üstü squat
+exa_thruster = thrusters
+exa_push_press = itişli press, bacak destekli press
+exa_power_clean = clean, olimpik kaldırış, silkme
+exa_hang_clean = clean, olimpik kaldırış, silkme
+exa_power_snatch = snatch, koparma, olimpik kaldırış
+exa_dumbbell_floor_press = floor press, yerde press
+exa_incline_dumbbell_fly = incline fly, eğimli fly
+exa_walking_lunge = walking lunges, yürüyerek lunge, yürüyen lunge
+exa_dumbbell_snatch = db snatch, tek kol snatch
+exa_kettlebell_high_pull = sumo high pull, high pull
+
+# Bodyweight and calisthenics
+exa_push_up = şınav çekmek, push up, pushup
+exa_pull_up = pull up, pullup, barfiks çekmek, kendini çekme
+exa_parallel_bar_dip = dips, dip, paralel
+exa_burpee = squat thrust, burpi
+exa_mountain_climber = climbers, dağcı
+exa_plank = ön plank, dirsek plank, plank tutma
+exa_farmers_carry = farmer's walk, farmer walk, çiftçi taşıma
+exa_archer_push_up = archer, okçu
+exa_ring_dip = halka, ring dip, jimnastik halkası
+exa_neutral_grip_pull_up = hammer tutuş barfiks, paralel tutuş, nötr
+exa_suspension_row = trx, ring row, halka kürek
+exa_sissy_squat = sissy
+exa_toes_to_bar = t2b, toes to bar, ayakları bara
+exa_ghd_sit_up = glute ham developer, ghd
+
+# Conditioning and HIIT
+exa_jump_rope = ip, ip atlamak, double under, çift ip
+exa_jumping_jack = jumping jacks, açma kapama, zıplayarak açma kapama
+exa_high_knees = diz çekme, yüksek diz, yerinde koşu, high knee
+exa_butt_kicks = topuk kalçaya, topuk vuruşu, butt kick
+exa_box_jump = plyo box, pliometrik, kutu, kutuya atlama
+exa_tuck_jump = diz çekerek zıplama, tuck
+exa_skater_jump = skaters, patenci, yana sıçrama
+exa_bear_crawl = bear crawl, crawl, emekleme
+exa_shadow_boxing = boks, yumruk, shadow boxing
+exa_step_aerobics = step, step dersi, aerobik
+exa_battle_ropes = halat, savaş halatı, ropes, halat dalgası
+exa_sled_push = prowler, kızak, sled push
+exa_sled_drag = sled pull, sled drag, kızak çekme, kızak
+exa_wall_ball = wall balls, sağlık topu, duvara top atma
+exa_medicine_ball_slam = slam ball, ball slam, sağlık topu, yere top vurma
+exa_medicine_ball_rotational_throw = yana atış, rotasyonel atış, sağlık topu
+exa_sandbag_carry = sandbag, kum torbası, bear hug
+
+# Stretching, mobility and foam rolling
+exa_ankle_dorsiflexion_mobilization = ayak bileği mobilitesi, dorsifleksiyon, ayak bileği esnetme
+exa_hip_90_90 = 90 90, kalça mobilitesi
+exa_deep_squat_hold = squat'ta bekleme, asya squat, çömelme
+exa_hip_cars = kalça çevirme, kalça daireleri, cars
+exa_shoulder_cars = kol çevirme, omuz çevirme, omuz daireleri, cars
+exa_thread_the_needle = thread the needle, iğne iplik, üst sırt rotasyonu
+exa_cobra_stretch = upward dog, kobra, yukarı bakan köpek
+exa_downward_dog = down dog, köpek pozu, yoga
+exa_standing_quad_stretch = quad germe, ön bacak germe, quadriceps germe
+exa_lying_spinal_twist = sırtüstü burgu, bel burgusu, omurga çevirme
+exa_figure_four_stretch = figure 4, dört figürü, piriformis
+exa_wrist_mobility = bilek germe, bilek ısınması
+exa_foam_roll_quads = foam rolling, köpük rulo, masaj rulosu, miyofasyal gevşetme, smr
+exa_foam_roll_hamstrings = foam rolling, köpük rulo, masaj rulosu, miyofasyal gevşetme, smr
+exa_foam_roll_calves = foam rolling, köpük rulo, masaj rulosu, miyofasyal gevşetme, smr
+exa_foam_roll_glutes = foam rolling, köpük rulo, masaj rulosu, miyofasyal gevşetme, smr, piriformis
+exa_foam_roll_it_band = foam rolling, köpük rulo, masaj rulosu, miyofasyal gevşetme, smr, itb, it bant
+exa_foam_roll_upper_back = foam rolling, köpük rulo, masaj rulosu, miyofasyal gevşetme, smr, torasik, sırt
+exa_foam_roll_lats = foam rolling, köpük rulo, masaj rulosu, miyofasyal gevşetme, smr

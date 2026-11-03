@@ -556,3 +556,114 @@ food_salsa = Salsa lub pico de gallo
 food_tzatziki = Tzatziki
 food_balsamic_vinegar = Ocet balsamiczny
 food_salt = Sól
+
+# Vegetables
+food_zucchini_raw = Cukinia (surowa)
+food_eggplant_raw = Bakłażan (surowy)
+food_broccoli_raw = Brokuł (surowy)
+food_cabbage_raw = Kapusta (surowa)
+food_carrot_cooked = Marchew gotowana
+food_bean_sprouts = Kiełki fasoli mung
+food_canned_tomato = Pomidory z puszki
+food_fennel = Koper włoski (fenkuł)
+
+# Bread, cereals and pasta
+food_breadcrumbs = Bułka tarta
+food_corn_starch = Skrobia kukurydziana
+food_puff_pastry = Ciasto francuskie (surowe)
+food_polenta = Polenta
+
+# Legumes
+food_lentils_vegetable = Gulasz z soczewicy bez mięsa
+
+# Meat and cold cuts
+food_chicken_raw = Kurczak w kawałkach (surowy)
+food_chicken_leg_raw = Noga z kurczaka (surowa)
+food_rabbit_raw = Królik (surowy)
+food_beef_raw = Wołowina zrazowa (surowa)
+food_beef_stewing_raw = Wołowina gulaszowa (surowa)
+food_minced_beef_15_raw = Mielona wołowina 15% tłuszczu (surowa)
+food_pork_shoulder_raw = Chuda wieprzowina (surowa)
+food_salted_pork_belly = Boczek solony
+food_black_pudding_raw = Kaszanka (surowa)
+food_back_bacon = Bekon z polędwicy
+food_tripe = Flaki wołowe (gotowane)
+food_sobrasada = Sobrasada
+food_veal_escalope_raw = Eskalopek cielęcy (surowy)
+
+# Fish and seafood
+food_hake_raw = Morszczuk (surowy)
+food_squid_raw = Kalmar (surowy)
+food_prawns_raw = Krewetki (surowe)
+food_mussels_raw = Mule bez muszli (surowe)
+food_anchovy_raw = Sardele (surowe)
+food_boiled_octopus = Ośmiornica gotowana
+food_breaded_fish = Ryba panierowana (smażona)
+
+# Eggs
+food_egg_yolk = Żółtko jaja
+food_omelette_ham_cheese = Omlet z szynką i serem
+food_shakshuka = Szakszuka
+
+# Dairy
+food_condensed_milk = Mleko skondensowane słodzone
+
+# Sweets and desserts
+food_churros_with_sugar = Churros z cukrem
+food_ensaimada = Ensaimada
+
+# Drinks
+food_rum = Rum
+food_gin = Gin
+food_vodka = Wódka
+food_coffee_with_whole_milk = Kawa z mlekiem pełnotłustym
+food_coffee_with_skimmed_milk = Kawa z mlekiem odtłuszczonym
+food_coffee_with_oat_drink = Kawa z napojem owsianym
+food_coffee_with_soy_drink = Kawa z napojem sojowym
+food_coffee_with_milk_sugar = Kawa z mlekiem i cukrem
+food_cafe_bombon = Café bombón (z mlekiem skondensowanym)
+food_espresso_with_sugar = Espresso z cukrem
+food_carajillo = Carajillo (espresso z brandy)
+food_brandy = Brandy (koniak)
+food_clara = Radler (piwo z lemoniadą)
+food_kalimotxo = Kalimotxo (wino z colą)
+
+# Dishes
+food_paella_valenciana = Paella walencjańska
+food_paella_seafood = Paella z owocami morza
+food_arroz_negro = Arroz negro (ryż z atramentem kałamarnicy)
+food_fideua = Fideuà (makaron z owocami morza)
+food_carbonara_italian = Makaron carbonara po włosku (bez śmietany)
+food_pasta_tomato_chorizo = Makaron z sosem pomidorowym i chorizo
+food_gnocchi = Gnocchi
+food_onigiri = Onigiri
+food_green_salad_plain = Zielona sałatka bez sosu
+food_ensalada_mixta_plain = Sałatka mieszana bez sosu
+food_pumpkin_cream = Zupa krem z dyni
+food_vichyssoise = Zupa krem z pora i ziemniaków
+food_mixed_vegetables = Mieszanka warzyw na ciepło
+food_acai_bowl = Açaí bowl lub smoothie bowl
+
+# Fast food
+food_pizza_margherita = Pizza margherita
+food_pizza_pepperoni = Pizza pepperoni
+food_pizza_four_cheese = Pizza cztery sery
+food_pizza_ham = Pizza z szynką i serem
+food_pizza_barbecue = Pizza mięsna (barbecue)
+food_pizza_vegetable = Pizza wegetariańska
+food_cheeseburger = Cheeseburger
+food_bacon_cheeseburger = Cheeseburger z bekonem
+food_chicken_burger = Burger z kurczakiem
+food_sandwich_vegetal = Kanapka z sałatą, jajkiem i tuńczykiem
+food_omelette_baguette = Bagietka z tortillą hiszpańską
+food_calamari_baguette = Bagietka z kalmarami w panierce
+food_pork_loin_baguette = Bagietka ze schabem
+food_cheese_baguette = Bagietka z serem
+
+# Snacks
+food_samosa = Samosa
+
+# Sauces and dressings
+food_paprika = Papryka mielona
+food_vinegar = Ocet
+food_lime_juice = Sok z limonki

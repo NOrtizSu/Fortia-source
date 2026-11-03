@@ -1,0 +1,81 @@
+# Comida in 1.6.0: more nutrients per food, variants of a dish, changing a dish's ingredients when logging it,
+# several foods in one photo and the photo's grams suggestion. The rest of the food log is in 99_food.txt.
+
+# Units of the new values ("350 mg", "2.4 µg"); the unit alone as a field suffix
+unit_mg = mg ||| mg
+unit_ug = µg ||| µg
+value_mg = %1$s mg ||| %1$s mg
+value_ug = %1$s µg ||| %1$s µg
+
+# The values beyond the nutrition label (food tables give them; product labels rarely do)
+foodlog_nutrient_mono_fat = Monounsaturated fat ||| Grasas monoinsaturadas
+foodlog_nutrient_poly_fat = Polyunsaturated fat ||| Grasas poliinsaturadas
+foodlog_nutrient_cholesterol = Cholesterol ||| Colesterol
+foodlog_nutrient_potassium = Potassium ||| Potasio
+foodlog_nutrient_calcium = Calcium ||| Calcio
+foodlog_nutrient_iron = Iron ||| Hierro
+foodlog_nutrient_magnesium = Magnesium ||| Magnesio
+foodlog_nutrient_zinc = Zinc ||| Zinc
+foodlog_nutrient_vit_a = Vitamin A ||| Vitamina A
+foodlog_nutrient_vit_c = Vitamin C ||| Vitamina C
+foodlog_nutrient_vit_d = Vitamin D ||| Vitamina D
+foodlog_nutrient_vit_e = Vitamin E ||| Vitamina E
+foodlog_nutrient_vit_b12 = Vitamin B12 ||| Vitamina B12
+foodlog_nutrient_folate = Folate ||| Folato
+# Small headings of those values (day summary under "More", the food's values, the manual form)
+foodlog_nutrients_fats = Fats in detail ||| Grasas en detalle
+foodlog_nutrients_minerals = Minerals ||| Minerales
+foodlog_nutrients_vitamins = Vitamins ||| Vitaminas
+# A day total that adds up only the foods that have that value ("≥ 45 g"), and the line that explains the sign
+foodlog_partial_value = ≥ %1$s ||| ≥ %1$s
+foodlog_partial_note = ≥: some foods have no value for it, so the total is at least this. ||| ≥: algunos alimentos no tienen ese dato, así que el total es como mínimo esto.
+# The manual form: the optional values beyond the label
+foodlog_more_nutrients = More nutrients ||| Más nutrientes
+foodlog_more_nutrients_text = Optional: only if you know them. ||| Opcional: solo si los conoces.
+
+# Variants of a dish (paella: seafood, mixed…): a heading and the chip of the usual one (gender-neutral in Spanish)
+foodlog_variants = Variant ||| Variante
+foodlog_variant_typical = Typical ||| Habitual
+
+# The ingredients of a dish on the confirm page: closed it says what changed ("Changed: Olive oil 35 g, Bread 0 g")
+foodlog_ingredients = Ingredients ||| Ingredientes
+foodlog_ingredients_adjust = Adjust ||| Ajustar
+foodlog_ingredients_usual = The usual recipe ||| La receta habitual
+foodlog_ingredients_changed = Changed: %1$s ||| Cambiado: %1$s
+foodlog_ingredients_text = Change what your plate had (more or less oil, no bread…): the values follow. ||| Cambia lo que llevaba tu plato (más o menos aceite, sin pan…): los valores se recalculan.
+# An ingredient with its amount ("Olive oil 35 g"); under its name, its usual amount for the amount logged
+foodlog_label_amount = %1$s %2$s ||| %1$s %2$s
+foodlog_ingredient_usual = Usually %1$s ||| Normalmente %1$s
+# The pencil button next to an ingredient's amount (TalkBack): type another amount of it
+foodlog_ingredient_type = Type the amount of %1$s ||| Escribir la cantidad de %1$s
+# The weight of the dish once its ingredients changed ("Total: 368 g")
+foodlog_total_weight = Total: %1$s ||| Total: %1$s
+# How much of an ingredient (chips: none, half, normal, one and a half, double); TalkBack reads the _desc ones
+foodlog_level_none = None ||| Sin
+foodlog_level_half = ½ ||| ½
+foodlog_level_normal = Normal ||| Normal
+foodlog_level_one_half = 1½ ||| 1½
+foodlog_level_double = ×2 ||| ×2
+foodlog_level_half_desc = Half ||| La mitad
+foodlog_level_one_half_desc = One and a half times ||| Una vez y media
+foodlog_level_double_desc = Double ||| El doble
+# A logged dish whose ingredients were changed, in the day's list ("Plate · 368 g · Adjusted")
+foodlog_entry_adjusted = %1$s · Adjusted ||| %1$s · Ajustado
+
+# The photo's grams suggestion next to the amount: a suggestion only, the user confirms or changes it
+foodlog_estimated = ≈ %1$s (estimated) ||| ≈ %1$s (estimado)
+foodlog_estimated_text = Estimated from the photo. Check it and change it if needed. ||| Estimado a partir de la foto. Revísalo y cámbialo si hace falta.
+
+# Several foods found on one plate: one card each (its crop, three suggestions, "Other…", its amount), then "Add all (3)"
+foodlog_plate_title{one} = %1$d food on the plate ||| %1$d alimento en el plato
+foodlog_plate_title{other} = %1$d foods on the plate ||| %1$d alimentos en el plato
+foodlog_plate_text = Check each one: what it is and how much. Untick what you don't want to add. ||| Revisa cada uno: qué es y cuánto. Desmarca lo que no quieras añadir.
+foodlog_plate_item_desc = Food %1$d of the photo ||| Alimento %1$d de la foto
+foodlog_plate_unknown = What is it? ||| ¿Qué es?
+foodlog_plate_unknown_text = Not recognized: choose it with "Other…". ||| No reconocido: elígelo con «Otro…».
+foodlog_plate_item_added = Added ||| Añadido
+foodlog_plate_add_all = Add all (%1$d) ||| Añadir todo (%1$d)
+# The whole photo as one dish (today's five suggestions), and back to the foods one by one (always 2 or more)
+foodlog_plate_as_one = See it as one dish ||| Verlo como un solo plato
+foodlog_plate_as_items{one} = See the %1$d food on its own ||| Ver el %1$d alimento por separado
+foodlog_plate_as_items{other} = See the %1$d foods one by one ||| Ver los %1$d alimentos por separado

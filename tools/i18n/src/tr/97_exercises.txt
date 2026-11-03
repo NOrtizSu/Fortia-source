@@ -36,6 +36,10 @@ ex_assisted_pull_up_machine = Destekli barfiks makinesi
 ex_assisted_chin_up_machine = Destekli ters tutuş barfiks
 ex_assisted_dip_machine = Destekli dips makinesi
 ex_neck_machine = Boyun makinesi
+ex_iso_lateral_chest_press = Iso-lateral chest press (plakalı)
+ex_high_row_machine = High row makinesi
+ex_t_bar_row_machine = Göğüs destekli T-bar row
+ex_standing_leg_curl_machine = Ayakta leg curl
 
 # Cable
 ex_lat_pulldown_machine = Lat pulldown
@@ -61,6 +65,11 @@ ex_cable_pull_through = Kabloda pull-through
 ex_cable_glute_kickback = Kabloda kalça kickback
 ex_cable_hip_adduction = Kabloda hip adduction
 ex_cable_hip_abduction = Kabloda hip abduction
+ex_reverse_grip_lat_pulldown = Ters tutuş lat pulldown
+ex_cable_chest_press = Kabloda ayakta chest press
+ex_cable_reverse_fly = Kabloda reverse fly
+ex_cable_y_raise = Kabloda Y kaldırış
+ex_cable_upright_row = Kabloda upright row
 
 # Smith machine
 ex_smith_squat = Smith makinesinde squat
@@ -74,6 +83,7 @@ ex_smith_romanian_deadlift = Smith makinesinde Romanian deadlift
 ex_smith_bent_over_row = Smith makinesinde bent over row
 ex_smith_shrug = Smith makinesinde shrug
 ex_smith_calf_raise = Smith makinesinde calf raise
+ex_smith_reverse_lunge = Smith makinesinde reverse lunge
 
 # Barbell and EZ bar
 ex_barbell_bench_press = Halter bench press
@@ -108,6 +118,13 @@ ex_skull_crusher = Skull crusher
 ex_barbell_wrist_curl = Bilek curl
 ex_barbell_reverse_wrist_curl = Ters bilek curl
 ex_landmine_rotation = Landmine rotation
+ex_landmine_squat = Landmine squat
+ex_overhead_squat = Overhead squat
+ex_thruster = Halter thruster
+ex_push_press = Push press
+ex_power_clean = Power clean
+ex_hang_clean = Hang clean
+ex_power_snatch = Power snatch
 
 # Dumbbells
 ex_dumbbell_bench_press = Dambıl bench press
@@ -143,6 +160,10 @@ ex_single_leg_romanian_deadlift = Tek bacak Romanian deadlift
 ex_dumbbell_calf_raise = Dambıl calf raise
 ex_seated_dumbbell_calf_raise = Oturarak dambıl calf raise
 ex_dumbbell_side_bend = Dambıl yan eğilme
+ex_dumbbell_floor_press = Dambıl floor press
+ex_incline_dumbbell_fly = İncline dambıl fly
+ex_walking_lunge = Dambıl walking lunge
+ex_dumbbell_snatch = Dambıl snatch
 
 # Kettlebells
 ex_kettlebell_swing = Kettlebell swing
@@ -155,6 +176,7 @@ ex_kettlebell_press = Kettlebell press
 ex_kettlebell_snatch = Kettlebell snatch
 ex_kettlebell_row = Kettlebell row
 ex_kettlebell_windmill = Kettlebell windmill
+ex_kettlebell_high_pull = Kettlebell high pull
 
 # Bodyweight
 ex_push_up = Şınav
@@ -196,6 +218,34 @@ ex_burpee = Burpee
 ex_lying_neck_flexion = Yatarak boyun fleksiyonu
 ex_lying_neck_extension = Yatarak boyun ekstansiyonu
 ex_side_lying_neck_flexion = Yan yatarak boyun kaldırma
+ex_archer_push_up = Okçu şınav
+ex_ring_dip = Halkada dips
+ex_neutral_grip_pull_up = Nötr tutuş barfiks
+ex_suspension_row = TRX kürek
+ex_sissy_squat = Sissy squat
+ex_toes_to_bar = Toes-to-bar
+ex_ghd_sit_up = GHD mekik
+
+# Conditioning and HIIT
+ex_jump_rope = İp atlama
+ex_jumping_jack = Jumping jack
+ex_high_knees = High knees
+ex_butt_kicks = Butt kicks
+ex_box_jump = Box jump
+ex_tuck_jump = Tuck jump
+ex_skater_jump = Skater jump
+ex_bear_crawl = Ayı yürüyüşü
+ex_shadow_boxing = Gölge boksu
+ex_step_aerobics = Step aerobik
+ex_battle_ropes = Battle rope
+ex_sled_push = Kızak itme
+ex_sled_drag = Geri geri kızak çekme
+
+# Medicine ball and sandbag
+ex_wall_ball = Wall ball
+ex_medicine_ball_slam = Sağlık topu slam
+ex_medicine_ball_rotational_throw = Sağlık topuyla rotasyonel atış
+ex_sandbag_carry = Sarılarak kum torbası taşıma
 
 # Timed holds and carries
 ex_plank = Plank
@@ -237,6 +287,25 @@ ex_cross_body_shoulder_stretch = Çapraz omuz germe
 ex_triceps_stretch = Baş arkasında triceps germe
 ex_shoulder_dislocate = Bantla shoulder dislocate
 ex_neck_stretch = Yana boyun germe
+ex_ankle_dorsiflexion_mobilization = Diz duvara ayak bileği mobilitesi
+ex_hip_90_90 = 90/90 kalça geçişi
+ex_deep_squat_hold = Derin squat'ta bekleme
+ex_hip_cars = Kalça CARs (kontrollü daireler)
+ex_shoulder_cars = Omuz CARs (kontrollü daireler)
+ex_thread_the_needle = İğneye iplik geçirme
+ex_cobra_stretch = Kobra pozu
+ex_downward_dog = Aşağı bakan köpek
+ex_standing_quad_stretch = Ayakta ön bacak germe
+ex_lying_spinal_twist = Yatarak omurga burgusu
+ex_figure_four_stretch = 4 şeklinde kalça germe
+ex_wrist_mobility = Bilek mobilitesi
+ex_foam_roll_quads = Foam roller: ön bacak
+ex_foam_roll_hamstrings = Foam roller: arka bacak
+ex_foam_roll_calves = Foam roller: baldır
+ex_foam_roll_glutes = Foam roller: kalça
+ex_foam_roll_it_band = Foam roller: IT bant (dış uyluk)
+ex_foam_roll_upper_back = Foam roller: üst sırt
+ex_foam_roll_lats = Foam roller: kanat
 
 # Cardio machines
 ex_treadmill = Koşu bandı
@@ -248,3 +317,6 @@ ex_elliptical = Eliptik
 ex_rowing_machine = Kürek makinesi
 ex_stair_climber = Merdiven makinesi
 ex_ski_erg = Ski erg
+ex_treadmill_walk = Koşu bandında yürüyüş
+ex_incline_treadmill_walk = Koşu bandında eğimli yürüyüş
+ex_curved_treadmill = Kavisli koşu bandı (motorsuz)

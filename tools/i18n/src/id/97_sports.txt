@@ -18,6 +18,8 @@ ex_badminton = Bulu tangkis
 # On foot, on wheels, in the water
 ex_outdoor_walk = Jalan kaki
 ex_hiking = Mendaki
+ex_nordic_walking = Nordic walking
+ex_stair_climbing = Naik tangga
 ex_outdoor_run = Lari di luar ruangan
 ex_outdoor_cycling = Bersepeda di luar ruangan
 ex_swimming = Berenang

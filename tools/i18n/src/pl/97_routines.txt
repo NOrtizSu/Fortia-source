@@ -14,3 +14,7 @@ routine_glutes = Pośladki
 routine_core = Core i brzuch
 routine_mobility = Mobilność i rozciąganie
 routine_cardio_mix = Maszyny cardio
+
+# Built-in routine names: routine_<id> (training/catalog/RoutineCatalog.kt). Short: they label cards and list rows.
+routine_foam_rolling = Regeneracja z rollerem
+routine_hiit = HIIT bez sprzętu

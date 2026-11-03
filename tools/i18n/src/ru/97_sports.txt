@@ -18,6 +18,8 @@ ex_badminton = Бадминтон
 # On foot, on wheels, in the water
 ex_outdoor_walk = Ходьба
 ex_hiking = Пеший туризм
+ex_nordic_walking = Скандинавская ходьба
+ex_stair_climbing = Подъём по лестнице
 ex_outdoor_run = Бег на улице
 ex_outdoor_cycling = Катание на велосипеде
 ex_swimming = Плавание

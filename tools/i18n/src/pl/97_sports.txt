@@ -18,6 +18,8 @@ ex_badminton = Badminton
 # On foot, on wheels, in the water
 ex_outdoor_walk = Spacer
 ex_hiking = Wędrówka
+ex_nordic_walking = Nordic walking
+ex_stair_climbing = Wchodzenie po schodach
 ex_outdoor_run = Bieganie na zewnątrz
 ex_outdoor_cycling = Jazda na rowerze
 ex_swimming = Pływanie

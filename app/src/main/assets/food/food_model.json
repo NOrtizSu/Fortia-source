@@ -1,5 +1,5 @@
 {
- "version": 1,
+ "version": 2,
  "labels": [
   "apple",
   "banana",
@@ -301,44 +301,99 @@
   "potato_pancakes",
   "fish_soup",
   "soft_drink",
+  "dates",
+  "raisins",
+  "leek",
+  "sauerkraut",
+  "chickpeas",
+  "pain_au_chocolat",
+  "brown_rice",
+  "ham",
+  "feta",
+  "goat_cheese",
+  "almonds",
+  "walnuts",
+  "peanuts",
+  "cashews",
+  "hazelnuts",
+  "honey",
+  "chocolate_spread",
+  "tabbouleh",
+  "spaghetti_bolognese",
+  "water",
+  "quinoa",
+  "canned_tuna",
+  "ketchup",
+  "fennel",
+  "mixed_vegetables",
+  "rose_wine",
+  "endive",
+  "samosa",
+  "onigiri",
   "_not_food"
  ],
  "input": {
-  "width": 224,
-  "height": 224,
+  "width": 320,
+  "height": 320,
   "layout": "NHWC",
   "dtype": "float32",
   "channels": "RGB",
   "mean": [
-   0.5,
-   0.5,
-   0.5
+   0.485,
+   0.456,
+   0.406
   ],
   "std": [
-   0.5,
-   0.5,
-   0.5
+   0.229,
+   0.224,
+   0.225
   ],
   "range": "0..1 before mean/std",
   "resize": "short_side_then_center_crop",
-  "crop_fraction": 0.875,
-  "resize_short_side": 256,
+  "crop_fraction": 0.874317,
+  "resize_short_side": 366,
   "interpolation": "bilinear"
  },
  "output": {
   "dtype": "float32",
   "scale": 1.0,
   "zero_point": 0,
-  "kind": "logits"
+  "kind": "logits",
+  "index": 0
  },
- "temperature": 0.94,
+ "temperature": 0.78,
  "min_confidence": 0.05,
  "not_food_label": "_not_food",
  "model": {
-  "name": "fortia-food-1",
-  "backbone": "tf_efficientnet_lite0.in1k",
-  "quantization": "integer_quant",
-  "trained": "2026-11-02",
-  "notes": "300 foods + _not_food; EfficientNet-Lite0 fine-tuned on Open Images V7 + Wikimedia Commons photos; see tools/food-model/MODEL_CARD.md"
+  "name": "fortia-food-2",
+  "backbone": "mobilenetv4_conv_medium.e250_r384_in12k_ft_in1k",
+  "quantization": "float16",
+  "trained": "2026-11-03",
+  "notes": "MobileNetV4-Conv-Medium (timm in12k+in1k weights), 329 foods + _not_food, 320 px, not-food logit -0.75, grams head calibrated on Nutrition5k; fp16 weights (full int8 loses 16 points of top-1)"
+ },
+ "grams": {
+  "enabled": true,
+  "output": {
+   "index": 1,
+   "shape": [
+    1,
+    1
+   ],
+   "dtype": "float32",
+   "kind": "log_grams"
+  },
+  "b0": 0.5484,
+  "b_model": 0.8824,
+  "b_portion": 0.0402,
+  "b_share": 0.3893,
+  "clamp_portion": [
+   0.1,
+   4.0
+  ],
+  "clamp_grams": [
+   5,
+   1500
+  ],
+  "round_to": 5
  }
 }

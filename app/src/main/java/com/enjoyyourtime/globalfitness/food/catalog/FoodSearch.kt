@@ -88,13 +88,33 @@ object FoodSearch {
             if (t == 0 && item.brand != null) t = if (tier(normalize(item.name + " " + item.brand), q) > 0) 1 else 0
             if (t == 0) null else Hit(item, t, item.ref?.let(usage::get), name)
         }
-        return hits.sortedWith(
+        val ranked = hits.sortedWith(
             compareByDescending<Hit> { if (it.used != null && it.tier >= 2) 1 else 0 }
                 .thenByDescending { it.tier }
                 .thenByDescending { it.used?.count ?: 0 }
                 .thenByDescending { it.used?.lastUsed ?: 0L }
                 .thenBy { it.name.length }
                 .thenBy { it.name },
-        ).take(limit).map { it.item }
+        ).map { it.item }
+        return withVariants(ranked, items).take(limit)
+    }
+
+    /**
+     * [ranked] with the variants of each catalog food in it right after it (a search that finds
+     * "Coffee" also lists "Cortado"), each food once, at its first place.
+     */
+    fun withVariants(ranked: List<FoodItem>, items: List<FoodItem>): List<FoodItem> {
+        val variants = items.filter { it.variantOf != null }.groupBy { it.variantOf }
+        if (variants.isEmpty()) return ranked
+        val out = ArrayList<FoodItem>(ranked.size)
+        val seen = HashSet<FoodRef>()
+        for (item in ranked) {
+            val ref = item.ref
+            if (ref != null && !seen.add(ref)) continue
+            out += item
+            val id = item.foodId ?: continue
+            for (v in variants[id].orEmpty()) if (v.ref?.let(seen::add) != false) out += v
+        }
+        return out
     }
 }

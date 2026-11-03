@@ -211,7 +211,7 @@ foodlog_today_open = „Ernährung“ öffnen
 # Health Connect
 hc_type_nutrition = Ernährung
 hc_meals_export_title = Mahlzeiten in Health Connect speichern
-hc_meals_export_text = Jedes Lebensmittel, das du einträgst, wird mit seiner Mahlzeit als Ernährungsdaten (Kalorien, Protein, Kohlenhydrate, Zucker, Fett, gesättigte Fettsäuren, Ballaststoffe und Natrium) gespeichert. Wenn du es bearbeitest oder löschst, wird auch Health Connect aktualisiert.
+hc_meals_export_text = Jedes Lebensmittel, das du einträgst, wird mit seiner Mahlzeit als Ernährungsdaten gespeichert: Kalorien, Protein, Kohlenhydrate, Zucker, Fett, gesättigte Fettsäuren, Ballaststoffe und Natrium, dazu Cholesterin, einfach und mehrfach ungesättigte Fettsäuren, Mineralstoffe und Vitamine, wenn das Lebensmittel diese Werte hat. Wenn du es bearbeitest oder löschst, wird auch Health Connect aktualisiert.
 hc_meals_export_missing_permission = Erlaube Fortia, Ernährung in Health Connect zu schreiben, damit deine Mahlzeiten dort gespeichert werden.
 hc_meals_export_denied = Wenn sich kein Berechtigungsfenster öffnet, erlaube „Ernährung“ für Fortia in Health Connect.
 hc_meals_export_off = Neue Mahlzeiten werden nicht gespeichert. Die bereits in Health Connect gespeicherten bleiben dort.
@@ -229,4 +229,4 @@ notice_usda = Nährwerte der Lebensmittelliste: U.S. Department of Agriculture, 
 notice_ciqual = Nährwerte der Lebensmittelliste: Anses, französische Nährwerttabelle Ciqual, unter der Licence Ouverte / Etalab 2.0.
 notice_food_model_name = Fortia-Essenserkennung
 notice_food_model_license = Eigenes Modell (siehe Modellkarte)
-notice_food_model = Unser eigenes Modell, trainiert mit Bildern aus Open Images (CC BY 2.0) und Wikimedia Commons (freie Lizenzen); die Liste der Bilder und ihrer Urheber wird mit dem Quellcode veröffentlicht.
+notice_food_model = Unsere eigenen Modelle, aufgebaut auf MobileNetV4 (timm, Apache-2.0) und Ultralytics YOLO11n (AGPL-3.0) und trainiert mit Bildern aus Open Images (CC BY 2.0), Wikimedia Commons (freie Lizenzen) und MyFoodRepo (CC BY 4.0); die Gewichtsschätzung ist mit Nutrition5k (CC BY 4.0) kalibriert. Die Liste der Bilder und ihrer Urheber wird mit dem Quellcode veröffentlicht.

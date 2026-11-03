@@ -51,8 +51,8 @@ def main():
     # Other numbers (and an odd crop offset: round-half-even) on a small image.
     small["input"].update({"width": 16, "height": 16, "resize_short_side": 18, "mean": [0.485, 0.456, 0.406], "std": [0.229, 0.224, 0.225]})
     cases = [
-        ("landscape", 400, 300, bundled),  # shrunk: 300 -> 256, crop at x 58.5 -> 58
-        ("portrait", 120, 160, bundled),  # enlarged: 120 -> 256, crop at y 58.5 -> 58
+        ("landscape", 400, 300, bundled),  # v2 (320 / 366): enlarged 300 -> 366, 488 wide, crop at x 84, y 23
+        ("portrait", 120, 160, bundled),  # v2: enlarged 120 -> 366, 488 high, crop at x 23, y 84
         ("small", 38, 23, small),  # 23 -> 18, 29 wide, crop at x 6.5 -> 6
     ]
     out = []

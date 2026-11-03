@@ -556,3 +556,114 @@ food_salsa = Molho pico de gallo
 food_tzatziki = Tzatziki
 food_balsamic_vinegar = Vinagre balsâmico
 food_salt = Sal
+
+# Vegetables
+food_zucchini_raw = Curgete crua
+food_eggplant_raw = Beringela crua
+food_broccoli_raw = Brócolos crus
+food_cabbage_raw = Couve crua
+food_carrot_cooked = Cenoura cozida
+food_bean_sprouts = Rebentos de soja
+food_canned_tomato = Tomate pelado em lata
+food_fennel = Funcho
+
+# Bread, cereals and pasta
+food_breadcrumbs = Pão ralado
+food_corn_starch = Amido de milho (maizena)
+food_puff_pastry = Massa folhada crua
+food_polenta = Polenta
+
+# Legumes
+food_lentils_vegetable = Lentilhas com legumes
+
+# Meat and cold cuts
+food_chicken_raw = Frango em pedaços cru
+food_chicken_leg_raw = Perna de frango crua
+food_rabbit_raw = Coelho cru
+food_beef_raw = Novilho magro cru
+food_beef_stewing_raw = Carne de novilho para estufar crua
+food_minced_beef_15_raw = Carne picada de novilho crua (15% de gordura)
+food_pork_shoulder_raw = Carne de porco magra crua
+food_salted_pork_belly = Toucinho salgado
+food_black_pudding_raw = Morcela crua
+food_back_bacon = Bacon de lombo
+food_tripe = Tripa de vaca cozida
+food_sobrasada = Sobrasada
+food_veal_escalope_raw = Escalope de vitela cru
+
+# Fish and seafood
+food_hake_raw = Pescada crua
+food_squid_raw = Lulas cruas
+food_prawns_raw = Camarão cru
+food_mussels_raw = Miolo de mexilhão cru
+food_anchovy_raw = Biqueirão cru
+food_boiled_octopus = Polvo cozido
+food_breaded_fish = Peixe panado frito
+
+# Eggs
+food_egg_yolk = Gema de ovo
+food_omelette_ham_cheese = Omelete de fiambre e queijo
+food_shakshuka = Shakshuka
+
+# Dairy
+food_condensed_milk = Leite condensado
+
+# Sweets and desserts
+food_churros_with_sugar = Churros com açúcar
+food_ensaimada = Ensaimada
+
+# Drinks
+food_rum = Rum
+food_gin = Gin
+food_vodka = Vodka
+food_coffee_with_whole_milk = Café com leite gordo
+food_coffee_with_skimmed_milk = Café com leite magro
+food_coffee_with_oat_drink = Café com bebida de aveia
+food_coffee_with_soy_drink = Café com bebida de soja
+food_coffee_with_milk_sugar = Café com leite e açúcar
+food_cafe_bombon = Café bombón
+food_espresso_with_sugar = Café com açúcar
+food_carajillo = Carajillo
+food_brandy = Brandy
+food_clara = Panaché
+food_kalimotxo = Kalimotxo
+
+# Dishes
+food_paella_valenciana = Paelha valenciana
+food_paella_seafood = Paelha de marisco
+food_arroz_negro = Arroz negro
+food_fideua = Fideuà
+food_carbonara_italian = Carbonara à italiana (sem natas)
+food_pasta_tomato_chorizo = Macarrão com tomate e chouriço
+food_gnocchi = Gnocchi
+food_onigiri = Onigiri
+food_green_salad_plain = Salada verde sem tempero
+food_ensalada_mixta_plain = Salada mista sem tempero
+food_pumpkin_cream = Creme de abóbora
+food_vichyssoise = Creme de alho-francês e batata (vichyssoise)
+food_mixed_vegetables = Legumes salteados ou cozidos
+food_acai_bowl = Taça de açaí ou smoothie bowl
+
+# Fast food
+food_pizza_margherita = Pizza margherita
+food_pizza_pepperoni = Pizza de pepperoni
+food_pizza_four_cheese = Pizza quatro queijos
+food_pizza_ham = Pizza de fiambre e queijo
+food_pizza_barbecue = Pizza de carne (barbecue)
+food_pizza_vegetable = Pizza vegetariana
+food_cheeseburger = Hambúrguer com queijo
+food_bacon_cheeseburger = Hambúrguer com queijo e bacon
+food_chicken_burger = Hambúrguer de frango
+food_sandwich_vegetal = Sandes de salada
+food_omelette_baguette = Sandes de tortilha
+food_calamari_baguette = Sandes de lulas fritas
+food_pork_loin_baguette = Sandes de lombo de porco
+food_cheese_baguette = Sandes de queijo
+
+# Snacks
+food_samosa = Chamuça
+
+# Sauces and dressings
+food_paprika = Colorau
+food_vinegar = Vinagre
+food_lime_juice = Sumo de lima

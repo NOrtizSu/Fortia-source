@@ -1,10 +1,12 @@
 # Food composition data
 
 The food catalog bundled with the app (`app/src/main/assets/food/foods.tsv`: energy, protein, carbohydrate,
-sugars, fat, saturated fat, fibre and salt per 100 g or 100 ml, with default portions) is built by
-`tools/food-db` (see its README) from the two open food composition tables below. Each row's `source` column
-names the food it comes from (`fdc:<id>` or `ciqual:<code>`); `recipe` rows are computed by us from
-ingredients of those tables (`tools/food-db/recipes.toml`). The English and Spanish food names are ours.
+sugars, fat, saturated fat, fibre and salt, monounsaturated and polyunsaturated fat, cholesterol, potassium, calcium,
+iron, magnesium, zinc and vitamins A, C, D, E, B12 and folate per 100 g or 100 ml, with default portions) and the
+ingredients of its dishes (`app/src/main/assets/food/recipes.tsv`) are built by `tools/food-db` (see its README)
+from the two open food composition tables below. Each row's `source` column names the food it comes from
+(`fdc:<id>` or `ciqual:<code>`); `recipe` rows are computed by us from ingredients of those tables
+(`tools/food-db/recipes.toml`). The English and Spanish food names and the recipes are ours.
 
 ## USDA FoodData Central
 
@@ -28,7 +30,7 @@ ingredients of those tables (`tools/food-db/recipes.toml`). The English and Span
   2025-11-03). https://ciqual.anses.fr/ — dataset doi:10.57745/RDMHWY on recherche.data.gouv.fr.
 - Files used: `alim_2025_11_03.xml`, `compo_2025_11_03.xml`, `const_2025_11_03.xml`.
 
-`tools/food-db/sources_used.tsv` redistributes, under the same licences and attributions, the ~490 USDA and CIQUAL
+`tools/food-db/sources_used.tsv` redistributes, under the same licences and attributions, the ~540 USDA and CIQUAL
 rows the catalog uses (per-100 g values after the changes below), so the catalog can be rebuilt and checked without
 downloading the full tables.
 
@@ -36,10 +38,15 @@ downloading the full tables.
 
 Values are taken as published, then: salt = sodium × 2.5; USDA carbohydrate "by difference" minus dietary fibre
 (available carbohydrate, as on EU labels), never below the sugars; CIQUAL "< x" (below the quantification limit)
-and "traces" as 0; drinks converted to per 100 ml with a density; rounded to 1 decimal (energy to an integer). A few foods borrow a nutrient the main
-source lacks from a second food (`fill=` in `tools/food-db/mapping.txt`). Dishes marked `recipe` combine
-ingredient values by weight and cooking yield. These derived values are ours, not Anses' or USDA's, and are
-estimates: real products and home recipes vary.
+and "traces" as 0; vitamin A as µg RAE, folate as µg DFE and vitamin D in µg, computed from the source's
+components when it lacks the summary value (`tools/food-db/extract.py`); drinks converted to per 100 ml with a
+density; rounded to 1 decimal for grams (energy to an integer; mg and µg to at most 2 decimals). Some foods borrow
+nutrients the main source lacks from a near-identical food of the other table (`fill=` in
+`tools/food-db/mapping.txt`, fatty acids scaled to the food's own fat), take a few clearly wrong values from another
+source (`replace=`), or set to 0 nutrients that a kind of food does not contain, such as cholesterol and vitamin B12
+in plant foods (`zero=`); the reasons are in `tools/food-db/AUDIT.md`. Dishes marked `recipe` combine ingredient
+values by weight and cooking yield; the ingredient lists of other dishes are typical recipes of ours. These derived
+values are ours, not Anses' or USDA's, and are estimates: real products and home recipes vary.
 
 ## Open Food Facts (online, barcodes)
 

@@ -49,7 +49,7 @@ dragon_fruit;Dragon fruit;pitahaya;fruit;1;Pitaya,Pitahaya,Costa Rican pitahaya;
 persimmon;Persimmon;caqui;fruit;1;Persimmon;Persimmon|1;
 lychee;Lychee;lichi;fruit;1;Lychee;Lychees|1;
 passion_fruit;Passion fruit;maracuyá;fruit;1;Passion fruit,Passionfruit;Passionfruits as food|1,Passion fruit|1;
-dates;Dates;dátiles;fruit;1;Date palm;;food
+dates;Dates;dátiles;fruit;1;Date palm;Dates as food|0;food
 raisins;Raisins;pasas;fruit;1;Raisin,Sultana;Raisins|1;
 dried_fruit;Dried fruit;fruta deshidratada;fruit;2;Dried fruit;Dried fruit|1;
 quince_paste;Quince paste;dulce de membrillo;sweets;2;Quince cheese;Quince cheese,Dulce de membrillo;
@@ -68,7 +68,7 @@ onion;Onion;cebolla;vegetables;1;Onion,Red onion,Yellow onion,Shallot;;
 spring_onion;Spring onion;cebolleta;vegetables;1;Scallion,Welsh onion;Scallions|1;
 garlic;Garlic;ajo;vegetables;1;Garlic;Garlics as food|1;
 leek;Leek;puerro;vegetables;1;Leek;;
-potato;Potato;patata;vegetables;1;Potato,Russet burbank potato,Yukon gold potato,Fingerling potato,Creamer potato;;
+potato;Potato (boiled);patata cocida;vegetables;1;Potato,Russet burbank potato,Yukon gold potato,Fingerling potato,Creamer potato;Boiled potatoes|1;
 sweet_potato;Sweet potato;boniato;vegetables;1;Sweet potato,Baked sweet potato;Sweet potatoes|1,Baked sweet potatoes;
 pumpkin;Pumpkin;calabaza;vegetables;1;Pumpkin,Winter squash,Calabaza,Butternut squash;;food
 zucchini;Courgette;calabacín;vegetables;1;Zucchini,Summer squash;;
@@ -85,7 +85,7 @@ radish;Radish;rábano;vegetables;1;Radish;Radishes|1;
 kale;Kale;col rizada (kale);vegetables;1;Kale;;
 celery;Celery;apio;vegetables;1;Celery;Celery as food|1,Celery|0;
 sauerkraut;Sauerkraut;chucrut;vegetables;2;Sauerkraut;Sauerkraut|1;
-grilled_vegetables;Grilled vegetables;verduras a la plancha;dishes;3;;Grilled vegetables|1,Escalivada;
+grilled_vegetables;Grilled vegetables;verduras a la plancha;dishes;3;;;
 olives;Olives;aceitunas;fats_nuts;1;Olive;Olives as food|1;food
 edamame;Edamame;edamame;legumes;1;Edamame;Edamame|0;
 chickpeas;Chickpeas;garbanzos;legumes;1;Chickpea;;
@@ -114,7 +114,7 @@ pasta;Pasta;pasta;grains;3;Pasta,Spaghetti,Penne,Fusilli,Macaroni,Rigatoni,Lingu
 noodles;Noodles (stir-fried);fideos salteados;grains;3;Noodle,Chinese noodles,Chow mein,Lo mein,Fried noodles,Yakisoba,Mie goreng,Hokkien mee,Char kway teow,Singapore-style noodles,Pancit,Bakmi,Yi mein,Rice noodles,Rice vermicelli,Shahe fen,Yaki udon;;
 oatmeal;Porridge;gachas de avena;grains;3;Oatmeal,Steel-cut oats;Oatmeal|1,Porridges|0;
 cereal;Breakfast cereal / muesli;cereales / muesli;grains;2;Breakfast cereal,Corn flakes,Muesli,Granola;;
-couscous;Couscous;cuscús;grains;3;Couscous;Couscous|1;
+couscous;Couscous / bulgur;cuscús / bulgur;grains;3;Couscous,Bulgur;Couscous|1;
 popcorn;Popcorn;palomitas;snacks;2;Popcorn,Kettle corn;;
 crackers;Crackers;galletas saladas;snacks;2;Cracker,Water biscuit;Crackers (food)|1;
 fried_rice;Fried rice;arroz frito;dishes;4;Fried rice,Yeung chow fried rice,Thai fried rice,Nasi goreng;Fried rice|1;
@@ -125,7 +125,7 @@ egg;Eggs;huevos;eggs;1;Egg;;food
 fried_egg;Fried egg;huevo frito;eggs;3;Fried egg;Fried eggs|1;
 boiled_egg;Boiled egg;huevo cocido;eggs;2;Boiled egg;Boiled eggs|1;
 scrambled_eggs;Scrambled eggs;huevos revueltos;eggs;3;Scrambled eggs;Scrambled eggs|1;
-omelette;Omelette;tortilla francesa;eggs;3;Omelette,Indian omelette,Tomato omelette;Omelettes|1;
+omelette;Omelette;tortilla francesa;eggs;3;Omelette,Indian omelette,Tomato omelette,Frittata;Omelettes|1;
 spanish_omelette;Spanish omelette;tortilla de patatas;eggs;5;Tortilla de patatas;Spanish omelette|2;
 poached_egg;Poached egg;huevo poché;eggs;3;Poached egg;Poached eggs|1;
 eggs_benedict;Eggs Benedict;huevos Benedict;dishes;4;Eggs benedict,Eggs sardou;;
@@ -141,10 +141,10 @@ sweet_sour_chicken;Sweet and sour chicken;pollo agridulce;dishes;4;Sweet and sou
 stir_fry;Stir-fry;salteado (wok);dishes;3;Stir frying,Chop suey,Kung pao chicken,Mongolian beef;;
 pork_chop;Pork chop;chuleta de cerdo;meat;3;Pork chop,Pork steak,Pork loin;Pork chops|1;
 ribs;Ribs;costillas;meat;3;Ribs,Spare ribs,Pork ribs,Short ribs;Pork ribs as food|1,Ribs (food)|1;
-sausages;Sausages;salchichas;meat;2;Sausage,Bratwurst,Kielbasa,Breakfast sausage,Italian sausage,Knackwurst,Thuringian sausage,Bockwurst,Frankfurter würstchen,Vienna sausage,Cumberland sausage,Lincolnshire sausage,Weisswurst,Andouille,Boerewors,Debrecener,Loukaniko,Bierwurst;;
+sausages;Sausages;salchichas;meat;2;Sausage,Bratwurst,Kielbasa,Breakfast sausage,Italian sausage,Knackwurst,Thuringian sausage,Bockwurst,Longaniza,Frankfurter würstchen,Vienna sausage,Cumberland sausage,Lincolnshire sausage,Weisswurst,Andouille,Boerewors,Debrecener,Loukaniko,Bierwurst;;
 hot_dog;Hot dog;perrito caliente;fast_food;3;Hot dog,Chili dog,Chicago-style hot dog,Coney island hot dog,Michigan hot dog,Dodger dog;;
 bacon;Bacon;beicon;meat;2;Bacon,Back bacon,Turkey bacon;Bacon|1;
-ham;Cooked ham;jamón cocido;meat;2;Ham,Turkey ham;;
+ham;Cooked ham;jamón cocido;meat;2;Ham,Turkey ham;Cooked ham|0;
 cured_ham;Cured ham;jamón serrano;meat;3;Jamón serrano,Jamón,Prosciutto,Bayonne ham,Tyrolean speck,Crudo,Bresaola;Jamón|1;
 chorizo;Chorizo;chorizo;meat;3;Chorizo,Chistorra;Chorizo|1;
 salami;Salami / salchichón;salchichón / fuet;meat;2;Salami,Salchichón,Fuet,Soppressata,Salumi;Salami|1,Salchichón,Fuet;
@@ -199,13 +199,13 @@ ice_cream;Ice cream;helado;sweets;2;Ice cream,Gelato,Vanilla ice cream,Chocolate
 ice_pop;Ice lolly;polo (helado);sweets;3;Ice pop,Ice cream bar;Ice cream bars|1;
 sorbet;Sorbet / slush;sorbete / granizado;sweets;3;Sorbet,Sherbet,Italian ice,Grattachecca,Slush;;
 nuts;Mixed nuts;frutos secos;fats_nuts;1;Nut (Food),Nuts & seeds;;
-almonds;Almonds;almendras;fats_nuts;1;Almond;;
-walnuts;Walnuts;nueces;fats_nuts;1;Walnut;;
-peanuts;Peanuts;cacahuetes;fats_nuts;1;Peanut;;
-cashews;Cashews;anacardos;fats_nuts;1;Cashew;;
+almonds;Almonds;almendras;fats_nuts;1;Almond;Almonds as food|0;
+walnuts;Walnuts;nueces;fats_nuts;1;Walnut;Walnuts as food|0;
+peanuts;Peanuts;cacahuetes;fats_nuts;1;Peanut;Peanuts as food|0;
+cashews;Cashews;anacardos;fats_nuts;1;Cashew;Cashew nuts|0;
 pistachios;Pistachios;pistachos;fats_nuts;1;Pistachio;;
-hazelnuts;Hazelnuts;avellanas;fats_nuts;1;Hazelnut;;
-chestnuts;Chestnuts;castañas;fats_nuts;1;Chestnut;;food
+hazelnuts;Hazelnuts;avellanas;fats_nuts;1;Hazelnut;Hazelnuts as food|0;
+chestnuts;Chestnuts;castañas;fats_nuts;1;Chestnut;Roasted chestnuts|0;food
 peanut_butter;Peanut butter;crema de cacahuete;fats_nuts;2;Peanut butter,Nut butter,Peanut paste;Peanut butter|1;
 cake;Cake;tarta / pastel;sweets;3;Cake,Birthday cake,Torte,Kuchen,Red velvet cake;;
 chocolate_cake;Chocolate cake;tarta de chocolate;sweets;4;Chocolate cake,Flourless chocolate cake,Sachertorte,Black forest cake,Torta caprese;;
@@ -213,7 +213,7 @@ cheesecake;Cheesecake;tarta de queso;sweets;5;Cheesecake;Cheesecakes|1,Basque ch
 carrot_cake;Carrot cake;tarta de zanahoria;sweets;4;Carrot cake;Carrot cakes|1;
 sponge_cake;Sponge cake;bizcocho;sweets;4;Sponge cake;Sponge cakes|1;
 cupcake;Cupcake;cupcake;sweets;3;Cupcake;;
-muffin;Muffin;magdalena / muffin;sweets;3;Muffin;Magdalenas;
+muffin;Muffin;magdalena / muffin;sweets;3;Muffin,Mantecadas de astorga;Magdalenas;
 donut;Doughnut;dónut / berlina;sweets;3;Doughnut,Cider doughnut,Pączki,Ciambella;Rosquillas|1;
 churros;Churros;churros;sweets;4;Churro;Churros|1;
 cookie;Biscuits / cookies;galletas;sweets;2;Cookie,Chocolate chip cookie,Biscuit,Cookies and crackers,Peanut butter cookie,Oatmeal-raisin cookies,Oatmeal cookie,Snickerdoodle,Sandwich cookie,Oreo,Anzac biscuit,Ginger nut,Biscotti;;
@@ -249,7 +249,7 @@ jelly;Jelly;gelatina;sweets;3;Gelatin dessert;Gelatin desserts|1;
 turron;Turrón;turrón;sweets;4;Turrón;Turrón|1;
 honey;Honey;miel;sweets;2;Honey;;food
 jam;Jam;mermelada;sweets;2;Fruit preserve,Lingonberry jam;Jam|1;
-chocolate_spread;Chocolate spread;crema de cacao;sweets;2;Chocolate spread;;
+chocolate_spread;Chocolate spread;crema de cacao;sweets;2;Chocolate spread;Nutella|0;
 dulce_de_leche;Dulce de leche;dulce de leche;sweets;2;Dulce de leche,Cajeta,Manjar blanco;Dulce de leche|1;
 french_fries;French fries;patatas fritas;fast_food;3;French fries,Potato wedges;;
 potato_chips;Crisps;patatas fritas de bolsa;snacks;2;Potato chip,Chip;;
@@ -366,6 +366,28 @@ potato_pancakes;Potato pancakes / hash browns;tortitas de patata;dishes;3;Potato
 shepherds_pie;Shepherd's pie;pastel de carne y puré;dishes;4;Cottage pie;Shepherd's pie|1,Cottage pie|1;
 fish_soup;Fish soup;sopa de pescado;dishes;4;Bouillabaisse;Fish soup|1;
 soft_drink;Soft drink;refresco;drinks;2;Soft drink,Carbonated soft drinks,Orange soft drink,Lemon-lime,Root beer,Ginger ale;;food
+water;Water;agua;drinks;2;Drinking water,Bottled water,Mineral water;Glasses of water|1;food
+quinoa;Quinoa;quinoa;grains;2;Quinoa;;
+canned_tuna;Tuna (canned);atún en conserva;fish;2;Tuna;Canned tuna|1;food
+ketchup;Ketchup;kétchup;sauces;2;Ketchup;;
+fennel;Fennel;hinojo;vegetables;1;Fennel;Fennel as food|1,Fennel bulbs|1;food
+mixed_vegetables;Mixed cooked vegetables;verduras salteadas / menestra;dishes;3;;Mixed vegetables|1,Menestra|0,Grilled vegetables|1,Escalivada|0;
+rose_wine;Rosé wine;vino rosado;drinks;2;;Rosé wine|1,Glasses of rosé wine|0;
+gnocchi;Gnocchi;ñoquis;grains;3;Gnocchi;Gnocchi|1;
+polenta;Polenta;polenta;grains;3;Polenta;Polenta|1;
+sobrasada;Sobrasada;sobrasada;meat;3;Sobrassada;Sobrassada|1;
+cocido;Cocido (chickpea stew);cocido;dishes;5;Cocido madrileño;Cocido madrileño|1;
+migas;Migas;migas;dishes;5;Migas;Migas|1;
+pimientos_de_padron;Padrón peppers;pimientos de Padrón;vegetables;4;;Pimientos de Padrón|1;
+huevos_rotos;Huevos rotos;huevos rotos;eggs;5;;Huevos estrellados|1;
+salmorejo;Salmorejo;salmorejo;dishes;5;;Salmorejo|1;
+fideua;Fideuà;fideuá;dishes;5;;Fideuà|1;
+ensaimada;Ensaïmada;ensaimada;sweets;4;;Ensaïmada|1;
+endive;Endive;endibia;vegetables;1;Endive;;food
+samosa;Samosa;samosa;snacks;3;Samosa;Samosas|1;
+onigiri;Onigiri;onigiri;dishes;3;Rice ball;Onigiri|1;
+acai_bowl;Açaí / smoothie bowl;bol de açaí;dishes;4;Açaí na tigela;Açaí na tigela|1;
+shakshuka;Shakshuka;shakshuka;eggs;4;;Shakshuka|1;
 """
 
 

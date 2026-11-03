@@ -1,6 +1,6 @@
 # Fortia Privacy Policy
 
-Last updated: 2 November 2026 · Contact: **enjoyyourtime.online@gmail.com** ·
+Last updated: 3 November 2026 · Contact: **enjoyyourtime.online@gmail.com** ·
 Web version (Spanish, with an English summary): [globalfitness-app.web.app/privacy.html#en](https://globalfitness-app.web.app/privacy.html#en)
 
 This is the English version of the privacy policy. If it differs from the Spanish version, the
@@ -35,10 +35,13 @@ For any privacy question, write to **enjoyyourtime.online@gmail.com**.
 - **Food**: what you log that you eat (food, amount, meal, date and time and its nutrient values), the foods
   you create, the products you find by their barcode and your daily goal (with the weight you type if you have
   no measurements yet). If you take a **photo of your plate**, it is downscaled, stored in the app's private
-  storage and **analysed on the phone itself** by our recognition model: **the photo never leaves the phone**
-  (it is not uploaded to the cloud or to any server) and it is deleted when you delete the food. With each food
-  the app keeps what the model proposed and how sure it was, only on your phone (and in your cloud backup if
-  you use it), to improve its suggestions.
+  storage and **analysed on the phone itself** by our recognition models, which find each food on the plate,
+  recognise it and estimate its grams as a suggestion you confirm: **the photo never leaves the phone** (it is
+  not uploaded to the cloud or to any server) and it is deleted when you delete the food. If you log several foods
+  from one photo, each keeps its crop of the photo, which also stays on the phone and is deleted with it. With
+  each food the app keeps what the model proposed, how sure it was and how many grams it estimated, and the
+  ingredients you change in a dish, only on your phone (and in your cloud backup if you use it), to improve its
+  suggestions.
 - **Xiaomi Smart Band**: the band's pairing key is stored only on the phone and **never leaves it**
   (not to the cloud, not to Android backups). The heart rate you record in direct mode (date, time
   and beats per minute) is also stored only on the phone.
@@ -71,7 +74,9 @@ deleted from Health Connect; if you turn the option off, the app stops writing a
 kept. The app does not read its own sessions back.
 
 If you allow it, the app also **writes what you log that you eat to Health Connect** as nutrition records (date
-and time, meal, the food's name, calories, protein, carbohydrates, sugars, fat, saturated fat, fibre and sodium).
+and time, meal, the food's name, calories, protein, carbohydrates, sugars, fat, saturated fat, fibre and sodium
+and, when the food has them, monounsaturated and polyunsaturated fat, cholesterol, potassium, calcium, iron,
+magnesium, zinc, vitamins A, C, D, E and B12 and folate).
 If you edit or delete a food, it is updated or deleted in Health Connect too; if you turn the option off, the app
 stops writing and what was already saved is kept. The app **does not read** nutrition data from Health Connect.
 
@@ -92,7 +97,7 @@ If you sign in with Google (through Firebase Authentication):
   different people is never mixed), your measurements (date, weight, impedance, body composition
   reported by the scale, source and scale model) and your configured scales (model, name and user
   number on the scale), your workouts, your routines and your own machines and exercises with their notes,
-  favourites and photos, and what you log in Food (foods, amounts, values and your own foods), **without
+  favourites and photos, and what you log in Food (foods, amounts, values, the ingredients you change and your own foods), **without
   the photos of your meals**. The band key, the encryption keys, PINs or pairing keys of the scales, the
   Bluetooth addresses, Health Connect data and phone-specific settings are **not** uploaded.
   If you bought "Remove ads", an informational `premium` flag is also stored.

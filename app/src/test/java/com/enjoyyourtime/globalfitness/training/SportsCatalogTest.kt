@@ -96,7 +96,7 @@ class SportsCatalogTest {
     @Test
     fun onlyTheActivitiesThatCoverADistanceLogOne() {
         val withDistance = sports.filter { SportsCatalog.coversDistance(lookup(it.id)) }.map { it.id }.toSet()
-        assertEquals(setOf("outdoor_walk", "hiking", "outdoor_run", "outdoor_cycling", "swimming"), withDistance)
+        assertEquals(setOf("outdoor_walk", "hiking", "nordic_walking", "outdoor_run", "outdoor_cycling", "swimming"), withDistance)
         // The user's own sport may cover one: the field is there, optional.
         assertTrue(SportsCatalog.coversDistance(ownSport()))
     }
@@ -212,6 +212,8 @@ class SportsCatalogTest {
                 "badminton" to EXERCISE_TYPE_BADMINTON,
                 "outdoor_walk" to EXERCISE_TYPE_WALKING,
                 "hiking" to EXERCISE_TYPE_HIKING,
+                "nordic_walking" to EXERCISE_TYPE_WALKING,
+                "stair_climbing" to EXERCISE_TYPE_STAIR_CLIMBING,
                 "outdoor_run" to EXERCISE_TYPE_RUNNING,
                 "outdoor_cycling" to EXERCISE_TYPE_BIKING,
                 "swimming" to EXERCISE_TYPE_SWIMMING_POOL,

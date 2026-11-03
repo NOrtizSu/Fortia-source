@@ -106,6 +106,14 @@ food_endive = Эндивий
 food_sauerkraut = Квашеная капуста
 food_pickles = Маринованные огурцы
 food_seaweed = Морские водоросли
+food_zucchini_raw = Кабачок (сырой)
+food_eggplant_raw = Баклажан (сырой)
+food_broccoli_raw = Брокколи (сырая)
+food_cabbage_raw = Капуста (сырая)
+food_carrot_cooked = Варёная морковь
+food_bean_sprouts = Соевые ростки
+food_canned_tomato = Помидоры в собственном соку
+food_fennel = Фенхель
 food_roasted_peppers = Печёный перец
 
 # Bread, cereals and pasta
@@ -144,6 +152,10 @@ food_muesli = Мюсли
 food_granola = Гранола
 food_wheat_flour = Пшеничная мука
 food_rice_cakes = Рисовые хлебцы
+food_breadcrumbs = Панировочные сухари
+food_corn_starch = Кукурузный крахмал
+food_puff_pastry = Слоёное тесто (сырое)
+food_polenta = Полента
 
 # Legumes
 food_edamame = Эдамаме
@@ -159,6 +171,7 @@ food_tofu = Тофу
 food_lentils_dry = Чечевица (сухая)
 food_chickpeas_dry = Нут (сухой)
 food_white_beans_dry = Белая фасоль (сухая)
+food_lentils_vegetable = Чечевичное рагу без мяса
 
 # Meat and cold cuts
 food_steak = Говяжий стейк
@@ -205,6 +218,19 @@ food_frankfurters = Сосиски
 food_bacon = Бекон
 food_black_pudding = Кровяная колбаса
 food_pork_pate = Паштет
+food_chicken_raw = Курица кусочками (сырая)
+food_chicken_leg_raw = Куриная ножка (сырая)
+food_rabbit_raw = Кролик (сырой)
+food_beef_raw = Говяжий огузок (сырой)
+food_beef_stewing_raw = Говядина для тушения (сырая)
+food_minced_beef_15_raw = Говяжий фарш 15% жира (сырой)
+food_pork_shoulder_raw = Постная свинина (сырая)
+food_salted_pork_belly = Солёная свиная грудинка
+food_black_pudding_raw = Кровяная колбаса (сырая)
+food_back_bacon = Бекон из корейки
+food_tripe = Говяжий рубец (варёный)
+food_sobrasada = Собрасада (мягкая колбаса)
+food_veal_escalope_raw = Телячий эскалоп (сырой)
 
 # Fish and seafood
 food_salmon = Лосось
@@ -237,6 +263,13 @@ food_octopus = Осьминог
 food_surimi = Крабовые палочки
 food_sushi = Суши
 food_sashimi = Сашими
+food_hake_raw = Хек (сырой)
+food_squid_raw = Кальмар (сырой)
+food_prawns_raw = Креветки (сырые)
+food_mussels_raw = Мясо мидий (сырое)
+food_anchovy_raw = Анчоусы (сырые)
+food_boiled_octopus = Варёный осьминог
+food_breaded_fish = Рыба в панировке (жареная)
 
 # Eggs
 food_egg = Яйцо
@@ -248,6 +281,9 @@ food_spanish_omelette = Испанская тортилья
 food_poached_egg = Яйцо пашот
 food_deviled_eggs = Фаршированные яйца
 food_egg_whites = Яичные белки
+food_egg_yolk = Яичный желток
+food_omelette_ham_cheese = Омлет с ветчиной и сыром
+food_shakshuka = Шакшука
 
 # Dairy
 food_milk = Молоко средней жирности
@@ -280,6 +316,7 @@ food_butter = Сливочное масло
 food_whipped_cream = Взбитые сливки
 food_cooking_cream = Кулинарные сливки
 food_whey_protein = Сывороточный протеин
+food_condensed_milk = Сгущённое молоко
 
 # Oils, fats and nuts
 food_olives = Оливки
@@ -368,6 +405,8 @@ food_ice_cream = Мороженое
 food_ice_cream_cone = Мороженое в рожке
 food_ice_pop = Фруктовый лёд
 food_sorbet = Сорбет или гранита
+food_churros_with_sugar = Чуррос с сахаром
+food_ensaimada = Энсаймада (майоркская булочка)
 
 # Drinks
 food_water = Вода
@@ -416,6 +455,20 @@ food_cocktail = Коктейль
 food_mojito = Мохито
 food_gin_tonic = Джин-тоник
 food_rum_and_cola = Ром с колой
+food_rum = Ром
+food_gin = Джин
+food_vodka = Водка
+food_coffee_with_whole_milk = Кофе с цельным молоком
+food_coffee_with_skimmed_milk = Кофе с обезжиренным молоком
+food_coffee_with_oat_drink = Кофе с овсяным молоком
+food_coffee_with_soy_drink = Кофе с соевым молоком
+food_coffee_with_milk_sugar = Кофе с молоком и сахаром
+food_cafe_bombon = Кафе бомбон (эспрессо со сгущёнкой)
+food_espresso_with_sugar = Эспрессо с сахаром
+food_carajillo = Карахильо (кофе с бренди)
+food_brandy = Бренди (коньяк)
+food_clara = Пиво с лимонадом
+food_kalimotxo = Калимочо (вино с колой)
 
 # Dishes
 food_baked_potato = Печёный картофель
@@ -439,6 +492,14 @@ food_noodle_soup = Суп с лапшой
 food_ramen = Рамен
 food_pho = Суп фо
 food_bibimbap = Пибимпап
+food_paella_valenciana = Валенсийская паэлья
+food_paella_seafood = Паэлья с морепродуктами
+food_arroz_negro = Рис с чернилами каракатицы
+food_fideua = Фидеуа (паэлья с лапшой)
+food_carbonara_italian = Карбонара по-итальянски (без сливок)
+food_pasta_tomato_chorizo = Макароны с томатом и чоризо
+food_gnocchi = Ньокки
+food_onigiri = Онигири
 food_eggs_benedict = Яйца Бенедикт
 food_tandoori_chicken = Курица тандури
 food_sweet_sour_chicken = Курица в кисло-сладком соусе
@@ -500,6 +561,12 @@ food_steamed_buns = Баоцзы (булочки на пару)
 food_tempura = Темпура
 food_dolma = Долма
 food_hot_pot = Хого
+food_green_salad_plain = Зелёный салат без заправки
+food_ensalada_mixta_plain = Смешанный салат без заправки
+food_pumpkin_cream = Тыквенный крем-суп
+food_vichyssoise = Крем-суп из лука-порея (вишисуаз)
+food_mixed_vegetables = Овощное рагу или соте
+food_acai_bowl = Асаи-боул или смузи-боул
 
 # Fast food
 food_chicken_nuggets = Куриные наггетсы
@@ -518,6 +585,20 @@ food_quesadilla = Кесадилья
 food_kebab = Шаурма
 food_french_fries = Картофель фри
 food_nachos = Начос с сыром
+food_pizza_margherita = Пицца «Маргарита»
+food_pizza_pepperoni = Пицца «Пепперони»
+food_pizza_four_cheese = Пицца «Четыре сыра»
+food_pizza_ham = Пицца с ветчиной и сыром
+food_pizza_barbecue = Мясная пицца (барбекю)
+food_pizza_vegetable = Овощная пицца
+food_cheeseburger = Чизбургер
+food_bacon_cheeseburger = Чизбургер с беконом
+food_chicken_burger = Бургер с курицей
+food_sandwich_vegetal = Овощной сэндвич
+food_omelette_baguette = Багет с испанской тортильей
+food_calamari_baguette = Багет с жареными кальмарами
+food_pork_loin_baguette = Багет со свиной корейкой
+food_cheese_baguette = Багет с сыром
 
 # Snacks
 food_potato_chips = Чипсы
@@ -537,6 +618,7 @@ food_falafel = Фалафель
 food_onion_rings = Луковые кольца
 food_pakora = Пакора
 food_arancini = Аранчини
+food_samosa = Самоса
 
 # Sauces and dressings
 food_hummus = Хумус
@@ -556,3 +638,6 @@ food_salsa = Сальса или пико-де-гальо
 food_tzatziki = Дзадзики
 food_balsamic_vinegar = Бальзамический уксус
 food_salt = Соль
+food_paprika = Молотая паприка
+food_vinegar = Уксус
+food_lime_juice = Сок лайма

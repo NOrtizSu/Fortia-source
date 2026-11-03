@@ -2,18 +2,23 @@ package com.enjoyyourtime.globalfitness.food.domain
 
 import com.enjoyyourtime.globalfitness.food.model.FoodEntry
 import com.enjoyyourtime.globalfitness.food.model.Meal
+import com.enjoyyourtime.globalfitness.food.model.Nutrient
 import com.enjoyyourtime.globalfitness.food.model.Nutrients
 import com.enjoyyourtime.globalfitness.food.model.Portion
 import java.time.LocalDate
 import java.time.LocalTime
 import kotlin.math.roundToLong
 
-/** One day of the food log: its entries by meal (in [Meal] order, empty meals left out) with totals. */
+/**
+ * One day of the food log: its entries by meal (in [Meal] order, empty meals left out) with totals.
+ * [partial]: nutrients whose day total adds up only some entries (the others have no value for it).
+ */
 data class DayLog(
     val date: LocalDate,
     val meals: Map<Meal, List<FoodEntry>>,
     val mealTotals: Map<Meal, Nutrients>,
     val total: Nutrients,
+    val partial: Set<Nutrient> = emptySet(),
 ) {
     val isEmpty: Boolean get() = meals.isEmpty()
 }
@@ -62,8 +67,12 @@ object FoodMath {
             if (list.isNotEmpty()) byMeal[meal] = list
         }
         val totals = byMeal.mapValues { (_, list) -> Nutrients.sum(list.map { it.nutrients }) }
-        return DayLog(date, byMeal, totals, Nutrients.sum(totals.values))
+        return DayLog(date, byMeal, totals, Nutrients.sum(totals.values), partial(today.map { it.nutrients }))
     }
+
+    /** The nutrients known for some of [items] but not for all: their sum is a lower bound. */
+    fun partial(items: List<Nutrients>): Set<Nutrient> =
+        Nutrient.entries.filterTo(LinkedHashSet()) { n -> items.any { it[n] != null } && items.any { it[n] == null } }
 
     /** Total kcal eaten on each day that has entries. */
     fun kcalByDay(entries: Iterable<FoodEntry>): Map<LocalDate, Double> =

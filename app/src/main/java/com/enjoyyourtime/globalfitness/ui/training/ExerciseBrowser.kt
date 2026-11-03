@@ -64,6 +64,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.compose.dropUnlessResumed
 import com.enjoyyourtime.globalfitness.R
+import com.enjoyyourtime.globalfitness.training.catalog.ExerciseAliases
 import com.enjoyyourtime.globalfitness.training.model.Equipment
 import com.enjoyyourtime.globalfitness.training.model.Exercise
 import com.enjoyyourtime.globalfitness.training.model.Muscle
@@ -87,9 +88,9 @@ private val Exercise.isMine: Boolean get() = !builtIn || photo != null || !notes
 
 /**
  * Every visible (not archived) exercise with its localized name, primary muscles and search text
- * (name, equipment and every muscle, without accents), sorted with the language's collation. A
- * stretch says so first ("Stretching · Hamstrings") and is found by that word. Built off the main
- * thread; null until ready.
+ * (name, equipment, every muscle and a built-in exercise's search words, [ExerciseAliases], without
+ * accents), sorted with the language's collation. A stretch says so first ("Stretching ·
+ * Hamstrings") and is found by that word. Built off the main thread; null until ready.
  */
 @Composable
 private fun rememberBrowseItems(exercises: Map<String, Exercise>): List<BrowseItem>? {
@@ -105,11 +106,12 @@ private fun rememberBrowseItems(exercises: Map<String, Exercise>): List<BrowseIt
                 val primary = ex.primary.sortedBy { it.ordinal }.map { context.getString(it.labelRes) }
                 val secondary = ex.secondary.sortedBy { it.ordinal }.map { context.getString(it.labelRes) }
                 val kind = listOfNotNull(stretching.takeIf { ex.mobility })
+                val aliases = listOfNotNull(ExerciseAliases[ex.id]?.takeIf { ex.builtIn }?.let(context::getString))
                 BrowseItem(
                     exercise = ex,
                     name = name,
                     subtitle = (kind + primary.ifEmpty { listOf(equipment) }).joinToString(" · "),
-                    haystack = TrainingFormat.normalize((listOf(name, equipment) + kind + primary + secondary).joinToString(" ")),
+                    haystack = TrainingFormat.normalize((listOf(name, equipment) + kind + primary + secondary + aliases).joinToString(" ")),
                 )
             }.sortedWith { a, b -> collator.compare(a.name, b.name) }
         }
@@ -341,14 +343,18 @@ fun ExercisePickerScreen(
 /**
  * [list] as rows ([rows] gets a key prefix and a part of it): the sports and activities last, under
  * their own header when other exercises come before them, so they do not mix with the gym A–Z.
+ * Walking, the most common activity, heads them; the rest stay in A–Z order.
  */
 private fun LazyListScope.sportsLast(section: String, list: List<BrowseItem>, rows: LazyListScope.(String, List<BrowseItem>) -> Unit) {
     val (others, sports) = list.partition { it.exercise.equipment != Equipment.SPORT }
     rows(section, others)
     if (sports.isEmpty()) return
     if (others.isNotEmpty()) item(key = "$section-h-sports") { SectionHeader(stringResource(R.string.equipment_sport)) }
-    rows("$section-sports", sports)
+    rows("$section-sports", sports.sortedBy { it.exercise.id != WALKING_ID })
 }
+
+/** The built-in walking activity, listed first among the sports. */
+private const val WALKING_ID = "outdoor_walk"
 
 /** Rows that tick an exercise; keys are prefixed because favourites and recent ones repeat in "all". */
 private fun LazyListScope.pickerRows(

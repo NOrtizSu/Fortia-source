@@ -1,0 +1,79 @@
+# Comida in 1.6.0: more nutrients per food, variants of a dish, changing a dish's ingredients when logging it,
+# several foods in one photo and the photo's grams suggestion. The rest of the food log is in 99_food.txt.
+
+# Units of the new values ("350 mg", "2.4 µg"); the unit alone as a field suffix
+unit_mg = mg
+unit_ug = µg
+value_mg = %1$s mg
+value_ug = %1$s µg
+
+# The values beyond the nutrition label (food tables give them; product labels rarely do)
+foodlog_nutrient_mono_fat = 一価不飽和脂肪酸
+foodlog_nutrient_poly_fat = 多価不飽和脂肪酸
+foodlog_nutrient_cholesterol = コレステロール
+foodlog_nutrient_potassium = カリウム
+foodlog_nutrient_calcium = カルシウム
+foodlog_nutrient_iron = 鉄
+foodlog_nutrient_magnesium = マグネシウム
+foodlog_nutrient_zinc = 亜鉛
+foodlog_nutrient_vit_a = ビタミンA
+foodlog_nutrient_vit_c = ビタミンC
+foodlog_nutrient_vit_d = ビタミンD
+foodlog_nutrient_vit_e = ビタミンE
+foodlog_nutrient_vit_b12 = ビタミンB12
+foodlog_nutrient_folate = 葉酸
+# Small headings of those values (day summary under "More", the food's values, the manual form)
+foodlog_nutrients_fats = 脂質の内訳
+foodlog_nutrients_minerals = ミネラル
+foodlog_nutrients_vitamins = ビタミン
+# A day total that adds up only the foods that have that value ("≥ 45 g"), and the line that explains the sign
+foodlog_partial_value = ≥ %1$s
+foodlog_partial_note = ≥：この値がない食品があるため、合計は最低でもこの値です。
+# The manual form: the optional values beyond the label
+foodlog_more_nutrients = その他の栄養素
+foodlog_more_nutrients_text = 任意：わかる場合のみ入力してください。
+
+# Variants of a dish (paella: seafood, mixed…): a heading and the chip of the usual one (gender-neutral in Spanish)
+foodlog_variants = 種類
+foodlog_variant_typical = 定番
+
+# The ingredients of a dish on the confirm page: closed it says what changed ("Changed: Olive oil 35 g, Bread 0 g")
+foodlog_ingredients = 材料
+foodlog_ingredients_adjust = 調整
+foodlog_ingredients_usual = 定番のレシピ
+foodlog_ingredients_changed = 変更：%1$s
+foodlog_ingredients_text = お皿の中身に合わせて変更できます（油を多め・少なめ、パンなしなど…）。栄養価も再計算されます。
+# An ingredient with its amount ("Olive oil 35 g"); under its name, its usual amount for the amount logged
+foodlog_label_amount = %1$s %2$s
+foodlog_ingredient_usual = 通常は %1$s
+# The pencil button next to an ingredient's amount (TalkBack): type another amount of it
+foodlog_ingredient_type = %1$s の量を入力
+# The weight of the dish once its ingredients changed ("Total: 368 g")
+foodlog_total_weight = 合計：%1$s
+# How much of an ingredient (chips: none, half, normal, one and a half, double); TalkBack reads the _desc ones
+foodlog_level_none = なし
+foodlog_level_half = ½
+foodlog_level_normal = 普通
+foodlog_level_one_half = 1½
+foodlog_level_double = ×2
+foodlog_level_half_desc = 半分
+foodlog_level_one_half_desc = 1.5 倍
+foodlog_level_double_desc = 2 倍
+# A logged dish whose ingredients were changed, in the day's list ("Plate · 368 g · Adjusted")
+foodlog_entry_adjusted = %1$s · 調整済み
+
+# The photo's grams suggestion next to the amount: a suggestion only, the user confirms or changes it
+foodlog_estimated = ≈ %1$s（推定）
+foodlog_estimated_text = 写真からの推定値です。確認して、必要なら変更してください。
+
+# Several foods found on one plate: one card each (its crop, three suggestions, "Other…", its amount), then "Add all (3)"
+foodlog_plate_title{other} = お皿の料理 %1$d 品
+foodlog_plate_text = それぞれ、何の料理か、どれくらいの量かを確認してください。追加しないものはチェックを外します。
+foodlog_plate_item_desc = 写真の料理 %1$d
+foodlog_plate_unknown = これは何ですか？
+foodlog_plate_unknown_text = 認識できませんでした。「その他…」から選んでください。
+foodlog_plate_item_added = 追加済み
+foodlog_plate_add_all = すべて追加（%1$d）
+# The whole photo as one dish (today's five suggestions), and back to the foods one by one (always 2 or more)
+foodlog_plate_as_one = 1 つの料理として見る
+foodlog_plate_as_items{other} = %1$d 品を個別に見る

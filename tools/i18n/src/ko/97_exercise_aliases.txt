@@ -1,0 +1,125 @@
+# Search words of built-in exercises and sports: exa_<catalog id> (training/catalog/ExerciseAliases.kt). Never shown:
+# the exercise search also looks in them, so an exercise is found by the other words people use for it (gym slang,
+# brand names, verbs, the singular or plural). Comma-separated, lower case is fine; translate the idea, not word for word.
+
+# Walking, running and the other activities
+exa_outdoor_walk = 걷기, 걷다, 걸음, 산책, 워킹, 파워워킹, 빠르게 걷기, 속보
+exa_hiking = 등산, 산행, 트레킹, 둘레길, 산길 걷기, 하이킹
+exa_nordic_walking = 노르딕워킹, 노르딕 걷기, 폴워킹, 스틱 워킹, 스틱 걷기
+exa_stair_climbing = 계단, 계단 오르기, 계단 걷기, 계단운동, 층계
+exa_outdoor_run = 달리기, 달리다, 뛰기, 러닝, 런닝, 조깅
+exa_outdoor_cycling = 자전거, 자전거 타기, 라이딩, 사이클, 로드바이크, 산악자전거, mtb
+exa_swimming = 수영, 수영장, 헤엄, 자유형, 평영, 배영
+
+# Cardio machines
+exa_treadmill = 런닝머신, 트레드밀, 달리기, 뛰기, 러닝, 조깅
+exa_treadmill_walk = 걷기, 걷다, 워킹, 트레드밀, 런닝머신, 빠르게 걷기
+exa_incline_treadmill_walk = 인클라인 워킹, 인클라인, 경사, 오르막 걷기, 언덕 걷기, 12-3-30, 트레드밀
+exa_curved_treadmill = 커브드 트레드밀, 무동력 러닝머신, 무동력, 어썰트 러너, 스프린트, 전력 질주
+exa_stationary_bike = 실내자전거, 헬스 자전거, 사이클, 자전거, 고정 자전거, 업라이트 바이크
+exa_spin_bike = 스피닝, 스핀, 인도어 사이클, 실내 사이클, 사이클 클래스, 자전거
+exa_recumbent_bike = 리컴번트, 좌식 자전거, 등받이 자전거, 앉아서 타는 자전거, 자전거
+exa_air_bike = 어썰트 바이크, 어썰트, 팬 바이크, 에코 바이크, 에어바이크
+exa_elliptical = 엘립티컬, 크로스 트레이너, 크로스트레이너, 일립티컬 머신, 타원 운동기구
+exa_rowing_machine = 로잉, 로잉머신, 로워, 조정, 조정 머신, 에르그
+exa_stair_climber = 천국의 계단, 천국의계단, 스텝밀, 스테어마스터, 계단 머신, 계단
+exa_ski_erg = 스키에르그, 스키 머신, 스키, skierg
+
+# Machines and cables
+exa_pec_deck = 펙덱, 버터플라이, 플라이 머신, 머신 플라이, 체스트 플라이
+exa_reverse_pec_deck = 리어 델트, 리어 델트 머신, 리버스 플라이, 후면 삼각근, 후면 어깨
+exa_leg_press_machine = 레그프레스, 45도 레그 프레스, 인클라인 레그 프레스, 레그 슬레드
+exa_hip_abductor_machine = 어브덕션, 아웃타이, 아웃 타이, 허벅지 바깥쪽, 중둔근, 힙 어브덕터
+exa_hip_adductor_machine = 어덕션, 이너타이, 이너 타이, 허벅지 안쪽, 내전근, 힙 어덕터
+exa_iso_lateral_chest_press = 해머 스트렝스, 해머, 아이소 래터럴, 원판 체스트 프레스, 플레이트 로디드
+exa_high_row_machine = 해머 하이 로우, 해머 스트렝스, 해머, 하이로우
+exa_t_bar_row_machine = 티바 로우, 티바, t바, t-bar, 체스트 서포트 로우
+exa_standing_leg_curl_machine = 햄스트링 컬, 레그컬, 스탠딩 레그컬, 한 다리 레그 컬
+exa_lat_pulldown_machine = 랫풀다운, 렛풀다운, 랫풀, 풀다운, 광배
+exa_seated_cable_row = 시티드 로우, 케이블 로우, 롱풀, 롱 풀, 로우 풀리
+exa_cable_crossover = 크로스오버, 크로스 오버, 케이블 크로스, 케이블크로스오버
+exa_face_pull = 페이스풀, 로프 페이스 풀, 후면 삼각근
+exa_reverse_grip_lat_pulldown = 언더그립 랫풀다운, 언더그립, 역그립, 언더핸드 풀다운, 리버스 그립 풀다운
+exa_cable_chest_press = 스탠딩 체스트 프레스, 케이블 프레스, 케이블 가슴 프레스
+exa_cable_reverse_fly = 케이블 리어 델트, 리버스 케이블 플라이, 리버스 크로스오버, 후면 삼각근, 후면 어깨
+exa_cable_y_raise = y 레이즈, y레이즈, 와이 레이즈
+exa_cable_upright_row = 업라이트로우, 케이블 업라이트, 로프 업라이트 로우
+
+# Free weights
+exa_barbell_bench_press = 벤치, 벤치프레스, 플랫 벤치, 바벨 벤치, 가슴 운동
+exa_barbell_back_squat = 스쿼트, 백스쿼트, 바벨스쿼트, 하이바 스쿼트, 로우바 스쿼트
+exa_barbell_deadlift = 컨벤셔널 데드리프트, 컨벤셔널, 데드, 바벨 데드리프트
+exa_barbell_overhead_press = 밀리터리 프레스, ohp, 오버헤드프레스, 바벨 숄더 프레스, 스탠딩 프레스
+exa_skull_crusher = 스컬크러셔, 라잉 트라이셉스 익스텐션, 라잉 익스텐션, 누워서 팔 펴기
+exa_barbell_hip_thrust = 힙쓰러스트, 힙스러스트, 힙 스러스트, 엉덩이 운동
+exa_bulgarian_split_squat = 불가리안, 불스, 불가리안 스쿼트, 불가리안스플릿스쿼트
+exa_kettlebell_swing = 케틀벨스윙, 스윙, kb 스윙, 러시안 스윙
+exa_smith_reverse_lunge = 리버스 런지, 스미스 런지, 뒤로 런지
+exa_landmine_squat = 랜드마인, 랜드마인 고블릿 스쿼트, 랜드마인스쿼트
+exa_overhead_squat = ohs, 오버헤드스쿼트, 오버헤드
+exa_thruster = 쓰러스터, 스러스터, 트러스터, thruster
+exa_push_press = 푸시프레스, 푸쉬 프레스, 푸쉬프레스, 다리 반동 프레스
+exa_power_clean = 클린, 파워클린, 역도, 올림픽 리프팅
+exa_hang_clean = 클린, 행클린, 역도, 올림픽 리프팅
+exa_power_snatch = 스내치, 파워스내치, 인상, 역도, 올림픽 리프팅
+exa_dumbbell_floor_press = 플로어 프레스, 플로어프레스, 바닥 프레스
+exa_incline_dumbbell_fly = 인클라인 플라이, 인클라인플라이, 윗가슴 플라이, 상부 가슴
+exa_walking_lunge = 워킹런지, 걸으며 런지, 런지 걷기
+exa_dumbbell_snatch = db 스내치, 원암 스내치, 한 팔 스내치, 덤벨스내치
+exa_kettlebell_high_pull = 스모 하이 풀, 하이풀, 케틀벨 하이풀
+
+# Bodyweight and calisthenics
+exa_push_up = 팔굽혀펴기, 푸쉬업, 엎드려 팔굽혀펴기, pushup
+exa_pull_up = 턱걸이, 철봉, 풀 업, pullup
+exa_parallel_bar_dip = 딥스, 딥, 평행봉, dips
+exa_burpee = 버피 테스트, 버피테스트, 스쿼트 쓰러스트
+exa_mountain_climber = 마운틴클라이머, 클라이머, 마운틴
+exa_plank = 엘보 플랭크, 프론트 플랭크, 전완 플랭크, 플랑크
+exa_farmers_carry = 파머스 캐리, 파머스워크, 파머 워크, 농부 걷기
+exa_archer_push_up = 아처, 아처 푸쉬업, 궁수 팔굽혀펴기
+exa_ring_dip = 링, 링딥스, 체조 링
+exa_neutral_grip_pull_up = 해머 그립 풀업, 패러럴 그립, 뉴트럴 그립 턱걸이, 중립 그립
+exa_suspension_row = trx, 서스펜션 로우, 링 로우, 서스펜션 트레이너
+exa_sissy_squat = 시시, 씨씨 스쿼트, 시시스쿼트
+exa_toes_to_bar = t2b, 토투바, 토즈투바, toes to bar
+exa_ghd_sit_up = ghd, 글루트 햄 디벨로퍼, ghd 윗몸 일으키기
+
+# Conditioning and HIIT
+exa_jump_rope = 2단 뛰기, 이단뛰기, 쌩쌩이, 더블 언더, 점프 로프, 스킵 로프
+exa_jumping_jack = 팔벌려뛰기, 팔 벌려 뛰기, 점핑잭, 스타 점프
+exa_high_knees = 제자리 뛰기, 제자리 달리기, 무릎 높이 들기, 하이니, 니 드라이브
+exa_butt_kicks = 벗킥, 엉덩이 차기, 뒤꿈치 차기, 힐 킥
+exa_box_jump = 박스점프, 플라이오 박스, 플라이오메트릭, 상자 점프
+exa_tuck_jump = 턱점프, 니 턱, 무릎 당겨 점프, 무릎 점프
+exa_skater_jump = 스케이터, 스케이터즈, 래터럴 바운드, 옆으로 점프
+exa_bear_crawl = 베어크롤, 곰 걷기, 곰걸음, 크롤링
+exa_shadow_boxing = 섀도 복싱, 섀도복싱, 쉐도우복싱, 펀치, 잽
+exa_step_aerobics = 스텝, 스텝박스, 에어로빅, 스텝 클래스
+exa_battle_ropes = 배틀로프, 로프, 로프 웨이브, 밧줄 운동
+exa_sled_push = 슬레드, 썰매 밀기, 프라울러, 썰매
+exa_sled_drag = 슬레드, 썰매 끌기, 슬레드 풀, 뒤로 끌기, 썰매
+exa_wall_ball = 월볼, 월볼샷, 메디신볼, 벽에 공 던지기
+exa_medicine_ball_slam = 슬램볼, 슬램 볼, 볼 슬램, 메디신볼, 공 내려찍기
+exa_medicine_ball_rotational_throw = 사이드 스로, 로테이셔널 스로, 옆으로 던지기, 메디신볼
+exa_sandbag_carry = 샌드백, 모래주머니, 베어허그, 샌드백 들고 걷기
+
+# Stretching, mobility and foam rolling
+exa_ankle_dorsiflexion_mobilization = 발목 가동성, 발목 모빌리티, 배측굴곡, 무릎 벽 대기, 발목 스트레칭
+exa_hip_90_90 = 90 90, 9090, 고관절 가동성, 힙 모빌리티, 고관절 스트레칭
+exa_deep_squat_hold = 아시안 스쿼트, 쪼그려 앉기, 쪼그려앉기, 스쿼트 홀드, 깊은 스쿼트
+exa_hip_cars = 힙 서클, 고관절 돌리기, 고관절 회전, cars, 관절 가동
+exa_shoulder_cars = 어깨 돌리기, 팔 돌리기, 숄더 서클, 어깨 회전, cars
+exa_thread_the_needle = 바늘 꿰기, 실 꿰기, 흉추 회전, 흉추 로테이션
+exa_cobra_stretch = 코브라, 코브라 자세, 업독, 업워드 독, 엎드려 상체 들기
+exa_downward_dog = 다운워드 독, 견상 자세, 아래를 향한 개, 요가, 역v자 자세
+exa_standing_quad_stretch = 허벅지 앞 스트레칭, 대퇴사두 스트레칭, 쿼드 스트레칭, 앞허벅지
+exa_lying_spinal_twist = 척추 트위스트, 누워서 트위스트, 허리 비틀기, 스파이널 트위스트
+exa_figure_four_stretch = 4자 스트레칭, 숫자 4 스트레칭, 이상근, 이상근 스트레칭, 피겨 포
+exa_wrist_mobility = 손목 스트레칭, 손목 풀기, 손목 워밍업, 손목 가동성
+exa_foam_roll_quads = 폼롤링, 폼 롤러, 롤러, 근막이완, 근막 이완, 셀프 마사지, smr
+exa_foam_roll_hamstrings = 폼롤링, 폼 롤러, 롤러, 근막이완, 근막 이완, 셀프 마사지, smr
+exa_foam_roll_calves = 폼롤링, 폼 롤러, 롤러, 근막이완, 근막 이완, 셀프 마사지, smr
+exa_foam_roll_glutes = 폼롤링, 폼 롤러, 롤러, 근막이완, 셀프 마사지, smr, 이상근, 엉덩이
+exa_foam_roll_it_band = 폼롤링, 폼 롤러, 롤러, 근막이완, 셀프 마사지, smr, itb, 허벅지 바깥
+exa_foam_roll_upper_back = 폼롤링, 폼 롤러, 롤러, 근막이완, 셀프 마사지, smr, 흉추, 등 위쪽
+exa_foam_roll_lats = 폼롤링, 폼 롤러, 롤러, 근막이완, 근막 이완, 셀프 마사지, smr

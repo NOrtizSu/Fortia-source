@@ -143,7 +143,7 @@ internal fun landminePress() = Motion.rep(Tempo.liftFirst(), Camera(26f)) { p ->
 }
 
 /** A barbell anchored in a landmine at [pivot] on the floor, its free end (with a plate) in the hands at [end]. */
-private fun FrameBuilder.landmine(pivot: V3, end: V3) {
+internal fun FrameBuilder.landmine(pivot: V3, end: V3) {
     val along = (end - pivot).unit()
     add(Rod(pivot, end + along * 0.06f, Kit.BAR_RADIUS * 1.3f, fit = false))
     add(Disc(end - along * 0.16f, along, 0.17f, 0.045f, Ink.PLATE, hub = 0.03f))

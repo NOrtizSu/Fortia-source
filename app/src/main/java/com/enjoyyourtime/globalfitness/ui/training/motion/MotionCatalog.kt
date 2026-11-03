@@ -13,7 +13,11 @@ import com.enjoyyourtime.globalfitness.training.model.Muscle
  * "other" equipment) get none. Motions are built on first use and kept.
  */
 internal object MotionCatalog {
-    /** The original catalog's exercises; the sports and the larger gym catalog have their own maps. */
+    /**
+     * The original catalog's exercises; the sports, the larger gym catalog and the 1.6 additions
+     * (conditioning, functional lifts, mobility, foam rolling, treadmill walks: [moreMotions]) have
+     * their own maps.
+     */
     private val base: Map<String, () -> Motion> = mapOf(
         // Selectorized and plate-loaded machines
         "machine_chest_press" to { machineChestPress(incline = false) },
@@ -171,7 +175,7 @@ internal object MotionCatalog {
         "ski_erg" to { skiErg() },
     )
 
-    private val builtIn: Map<String, () -> Motion> = base + sportsMotions + gymMotions
+    private val builtIn: Map<String, () -> Motion> = base + sportsMotions + gymMotions + moreMotions
 
     /**
      * The built-in exercise whose animation a custom one borrows, by main muscle and equipment; a

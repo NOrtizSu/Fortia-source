@@ -70,7 +70,10 @@ class MobilityTest {
 
     @Test
     fun theCatalogFlagReachesTheExercisesAndOnlyBuiltInsHaveIt() {
-        assertTrue(stretches.size in 10..25)
+        assertTrue("${stretches.size} stretches", stretches.size in 30..45)
+        assertTrue(lookup("foam_roll_quads").mobility)
+        assertTrue(lookup("downward_dog").mobility)
+        assertFalse(lookup("jump_rope").mobility)
         assertTrue(lookup("hamstring_stretch").mobility)
         assertFalse(lookup("plank").mobility)
         val own = CustomExercise("u:1", "Stretch", ExerciseKind.DURATION, Equipment.BODYWEIGHT, setOf(Muscle.HAMSTRINGS), emptySet(), false, 0, 0)

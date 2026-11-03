@@ -14,7 +14,8 @@ import com.enjoyyourtime.globalfitness.training.model.Exercise
  * tell them apart (the dumbbell of the Entreno tab is not reused). Material Symbols (Apache-2.0)
  * where one fits: "exercise" (dumbbell), "weight" (kettlebell), "accessibility_new", "ecg_heart",
  * "category", "directions_run", "directions_bike", "nordic_walking", "rowing" and "sports_soccer",
- * filled, scaled to the 24-unit grid. Barbell, machine, cable, Smith machine, band and stairs are
+ * filled, scaled to the 24-unit grid; "directions_walk" from Material Icons (also Apache-2.0, already
+ * on the 24-unit grid). Barbell, machine, cable, Smith machine, band and stairs are
  * drawn for the app in the same style: filled shapes, 2-unit bars, slightly rounded corners. The
  * icons-extended artifact is not used.
  */
@@ -98,6 +99,9 @@ object ExerciseIcons {
             "M5.5,20.5l-1.5,-1.5 4.5,-4.5 2.5,2.5h-2L5.5,20.5Zm9.5,-15.5q-0.825,0 -1.413,-0.588T13,3q0,-0.825 " +
             "0.588,-1.413T15,1q0.825,0 1.413,0.588T17,3q0,0.825 -0.588,1.413T15,5Z",
         "Stairs" to "M3,21H21V3.5h-4.5v4.375h-4.5v4.375h-4.5v4.375H3Z",
+        "Walk" to "M13.5,5.5c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM9.8,8.9L7,23h2.1l1.8,-8 2.1,2v6h2v-7.5" +
+            "l-2.1,-2 0.6,-3C14.8,12 16.8,13 19,13v-2c-1.9,0 -3.5,-1 -4.3,-2.4l-1,-1.6c-0.4,-0.6 -1,-1 -1.7,-1 -0.3,0 " +
+            "-0.5,0.1 -0.8,0.1L6,8.3V13h2V9.6l1.8,-0.7",
         "Sport" to "M12,2C6.48,2 2,6.48 2,12s4.48,10 10,10 10,-4.48 10,-10S17.52,2 12,2ZM13,5.3l1.35,-0.95c1.82,0.56 " +
             "3.37,1.76 4.38,3.34l-0.39,1.34 -1.35,0.46L13,6.7V5.3ZM9.65,4.35L11,5.3v1.4L7.01,9.49l-1.35,-0.46 -0.39,-1.34" +
             "c1.01,-1.57 2.56,-2.77 4.38,-3.34ZM7.08,17.11l-1.14,0.1C4.73,15.81 4,13.99 4,12c0,-0.12 0.01,-0.23 0.02,-0.35" +
@@ -151,6 +155,9 @@ object ExerciseIcons {
     val Elliptical: ImageVector by lazy { icon("Elliptical", autoMirror = true) }
     val Rowing: ImageVector by lazy { icon("Rowing", autoMirror = true) }
     val Stairs: ImageVector by lazy { icon("Stairs", autoMirror = true) }
+
+    /** A walking figure (Material Icons "directions_walk"): walking on a treadmill. */
+    val Walk: ImageVector by lazy { icon("Walk", autoMirror = true) }
 }
 
 /** The equipment's glyph; every equipment has its own. */
@@ -171,11 +178,13 @@ val Equipment.icon: ImageVector
 
 /**
  * The glyph of an exercise without muscles: a cardio machine's activity from its Health Connect
- * session type (treadmill, bikes, elliptical, rower, stair climber), else its equipment's glyph.
+ * session type (treadmill, treadmill walk, bikes, elliptical, rower, stair climber), else its
+ * equipment's glyph.
  */
 val Exercise.activityIcon: ImageVector
     get() = when (hcSession) {
         ExerciseSessionRecord.EXERCISE_TYPE_RUNNING_TREADMILL, ExerciseSessionRecord.EXERCISE_TYPE_RUNNING -> ExerciseIcons.Run
+        ExerciseSessionRecord.EXERCISE_TYPE_WALKING -> ExerciseIcons.Walk
         ExerciseSessionRecord.EXERCISE_TYPE_BIKING_STATIONARY, ExerciseSessionRecord.EXERCISE_TYPE_BIKING -> ExerciseIcons.Bike
         ExerciseSessionRecord.EXERCISE_TYPE_ELLIPTICAL -> ExerciseIcons.Elliptical
         ExerciseSessionRecord.EXERCISE_TYPE_ROWING_MACHINE, ExerciseSessionRecord.EXERCISE_TYPE_ROWING -> ExerciseIcons.Rowing

@@ -1,0 +1,125 @@
+# Search words of built-in exercises and sports: exa_<catalog id> (training/catalog/ExerciseAliases.kt). Never shown:
+# the exercise search also looks in them, so an exercise is found by the other words people use for it (gym slang,
+# brand names, verbs, the singular or plural). Comma-separated, lower case is fine; translate the idea, not word for word.
+
+# Walking, running and the other activities
+exa_outdoor_walk = caminhar, caminhada, andar, andar a pé, passeio, passear, caminhada rápida, walking
+exa_hiking = trilha, trilhas, trekking, caminhada na montanha, montanhismo, hiking
+exa_nordic_walking = nordic walking, bastões, caminhada com bastões, marcha nórdica
+exa_stair_climbing = escada, escadas, degraus, subir degraus, subida de escada
+exa_outdoor_run = correr, corrida, cooper, trote, trotar, running, jogging
+exa_outdoor_cycling = bike, bicicleta, pedalar, pedal, ciclismo, mtb, mountain bike, speed
+exa_swimming = nadar, nado, piscina, crawl, braçadas
+
+# Cardio machines
+exa_treadmill = correr, corrida, trote, trotar, running
+exa_treadmill_walk = caminhar, caminhada, andar, andar na esteira
+exa_incline_treadmill_walk = subida, rampa, caminhada inclinada, inclinação, 12-3-30
+exa_curved_treadmill = esteira manual, esteira sem motor, assault runner, tiro, sprint, correr
+exa_stationary_bike = bike, bicicleta, pedalar, ergométrica, bike ergométrica
+exa_spin_bike = spinning, bike indoor, ciclismo indoor, aula de bike, bike
+exa_recumbent_bike = bike, bike horizontal, bicicleta reclinada, bicicleta sentada
+exa_air_bike = assault bike, fan bike, echo bike, bike de ar
+exa_elliptical = transport, elíptica, cross trainer, simulador de caminhada
+exa_rowing_machine = remo, remar, remo indoor, remoergômetro, rower
+exa_stair_climber = escada, escadas, stairmaster, stepmill, stepper
+exa_ski_erg = skierg, esqui, ski
+
+# Machines and cables
+exa_pec_deck = peck deck, peitoral, crucifixo na máquina, butterfly, fly
+exa_reverse_pec_deck = crucifixo inverso, peck deck inverso, deltoide posterior, posterior de ombro
+exa_leg_press_machine = leg 45, leg press 45, legpress, prensa
+exa_hip_abductor_machine = abdutora, abdução, glúteo médio, parte de fora da coxa
+exa_hip_adductor_machine = adutora, adução, parte interna da coxa
+exa_iso_lateral_chest_press = hammer, supino articulado, supino hammer, máquina de anilhas
+exa_high_row_machine = hammer, remada hammer, remada articulada, high row
+exa_t_bar_row_machine = cavalinho, remada t, t-bar, remada cavalinho na máquina
+exa_standing_leg_curl_machine = flexora, flexora unilateral, posterior de coxa em pé, leg curl
+exa_lat_pulldown_machine = pulley, pulley frente, puxada, puxada frente, pulldown
+exa_seated_cable_row = remada sentada, remada no cabo, remada com triângulo, low row
+exa_cable_crossover = cross over, cross, crucifixo no cross, crucifixo na polia
+exa_face_pull = puxada para o rosto, puxada na corda, posterior de ombro
+exa_reverse_grip_lat_pulldown = puxada supinada, pulley supinado, puxada pegada invertida, pulldown supinado
+exa_cable_chest_press = supino no cabo, supino no cross, supino em pé
+exa_cable_reverse_fly = crucifixo inverso no cross, crucifixo inverso no cabo, deltoide posterior, posterior de ombro
+exa_cable_y_raise = elevação y, elevação em y, y raise
+exa_cable_upright_row = remada alta no cabo, remada alta no cross, upright row
+
+# Free weights
+exa_barbell_bench_press = supino, supino reto, supino com barra, peito, bench press
+exa_barbell_back_squat = agachamento, agachamento livre, agacho, squat
+exa_barbell_deadlift = terra, levantamento terra convencional, deadlift
+exa_barbell_overhead_press = desenvolvimento, desenvolvimento com barra, militar, ombro, ohp
+exa_skull_crusher = testa, tríceps testa com barra, extensão de tríceps deitado, francês deitado
+exa_barbell_hip_thrust = hip thrust, elevação de quadril, glúteo
+exa_bulgarian_split_squat = búlgaro, afundo búlgaro, split squat, agachamento com pé no banco
+exa_kettlebell_swing = swing, kb swing, kettlebell
+exa_smith_reverse_lunge = afundo para trás, avanço para trás, recuo, avanço reverso
+exa_landmine_squat = agachamento com barra no canto, landmine goblet, agachamento mina
+exa_overhead_squat = ohs, overhead, agachamento com barra acima da cabeça
+exa_thruster = thrusters, thruster
+exa_push_press = desenvolvimento com impulso, impulso das pernas, push press
+exa_power_clean = clean, levantamento olímpico, lpo, crossfit
+exa_hang_clean = clean, clean suspenso, levantamento olímpico, lpo
+exa_power_snatch = snatch, arranco, arranque, levantamento olímpico, lpo
+exa_dumbbell_floor_press = floor press, supino no chão
+exa_incline_dumbbell_fly = crucifixo inclinado, voador inclinado, crucifixo no banco inclinado
+exa_walking_lunge = passadas, avanço caminhando, afundo caminhando, walking lunge
+exa_dumbbell_snatch = snatch com halter, arranco unilateral, db snatch
+exa_kettlebell_high_pull = high pull, puxada alta sumô, sumo high pull
+
+# Bodyweight and calisthenics
+exa_push_up = flexão, flexões, apoio, push up, pushup
+exa_pull_up = barra, barra pronada, pull up, pullup
+exa_parallel_bar_dip = paralelas, paralela, dips, tríceps na paralela
+exa_burpee = burpees, burpi
+exa_mountain_climber = mountain climber, alpinista, climbers
+exa_plank = prancha frontal, prancha abdominal, isometria, plank
+exa_farmers_carry = farmer walk, farmer's walk, caminhada com halteres, carregamento
+exa_archer_push_up = flexão arqueiro, archer, flexão unilateral
+exa_ring_dip = argolas, argola, dips nas argolas, ring dip
+exa_neutral_grip_pull_up = barra neutra, pegada neutra, pegada paralela
+exa_suspension_row = trx, remada trx, remada nas argolas, remada suspensa
+exa_sissy_squat = sissy, sissy squat
+exa_toes_to_bar = t2b, toes to bar, pés na barra
+exa_ghd_sit_up = ghd, abdominal ghd, glute ham developer
+
+# Conditioning and HIIT
+exa_jump_rope = corda, pular corda, double under, du
+exa_jumping_jack = polichinelo, polichinelos, jumping jack
+exa_high_knees = skipping, joelho alto, corrida no lugar, high knees
+exa_butt_kicks = anfersen, calcanhar no bumbum, chute no glúteo, skipping posterior
+exa_box_jump = caixa, salto na caixa, pliometria, pliométrico, box jump
+exa_tuck_jump = salto grupado, joelhos no peito, tuck jump
+exa_skater_jump = patinador, salto lateral, skater
+exa_bear_crawl = urso, engatinhar, bear crawl
+exa_shadow_boxing = boxe, sombra, socos, golpes, shadow
+exa_step_aerobics = step, aula de step, aeróbico
+exa_battle_ropes = corda naval, cordas, ondas, battle rope
+exa_sled_push = trenó, prowler, empurrar trenó
+exa_sled_drag = trenó, arrastar trenó, puxar trenó, sled pull
+exa_wall_ball = wall balls, bola medicinal, medicine ball, arremesso na parede
+exa_medicine_ball_slam = slam ball, ball slam, bola no chão, bola medicinal, medicine ball
+exa_medicine_ball_rotational_throw = arremesso lateral, arremesso rotacional, bola medicinal, medicine ball
+exa_sandbag_carry = sandbag, saco de areia, carregamento
+
+# Stretching, mobility and foam rolling
+exa_ankle_dorsiflexion_mobilization = mobilidade de tornozelo, dorsiflexão, tornozelo
+exa_hip_90_90 = 90 90, 90/90, mobilidade de quadril
+exa_deep_squat_hold = agachamento profundo, cócoras, de cócoras, agachamento asiático
+exa_hip_cars = cars, círculos de quadril, rotação de quadril, mobilidade de quadril
+exa_shoulder_cars = cars, círculos de ombro, círculos de braço, rotação de ombro
+exa_thread_the_needle = rotação torácica, agulha, thread the needle
+exa_cobra_stretch = cobra, cachorro olhando para cima, ioga, yoga
+exa_downward_dog = cachorro, down dog, ioga, yoga
+exa_standing_quad_stretch = alongamento de coxa, alongamento de quadríceps, quadríceps em pé
+exa_lying_spinal_twist = torção, torção de coluna, rotação de coluna, alongamento de coluna
+exa_figure_four_stretch = figura 4, piriforme, alongamento do piriforme
+exa_wrist_mobility = alongamento de punho, aquecimento de punho, mobilidade de pulso, pulso
+exa_foam_roll_quads = foam roller, rolo, rolinho, liberação miofascial, automassagem
+exa_foam_roll_hamstrings = foam roller, rolo, rolinho, liberação miofascial, automassagem
+exa_foam_roll_calves = foam roller, rolo, rolinho, liberação miofascial, automassagem
+exa_foam_roll_glutes = foam roller, rolo, rolinho, liberação miofascial, automassagem, piriforme
+exa_foam_roll_it_band = foam roller, rolo, rolinho, liberação miofascial, automassagem, trato iliotibial, itb
+exa_foam_roll_upper_back = foam roller, rolo, rolinho, liberação miofascial, automassagem, torácica, costas
+exa_foam_roll_lats = foam roller, rolo, rolinho, liberação miofascial, automassagem

@@ -195,7 +195,7 @@ foodlog_today_open = Otwórz Jedzenie
 
 hc_type_nutrition = Odżywianie
 hc_meals_export_title = Zapisuj posiłki w Health Connect
-hc_meals_export_text = Każdy produkt z dziennika jest zapisywany jako dane o odżywianiu (kalorie, białko, węglowodany, cukry, tłuszcz, tłuszcze nasycone, błonnik i sód) przypisane do posiłku. Jeśli go edytujesz lub usuniesz, Health Connect też zostanie zaktualizowany.
+hc_meals_export_text = Każdy produkt z dziennika jest zapisywany jako dane o odżywianiu przypisane do posiłku: kalorie, białko, węglowodany, cukry, tłuszcz, tłuszcze nasycone, błonnik i sód, a także cholesterol, tłuszcze jedno- i wielonienasycone, składniki mineralne i witaminy, jeśli produkt ma te dane. Jeśli go edytujesz lub usuniesz, Health Connect też zostanie zaktualizowany.
 hc_meals_export_missing_permission = Zezwól aplikacji Fortia na zapis danych o odżywianiu w Health Connect, aby zapisywać tam swoje posiłki.
 hc_meals_export_denied = Jeśli nie otworzy się okno uprawnień, zezwól aplikacji Fortia na „Odżywianie” w Health Connect.
 hc_meals_export_off = Nowe posiłki nie są zapisywane. Te, które już są w Health Connect, pozostają tam.
@@ -214,4 +214,4 @@ notice_usda = Wartości odżywcze z listy produktów: U.S. Department of Agricul
 notice_ciqual = Wartości odżywcze z listy produktów: Anses, francuska tabela składu żywności Ciqual, na licencji Licence Ouverte / Etalab 2.0.
 notice_food_model_name = Model rozpoznawania jedzenia Fortia
 notice_food_model_license = Nasz własny model (zob. kartę modelu)
-notice_food_model = Nasz własny model, wytrenowany na zdjęciach z Open Images (CC BY 2.0) i Wikimedia Commons (wolne licencje); lista zdjęć i ich autorów jest publikowana razem z kodem źródłowym.
+notice_food_model = Nasze własne modele, oparte na MobileNetV4 (timm, Apache-2.0) i Ultralytics YOLO11n (AGPL-3.0) i wytrenowane na zdjęciach z Open Images (CC BY 2.0), Wikimedia Commons (wolne licencje) i MyFoodRepo (CC BY 4.0); szacowanie wagi jest skalibrowane na Nutrition5k (CC BY 4.0). Lista zdjęć i ich autorów jest publikowana razem z kodem źródłowym.

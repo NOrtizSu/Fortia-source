@@ -107,6 +107,14 @@ food_endive = Endive
 food_sauerkraut = Asinan kubis
 food_pickles = Acar timun
 food_seaweed = Rumput laut
+food_zucchini_raw = Zukini mentah
+food_eggplant_raw = Terong mentah
+food_broccoli_raw = Brokoli mentah
+food_cabbage_raw = Kubis mentah
+food_carrot_cooked = Wortel rebus
+food_bean_sprouts = Tauge
+food_canned_tomato = Tomat kaleng
+food_fennel = Adas (fennel)
 food_roasted_peppers = Paprika panggang
 
 # Bread, cereals and pasta
@@ -145,6 +153,10 @@ food_muesli = Muesli
 food_granola = Granola
 food_wheat_flour = Tepung terigu
 food_rice_cakes = Rice cake
+food_breadcrumbs = Tepung roti
+food_corn_starch = Tepung maizena
+food_puff_pastry = Puff pastry mentah
+food_polenta = Polenta
 
 # Legumes
 food_edamame = Edamame
@@ -160,6 +172,7 @@ food_tofu = Tahu
 food_lentils_dry = Lentil kering
 food_chickpeas_dry = Kacang arab kering
 food_white_beans_dry = Kacang putih kering
+food_lentils_vegetable = Semur lentil tanpa daging
 
 # Meat and cold cuts
 food_steak = Steak sapi
@@ -206,6 +219,19 @@ food_frankfurters = Sosis frankfurter
 food_bacon = Bacon
 food_black_pudding = Sosis darah
 food_pork_pate = Pate
+food_chicken_raw = Potongan ayam mentah
+food_chicken_leg_raw = Paha ayam mentah
+food_rabbit_raw = Daging kelinci mentah
+food_beef_raw = Daging sapi gandik mentah
+food_beef_stewing_raw = Daging sapi untuk semur, mentah
+food_minced_beef_15_raw = Daging sapi giling mentah (lemak 15%)
+food_pork_shoulder_raw = Daging babi tanpa lemak mentah
+food_salted_pork_belly = Samcan babi asin
+food_black_pudding_raw = Sosis darah mentah
+food_back_bacon = Back bacon
+food_tripe = Babat sapi rebus
+food_sobrasada = Sobrasada (sosis oles)
+food_veal_escalope_raw = Irisan daging sapi muda mentah
 
 # Fish and seafood
 food_salmon = Salmon
@@ -238,6 +264,13 @@ food_octopus = Gurita
 food_surimi = Crab stick
 food_sushi = Sushi
 food_sashimi = Sashimi
+food_hake_raw = Ikan hake mentah
+food_squid_raw = Cumi mentah
+food_prawns_raw = Udang mentah
+food_mussels_raw = Daging kerang hijau mentah
+food_anchovy_raw = Ikan teri mentah
+food_boiled_octopus = Gurita rebus
+food_breaded_fish = Ikan goreng tepung roti
 
 # Eggs
 food_egg = Telur
@@ -249,6 +282,9 @@ food_spanish_omelette = Omelet kentang Spanyol
 food_poached_egg = Telur poach
 food_deviled_eggs = Telur isi
 food_egg_whites = Putih telur
+food_egg_yolk = Kuning telur
+food_omelette_ham_cheese = Telur dadar ham dan keju
+food_shakshuka = Shakshuka
 
 # Dairy
 food_milk = Susu rendah lemak
@@ -281,6 +317,7 @@ food_butter = Mentega
 food_whipped_cream = Krim kocok
 food_cooking_cream = Krim masak
 food_whey_protein = Bubuk whey protein
+food_condensed_milk = Susu kental manis
 
 # Oils, fats and nuts
 food_olives = Zaitun
@@ -369,6 +406,8 @@ food_ice_cream = Es krim
 food_ice_cream_cone = Es krim cone
 food_ice_pop = Es loli
 food_sorbet = Sorbet atau es serut
+food_churros_with_sugar = Churros bertabur gula
+food_ensaimada = Ensaimada (roti manis spiral)
 
 # Drinks
 food_water = Air putih
@@ -417,6 +456,20 @@ food_cocktail = Koktail
 food_mojito = Mojito
 food_gin_tonic = Gin tonic
 food_rum_and_cola = Rum cola
+food_rum = Rum
+food_gin = Gin
+food_vodka = Vodka
+food_coffee_with_whole_milk = Kopi susu full cream tanpa gula
+food_coffee_with_skimmed_milk = Kopi susu skim tanpa gula
+food_coffee_with_oat_drink = Kopi susu oat tanpa gula
+food_coffee_with_soy_drink = Kopi susu kedelai tanpa gula
+food_coffee_with_milk_sugar = Kopi susu dengan gula
+food_cafe_bombon = Café bombón (kopi susu kental manis)
+food_espresso_with_sugar = Espresso dengan gula
+food_carajillo = Carajillo (kopi dan brendi)
+food_brandy = Brandy
+food_clara = Shandy (bir dan limun)
+food_kalimotxo = Kalimotxo (wine merah dan cola)
 
 # Dishes
 food_baked_potato = Kentang panggang
@@ -440,6 +493,14 @@ food_noodle_soup = Mi kuah
 food_ramen = Ramen
 food_pho = Pho
 food_bibimbap = Bibimbap
+food_paella_valenciana = Paella valenciana
+food_paella_seafood = Paella makanan laut
+food_arroz_negro = Arroz negro (nasi tinta cumi)
+food_fideua = Fideuà (mi pendek makanan laut)
+food_carbonara_italian = Carbonara ala Italia (tanpa krim)
+food_pasta_tomato_chorizo = Makaroni saus tomat dan chorizo
+food_gnocchi = Gnocchi
+food_onigiri = Onigiri
 food_eggs_benedict = Telur Benedict
 food_tandoori_chicken = Ayam tandoori
 food_sweet_sour_chicken = Ayam asam manis
@@ -501,6 +562,12 @@ food_steamed_buns = Bakpao
 food_tempura = Tempura
 food_dolma = Dolma (daun anggur isi)
 food_hot_pot = Hot pot
+food_green_salad_plain = Salad hijau tanpa dressing
+food_ensalada_mixta_plain = Salad campur tanpa dressing
+food_pumpkin_cream = Sup krim labu
+food_vichyssoise = Sup krim bawang prei (vichyssoise)
+food_mixed_vegetables = Sayuran campur matang
+food_acai_bowl = Açaí bowl atau smoothie bowl
 
 # Fast food
 food_chicken_nuggets = Nugget ayam
@@ -519,6 +586,20 @@ food_quesadilla = Quesadilla
 food_kebab = Kebab Turki
 food_french_fries = Kentang goreng
 food_nachos = Nachos keju
+food_pizza_margherita = Pizza margherita
+food_pizza_pepperoni = Pizza pepperoni
+food_pizza_four_cheese = Pizza empat keju
+food_pizza_ham = Pizza ham dan keju
+food_pizza_barbecue = Pizza daging (barbeku)
+food_pizza_vegetable = Pizza sayuran
+food_cheeseburger = Cheeseburger
+food_bacon_cheeseburger = Cheeseburger bacon
+food_chicken_burger = Burger ayam
+food_sandwich_vegetal = Sandwich sayur (vegetal)
+food_omelette_baguette = Baguette omelet kentang
+food_calamari_baguette = Baguette cumi goreng tepung
+food_pork_loin_baguette = Baguette has babi
+food_cheese_baguette = Baguette keju
 
 # Snacks
 food_potato_chips = Keripik kentang
@@ -538,6 +619,7 @@ food_falafel = Falafel
 food_onion_rings = Onion ring
 food_pakora = Pakora
 food_arancini = Arancini (bola nasi goreng)
+food_samosa = Samosa
 
 # Sauces and dressings
 food_hummus = Hummus
@@ -557,3 +639,6 @@ food_salsa = Salsa atau pico de gallo
 food_tzatziki = Tzatziki (saus yogurt timun)
 food_balsamic_vinegar = Cuka balsamic
 food_salt = Garam
+food_paprika = Bubuk paprika
+food_vinegar = Cuka
+food_lime_juice = Air jeruk nipis

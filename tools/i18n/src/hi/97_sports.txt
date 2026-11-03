@@ -34,3 +34,7 @@ ex_martial_arts = मार्शल आर्ट्स
 # Others
 ex_climbing = क्लाइंबिंग
 ex_golf = गोल्फ़
+
+# 1.6.0
+ex_nordic_walking = नॉर्डिक वॉकिंग
+ex_stair_climbing = सीढ़ियां चढ़ना

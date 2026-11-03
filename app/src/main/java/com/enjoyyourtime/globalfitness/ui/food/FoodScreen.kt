@@ -54,6 +54,7 @@ import com.enjoyyourtime.globalfitness.R
 import com.enjoyyourtime.globalfitness.food.domain.NutritionTargets
 import com.enjoyyourtime.globalfitness.food.model.FoodEntry
 import com.enjoyyourtime.globalfitness.food.model.Meal
+import com.enjoyyourtime.globalfitness.food.model.Nutrient
 import com.enjoyyourtime.globalfitness.food.model.Nutrients
 import com.enjoyyourtime.globalfitness.ui.Fmt
 import com.enjoyyourtime.globalfitness.ui.components.AppCard
@@ -144,7 +145,9 @@ fun FoodScreen(onOpen: (String) -> Unit, adding: Boolean, onAdding: (Boolean) ->
                 onPick = { pickDate = true },
             )
         }
-        item(key = "summary") { SummaryCard(state.log.total, state.goal.targets, needsGoal = state.goal.targets == null, onOpenGoal = { onOpen(FoodRoutes.GOAL) }) }
+        item(key = "summary") {
+            SummaryCard(state.log.total, state.log.partial, state.goal.targets, needsGoal = state.goal.targets == null, onOpenGoal = { onOpen(FoodRoutes.GOAL) })
+        }
         val error = state.error
         if (error != null) {
             item(key = "error") {
@@ -251,7 +254,7 @@ private fun DayNavigator(date: LocalDate, onPrevious: () -> Unit, onNext: () -> 
 }
 
 @Composable
-private fun SummaryCard(total: Nutrients, targets: NutritionTargets?, needsGoal: Boolean, onOpenGoal: () -> Unit) {
+private fun SummaryCard(total: Nutrients, partial: Set<Nutrient>, targets: NutritionTargets?, needsGoal: Boolean, onOpenGoal: () -> Unit) {
     var more by rememberSaveable { mutableStateOf(false) }
     val eaten = total.kcal ?: 0.0
     val scheme = MaterialTheme.colorScheme
@@ -294,15 +297,24 @@ private fun SummaryCard(total: Nutrients, targets: NutritionTargets?, needsGoal:
                 Text(stringResource(R.string.foodlog_no_goal), style = MaterialTheme.typography.bodyMedium, color = scheme.onPrimaryContainer)
                 OutlinedButton(onClick = onOpenGoal, modifier = Modifier.heightIn(min = 48.dp)) { Text(stringResource(R.string.foodlog_set_goal)) }
             }
-            NutrientProgress(stringResource(R.string.foodlog_nutrient_protein), total.protein ?: 0.0, targets?.protein, limit = false)
-            NutrientProgress(stringResource(R.string.foodlog_nutrient_carbs), total.carbs ?: 0.0, targets?.carbs, limit = false)
-            NutrientProgress(stringResource(R.string.foodlog_nutrient_fat), total.fat ?: 0.0, targets?.fat, limit = false)
+            NutrientProgress(stringResource(R.string.foodlog_nutrient_protein), total.protein ?: 0.0, targets?.protein, limit = false, partial = Nutrient.PROTEIN in partial)
+            NutrientProgress(stringResource(R.string.foodlog_nutrient_carbs), total.carbs ?: 0.0, targets?.carbs, limit = false, partial = Nutrient.CARBS in partial)
+            NutrientProgress(stringResource(R.string.foodlog_nutrient_fat), total.fat ?: 0.0, targets?.fat, limit = false, partial = Nutrient.FAT in partial)
             AnimatedVisibility(more) {
                 Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                    NutrientProgress(stringResource(R.string.foodlog_nutrient_sugars), total.sugars ?: 0.0, targets?.sugarsMax, limit = true)
-                    NutrientProgress(stringResource(R.string.foodlog_nutrient_sat_fat), total.satFat ?: 0.0, targets?.satFatMax, limit = true)
-                    NutrientProgress(stringResource(R.string.foodlog_nutrient_fiber), total.fiber ?: 0.0, targets?.fiberMin, limit = false)
-                    NutrientProgress(stringResource(R.string.foodlog_nutrient_salt), total.salt ?: 0.0, targets?.saltMax, limit = true)
+                    NutrientProgress(stringResource(R.string.foodlog_nutrient_sugars), total.sugars ?: 0.0, targets?.sugarsMax, limit = true, partial = Nutrient.SUGARS in partial)
+                    NutrientProgress(stringResource(R.string.foodlog_nutrient_sat_fat), total.satFat ?: 0.0, targets?.satFatMax, limit = true, partial = Nutrient.SAT_FAT in partial)
+                    NutrientProgress(stringResource(R.string.foodlog_nutrient_fiber), total.fiber ?: 0.0, targets?.fiberMin, limit = false, partial = Nutrient.FIBER in partial)
+                    NutrientProgress(stringResource(R.string.foodlog_nutrient_salt), total.salt ?: 0.0, targets?.saltMax, limit = true, partial = Nutrient.SALT in partial)
+                    // The values beyond the label, only those some food of the day has.
+                    if (total.hasExtra) {
+                        Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
+                            ExtraNutrientRows(total, knownOnly = true, partial = partial)
+                        }
+                    }
+                    if (partial.isNotEmpty()) {
+                        Text(stringResource(R.string.foodlog_partial_note), style = MaterialTheme.typography.bodySmall, color = scheme.onPrimaryContainer)
+                    }
                 }
             }
             TextButton(onClick = { more = !more }, modifier = Modifier.heightIn(min = 48.dp)) {
@@ -339,7 +351,14 @@ private fun EntryRow(e: FoodEntry, onClick: () -> Unit) {
     val vm = foodViewModel()
     ListItem(
         headlineContent = { Text(vm.entryName(e), maxLines = 2, overflow = TextOverflow.Ellipsis) },
-        supportingContent = { Text(FoodFormat.entryAmount(e), style = MaterialTheme.typography.bodyMedium.merge(TabularNumbers)) },
+        supportingContent = {
+            // A dish whose ingredients were changed says so ("Plate · 368 g · Adjusted").
+            val amount = FoodFormat.entryAmount(e)
+            Text(
+                if (e.adjustments.isEmpty()) amount else stringResource(R.string.foodlog_entry_adjusted, amount),
+                style = MaterialTheme.typography.bodyMedium.merge(TabularNumbers),
+            )
+        },
         leadingContent = { MealThumbnail(e.photo, 48.dp) },
         trailingContent = {
             Text(

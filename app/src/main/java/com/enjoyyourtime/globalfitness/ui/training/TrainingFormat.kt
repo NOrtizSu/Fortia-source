@@ -290,8 +290,61 @@ object TrainingFormat {
     /** The words of a search query, normalized. */
     fun searchTokens(query: String): List<String> = normalize(query).split(SEPARATORS).filter { it.isNotEmpty() }
 
-    /** Every token appears somewhere in [normalizedHaystack] (name, equipment and muscles, normalized). */
-    fun matches(tokens: List<String>, normalizedHaystack: String): Boolean = tokens.all { normalizedHaystack.contains(it) }
+    /**
+     * Every token is found in [normalizedHaystack] (name, equipment, muscles and search words,
+     * normalized; see [tokenMatches]).
+     */
+    fun matches(tokens: List<String>, normalizedHaystack: String): Boolean = tokens.all { tokenMatches(it, normalizedHaystack) }
+
+    /**
+     * Whether one search token is found in [haystack]:
+     * - anywhere, as typed ("jalon" in "jalon al pecho", "curl" in "hammer curl");
+     * - except that a token of one or two letters of an alphabet with spaces between words (Latin,
+     *   Greek, Cyrillic) only counts at the start of a word, so "a" or "de" do not match most of the
+     *   catalog (Chinese, Japanese, Korean, Arabic or Hindi tokens keep matching anywhere);
+     * - or, failing that, its [stem] at the start of a word: "caminar" finds "caminata", "rows"
+     *   finds "row", "sentadillas" finds "sentadilla", "walking" finds "walk".
+     */
+    fun tokenMatches(token: String, haystack: String): Boolean {
+        val spaced = token.all { it.code < SPACED_SCRIPTS_END }
+        if (spaced && token.length <= SHORT_TOKEN) return startsWord(token, haystack)
+        if (haystack.contains(token)) return true
+        val stem = if (spaced) stem(token) else token
+        return stem != token && startsWord(stem, haystack)
+    }
+
+    /**
+     * [token] without one final Spanish or English verb or plural ending, the first of [ENDINGS] it
+     * has, as long as enough is left: at least four letters after a verb ending ("caminar" →
+     * "camin", but "andar" stays, its stem "and" would find "clean and press"), three after a plural
+     * one ("rows" → "row"). Tokens shorter than four letters are kept as they are.
+     */
+    fun stem(token: String): String {
+        if (token.length < 4) return token
+        for ((ending, keep) in ENDINGS) {
+            if (token.endsWith(ending) && token.length - ending.length >= keep) return token.dropLast(ending.length)
+        }
+        return token
+    }
+
+    /** Whether [part] occurs in [haystack] at the start of a word (after a character that is not a letter or digit). */
+    private fun startsWord(part: String, haystack: String): Boolean {
+        var i = haystack.indexOf(part)
+        while (i >= 0) {
+            if (i == 0 || !haystack[i - 1].isLetterOrDigit()) return true
+            i = haystack.indexOf(part, i + 1)
+        }
+        return false
+    }
+
+    /** Up to this many letters a token must start a word. */
+    private const val SHORT_TOKEN = 2
+
+    /** Code points below this are Latin, Greek and Cyrillic, written with spaces between words. */
+    private const val SPACED_SCRIPTS_END = 0x0530
+
+    /** Endings [stem] removes, longest first, with the letters that must remain. */
+    private val ENDINGS = listOf("iendo" to 4, "ando" to 4, "ing" to 4, "ar" to 4, "er" to 4, "ir" to 4, "es" to 3, "s" to 3)
 
     private val DIACRITICS = Regex("\\p{Mn}+")
     private val SEPARATORS = Regex("[\\s,;·/-]+")

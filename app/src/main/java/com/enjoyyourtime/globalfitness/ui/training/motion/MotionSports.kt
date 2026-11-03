@@ -28,6 +28,8 @@ internal val sportsMotions: Map<String, () -> Motion> = mapOf(
     "badminton" to { racketStroke(Racket.BADMINTON) },
     "outdoor_walk" to { walk(hiking = false) },
     "hiking" to { walk(hiking = true) },
+    "nordic_walking" to { nordicWalk() },
+    "stair_climbing" to { stairClimbing() },
     "outdoor_run" to { outdoorRun() },
     "outdoor_cycling" to { roadCycling() },
     "swimming" to { frontCrawl() },
@@ -46,7 +48,7 @@ internal val sportsMotions: Map<String, () -> Motion> = mapOf(
  * Short marks on the ground sliding back as the feet in stance do, [travel] metres per phase; the
  * spacing divides it, so the loop shows no jump.
  */
-private fun FrameBuilder.groundMarks(phase: Float, travel: Float, ink: Ink = Ink.FRAME, z: Float = 0.26f) {
+internal fun FrameBuilder.groundMarks(phase: Float, travel: Float, ink: Ink = Ink.FRAME, z: Float = 0.26f) {
     val n = max(1, (travel / 0.45f).roundToInt())
     val spacing = travel / n
     var x = 1.2f - (phase * travel) % spacing
@@ -60,7 +62,7 @@ private fun FrameBuilder.groundMarks(phase: Float, travel: Float, ink: Ink = Ink
  * The [side] arm swung [angle] degrees forward from hanging (see [limbDir]), the elbow bent [elbow]
  * degrees the way elbows bend: towards the arm's front, which turns with the swing.
  */
-private fun Rig.swingArm(side: Side, angle: Float, out: Float, elbow: Float) {
+internal fun Rig.swingArm(side: Side, angle: Float, out: Float, elbow: Float) {
     armAngles(side, limbDir(chest, side, angle, out), elbow, fold = limbDir(chest, side, angle + 90f, out))
 }
 
@@ -102,6 +104,55 @@ private fun walk(hiking: Boolean) = Motion.cycle(if (hiking) 2.6f else 2.2f, cyc
     }
     if (hiking) add(Block(body.onChest(-0.17f, -0.2f), body.chest, v(0.08f, 0.21f, 0.15f), Ink.PAD, bias = -0.05f))
     groundMarks(phase, 2 * reach / stance)
+}
+
+/**
+ * Nordic walking: a long stride with a wide, long-armed swing; each pole's tip planted well behind
+ * the hand, so the arm pushes it back past the hip.
+ */
+private fun nordicWalk() = Motion.cycle(2.2f, cycles = 2, camera = Camera(24f)) { phase ->
+    val reach = 0.28f
+    val stance = 0.6f
+    body.torso(v(0f, 0.865f + 0.012f * cos(phase * TAU * 2)), Basis.UPRIGHT.pitch(7f), nod = -4f)
+    for (side in Side.entries) {
+        gaitLeg(side, (phase + if (side == Side.NEAR) 0f else 0.5f) % 1f, reach = reach, lift = 0.07f, stance = stance)
+        val swing = -body.legOf(side).ankle.x / reach
+        body.swingArm(side, 10f + 34f * swing, out = 10f, elbow = 22f)
+        val hand = body.armOf(side).hand
+        add(Rod(hand + V3.Y * 0.06f, v(hand.x - 0.52f, 0.015f, hand.z + side.sign * 0.06f), 0.011f, Ink.METAL))
+    }
+    groundMarks(phase, 2 * reach / stance)
+}
+
+/**
+ * Climbing stairs: the staircase moves down and back one step per half loop while the figure climbs
+ * in place, one step per foot, the near hand sliding along the rail and the far arm swinging.
+ */
+private fun stairClimbing() = Motion.cycle(1.8f, camera = Camera(24f)) { phase ->
+    val rise = 0.17f
+    val depth = 0.28f
+    fun level(l: Float) = v(depth * l, rise * l)
+    body.torso(level(0.5f) + v(-0.17f, 0.8f), Basis.UPRIGHT.pitch(10f), nod = -10f)
+    for (side in Side.entries) {
+        val psi = (phase + if (side == Side.NEAR) 0f else 0.5f) % 1f
+        val foot = if (psi < 0.5f) {
+            level(1f - 2 * psi)
+        } else {
+            val s = Ease.IN_OUT.apply(2 * psi - 1f)
+            level(s) + V3.Y * (0.12f * sin(PI.toFloat() * s))
+        }
+        body.leg(side, foot + V3.Y * BodySize.ANKLE + V3.Z * (side.sign * 0.11f), v(1f, 0.2f, 0f), Foot.flat(side, 4f))
+    }
+    // The near hand on the rail (a line along the stairs, so the hand stays put while they move); the far arm swings.
+    val rail = { x: Float -> 0.95f + x * rise / depth }
+    body.arm(Side.NEAR, v(0.28f, rail(0.28f), 0.42f), v(-0.3f, -1f, 0.6f))
+    body.swingArm(Side.FAR, 20f * sin(phase * TAU * 2), out = 8f, elbow = 30f)
+    val sigma = (2 * phase) % 1f
+    for (j in -2..4) {
+        val top = level(j - sigma)
+        if (top.y > 0f) box(v(top.x - depth / 2, 0f, -0.4f), v(top.x + depth / 2, top.y, 0.4f), Ink.PAD, fit = false, bias = -0.3f)
+    }
+    add(Rod(v(-0.6f, rail(-0.6f), 0.46f), v(1.2f, rail(1.2f), 0.46f), 0.02f, Ink.METAL, fit = false, bias = -0.2f))
 }
 
 /** Running outdoors: two strides per loop with a flight phase, arms bent and swinging, the ground going by. */

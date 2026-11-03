@@ -1,0 +1,81 @@
+# Comida in 1.6.0: more nutrients per food, variants of a dish, changing a dish's ingredients when logging it,
+# several foods in one photo and the photo's grams suggestion. The rest of the food log is in 99_food.txt.
+
+# Units of the new values ("350 mg", "2.4 µg"); the unit alone as a field suffix
+unit_mg = mg
+unit_ug = µg
+value_mg = %1$s mg
+value_ug = %1$s µg
+
+# The values beyond the nutrition label (food tables give them; product labels rarely do)
+foodlog_nutrient_mono_fat = Tekli doymamış yağ
+foodlog_nutrient_poly_fat = Çoklu doymamış yağ
+foodlog_nutrient_cholesterol = Kolesterol
+foodlog_nutrient_potassium = Potasyum
+foodlog_nutrient_calcium = Kalsiyum
+foodlog_nutrient_iron = Demir
+foodlog_nutrient_magnesium = Magnezyum
+foodlog_nutrient_zinc = Çinko
+foodlog_nutrient_vit_a = A vitamini
+foodlog_nutrient_vit_c = C vitamini
+foodlog_nutrient_vit_d = D vitamini
+foodlog_nutrient_vit_e = E vitamini
+foodlog_nutrient_vit_b12 = B12 vitamini
+foodlog_nutrient_folate = Folat
+# Small headings of those values (day summary under "More", the food's values, the manual form)
+foodlog_nutrients_fats = Yağ ayrıntıları
+foodlog_nutrients_minerals = Mineraller
+foodlog_nutrients_vitamins = Vitaminler
+# A day total that adds up only the foods that have that value ("≥ 45 g"), and the line that explains the sign
+foodlog_partial_value = ≥ %1$s
+foodlog_partial_note = ≥: bazı yiyeceklerde bu değer yok, bu yüzden toplam en az bu kadardır.
+# The manual form: the optional values beyond the label
+foodlog_more_nutrients = Diğer besin öğeleri
+foodlog_more_nutrients_text = İsteğe bağlı: yalnızca biliyorsanız.
+
+# Variants of a dish (paella: seafood, mixed…): a heading and the chip of the usual one (gender-neutral in Spanish)
+foodlog_variants = Çeşit
+foodlog_variant_typical = Klasik
+
+# The ingredients of a dish on the confirm page: closed it says what changed ("Changed: Olive oil 35 g, Bread 0 g")
+foodlog_ingredients = Malzemeler
+foodlog_ingredients_adjust = Ayarla
+foodlog_ingredients_usual = Standart tarif
+foodlog_ingredients_changed = Değişenler: %1$s
+foodlog_ingredients_text = Tabağınızdakileri değiştirin (daha çok veya daha az yağ, ekmeksiz…): değerler buna göre yeniden hesaplanır.
+# An ingredient with its amount ("Olive oil 35 g"); under its name, its usual amount for the amount logged
+foodlog_label_amount = %1$s %2$s
+foodlog_ingredient_usual = Normalde %1$s
+# The pencil button next to an ingredient's amount (TalkBack): type another amount of it
+foodlog_ingredient_type = %1$s miktarını yazın
+# The weight of the dish once its ingredients changed ("Total: 368 g")
+foodlog_total_weight = Toplam: %1$s
+# How much of an ingredient (chips: none, half, normal, one and a half, double); TalkBack reads the _desc ones
+foodlog_level_none = Yok
+foodlog_level_half = ½
+foodlog_level_normal = Normal
+foodlog_level_one_half = 1½
+foodlog_level_double = ×2
+foodlog_level_half_desc = Yarım
+foodlog_level_one_half_desc = Bir buçuk kat
+foodlog_level_double_desc = İki kat
+# A logged dish whose ingredients were changed, in the day's list ("Plate · 368 g · Adjusted")
+foodlog_entry_adjusted = %1$s · Ayarlandı
+
+# The photo's grams suggestion next to the amount: a suggestion only, the user confirms or changes it
+foodlog_estimated = ≈ %1$s (tahmini)
+foodlog_estimated_text = Fotoğraftan tahmin edildi. Kontrol edin ve gerekirse değiştirin.
+
+# Several foods found on one plate: one card each (its crop, three suggestions, "Other…", its amount), then "Add all (3)"
+foodlog_plate_title{one} = Tabakta %1$d yiyecek
+foodlog_plate_title{other} = Tabakta %1$d yiyecek
+foodlog_plate_text = Her birini kontrol edin: ne olduğunu ve ne kadar olduğunu. Eklemek istemediklerinizin işaretini kaldırın.
+foodlog_plate_item_desc = Fotoğraftaki yiyecek %1$d
+foodlog_plate_unknown = Bu ne?
+foodlog_plate_unknown_text = Tanınmadı: “Diğer…” ile seçin.
+foodlog_plate_item_added = Eklendi
+foodlog_plate_add_all = Tümünü ekle (%1$d)
+# The whole photo as one dish (today's five suggestions), and back to the foods one by one (always 2 or more)
+foodlog_plate_as_one = Tek yemek olarak gör
+foodlog_plate_as_items{one} = %1$d yiyeceği ayrı gör
+foodlog_plate_as_items{other} = %1$d yiyeceği tek tek gör

@@ -94,7 +94,7 @@ including it in this AGPL-3.0 work; its notice is kept below. Ported data lives 
 Data
 ====
 
-Food composition data (app/src/main/assets/food/foods.tsv), built by tools/food-db; sources and changes
+Food composition data (app/src/main/assets/food/foods.tsv and recipes.tsv), built by tools/food-db; sources and changes
 are described in docs/third-party/food-data/README.md:
 
   - USDA FoodData Central (Foundation Foods 2026-04, SR Legacy 2018-04, FNDDS 2019-2020): public domain,
@@ -106,15 +106,23 @@ are described in docs/third-party/food-data/README.md:
     https://world.openfoodfacts.org
 
 
-Food recognition model
-======================
+Food recognition models
+=======================
 
-app/src/main/assets/food/food_model.tflite is our own image classifier, trained with the scripts in
-tools/food-model/ (see tools/food-model/MODEL_CARD.md). It starts from the ImageNet weights of
-EfficientNet-Lite0 (Copyright Google LLC, Apache-2.0, https://github.com/tensorflow/tpu, as ported to
-PyTorch by timm, https://github.com/huggingface/pytorch-image-models, Apache-2.0) and was fine-tuned on
-photos from Open Images V7 (Google LLC; annotations CC BY 4.0, images listed as CC BY 2.0 by their Flickr
-authors) and from Wikimedia Commons (CC0, public domain, CC BY and CC BY-SA files, each by its author).
+app/src/main/assets/food/food_model.tflite (food classifier with a grams-estimate head) and
+food_detector.tflite (food-item detector) are our own models, trained with the scripts in tools/food-model/
+(see tools/food-model/MODEL_CARD.md).
+
+- The classifier starts from the ImageNet-12k/1k weights of MobileNetV4-Conv-Medium by timm
+  (https://github.com/huggingface/pytorch-image-models, Apache-2.0; architecture by Google). Its grams head
+  is calibrated on Nutrition5k (Google, CC BY 4.0, https://github.com/google-research-datasets/Nutrition5k).
+- The detector is Ultralytics YOLO11n (Copyright Ultralytics, AGPL-3.0, https://github.com/ultralytics/ultralytics),
+  fine-tuned from its COCO weights.
+- Both were trained on photos from Open Images V7 (Google LLC; annotations and boxes CC BY 4.0, images listed
+  as CC BY 2.0 by their Flickr authors), from Wikimedia Commons (CC0, public domain, CC BY and CC BY-SA files,
+  each by its author; classifier only) and from the MyFoodRepo / AIcrowd Food Recognition Benchmark 2022
+  (CC BY 4.0, Mohanty et al., Frontiers in Nutrition 2022).
+
 docs/third-party/food-model/ names every photo used, with its author, licence and source page. The
 photos themselves are not distributed.
 

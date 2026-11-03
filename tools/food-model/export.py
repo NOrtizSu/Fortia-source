@@ -3,16 +3,21 @@
 
 Two steps, each in its own virtualenv (PyTorch and TensorFlow pin different protobuf versions):
 
-  1. python export.py onnx --work D:/FoodML --run run1            (training venv: torch + timm)
-     -> <run>/export/model.onnx (static 1x3x224x224, TF-'SAME' padding made explicit, see static_pad.py)
+  1. python export.py onnx --work D:/FoodML --run run1 [--grams-head <run>/grams/head.pt]   (training venv)
+     -> <run>/export/model.onnx (static 1x3xSxS, TF-'SAME' padding made explicit, see static_pad.py)
         <run>/export/calib.npy  (val photos for int8 calibration, NHWC, 0..1)
+     With --grams-head the model gets a second output `log_grams` [1, 1] = a linear head on the classifier's
+     pooled features (grams.py; grams_contract.md).
   2. python export.py tflite --work D:/FoodML --run run1 --classes classes.csv --temperature 1.0
-        --min-confidence 0.05 --variant integer_quant --assets ../../app/src/main/assets/food    (export venv)
-     -> runs onnx2tf (ONNX -> TF -> TFLite: float32, float16, dynamic-range and int8 variants) and copies
-        the chosen variant to <assets>/food_model.tflite, writing <assets>/food_model.json.
+        --min-confidence 0.05 --variant integer_quant --assets ../../app/src/main/assets/food
+        [--grams <run>/grams/grams.json]   (export venv)
+     -> runs onnx2tf (ONNX -> TF -> TFLite: float32, float16, dynamic-range and int8 variants), puts the logits
+        output first in the flatbuffer (--outputs-order), copies the chosen variant to
+        <assets>/food_model.tflite and writes <assets>/food_model.json (version 2 when it has the grams output).
 
-onnx2tf transposes the model to NHWC, so the TFLite input is [1, 224, 224, 3] float32 RGB normalised with
-mean = std = 0.5 after scaling to 0..1; the output is [1, n_classes] float32 logits (labels in that order).
+onnx2tf transposes the model to NHWC, so the TFLite input is [1, S, S, 3] float32 RGB normalised with the
+backbone's mean/std after scaling to 0..1 (v1: 224, 0.5/0.5; v2: 256, ImageNet mean/std); the logits output is
+[1, n_classes] float32 (labels in that order).
 """
 import argparse
 import csv
@@ -24,7 +29,8 @@ import subprocess
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-VARIANTS = ("float32", "float16", "dynamic_range_quant", "integer_quant", "full_integer_quant")
+VARIANTS = ("float32", "float16", "dynamic_range_quant", "integer_quant", "full_integer_quant",
+            "selective_int8")
 
 
 def fuse_pads(path):
@@ -99,78 +105,143 @@ def step_onnx(a):
     from PIL import Image
     from torchvision.transforms import v2 as T
     sys.path.insert(0, HERE)
+    import train as TR
     from static_pad import make_static
-    from train import RESIZE, SIZE
+    from food_items import fast_path
 
-    run = os.path.join(a.work, "runs", a.run)
+    run = os.path.join(a.runs or os.path.join(a.work, "runs"), a.run)
     out = os.path.join(run, "export")
     os.makedirs(out, exist_ok=True)
     ck = torch.load(os.path.join(run, a.ckpt), map_location="cpu")
+    TR.configure_from_checkpoint(ck)
+    SIZE, RESIZE, MEAN, STD = TR.SIZE, TR.RESIZE, TR.MEAN, TR.STD
     model = timm.create_model(ck["model"], pretrained=False, num_classes=ck["n_classes"])
     model.load_state_dict(ck["state_dict"])
     model.eval()
     make_static(model, SIZE)
+
+    class WithGrams(torch.nn.Module):
+        """(logits, log_grams): the classifier and a linear grams head on the same pooled features."""
+
+        def __init__(self, net, head):
+            super().__init__()
+            self.net = net
+            self.grams = torch.nn.Linear(head["weight"].shape[1], 1)
+            self.grams.weight.data.copy_(head["weight"])
+            self.grams.bias.data.copy_(head["bias"])
+
+        def forward(self, x):
+            f = self.net.forward_head(self.net.forward_features(x), pre_logits=True)
+            return self.net.get_classifier()(f), self.grams(f)
+
+    grams = bool(a.grams_head)
+    if grams:
+        head = torch.load(a.grams_head, map_location="cpu")
+        model = WithGrams(model, head).eval()
     x = torch.zeros(1, 3, SIZE, SIZE)
     onnx_path = os.path.join(out, "model.onnx")
-    torch.onnx.export(model, x, onnx_path, input_names=["input"], output_names=["logits"],
+    torch.onnx.export(model, x, onnx_path, input_names=["input"],
+                      output_names=["logits", "log_grams"] if grams else ["logits"],
                       opset_version=17, dynamo=False)
     print("Pad ops folded into Conv:", fuse_pads(onnx_path))
     import onnxruntime as ort
     xr = torch.randn(2, 3, SIZE, SIZE)
     with torch.no_grad():
-        ref = model(xr).numpy()
+        ref = model(xr)
+        ref = [r.numpy() for r in ref] if grams else [ref.numpy()]
     sess = ort.InferenceSession(onnx_path)
-    got = np.concatenate([sess.run(None, {"input": xr[i:i + 1].numpy()})[0] for i in range(2)])
-    print("ONNX vs PyTorch max |diff|:", float(np.abs(got - ref).max()))
-    assert np.abs(got - ref).max() < 1e-3
+    for k in range(len(ref)):
+        got = np.concatenate([sess.run(None, {"input": xr[i:i + 1].numpy()})[k] for i in range(2)])
+        print("ONNX vs PyTorch max |diff| output", k, float(np.abs(got - ref[k]).max()))
+        assert np.abs(got - ref[k]).max() < 1e-3
     tf = T.Compose([T.Resize(RESIZE, interpolation=T.InterpolationMode.BILINEAR, antialias=True),
                     T.CenterCrop(SIZE)])
     val = pd.read_csv(os.path.join(a.work, a.dataset, "val.csv")).sample(a.calib, random_state=3)
-    arr = np.stack([np.asarray(tf(Image.open(p).convert("RGB")), dtype=np.float32) / 255.0 for p in val.path])
+    arr = np.stack([np.asarray(tf(Image.open(fast_path(p)).convert("RGB")), dtype=np.float32) / 255.0
+                    for p in val.path])
     np.save(os.path.join(out, "calib.npy"), arr)
     # onnx2tf checks its conversion on a sample batch it would otherwise download: give it local photos
-    small = np.stack([np.asarray(Image.open(p).convert("RGB").resize((128, 128), Image.BILINEAR),
+    small = np.stack([np.asarray(Image.open(fast_path(p)).convert("RGB").resize((128, 128), Image.BILINEAR),
                                  dtype=np.float32) / 255.0 for p in val.path[:20]])
     np.save(os.path.join(out, "calibration_image_sample_data_20x128x128x3_float32.npy"), small)
     meta = {"model": ck["model"], "n_classes": ck["n_classes"], "epoch": ck.get("epoch"),
-            "checkpoint": a.ckpt, "val_top1": ck.get("val_top1")}
+            "checkpoint": a.ckpt, "val_top1": ck.get("val_top1"), "size": SIZE, "resize": RESIZE,
+            "mean": list(MEAN), "std": list(STD), "grams_output": grams}
     with open(os.path.join(out, "export_meta.json"), "w") as f:
         json.dump(meta, f, indent=1)
     print("onnx + calibration written to", out)
 
 
+def reorder_outputs(path, n_labels, logits_first=True):
+    """Puts the logits output (n_labels values) first (or last) in the flatbuffer's output list; returns the
+    final {"logits": i, "log_grams": j} indices as the LiteRT interpreter reports them."""
+    from ai_edge_litert.interpreter import Interpreter
+    from tensorflow.lite.tools import flatbuffer_utils as fu
+
+    def order():
+        it = Interpreter(model_path=path)
+        outs = it.get_output_details()
+        return {("logits" if int(np.prod(o["shape"])) == n_labels else "log_grams"): k for k, o in enumerate(outs)}
+    import numpy as np
+    idx = order()
+    if len(idx) > 1 and (idx["logits"] == 0) != logits_first:
+        m = fu.read_model(path)
+        m.subgraphs[0].outputs = list(reversed(list(m.subgraphs[0].outputs)))
+        fu.write_model(m, path)
+        idx = order()
+    return idx
+
+
 def step_tflite(a):
-    run = os.path.join(a.work, "runs", a.run)
+    run = os.path.join(a.runs or os.path.join(a.work, "runs"), a.run)
     out = os.path.join(run, "export")
     tfl = os.path.join(out, "tflite")
+    with open(os.path.join(out, "export_meta.json")) as f:
+        meta = json.load(f)
+    mean, std = meta.get("mean", [0.5] * 3), meta.get("std", [0.5] * 3)
+    size, resize = meta.get("size", 224), meta.get("resize", 256)
     if not a.skip_convert:
         shutil.rmtree(tfl, ignore_errors=True)
         exe = os.path.join(os.path.dirname(sys.executable), "onnx2tf")
-        cmd = [exe, "-i", "model.onnx", "-o", "tflite", "-oiqt", "-qt", "per-channel",
-               "-cind", "input", "calib.npy", "[[[[0.5,0.5,0.5]]]]", "[[[[0.5,0.5,0.5]]]]", "-n"]
+        cmd = [exe, "-i", "model.onnx", "-o", "tflite", "-n"]
+        if not a.skip_int8:
+            cmd[5:5] = ["-oiqt", "-qt", "per-channel", "-cind", "input", "calib.npy", json.dumps([[[mean]]]),
+                        json.dumps([[[std]]])]
         with open(os.path.join(out, "onnx2tf.log"), "w") as log:
             subprocess.run(cmd, cwd=out, check=True, stdout=log, stderr=subprocess.STDOUT)
     src = os.path.join(tfl, f"model_{a.variant}.tflite")
     labels = [r["id"] for r in csv.DictReader(open(a.classes, encoding="utf-8"))]
-    with open(os.path.join(out, "export_meta.json")) as f:
-        meta = json.load(f)
     assert len(labels) == meta["n_classes"], (len(labels), meta["n_classes"])
     os.makedirs(a.assets, exist_ok=True)
-    shutil.copyfile(src, os.path.join(a.assets, "food_model.tflite"))
+    dst = os.path.join(a.assets, "food_model.tflite")
+    shutil.copyfile(src, dst)
+    idx = reorder_outputs(dst, len(labels), logits_first=a.outputs_order == "logits_first")
+    has_grams = "log_grams" in idx
     spec = {
-        "version": 1,
+        "version": 2 if has_grams or size != 224 else 1,
         "labels": labels,
-        "input": {"width": 224, "height": 224, "layout": "NHWC", "dtype": "float32", "channels": "RGB",
-                  "mean": [0.5, 0.5, 0.5], "std": [0.5, 0.5, 0.5], "range": "0..1 before mean/std",
-                  "resize": "short_side_then_center_crop", "crop_fraction": 0.875, "resize_short_side": 256,
-                  "interpolation": "bilinear"},
-        "output": {"dtype": "float32", "scale": 1.0, "zero_point": 0, "kind": "logits"},
+        "input": {"width": size, "height": size, "layout": "NHWC", "dtype": "float32", "channels": "RGB",
+                  "mean": [round(float(v), 6) for v in mean], "std": [round(float(v), 6) for v in std],
+                  "range": "0..1 before mean/std", "resize": "short_side_then_center_crop",
+                  "crop_fraction": round(size / resize, 6), "resize_short_side": resize, "interpolation": "bilinear"},
+        "output": {"dtype": "float32", "scale": 1.0, "zero_point": 0, "kind": "logits", "index": idx["logits"]},
         "temperature": a.temperature,
         "min_confidence": a.min_confidence,
         "not_food_label": "_not_food",
         "model": {"name": a.name, "backbone": meta["model"], "quantization": a.variant,
                   "trained": datetime.date.today().isoformat(), "notes": a.notes},
     }
+    if has_grams:
+        g = json.load(open(a.grams)) if a.grams else {}
+        spec["grams"] = {
+            "enabled": bool(g.get("enabled", False)),
+            "output": {"index": idx["log_grams"], "shape": [1, 1], "dtype": "float32", "kind": "log_grams"},
+            "b0": g.get("b0", 0.0), "b_model": g.get("b_model", 1.0), "b_portion": g.get("b_portion", 0.0),
+            "b_share": g.get("b_share", 0.0), "clamp_portion": g.get("clamp_portion", [0.25, 4.0]),
+            "clamp_grams": g.get("clamp_grams", [5, 1500]), "round_to": g.get("round_to", 5),
+        }
+        if "notes" in g:
+            spec["grams"]["notes"] = g["notes"]
     with open(os.path.join(a.assets, "food_model.json"), "w", encoding="utf-8", newline="\n") as f:
         json.dump(spec, f, ensure_ascii=False, indent=1)
         f.write("\n")
@@ -193,6 +264,12 @@ def main():
     ap.add_argument("--name", default="fortia-food")
     ap.add_argument("--notes", default="")
     ap.add_argument("--skip-convert", action="store_true", help="reuse the tflite folder")
+    ap.add_argument("--skip-int8", action="store_true",
+                    help="onnx2tf without its int8 variants (quant_debug.py makes the selective int8 one)")
+    ap.add_argument("--runs", default="", help="runs folder (default <work>/runs)")
+    ap.add_argument("--grams-head", default="", help="onnx step: grams.py head.pt -> second output log_grams")
+    ap.add_argument("--grams", default="", help="tflite step: grams.py grams.json (the json's grams block)")
+    ap.add_argument("--outputs-order", default="logits_first", choices=("logits_first", "logits_last"))
     a = ap.parse_args()
     step_onnx(a) if a.step == "onnx" else step_tflite(a)
 

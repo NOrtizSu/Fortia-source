@@ -39,8 +39,8 @@ import com.enjoyyourtime.globalfitness.training.model.Muscle.TRICEPS
  * "Tennis", its closest racket sport, and swimming is "Swimming (pool)", where most people log their
  * lengths; such a session takes the activity's own name as its title (see WorkoutExerciseInfo.title).
  * [CatalogExercise.hcSegment] is set only where a segment type names the activity and its session
- * type accepts it (walking, running, cycling, pool swimming, yoga, pilates); the others are written
- * as "other workout" segments, like the sets of a mixed workout.
+ * type accepts it (walking, Nordic walking, stairs, running, cycling, pool swimming, yoga,
+ * pilates); the others are written as "other workout" segments, like the sets of a mixed workout.
  */
 object SportsCatalog {
     val all: List<CatalogExercise> = listOf(
@@ -98,6 +98,18 @@ object SportsCatalog {
             primary = setOf(QUADS, GLUTES, CALVES), secondary = setOf(HAMSTRINGS, LOWER_BACK),
             hcSegment = ExerciseSegment.EXERCISE_SEGMENT_TYPE_WALKING,
             hcSession = ExerciseSessionRecord.EXERCISE_TYPE_HIKING,
+        ),
+        CatalogExercise(
+            "nordic_walking", R.string.ex_nordic_walking, CARDIO, SPORT,
+            primary = setOf(QUADS, CALVES), secondary = setOf(GLUTES, LATS, TRICEPS),
+            hcSegment = ExerciseSegment.EXERCISE_SEGMENT_TYPE_WALKING,
+            hcSession = ExerciseSessionRecord.EXERCISE_TYPE_WALKING,
+        ),
+        CatalogExercise(
+            "stair_climbing", R.string.ex_stair_climbing, CARDIO, SPORT,
+            primary = setOf(QUADS, GLUTES, CALVES), secondary = setOf(HAMSTRINGS),
+            hcSegment = ExerciseSegment.EXERCISE_SEGMENT_TYPE_STAIR_CLIMBING,
+            hcSession = ExerciseSessionRecord.EXERCISE_TYPE_STAIR_CLIMBING,
         ),
         CatalogExercise(
             "outdoor_run", R.string.ex_outdoor_run, CARDIO, SPORT,
@@ -160,7 +172,7 @@ object SportsCatalog {
     )
 
     /** The built-in activities that cover a distance worth logging (km): walks, hikes, runs, rides, swims. */
-    private val distance = setOf("outdoor_walk", "hiking", "outdoor_run", "outdoor_cycling", "swimming")
+    private val distance = setOf("outdoor_walk", "hiking", "nordic_walking", "outdoor_run", "outdoor_cycling", "swimming")
 
     /**
      * Whether a sport's sets have a distance field: the built-in activities in [distance], and the
@@ -180,6 +192,8 @@ object SportsCatalog {
         "badminton" to ExerciseGuide(R.string.exg_badminton_steps, R.string.exg_badminton_tips),
         "outdoor_walk" to ExerciseGuide(R.string.exg_outdoor_walk_steps, R.string.exg_outdoor_walk_tips),
         "hiking" to ExerciseGuide(R.string.exg_hiking_steps, R.string.exg_hiking_tips),
+        "nordic_walking" to ExerciseGuide(R.string.exg_nordic_walking_steps, R.string.exg_nordic_walking_tips),
+        "stair_climbing" to ExerciseGuide(R.string.exg_stair_climbing_steps, R.string.exg_stair_climbing_tips),
         "outdoor_run" to ExerciseGuide(R.string.exg_outdoor_run_steps, R.string.exg_outdoor_run_tips),
         "outdoor_cycling" to ExerciseGuide(R.string.exg_outdoor_cycling_steps, R.string.exg_outdoor_cycling_tips),
         "swimming" to ExerciseGuide(R.string.exg_swimming_steps, R.string.exg_swimming_tips),

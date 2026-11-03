@@ -4,13 +4,23 @@
 
 Reads <dir>/raw (see download.py) and writes:
   <dir>/work/nutrients.tsv  key, dataset, description, description_fr, then per 100 g: kcal protein carbs sugars fat
-                            sat_fat fiber salt alcohol water polyols organic_acids (empty = not in the source)
+                            sat_fat fiber salt alcohol water polyols organic_acids, then mono_fat poly_fat (g)
+                            cholesterol potassium calcium iron magnesium zinc (mg) vit_a (ug RAE) vit_c (mg)
+                            vit_d (ug) vit_e (mg alpha-tocopherol) vit_b12 (ug) folate (ug DFE)
+                            (empty = not in the source)
   <dir>/work/portions.tsv   key, portion description, grams (USDA household measures)
 
 Keys: `fdc:<fdc_id>` (datasets foundation, sr_legacy, fndds) and `ciqual:<alim_code>` (dataset ciqual).
 `carbs` is available carbohydrate (EU style): USDA "carbohydrate, by difference" minus dietary fibre (never below
 the sugars), or USDA "carbohydrate, by summation"; CIQUAL "glucides". Salt = sodium x 2.5. CIQUAL "< x" and
 "traces" = 0.
+
+Vitamins, when the source lacks the summary value: vitamin A RAE = retinol + beta-carotene/12 (+ alpha-carotene
+and beta-cryptoxanthin/24, USDA); vitamin D = D2 + D3, or IU/40 (USDA); folate DFE = food folate + 1.7 x folic
+acid, or total folate (foods without folic acid); USDA foods with folic acid (US flour and cereal fortification,
+which European foods do not have) keep only their food folate; vitamin E = alpha-tocopherol (CIQUAL "vitamin E"
+otherwise).
+CIQUAL's "vitamin A activity, retinol equivalent" is retinol + beta-carotene/12, i.e. RAE.
 """
 import argparse
 import csv
@@ -23,6 +33,11 @@ import xml.etree.ElementTree as ET
 
 FIELDS = ['kcal', 'protein', 'carbs', 'sugars', 'fat', 'sat_fat', 'fiber', 'salt', 'alcohol', 'water', 'polyols',
           'organic_acids']
+# Appended after FIELDS (contract 2 of foods.tsv v2, same names and units).
+MICRO = ['mono_fat', 'poly_fat', 'cholesterol', 'potassium', 'calcium', 'iron', 'magnesium', 'zinc', 'vit_a', 'vit_c',
+         'vit_d', 'vit_e', 'vit_b12', 'folate']
+# `fortified`: 1 when the food has added folic acid (US enriched flour and cereals: their iron is enriched too).
+ALL_FIELDS = FIELDS + MICRO + ['fortified']
 
 FDC_ZIPS = {
     'foundation': 'FoodData_Central_foundation_food_csv_2026-04-30.zip',
@@ -49,13 +64,96 @@ FDC_NUTRIENTS = {
     '1093': 'sodium', '307': 'sodium',
     '1018': 'alcohol', '221': 'alcohol',
     '1051': 'water', '255': 'water',
+    '1292': 'mono_fat', '645': 'mono_fat',
+    '1293': 'poly_fat', '646': 'poly_fat',
+    '1253': 'cholesterol', '601': 'cholesterol',
+    '1092': 'potassium', '306': 'potassium',
+    '1087': 'calcium', '301': 'calcium',
+    '1089': 'iron', '303': 'iron',
+    '1090': 'magnesium', '304': 'magnesium',
+    '1095': 'zinc', '309': 'zinc',
+    '1106': 'vit_a', '320': 'vit_a',
+    '1105': 'retinol', '319': 'retinol',
+    '1107': 'beta_carotene', '321': 'beta_carotene',
+    '1108': 'alpha_carotene', '322': 'alpha_carotene',
+    '1120': 'cryptoxanthin', '334': 'cryptoxanthin',
+    '1162': 'vit_c', '401': 'vit_c',
+    '1114': 'vit_d', '328': 'vit_d',
+    '1111': 'vit_d2', '325': 'vit_d2',
+    '1112': 'vit_d3', '326': 'vit_d3',
+    '1110': 'vit_d_iu', '324': 'vit_d_iu',
+    '1109': 'vit_e', '323': 'vit_e',
+    '1178': 'vit_b12', '418': 'vit_b12',
+    '1190': 'folate_dfe', '435': 'folate_dfe',
+    '1187': 'folate_food', '432': 'folate_food',
+    '1186': 'folic_acid', '431': 'folic_acid',
+    '1177': 'folate_total', '417': 'folate_total',
 }
 
 CIQUAL = {
     '328': 'kcal', '25000': 'protein', '31000': 'carbs', '32000': 'sugars', '40000': 'fat', '40302': 'sat_fat',
     '34100': 'fiber', '10110': 'sodium', '10004': 'salt', '60000': 'alcohol', '400': 'water', '34000': 'polyols',
     '65000': 'organic_acids',
+    '40303': 'mono_fat', '40304': 'poly_fat', '75100': 'cholesterol', '10190': 'potassium', '10200': 'calcium',
+    '10260': 'iron', '10120': 'magnesium', '10300': 'zinc', '51104': 'vit_a', '51200': 'retinol',
+    '51330': 'beta_carotene', '55100': 'vit_c', '52100': 'vit_d', '71010': 'vit_e', '53100': 'vit_e_other',
+    '56600': 'vit_b12', '56702': 'folate_dfe', '56704': 'folate_food', '56708': 'folic_acid', '56700': 'folate_total',
 }
+
+
+def _sum(*vals):
+    """Sum of the known values, None when none is known."""
+    known = [x for x in vals if x is not None]
+    return sum(known) if known else None
+
+
+def folate_dfe(v):
+    """Folate in ug DFE: the source's DFE, else food folate + 1.7 x folic acid, else total folate."""
+    if v.get('folate_dfe') is not None:
+        return v['folate_dfe']
+    if v.get('folate_food') is not None:
+        return v['folate_food'] + 1.7 * (v.get('folic_acid') or 0.0)
+    return v.get('folate_total')
+
+
+def micro_fdc(v):
+    out = {k: v.get(k) for k in ('mono_fat', 'poly_fat', 'cholesterol', 'potassium', 'calcium', 'iron', 'magnesium',
+                                 'zinc', 'vit_c', 'vit_e', 'vit_b12')}
+    out['vit_a'] = v['vit_a'] if v.get('vit_a') is not None else (
+        None if v.get('retinol') is None and v.get('beta_carotene') is None else
+        (v.get('retinol') or 0.0) + (v.get('beta_carotene') or 0.0) / 12
+        + ((v.get('alpha_carotene') or 0.0) + (v.get('cryptoxanthin') or 0.0)) / 24)
+    if v.get('vit_d') is not None:
+        out['vit_d'] = v['vit_d']
+    elif v.get('vit_d2') is not None or v.get('vit_d3') is not None:
+        out['vit_d'] = _sum(v.get('vit_d2'), v.get('vit_d3'))
+    else:
+        out['vit_d'] = v['vit_d_iu'] / 40 if v.get('vit_d_iu') is not None else None
+    folic = v.get('folic_acid') or 0
+    if folic > 0:
+        # US flour and cereals are fortified with folic acid, European ones are not: keep the food's own folate.
+        if v.get('folate_food') is not None:
+            out['folate'] = v['folate_food']
+        elif v.get('folate_total') is not None:
+            out['folate'] = max(0.0, v['folate_total'] - folic)
+        else:
+            out['folate'] = max(0.0, v['folate_dfe'] - 1.7 * folic) if v.get('folate_dfe') is not None else None
+    else:
+        out['folate'] = folate_dfe(v)
+    out['fortified'] = None if v.get('folic_acid') is None else (1 if folic > 0 else 0)
+    return out
+
+
+def micro_ciqual(v):
+    out = {k: v.get(k) for k in ('mono_fat', 'poly_fat', 'cholesterol', 'potassium', 'calcium', 'iron', 'magnesium',
+                                 'zinc', 'vit_c', 'vit_d', 'vit_b12')}
+    out['vit_a'] = v['vit_a'] if v.get('vit_a') is not None else (
+        None if v.get('retinol') is None and v.get('beta_carotene') is None else
+        (v.get('retinol') or 0.0) + (v.get('beta_carotene') or 0.0) / 12)
+    out['vit_e'] = v['vit_e'] if v.get('vit_e') is not None else v.get('vit_e_other')
+    out['folate'] = folate_dfe(v)
+    out['fortified'] = None if v.get('folic_acid') is None else (1 if v['folic_acid'] > 0 else 0)
+    return out
 
 
 def fmt(v):
@@ -87,14 +185,14 @@ def fdc_row(v):
     salt = sodium * 2.5 / 1000 if sodium is not None else None
     return {'kcal': kcal, 'protein': v.get('protein'), 'carbs': carbs, 'sugars': sugars, 'fat': fat,
             'sat_fat': v.get('sat_fat'), 'fiber': fiber, 'salt': salt, 'alcohol': v.get('alcohol'),
-            'water': v.get('water'), 'polyols': None, 'organic_acids': None}
+            'water': v.get('water'), 'polyols': None, 'organic_acids': None} | micro_fdc(v)
 
 
 def ciqual_row(v):
     """Our per-100 g row from one CIQUAL food's parsed constituents (CIQUAL names; sodium in mg)."""
     row = {k: v.get(k) for k in FIELDS}
     row['salt'] = v['sodium'] * 2.5 / 1000 if 'sodium' in v else v.get('salt')
-    return row
+    return row | micro_ciqual(v)
 
 
 def extract_fdc(raw, out_rows, out_portions):
@@ -195,10 +293,10 @@ def main():
     extract_fdc(raw, rows, portions)
     extract_ciqual(raw, rows)
     with open(os.path.join(work, 'nutrients.tsv'), 'w', encoding='utf-8', newline='\n') as f:
-        f.write('\t'.join(['key', 'dataset', 'description', 'description_fr'] + FIELDS) + '\n')
+        f.write('\t'.join(['key', 'dataset', 'description', 'description_fr'] + ALL_FIELDS) + '\n')
         for key, ds, desc, fr, row in rows:
             clean = lambda s: s.replace('\t', ' ').replace('\n', ' ')
-            f.write('\t'.join([key, ds, clean(desc), clean(fr)] + [fmt(row[k]) for k in FIELDS]) + '\n')
+            f.write('\t'.join([key, ds, clean(desc), clean(fr)] + [fmt(row[k]) for k in ALL_FIELDS]) + '\n')
     with open(os.path.join(work, 'portions.tsv'), 'w', encoding='utf-8', newline='\n') as f:
         f.write('key\tportion\tgrams\n')
         for key, text, grams in portions:

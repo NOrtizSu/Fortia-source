@@ -556,3 +556,114 @@ food_salsa = Salsa ou pico de gallo
 food_tzatziki = Tzatziki
 food_balsamic_vinegar = Vinaigre balsamique
 food_salt = Sel
+
+# 1.6.0: Vegetables
+food_zucchini_raw = Courgette crue
+food_eggplant_raw = Aubergine crue
+food_broccoli_raw = Brocoli cru
+food_cabbage_raw = Chou cru
+food_carrot_cooked = Carotte cuite
+food_bean_sprouts = Pousses de soja
+food_canned_tomato = Tomates en conserve
+food_fennel = Fenouil
+
+# 1.6.0: Bread, cereals and pasta
+food_breadcrumbs = Chapelure
+food_corn_starch = Fécule de maïs (maïzena)
+food_puff_pastry = Pâte feuilletée crue
+food_polenta = Polenta
+
+# 1.6.0: Legumes
+food_lentils_vegetable = Lentilles mijotées aux légumes (sans viande)
+
+# 1.6.0: Meat and cold cuts
+food_chicken_raw = Poulet en morceaux cru
+food_chicken_leg_raw = Cuisse de poulet crue
+food_rabbit_raw = Lapin cru
+food_beef_raw = Rond de gîte de bœuf cru
+food_beef_stewing_raw = Bœuf à braiser cru
+food_minced_beef_15_raw = Bœuf haché 15 % MG cru
+food_pork_shoulder_raw = Porc maigre cru
+food_salted_pork_belly = Poitrine de porc salée
+food_black_pudding_raw = Boudin noir cru
+food_back_bacon = Bacon de filet
+food_tripe = Tripes de bœuf cuites
+food_sobrasada = Sobrasada
+food_veal_escalope_raw = Escalope de veau crue
+
+# 1.6.0: Fish and seafood
+food_hake_raw = Merlu cru
+food_squid_raw = Calamar cru
+food_prawns_raw = Crevettes crues
+food_mussels_raw = Chair de moules crue
+food_anchovy_raw = Anchois frais crus
+food_boiled_octopus = Poulpe cuit à l'eau
+food_breaded_fish = Poisson pané frit
+
+# 1.6.0: Eggs
+food_egg_yolk = Jaune d'œuf
+food_omelette_ham_cheese = Omelette jambon-fromage
+food_shakshuka = Chakchouka
+
+# 1.6.0: Dairy
+food_condensed_milk = Lait concentré sucré
+
+# 1.6.0: Sweets and desserts
+food_churros_with_sugar = Churros au sucre
+food_ensaimada = Ensaïmada
+
+# 1.6.0: Drinks
+food_rum = Rhum
+food_gin = Gin
+food_vodka = Vodka
+food_coffee_with_whole_milk = Café au lait entier
+food_coffee_with_skimmed_milk = Café au lait écrémé
+food_coffee_with_oat_drink = Café avec boisson à l'avoine
+food_coffee_with_soy_drink = Café avec boisson au soja
+food_coffee_with_milk_sugar = Café au lait sucré
+food_cafe_bombon = Café bombón (au lait concentré)
+food_espresso_with_sugar = Expresso sucré
+food_carajillo = Carajillo (café arrosé)
+food_brandy = Brandy ou cognac
+food_clara = Panaché
+food_kalimotxo = Kalimotxo (vin rouge et cola)
+
+# 1.6.0: Dishes
+food_paella_valenciana = Paella valencienne
+food_paella_seafood = Paella aux fruits de mer
+food_arroz_negro = Arroz negro (riz à l'encre de seiche)
+food_fideua = Fideuà
+food_carbonara_italian = Carbonara à l'italienne (sans crème)
+food_pasta_tomato_chorizo = Macaronis à la tomate et au chorizo
+food_gnocchi = Gnocchis
+food_onigiri = Onigiri
+food_green_salad_plain = Salade verte sans vinaigrette
+food_ensalada_mixta_plain = Salade composée sans vinaigrette
+food_pumpkin_cream = Velouté de potiron
+food_vichyssoise = Velouté poireaux-pommes de terre (vichyssoise)
+food_mixed_vegetables = Poêlée ou jardinière de légumes
+food_acai_bowl = Bol d'açaï ou smoothie bowl
+
+# 1.6.0: Fast food
+food_pizza_margherita = Pizza margherita
+food_pizza_pepperoni = Pizza pepperoni
+food_pizza_four_cheese = Pizza quatre fromages
+food_pizza_ham = Pizza jambon-fromage
+food_pizza_barbecue = Pizza barbecue (à la viande)
+food_pizza_vegetable = Pizza végétarienne
+food_cheeseburger = Cheeseburger
+food_bacon_cheeseburger = Bacon cheeseburger
+food_chicken_burger = Burger au poulet
+food_sandwich_vegetal = Sandwich crudités
+food_omelette_baguette = Sandwich à la tortilla
+food_calamari_baguette = Sandwich aux calamars frits
+food_pork_loin_baguette = Sandwich au filet de porc
+food_cheese_baguette = Sandwich au fromage
+
+# 1.6.0: Snacks
+food_samosa = Samoussa
+
+# 1.6.0: Sauces and dressings
+food_paprika = Paprika
+food_vinegar = Vinaigre
+food_lime_juice = Jus de citron vert

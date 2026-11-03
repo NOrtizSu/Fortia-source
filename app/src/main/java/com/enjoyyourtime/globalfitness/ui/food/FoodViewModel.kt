@@ -3,6 +3,7 @@ package com.enjoyyourtime.globalfitness.ui.food
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
+import android.os.SystemClock
 import android.util.Log
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asImageBitmap
@@ -23,8 +24,13 @@ import com.enjoyyourtime.globalfitness.food.barcode.BarcodeReader
 import com.enjoyyourtime.globalfitness.food.catalog.FoodSearch
 import com.enjoyyourtime.globalfitness.food.data.GoalSettings
 import com.enjoyyourtime.globalfitness.food.data.MealPhotos
+import com.enjoyyourtime.globalfitness.food.domain.AdjustedDish
 import com.enjoyyourtime.globalfitness.food.domain.DayLog
+import com.enjoyyourtime.globalfitness.food.domain.DraftOption
+import com.enjoyyourtime.globalfitness.food.domain.FoodDrafts
 import com.enjoyyourtime.globalfitness.food.domain.FoodMath
+import com.enjoyyourtime.globalfitness.food.domain.IngredientInfo
+import com.enjoyyourtime.globalfitness.food.domain.RecipeMath
 import com.enjoyyourtime.globalfitness.food.domain.GoalAim
 import com.enjoyyourtime.globalfitness.food.domain.GoalBreakdown
 import com.enjoyyourtime.globalfitness.food.domain.GoalInputs
@@ -39,13 +45,19 @@ import com.enjoyyourtime.globalfitness.food.model.FoodEntry
 import com.enjoyyourtime.globalfitness.food.model.FoodItem
 import com.enjoyyourtime.globalfitness.food.model.FoodRef
 import com.enjoyyourtime.globalfitness.food.model.FoodUnit
+import com.enjoyyourtime.globalfitness.food.model.IngredientAdjustment
 import com.enjoyyourtime.globalfitness.food.model.Meal
 import com.enjoyyourtime.globalfitness.food.model.Nutrient
 import com.enjoyyourtime.globalfitness.food.model.Nutrients
 import com.enjoyyourtime.globalfitness.food.model.Portion
 import com.enjoyyourtime.globalfitness.food.model.PortionKey
+import com.enjoyyourtime.globalfitness.food.model.RecipeIngredient
 import com.enjoyyourtime.globalfitness.food.off.OffCache
 import com.enjoyyourtime.globalfitness.food.off.OffResult
+import com.enjoyyourtime.globalfitness.food.catalog.FoodCatalog
+import com.enjoyyourtime.globalfitness.food.recognition.Detection
+import com.enjoyyourtime.globalfitness.food.recognition.DetectionMath
+import com.enjoyyourtime.globalfitness.food.recognition.GramsEstimator
 import com.enjoyyourtime.globalfitness.food.recognition.Recognition
 import com.enjoyyourtime.globalfitness.health.HcAvailability
 import com.enjoyyourtime.globalfitness.health.HealthDataType
@@ -105,7 +117,12 @@ data class FoodTodayUi(val kcal: Double, val goalKcal: Double?)
 
 enum class PhotoStatus { RECOGNIZING, DONE, NO_MODEL, UNREADABLE }
 
-/** A meal photo being logged: its stored file, what the recognizer saw, how many foods were added from it. */
+/**
+ * A meal photo being logged: its stored file, what the recognizer saw, how many foods were added from
+ * it. With the item detector, a plate of several foods has its [items] (two or more): the page lists
+ * them unless the user asked to see the photo as one dish ([asOne]); [recognition] is then that of the
+ * whole photo, read when first needed.
+ */
 data class PhotoSession(
     val photo: String?,
     val preview: ImageBitmap?,
@@ -114,7 +131,40 @@ data class PhotoSession(
     val added: List<String> = emptyList(),
     val meal: Meal,
     val eatenAt: Long,
-)
+    val items: List<PlateItem> = emptyList(),
+    val asOne: Boolean = false,
+    /** "Add all" is saving the items. */
+    val addingItems: Boolean = false,
+) {
+    /** The page shows the plate's items (not the whole photo's suggestions). */
+    val showsItems: Boolean get() = items.size >= 2 && !asOne
+}
+
+/**
+ * One food item the detector found on the plate: its square crop (the entry's photo once added), what
+ * the recognizer saw in it, the food chosen (the best suggestion to start with), its variants, the
+ * amount (the photo's grams suggestion, else the food's portion) and whether "Add all" adds it.
+ */
+data class PlateItem(
+    val id: Int,
+    val share: Double,
+    val crop: Bitmap,
+    val preview: ImageBitmap,
+    val recognition: Recognition?,
+    val food: FoodItem?,
+    /** The variants of [food] (its base first), empty when it has none. */
+    val variants: List<FoodItem> = emptyList(),
+    val amountText: String,
+    /** The user typed the amount: another food chosen keeps it. */
+    val amountTyped: Boolean = false,
+    /** The grams suggestion for [food] (null: the amount is its portion). */
+    val estimate: Double? = null,
+    val included: Boolean,
+    /** Logged by "Add all" already. */
+    val added: Boolean = false,
+) {
+    val amount: Double? get() = Fmt.parseDecimal(amountText)?.takeIf { it > 0 && it < 10_000 }
+}
 
 /** What the confirm screen starts from: a food, how much, which meal and when. */
 data class FoodDraft(
@@ -122,6 +172,7 @@ data class FoodDraft(
     val editingId: String?,
     val item: FoodItem,
     val source: EntrySource,
+    /** The amount of the dish itself (its ingredients' changes come on top, see [adjustments]). */
     val amount: Double,
     val portion: Portion?,
     val portionCount: Double?,
@@ -132,6 +183,37 @@ data class FoodDraft(
     val modelConfidence: Double? = null,
     /** Bumped for every new draft, so the screen resets its fields. */
     val serial: Long = 0,
+    /** The ingredients of [item] that can be changed (empty: none, or not a dish of the catalog). */
+    val recipe: List<RecipeIngredient> = emptyList(),
+    /** The variants offered (the base first, the "typical" one; [item] among them); empty when it has none. */
+    val options: List<DraftOption> = emptyList(),
+    /** Every ingredient of [recipe] and of the [options]' recipes. */
+    val ingredients: Map<String, IngredientInfo> = emptyMap(),
+    /** The ingredients the edited entry had changed. */
+    val adjustments: List<IngredientAdjustment> = emptyList(),
+    /** The photo's grams suggestion ([amount] starts with it). */
+    val estimatedAmount: Double? = null,
+    /** The photo's estimator: another variant chosen gets its own suggestion (its portion differs). */
+    val grams: GramsEstimator? = null,
+) {
+    /** [item] and its recipe as an option (it may have no variants). */
+    val current: DraftOption get() = DraftOption(item, recipe)
+}
+
+/**
+ * What the confirm screen saves: the food (the draft's, or another of its variants), the amount of
+ * the dish, its changed ingredients, the portion, the meal and the time.
+ */
+data class DraftChoice(
+    val item: FoodItem,
+    val dishAmount: Double,
+    val adjustments: List<IngredientAdjustment>,
+    val portionKey: PortionKey?,
+    val portionCount: Double?,
+    val meal: Meal,
+    val eatenAt: Long,
+    /** The photo's grams suggestion for [item], kept with the entry for quality stats. */
+    val estimatedAmount: Double? = null,
 )
 
 enum class SaveStatus { SAVING, SAVED, FAILED }
@@ -266,12 +348,19 @@ class FoodViewModel(private val container: AppContainer, private val state: Save
         if (catalogJob?.isActive == true) return
         catalogJob = viewModelScope.launch {
             catalogFoods.value = food.catalog.foods()
+            catalogRecipes.value = food.catalog.recipes()
             catalogItems.value = food.catalog.items()
         }
     }
 
-    private suspend fun awaitCatalog(): Map<String, CatalogFood> =
-        catalogFoods.value.ifEmpty { food.catalog.foods().also { catalogFoods.value = it } }
+    /** The ingredients of the catalog's dishes, by dish id. */
+    private val catalogRecipes = MutableStateFlow<Map<String, List<RecipeIngredient>>>(emptyMap())
+
+    private suspend fun awaitCatalog(): Map<String, CatalogFood> {
+        val foods = catalogFoods.value.ifEmpty { food.catalog.foods().also { catalogFoods.value = it } }
+        if (catalogRecipes.value.isEmpty()) catalogRecipes.value = food.catalog.recipes()
+        return foods
+    }
 
     /** The Comida tab shows: the catalog (the model loads only when a meal photo is on its way). */
     fun onTabShown() {
@@ -427,40 +516,188 @@ class FoodViewModel(private val container: AppContainer, private val state: Save
     /** Where the camera writes (shared through the FileProvider). */
     val cameraTarget get() = photos.cameraTarget
 
-    /** A meal photo from the camera or the gallery: stored small, then recognized on the phone. */
+    /** The photo being logged, at recognition size (for "see it as one dish" after the items were found). */
+    private var photoBitmap: Bitmap? = null
+
+    /**
+     * A meal photo from the camera or the gallery: stored small, then recognized on the phone. With the
+     * item detector and two or more foods found, each is recognized on its own crop; otherwise the
+     * whole photo, as one food.
+     */
     fun onMealPhoto(uri: Uri, fromCamera: Boolean) {
         closePhotoSession()
         val now = System.currentTimeMillis()
         val meal = defaultMeal(now)
         _photo.value = PhotoSession(null, null, PhotoStatus.RECOGNIZING, meal = meal, eatenAt = now)
         photoJob = viewModelScope.launch {
-            val bitmap = withContext(Dispatchers.IO) { photos.decode(uri, MealPhotos.MAX_SIDE_PX) }
+            val bitmap = withContext(Dispatchers.IO) { photos.decode(uri, RECOGNITION_SIDE_PX) }
             if (fromCamera) withContext(Dispatchers.IO) { runCatching { photos.cameraTarget.delete() } }
             if (bitmap == null) {
                 _photo.update { it?.copy(status = PhotoStatus.UNREADABLE) }
                 return@launch
             }
+            photoBitmap = bitmap
             val name = withContext(Dispatchers.IO) { runCatching { photos.store(bitmap) }.getOrNull() }
             _photo.update { it?.copy(photo = name, preview = bitmap.asImageBitmap()) }
+            val known = awaitCatalog()
+            val started = SystemClock.elapsedRealtime()
+            val detection = if (food.recognizer.detectorBundled) food.recognizer.detect(bitmap) else null
+            if (detection != null && detection.boxes.size >= 2) {
+                val items = plateItems(bitmap, detection, known)
+                Log.i(TAG, "Plate of ${items.size} items recognized in ${SystemClock.elapsedRealtime() - started} ms")
+                if (items.any { it.recognition != null }) {
+                    _photo.update { it?.copy(status = PhotoStatus.DONE, items = items) }
+                    return@launch
+                }
+            }
+            val result = food.recognizer.recognize(bitmap) { it in known }
+            _photo.update { it?.copy(status = if (result == null) PhotoStatus.NO_MODEL else PhotoStatus.DONE, recognition = result) }
+        }
+    }
+
+    /** Each box of the plate cropped, recognized and given its first food, amount and variants. */
+    private suspend fun plateItems(bitmap: Bitmap, detection: Detection, known: Map<String, CatalogFood>): List<PlateItem> {
+        val shares = DetectionMath.shares(detection.boxes, bitmap.width, bitmap.height)
+        return detection.boxes.mapIndexed { i, box ->
+            val sq = DetectionMath.crop(box, bitmap.width, bitmap.height, detection.cropMargin)
+            val crop = withContext(Dispatchers.Default) { Bitmap.createBitmap(bitmap, sq.left, sq.top, sq.size, sq.size) }
+            val r = food.recognizer.recognize(crop) { it in known }
+            val first = r?.takeIf { !it.notFood }?.suggestions?.firstOrNull()?.label?.let(known::get)
+            withFood(
+                PlateItem(id = i, share = shares[i], crop = crop, preview = crop.asImageBitmap(), recognition = r, food = null, amountText = "", included = false),
+                first?.let { FoodItem.of(it, food.catalog.name(it.id)) },
+            ).copy(included = first != null)
+        }
+    }
+
+    /** [item] with [chosen] as its food: its variants, and its grams suggestion unless the user typed the amount. */
+    private fun withFood(item: PlateItem, chosen: FoodItem?): PlateItem {
+        if (chosen == null) return item.copy(food = null, variants = emptyList(), estimate = null)
+        val variants = chosen.foodId?.let { id -> FoodCatalog.variantsOf(id, catalogFoods.value).map { FoodItem.of(it, food.catalog.name(it.id)) } }.orEmpty()
+        val start = FoodDrafts.plateAmount(chosen, item.recognition?.grams, item.share, item.amount.takeIf { item.amountTyped })
+        return item.copy(
+            food = chosen,
+            variants = variants,
+            estimate = start.estimate.takeUnless { item.amountTyped },
+            amountText = if (item.amountTyped) item.amountText else FoodFormat.count(FoodMath.round1(start.amount)),
+            included = true,
+        )
+    }
+
+    private fun updateItem(id: Int, transform: (PlateItem) -> PlateItem) {
+        _photo.update { s -> s?.copy(items = s.items.map { if (it.id == id) transform(it) else it }) }
+    }
+
+    /** A suggestion (catalog id) chosen for item [id] of the plate. */
+    fun chooseItemSuggestion(id: Int, label: String) {
+        val catalog = catalogFoods.value[label] ?: return
+        updateItem(id) { withFood(it, FoodItem.of(catalog, food.catalog.name(label))) }
+    }
+
+    /** Another food (a variant, or one from the search) for item [id]. */
+    fun chooseItemFood(id: Int, item: FoodItem) = updateItem(id) { withFood(it, item) }
+
+    fun setItemAmount(id: Int, text: String) = updateItem(id) { it.copy(amountText = text.take(7), amountTyped = true, estimate = null) }
+
+    fun setItemIncluded(id: Int, included: Boolean) = updateItem(id) { it.copy(included = included && it.food != null) }
+
+    fun setPhotoMeal(meal: Meal) = _photo.update { it?.copy(meal = meal) }
+
+    /** The plate as one dish: today's five suggestions of the whole photo (recognized now if not yet). */
+    fun showPhotoAsOne(asOne: Boolean) {
+        val s = _photo.value ?: return
+        _photo.value = s.copy(asOne = asOne)
+        if (!asOne || s.recognition != null) return
+        val bitmap = photoBitmap ?: return
+        _photo.value = s.copy(asOne = true, status = PhotoStatus.RECOGNIZING)
+        photoJob = viewModelScope.launch {
             val known = awaitCatalog()
             val result = food.recognizer.recognize(bitmap) { it in known }
             _photo.update { it?.copy(status = if (result == null) PhotoStatus.NO_MODEL else PhotoStatus.DONE, recognition = result) }
         }
     }
 
+    /**
+     * "Add all": one entry per included item of the plate, in the meal chosen, each with its own crop as
+     * its photo. An item that could not be saved stays ticked (the snackbar says so) for another try.
+     */
+    fun addPlateItems() {
+        val s = _photo.value ?: return
+        if (s.addingItems) return
+        val chosen = s.items.filter { it.included && it.food != null && it.amount != null }
+        if (chosen.isEmpty()) return
+        _photo.value = s.copy(addingItems = true)
+        val zone = ZoneId.systemDefault()
+        val offset = zone.rules.getOffset(Instant.ofEpochMilli(s.eatenAt)).totalSeconds
+        viewModelScope.launch {
+            val added = ArrayList<String>()
+            for (item in chosen) {
+                val f = item.food ?: continue
+                val amount = item.amount ?: continue
+                val photo = withContext(Dispatchers.IO) { runCatching { photos.store(item.crop) }.getOrNull() }
+                photo?.let(savingPhotos::add)
+                val portion = FoodDrafts.defaultPortion(f)?.takeIf { it.amount == amount }
+                val entry = try {
+                    writing {
+                        repository.addEntry(
+                            FoodEntry(
+                                id = "",
+                                eatenAt = s.eatenAt,
+                                zoneOffsetSeconds = offset,
+                                meal = s.meal,
+                                foodId = f.foodId,
+                                customFoodId = f.customFoodId,
+                                name = f.name,
+                                amount = amount,
+                                unit = f.unit,
+                                portionKey = portion?.key,
+                                portionCount = portion?.let { 1.0 },
+                                nutrients = FoodMath.nutrientsFor(f.per100, amount),
+                                source = EntrySource.PHOTO,
+                                photo = photo,
+                                modelLabel = item.recognition?.topLabel,
+                                modelConfidence = item.recognition?.topConfidence?.toDouble(),
+                                createdAt = 0,
+                                updatedAt = 0,
+                                estimatedAmount = item.recognition?.grams?.estimate(f.portion, item.share),
+                            ),
+                        )
+                    }
+                } finally {
+                    photo?.let(savingPhotos::remove)
+                }
+                if (entry == null) {
+                    photo?.let(food::deletePhotoIfUnused)
+                    continue
+                }
+                added += entry.name
+                updateItem(item.id) { it.copy(included = false, added = true) }
+            }
+            if (added.isNotEmpty()) {
+                settings.markUsed()
+                showDay(FoodViewModel.dateOf(s.eatenAt))
+                maybeAskHealthPermission()
+            }
+            _photo.update { it?.copy(addingItems = false, added = it.added + added) }
+        }
+    }
+
     /** The photo flow ends: a photo no entry uses (nor one being saved) is deleted. */
     fun closePhotoSession() {
         photoJob?.cancel()
+        photoBitmap = null
+        if (searchTarget != null) searchTarget = null
         val session = _photo.value ?: return
         _photo.value = null
         session.photo?.let(food::deletePhotoIfUnused)
     }
 
-    /** A suggestion (catalog id) chosen for the photo. */
+    /** A suggestion (catalog id) chosen for the photo (as one dish). */
     fun chooseSuggestion(label: String): Boolean {
         val session = _photo.value ?: return false
         val catalog = catalogFoods.value[label] ?: return false
-        startDraft(FoodItem.of(catalog, food.catalog.name(label)), EntrySource.PHOTO, session)
+        val item = FoodItem.of(catalog, food.catalog.name(label))
+        startDraft(item, EntrySource.PHOTO, session, estimate = session.recognition?.grams?.estimate(item.portion, 1.0), grams = session.recognition?.grams)
         return true
     }
 
@@ -481,19 +718,45 @@ class FoodViewModel(private val container: AppContainer, private val state: Save
     /** Search opened from the photo ("Other…"): the entry keeps the photo. */
     private var searchForPhoto = false
 
+    /** Search opened for item [id] of the plate: the food chosen goes back to that item. */
+    private var searchTarget: Int? = null
+
+    /** The search picks a food for an item of the plate (no entry of its own: no manual entry either). */
+    val searchingForItem: Boolean get() = searchTarget != null
+
     fun startSearch(forPhoto: Boolean) {
         searchForPhoto = forPhoto && _photo.value != null
+        searchTarget = null
         _query.value = ""
     }
 
-    fun chooseItem(item: FoodItem) {
+    /** "Other…" on item [id] of the plate. */
+    fun startItemSearch(id: Int) {
+        searchForPhoto = false
+        searchTarget = id.takeIf { _photo.value?.items?.any { it.id == id } == true }
+        _query.value = ""
+    }
+
+    /**
+     * A food chosen in the search: true when the confirm page opens for it, false when it went to the
+     * plate's item the search was opened for (the search just closes).
+     */
+    fun chooseItem(item: FoodItem): Boolean {
+        searchTarget?.let { id ->
+            searchTarget = null
+            chooseItemFood(id, item)
+            return false
+        }
         val session = _photo.value.takeIf { searchForPhoto }
         val source = when {
             session != null -> EntrySource.PHOTO
             _query.value.isBlank() -> EntrySource.RECENT
             else -> EntrySource.SEARCH
         }
-        startDraft(item, source, session)
+        // The photo's picture estimates this food too (its own portion).
+        val grams = session?.recognition?.grams
+        startDraft(item, source, session, estimate = grams?.estimate(item.portion, 1.0), grams = grams)
+        return true
     }
 
     /** "Edit food" on one of the user's foods (or a product kept from a barcode): the manual form, saving the food only. */
@@ -607,7 +870,7 @@ class FoodViewModel(private val container: AppContainer, private val state: Save
         }
     }
 
-    private fun missingOf(n: Nutrients) = Nutrient.entries.filter { n[it] == null }
+    private fun missingOf(n: Nutrients) = Nutrient.LABEL.filter { n[it] == null }
 
     fun useBarcodeProduct() {
         val found = _barcode.value as? BarcodeState.Found ?: return
@@ -738,23 +1001,42 @@ class FoodViewModel(private val container: AppContainer, private val state: Save
 
     private fun nextSerial(): Long = (++serial).also { state[KEY_SERIAL] = it }
 
-    private fun startDraft(item: FoodItem, source: EntrySource, session: PhotoSession?, amount: Double? = null) {
-        val portion = item.portions.firstOrNull { it.amount == item.portion } ?: item.portions.firstOrNull()?.takeIf { item.portion == null }
+    /**
+     * A new draft of [item]. [amount]: a fixed amount (a product's values just completed for it); else
+     * the photo's [estimate] when there is one (a suggestion: the screen says so), else the food's
+     * default portion.
+     */
+    private fun startDraft(
+        item: FoodItem,
+        source: EntrySource,
+        session: PhotoSession?,
+        amount: Double? = null,
+        estimate: Double? = null,
+        grams: GramsEstimator? = null,
+    ) {
+        val portion = FoodDrafts.defaultPortion(item)
         val now = System.currentTimeMillis()
         val eatenAt = session?.eatenAt ?: eatenAtFor(_day.value, now)
+        val fixed = amount ?: estimate
+        val shape = FoodDrafts.shape(item, catalogFoods.value, catalogRecipes.value, food.catalog::name)
         _draft.value = FoodDraft(
             editingId = null,
             item = item,
             source = source,
-            amount = amount ?: portion?.amount ?: item.portion ?: DEFAULT_AMOUNT,
-            portion = portion.takeIf { amount == null },
-            portionCount = if (amount == null && portion != null) 1.0 else null,
+            amount = fixed ?: FoodDrafts.defaultAmount(item),
+            portion = portion.takeIf { fixed == null },
+            portionCount = if (fixed == null && portion != null) 1.0 else null,
             meal = session?.meal ?: defaultMeal(eatenAt),
             eatenAt = eatenAt,
             photo = session?.photo,
             modelLabel = session?.recognition?.topLabel,
             modelConfidence = session?.recognition?.topConfidence?.toDouble(),
             serial = nextSerial(),
+            recipe = shape.recipe,
+            options = shape.options,
+            ingredients = shape.ingredients,
+            estimatedAmount = estimate.takeIf { amount == null },
+            grams = grams.takeIf { amount == null },
         )
     }
 
@@ -768,22 +1050,27 @@ class FoodViewModel(private val container: AppContainer, private val state: Save
         }
         val catalogFoods = awaitCatalog()
         val e = repository.entry(id) ?: return false
-        val per100 = FoodMath.per100Of(e.nutrients, e.amount)
+        // The dish as it was before its ingredients were changed (undone with today's ingredient
+        // values, which saving re-applies: an entry saved unchanged keeps its values).
+        val adjustments = e.adjustments.takeIf { e.dishAmount > 0 }.orEmpty()
+        val dishAmount = if (adjustments.isEmpty()) e.amount else e.dishAmount
+        val per100 = RecipeMath.unadjustedPer100(e.nutrients, e.amount, adjustments) { catalogFoods[it]?.per100 }
         val catalog = e.foodId?.let { catalogFoods[it] }
         val custom = e.customFoodId?.let(repository::customFood)
         val base = when {
             catalog != null -> FoodItem.of(catalog, food.catalog.name(catalog.id))
             custom != null -> FoodItem.of(custom)
-            else -> FoodItem(FoodRef.of(e.foodId, e.customFoodId), e.name, null, e.unit, per100, e.amount, emptyList(), null)
+            else -> FoodItem(FoodRef.of(e.foodId, e.customFoodId), e.name, null, e.unit, per100, dishAmount, emptyList(), null)
         }
         // The values logged stay the entry's own (a newer catalog never rewrites them).
         val item = base.copy(name = entryName(e), per100 = per100, unit = e.unit)
+        val shape = FoodDrafts.shape(item, catalogFoods, catalogRecipes.value, food.catalog::name, adjustments, dishAmount)
         _draft.value = FoodDraft(
             editingId = id,
             item = item,
             source = e.source,
-            amount = e.amount,
-            portion = e.portionKey?.let { k -> item.portions.firstOrNull { it.key == k } ?: e.portionCount?.takeIf { it > 0 }?.let { Portion(k, e.amount / it) } },
+            amount = dishAmount,
+            portion = e.portionKey?.let { k -> item.portions.firstOrNull { it.key == k } ?: e.portionCount?.takeIf { it > 0 }?.let { Portion(k, dishAmount / it) } },
             portionCount = e.portionCount,
             meal = e.meal,
             eatenAt = e.eatenAt,
@@ -791,6 +1078,11 @@ class FoodViewModel(private val container: AppContainer, private val state: Save
             modelLabel = e.modelLabel,
             modelConfidence = e.modelConfidence,
             serial = nextSerial(),
+            recipe = shape.recipe,
+            options = shape.options,
+            ingredients = shape.ingredients,
+            adjustments = adjustments,
+            estimatedAmount = e.estimatedAmount,
         )
         return true
     }
@@ -799,19 +1091,19 @@ class FoodViewModel(private val container: AppContainer, private val state: Save
      * Saves the draft with the screen's choices (a new entry, or the edited one). [draftSave] says when
      * it is done; after a failure (a message is shown) the same draft may be saved again.
      */
-    fun saveDraft(amount: Double, portionKey: PortionKey?, portionCount: Double?, meal: Meal, eatenAt: Long) {
+    fun saveDraft(choice: DraftChoice) {
         val d = _draft.value ?: return
         val previous = _draftSave.value?.takeIf { it.serial == d.serial }
         // A second tap while it saves (or once saved) saves nothing more.
-        if (amount <= 0 || previous != null && previous.status != SaveStatus.FAILED) return
+        if (choice.dishAmount <= 0 || previous != null && previous.status != SaveStatus.FAILED) return
         _draftSave.value = DraftSave(d.serial, SaveStatus.SAVING, fromPhoto = d.photo != null && d.editingId == null)
         val zone = ZoneId.systemDefault()
-        val offset = zone.rules.getOffset(Instant.ofEpochMilli(eatenAt)).totalSeconds
-        val nutrients = FoodMath.nutrientsFor(d.item.per100, amount)
+        val offset = zone.rules.getOffset(Instant.ofEpochMilli(choice.eatenAt)).totalSeconds
+        val dish = RecipeMath.apply(choice.item.per100, choice.dishAmount, choice.adjustments) { d.ingredients[it]?.per100 }
         d.photo?.let(savingPhotos::add)
         viewModelScope.launch {
             val saved = try {
-                writing { save(d, amount, portionKey, portionCount, meal, eatenAt, offset, nutrients) } != null
+                writing { save(d, choice, dish, offset) } != null
             } finally {
                 d.photo?.let(savingPhotos::remove)
             }
@@ -822,28 +1114,25 @@ class FoodViewModel(private val container: AppContainer, private val state: Save
     /** Photos of entries being saved right now (not in the list yet): never deleted meanwhile (read from any thread). */
     private val savingPhotos: MutableSet<String> = ConcurrentHashMap.newKeySet()
 
-    private suspend fun save(
-        d: FoodDraft,
-        amount: Double,
-        portionKey: PortionKey?,
-        portionCount: Double?,
-        meal: Meal,
-        eatenAt: Long,
-        offset: Int,
-        nutrients: Nutrients,
-    ) {
+    private suspend fun save(d: FoodDraft, c: DraftChoice, dish: AdjustedDish, offset: Int) {
+        val item = c.item
         if (d.editingId != null) {
             repository.updateEntry(d.editingId) {
                 it.copy(
-                    eatenAt = eatenAt,
+                    eatenAt = c.eatenAt,
                     // Logged while travelling: the entry keeps its zone unless its time changes.
-                    zoneOffsetSeconds = if (eatenAt == it.eatenAt) it.zoneOffsetSeconds else offset,
-                    meal = meal,
-                    amount = amount,
-                    unit = d.item.unit,
-                    portionKey = portionKey,
-                    portionCount = portionCount,
-                    nutrients = nutrients,
+                    zoneOffsetSeconds = if (c.eatenAt == it.eatenAt) it.zoneOffsetSeconds else offset,
+                    meal = c.meal,
+                    // Another variant of the dish chosen: the entry is that food now.
+                    foodId = if (item.ref == d.item.ref) it.foodId else item.foodId,
+                    customFoodId = if (item.ref == d.item.ref) it.customFoodId else item.customFoodId,
+                    name = if (item.ref == d.item.ref) it.name else item.name,
+                    amount = dish.amount,
+                    unit = item.unit,
+                    portionKey = c.portionKey,
+                    portionCount = c.portionCount,
+                    nutrients = dish.nutrients,
+                    adjustments = c.adjustments,
                 )
             }
             return
@@ -851,30 +1140,32 @@ class FoodViewModel(private val container: AppContainer, private val state: Save
         val entry = repository.addEntry(
             FoodEntry(
                 id = "",
-                eatenAt = eatenAt,
+                eatenAt = c.eatenAt,
                 zoneOffsetSeconds = offset,
-                meal = meal,
-                foodId = d.item.foodId,
-                customFoodId = d.item.customFoodId,
-                name = d.item.name,
-                amount = amount,
-                unit = d.item.unit,
-                portionKey = portionKey,
-                portionCount = portionCount,
-                nutrients = nutrients,
+                meal = c.meal,
+                foodId = item.foodId,
+                customFoodId = item.customFoodId,
+                name = item.name,
+                amount = dish.amount,
+                unit = item.unit,
+                portionKey = c.portionKey,
+                portionCount = c.portionCount,
+                nutrients = dish.nutrients,
                 source = d.source,
                 photo = d.photo,
                 modelLabel = d.modelLabel,
                 modelConfidence = d.modelConfidence,
                 createdAt = 0,
                 updatedAt = 0,
+                adjustments = c.adjustments,
+                estimatedAmount = c.estimatedAmount,
             ),
         )
         settings.markUsed()
         // The day shown follows the entry, so the user sees it there.
         showDay(entry.localDate)
         if (d.photo != null) {
-            _photo.update { s -> if (s != null && s.photo == d.photo) s.copy(added = s.added + entry.name, meal = meal, eatenAt = eatenAt) else s }
+            _photo.update { s -> if (s != null && s.photo == d.photo) s.copy(added = s.added + entry.name, meal = c.meal, eatenAt = c.eatenAt) else s }
         }
         maybeAskHealthPermission()
     }
@@ -1000,9 +1291,14 @@ class FoodViewModel(private val container: AppContainer, private val state: Save
 
     companion object {
         private const val TAG = "FoodViewModel"
-        private const val DEFAULT_AMOUNT = 100.0
         private const val KEY_MANUAL = "food_manual"
         private const val KEY_SERIAL = "food_serial"
+
+        /**
+         * A meal photo is decoded this large for recognition (the items of a plate are crops of it; the
+         * stored photo is smaller, [MealPhotos.MAX_SIDE_PX]).
+         */
+        private const val RECOGNITION_SIDE_PX = 1280
 
         /** How long "Undo" is offered after deleting an entry (the snackbar's long duration). */
         const val UNDO_MS = 10_000L

@@ -1,0 +1,79 @@
+# Comida in 1.6.0: more nutrients per food, variants of a dish, changing a dish's ingredients when logging it,
+# several foods in one photo and the photo's grams suggestion. The rest of the food log is in 99_food.txt.
+
+# Units of the new values ("350 mg", "2.4 µg"); the unit alone as a field suffix
+unit_mg = mg
+unit_ug = µg
+value_mg = %1$s mg
+value_ug = %1$s µg
+
+# The values beyond the nutrition label (food tables give them; product labels rarely do)
+foodlog_nutrient_mono_fat = Chất béo không bão hòa đơn
+foodlog_nutrient_poly_fat = Chất béo không bão hòa đa
+foodlog_nutrient_cholesterol = Cholesterol
+foodlog_nutrient_potassium = Kali
+foodlog_nutrient_calcium = Canxi
+foodlog_nutrient_iron = Sắt
+foodlog_nutrient_magnesium = Magie
+foodlog_nutrient_zinc = Kẽm
+foodlog_nutrient_vit_a = Vitamin A
+foodlog_nutrient_vit_c = Vitamin C
+foodlog_nutrient_vit_d = Vitamin D
+foodlog_nutrient_vit_e = Vitamin E
+foodlog_nutrient_vit_b12 = Vitamin B12
+foodlog_nutrient_folate = Folate
+# Small headings of those values (day summary under "More", the food's values, the manual form)
+foodlog_nutrients_fats = Chi tiết chất béo
+foodlog_nutrients_minerals = Khoáng chất
+foodlog_nutrients_vitamins = Vitamin
+# A day total that adds up only the foods that have that value ("≥ 45 g"), and the line that explains the sign
+foodlog_partial_value = ≥ %1$s
+foodlog_partial_note = ≥: một số thực phẩm không có giá trị này, nên tổng ít nhất là bằng con số này.
+# The manual form: the optional values beyond the label
+foodlog_more_nutrients = Thêm chất dinh dưỡng
+foodlog_more_nutrients_text = Không bắt buộc: chỉ khi bạn biết.
+
+# Variants of a dish (paella: seafood, mixed…): a heading and the chip of the usual one (gender-neutral in Spanish)
+foodlog_variants = Biến thể
+foodlog_variant_typical = Thông thường
+
+# The ingredients of a dish on the confirm page: closed it says what changed ("Changed: Olive oil 35 g, Bread 0 g")
+foodlog_ingredients = Nguyên liệu
+foodlog_ingredients_adjust = Điều chỉnh
+foodlog_ingredients_usual = Công thức thông thường
+foodlog_ingredients_changed = Đã thay đổi: %1$s
+foodlog_ingredients_text = Thay đổi những gì có trong đĩa của bạn (nhiều hay ít dầu, không có bánh mì…): các giá trị sẽ tự cập nhật.
+# An ingredient with its amount ("Olive oil 35 g"); under its name, its usual amount for the amount logged
+foodlog_label_amount = %1$s %2$s
+foodlog_ingredient_usual = Thường là %1$s
+# The pencil button next to an ingredient's amount (TalkBack): type another amount of it
+foodlog_ingredient_type = Nhập lượng %1$s
+# The weight of the dish once its ingredients changed ("Total: 368 g")
+foodlog_total_weight = Tổng: %1$s
+# How much of an ingredient (chips: none, half, normal, one and a half, double); TalkBack reads the _desc ones
+foodlog_level_none = Không
+foodlog_level_half = ½
+foodlog_level_normal = Bình thường
+foodlog_level_one_half = 1½
+foodlog_level_double = ×2
+foodlog_level_half_desc = Một nửa
+foodlog_level_one_half_desc = Gấp rưỡi
+foodlog_level_double_desc = Gấp đôi
+# A logged dish whose ingredients were changed, in the day's list ("Plate · 368 g · Adjusted")
+foodlog_entry_adjusted = %1$s · Đã điều chỉnh
+
+# The photo's grams suggestion next to the amount: a suggestion only, the user confirms or changes it
+foodlog_estimated = ≈ %1$s (ước tính)
+foodlog_estimated_text = Ước tính từ ảnh. Hãy kiểm tra và thay đổi nếu cần.
+
+# Several foods found on one plate: one card each (its crop, three suggestions, "Other…", its amount), then "Add all (3)"
+foodlog_plate_title{other} = %1$d món trên đĩa
+foodlog_plate_text = Kiểm tra từng món: đó là gì và bao nhiêu. Bỏ chọn những món bạn không muốn thêm.
+foodlog_plate_item_desc = Món %1$d trong ảnh
+foodlog_plate_unknown = Đây là gì?
+foodlog_plate_unknown_text = Không nhận diện được: hãy chọn bằng “Món khác…”.
+foodlog_plate_item_added = Đã thêm
+foodlog_plate_add_all = Thêm tất cả (%1$d)
+# The whole photo as one dish (today's five suggestions), and back to the foods one by one (always 2 or more)
+foodlog_plate_as_one = Xem như một món
+foodlog_plate_as_items{other} = Xem riêng từng món (%1$d)

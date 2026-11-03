@@ -1,0 +1,79 @@
+# Comida in 1.6.0: more nutrients per food, variants of a dish, changing a dish's ingredients when logging it,
+# several foods in one photo and the photo's grams suggestion. The rest of the food log is in 99_food.txt.
+
+# Units of the new values ("350 mg", "2.4 µg"); the unit alone as a field suffix
+unit_mg = 毫克
+unit_ug = 微克
+value_mg = %1$s 毫克
+value_ug = %1$s 微克
+
+# The values beyond the nutrition label (food tables give them; product labels rarely do)
+foodlog_nutrient_mono_fat = 单不饱和脂肪
+foodlog_nutrient_poly_fat = 多不饱和脂肪
+foodlog_nutrient_cholesterol = 胆固醇
+foodlog_nutrient_potassium = 钾
+foodlog_nutrient_calcium = 钙
+foodlog_nutrient_iron = 铁
+foodlog_nutrient_magnesium = 镁
+foodlog_nutrient_zinc = 锌
+foodlog_nutrient_vit_a = 维生素 A
+foodlog_nutrient_vit_c = 维生素 C
+foodlog_nutrient_vit_d = 维生素 D
+foodlog_nutrient_vit_e = 维生素 E
+foodlog_nutrient_vit_b12 = 维生素 B12
+foodlog_nutrient_folate = 叶酸
+# Small headings of those values (day summary under "More", the food's values, the manual form)
+foodlog_nutrients_fats = 脂肪明细
+foodlog_nutrients_minerals = 矿物质
+foodlog_nutrients_vitamins = 维生素
+# A day total that adds up only the foods that have that value ("≥ 45 g"), and the line that explains the sign
+foodlog_partial_value = ≥ %1$s
+foodlog_partial_note = ≥：部分食物缺少该项数值，因此总量至少为这么多。
+# The manual form: the optional values beyond the label
+foodlog_more_nutrients = 更多营养素
+foodlog_more_nutrients_text = 可选：仅在你知道时填写。
+
+# Variants of a dish (paella: seafood, mixed…): a heading and the chip of the usual one (gender-neutral in Spanish)
+foodlog_variants = 种类
+foodlog_variant_typical = 常规
+
+# The ingredients of a dish on the confirm page: closed it says what changed ("Changed: Olive oil 35 g, Bread 0 g")
+foodlog_ingredients = 配料
+foodlog_ingredients_adjust = 调整
+foodlog_ingredients_usual = 常规配方
+foodlog_ingredients_changed = 已更改：%1$s
+foodlog_ingredients_text = 按你这份餐食的实际情况修改配料（多放或少放油、不要面包…）：数值会随之更新。
+# An ingredient with its amount ("Olive oil 35 g"); under its name, its usual amount for the amount logged
+foodlog_label_amount = %1$s %2$s
+foodlog_ingredient_usual = 通常 %1$s
+# The pencil button next to an ingredient's amount (TalkBack): type another amount of it
+foodlog_ingredient_type = 输入 %1$s 的分量
+# The weight of the dish once its ingredients changed ("Total: 368 g")
+foodlog_total_weight = 总计：%1$s
+# How much of an ingredient (chips: none, half, normal, one and a half, double); TalkBack reads the _desc ones
+foodlog_level_none = 无
+foodlog_level_half = ½
+foodlog_level_normal = 正常
+foodlog_level_one_half = 1½
+foodlog_level_double = ×2
+foodlog_level_half_desc = 一半
+foodlog_level_one_half_desc = 一倍半
+foodlog_level_double_desc = 双倍
+# A logged dish whose ingredients were changed, in the day's list ("Plate · 368 g · Adjusted")
+foodlog_entry_adjusted = %1$s · 已调整
+
+# The photo's grams suggestion next to the amount: a suggestion only, the user confirms or changes it
+foodlog_estimated = ≈ %1$s（估算）
+foodlog_estimated_text = 根据照片估算。请检查，如有需要请修改。
+
+# Several foods found on one plate: one card each (its crop, three suggestions, "Other…", its amount), then "Add all (3)"
+foodlog_plate_title{other} = 盘中有 %1$d 种食物
+foodlog_plate_text = 逐一检查：是什么、有多少。取消勾选不想添加的食物。
+foodlog_plate_item_desc = 照片中的第 %1$d 种食物
+foodlog_plate_unknown = 这是什么？
+foodlog_plate_unknown_text = 未能识别：请通过“其他…”选择。
+foodlog_plate_item_added = 已添加
+foodlog_plate_add_all = 全部添加（%1$d）
+# The whole photo as one dish (today's five suggestions), and back to the foods one by one (always 2 or more)
+foodlog_plate_as_one = 作为一道菜查看
+foodlog_plate_as_items{other} = 逐一查看这 %1$d 种食物

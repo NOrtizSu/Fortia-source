@@ -1,0 +1,79 @@
+# Comida in 1.6.0: more nutrients per food, variants of a dish, changing a dish's ingredients when logging it,
+# several foods in one photo and the photo's grams suggestion. The rest of the food log is in 99_food.txt.
+
+# Units of the new values ("350 mg", "2.4 µg"); the unit alone as a field suffix
+unit_mg = mg
+unit_ug = µg
+value_mg = %1$s mg
+value_ug = %1$s µg
+
+# The values beyond the nutrition label (food tables give them; product labels rarely do)
+foodlog_nutrient_mono_fat = 단일불포화지방
+foodlog_nutrient_poly_fat = 다가불포화지방
+foodlog_nutrient_cholesterol = 콜레스테롤
+foodlog_nutrient_potassium = 칼륨
+foodlog_nutrient_calcium = 칼슘
+foodlog_nutrient_iron = 철분
+foodlog_nutrient_magnesium = 마그네슘
+foodlog_nutrient_zinc = 아연
+foodlog_nutrient_vit_a = 비타민 A
+foodlog_nutrient_vit_c = 비타민 C
+foodlog_nutrient_vit_d = 비타민 D
+foodlog_nutrient_vit_e = 비타민 E
+foodlog_nutrient_vit_b12 = 비타민 B12
+foodlog_nutrient_folate = 엽산
+# Small headings of those values (day summary under "More", the food's values, the manual form)
+foodlog_nutrients_fats = 지방 상세
+foodlog_nutrients_minerals = 미네랄
+foodlog_nutrients_vitamins = 비타민
+# A day total that adds up only the foods that have that value ("≥ 45 g"), and the line that explains the sign
+foodlog_partial_value = ≥ %1$s
+foodlog_partial_note = ≥: 이 값이 없는 음식이 있어서 합계는 최소한 이 값입니다.
+# The manual form: the optional values beyond the label
+foodlog_more_nutrients = 추가 영양소
+foodlog_more_nutrients_text = 선택 사항: 알고 있는 경우에만 입력하세요.
+
+# Variants of a dish (paella: seafood, mixed…): a heading and the chip of the usual one (gender-neutral in Spanish)
+foodlog_variants = 종류
+foodlog_variant_typical = 기본
+
+# The ingredients of a dish on the confirm page: closed it says what changed ("Changed: Olive oil 35 g, Bread 0 g")
+foodlog_ingredients = 재료
+foodlog_ingredients_adjust = 조정
+foodlog_ingredients_usual = 기본 레시피
+foodlog_ingredients_changed = 변경됨: %1$s
+foodlog_ingredients_text = 내 음식에 들어간 재료를 바꾸세요(기름 더 많이 또는 적게, 빵 없이…). 영양 정보가 다시 계산됩니다.
+# An ingredient with its amount ("Olive oil 35 g"); under its name, its usual amount for the amount logged
+foodlog_label_amount = %1$s %2$s
+foodlog_ingredient_usual = 보통 %1$s
+# The pencil button next to an ingredient's amount (TalkBack): type another amount of it
+foodlog_ingredient_type = %1$s 양 입력
+# The weight of the dish once its ingredients changed ("Total: 368 g")
+foodlog_total_weight = 합계: %1$s
+# How much of an ingredient (chips: none, half, normal, one and a half, double); TalkBack reads the _desc ones
+foodlog_level_none = 없음
+foodlog_level_half = ½
+foodlog_level_normal = 보통
+foodlog_level_one_half = 1½
+foodlog_level_double = ×2
+foodlog_level_half_desc = 절반
+foodlog_level_one_half_desc = 1.5배
+foodlog_level_double_desc = 2배
+# A logged dish whose ingredients were changed, in the day's list ("Plate · 368 g · Adjusted")
+foodlog_entry_adjusted = %1$s · 조정됨
+
+# The photo's grams suggestion next to the amount: a suggestion only, the user confirms or changes it
+foodlog_estimated = ≈ %1$s (추정)
+foodlog_estimated_text = 사진으로 추정한 값입니다. 확인하고 필요하면 바꾸세요.
+
+# Several foods found on one plate: one card each (its crop, three suggestions, "Other…", its amount), then "Add all (3)"
+foodlog_plate_title{other} = 접시의 음식 %1$d개
+foodlog_plate_text = 음식마다 무엇인지, 얼마나 되는지 확인하세요. 추가하지 않을 음식은 체크를 해제하세요.
+foodlog_plate_item_desc = 사진 속 음식 %1$d
+foodlog_plate_unknown = 어떤 음식인가요?
+foodlog_plate_unknown_text = 인식하지 못했습니다. ‘기타…’에서 선택하세요.
+foodlog_plate_item_added = 추가됨
+foodlog_plate_add_all = 모두 추가(%1$d)
+# The whole photo as one dish (today's five suggestions), and back to the foods one by one (always 2 or more)
+foodlog_plate_as_one = 하나의 요리로 보기
+foodlog_plate_as_items{other} = 음식 %1$d개 따로 보기

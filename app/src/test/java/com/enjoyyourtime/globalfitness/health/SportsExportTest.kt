@@ -70,6 +70,38 @@ class SportsExportTest {
     }
 
     @Test
+    fun everyCatalogExerciseAloneKeepsItsOwnSegment() {
+        // Logged on its own, each exercise is written with its own Health Connect segment: the pair of
+        // its segment and the session type the planner picks for it is one the library accepts (an
+        // incompatible pair would fall back to "other workout" or to no segments at all).
+        for (e in ExerciseCatalog.all) {
+            val planned = WorkoutExportPlanner.session(workout(e.id), info)
+            val own = e.hcSegment ?: if (e.kind == ExerciseKind.CARDIO) ExerciseSegment.EXERCISE_SEGMENT_TYPE_OTHER_WORKOUT else ExerciseSegment.EXERCISE_SEGMENT_TYPE_WEIGHTLIFTING
+            assertEquals(e.id, own, planned.segments.single().type)
+            assertEquals(e.id, own, record(workout(e.id)).segments.single().segmentType)
+        }
+        // Walking on a treadmill is a walk, as walking outdoors is; the curved treadmill a treadmill run.
+        for (id in listOf("treadmill_walk", "incline_treadmill_walk", "outdoor_walk", "nordic_walking")) {
+            assertEquals(id, ExerciseSessionRecord.EXERCISE_TYPE_WALKING, record(workout(id)).exerciseType)
+            assertEquals(id, ExerciseSegment.EXERCISE_SEGMENT_TYPE_WALKING, record(workout(id)).segments.single().segmentType)
+        }
+        assertEquals(ExerciseSessionRecord.EXERCISE_TYPE_RUNNING_TREADMILL, record(workout("curved_treadmill")).exerciseType)
+        assertEquals(ExerciseSessionRecord.EXERCISE_TYPE_STAIR_CLIMBING, record(workout("stair_climbing")).exerciseType)
+        // Conditioning drills keep their own segment inside a strength session.
+        val hiit = record(workout("jump_rope", "jumping_jack", "medicine_ball_slam", "barbell_back_squat"))
+        assertEquals(ExerciseSessionRecord.EXERCISE_TYPE_STRENGTH_TRAINING, hiit.exerciseType)
+        assertEquals(
+            listOf(
+                ExerciseSegment.EXERCISE_SEGMENT_TYPE_JUMP_ROPE,
+                ExerciseSegment.EXERCISE_SEGMENT_TYPE_JUMPING_JACK,
+                ExerciseSegment.EXERCISE_SEGMENT_TYPE_BALL_SLAM,
+                ExerciseSegment.EXERCISE_SEGMENT_TYPE_SQUAT,
+            ),
+            hiit.segments.map { it.segmentType },
+        )
+    }
+
+    @Test
     fun theWorkoutsOwnNameWins() {
         assertEquals("Sunday league", record(workout("football", name = " Sunday league ")).title)
     }

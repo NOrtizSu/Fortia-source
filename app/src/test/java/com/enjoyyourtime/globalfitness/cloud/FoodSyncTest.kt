@@ -6,6 +6,7 @@ import com.enjoyyourtime.globalfitness.food.data.FoodRepository
 import com.enjoyyourtime.globalfitness.food.model.CustomFood
 import com.enjoyyourtime.globalfitness.food.model.CustomFoodSource
 import com.enjoyyourtime.globalfitness.food.model.FoodUnit
+import com.enjoyyourtime.globalfitness.food.model.IngredientAdjustment
 import com.enjoyyourtime.globalfitness.food.model.Nutrients
 import com.enjoyyourtime.globalfitness.food.model.PortionKey
 import com.enjoyyourtime.globalfitness.food.testEntry
@@ -201,7 +202,7 @@ class FoodSyncTest {
         advanceUntilIdle()
         val meal = a.repo.addEntry(testEntry())
         a.syncNow()
-        val newer = FoodCodec.entryToMap(meal.copy(amount = 500.0, updatedAt = meal.updatedAt + 10)) + (FirestoreCodec.F_SCHEMA to 2) + ("futureField" to "x")
+        val newer = FoodCodec.entryToMap(meal.copy(amount = 500.0, updatedAt = meal.updatedAt + 10)) + (FirestoreCodec.F_SCHEMA to FoodCodec.FOOD_SCHEMA_VERSION + 1) + ("futureField" to "x")
         cloud.putRaw(FoodKind.ENTRY, meal.id, newer)
         a.syncNow()
         assertEquals("read", 500.0, a.repo.entry(meal.id)!!.amount, 0.0)
@@ -270,6 +271,102 @@ class FoodSyncTest {
         assertEquals(42L, dead.tombstone.deletedAt)
         // Every nutrient is written, unknown ones as null (a merged write must clear a removed value).
         assertTrue(FoodCodec.entryToMap(e.copy(nutrients = Nutrients(kcal = 1.0))).containsKey("sugars"))
+        assertTrue(FoodCodec.entryToMap(e.copy(nutrients = Nutrients(kcal = 1.0))).containsKey("vitB12"))
+        assertEquals(emptyList<Any>(), FoodCodec.entryToMap(e)["adjustments"])
+    }
+
+    /** An entry with everything 1.6.0 adds: the values beyond the label, changed ingredients, the photo's estimate. */
+    private fun extendedEntry(id: String = "") = testEntry(id = id, amount = 367.5, updatedAt = 50).copy(
+        nutrients = Nutrients(kcal = 710.0, protein = 26.0, fat = 30.0, monoFat = 19.0, calcium = 64.0, vitB12 = 0.8, folate = 41.0),
+        adjustments = listOf(IngredientAdjustment("olive_oil", 17.5, 35.0, 2.0), IngredientAdjustment("bread", 30.0, 0.0, 0.0), IngredientAdjustment("rice", 87.5, 70.0, null)),
+        estimatedAmount = 350.0,
+    )
+
+    @Test
+    fun extendedDataRoundTripsAndIsReadOnlyForOlderVersions() {
+        val e = extendedEntry("e1")
+        val map = FoodCodec.entryToMap(e)
+        // 1.5.0 reads documents up to version 1 in full: this one is above it, so it never writes it back.
+        assertEquals(FoodCodec.EXTENDED_SCHEMA_VERSION, map[FirestoreCodec.F_SCHEMA])
+        assertTrue(((map[FirestoreCodec.F_SCHEMA] as Int)) > 1)
+        assertEquals(e, (FoodCodec.entryFromMap("e1", map, 9L) as Decoded.Live).record)
+        assertFalse("this version reads it in full", FoodCodec.isNewerSchema(map))
+        // Without anything new it stays at version 1: 1.5.0 keeps writing it.
+        assertEquals(1, FoodCodec.entryToMap(testEntry(id = "e2"))[FirestoreCodec.F_SCHEMA])
+        assertEquals(1, FoodCodec.entryToMap(testEntry(id = "e3").copy(estimatedAmount = 200.0))[FirestoreCodec.F_SCHEMA])
+        val f = CustomFood("c1", "Galletas", null, "841", FoodUnit.G, Nutrients(kcal = 436.0, iron = 2.1), 25.0, CustomFoodSource.USER, 5, 9)
+        assertEquals(2, FoodCodec.customFoodToMap(f)[FirestoreCodec.F_SCHEMA])
+        assertEquals(f, (FoodCodec.customFoodFromMap("c1", FoodCodec.customFoodToMap(f), null) as Decoded.Live).record)
+        assertEquals(1, FoodCodec.customFoodToMap(f.copy(per100 = Nutrients(kcal = 436.0)))[FirestoreCodec.F_SCHEMA])
+        // A document of a later version is read but kept read-only.
+        assertTrue(FoodCodec.isNewerSchema(map + (FirestoreCodec.F_SCHEMA to 3)))
+    }
+
+    @Test
+    fun aDocumentOf150ReadsWithoutTheNewData() {
+        // What 1.5.0 wrote (its field names, no new ones).
+        val old = mapOf<String, Any?>(
+            "schemaVersion" to 1L, "deleted" to false, "eatenAt" to 1_700_000_000_000L, "zoneOffset" to 3600L, "meal" to "lunch",
+            "foodId" to "paella", "customFoodId" to null, "name" to "Paella", "amount" to 350.0, "unit" to "g", "portionKey" to "plate",
+            "portionCount" to 1.0, "kcal" to 553.0, "protein" to 26.0, "carbs" to 70.0, "sugars" to null, "fat" to 18.0, "satFat" to 3.0,
+            "fiber" to 2.0, "salt" to 1.5, "source" to "photo", "modelLabel" to "paella", "modelConfidence" to 0.7, "createdAt" to 5L, "editedAt" to 6L,
+        )
+        val e = (FoodCodec.entryFromMap("e1", old, null) as Decoded.Live).record
+        assertEquals(553.0, e.nutrients.kcal!!, 0.0)
+        assertFalse(e.nutrients.hasExtra)
+        assertTrue(e.adjustments.isEmpty())
+        assertNull(e.estimatedAmount)
+        // Broken adjustments are skipped, the rest kept.
+        val odd = old + ("adjustments" to listOf(mapOf("ingredient" to "olive_oil", "baseGrams" to 10L, "grams" to 20.0, "factor" to 2L), "x", mapOf("ingredient" to "BAD")))
+        assertEquals(listOf(IngredientAdjustment("olive_oil", 10.0, 20.0, 2.0)), (FoodCodec.entryFromMap("e1", odd, null) as Decoded.Live).record.adjustments)
+    }
+
+    @Test
+    fun theVersionOfAnEntryWithoutNewDataIsThe150One() {
+        // 1.5.0's FoodMerge.versionOf, verbatim: an unchanged entry must not look edited after the update (no re-upload of the log).
+        fun v150(e: com.enjoyyourtime.globalfitness.food.model.FoodEntry): String {
+            val c = TrainingMerge.Canon().l(e.eatenAt).l(e.zoneOffsetSeconds.toLong()).s(e.meal.code).s(e.foodId).s(e.customFoodId).s(e.name)
+                .d(e.amount).s(e.unit.code).s(e.portionKey?.code).d(e.portionCount)
+            val n = e.nutrients
+            c.d(n.kcal).d(n.protein).d(n.carbs).d(n.sugars).d(n.fat).d(n.satFat).d(n.fiber).d(n.salt)
+            c.s(e.source.code).s(e.modelLabel).d(e.modelConfidence).l(e.createdAt)
+            return "${e.updatedAt}.${c.digest()}"
+        }
+        val e = testEntry(id = "e1", updatedAt = 9).copy(modelLabel = "paella", modelConfidence = 0.5)
+        assertEquals(v150(e), FoodMerge.versionOf(e))
+        val f = CustomFood("c1", "Galletas", "Marca", "841", FoodUnit.G, Nutrients(kcal = 436.0, salt = 0.75), 25.0, CustomFoodSource.OFF, 3, 4)
+        val c = TrainingMerge.Canon().s(f.name).s(f.brand).s(f.barcode).s(f.unit.code)
+        val n = f.per100
+        c.d(n.kcal).d(n.protein).d(n.carbs).d(n.sugars).d(n.fat).d(n.satFat).d(n.fiber).d(n.salt).d(f.portion).s(f.source.code).l(f.createdAt)
+        assertEquals("${f.updatedAt}.${c.digest()}", FoodMerge.versionOf(f))
+        // Each new part changes the version.
+        val x = extendedEntry("e1")
+        val versions = setOf(
+            FoodMerge.versionOf(x),
+            FoodMerge.versionOf(x.copy(adjustments = emptyList())),
+            FoodMerge.versionOf(x.copy(estimatedAmount = null)),
+            FoodMerge.versionOf(x.copy(nutrients = x.nutrients.copy(calcium = 65.0))),
+        )
+        assertEquals(4, versions.size)
+    }
+
+    @Test
+    fun extendedEntriesSyncBetweenPhones() = runTest {
+        val cloud = FakeCloud()
+        val a = phone(cloud)
+        advanceUntilIdle()
+        val meal = a.repo.addEntry(extendedEntry())
+        assertFalse(a.syncNow())
+        val b = phone(cloud)
+        advanceUntilIdle()
+        assertFalse(b.syncNow())
+        assertEquals(listOf(meal), b.repo.entries.value)
+        // Ingredients changed again on B: A gets the new ones (the list is replaced, not merged).
+        now += 60_000
+        b.repo.updateEntry(meal.id) { it.copy(adjustments = it.adjustments.take(1)) }
+        assertFalse(b.syncNow())
+        assertFalse(a.syncNow())
+        assertEquals(1, a.repo.entry(meal.id)!!.adjustments.size)
     }
 
     @Test

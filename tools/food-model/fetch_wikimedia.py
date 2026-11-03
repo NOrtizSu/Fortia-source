@@ -200,9 +200,15 @@ def download(info, img_dir):
             s = SHORT_SIDE / min(w, h)
             if s < 1:
                 im = im.resize((round(w * s), round(h * s)), Image.BICUBIC)
-            tmp = path + ".tmp"
+            # two candidates can be the same file (same sha1): each thread writes its own temporary file
+            tmp = f"{path}.{threading.get_ident()}.tmp"
             im.save(tmp, "JPEG", quality=90)
-            os.replace(tmp, path)
+            try:
+                os.replace(tmp, path)
+            except OSError:
+                if not os.path.exists(path):
+                    raise
+                os.remove(tmp)
             return True
         if r is not None and r.status_code in (403, 404):
             return False

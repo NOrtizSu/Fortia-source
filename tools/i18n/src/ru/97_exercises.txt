@@ -36,6 +36,10 @@ ex_assisted_pull_up_machine = Гравитрон: подтягивания
 ex_assisted_chin_up_machine = Гравитрон: обратный хват
 ex_assisted_dip_machine = Гравитрон: отжимания на брусьях
 ex_neck_machine = Тренажёр для шеи
+ex_iso_lateral_chest_press = Жим от груди в рычажном тренажёре
+ex_high_row_machine = Верхняя тяга в тренажёре
+ex_t_bar_row_machine = Тяга Т-грифа с упором грудью
+ex_standing_leg_curl_machine = Сгибание ноги стоя
 
 # Cable
 ex_lat_pulldown_machine = Тяга верхнего блока
@@ -61,6 +65,11 @@ ex_cable_pull_through = Тяга каната между ног
 ex_cable_glute_kickback = Отведение ноги назад на блоке
 ex_cable_hip_adduction = Приведение ноги на блоке
 ex_cable_hip_abduction = Отведение ноги в сторону на блоке
+ex_reverse_grip_lat_pulldown = Тяга верхнего блока обратным хватом
+ex_cable_chest_press = Жим от груди стоя на блоках
+ex_cable_reverse_fly = Обратная разводка на блоках
+ex_cable_y_raise = Подъём рук буквой Y на блоках
+ex_cable_upright_row = Тяга нижнего блока к подбородку
 
 # Smith machine
 ex_smith_squat = Приседания в Смите
@@ -74,6 +83,7 @@ ex_smith_romanian_deadlift = Румынская тяга в Смите
 ex_smith_bent_over_row = Тяга в наклоне в Смите
 ex_smith_shrug = Шраги в Смите
 ex_smith_calf_raise = Подъём на носки в Смите
+ex_smith_reverse_lunge = Обратные выпады в Смите
 
 # Barbell and EZ bar
 ex_barbell_bench_press = Жим лёжа со штангой
@@ -108,6 +118,13 @@ ex_skull_crusher = Французский жим
 ex_barbell_wrist_curl = Сгибание запястий со штангой
 ex_barbell_reverse_wrist_curl = Разгибание запястий со штангой
 ex_landmine_rotation = Повороты в ландмайне
+ex_landmine_squat = Приседания в ландмайне
+ex_overhead_squat = Приседания со штангой над головой
+ex_thruster = Трастер со штангой
+ex_push_press = Жимовой швунг (push press)
+ex_power_clean = Силовое взятие на грудь
+ex_hang_clean = Взятие на грудь с виса
+ex_power_snatch = Силовой рывок
 
 # Dumbbells
 ex_dumbbell_bench_press = Жим гантелей лёжа
@@ -143,6 +160,10 @@ ex_single_leg_romanian_deadlift = Румынская тяга на одной н
 ex_dumbbell_calf_raise = Подъём на носки с гантелями
 ex_seated_dumbbell_calf_raise = Подъём на носки сидя с гантелями
 ex_dumbbell_side_bend = Наклоны в сторону с гантелью
+ex_dumbbell_floor_press = Жим гантелей лёжа на полу
+ex_incline_dumbbell_fly = Разводка гантелей на наклонной скамье
+ex_walking_lunge = Выпады в движении с гантелями
+ex_dumbbell_snatch = Рывок гантели
 
 # Kettlebells
 ex_kettlebell_swing = Махи гирей
@@ -155,6 +176,7 @@ ex_kettlebell_press = Жим гири
 ex_kettlebell_snatch = Рывок гири
 ex_kettlebell_row = Тяга гири
 ex_kettlebell_windmill = Мельница с гирей
+ex_kettlebell_high_pull = Тяга гири к подбородку
 
 # Bodyweight
 ex_push_up = Отжимания
@@ -196,6 +218,34 @@ ex_burpee = Бёрпи
 ex_lying_neck_flexion = Сгибание шеи лёжа
 ex_lying_neck_extension = Разгибание шеи лёжа
 ex_side_lying_neck_flexion = Боковой подъём шеи лёжа на боку
+ex_archer_push_up = Отжимания лучника
+ex_ring_dip = Отжимания на кольцах
+ex_neutral_grip_pull_up = Подтягивания нейтральным хватом
+ex_suspension_row = Тяга в петлях TRX
+ex_sissy_squat = Сисси-приседания
+ex_toes_to_bar = Носки к перекладине
+ex_ghd_sit_up = Подъёмы корпуса на GHD
+
+# Conditioning and HIIT
+ex_jump_rope = Прыжки на скакалке
+ex_jumping_jack = Джампинг-джек
+ex_high_knees = Бег с высоким подниманием бедра
+ex_butt_kicks = Бег с захлёстом голени
+ex_box_jump = Запрыгивания на тумбу
+ex_tuck_jump = Прыжки с подтягиванием коленей
+ex_skater_jump = Прыжки конькобежца
+ex_bear_crawl = Медвежья ходьба
+ex_shadow_boxing = Бой с тенью
+ex_step_aerobics = Степ-аэробика
+ex_battle_ropes = Боевые канаты
+ex_sled_push = Толкание саней
+ex_sled_drag = Тяга саней спиной вперёд
+
+# Medicine ball and sandbag
+ex_wall_ball = Броски мяча в мишень (wall ball)
+ex_medicine_ball_slam = Броски медбола в пол
+ex_medicine_ball_rotational_throw = Броски медбола с разворотом
+ex_sandbag_carry = Прогулка с мешком в обхвате
 
 # Timed holds and carries
 ex_plank = Планка
@@ -237,6 +287,25 @@ ex_cross_body_shoulder_stretch = Растяжка плеча через груд
 ex_triceps_stretch = Растяжка трицепса за головой
 ex_shoulder_dislocate = Выкруты плеч с резинкой
 ex_neck_stretch = Растяжка шеи в сторону
+ex_ankle_dorsiflexion_mobilization = Мобилизация голеностопа: колено к стене
+ex_hip_90_90 = Переходы 90/90 для таза
+ex_deep_squat_hold = Удержание глубокого приседа
+ex_hip_cars = Круги бедром (CARs)
+ex_shoulder_cars = Круги плечом (CARs)
+ex_thread_the_needle = Нить в иголку
+ex_cobra_stretch = Поза кобры
+ex_downward_dog = Собака мордой вниз
+ex_standing_quad_stretch = Растяжка квадрицепса стоя
+ex_lying_spinal_twist = Скручивание позвоночника лёжа
+ex_figure_four_stretch = Растяжка ягодиц «четвёрка»
+ex_wrist_mobility = Мобильность запястий
+ex_foam_roll_quads = Массажный ролик: квадрицепсы
+ex_foam_roll_hamstrings = Массажный ролик: бицепс бедра
+ex_foam_roll_calves = Массажный ролик: икры
+ex_foam_roll_glutes = Массажный ролик: ягодицы
+ex_foam_roll_it_band = Массажный ролик: илиотибиальный тракт (внешняя сторона бедра)
+ex_foam_roll_upper_back = Массажный ролик: верх спины
+ex_foam_roll_lats = Массажный ролик: широчайшие
 
 # Cardio machines
 ex_treadmill = Беговая дорожка
@@ -248,3 +317,6 @@ ex_elliptical = Эллиптический тренажёр
 ex_rowing_machine = Гребной тренажёр
 ex_stair_climber = Степпер
 ex_ski_erg = Лыжный тренажёр
+ex_treadmill_walk = Ходьба на беговой дорожке
+ex_incline_treadmill_walk = Ходьба на беговой дорожке под наклоном
+ex_curved_treadmill = Изогнутая беговая дорожка (без мотора)

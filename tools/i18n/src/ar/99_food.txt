@@ -211,7 +211,7 @@ foodlog_today_open = فتح «الطعام»
 # Health Connect
 hc_type_nutrition = التغذية
 hc_meals_export_title = حفظ الوجبات في Health Connect
-hc_meals_export_text = يُحفظ كل طعام تسجّله كبيانات تغذية (السعرات الحرارية والبروتين والكربوهيدرات والسكريات والدهون والدهون المشبعة والألياف والصوديوم) ضمن وجبته. إذا عدّلته أو حذفته، فسيُحدَّث Health Connect أيضًا.
+hc_meals_export_text = يُحفظ كل طعام تسجّله كبيانات تغذية ضمن وجبته: السعرات الحرارية والبروتين والكربوهيدرات والسكريات والدهون والدهون المشبعة والألياف والصوديوم، بالإضافة إلى الكوليسترول والدهون الأحادية والمتعددة غير المشبعة والمعادن والفيتامينات عندما تتوفر للطعام. إذا عدّلته أو حذفته، فسيُحدَّث Health Connect أيضًا.
 hc_meals_export_missing_permission = اسمح لتطبيق Fortia بكتابة التغذية في Health Connect لحفظ وجباتك هناك.
 hc_meals_export_denied = إذا لم تُفتح نافذة الأذونات، فاسمح بـ«التغذية» لتطبيق Fortia في Health Connect.
 hc_meals_export_off = لا تُحفظ الوجبات الجديدة. أما الموجودة في Health Connect فتبقى هناك.
@@ -233,4 +233,4 @@ notice_usda = القيم الغذائية لقائمة الأطعمة: U.S. Depa
 notice_ciqual = القيم الغذائية لقائمة الأطعمة: Anses، جدول Ciqual الفرنسي لتركيب الأغذية، بموجب Licence Ouverte / Etalab 2.0.
 notice_food_model_name = نموذج Fortia للتعرّف على الطعام
 notice_food_model_license = نموذجنا الخاص (راجع بطاقة النموذج)
-notice_food_model = نموذجنا الخاص، مدرَّب على صور من Open Images (CC BY 2.0) وWikimedia Commons (تراخيص حرة)؛ وتُنشر قائمة الصور ومؤلفيها مع الشيفرة المصدرية.
+notice_food_model = نماذجنا الخاصة، المبنية على MobileNetV4 (timm، Apache-2.0) وUltralytics YOLO11n (AGPL-3.0) والمدرَّبة على صور من Open Images (CC BY 2.0) وWikimedia Commons (تراخيص حرة) وMyFoodRepo (CC BY 4.0)؛ وقد عُويِر تقدير الوزن باستخدام Nutrition5k (CC BY 4.0). وتُنشر قائمة الصور ومؤلفيها مع الشيفرة المصدرية.

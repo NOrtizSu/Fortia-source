@@ -53,3 +53,9 @@ exg_climbing_steps = 1. Khởi động 10 phút: xoay tay và vai, rồi leo và
 exg_climbing_tips = • Nghỉ giữa các cung đường khó: cẳng tay và ngón tay cần vài phút để hồi phục.\n• Kiểm tra nút thắt, đai an toàn và dụng cụ bảo hộ cùng đồng đội trước mỗi cung đường; khi leo bouldering, hãy rơi xuống thảm.
 exg_golf_steps = 1. Khởi động vài phút với xoay thân và vung tay, rồi vài cú nửa swing bằng gậy sắt ngắn.\n2. Vào thế đứng với hai chân rộng bằng vai, gối mềm, cúi người từ hông với lưng thẳng.\n3. Xoay vai ở cú backswing, bắt đầu downswing bằng hông và vung qua đến thế kết thúc cân bằng.\n4. Trong Fortia, ghi lại thời gian vòng chơi hoặc buổi tập, ví dụ 4:00:00.
 exg_golf_tips = • Cầm gậy nhẹ nhàng: căng thẳng ở tay và cánh tay làm mất tốc độ và khả năng kiểm soát.\n• Đi bộ trên sân cũng là một phần của buổi tập: hãy kéo xe đẩy thay vì vác túi nặng trên một bên vai.
+
+# 1.6.0
+exg_nordic_walking_steps = 1. Chỉnh gậy sao cho khuỷu tay gập khoảng 90° khi cầm, và luồn tay vào dây đeo.\n2. Đi với sải bước dài, tự nhiên, cắm mỗi gậy cạnh bàn chân đối diện và nghiêng về sau.\n3. Đẩy gậy ra sau qua hông, mở bàn tay ở cuối, để tay giúp đẩy bạn về trước.\n4. Trong Fortia, ghi lại thời gian và quãng đường theo km, ví dụ 1:00:00 và 6 km.
+exg_nordic_walking_tips = • Gậy giúp tập cả tay và lưng, nên bạn tiêu hao nhiều hơn so với đi bộ cùng tốc độ.\n• Dùng đầu gậy cao su trên đường nhựa và đầu kim loại trên đường mòn.
+exg_stair_climbing_steps = 1. Bắt đầu với vài tầng ở tốc độ nhẹ nhàng để khởi động.\n2. Leo thẳng người, đặt cả bàn chân lên mỗi bậc và đẩy bằng gót.\n3. Chỉ dùng tay vịn để giữ thăng bằng, và đi xuống chậm rãi để hồi sức.\n4. Trong Fortia, ghi lại thời gian, và lượng calo nếu đồng hồ hiển thị, ví dụ 20:00.
+exg_stair_climbing_tips = • Bước hai bậc một lần giúp mông làm việc nhiều hơn; từng bậc một giúp giữ nhịp tốt hơn.\n• Đi xuống tạo áp lực lên gối nhiều hơn: hãy đi chậm.

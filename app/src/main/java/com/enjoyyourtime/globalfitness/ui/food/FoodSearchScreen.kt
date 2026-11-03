@@ -68,6 +68,8 @@ fun FoodSearchScreen(onOpen: (String) -> Unit, onBack: () -> Unit) {
     val results by vm.results.collectAsStateWithLifecycle()
     val focus = remember { FocusRequester() }
     var deleting by remember { mutableStateOf<FoodItem?>(null) }
+    // Choosing the food of one item of a plate: a food of the list, nothing typed by hand.
+    val forItem = remember { vm.searchingForItem }
     LaunchedEffect(Unit) {
         vm.ensureCatalog()
         runCatching { focus.requestFocus() }
@@ -115,8 +117,8 @@ fun FoodSearchScreen(onOpen: (String) -> Unit, onBack: () -> Unit) {
                     ResultRow(
                         item,
                         onClick = {
-                            vm.chooseItem(item)
-                            onOpen(FoodRoutes.CONFIRM)
+                            // For an item of a plate the food goes back to it; otherwise it is confirmed.
+                            if (vm.chooseItem(item)) onOpen(FoodRoutes.CONFIRM) else onBack()
                         },
                         onEdit = {
                             vm.editCustomFood(item)
@@ -126,7 +128,7 @@ fun FoodSearchScreen(onOpen: (String) -> Unit, onBack: () -> Unit) {
                     )
                     HorizontalDivider(color = MaterialTheme.colorScheme.surfaceContainerHighest)
                 }
-                item(key = "manual") {
+                if (!forItem) item(key = "manual") {
                     Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                         OutlinedButton(
                             onClick = {

@@ -13,4 +13,6 @@ routine_arms = Arms ||| Brazos
 routine_glutes = Glutes ||| Glúteos
 routine_core = Core ||| Core y abdominales
 routine_mobility = Mobility and stretching ||| Movilidad y estiramientos
+routine_foam_rolling = Foam roller recovery ||| Recuperación con foam roller
+routine_hiit = HIIT, no equipment ||| HIIT sin material
 routine_cardio_mix = Cardio machines ||| Máquinas de cardio

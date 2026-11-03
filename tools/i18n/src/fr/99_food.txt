@@ -211,7 +211,7 @@ foodlog_today_open = Ouvrir Nutrition
 # Health Connect
 hc_type_nutrition = Nutrition
 hc_meals_export_title = Enregistrer les repas dans Health Connect
-hc_meals_export_text = Chaque aliment que vous enregistrez est sauvegardé comme donnée de nutrition (calories, protéines, glucides, sucres, lipides, acides gras saturés, fibres et sodium) dans son repas. Si vous le modifiez ou le supprimez, Health Connect est aussi mis à jour.
+hc_meals_export_text = Chaque aliment que vous enregistrez est sauvegardé comme donnée de nutrition dans son repas : calories, protéines, glucides, sucres, lipides, acides gras saturés, fibres et sodium, ainsi que cholestérol, acides gras mono- et polyinsaturés, minéraux et vitamines lorsque l'aliment en dispose. Si vous le modifiez ou le supprimez, Health Connect est aussi mis à jour.
 hc_meals_export_missing_permission = Autorisez Fortia à écrire la nutrition dans Health Connect pour y enregistrer vos repas.
 hc_meals_export_denied = Si aucune fenêtre d'autorisation ne s'ouvre, autorisez « Nutrition » pour Fortia dans Health Connect.
 hc_meals_export_off = Les nouveaux repas ne sont pas enregistrés. Ceux qui sont déjà dans Health Connect y restent.
@@ -230,4 +230,4 @@ notice_usda = Valeurs nutritionnelles de la liste d'aliments : U.S. Department o
 notice_ciqual = Valeurs nutritionnelles de la liste d'aliments : Anses, table de composition nutritionnelle des aliments Ciqual, sous Licence Ouverte / Etalab 2.0.
 notice_food_model_name = Reconnaissance des aliments de Fortia
 notice_food_model_license = Notre propre modèle (voir sa fiche de modèle)
-notice_food_model = Notre propre modèle, entraîné sur des images d'Open Images (CC BY 2.0) et de Wikimedia Commons (licences libres) ; la liste des images et de leurs auteurs est publiée avec le code source.
+notice_food_model = Nos propres modèles, basés sur MobileNetV4 (timm, Apache-2.0) et Ultralytics YOLO11n (AGPL-3.0) et entraînés sur des images d'Open Images (CC BY 2.0), de Wikimedia Commons (licences libres) et de MyFoodRepo (CC BY 4.0) ; l'estimation du poids est calibrée avec Nutrition5k (CC BY 4.0). La liste des images et de leurs auteurs est publiée avec le code source.

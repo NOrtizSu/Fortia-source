@@ -1,0 +1,74 @@
+{
+ "version": 1,
+ "kind": "food_item_detector",
+ "input": {
+  "width": 320,
+  "height": 320,
+  "layout": "NHWC",
+  "dtype": "float32",
+  "channels": "RGB",
+  "range": "0..1",
+  "mean": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "std": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "resize": "stretch",
+  "interpolation": "bilinear"
+ },
+ "outputs": {
+  "boxes": {
+   "index": 1,
+   "shape": [
+    1,
+    10,
+    4
+   ],
+   "dtype": "float32",
+   "format": "ymin,xmin,ymax,xmax normalised 0..1 to the photo"
+  },
+  "scores": {
+   "index": 0,
+   "shape": [
+    1,
+    10
+   ],
+   "dtype": "float32",
+   "order": "descending"
+  },
+  "count": {
+   "index": 2,
+   "shape": [
+    1
+   ],
+   "dtype": "float32"
+  }
+ },
+ "max_detections": 10,
+ "nms_iou": 0.5,
+ "graph_score_floor": 0.1,
+ "score_threshold": 0.25,
+ "max_items": 6,
+ "min_box_side": 0.06,
+ "crop": {
+  "margin": 0.1,
+  "square": true
+ },
+ "group_suppression": {
+  "rule": "drop_container",
+  "inside": 0.8,
+  "min_inside": 2
+ },
+ "model": {
+  "name": "fortia-food-detector-1",
+  "architecture": "YOLO11n (Ultralytics, AGPL-3.0)",
+  "quantization": "fp16",
+  "trained": "2026-11-03",
+  "notes": "one class (food item), fine-tuned from COCO YOLO11n on Open Images V7 boxes + MyFoodRepo (FRB 2022); score_threshold chosen on validation"
+ }
+}

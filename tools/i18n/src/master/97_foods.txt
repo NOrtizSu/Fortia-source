@@ -107,6 +107,14 @@ food_endive = Endive ||| Endibia
 food_sauerkraut = Sauerkraut ||| Chucrut
 food_pickles = Pickles ||| Encurtidos (pepinillos)
 food_seaweed = Seaweed ||| Algas
+food_zucchini_raw = Courgette, raw ||| Calabacín (en crudo)
+food_eggplant_raw = Aubergine, raw ||| Berenjena (en crudo)
+food_broccoli_raw = Broccoli, raw ||| Brócoli (en crudo)
+food_cabbage_raw = Cabbage, raw ||| Repollo (en crudo)
+food_carrot_cooked = Cooked carrot ||| Zanahoria cocida
+food_bean_sprouts = Bean sprouts ||| Brotes de soja
+food_canned_tomato = Canned tomatoes ||| Tomate natural en conserva
+food_fennel = Fennel ||| Hinojo
 food_roasted_peppers = Roasted peppers ||| Pimientos asados
 
 # Bread, cereals and pasta
@@ -145,6 +153,10 @@ food_muesli = Muesli ||| Muesli
 food_granola = Granola ||| Granola
 food_wheat_flour = Wheat flour ||| Harina de trigo
 food_rice_cakes = Rice cakes ||| Tortitas de arroz
+food_breadcrumbs = Breadcrumbs ||| Pan rallado
+food_corn_starch = Cornflour ||| Almidón de maíz (maicena)
+food_puff_pastry = Puff pastry, raw ||| Masa de hojaldre (en crudo)
+food_polenta = Polenta ||| Polenta
 
 # Legumes
 food_edamame = Edamame ||| Edamame
@@ -160,6 +172,7 @@ food_tofu = Tofu ||| Tofu
 food_lentils_dry = Lentils, dry ||| Lentejas (en crudo)
 food_chickpeas_dry = Chickpeas, dry ||| Garbanzos (en crudo)
 food_white_beans_dry = White beans, dry ||| Alubias (en crudo)
+food_lentils_vegetable = Lentil stew without meat ||| Lentejas con verduras
 
 # Meat and cold cuts
 food_steak = Steak ||| Filete o entrecot de ternera
@@ -206,6 +219,19 @@ food_frankfurters = Frankfurters ||| Salchichas tipo frankfurt
 food_bacon = Bacon ||| Beicon (bacon)
 food_black_pudding = Black pudding ||| Morcilla
 food_pork_pate = Pâté ||| Paté
+food_chicken_raw = Chicken pieces, raw ||| Pollo troceado (en crudo)
+food_chicken_leg_raw = Chicken leg, raw ||| Muslo de pollo (en crudo)
+food_rabbit_raw = Rabbit, raw ||| Conejo (en crudo)
+food_beef_raw = Beef round, raw ||| Redondo de ternera (en crudo)
+food_beef_stewing_raw = Stewing beef, raw ||| Carne de ternera para guisar (en crudo)
+food_minced_beef_15_raw = Minced beef 15% fat, raw ||| Carne picada de ternera 15 % (en crudo)
+food_pork_shoulder_raw = Lean pork, raw ||| Magro de cerdo (en crudo)
+food_salted_pork_belly = Salted pork belly ||| Panceta salada (tocino)
+food_black_pudding_raw = Black pudding, uncooked ||| Morcilla (en crudo)
+food_back_bacon = Back bacon ||| Bacon de lomo
+food_tripe = Beef tripe, cooked ||| Callos de ternera (cocidos)
+food_sobrasada = Sobrasada ||| Sobrasada
+food_veal_escalope_raw = Veal escalope, raw ||| Filete de ternera (en crudo)
 
 # Fish and seafood
 food_salmon = Salmon ||| Salmón
@@ -238,6 +264,13 @@ food_octopus = Octopus ||| Pulpo a la gallega
 food_surimi = Surimi sticks ||| Palitos de surimi
 food_sushi = Sushi ||| Sushi
 food_sashimi = Sashimi ||| Sashimi
+food_hake_raw = Hake, raw ||| Merluza (en crudo)
+food_squid_raw = Squid, raw ||| Calamar (en crudo)
+food_prawns_raw = Prawns, raw ||| Gambas o langostinos (en crudo)
+food_mussels_raw = Mussel meat, raw ||| Mejillón (carne, en crudo)
+food_anchovy_raw = Anchovies, raw ||| Boquerones (en crudo)
+food_boiled_octopus = Boiled octopus ||| Pulpo cocido
+food_breaded_fish = Breaded fish, fried ||| Pescado empanado (frito)
 
 # Eggs
 food_egg = Egg ||| Huevo
@@ -249,6 +282,9 @@ food_spanish_omelette = Spanish omelette ||| Tortilla de patatas
 food_poached_egg = Poached egg ||| Huevo poché
 food_deviled_eggs = Deviled eggs ||| Huevos rellenos
 food_egg_whites = Egg whites ||| Claras de huevo
+food_egg_yolk = Egg yolk ||| Yema de huevo
+food_omelette_ham_cheese = Ham and cheese omelette ||| Tortilla francesa de jamón y queso
+food_shakshuka = Shakshuka ||| Shakshuka
 
 # Dairy
 food_milk = Semi-skimmed milk ||| Leche semidesnatada
@@ -281,6 +317,7 @@ food_butter = Butter ||| Mantequilla
 food_whipped_cream = Whipped cream ||| Nata montada
 food_cooking_cream = Cooking cream ||| Nata para cocinar
 food_whey_protein = Whey protein powder ||| Proteína whey en polvo
+food_condensed_milk = Condensed milk ||| Leche condensada
 
 # Oils, fats and nuts
 food_olives = Olives ||| Aceitunas
@@ -369,6 +406,8 @@ food_ice_cream = Ice cream ||| Helado
 food_ice_cream_cone = Ice cream cone ||| Cucurucho de helado
 food_ice_pop = Ice lolly ||| Polo de hielo
 food_sorbet = Sorbet or slush ||| Sorbete o granizado
+food_churros_with_sugar = Churros with sugar ||| Churros con azúcar
+food_ensaimada = Ensaïmada ||| Ensaimada
 
 # Drinks
 food_water = Water ||| Agua
@@ -417,6 +456,20 @@ food_cocktail = Cocktail ||| Cóctel
 food_mojito = Mojito ||| Mojito
 food_gin_tonic = Gin and tonic ||| Gin-tonic
 food_rum_and_cola = Rum and cola ||| Cubata (ron con cola)
+food_rum = Rum ||| Ron
+food_gin = Gin ||| Ginebra
+food_vodka = Vodka ||| Vodka
+food_coffee_with_whole_milk = Coffee with whole milk ||| Café con leche entera
+food_coffee_with_skimmed_milk = Coffee with skimmed milk ||| Café con leche desnatada
+food_coffee_with_oat_drink = Coffee with oat drink ||| Café con bebida de avena
+food_coffee_with_soy_drink = Coffee with soy drink ||| Café con bebida de soja
+food_coffee_with_milk_sugar = Coffee with milk and sugar ||| Café con leche y azúcar
+food_cafe_bombon = Café bombón ||| Café bombón
+food_espresso_with_sugar = Espresso with sugar ||| Café solo con azúcar
+food_carajillo = Carajillo ||| Carajillo
+food_brandy = Brandy ||| Brandy (coñac)
+food_clara = Shandy ||| Clara con limón
+food_kalimotxo = Kalimotxo ||| Kalimotxo (calimocho)
 
 # Dishes
 food_baked_potato = Baked potato ||| Patata asada
@@ -440,6 +493,14 @@ food_noodle_soup = Noodle soup ||| Sopa de fideos
 food_ramen = Ramen ||| Ramen
 food_pho = Pho ||| Pho
 food_bibimbap = Bibimbap ||| Bibimbap
+food_paella_valenciana = Valencian paella ||| Paella valenciana
+food_paella_seafood = Seafood paella ||| Paella de marisco
+food_arroz_negro = Black rice ||| Arroz negro
+food_fideua = Fideuà ||| Fideuà
+food_carbonara_italian = Carbonara (Italian style) ||| Carbonara italiana (sin nata)
+food_pasta_tomato_chorizo = Macaroni with tomato and chorizo ||| Macarrones con tomate y chorizo
+food_gnocchi = Gnocchi ||| Ñoquis
+food_onigiri = Onigiri ||| Onigiri
 food_eggs_benedict = Eggs Benedict ||| Huevos Benedict
 food_tandoori_chicken = Tandoori chicken ||| Pollo tandoori
 food_sweet_sour_chicken = Sweet and sour chicken ||| Pollo agridulce
@@ -501,6 +562,12 @@ food_steamed_buns = Steamed buns ||| Bao (bollo al vapor)
 food_tempura = Tempura ||| Tempura
 food_dolma = Stuffed vine leaves ||| Hojas de parra rellenas
 food_hot_pot = Hot pot ||| Hot pot
+food_green_salad_plain = Green salad, no dressing ||| Ensalada verde sin aliñar
+food_ensalada_mixta_plain = Mixed salad, no dressing ||| Ensalada mixta sin aliñar
+food_pumpkin_cream = Pumpkin cream soup ||| Crema de calabaza
+food_vichyssoise = Leek and potato cream soup ||| Crema de puerros (vichyssoise)
+food_mixed_vegetables = Mixed cooked vegetables ||| Verduras salteadas o menestra
+food_acai_bowl = Açaí or smoothie bowl ||| Bol de açaí
 
 # Fast food
 food_chicken_nuggets = Chicken nuggets ||| Nuggets de pollo
@@ -519,6 +586,20 @@ food_quesadilla = Quesadilla ||| Quesadilla
 food_kebab = Kebab ||| Kebab (döner)
 food_french_fries = Chips (French fries) ||| Patatas fritas
 food_nachos = Nachos with cheese ||| Nachos con queso
+food_pizza_margherita = Pizza margherita ||| Pizza margarita
+food_pizza_pepperoni = Pepperoni pizza ||| Pizza de pepperoni
+food_pizza_four_cheese = Four-cheese pizza ||| Pizza cuatro quesos
+food_pizza_ham = Ham and cheese pizza ||| Pizza de jamón y queso
+food_pizza_barbecue = Meat pizza (barbecue) ||| Pizza barbacoa o de carne
+food_pizza_vegetable = Vegetable pizza ||| Pizza vegetal
+food_cheeseburger = Cheeseburger ||| Hamburguesa con queso
+food_bacon_cheeseburger = Bacon cheeseburger ||| Hamburguesa con queso y beicon
+food_chicken_burger = Chicken burger ||| Hamburguesa de pollo
+food_sandwich_vegetal = Salad sandwich (vegetal) ||| Sándwich vegetal
+food_omelette_baguette = Spanish omelette baguette ||| Bocadillo de tortilla
+food_calamari_baguette = Fried squid baguette ||| Bocadillo de calamares
+food_pork_loin_baguette = Pork loin baguette ||| Bocadillo de lomo
+food_cheese_baguette = Cheese baguette ||| Bocadillo de queso
 
 # Snacks
 food_potato_chips = Crisps ||| Patatas fritas de bolsa
@@ -538,6 +619,7 @@ food_falafel = Falafel ||| Falafel
 food_onion_rings = Onion rings ||| Aros de cebolla
 food_pakora = Pakora ||| Pakora
 food_arancini = Arancini ||| Arancini
+food_samosa = Samosa ||| Samosa
 
 # Sauces and dressings
 food_hummus = Hummus ||| Hummus
@@ -557,3 +639,6 @@ food_salsa = Salsa or pico de gallo ||| Salsa o pico de gallo
 food_tzatziki = Tzatziki ||| Tzatziki
 food_balsamic_vinegar = Balsamic vinegar ||| Vinagre balsámico
 food_salt = Salt ||| Sal
+food_paprika = Paprika ||| Pimentón
+food_vinegar = Vinegar ||| Vinagre
+food_lime_juice = Lime juice ||| Zumo de lima

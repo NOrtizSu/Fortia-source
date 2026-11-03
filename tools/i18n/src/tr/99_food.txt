@@ -211,7 +211,7 @@ foodlog_today_open = Beslenme sekmesini aç
 # Health Connect
 hc_type_nutrition = Beslenme
 hc_meals_export_title = Öğünleri Health Connect'e kaydet
-hc_meals_export_text = Kaydettiğiniz her yiyecek, öğünüyle birlikte beslenme verisi olarak (kalori, protein, karbonhidrat, şeker, yağ, doymuş yağ, lif ve sodyum) kaydedilir. Düzenler veya silerseniz Health Connect de güncellenir.
+hc_meals_export_text = Kaydettiğiniz her yiyecek, öğünüyle birlikte beslenme verisi olarak kaydedilir: kalori, protein, karbonhidrat, şeker, yağ, doymuş yağ, lif ve sodyum; yiyecekte varsa kolesterol, tekli ve çoklu doymamış yağ, mineraller ve vitaminler de. Düzenler veya silerseniz Health Connect de güncellenir.
 hc_meals_export_missing_permission = Öğünlerinizi Health Connect'e kaydetmek için Fortia'nın oraya beslenme verisi yazmasına izin verin.
 hc_meals_export_denied = İzin penceresi açılmazsa Health Connect'te Fortia için “Beslenme” iznini verin.
 hc_meals_export_off = Yeni öğünler kaydedilmez. Health Connect'te zaten bulunanlar orada kalır.
@@ -229,4 +229,4 @@ notice_usda = Yiyecek listesinin besin değerleri: U.S. Department of Agricultur
 notice_ciqual = Yiyecek listesinin besin değerleri: Anses, Ciqual Fransız besin bileşimi tablosu, Licence Ouverte / Etalab 2.0 kapsamında.
 notice_food_model_name = Fortia yiyecek tanıma modeli
 notice_food_model_license = Kendi modelimiz (model kartına bakın)
-notice_food_model = Open Images (CC BY 2.0) ve Wikimedia Commons'tan (özgür lisanslar) alınan görüntülerle eğitilmiş kendi modelimiz; görüntülerin ve yazarlarının listesi kaynak koduyla birlikte yayımlanır.
+notice_food_model = MobileNetV4 (timm, Apache-2.0) ve Ultralytics YOLO11n (AGPL-3.0) temel alınarak oluşturulan ve Open Images (CC BY 2.0), Wikimedia Commons (özgür lisanslar) ve MyFoodRepo'dan (CC BY 4.0) alınan görüntülerle eğitilen kendi modellerimiz; ağırlık tahmini Nutrition5k (CC BY 4.0) ile kalibre edilmiştir. Görüntülerin ve yazarlarının listesi kaynak koduyla birlikte yayımlanır.

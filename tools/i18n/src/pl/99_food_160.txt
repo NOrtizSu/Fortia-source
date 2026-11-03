@@ -1,0 +1,85 @@
+# Comida in 1.6.0: more nutrients per food, variants of a dish, changing a dish's ingredients when logging it,
+# several foods in one photo and the photo's grams suggestion. The rest of the food log is in 99_food.txt.
+
+# Units of the new values ("350 mg", "2.4 µg"); the unit alone as a field suffix
+unit_mg = mg
+unit_ug = µg
+value_mg = %1$s mg
+value_ug = %1$s µg
+
+# The values beyond the nutrition label (food tables give them; product labels rarely do)
+foodlog_nutrient_mono_fat = Tłuszcze jednonienasycone
+foodlog_nutrient_poly_fat = Tłuszcze wielonienasycone
+foodlog_nutrient_cholesterol = Cholesterol
+foodlog_nutrient_potassium = Potas
+foodlog_nutrient_calcium = Wapń
+foodlog_nutrient_iron = Żelazo
+foodlog_nutrient_magnesium = Magnez
+foodlog_nutrient_zinc = Cynk
+foodlog_nutrient_vit_a = Witamina A
+foodlog_nutrient_vit_c = Witamina C
+foodlog_nutrient_vit_d = Witamina D
+foodlog_nutrient_vit_e = Witamina E
+foodlog_nutrient_vit_b12 = Witamina B12
+foodlog_nutrient_folate = Foliany
+# Small headings of those values (day summary under "More", the food's values, the manual form)
+foodlog_nutrients_fats = Tłuszcze szczegółowo
+foodlog_nutrients_minerals = Składniki mineralne
+foodlog_nutrients_vitamins = Witaminy
+# A day total that adds up only the foods that have that value ("≥ 45 g"), and the line that explains the sign
+foodlog_partial_value = ≥ %1$s
+foodlog_partial_note = ≥: niektóre produkty nie mają tej wartości, więc suma wynosi co najmniej tyle.
+# The manual form: the optional values beyond the label
+foodlog_more_nutrients = Więcej składników odżywczych
+foodlog_more_nutrients_text = Opcjonalnie: tylko jeśli je znasz.
+
+# Variants of a dish (paella: seafood, mixed…): a heading and the chip of the usual one (agrees with "Wariant")
+foodlog_variants = Wariant
+foodlog_variant_typical = Typowy
+
+# The ingredients of a dish on the confirm page: closed it says what changed ("Changed: Olive oil 35 g, Bread 0 g")
+foodlog_ingredients = Składniki
+foodlog_ingredients_adjust = Dostosuj
+foodlog_ingredients_usual = Typowy przepis
+foodlog_ingredients_changed = Zmieniono: %1$s
+foodlog_ingredients_text = Zmień to, co było na Twoim talerzu (więcej lub mniej oliwy, bez chleba…): wartości zostaną przeliczone.
+# An ingredient with its amount ("Olive oil 35 g"); under its name, its usual amount for the amount logged
+foodlog_label_amount = %1$s %2$s
+foodlog_ingredient_usual = Zwykle %1$s
+# The pencil button next to an ingredient's amount (TalkBack): type another amount of it (label form, no declension)
+foodlog_ingredient_type = Wpisz ilość: %1$s
+# The weight of the dish once its ingredients changed ("Total: 368 g")
+foodlog_total_weight = Łącznie: %1$s
+# How much of an ingredient (chips: none, half, normal, one and a half, double); TalkBack reads the _desc ones
+foodlog_level_none = Bez
+foodlog_level_half = ½
+foodlog_level_normal = Normalnie
+foodlog_level_one_half = 1½
+foodlog_level_double = ×2
+foodlog_level_half_desc = Połowa
+foodlog_level_one_half_desc = Półtora raza
+foodlog_level_double_desc = Podwójnie
+# A logged dish whose ingredients were changed, in the day's list ("Plate · 368 g · Adjusted")
+foodlog_entry_adjusted = %1$s · Dostosowano
+
+# The photo's grams suggestion next to the amount: a suggestion only, the user confirms or changes it
+foodlog_estimated = ≈ %1$s (szacunkowo)
+foodlog_estimated_text = Oszacowano na podstawie zdjęcia. Sprawdź i w razie potrzeby zmień.
+
+# Several foods found on one plate: one card each (its crop, three suggestions, "Other…", its amount), then "Add all (3)"
+foodlog_plate_title{one} = %1$d produkt na talerzu
+foodlog_plate_title{few} = %1$d produkty na talerzu
+foodlog_plate_title{many} = %1$d produktów na talerzu
+foodlog_plate_title{other} = %1$d produktu na talerzu
+foodlog_plate_text = Sprawdź każdy: co to jest i ile. Odznacz to, czego nie chcesz dodawać.
+foodlog_plate_item_desc = Produkt %1$d ze zdjęcia
+foodlog_plate_unknown = Co to jest?
+foodlog_plate_unknown_text = Nie rozpoznano: wybierz za pomocą „Inne…”.
+foodlog_plate_item_added = Dodano
+foodlog_plate_add_all = Dodaj wszystko (%1$d)
+# The whole photo as one dish (today's five suggestions), and back to the foods one by one (always 2 or more)
+foodlog_plate_as_one = Pokaż jako jedno danie
+foodlog_plate_as_items{one} = Pokaż %1$d produkt osobno
+foodlog_plate_as_items{few} = Pokaż %1$d produkty osobno
+foodlog_plate_as_items{many} = Pokaż %1$d produktów osobno
+foodlog_plate_as_items{other} = Pokaż %1$d produktu osobno

@@ -13,4 +13,6 @@ routine_arms = Руки
 routine_glutes = Ягодицы
 routine_core = Кор и пресс
 routine_mobility = Мобильность и растяжка
+routine_foam_rolling = Восстановление с массажным роликом
+routine_hiit = HIIT без инвентаря
 routine_cardio_mix = Кардиотренажёры

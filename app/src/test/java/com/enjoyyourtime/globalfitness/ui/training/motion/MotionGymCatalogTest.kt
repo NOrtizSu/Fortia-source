@@ -25,6 +25,19 @@ class MotionGymCatalogTest {
     }
 
     @Test
+    fun theNewerMotionsAreCatalogExercisesNotAlreadyMapped() {
+        val ids = ExerciseCatalog.all.map { it.id }.toSet()
+        assertEquals(emptySet<String>(), moreMotions.keys - ids)
+        for (other in listOf(MotionCatalog.baseIds, sportsMotions.keys, gymMotions.keys)) {
+            assertEquals(emptySet<String>(), moreMotions.keys intersect other)
+        }
+        // The 1.6 additions: conditioning, functional, mobility and foam rolling, variants and the treadmill walks.
+        for (id in listOf("treadmill_walk", "incline_treadmill_walk", "jump_rope", "power_clean", "foam_roll_quads", "archer_push_up")) {
+            assertTrue(id, id in moreMotions.keys)
+        }
+    }
+
+    @Test
     fun customExercisesBorrowTheNewTypicalMovements() {
         assertEquals("dumbbell_wrist_curl", source(Equipment.DUMBBELL, Muscle.FOREARMS))
         assertEquals("dumbbell_calf_raise", source(Equipment.DUMBBELL, Muscle.CALVES))

@@ -13,4 +13,6 @@ routine_arms = Lengan
 routine_glutes = Bokong
 routine_core = Core dan perut
 routine_mobility = Mobilitas dan peregangan
+routine_foam_rolling = Pemulihan dengan foam roller
+routine_hiit = HIIT tanpa alat
 routine_cardio_mix = Mesin kardio

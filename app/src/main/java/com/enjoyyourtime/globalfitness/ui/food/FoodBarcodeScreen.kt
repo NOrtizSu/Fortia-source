@@ -110,13 +110,12 @@ fun FoodBarcodeScreen(onOpen: (String) -> Unit, onBack: () -> Unit) {
                                 style = MaterialTheme.typography.titleSmall,
                                 modifier = Modifier.padding(top = 8.dp),
                             )
-                            for (n in Nutrient.entries) {
+                            for (n in Nutrient.LABEL) {
                                 val v = item.per100[n]
-                                InfoRow(
-                                    stringResource(FoodFormat.nutrientRes(n)),
-                                    v?.let { if (n == Nutrient.KCAL) stringResource(R.string.value_kcal, FoodFormat.kcal(it)) else stringResource(R.string.value_g, FoodFormat.grams(it)) } ?: "—",
-                                )
+                                InfoRow(stringResource(FoodFormat.nutrientRes(n)), v?.let { FoodFormat.value(n, it) } ?: "—")
                             }
+                            // Values the user added to a kept product (Open Food Facts gives only the label's).
+                            ExtraNutrientRows(item.per100, knownOnly = true)
                             if (item.fromOpenFoodFacts) {
                                 Text(
                                     stringResource(R.string.foodlog_off_attribution),

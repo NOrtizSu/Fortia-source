@@ -22,7 +22,7 @@ private const val ALL_FOURS_HIP = BodySize.KNEE_RADIUS + 0.004f + BodySize.THIGH
  * rounds up) and [twist]s; the lower spine tilts [tilt] degrees. The [free] arm is left for the
  * pattern to place. Returns where the hands are planted; patterns that move a leg place it again.
  */
-private fun FrameBuilder.allFours(bend: Float = 0f, twist: Float = 0f, tilt: Float = 0f, nod: Float = 0f, reach: Float = 0.55f, free: Side? = null): Map<Side, V3> {
+internal fun FrameBuilder.allFours(bend: Float = 0f, twist: Float = 0f, tilt: Float = 0f, nod: Float = 0f, reach: Float = 0.55f, free: Side? = null): Map<Side, V3> {
     val spine = BodySize.LOWER_SPINE + BodySize.UPPER_SPINE - BodySize.SHOULDER_DROP
     val rise = deg(asin((BodySize.FIST_RADIUS + reach - ALL_FOURS_HIP) / spine))
     val pelvis = v(0f, ALL_FOURS_HIP)
@@ -43,7 +43,7 @@ private fun FrameBuilder.allFours(bend: Float = 0f, twist: Float = 0f, tilt: Flo
  * points at [thigh] degrees (XY plane) with the knee bent [knee] degrees; the foot keeps its angle to
  * the shin (toes tucked when kneeling, flexed in the air).
  */
-private fun FrameBuilder.allFoursLeg(side: Side, lift: Float, thigh: Float, knee: Float) {
+internal fun FrameBuilder.allFoursLeg(side: Side, lift: Float, thigh: Float, knee: Float) {
     val t = lerp(270f, thigh, lift)
     val k = lerp(105f, knee, lift)
     val shin = t - k
@@ -114,7 +114,7 @@ internal fun reverseCrunch() = Motion.rep(Tempo.liftFirst(), Camera(-24f)) { p -
 }
 
 /** Hands behind the head, elbows out (crunch variations). */
-private fun FrameBuilder.handsBehindHead() {
+internal fun FrameBuilder.handsBehindHead() {
     for (side in Side.entries) body.arm(side, body.onChest(-0.07f, 0.2f, side.sign * 0.07f), body.chest.dir(0.3f, 0.2f, side.sign * 1f))
 }
 

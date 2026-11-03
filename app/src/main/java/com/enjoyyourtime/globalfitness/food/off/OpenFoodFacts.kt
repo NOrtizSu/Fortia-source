@@ -26,7 +26,7 @@ data class OffProduct(
     val serving: Double?,
 ) {
     /** Nutrients the product page does not give (the user may fill them in). */
-    val missing: List<Nutrient> get() = Nutrient.entries.filter { per100[it] == null }
+    val missing: List<Nutrient> get() = Nutrient.LABEL.filter { per100[it] == null }
 }
 
 sealed interface OffResult {

@@ -249,3 +249,81 @@ ex_cross_body_shoulder_stretch = Étirement de l'épaule croisé
 ex_triceps_stretch = Étirement du triceps derrière la tête
 ex_shoulder_dislocate = Dislocations d'épaules à l'élastique
 ex_neck_stretch = Étirement latéral du cou
+
+# 1.6.0: machines, cable, Smith, barbell, dumbbells, kettlebells, bodyweight
+ex_iso_lateral_chest_press = Presse pectorale iso-latérale (à disques)
+ex_high_row_machine = Rowing haut à la machine
+ex_t_bar_row_machine = Rowing barre T avec appui-poitrine
+ex_standing_leg_curl_machine = Leg curl debout
+ex_reverse_grip_lat_pulldown = Tirage vertical en supination
+ex_cable_chest_press = Presse pectorale debout à la poulie
+ex_cable_reverse_fly = Oiseau à la poulie
+ex_cable_y_raise = Élévation en Y à la poulie
+ex_cable_upright_row = Rowing menton à la poulie
+ex_smith_reverse_lunge = Fentes arrière à la Smith
+ex_landmine_squat = Squat landmine
+ex_overhead_squat = Overhead squat
+ex_thruster = Thruster à la barre
+ex_push_press = Push press
+ex_power_clean = Power clean
+ex_hang_clean = Hang clean
+ex_power_snatch = Power snatch
+ex_dumbbell_floor_press = Développé au sol aux haltères
+ex_incline_dumbbell_fly = Écarté incliné aux haltères
+ex_walking_lunge = Fentes marchées aux haltères
+ex_dumbbell_snatch = Snatch à l'haltère
+ex_kettlebell_high_pull = High pull au kettlebell
+ex_archer_push_up = Pompes archer
+ex_ring_dip = Dips aux anneaux
+ex_neutral_grip_pull_up = Tractions prise neutre
+ex_suspension_row = Rowing au TRX
+ex_sissy_squat = Sissy squat
+ex_toes_to_bar = Toes-to-bar
+ex_ghd_sit_up = Relevé de buste au GHD
+
+# Conditioning and HIIT
+ex_jump_rope = Corde à sauter
+ex_jumping_jack = Jumping jacks
+ex_high_knees = Montées de genoux
+ex_butt_kicks = Talons-fesses
+ex_box_jump = Box jump
+ex_tuck_jump = Sauts genoux-poitrine
+ex_skater_jump = Sauts du patineur
+ex_bear_crawl = Marche de l'ours
+ex_shadow_boxing = Shadow boxing
+ex_step_aerobics = Step
+ex_battle_ropes = Battle ropes
+ex_sled_push = Poussée de traîneau
+ex_sled_drag = Traîneau tiré en reculant
+
+# Medicine ball and sandbag
+ex_wall_ball = Wall ball
+ex_medicine_ball_slam = Slam au medicine ball
+ex_medicine_ball_rotational_throw = Lancer rotatif au medicine ball
+ex_sandbag_carry = Marche avec sandbag (bear hug)
+
+# Stretching, mobility and foam roller
+ex_ankle_dorsiflexion_mobilization = Mobilité de cheville genou au mur
+ex_hip_90_90 = Rotations de hanches 90/90
+ex_deep_squat_hold = Maintien en squat profond
+ex_hip_cars = CARs de hanche (cercles contrôlés)
+ex_shoulder_cars = CARs d'épaule (cercles contrôlés)
+ex_thread_the_needle = Enfiler l'aiguille
+ex_cobra_stretch = Posture du cobra
+ex_downward_dog = Chien tête en bas
+ex_standing_quad_stretch = Étirement du quadriceps debout
+ex_lying_spinal_twist = Torsion vertébrale allongée
+ex_figure_four_stretch = Étirement des fessiers en figure 4
+ex_wrist_mobility = Mobilité des poignets
+ex_foam_roll_quads = Foam roller : quadriceps
+ex_foam_roll_hamstrings = Foam roller : ischio-jambiers
+ex_foam_roll_calves = Foam roller : mollets
+ex_foam_roll_glutes = Foam roller : fessiers
+ex_foam_roll_it_band = Foam roller : bandelette ilio-tibiale (extérieur de la cuisse)
+ex_foam_roll_upper_back = Foam roller : haut du dos
+ex_foam_roll_lats = Foam roller : dorsaux
+
+# Cardio machines
+ex_treadmill_walk = Marche sur tapis
+ex_incline_treadmill_walk = Marche inclinée sur tapis
+ex_curved_treadmill = Tapis incurvé (sans moteur)

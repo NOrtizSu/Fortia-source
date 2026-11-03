@@ -1,0 +1,125 @@
+# Search words of built-in exercises and sports: exa_<catalog id> (training/catalog/ExerciseAliases.kt). Never shown:
+# the exercise search also looks in them, so an exercise is found by the other words people use for it (gym slang,
+# brand names, verbs, the singular or plural). Comma-separated, lower case is fine; translate the idea, not word for word.
+
+# Walking, running and the other activities
+exa_outdoor_walk = 走路, 散步, 健走, 快走, 走步, 暴走
+exa_hiking = 爬山, 登山, 远足, 徒步旅行, 户外徒步, 山地徒步
+exa_nordic_walking = 北欧健走, 越野行走, 健走杖, 手杖健走, 杖行, nordic walking
+exa_stair_climbing = 爬楼, 上楼梯, 走楼梯, 楼梯, 台阶
+exa_outdoor_run = 跑步, 慢跑, 晨跑, 夜跑, 路跑, 长跑
+exa_outdoor_cycling = 骑车, 骑自行车, 自行车, 单车, 骑行, 公路车, 山地车
+exa_swimming = 游水, 泳池, 游泳池, 自由泳, 蛙泳
+
+# Cardio machines
+exa_treadmill = 跑步, 慢跑, 室内跑步, 跑机
+exa_treadmill_walk = 走路, 快走, 健走, 散步, 跑步机走路
+exa_incline_treadmill_walk = 爬坡, 爬坡走, 上坡走, 坡度走, 坡度, 12-3-30
+exa_curved_treadmill = 无动力跑步机, 曲面跑步机, 自驱跑步机, 冲刺跑, assault runner
+exa_stationary_bike = 健身车, 健身自行车, 室内骑行, 单车, 骑车
+exa_spin_bike = 单车课, 室内骑行, spinning, 单车, 骑车
+exa_recumbent_bike = 卧式健身车, 躺式单车, 靠背单车, 健身车
+exa_air_bike = 风扇单车, 风扇车, 风阻车, assault bike, echo bike
+exa_elliptical = 椭圆仪, 椭圆训练机, 漫步机, 交叉训练机
+exa_rowing_machine = 划船, 划艇, 室内划船, 赛艇机, erg
+exa_stair_climber = 天梯, 爬楼梯机, 楼梯机, 登山机, stairmaster
+exa_ski_erg = 滑雪, 滑雪训练机, 滑雪测功仪, skierg
+
+# Machines and cables
+exa_pec_deck = 蝴蝶机, 夹胸机, 坐姿夹胸, 器械飞鸟, 夹胸
+exa_reverse_pec_deck = 反向飞鸟, 反飞鸟, 后束, 三角肌后束, 反向夹胸
+exa_leg_press_machine = 倒蹬, 45度腿举, 斜板腿举, 腿举机
+exa_hip_abductor_machine = 外展机, 开腿机, 外展, 大腿外侧, 臀中肌
+exa_hip_adductor_machine = 内收机, 夹腿机, 内收, 大腿内侧
+exa_iso_lateral_chest_press = hammer, 悍马, 挂片推胸, 单边推胸, 分动推胸
+exa_high_row_machine = hammer, 悍马, 挂片划船, 高拉划船
+exa_t_bar_row_machine = t杠, t杠划船, 胸托划船, t型划船
+exa_standing_leg_curl_machine = 勾腿, 股二头, 大腿后侧, 单腿腿弯举
+exa_lat_pulldown_machine = 下拉, 拉背, 高拉, 坐姿下拉, 背阔肌下拉
+exa_seated_cable_row = 低位划船, 坐姿划船, 划船, 拉背
+exa_cable_crossover = 龙门架, 龙门架夹胸, 交叉夹胸, 拉力器夹胸
+exa_face_pull = 绳索面拉, 脸拉, 拉绳面拉, 三角肌后束
+exa_reverse_grip_lat_pulldown = 反握下拉, 反手下拉, 下拉, 拉背
+exa_cable_chest_press = 站姿推胸, 绳索推胸, 龙门架推胸
+exa_cable_reverse_fly = 反飞鸟, 后束飞鸟, 三角肌后束, 龙门架反飞鸟
+exa_cable_y_raise = y字上举, y字举, y举, 下斜方肌
+exa_cable_upright_row = 直立划船, 绳索提拉, 提拉, 窄握提拉
+
+# Free weights
+exa_barbell_bench_press = 卧推, 平板卧推, 平卧推举, 推胸, bench
+exa_barbell_back_squat = 深蹲, 后蹲, 背蹲, 颈后深蹲, squat
+exa_barbell_deadlift = 传统硬拉, 常规硬拉, 杠铃硬拉, deadlift
+exa_barbell_overhead_press = 站姿推举, 军式推举, 肩推, 推肩, ohp
+exa_skull_crusher = 碎颅者, 碎颅式, 杠铃臂屈伸, 卧姿臂屈伸
+exa_barbell_hip_thrust = 臀推, 推臀, 臀桥, hip thrust
+exa_bulgarian_split_squat = 保加利亚蹲, 保加利亚箭步蹲, 后脚抬高分腿蹲, 分腿蹲
+exa_kettlebell_swing = 摆壶, 甩壶, 壶铃甩摆, kb swing
+exa_smith_reverse_lunge = 后撤步, 后撤箭步蹲, 后弓步, 反向弓步
+exa_landmine_squat = 地雷管, 地雷架, 地雷管深蹲, landmine 高脚杯
+exa_overhead_squat = 过头蹲, 过顶蹲, 举杠深蹲, ohs
+exa_thruster = 火箭推, 推进器, 深蹲推举, thrusters
+exa_push_press = 借力推, 借腿推举, 爆发推举, push press
+exa_power_clean = 力量翻, 翻铃, 奥举, 举重, clean
+exa_hang_clean = 悬垂翻, 悬垂式高翻, 翻铃, 奥举, clean
+exa_power_snatch = 抓举, 高抓, 力量抓, 奥举, snatch
+exa_dumbbell_floor_press = 地板卧推, 地面卧推, 地板推, floor press
+exa_incline_dumbbell_fly = 上斜飞鸟, 斜板飞鸟, 上胸飞鸟
+exa_walking_lunge = 行进箭步蹲, 箭步走, 弓步走, 行走箭步蹲
+exa_dumbbell_snatch = 单臂抓举, 单手抓举, 哑铃抓举, db snatch
+exa_kettlebell_high_pull = 相扑高拉, 高拉, 上提拉, sumo high pull
+
+# Bodyweight and calisthenics
+exa_push_up = 伏地挺身, 掌上压, pushup, push up
+exa_pull_up = 引体, 拉单杠, 单杠, 正手引体, pull up
+exa_parallel_bar_dip = 双杠, 双杠撑, 撑双杠, dips
+exa_burpee = 波比, 立卧撑, 波比操, burpee
+exa_mountain_climber = 登山者, 平板登山, 交替提膝
+exa_plank = 平板, 平板撑, 肘撑, 前平板
+exa_farmers_carry = 农夫走, 负重行走, 农夫, farmer walk
+exa_archer_push_up = 射箭式俯卧撑, 射手俯卧撑, 弓箭手
+exa_ring_dip = 吊环, 吊环撑, 吊环 dips
+exa_neutral_grip_pull_up = 对握引体, 中立握引体, 平行握, 锤式引体
+exa_suspension_row = trx, trx划船, 悬挂训练, 悬吊划船, 吊环划船
+exa_sissy_squat = 西斯深蹲, 后仰深蹲, sissy
+exa_toes_to_bar = t2b, 举腿触杠, 悬垂触杠, toes to bar
+exa_ghd_sit_up = ghd, 罗马椅仰卧起坐, 臀腿训练器
+
+# Conditioning and HIIT
+exa_jump_rope = 双摇, 单摇, 跳绳子, 花式跳绳
+exa_jumping_jack = 开合, 星形跳, jumping jack
+exa_high_knees = 原地跑, 高抬腿跑, 原地高抬腿, 提膝跑
+exa_butt_kicks = 踢臀, 原地踢臀, 后踢跑, 脚跟踢臀
+exa_box_jump = 跳箱子, 箱跳, 跳台, 增强式训练, plyo
+exa_tuck_jump = 抱膝跳, 团身跳, 提膝跳
+exa_skater_jump = 滑冰跳, 速滑跳, 侧向跳, 左右跳
+exa_bear_crawl = 爬行, 熊走, 四足爬行
+exa_shadow_boxing = 打拳, 出拳, 空拳, 影子拳
+exa_step_aerobics = 踏板, 踏板操, 台阶操, 健身操, step
+exa_battle_ropes = 甩绳, 甩大绳, 大绳, 波浪绳
+exa_sled_push = 雪橇, 推雪橇车, 推车, prowler
+exa_sled_drag = 拉雪橇, 拖雪橇, 倒拉, 雪橇
+exa_wall_ball = 药球, 抛球, 投墙球, wall ball
+exa_medicine_ball_slam = 砸球, 摔球, 砸地球, slam ball
+exa_medicine_ball_rotational_throw = 侧抛, 转体抛, 旋转抛球, 侧向抛球
+exa_sandbag_carry = 沙袋, 沙包, 抱沙袋走, sandbag
+
+# Stretching, mobility and foam rolling
+exa_ankle_dorsiflexion_mobilization = 踝关节, 脚踝灵活性, 脚踝活动度, 踝背屈
+exa_hip_90_90 = 90 90, 9090, 髋关节灵活性, 髋部活动度, 髋转换
+exa_deep_squat_hold = 亚洲蹲, 全蹲, 蹲姿保持, 下蹲停留
+exa_hip_cars = 髋绕环, 转髋, 髋关节画圈, cars
+exa_shoulder_cars = 肩绕环, 绕肩, 手臂画圈, cars
+exa_thread_the_needle = 穿针引线, 穿针, 胸椎旋转, 胸椎扭转
+exa_cobra_stretch = 眼镜蛇, 眼镜蛇式, 上犬式, 俯卧撑起
+exa_downward_dog = 下犬, 犬式, 瑜伽
+exa_standing_quad_stretch = 大腿前侧拉伸, 股四拉伸, 拉大腿前侧
+exa_lying_spinal_twist = 仰卧扭转, 脊柱扭转, 扭腰, 躺着扭腰
+exa_figure_four_stretch = 梨状肌拉伸, 4字拉伸, 四字拉伸, 臀部拉伸
+exa_wrist_mobility = 手腕拉伸, 手腕热身, 腕关节活动, 活动手腕
+exa_foam_roll_quads = 泡沫轴, 泡沫滚轴, 滚轴, 筋膜放松, 肌肉放松, smr
+exa_foam_roll_hamstrings = 泡沫轴, 泡沫滚轴, 滚轴, 筋膜放松, 肌肉放松, smr
+exa_foam_roll_calves = 泡沫轴, 泡沫滚轴, 滚轴, 筋膜放松, 肌肉放松, smr
+exa_foam_roll_glutes = 泡沫轴, 泡沫滚轴, 滚轴, 筋膜放松, 肌肉放松, 梨状肌
+exa_foam_roll_it_band = 泡沫轴, 泡沫滚轴, 滚轴, 筋膜放松, 肌肉放松, 髂胫束, itb
+exa_foam_roll_upper_back = 泡沫轴, 泡沫滚轴, 滚轴, 筋膜放松, 肌肉放松, 上背, 胸椎
+exa_foam_roll_lats = 泡沫轴, 泡沫滚轴, 滚轴, 筋膜放松, 肌肉放松, 背阔

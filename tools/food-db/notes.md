@@ -23,9 +23,13 @@ BEDCA and websites/apps with unclear licences are not used.
 - CIQUAL "< x" (below the quantification limit) and "traces" → 0, as EU labels declare such amounts.
 - USDA carbohydrate "by difference" − fibre = available carbohydrate; when that comes out below the measured
   sugars (USDA sauerkraut), carbohydrate = sugars.
-- Missing nutrients stay empty (= unknown in the app): durian (sugars, saturated fat), chia seeds, banana bread
-  and roast lamb (sugars). A few rows borrow a missing nutrient from a near-identical food (`fill=`): peaches in syrup,
-  wheat flour, dry white beans, turkey breast, tzatziki.
+- Missing nutrients stay empty (= unknown in the app): durian (sugars, saturated fat), chia seeds and banana bread
+  (sugars). Rows borrow missing nutrients from a near-identical food (`fill=`), most of them in 1.6.0 for the new
+  micronutrient columns (AUDIT.md lists them); roast lamb's sugars are 0 (`zero=`, meat).
+- Micronutrients (1.6.0): CIQUAL's "vitamin A activity, retinol equivalent" is retinol + beta-carotene/12, i.e. µg
+  RAE like USDA's; folate is µg DFE (CIQUAL 2025 publishes it; else food folate + 1.7 × folic acid, or total
+  folate for foods without added folic acid); vitamin E is alpha-tocopherol; vitamin D in µg (USDA IU / 40 when only
+  IU is given). USDA breads and cereals are fortified (folic acid, iron): only European (CIQUAL) breads are used.
 - Drinks are per 100 ml: values per 100 g × density (milk 1.03, juices 1.04, beer 1.01, wine 0.99, spirits 0.95…).
 
 ## Energy check
@@ -71,6 +75,16 @@ one piece for fruit and countable foods, a plate/bowl for dishes, a slice for br
 
 ## Model classes (visual = 1)
 
+1.6.0: food-model2's class list v2 (`.omc/handoffs/2026-11-02/food_classes_v2.csv`, 329 classes: 300 kept,
+19 recovered, 10 new) has a row for every class. The new ones that had no row got one (fennel, mixed_vegetables,
+samosa, onigiri; candidates that did not reach 150 photos stay ordinary foods: gnocchi, polenta, sobrasada, ensaimada,
+açaí bowl, shakshuka). Recovered classes that were variants are standalone foods again (almonds, walnuts, peanuts,
+cashews, hazelnuts, dates, raisins, feta, goat cheese, brown rice, pain au chocolat), because a visual food cannot be
+a variant. The visual column stays on the 1.5.0 list on this branch, so it matches its `tools/food-model/classes.csv`
+and model; after merging food-model2's branch run
+`python tools/food-db/build.py --sync-visual tools/food-model/classes.csv` (29 rows become visual; checked against
+food_classes_v2.csv: `validate.py --classes .omc/handoffs/2026-11-02/food_classes_v2.csv` passes after it).
+
 The 300 class ids of the food-model's final list (`food_classes.csv` of 2026-11-01 = `tools/food-model/classes.csv`;
 `_not_food` has no row) are rows with `visual = 1`, set by `build.py --sync-visual <classes.csv>`. Rerun it when the
 list changes: it fails if a class has no row yet, and a class that is dropped simply gets `visual = 0` (the food
@@ -96,7 +110,11 @@ the Catalan dessert is the separate `crema_catalana`.
 | `bread` | white country-style loaf (CIQUAL pain de campagne); `baguette` = barra |
 | `cheese` | semi-cured firm ewe's milk cheese (queso semicurado) |
 | `milk` | semi-skimmed milk (the most drunk in Spain); whole and skimmed are separate foods |
-| `yogurt` | plain whole-milk yogurt |
+| `yogurt` | plain whole-milk yogurt (USDA, ~3% fat like Spanish yogur natural; until 1.5.0 CIQUAL's plain average) |
+| `churros` | Spanish churros without sugar (recipe); `churros_with_sugar` is the variant |
+| `carbonara` | Spanish home carbonara with cream (recipe); `carbonara_italian` without cream |
+| `pasta_tomato` | macarrones con tomate y queso (recipe); `pasta_tomato_chorizo` with chorizo |
+| `lasagna` | restaurant meat lasagne (FNDDS); `cannelloni` is its variant with the same values |
 | `potato` | boiled potato (photos are mostly cooked potatoes) |
 | `lentils` | Spanish lentil stew with chorizo (class "lentil stew / dal"); plain boiled lentils = `cooked_lentils` |
 | `beans` | boiled white beans; `bean_stew` = fabada; meatless `potaje_alubias` |
@@ -166,3 +184,36 @@ the Catalan dessert is the separate `crema_catalana`.
 | `lettuce` | lettuce, plain (no dressing) |
 | `bell_pepper` | raw sweet pepper, green/red/yellow average |
 | `seaweed` | seaweed, raw (FNDDS); dried seaweed is ~7x more concentrated |
+
+## Variants (1.6.0, `variant_of=`)
+
+Variants are full foods with their own values and portions, offered by the app when the base food is recognised or
+picked (contract 2). Two kinds: existing catalog foods linked to their base (milks and plant drinks under `milk`,
+yogurts under `yogurt`, cheeses under `cheese`, pistachios under `nuts`, white fish under `grilled_fish`, juices,
+olives, breads, chocolates, cured meats…; the nuts, dried fruits, feta, goat cheese, brown rice and pain au chocolat
+that class list v2 recovered as model classes are standalone again), and new foods for clearly different versions of a dish: paella valenciana / de
+marisco / arroz negro / fideuà, café con leche entera / desnatada / de avena / de soja / con azúcar, café bombón,
+cortado, carajillo, café solo con azúcar, pizzas (margherita, pepperoni, four cheese, ham, barbecue, vegetable, from
+FNDDS restaurant pizzas and CIQUAL), cheeseburger and bacon cheeseburger (the hamburger plus cheese/bacon), chicken
+burger, bocadillos (tortilla, calamares, lomo, queso), sándwich vegetal, ensaladas sin aliñar, lentejas con verduras,
+cremas de calabaza y de puerros, carbonara italiana, macarrones con chorizo, churros con azúcar, clara, kalimotxo.
+Not added when the values hardly differ (tortilla de patatas with/without onion: adjusting its onion does it).
+A recovered model class that is a variant today must lose `variant_of` (variants have visual = 0):
+`build.py --sync-visual` fails until it does.
+
+## Ingredients (1.6.0, recipes.tsv)
+
+Every recipe dish lists its ingredients (catalog foods, raw or cooked as the ingredient's own row) except
+derivation-only recipes (`list = false`: ibérico ham, turrón, quince paste, sashimi, chips, tempura, tandoori
+chicken, pakora, pastel de nata, chocolate a la taza, puff pastry). Recipe ingredients that were USDA/CIQUAL codes in
+1.5.0 became catalog foods (new raw ingredients such as raw squid, prawns, hake, chicken, rabbit, flour,
+breadcrumbs, paprika, vinegar, canned tomato, egg yolk), which changed a few dishes slightly (AUDIT.md). USDA/CIQUAL
+dishes got a typical recipe of ours so the user can adjust them (pizza, hamburger, sandwiches, pasta and rice
+dishes, salads, kebab, tacos…); their values stay the source's and validate.py requires the recipe to explain the
+energy within 25%, and that no adjustable ingredient brings more energy, protein, carbohydrate, fat, saturated fat or
+salt than the dish has (else removing it would go below 0; the amounts were tuned to the source dish for that, and
+veal escalope instead of round beef in the breaded escalope and carpaccio). Warnings above 12% remain for dishes
+whose source version is richer or leaner than the typical recipe (calzone, hamburger, hot dog, sandwich, wrap, kebab,
+onion rings, pasta salad, tabbouleh, breaded escalope, carpaccio). Rice, pasta and legumes
+are written as the form the recipe uses: raw rice and stock in paellas (the weight change of "more rice" is then
+the raw grams), cooked pasta in pasta dishes.

@@ -178,6 +178,32 @@ object RoutineCatalog {
                 timed("childs_pose", 1, 60),
             ),
         ),
+        // Foam rolling: a warm-up or a recovery day, calves to upper body (sets per side where one-sided).
+        CatalogRoutine(
+            "foam_rolling", R.string.routine_foam_rolling,
+            listOf(
+                timed("foam_roll_calves", 1, 60),
+                timed("foam_roll_hamstrings", 1, 60),
+                timed("foam_roll_quads", 1, 60),
+                timed("foam_roll_it_band", 2, 45),
+                timed("foam_roll_glutes", 2, 45),
+                timed("foam_roll_upper_back", 1, 60),
+                timed("foam_roll_lats", 2, 45),
+            ),
+        ),
+        // HIIT without equipment: work intervals of 30-40 s, or a few fast reps, with short rests.
+        CatalogRoutine(
+            "hiit", R.string.routine_hiit,
+            listOf(
+                timed("jumping_jack", 3, 40),
+                timed("high_knees", 3, 30),
+                e("burpee", 3, 10),
+                e("mountain_climber", 3, 20),
+                e("jump_squat", 3, 12),
+                e("skater_jump", 3, 16),
+                timed("plank", 3, 30),
+            ),
+        ),
         CatalogRoutine(
             "cardio_mix", R.string.routine_cardio_mix,
             listOf(

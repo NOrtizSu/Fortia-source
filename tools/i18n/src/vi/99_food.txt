@@ -228,7 +228,7 @@ foodlog_today_open = Mở Ăn uống
 # Health Connect: the switch next to "Save workouts to Health Connect" (same style as 52_health_training.txt)
 hc_type_nutrition = Dinh dưỡng
 hc_meals_export_title = Lưu bữa ăn vào Health Connect
-hc_meals_export_text = Mỗi thực phẩm bạn ghi được lưu dưới dạng dinh dưỡng (calo, chất đạm, carbohydrate, đường, chất béo, chất béo bão hòa, chất xơ và natri) cho bữa ăn tương ứng. Nếu bạn chỉnh sửa hoặc xóa, Health Connect cũng được cập nhật.
+hc_meals_export_text = Mỗi thực phẩm bạn ghi được lưu dưới dạng dinh dưỡng cho bữa ăn tương ứng: calo, chất đạm, carbohydrate, đường, chất béo, chất béo bão hòa, chất xơ và natri, cùng với cholesterol, chất béo không bão hòa đơn và đa, khoáng chất và vitamin khi thực phẩm có các giá trị này. Nếu bạn chỉnh sửa hoặc xóa, Health Connect cũng được cập nhật.
 hc_meals_export_missing_permission = Hãy cho phép Fortia ghi dinh dưỡng vào Health Connect để lưu các bữa ăn của bạn ở đó.
 hc_meals_export_denied = Nếu cửa sổ cấp quyền không mở ra, hãy cho phép “Dinh dưỡng” cho Fortia trong Health Connect.
 hc_meals_export_off = Các bữa ăn mới sẽ không được lưu. Những bữa ăn đã có trong Health Connect vẫn được giữ lại.
@@ -246,4 +246,4 @@ notice_usda = Giá trị dinh dưỡng của danh sách thực phẩm: U.S. Depa
 notice_ciqual = Giá trị dinh dưỡng của danh sách thực phẩm: Anses, bảng thành phần thực phẩm Pháp Ciqual, theo Licence Ouverte / Etalab 2.0.
 notice_food_model_name = Trình nhận diện món ăn của Fortia
 notice_food_model_license = Mô hình của riêng chúng tôi (xem thẻ mô hình)
-notice_food_model = Mô hình của riêng chúng tôi, được huấn luyện bằng hình ảnh từ Open Images (CC BY 2.0) và Wikimedia Commons (giấy phép tự do); danh sách hình ảnh và tác giả được công bố cùng mã nguồn.
+notice_food_model = Các mô hình của riêng chúng tôi, dựa trên MobileNetV4 (timm, Apache-2.0) và Ultralytics YOLO11n (AGPL-3.0), được huấn luyện bằng hình ảnh từ Open Images (CC BY 2.0), Wikimedia Commons (giấy phép tự do) và MyFoodRepo (CC BY 4.0); ước tính khối lượng được hiệu chỉnh bằng Nutrition5k (CC BY 4.0). Danh sách hình ảnh và tác giả được công bố cùng mã nguồn.

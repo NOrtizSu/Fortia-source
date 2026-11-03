@@ -15,3 +15,5 @@ routine_core = Core e addominali
 routine_cardio_mix = Macchine cardio
 
 routine_mobility = Mobilità e stretching
+routine_foam_rolling = Recupero con foam roller
+routine_hiit = HIIT senza attrezzi

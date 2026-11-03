@@ -1,0 +1,125 @@
+# Search words of built-in exercises and sports: exa_<catalog id> (training/catalog/ExerciseAliases.kt). Never shown:
+# the exercise search also looks in them, so an exercise is found by the other words people use for it (gym slang,
+# brand names, verbs, the singular or plural). Comma-separated, lower case is fine; translate the idea, not word for word.
+
+# Walking, running and the other activities
+exa_outdoor_walk = đi bộ, đi dạo, dạo bộ, tản bộ, đi bộ nhanh, walking, di bo
+exa_hiking = trekking, hiking, leo núi, đi rừng, đi bộ đường núi
+exa_nordic_walking = nordic walking, đi bộ chống gậy, gậy đi bộ, đi bộ với gậy
+exa_stair_climbing = cầu thang, leo cầu thang, bậc thang, leo thang bộ, stairs
+exa_outdoor_run = chạy, chạy bộ, running, jogging, chạy chậm
+exa_outdoor_cycling = xe đạp, đạp xe, xe đạp địa hình, xe đạp đua, cycling, mtb, dap xe
+exa_swimming = bơi, bơi lội, hồ bơi, bể bơi, swimming
+
+# Cardio machines
+exa_treadmill = máy chạy, chạy, chạy bộ, treadmill
+exa_treadmill_walk = đi bộ, treadmill, đi bộ trong nhà, di bo
+exa_incline_treadmill_walk = đi bộ dốc, leo dốc, độ dốc, incline walk, 12-3-30
+exa_curved_treadmill = máy chạy cơ, máy chạy không điện, chạy nước rút, sprint, assault runner
+exa_stationary_bike = xe đạp, đạp xe, xe đạp tại chỗ, xe đạp tập thể dục, dap xe
+exa_spin_bike = spinning, lớp spinning, đạp xe trong nhà, xe đạp
+exa_recumbent_bike = xe đạp, xe đạp nằm, xe đạp ngồi tựa, đạp xe
+exa_air_bike = assault bike, xe đạp gió, fan bike, echo bike
+exa_elliptical = elip, elliptical, cross trainer
+exa_rowing_machine = máy chèo, chèo thuyền, chèo, rower, erg
+exa_stair_climber = stairmaster, stepmill, cầu thang, leo thang
+exa_ski_erg = skierg, ski, trượt tuyết
+
+# Machines and cables
+exa_pec_deck = ép ngực, butterfly, máy ép ngực, bay ngực
+exa_reverse_pec_deck = vai sau, rear delt, reverse fly, bướm ngược
+exa_leg_press_machine = leg press, đạp đùi 45 độ, máy đạp chân, đạp chân
+exa_hip_abductor_machine = đùi ngoài, mở đùi, dạng hông, abductor, mông bên
+exa_hip_adductor_machine = đùi trong, khép đùi, khép hông, adductor
+exa_iso_lateral_chest_press = hammer strength, hammer, máy đẩy ngực bánh tạ
+exa_high_row_machine = hammer strength, hammer, high row
+exa_t_bar_row_machine = t-bar, kéo tạ chữ t, máy chữ t
+exa_standing_leg_curl_machine = móc đùi, leg curl, đùi sau đứng, hamstring curl
+exa_lat_pulldown_machine = lat pulldown, kéo xô, kéo cáp trên, lưng xô, pulldown
+exa_seated_cable_row = seated row, low row, cable row, kéo cáp
+exa_cable_crossover = crossover, ép ngực cáp, cable fly, bay ngực cáp
+exa_face_pull = face pull, kéo dây thừng về mặt
+exa_reverse_grip_lat_pulldown = nắm ngửa, underhand pulldown, kéo xô ngửa tay
+exa_cable_chest_press = đẩy ngực cáp, cable chest press, đẩy ngực đứng
+exa_cable_reverse_fly = vai sau, rear delt, bay vai sau cáp, reverse crossover
+exa_cable_y_raise = y raise, nâng chữ y
+exa_cable_upright_row = upright row, kéo lên cằm, kéo cằm
+
+# Free weights
+exa_barbell_bench_press = bench press, đẩy ngực, đẩy ngực ghế phẳng, đẩy tạ nằm, bench
+exa_barbell_back_squat = squat, gánh tạ, back squat, squat gánh tạ
+exa_barbell_deadlift = deadlift, deadlift truyền thống, kéo tạ đòn từ sàn
+exa_barbell_overhead_press = military press, ohp, đẩy vai, shoulder press, đẩy tạ đứng
+exa_skull_crusher = skull crusher, french press, duỗi tay sau nằm
+exa_barbell_hip_thrust = hip thrust, đẩy hông, nâng hông, glute bridge
+exa_bulgarian_split_squat = bulgarian, split squat, chùng chân gác ghế, chân sau gác cao
+exa_kettlebell_swing = kettlebell swing, kb swing, vung tạ, swing
+exa_smith_reverse_lunge = reverse lunge, chùng chân lùi, lunge
+exa_landmine_squat = landmine, landmine goblet squat
+exa_overhead_squat = ohs, squat tạ trên đầu, squat qua đầu
+exa_thruster = thrusters, thruster
+exa_push_press = push press, đẩy tạ có đà chân
+exa_power_clean = clean, power clean, cử tạ, olympic lifting
+exa_hang_clean = clean, hang clean, cử tạ, olympic lifting
+exa_power_snatch = snatch, cử giật, cử tạ, olympic lifting
+exa_dumbbell_floor_press = floor press, đẩy ngực nằm sàn, đẩy sàn
+exa_incline_dumbbell_fly = incline fly, bay ngực dốc, ngực trên
+exa_walking_lunge = walking lunge, chùng chân bước đi, lunge đi bộ
+exa_dumbbell_snatch = db snatch, snatch một tay, snatch tạ đơn
+exa_kettlebell_high_pull = sumo high pull, high pull, kéo cao
+
+# Bodyweight and calisthenics
+exa_push_up = chống đẩy, hít đất, push up, pushup
+exa_pull_up = kéo xà, xà đơn, pull up, pullup
+exa_parallel_bar_dip = dips, xà kép, nhún xà kép
+exa_burpee = burpees, squat thrust, bật nhảy chống đẩy
+exa_mountain_climber = mountain climber, climbers, chạy leo núi
+exa_plank = plank cẳng tay, plank trước, tấm ván
+exa_farmers_carry = farmer walk, farmer's walk, xách tạ đi
+exa_archer_push_up = archer, hít đất cung thủ, chống đẩy cung thủ
+exa_ring_dip = vòng treo, rings, dips vòng
+exa_neutral_grip_pull_up = hammer grip, tay song song, kéo xà tay trung lập
+exa_suspension_row = trx, ring row, kéo dây treo
+exa_sissy_squat = sissy
+exa_toes_to_bar = t2b, toes to bar, chạm chân xà
+exa_ghd_sit_up = ghd, glute ham developer
+
+# Conditioning and HIIT
+exa_jump_rope = nhảy dây, dây nhảy, skipping, double under, nhảy dây đôi
+exa_jumping_jack = jumping jacks, bật nhảy dang tay chân, bật sao
+exa_high_knees = nâng cao đùi, chạy tại chỗ, high knees
+exa_butt_kicks = gót chạm mông, đá gót, butt kicks
+exa_box_jump = plyo box, plyometrics, bật hộp, box jump
+exa_tuck_jump = bật co gối, tuck jump
+exa_skater_jump = skaters, bật ngang, trượt băng
+exa_bear_crawl = bò, bò gấu, bear crawl
+exa_shadow_boxing = boxing, quyền anh, đấm, shadow boxing
+exa_step_aerobics = step, aerobic, thể dục nhịp điệu, bục step
+exa_battle_ropes = dây thừng, battle rope, sóng dây
+exa_sled_push = prowler, xe sled, xe đẩy, sled
+exa_sled_drag = sled, kéo xe, kéo lùi
+exa_wall_ball = wall balls, bóng tạ, ném bóng tường
+exa_medicine_ball_slam = slam ball, đập bóng, bóng tạ
+exa_medicine_ball_rotational_throw = ném xoay, ném ngang, bóng tạ
+exa_sandbag_carry = bao cát, sandbag, ôm bao cát
+
+# Stretching, mobility and foam rolling
+exa_ankle_dorsiflexion_mobilization = linh hoạt cổ chân, mở khớp cổ chân, gập mu bàn chân, cổ chân
+exa_hip_90_90 = 90 90, linh hoạt hông, mở hông
+exa_deep_squat_hold = ngồi xổm, squat sâu, asian squat, ngồi chồm hổm
+exa_hip_cars = xoay hông, vòng hông, cars
+exa_shoulder_cars = xoay vai, xoay tay, vòng tay, cars
+exa_thread_the_needle = xoay lưng trên, xoay ngực, xâu kim
+exa_cobra_stretch = rắn hổ mang, cobra, chó ngửa mặt
+exa_downward_dog = chó úp mặt, down dog, yoga
+exa_standing_quad_stretch = giãn đùi trước, quad stretch, giãn đùi
+exa_lying_spinal_twist = vặn mình, vặn lưng, xoay cột sống
+exa_figure_four_stretch = số 4, cơ hình lê, piriformis, giãn mông
+exa_wrist_mobility = giãn cổ tay, khởi động cổ tay, xoay cổ tay
+exa_foam_roll_quads = foam roller, con lăn, lăn cơ, giãn cân cơ, massage, smr
+exa_foam_roll_hamstrings = foam roller, con lăn, lăn cơ, giãn cân cơ, massage, smr
+exa_foam_roll_calves = foam roller, con lăn, lăn cơ, giãn cân cơ, massage, smr
+exa_foam_roll_glutes = foam roller, con lăn, lăn cơ, giãn cân cơ, smr, cơ hình lê
+exa_foam_roll_it_band = foam roller, con lăn, lăn cơ, giãn cân cơ, smr, itb
+exa_foam_roll_upper_back = foam roller, con lăn, lăn cơ, giãn cân cơ, smr, lưng ngực
+exa_foam_roll_lats = foam roller, con lăn, lăn cơ, giãn cân cơ, massage, smr

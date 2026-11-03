@@ -1,5 +1,6 @@
 package com.enjoyyourtime.globalfitness.food
 
+import com.enjoyyourtime.globalfitness.food.data.AdjustmentsColumn
 import com.enjoyyourtime.globalfitness.food.data.FoodBatch
 import com.enjoyyourtime.globalfitness.food.data.FoodRepository
 import com.enjoyyourtime.globalfitness.food.data.FoodSchema
@@ -8,6 +9,7 @@ import com.enjoyyourtime.globalfitness.food.model.CustomFood
 import com.enjoyyourtime.globalfitness.food.model.CustomFoodSource
 import com.enjoyyourtime.globalfitness.food.model.FoodTombstones
 import com.enjoyyourtime.globalfitness.food.model.FoodUnit
+import com.enjoyyourtime.globalfitness.food.model.IngredientAdjustment
 import com.enjoyyourtime.globalfitness.food.model.Nutrients
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -68,19 +70,109 @@ class FoodDataTest {
         }
     }
 
+    /** [FoodSchema.upgrade]'s view of a JDBC connection (what FoodDatabase gives it on the phone). */
+    private fun sql(db: Connection) = object : FoodSchema.Sql {
+        val statements = mutableListOf<String>()
+
+        override fun exec(sql: String) {
+            statements += sql
+            db.createStatement().execute(sql)
+        }
+
+        override fun columns(table: String): Set<String> = columns(db, table).toSet()
+    }
+
+    /** food.db as 1.5.0 created it (version 1), verbatim. */
+    private val v1Schema = listOf(
+        """
+        CREATE TABLE IF NOT EXISTS food_entries (
+            id TEXT PRIMARY KEY, eaten_at INTEGER NOT NULL, zone_offset INTEGER NOT NULL, meal TEXT NOT NULL,
+            food_id TEXT, custom_food_id TEXT, name TEXT NOT NULL, amount REAL NOT NULL, unit TEXT NOT NULL,
+            portion_key TEXT, portion_count REAL,
+            kcal REAL, protein REAL, carbs REAL, sugars REAL, fat REAL, sat_fat REAL, fiber REAL, salt REAL,
+            source TEXT NOT NULL, photo TEXT, model_label TEXT, model_confidence REAL, created_at INTEGER NOT NULL, updated_at INTEGER NOT NULL
+        )
+        """,
+        "CREATE INDEX IF NOT EXISTS idx_food_entries_eaten ON food_entries(eaten_at)",
+        """
+        CREATE TABLE IF NOT EXISTS custom_foods (
+            id TEXT PRIMARY KEY, name TEXT NOT NULL, brand TEXT, barcode TEXT, unit TEXT NOT NULL,
+            kcal REAL, protein REAL, carbs REAL, sugars REAL, fat REAL, sat_fat REAL, fiber REAL, salt REAL,
+            portion REAL, source TEXT NOT NULL, created_at INTEGER NOT NULL, updated_at INTEGER NOT NULL
+        )
+        """,
+        "CREATE INDEX IF NOT EXISTS idx_custom_foods_barcode ON custom_foods(barcode)",
+        "CREATE TABLE IF NOT EXISTS tombstones (kind TEXT NOT NULL, id TEXT NOT NULL, deleted_at INTEGER NOT NULL, PRIMARY KEY (kind, id))",
+        "CREATE TABLE IF NOT EXISTS hc_export (entry_id TEXT PRIMARY KEY, version INTEGER NOT NULL, record_id TEXT, exported_at INTEGER NOT NULL, device TEXT NOT NULL)",
+    )
+
+    @Test
+    fun aFileOf150UpgradesKeepingItsRows() {
+        DriverManager.getConnection("jdbc:sqlite::memory:").use { db ->
+            v1Schema.forEach { db.createStatement().execute(it) }
+            db.createStatement().execute(
+                "INSERT INTO food_entries (id, eaten_at, zone_offset, meal, name, amount, unit, kcal, protein, source, created_at, updated_at) " +
+                    "VALUES ('e1', 5, 3600, 'lunch', 'Paella', 350, 'g', 553, 26, 'photo', 5, 6)",
+            )
+            db.createStatement().execute("INSERT INTO custom_foods (id, name, unit, kcal, source, created_at, updated_at) VALUES ('c1', 'Galletas', 'g', 436, 'off', 1, 2)")
+            db.createStatement().execute("INSERT INTO tombstones (kind, id, deleted_at) VALUES ('food_entry', 'a', 5)")
+            val sql = sql(db)
+            FoodSchema.upgrade(sql, 1)
+            // Same columns, in the same order, as a file created by this version.
+            assertEquals(FoodSchema.ENTRY_COLUMNS, columns(db, "food_entries"))
+            assertEquals(FoodSchema.CUSTOM_FOOD_COLUMNS, columns(db, "custom_foods"))
+            db.createStatement().executeQuery("SELECT ${FoodSchema.ENTRY_COLUMNS.joinToString()} FROM food_entries").use { rs ->
+                assertTrue(rs.next())
+                assertEquals("Paella", rs.getString("name"))
+                assertEquals(553.0, rs.getDouble("kcal"), 0.0)
+                assertNull("unknown, not zero", rs.getObject("calcium"))
+                assertNull(rs.getObject("adjustments"))
+                assertNull(rs.getObject("estimated_amount"))
+            }
+            db.createStatement().executeQuery("SELECT ${FoodSchema.CUSTOM_FOOD_COLUMNS.joinToString()} FROM custom_foods").use { rs ->
+                assertTrue(rs.next())
+                assertNull(rs.getObject("vit_c"))
+            }
+            // 1.5.0 opened the file again (it marks it version 1) and this version upgrades it once more: nothing fails or is lost.
+            sql.statements.clear()
+            FoodSchema.upgrade(sql, 1)
+            assertTrue("no column added twice: ${sql.statements}", sql.statements.none { it.startsWith("ALTER") })
+            sql.statements.clear()
+            FoodSchema.upgrade(sql, FoodSchema.VERSION)
+            assertEquals(emptyList<String>(), sql.statements)
+            db.createStatement().executeQuery("SELECT COUNT(*) FROM tombstones").use { rs ->
+                rs.next()
+                assertEquals(1, rs.getInt(1))
+            }
+        }
+    }
+
     @Test
     fun upgradeStepsAreSafeToRunAgain() {
         DriverManager.getConnection("jdbc:sqlite::memory:").use { db ->
             FoodSchema.CREATE.forEach { db.createStatement().execute(it) }
             // A newer file opened by this version, then upgraded again: nothing fails, nothing is lost.
             db.createStatement().execute("INSERT INTO tombstones (kind, id, deleted_at) VALUES ('food_entry', 'a', 5)")
-            FoodSchema.upgrade(0).forEach { db.createStatement().execute(it) }
-            assertEquals(emptyList<String>(), FoodSchema.upgrade(FoodSchema.VERSION))
+            FoodSchema.upgrade(sql(db), 0)
+            assertEquals(FoodSchema.ENTRY_COLUMNS, columns(db, "food_entries"))
             db.createStatement().executeQuery("SELECT COUNT(*) FROM tombstones").use { rs ->
                 rs.next()
                 assertEquals(1, rs.getInt(1))
             }
         }
+    }
+
+    @Test
+    fun adjustmentsColumnRoundTrip() {
+        val list = listOf(
+            IngredientAdjustment("olive_oil", 17.5, 35.0, 2.0),
+            IngredientAdjustment("bread", 40.0, 12.5, null),
+        )
+        assertEquals(list, AdjustmentsColumn.decode(AdjustmentsColumn.encode(list)))
+        assertNull(AdjustmentsColumn.encode(emptyList()))
+        assertEquals(emptyList<IngredientAdjustment>(), AdjustmentsColumn.decode(null))
+        // Broken parts are skipped, the rest kept.
+        assertEquals(listOf(IngredientAdjustment("rice", 10.0, 0.0, 0.0)), AdjustmentsColumn.decode("rice,10,0,0;Bad Id,1,2,;oil,x,1,"))
     }
 
     // ---- repository --------------------------------------------------------------------------------

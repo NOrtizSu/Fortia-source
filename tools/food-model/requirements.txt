@@ -12,3 +12,7 @@ pillow==13.0.0
 requests==2.34.2
 onnx==1.23.2
 onnxruntime==1.31.1
+# v2: detector (Ultralytics YOLO, AGPL-3.0) and the grams fit
+ultralytics==8.4.198
+onnxslim==0.1.98
+scipy==1.17.1

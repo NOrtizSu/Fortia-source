@@ -18,6 +18,8 @@ ex_badminton = Badminton
 # On foot, on wheels, in the water
 ex_outdoor_walk = Yürüyüş
 ex_hiking = Doğa yürüyüşü
+ex_nordic_walking = Nordik yürüyüş
+ex_stair_climbing = Merdiven çıkma
 ex_outdoor_run = Açık havada koşu
 ex_outdoor_cycling = Açık havada bisiklet
 ex_swimming = Yüzme

@@ -209,7 +209,7 @@ foodlog_today_open = 打开饮食
 # Health Connect
 hc_type_nutrition = 营养
 hc_meals_export_title = 将餐食保存到 Health Connect
-hc_meals_export_text = 你记录的每种食物都会作为其所属餐次的营养数据（热量、蛋白质、碳水化合物、糖、脂肪、饱和脂肪、膳食纤维和钠）保存。如果你编辑或删除它，Health Connect 中的数据也会随之更新。
+hc_meals_export_text = 你记录的每种食物都会作为其所属餐次的营养数据保存：热量、蛋白质、碳水化合物、糖、脂肪、饱和脂肪、膳食纤维和钠；如果食物有相应数据，还包括胆固醇、单不饱和脂肪、多不饱和脂肪、矿物质和维生素。如果你编辑或删除它，Health Connect 中的数据也会随之更新。
 hc_meals_export_missing_permission = 请允许 Fortia 向 Health Connect 写入营养数据，以便将你的餐食保存到那里。
 hc_meals_export_denied = 如果没有打开权限窗口，请在 Health Connect 中为 Fortia 允许“营养”。
 hc_meals_export_off = 新的餐食不会被保存。已在 Health Connect 中的餐食会保留。
@@ -226,4 +226,4 @@ notice_usda = 食物列表的营养数据：U.S. Department of Agriculture, Agri
 notice_ciqual = 食物列表的营养数据：Anses，Ciqual 法国食物成分表，采用 Licence Ouverte / Etalab 2.0 授权。
 notice_food_model_name = Fortia 食物识别模型
 notice_food_model_license = 自研模型（见模型卡）
-notice_food_model = 我们自研的模型，使用来自 Open Images（CC BY 2.0）和 Wikimedia Commons（自由许可）的图像训练；图像及其作者列表随源代码一同发布。
+notice_food_model = 我们自研的模型，基于 MobileNetV4（timm，Apache-2.0）和 Ultralytics YOLO11n（AGPL-3.0），使用来自 Open Images（CC BY 2.0）、Wikimedia Commons（自由许可）和 MyFoodRepo（CC BY 4.0）的图像训练；重量估算使用 Nutrition5k（CC BY 4.0）校准。图像及其作者列表随源代码一同发布。

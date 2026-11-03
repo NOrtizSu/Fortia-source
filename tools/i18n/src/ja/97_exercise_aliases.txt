@@ -1,0 +1,125 @@
+# Search words of built-in exercises and sports: exa_<catalog id> (training/catalog/ExerciseAliases.kt). Never shown:
+# the exercise search also looks in them, so an exercise is found by the other words people use for it (gym slang,
+# brand names, verbs, the singular or plural). Comma-separated, lower case is fine; translate the idea, not word for word.
+
+# Walking, running and the other activities
+exa_outdoor_walk = 歩く, 歩き, 散歩, さんぽ, ウォーク, 早歩き, パワーウォーキング, 歩行
+exa_hiking = 登山, 山歩き, 山登り, トレッキング, ハイク
+exa_nordic_walking = ポールウォーキング, ノルディックウォーク, ウォーキングポール, ストック, ポール
+exa_stair_climbing = 階段, 階段昇降, 階段上り, 階段登り, 階段昇り, かいだん
+exa_outdoor_run = 走る, ラン, ジョギング, ジョグ, マラソン, 走り
+exa_outdoor_cycling = 自転車, チャリ, ロードバイク, マウンテンバイク, mtb, クロスバイク, ライド
+exa_swimming = 泳ぐ, スイミング, スイム, プール, クロール, 平泳ぎ
+
+# Cardio machines
+exa_treadmill = ランニングマシン, ルームランナー, 走る, ランニング, ジョギング
+exa_treadmill_walk = ランニングマシン, ルームランナー, ウォーキングマシン, 歩く, 歩き
+exa_incline_treadmill_walk = 傾斜ウォーキング, 坂道ウォーキング, 坂道, 傾斜, インクライン, 12-3-30, トレッドミル
+exa_curved_treadmill = 自走式トレッドミル, カーブドトレッドミル, 手動トレッドミル, アサルトランナー, スプリント, ダッシュ
+exa_stationary_bike = フィットネスバイク, 固定式自転車, 自転車, バイク, ペダル
+exa_spin_bike = スピニング, インドアサイクリング, インドアバイク, バイク
+exa_recumbent_bike = リカンベント, 背もたれ付きバイク, バイク, 自転車
+exa_air_bike = アサルトバイク, ファンバイク, エコーバイク, assault bike
+exa_elliptical = クロストレーナー, エリプティカルトレーナー, エリプティカルマシン, クロスウォーカー
+exa_rowing_machine = ローイング, ロウイング, エルゴ, ローイングエルゴ, ボート漕ぎ, 漕ぐ
+exa_stair_climber = ステアマスター, ステップミル, 階段マシン, 階段
+exa_ski_erg = skierg, スキーエルゴメーター, スキー
+
+# Machines and cables
+exa_pec_deck = バタフライマシン, チェストフライ, フライマシン, マシンフライ
+exa_reverse_pec_deck = リアデルト, リアデルトマシン, リバースフライ, 三角筋後部
+exa_leg_press_machine = 45度レッグプレス, インクラインレッグプレス, 斜めレッグプレス, 脚プレス
+exa_hip_abductor_machine = アブダクター, 外もも, 太もも外側, 中臀筋, 股関節外転, 外転
+exa_hip_adductor_machine = アダクター, 内もも, 太もも内側, 股関節内転, 内転
+exa_iso_lateral_chest_press = ハンマーストレングス, ハンマー, プレートロード, アイソラテラル, 片腕ずつ
+exa_high_row_machine = ハンマーストレングス, ハンマー, ハイロウ, プレートロード
+exa_t_bar_row_machine = Tバーマシン, ティーバー, Tバーロウ, t-bar
+exa_standing_leg_curl_machine = ハムストリングカール, ハムカール, 片脚レッグカール, 立位レッグカール
+exa_lat_pulldown_machine = プルダウン, ラットプル, ラットマシン
+exa_seated_cable_row = ケーブルロー, ケーブルローイング, ロープーリーロー, 座ってロー
+exa_cable_crossover = クロスオーバー, ケーブルクロス, クロスケーブル
+exa_face_pull = ロープフェイスプル, ロープで顔へ引く, 肩の後ろ
+exa_reverse_grip_lat_pulldown = 逆手ラットプルダウン, 逆手プルダウン, アンダーグリップ, 逆手
+exa_cable_chest_press = ケーブルプレス, 立ってチェストプレス, ケーブルで胸プレス
+exa_cable_reverse_fly = リバースクロスオーバー, ケーブルリアデルト, リアデルト
+exa_cable_y_raise = yレイズ, y字レイズ, ワイレイズ, y字
+exa_cable_upright_row = アップライトロウ, ケーブルアップライト
+
+# Free weights
+exa_barbell_bench_press = ベンチ, ベンプレ, bp, フラットベンチ
+exa_barbell_back_squat = スクワット, バックスクワット, ハイバー, ローバー
+exa_barbell_deadlift = デッド, コンベンショナル, 床引き
+exa_barbell_overhead_press = バーベルショルダープレス, ミリタリープレス, ohp, スタンディングプレス
+exa_skull_crusher = ライイングトライセプスエクステンション, ライイングエクステンション, ライイングフレンチプレス, スカルクラッシュ
+exa_barbell_hip_thrust = ヒップスラスター, スラスト, 尻トレ, グルート
+exa_bulgarian_split_squat = ブルガリアンスプリットスクワット, ブルガリアン, スプリットスクワット, 後ろ足をのせる
+exa_kettlebell_swing = kbスイング, kb, スイング, ロシアンスイング
+exa_smith_reverse_lunge = リバースランジ, バックランジ, 後ろランジ
+exa_landmine_squat = ランドマインゴブレットスクワット, ランドマイン
+exa_overhead_squat = ohs, 頭上スクワット
+exa_thruster = スラスターズ, thruster, クロスフィット
+exa_push_press = 反動プレス, 脚を使うプレス, push press
+exa_power_clean = クリーン, ウエイトリフティング, 重量挙げ, オリンピックリフト
+exa_hang_clean = クリーン, ウエイトリフティング, 重量挙げ, オリンピックリフト
+exa_power_snatch = スナッチ, ウエイトリフティング, 重量挙げ, オリンピックリフト
+exa_dumbbell_floor_press = フロアプレス, 床プレス, 床でプレス
+exa_incline_dumbbell_fly = インクラインフライ, 斜めのフライ, 胸上部
+exa_walking_lunge = ウォーキングランジ, 歩くランジ, 前進ランジ
+exa_dumbbell_snatch = dbスナッチ, ワンアームスナッチ, 片手スナッチ
+exa_kettlebell_high_pull = スモウハイプル, ハイプル
+
+# Bodyweight and calisthenics
+exa_push_up = プッシュアップ, 腕立て, うでたて, うでたてふせ, pushup
+exa_pull_up = チンニング, プルアップ, けんすい, pullup, 鉄棒
+exa_parallel_bar_dip = ディップ, 平行棒, ディップスバー, dips
+exa_burpee = バーピージャンプ, バーピーズ, スクワットスラスト
+exa_mountain_climber = クライマー, マウンテンクライマーズ
+exa_plank = フロントプランク, 肘つきプランク, エルボープランク, フロントブリッジ
+exa_farmers_carry = ファーマーズキャリー, ファーマーウォーク, ファーマーズ
+exa_archer_push_up = アーチャー, アーチャープッシュアップ
+exa_ring_dip = リング, 吊り輪, つり輪, リングディップ
+exa_neutral_grip_pull_up = パラレルグリップ, ハンマーグリップ, パラレルグリップチンニング, ニュートラルグリップチンニング
+exa_suspension_row = trx, サスペンショントレーナー, リングロー, リングロウ, 吊り輪
+exa_sissy_squat = シシー, sissy
+exa_toes_to_bar = t2b, トゥーズトゥバー, トーズトゥーバー, toes to bar
+exa_ghd_sit_up = ghd, グルートハムデベロッパー
+
+# Conditioning and HIIT
+exa_jump_rope = なわとび, 縄とび, ジャンプロープ, ロープジャンプ, スキッピング, 二重跳び
+exa_jumping_jack = ジャンピングジャックス, 開閉ジャンプ, スタージャンプ, 挙手跳躍
+exa_high_knees = ハイニー, ハイニーズ, その場ダッシュ, その場駆け足, もも上げ走
+exa_butt_kicks = お尻キック, かかとをお尻に, ヒールキック, バットキックス
+exa_box_jump = ボックス, プライオボックス, プライオメトリクス, 跳び乗り
+exa_tuck_jump = 膝抱えジャンプ, ニータックジャンプ, 抱え込み跳び
+exa_skater_jump = スケーター, スケータージャンプス, 横跳び, サイドジャンプ
+exa_bear_crawl = クマ歩き, 熊歩き, 四つ這い歩き, ハイハイ
+exa_shadow_boxing = シャドー, シャドウボクシング, パンチ, ボクササイズ
+exa_step_aerobics = ステップ台, ステップエアロ, ステップ運動, 踏み台, エアロビクス
+exa_battle_ropes = ロープ, バトルロープス, ロープトレーニング
+exa_sled_push = プラウラー, スレッド, そり, ソリ押し
+exa_sled_drag = スレッドプル, そり引き, ソリ引き, スレッド
+exa_wall_ball = ウォールボールズ, メディシンボール, 壁当て, ボール投げ
+exa_medicine_ball_slam = スラムボール, ボールスラム, 叩きつけ, メディシンボール
+exa_medicine_ball_rotational_throw = ローテーショナルスロー, 回旋スロー, 横投げ, メディシンボール
+exa_sandbag_carry = サンドバッグ, 砂袋, ベアハグキャリー
+
+# Stretching, mobility and foam rolling
+exa_ankle_dorsiflexion_mobilization = 足首モビリティ, 足首の柔軟性, 背屈, ニートゥウォール
+exa_hip_90_90 = 90 90, 9090, 股関節モビリティ, 股関節の柔軟性
+exa_deep_squat_hold = ヤンキー座り, しゃがむ, しゃがみ込み, アジアンスクワット, 深くしゃがむ
+exa_hip_cars = 股関節回し, 股関節の回旋, ヒップサークル, cars
+exa_shoulder_cars = 肩回し, 腕回し, ショルダーサークル, アームサークル, cars
+exa_thread_the_needle = スレッドザニードル, 胸椎回旋, 糸通し
+exa_cobra_stretch = コブラ, 上向きの犬, アップドッグ, コブラストレッチ
+exa_downward_dog = ダウンドッグ, ダウンワードドッグ, 犬のポーズ, ヨガ
+exa_standing_quad_stretch = 前ももストレッチ, 太もも前のストレッチ, 四頭筋ストレッチ, クワッドストレッチ
+exa_lying_spinal_twist = ツイスト, 背骨のねじり, 腰のねじり, 仰向けねじり, スパインツイスト
+exa_figure_four_stretch = 4の字, 梨状筋, お尻のストレッチ, フィギュアフォー
+exa_wrist_mobility = 手首のストレッチ, 手首ストレッチ, 手首の準備運動, リストストレッチ
+exa_foam_roll_quads = フォームロール, 筋膜リリース, ローラー, ストレッチポール, セルフマッサージ, smr, 前もも
+exa_foam_roll_hamstrings = フォームロール, 筋膜リリース, ローラー, ストレッチポール, セルフマッサージ, smr, もも裏
+exa_foam_roll_calves = フォームロール, 筋膜リリース, ローラー, ストレッチポール, セルフマッサージ, smr
+exa_foam_roll_glutes = フォームロール, 筋膜リリース, ローラー, ストレッチポール, セルフマッサージ, smr, 梨状筋, お尻
+exa_foam_roll_it_band = フォームロール, 筋膜リリース, ローラー, ストレッチポール, セルフマッサージ, smr, itb, 外もも
+exa_foam_roll_upper_back = フォームロール, 筋膜リリース, ローラー, ストレッチポール, セルフマッサージ, smr, 胸椎, 背中
+exa_foam_roll_lats = フォームロール, 筋膜リリース, ローラー, ストレッチポール, セルフマッサージ, smr, わき

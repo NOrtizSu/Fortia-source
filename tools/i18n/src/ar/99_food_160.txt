@@ -1,0 +1,89 @@
+# Comida in 1.6.0: more nutrients per food, variants of a dish, changing a dish's ingredients when logging it,
+# several foods in one photo and the photo's grams suggestion. The rest of the food log is in 99_food.txt.
+
+# Units of the new values ("350 mg", "2.4 µg"); the unit alone as a field suffix
+unit_mg = ملغ
+unit_ug = مكغ
+value_mg = %1$s ملغ
+value_ug = %1$s مكغ
+
+# The values beyond the nutrition label (food tables give them; product labels rarely do)
+foodlog_nutrient_mono_fat = الدهون الأحادية غير المشبعة
+foodlog_nutrient_poly_fat = الدهون المتعددة غير المشبعة
+foodlog_nutrient_cholesterol = الكوليسترول
+foodlog_nutrient_potassium = البوتاسيوم
+foodlog_nutrient_calcium = الكالسيوم
+foodlog_nutrient_iron = الحديد
+foodlog_nutrient_magnesium = المغنيسيوم
+foodlog_nutrient_zinc = الزنك
+foodlog_nutrient_vit_a = فيتامين A
+foodlog_nutrient_vit_c = فيتامين C
+foodlog_nutrient_vit_d = فيتامين D
+foodlog_nutrient_vit_e = فيتامين E
+foodlog_nutrient_vit_b12 = فيتامين B12
+foodlog_nutrient_folate = الفولات
+# Small headings of those values (day summary under "More", the food's values, the manual form)
+foodlog_nutrients_fats = تفاصيل الدهون
+foodlog_nutrients_minerals = المعادن
+foodlog_nutrients_vitamins = الفيتامينات
+# A day total that adds up only the foods that have that value ("≥ 45 g"), and the line that explains the sign
+foodlog_partial_value = ≥ %1$s
+foodlog_partial_note = ≥: بعض الأطعمة لا تتوفر لها هذه القيمة، لذا فالمجموع لا يقل عن هذا.
+# The manual form: the optional values beyond the label
+foodlog_more_nutrients = المزيد من العناصر الغذائية
+foodlog_more_nutrients_text = اختياري: فقط إذا كنت تعرفها.
+
+# Variants of a dish (paella: seafood, mixed…): a heading and the chip of the usual one (gender-neutral in Spanish)
+foodlog_variants = الصنف
+foodlog_variant_typical = المعتاد
+
+# The ingredients of a dish on the confirm page: closed it says what changed ("Changed: Olive oil 35 g, Bread 0 g")
+foodlog_ingredients = المكونات
+foodlog_ingredients_adjust = تعديل
+foodlog_ingredients_usual = الوصفة المعتادة
+foodlog_ingredients_changed = التغييرات: %1$s
+foodlog_ingredients_text = غيّر ما كان في طبقك (زيت أكثر أو أقل، بلا خبز…): تتغير القيم تبعًا لذلك.
+# An ingredient with its amount ("Olive oil 35 g"); under its name, its usual amount for the amount logged
+foodlog_label_amount = %1$s %2$s
+foodlog_ingredient_usual = عادةً %1$s
+# The pencil button next to an ingredient's amount (TalkBack): type another amount of it
+foodlog_ingredient_type = اكتب كمية %1$s
+# The weight of the dish once its ingredients changed ("Total: 368 g")
+foodlog_total_weight = الإجمالي: %1$s
+# How much of an ingredient (chips: none, half, normal, one and a half, double); TalkBack reads the _desc ones
+foodlog_level_none = بدون
+foodlog_level_half = ½
+foodlog_level_normal = عادي
+foodlog_level_one_half = 1½
+foodlog_level_double = ×2
+foodlog_level_half_desc = النصف
+foodlog_level_one_half_desc = مرة ونصف
+foodlog_level_double_desc = الضعف
+# A logged dish whose ingredients were changed, in the day's list ("Plate · 368 g · Adjusted")
+foodlog_entry_adjusted = %1$s · معدّل
+
+# The photo's grams suggestion next to the amount: a suggestion only, the user confirms or changes it
+foodlog_estimated = ≈ %1$s (تقديري)
+foodlog_estimated_text = مقدّر من الصورة. تحقق منه وغيّره إذا لزم الأمر.
+
+# Several foods found on one plate: one card each (its crop, three suggestions, "Other…", its amount), then "Add all (3)"
+foodlog_plate_title{zero} = لا يوجد طعام في الطبق
+foodlog_plate_title{one} = طعام واحد في الطبق
+foodlog_plate_title{two} = طعامان في الطبق
+foodlog_plate_title{few} = %1$d أطعمة في الطبق
+foodlog_plate_title{many} = %1$d طعامًا في الطبق
+foodlog_plate_title{other} = %1$d طعام في الطبق
+foodlog_plate_text = تحقق من كل واحد: ما هو وكم كميته. ألغِ تحديد ما لا تريد إضافته.
+foodlog_plate_item_desc = الطعام %1$d في الصورة
+foodlog_plate_unknown = ما هذا؟
+foodlog_plate_unknown_text = لم يتم التعرّف عليه: اختره عبر «غير ذلك…».
+foodlog_plate_item_added = تمت الإضافة
+foodlog_plate_add_all = إضافة الكل (%1$d)
+# The whole photo as one dish (today's five suggestions), and back to the foods one by one (always 2 or more)
+foodlog_plate_as_one = عرضه كطبق واحد
+foodlog_plate_as_items{zero} = عرض كل طعام على حدة (%1$d)
+foodlog_plate_as_items{one} = عرض الطعام على حدة
+foodlog_plate_as_items{two} = عرض الطعامين كلٌّ على حدة
+foodlog_plate_as_items{few} = عرض كل طعام على حدة (%1$d)
+foodlog_plate_as_items{many} = عرض كل طعام على حدة (%1$d)
+foodlog_plate_as_items{other} = عرض كل طعام على حدة (%1$d)

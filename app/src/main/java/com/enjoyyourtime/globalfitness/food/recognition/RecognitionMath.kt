@@ -19,7 +19,24 @@ data class Recognition(
     val topLabel: String?,
     val topConfidence: Float?,
     val latencyMs: Long = 0,
+    /** The grams suggestion for this picture (null: the model gives none; the food's portion is used). */
+    val grams: GramsEstimator? = null,
 )
+
+/**
+ * The grams suggestion of one picture, behind one interface (grams_contract.md): only ever a
+ * suggestion the user confirms or changes; null means "no estimate", and the food's default portion
+ * is used instead, unmarked.
+ */
+fun interface GramsEstimator {
+    /** Grams (ml) of a food whose default portion is [portion], being [share] of the items of the photo (1 for the whole photo). */
+    fun estimate(portion: Double?, share: Double): Double?
+}
+
+/** The classifier's own estimate: its ln(grams) output [logGrams] through [spec]'s formula. */
+data class ModelGrams(val spec: GramsSpec, val logGrams: Double) : GramsEstimator {
+    override fun estimate(portion: Double?, share: Double): Double? = RecognitionMath.grams(spec, logGrams, portion, share)
+}
 
 /** How sure the hint next to a suggestion sounds ("Muy probable", "Probable", "Posible"), never a raw %. */
 enum class ConfidenceHint { VERY_LIKELY, LIKELY, POSSIBLE }
@@ -361,5 +378,111 @@ object RecognitionMath {
         confidence >= 0.5f -> ConfidenceHint.VERY_LIKELY
         confidence >= 0.2f -> ConfidenceHint.LIKELY
         else -> ConfidenceHint.POSSIBLE
+    }
+
+    /**
+     * grams_contract.md's estimate: `exp(b0 + bModel·y + bPortion·ln(p) + bShare·ln(share))`, clamped
+     * to the portion's range and the grams range, rounded to [GramsSpec.roundTo] (at least one step).
+     * Null (no estimate: the portion is used) without a positive portion or for anything not finite.
+     */
+    fun grams(spec: GramsSpec, logGrams: Double, portion: Double?, share: Double): Double? {
+        val p = portion?.takeIf { it > 0 && it.isFinite() } ?: return null
+        if (!logGrams.isFinite()) return null
+        val s = share.takeIf { it > 0 && it.isFinite() } ?: 1.0
+        val ln = spec.b0 + spec.bModel * logGrams + spec.bPortion * ln(p) + spec.bShare * ln(s)
+        var est = exp(ln)
+        if (!est.isFinite()) return null
+        est = est.coerceIn(spec.clampPortionMin * p, spec.clampPortionMax * p)
+        est = est.coerceIn(spec.clampGramsMin, spec.clampGramsMax)
+        val rounded = Math.round(est / spec.roundTo) * spec.roundTo
+        return maxOf(spec.roundTo, rounded).takeIf { it.isFinite() }
+    }
+}
+
+/** A box of the photo, normalised 0..1 (y down), with the detector's score. */
+data class DetectedBox(val ymin: Float, val xmin: Float, val ymax: Float, val xmax: Float, val score: Float) {
+    /** Its area in pixels of a [w]×[h] photo. */
+    fun area(w: Int, h: Int): Double = (xmax - xmin).coerceAtLeast(0f).toDouble() * w * (ymax - ymin).coerceAtLeast(0f).toDouble() * h
+}
+
+/** The detector's items of a photo (best first) and the margin their crops take ([DetectionMath.crop]). */
+data class Detection(val boxes: List<DetectedBox>, val cropMargin: Float)
+
+/** A square of the photo in pixels: what an item's classifier, grams estimate and photo see. */
+data class CropSquare(val left: Int, val top: Int, val size: Int)
+
+/** The detector's output as the app uses it (detector_contract.md; pure, unit-tested). */
+object DetectionMath {
+    /**
+     * The items of a [w]×[h] photo: the first `count` rows (at most K) with a score of at least
+     * [DetectorSpec.scoreThreshold], without boxes whose short side is under [DetectorSpec.minBoxSide]
+     * of the photo's short side, without the containers of other boxes ([withoutContainers]), at most
+     * [DetectorSpec.maxItems], best first. [boxes]: K × 4 values (ymin, xmin, ymax, xmax), [scores]: K values.
+     */
+    fun select(boxes: FloatArray, scores: FloatArray, count: Float, w: Int, h: Int, spec: DetectorSpec): List<DetectedBox> {
+        val k = minOf(scores.size, boxes.size / 4)
+        val n = if (count.isFinite()) count.toInt().coerceIn(0, k) else 0
+        val minSide = spec.minBoxSide * minOf(w, h)
+        val kept = (0 until n)
+            .filter { scores[it].isFinite() && scores[it] >= spec.scoreThreshold }
+            .map { i ->
+                fun c(j: Int) = boxes[i * 4 + j].takeIf { it.isFinite() }?.coerceIn(0f, 1f) ?: 0f
+                DetectedBox(c(0), c(1), c(2), c(3), scores[i])
+            }
+            .filter { b -> minOf((b.xmax - b.xmin) * w, (b.ymax - b.ymin) * h) >= minSide }
+            .sortedByDescending { it.score }
+        return withoutContainers(kept, spec).take(spec.maxItems)
+    }
+
+    /**
+     * [boxes] without the ones that hold at least [DetectorSpec.containerMinInside] of the other boxes, each
+     * lying at least [DetectorSpec.containerInside] inside it: the whole pile or plate around items that are
+     * already there, which would count the food twice (detector_contract.md, step 2b). Every box is judged
+     * against all of [boxes] (not against what is left), so the order does not matter. No
+     * [DetectorSpec.containerInside]: unchanged.
+     */
+    fun withoutContainers(boxes: List<DetectedBox>, spec: DetectorSpec): List<DetectedBox> {
+        val inside = spec.containerInside ?: return boxes
+        return boxes.filterIndexed { i, outer ->
+            boxes.indices.count { j -> j != i && insideShare(boxes[j], outer) >= inside } < spec.containerMinInside
+        }
+    }
+
+    /** The share of [inner]'s area that lies inside [outer] (0 for a box without area). */
+    fun insideShare(inner: DetectedBox, outer: DetectedBox): Float {
+        val area = (inner.xmax - inner.xmin).coerceAtLeast(0f) * (inner.ymax - inner.ymin).coerceAtLeast(0f)
+        if (area <= 0f) return 0f
+        val iw = (minOf(inner.xmax, outer.xmax) - maxOf(inner.xmin, outer.xmin)).coerceAtLeast(0f)
+        val ih = (minOf(inner.ymax, outer.ymax) - maxOf(inner.ymin, outer.ymin)).coerceAtLeast(0f)
+        return iw * ih / area
+    }
+
+    /**
+     * The square crop of [box] in a [w]×[h] photo: the box's long side plus [margin] of it on each
+     * side, no larger than the photo's short side, shifted (not shrunk) to stay inside the photo.
+     */
+    fun crop(box: DetectedBox, w: Int, h: Int, margin: Float): CropSquare {
+        val x0 = box.xmin * w
+        val y0 = box.ymin * h
+        val x1 = box.xmax * w
+        val y1 = box.ymax * h
+        val cx = (x0 + x1) / 2
+        val cy = (y0 + y1) / 2
+        var side = maxOf(x1 - x0, y1 - y0) * (1 + 2 * margin)
+        side = minOf(side, minOf(w, h).toFloat()).coerceAtLeast(1f)
+        val left = (cx - side / 2).coerceIn(0f, w - side)
+        val top = (cy - side / 2).coerceIn(0f, h - side)
+        val l = kotlin.math.floor(left).toInt().coerceIn(0, w - 1)
+        val t = kotlin.math.floor(top).toInt().coerceIn(0, h - 1)
+        val size = side.roundToInt().coerceAtLeast(1)
+        // Clipped to the bitmap when rounding overflows it.
+        return CropSquare(l, t, minOf(size, w - l, h - t))
+    }
+
+    /** Each box's share of the boxes' total area (in pixels of the photo), for the grams estimate. */
+    fun shares(boxes: List<DetectedBox>, w: Int, h: Int): List<Double> {
+        val areas = boxes.map { it.area(w, h) }
+        val total = areas.sum()
+        return if (total <= 0) boxes.map { 1.0 / boxes.size } else areas.map { it / total }
     }
 }

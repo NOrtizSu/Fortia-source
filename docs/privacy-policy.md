@@ -1,6 +1,6 @@
 # Política de privacidad de Fortia
 
-Última actualización: 2 de noviembre de 2026 · Contacto: **enjoyyourtime.online@gmail.com** ·
+Última actualización: 3 de noviembre de 2026 · Contacto: **enjoyyourtime.online@gmail.com** ·
 Versión web: [globalfitness-app.web.app/privacy.html](https://globalfitness-app.web.app/privacy.html)
 
 ## 1. Quién es el responsable
@@ -36,9 +36,12 @@ del tratamiento. Para cualquier cuestión sobre privacidad escribe a
   nutricionales), los alimentos que creas, los productos que encuentras por su código de barras y tu
   objetivo diario (con el peso que escribas si aún no tienes mediciones). Si haces una **foto de tu plato**,
   la foto se reduce, se guarda en el almacenamiento privado de la app y **se analiza en el propio teléfono**
-  con nuestro modelo de reconocimiento: **la foto nunca sale del teléfono** (no se sube a la nube ni a ningún
-  servidor) y se borra al borrar el alimento. La app guarda con cada alimento qué propuso el modelo y con qué
-  seguridad, solo en tu teléfono (y en tu copia en la nube si la usas), para mejorar sus sugerencias.
+  con nuestros modelos de reconocimiento, que encuentran cada alimento del plato, lo reconocen y estiman sus
+  gramos como sugerencia que tú confirmas: **la foto nunca sale del teléfono** (no se sube a la nube ni a ningún
+  servidor) y se borra al borrar el alimento. Si anotas varios alimentos de una misma foto, cada uno guarda su
+  recorte de la foto, que también se queda en el teléfono y se borra con él. La app guarda con cada alimento qué
+  propuso el modelo, con qué seguridad y cuántos gramos estimó, y los ingredientes que cambies de un plato, solo
+  en tu teléfono (y en tu copia en la nube si la usas), para mejorar sus sugerencias.
 - **Pulsera Xiaomi Smart Band**: la clave de emparejamiento de la pulsera se guarda solo en el
   teléfono y **nunca sale de él** (ni a la nube ni a la copia de seguridad de Android). El pulso
   que registras en el modo directo (fecha, hora y pulsaciones) también se guarda solo en el teléfono.
@@ -72,7 +75,8 @@ se conserva. La app no vuelve a leer sus propias sesiones.
 
 Si lo autorizas, la app también **escribe en Health Connect lo que anotas que comes** como registros de
 nutrición (fecha y hora, comida del día, nombre del alimento, calorías, proteínas, hidratos, azúcares, grasas,
-grasas saturadas, fibra y sodio). Si editas o borras un alimento, se actualiza o se borra también en Health
+grasas saturadas, fibra y sodio y, cuando el alimento los tiene, grasas monoinsaturadas y poliinsaturadas,
+colesterol, potasio, calcio, hierro, magnesio, zinc, vitaminas A, C, D, E y B12 y folato). Si editas o borras un alimento, se actualiza o se borra también en Health
 Connect; si desactivas la opción, deja de escribir y lo ya guardado se conserva. La app **no lee** datos de
 nutrición de Health Connect.
 
@@ -94,7 +98,7 @@ Si inicias sesión con Google (mediante Firebase Authentication):
   peso, impedancia, composición corporal que dé la báscula, origen y modelo de báscula) y tus
   básculas configuradas (modelo, nombre y número de usuario en la báscula), tus entrenos, tus rutinas, tus
   máquinas y ejercicios propios con sus notas, favoritos y fotos, y lo que anotas en Comida (alimentos,
-  cantidades, valores y tus alimentos propios), **sin las fotos de tus platos**. **No** se suben la
+  cantidades, valores, los ingredientes que cambies y tus alimentos propios), **sin las fotos de tus platos**. **No** se suben la
   clave de la pulsera, las claves de cifrado, PIN o claves de emparejamiento de las básculas, las
   direcciones Bluetooth, los datos de Health Connect ni ajustes propios del teléfono.
   Si has comprado «Quitar anuncios», se guarda además un indicador informativo `premium`.

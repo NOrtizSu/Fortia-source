@@ -14,3 +14,7 @@ routine_glutes = Mông
 routine_core = Core và cơ bụng
 routine_mobility = Linh hoạt và giãn cơ
 routine_cardio_mix = Máy cardio
+
+# 1.6.0
+routine_foam_rolling = Phục hồi với con lăn foam
+routine_hiit = HIIT không dụng cụ

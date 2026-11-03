@@ -36,6 +36,10 @@ ex_assisted_pull_up_machine = Assisted pull-up machine ||| Dominadas asistidas (
 ex_assisted_chin_up_machine = Assisted chin-up machine ||| Dominadas supinas asistidas
 ex_assisted_dip_machine = Assisted dip machine ||| Fondos asistidos (máquina)
 ex_neck_machine = Neck machine ||| Máquina de cuello
+ex_iso_lateral_chest_press = Iso-lateral chest press (plate-loaded) ||| Press de pecho iso-lateral (discos)
+ex_high_row_machine = High row machine ||| Remo alto en máquina
+ex_t_bar_row_machine = Chest-supported T-bar row ||| Remo en T con apoyo de pecho
+ex_standing_leg_curl_machine = Standing leg curl ||| Curl femoral de pie
 
 # Cable
 ex_lat_pulldown_machine = Lat pulldown ||| Jalón al pecho
@@ -61,6 +65,11 @@ ex_cable_pull_through = Cable pull-through ||| Pull-through en polea
 ex_cable_glute_kickback = Cable glute kickback ||| Patada de glúteo en polea
 ex_cable_hip_adduction = Cable hip adduction ||| Aducción de cadera en polea
 ex_cable_hip_abduction = Cable hip abduction ||| Abducción de cadera en polea
+ex_reverse_grip_lat_pulldown = Reverse-grip lat pulldown ||| Jalón al pecho con agarre supino
+ex_cable_chest_press = Standing cable chest press ||| Press de pecho de pie en polea
+ex_cable_reverse_fly = Cable reverse fly ||| Cruce inverso en polea
+ex_cable_y_raise = Cable Y-raise ||| Elevación en Y en polea
+ex_cable_upright_row = Cable upright row ||| Remo al mentón en polea
 
 # Smith machine
 ex_smith_squat = Smith machine squat ||| Sentadilla en multipower
@@ -74,6 +83,7 @@ ex_smith_romanian_deadlift = Smith machine Romanian deadlift ||| Peso muerto rum
 ex_smith_bent_over_row = Smith machine row ||| Remo en multipower
 ex_smith_shrug = Smith machine shrug ||| Encogimientos en multipower
 ex_smith_calf_raise = Smith machine calf raise ||| Gemelos en multipower
+ex_smith_reverse_lunge = Smith machine reverse lunge ||| Zancada atrás en multipower
 
 # Barbell and EZ bar
 ex_barbell_bench_press = Barbell bench press ||| Press de banca con barra
@@ -108,6 +118,13 @@ ex_skull_crusher = Skull crusher ||| Press francés
 ex_barbell_wrist_curl = Wrist curl ||| Curl de muñeca
 ex_barbell_reverse_wrist_curl = Reverse wrist curl ||| Curl de muñeca invertido
 ex_landmine_rotation = Landmine rotation ||| Rotaciones con landmine
+ex_landmine_squat = Landmine squat ||| Sentadilla landmine
+ex_overhead_squat = Overhead squat ||| Sentadilla overhead
+ex_thruster = Barbell thruster ||| Thruster con barra
+ex_push_press = Push press ||| Push press
+ex_power_clean = Power clean ||| Cargada de potencia
+ex_hang_clean = Hang clean ||| Cargada colgante
+ex_power_snatch = Power snatch ||| Arrancada de potencia
 
 # Dumbbells
 ex_dumbbell_bench_press = Dumbbell bench press ||| Press de banca con mancuernas
@@ -143,6 +160,10 @@ ex_single_leg_romanian_deadlift = Single-leg Romanian deadlift ||| Peso muerto r
 ex_dumbbell_calf_raise = Dumbbell calf raise ||| Gemelos con mancuernas
 ex_seated_dumbbell_calf_raise = Seated dumbbell calf raise ||| Gemelos sentado con mancuernas
 ex_dumbbell_side_bend = Dumbbell side bend ||| Flexión lateral con mancuerna
+ex_dumbbell_floor_press = Dumbbell floor press ||| Press en el suelo con mancuernas
+ex_incline_dumbbell_fly = Incline dumbbell fly ||| Aperturas inclinadas con mancuernas
+ex_walking_lunge = Dumbbell walking lunge ||| Zancadas caminando con mancuernas
+ex_dumbbell_snatch = Dumbbell snatch ||| Arrancada con mancuerna
 
 # Kettlebells
 ex_kettlebell_swing = Kettlebell swing ||| Swing con kettlebell
@@ -155,6 +176,7 @@ ex_kettlebell_press = Kettlebell press ||| Press con kettlebell
 ex_kettlebell_snatch = Kettlebell snatch ||| Arrancada con kettlebell
 ex_kettlebell_row = Kettlebell row ||| Remo con kettlebell
 ex_kettlebell_windmill = Kettlebell windmill ||| Molino con kettlebell
+ex_kettlebell_high_pull = Kettlebell high pull ||| Tirón alto con kettlebell
 
 # Bodyweight
 ex_push_up = Push-up ||| Flexiones
@@ -196,6 +218,34 @@ ex_burpee = Burpee ||| Burpees
 ex_lying_neck_flexion = Lying neck flexion ||| Flexión de cuello tumbado
 ex_lying_neck_extension = Lying neck extension ||| Extensión de cuello tumbado
 ex_side_lying_neck_flexion = Side-lying neck raise ||| Flexión lateral de cuello tumbado
+ex_archer_push_up = Archer push-up ||| Flexiones arquero
+ex_ring_dip = Ring dip ||| Fondos en anillas
+ex_neutral_grip_pull_up = Neutral-grip pull-up ||| Dominadas con agarre neutro
+ex_suspension_row = Suspension trainer row (TRX) ||| Remo en TRX
+ex_sissy_squat = Sissy squat ||| Sentadilla sissy
+ex_toes_to_bar = Toes-to-bar ||| Pies a la barra (toes-to-bar)
+ex_ghd_sit_up = GHD sit-up ||| Abdominales en GHD
+
+# Conditioning and HIIT
+ex_jump_rope = Jump rope ||| Saltar a la comba
+ex_jumping_jack = Jumping jacks ||| Saltos de tijera (jumping jacks)
+ex_high_knees = High knees ||| Rodillas arriba (skipping)
+ex_butt_kicks = Butt kicks ||| Talones al glúteo
+ex_box_jump = Box jump ||| Salto al cajón
+ex_tuck_jump = Tuck jump ||| Salto con rodillas al pecho
+ex_skater_jump = Skater jumps ||| Saltos de patinador
+ex_bear_crawl = Bear crawl ||| Paso del oso
+ex_shadow_boxing = Shadow boxing ||| Boxeo de sombra
+ex_step_aerobics = Aerobic step ||| Step aeróbico
+ex_battle_ropes = Battle ropes ||| Cuerdas de batalla (battle ropes)
+ex_sled_push = Sled push ||| Empuje de trineo
+ex_sled_drag = Backward sled drag ||| Arrastre de trineo hacia atrás
+
+# Medicine ball and sandbag
+ex_wall_ball = Wall ball ||| Wall ball (lanzamiento a la pared)
+ex_medicine_ball_slam = Medicine ball slam ||| Slam con balón medicinal
+ex_medicine_ball_rotational_throw = Medicine ball rotational throw ||| Lanzamiento rotacional con balón medicinal
+ex_sandbag_carry = Sandbag bear-hug carry ||| Paseo con saco abrazado
 
 # Timed holds and carries
 ex_plank = Plank ||| Plancha
@@ -237,6 +287,25 @@ ex_cross_body_shoulder_stretch = Cross-body shoulder stretch ||| Estiramiento de
 ex_triceps_stretch = Overhead triceps stretch ||| Estiramiento de tríceps tras la cabeza
 ex_shoulder_dislocate = Band shoulder dislocates ||| Dislocaciones de hombro con banda
 ex_neck_stretch = Side neck stretch ||| Estiramiento lateral de cuello
+ex_ankle_dorsiflexion_mobilization = Knee-to-wall ankle mobilization ||| Movilidad de tobillo con rodilla a la pared
+ex_hip_90_90 = 90/90 hip switch ||| Cambios de cadera 90/90
+ex_deep_squat_hold = Deep squat hold ||| Sentadilla profunda mantenida
+ex_hip_cars = Hip CARs (controlled circles) ||| Círculos de cadera controlados (CARs)
+ex_shoulder_cars = Shoulder CARs (controlled circles) ||| Círculos de hombro controlados (CARs)
+ex_thread_the_needle = Thread the needle ||| Enhebrar la aguja
+ex_cobra_stretch = Cobra stretch ||| Postura de la cobra
+ex_downward_dog = Downward dog ||| Perro boca abajo
+ex_standing_quad_stretch = Standing quad stretch ||| Estiramiento de cuádriceps de pie
+ex_lying_spinal_twist = Lying spinal twist ||| Torsión de columna tumbado
+ex_figure_four_stretch = Figure-four glute stretch ||| Estiramiento de glúteo en figura de 4
+ex_wrist_mobility = Wrist mobility ||| Movilidad de muñecas
+ex_foam_roll_quads = Foam roller: quads ||| Foam roller: cuádriceps
+ex_foam_roll_hamstrings = Foam roller: hamstrings ||| Foam roller: isquiotibiales
+ex_foam_roll_calves = Foam roller: calves ||| Foam roller: gemelos
+ex_foam_roll_glutes = Foam roller: glutes ||| Foam roller: glúteos
+ex_foam_roll_it_band = Foam roller: IT band (outer thigh) ||| Foam roller: cintilla iliotibial (lateral del muslo)
+ex_foam_roll_upper_back = Foam roller: upper back ||| Foam roller: espalda alta
+ex_foam_roll_lats = Foam roller: lats ||| Foam roller: dorsales
 
 # Cardio machines
 ex_treadmill = Treadmill ||| Cinta de correr
@@ -248,3 +317,6 @@ ex_elliptical = Elliptical ||| Elíptica
 ex_rowing_machine = Rowing machine ||| Máquina de remo
 ex_stair_climber = Stair climber ||| Escaladora
 ex_ski_erg = Ski erg ||| Ski erg
+ex_treadmill_walk = Treadmill walk ||| Caminar en cinta
+ex_incline_treadmill_walk = Incline treadmill walk ||| Caminar en cinta inclinada
+ex_curved_treadmill = Curved treadmill (self-powered) ||| Cinta curva (sin motor)

@@ -1,16 +1,24 @@
 """Checks the generated catalog against the contract (no source data needed).
 
     python tools/food-db/validate.py [--classes tools/food-model/classes.csv] [--foods ...] [--names ...]
+                                     [--recipes ...] [-v]
 
-Checks: header and columns, unique ids, groups, units, number formats and ranges, energy vs 4P+4C+9F+2fibre
-(within max(25 kcal, 20%); only the drinks in ALCOHOLIC may exceed it, alcohol not being a column), portion keys
-and amounts, visual/source values, a food_<id> name (EN and ES) for every food and a food_group_<group> name for
-every group in 97_foods.txt, that both files equal a fresh build from sources_used.tsv (build.py --check), and,
-when a class list is given (or tools/food-model/classes.csv exists), that every model class id except _not_food is
-a visual food and every visual food is a class. Exit code 1 on any error.
+foods.tsv (v2): header and columns, unique ids, groups, units, number formats and ranges, energy vs
+4P+4C+9F+2fibre (within max(25 kcal, 20%); only the drinks in ALCOHOLIC may exceed it, alcohol not being a column),
+sugars <= carbs, saturated (and saturated + mono + poly) fat <= fat, the 14 micronutrients (at most 2 decimals,
+plausible ranges), variant_of (an existing food that is not itself a variant; variants have visual = 0), portion keys
+and amounts, visual/source values.
+recipes.tsv: header, dishes and ingredients are foods, grams > 0 with 1 decimal, adjustable 0/1, no duplicate
+ingredient; for dishes computed from their recipe (source = recipe) the ingredients reproduce every value of the dish
+within rounding; for the others (a typical recipe of a USDA/CIQUAL dish) the ingredients' energy is within
+TYPICAL_KCAL (and 10 kcal) of the dish and no adjustable ingredient brings more energy, protein, carbohydrate, fat,
+saturated fat or salt than the dish has (removing it would give a negative value; the app also clamps at 0).
+97_foods.txt: a food_<id> name (EN and ES) for every food and a food_group_<group> name for every group.
+Both files equal a fresh build from sources_used.tsv (build.py --check), and, when a class list is given (or
+tools/food-model/classes.csv exists), every model class id except _not_food (and rows with status dropped) is a visual
+food and every visual food is a class. Exit code 1 on any error.
 """
 import argparse
-import csv
 import os
 import re
 import sys
@@ -18,23 +26,40 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(os.path.dirname(HERE))
 FOODS = os.path.join(REPO, 'app', 'src', 'main', 'assets', 'food', 'foods.tsv')
+RECIPES = os.path.join(REPO, 'app', 'src', 'main', 'assets', 'food', 'recipes.tsv')
 NAMES = os.path.join(REPO, 'tools', 'i18n', 'src', 'master', '97_foods.txt')
 CLASSES = os.path.join(REPO, 'tools', 'food-model', 'classes.csv')
 
-HEADER = ['id', 'group', 'unit', 'kcal', 'protein', 'carbs', 'sugars', 'fat', 'sat_fat', 'fiber', 'salt', 'portion',
-          'portions', 'visual', 'source']
+HEADER_V1 = ['id', 'group', 'unit', 'kcal', 'protein', 'carbs', 'sugars', 'fat', 'sat_fat', 'fiber', 'salt',
+             'portion', 'portions', 'visual', 'source']
+BASE = ['kcal', 'protein', 'carbs', 'sugars', 'fat', 'sat_fat', 'fiber', 'salt']
+MICRO = ['mono_fat', 'poly_fat', 'cholesterol', 'potassium', 'calcium', 'iron', 'magnesium', 'zinc', 'vit_a', 'vit_c',
+         'vit_d', 'vit_e', 'vit_b12', 'folate']
+HEADER = HEADER_V1 + MICRO + ['variant_of']
+RECIPES_HEADER = ['dish', 'ingredient', 'grams', 'adjustable']
+# Upper bounds per 100 g that no food in the catalog should reach (implausible = an error in the data).
+MICRO_MAX = {'mono_fat': 100, 'poly_fat': 100, 'cholesterol': 1500, 'potassium': 4000, 'calcium': 2000, 'iron': 60,
+             'magnesium': 800, 'zinc': 40, 'vit_a': 15000, 'vit_c': 2000, 'vit_d': 60, 'vit_e': 150, 'vit_b12': 100,
+             'folate': 3000}
 GROUPS = ['fruit', 'vegetables', 'grains', 'legumes', 'meat', 'fish', 'eggs', 'dairy', 'fats_nuts', 'sweets', 'drinks',
           'dishes', 'fast_food', 'snacks', 'sauces']
 PORTION_KEYS = ['unit', 'piece', 'slice', 'plate', 'small_plate', 'bowl', 'cup', 'glass', 'can', 'bottle', 'tbsp',
                 'tsp', 'handful', 'serving']
 ID = re.compile(r'^[a-z0-9_]+$')
 DEC = re.compile(r'^\d+(\.\d)?$')
+DEC2 = re.compile(r'^\d+(\.\d{1,2})?$')
 INT = re.compile(r'^\d+$')
 SOURCE = re.compile(r'^(fdc:\d+|ciqual:\d+|recipe)$')
 NAME = re.compile(r'^(food_[a-z0-9_]+) = (.+?) \|\|\| (.+)$')
 # Drinks with alcohol (7 kcal/g, not a column): their energy is more than the macronutrients explain.
 ALCOHOLIC = {'beer', 'red_wine', 'white_wine', 'rose_wine', 'sparkling_wine', 'sangria', 'tinto_de_verano', 'cider',
-             'vermouth', 'spirits', 'cocktail', 'mojito', 'gin_tonic', 'rum_and_cola'}
+             'vermouth', 'spirits', 'cocktail', 'mojito', 'gin_tonic', 'rum_and_cola', 'rum', 'gin', 'vodka',
+             'brandy', 'carajillo', 'clara', 'kalimotxo'}
+# A typical recipe's ingredients (dishes with their own USDA/CIQUAL values) must explain the dish's energy within
+# this share (the app applies ingredient changes as deltas, so the amounts must be realistic).
+TYPICAL_KCAL = 0.25
+# ...and no adjustable ingredient may bring more of these than the dish has (removing it would go below 0).
+TYPICAL_STRICT = ['kcal', 'protein', 'carbs', 'fat', 'sat_fat', 'salt']
 
 
 def read_foods(path):
@@ -59,9 +84,18 @@ def read_foods(path):
     return rows, errors
 
 
+def number(s, pattern):
+    if s == '':
+        return None, True
+    if not pattern.match(s):
+        return None, False
+    return float(s), True
+
+
 def check_foods(rows):
     errors, warnings = [], []
     seen = set()
+    by_id = {r['id']: r for _, r in rows}
     for n, r in rows:
         w = f'foods.tsv:{n} {r["id"]}'
         if not ID.match(r['id']):
@@ -74,18 +108,20 @@ def check_foods(rows):
         if r['unit'] not in ('g', 'ml'):
             errors.append(f'{w}: bad unit {r["unit"]}')
         v = {}
-        for k in ('kcal', 'protein', 'carbs', 'sugars', 'fat', 'sat_fat', 'fiber', 'salt'):
+        for k in BASE:
             s = r[k]
-            if s == '':
-                v[k] = None
-                if k in ('kcal', 'protein', 'carbs', 'fat'):
-                    errors.append(f'{w}: {k} is empty')
-                continue
-            if not (INT if k == 'kcal' else DEC).match(s):
+            if s == '' and k in ('kcal', 'protein', 'carbs', 'fat'):
+                errors.append(f'{w}: {k} is empty')
+            v[k], ok = number(s, INT if k == 'kcal' else DEC)
+            if not ok:
                 errors.append(f'{w}: {k} {s!r} is not a {"integer" if k == "kcal" else "number with max 1 decimal"}')
-                v[k] = None
-                continue
-            v[k] = float(s)
+        for k in MICRO:
+            s = r.get(k, '')
+            v[k], ok = number(s, DEC if k in ('mono_fat', 'poly_fat') else DEC2)
+            if not ok:
+                errors.append(f'{w}: {k} {s!r} is not a number with max {1 if k.endswith("_fat") else 2} decimals')
+            elif v[k] is not None and v[k] > MICRO_MAX[k]:
+                errors.append(f'{w}: {k} {v[k]} is implausible (> {MICRO_MAX[k]})')
         g = lambda k: v.get(k) or 0.0
         if v.get('kcal') is not None and v['kcal'] > 900:
             errors.append(f'{w}: kcal {v["kcal"]} > 900')
@@ -95,6 +131,9 @@ def check_foods(rows):
             errors.append(f'{w}: sugars > carbs')
         if v.get('sat_fat') is not None and v['sat_fat'] > g('fat') + 0.15:
             errors.append(f'{w}: saturated fat > fat')
+        fatty = g('sat_fat') + g('mono_fat') + g('poly_fat')
+        if fatty > g('fat') * 1.02 + 0.35:
+            errors.append(f'{w}: saturated + mono + poly fat {fatty:.1f} > fat {g("fat")}')
         if r['unit'] == 'ml' and g('protein') + g('carbs') + g('fat') > 60:
             errors.append(f'{w}: ml food with more than 60 g of solids per 100 ml')
         calc = 4 * g('protein') + 4 * g('carbs') + 9 * g('fat') + 2 * g('fiber')
@@ -120,7 +159,121 @@ def check_foods(rows):
             errors.append(f'{w}: visual must be 0 or 1')
         if not SOURCE.match(r['source']):
             errors.append(f'{w}: bad source {r["source"]!r}')
+        base = r.get('variant_of', '')
+        if base:
+            if base not in by_id or base == r['id']:
+                errors.append(f'{w}: variant_of {base!r} is not another food')
+            elif by_id[base].get('variant_of'):
+                errors.append(f'{w}: variant_of {base!r} is itself a variant')
+            if r['visual'] != '0':
+                errors.append(f'{w}: a variant must have visual = 0')
     return errors, warnings
+
+
+def read_recipes(path):
+    if not os.path.exists(path):
+        return [], [f'{path}: missing (run tools/food-db/build.py)']
+    with open(path, encoding='utf-8', newline='') as f:
+        data = f.read()
+    errors = []
+    if '\r' in data:
+        errors.append('recipes.tsv: CR characters (must be LF)')
+    lines = [l for l in data.split('\n') if l]
+    if not lines or lines[0].split('\t') != RECIPES_HEADER:
+        return [], errors + [f'recipes.tsv: header must be {RECIPES_HEADER}']
+    out = []
+    for n, line in enumerate(lines[1:], 2):
+        cells = line.split('\t')
+        if len(cells) != len(RECIPES_HEADER):
+            errors.append(f'recipes.tsv:{n}: {len(cells)} columns')
+            continue
+        out.append((n, dict(zip(RECIPES_HEADER, cells))))
+    return out, errors
+
+
+def value(r, k):
+    """The number in a cell, None when empty or malformed (check_foods reports malformed ones)."""
+    try:
+        return float(r[k]) if r.get(k, '') != '' else None
+    except ValueError:
+        return None
+
+
+def rounding_slack(k, dish_val):
+    """Half a unit of the last decimal the column uses (kcal 0.5; grams 0.05; mg/ug by size)."""
+    if k == 'kcal':
+        return 0.5
+    if k in ('protein', 'carbs', 'sugars', 'fat', 'sat_fat', 'fiber', 'salt', 'mono_fat', 'poly_fat'):
+        return 0.05
+    a = abs(dish_val)
+    return 0.5 if a >= 100 else 0.05 if a >= 10 else 0.005
+
+
+def check_recipes(recipe_rows, food_rows):
+    """Errors and warnings of recipes.tsv against foods.tsv (see the module docstring)."""
+    errors, warnings = [], []
+    foods = {r['id']: r for _, r in food_rows}
+    dishes = {}
+    for n, r in recipe_rows:
+        w = f'recipes.tsv:{n} {r["dish"]}/{r["ingredient"]}'
+        if r['dish'] not in foods:
+            errors.append(f'{w}: dish is not a food')
+        if r['ingredient'] not in foods:
+            errors.append(f'{w}: ingredient is not a food')
+        if r['ingredient'] == r['dish']:
+            errors.append(f'{w}: a dish is not its own ingredient')
+        if not DEC.match(r['grams']) or float(r['grams']) <= 0:
+            errors.append(f'{w}: grams {r["grams"]!r} must be > 0 with max 1 decimal')
+        if r['adjustable'] not in ('0', '1'):
+            errors.append(f'{w}: adjustable must be 0 or 1')
+        items = dishes.setdefault(r['dish'], {})
+        if r['ingredient'] in items:
+            errors.append(f'{w}: duplicate ingredient')
+        items[r['ingredient']] = r
+    for dish, items in dishes.items():
+        if dish not in foods or any(i not in foods for i in items) or any(not DEC.match(x['grams']) for x in items.values()):
+            continue
+        d = foods[dish]
+        sums = {}
+        for k in BASE + MICRO:
+            dv = value(d, k)
+            parts = [(float(x['grams']), value(foods[i], k)) for i, x in items.items()]
+            if dv is None or any(v is None for _, v in parts):
+                continue
+            total = sum(gr * v / 100 for gr, v in parts)
+            sums[k] = total
+            if d['source'] != 'recipe':
+                continue
+            # Rounding of the dish, of each ingredient's value and of its grams (0.05 g), plus ingredient rows left
+            # out under 0.05 g (at most 0.05 g each of the strongest ingredient is not knowable here: 0.1%).
+            slack = rounding_slack(k, dv) + sum(gr * rounding_slack(k, v) / 100 + 0.05 * v / 100 for gr, v in parts)
+            slack += 0.001 * max(abs(dv), 1)
+            if abs(total - dv) > slack:
+                errors.append(f'recipes.tsv {dish}: {k} of the ingredients {total:.3f} != {dv} (slack {slack:.3f})')
+        if d['source'] != 'recipe' and 'kcal' in sums:
+            kcal = value(d, 'kcal')
+            if abs(sums['kcal'] - kcal) > max(10.0, TYPICAL_KCAL * kcal):
+                errors.append(f'recipes.tsv {dish}: typical recipe gives {sums["kcal"]:.0f} kcal, dish {kcal:.0f}')
+            elif abs(sums['kcal'] - kcal) > max(8.0, 0.12 * kcal):
+                warnings.append(f'recipes.tsv {dish}: typical recipe gives {sums["kcal"]:.0f} kcal, dish {kcal:.0f}')
+        if d['source'] != 'recipe':
+            # The app subtracts what a removed ingredient brings: no single adjustable ingredient may bring more of
+            # a main nutrient than the dish has (the result would go below 0).
+            for k in TYPICAL_STRICT:
+                dv = value(d, k)
+                if dv is None:
+                    continue
+                adj = [(float(x['grams']) * value(foods[i], k) / 100, i) for i, x in items.items()
+                       if x['adjustable'] == '1' and value(foods[i], k) is not None]
+                slack = 1.0 if k == 'kcal' else 0.15
+                for c, i in adj:
+                    if c > dv + slack:
+                        errors.append(f'recipes.tsv {dish}: {i} brings {c:.1f} {k}, more than the dish ({dv})')
+                total = sum(c for c, _ in adj)
+                if total > 1.25 * dv + slack:
+                    warnings.append(f'recipes.tsv {dish}: adjustable ingredients bring {total:.1f} {k}, dish {dv}')
+    recipe_dishes = {r['id'] for _, r in food_rows if r['source'] == 'recipe'}
+    return errors, warnings, len(dishes), len(recipe_dishes & set(dishes))
 
 
 def check_names(rows, path):
@@ -152,18 +305,18 @@ def check_names(rows, path):
 
 
 def check_classes(rows, path):
+    sys.path.insert(0, HERE)
+    import build
     errors = []
-    with open(path, encoding='utf-8', newline='') as f:
-        classes = [r['id'].strip() for r in csv.DictReader(f) if r.get('id')]
-    classes = [c for c in classes if c != '_not_food']
+    classes = build.read_classes(path)
     visual = {r['id'] for _, r in rows if r['visual'] == '1'}
     ids = {r['id'] for _, r in rows}
-    for c in classes:
+    for c in sorted(classes):
         if c not in ids:
             errors.append(f'class {c}: not in foods.tsv')
         elif c not in visual:
             errors.append(f'class {c}: visual must be 1')
-    for v in sorted(visual - set(classes)):
+    for v in sorted(visual - classes):
         errors.append(f'{v}: visual = 1 but not a model class')
     return errors, len(classes)
 
@@ -171,6 +324,7 @@ def check_classes(rows, path):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--foods', default=FOODS)
+    ap.add_argument('--recipes', default=RECIPES)
     ap.add_argument('--names', default=NAMES)
     ap.add_argument('--classes', default=CLASSES if os.path.exists(CLASSES) else None)
     ap.add_argument('-v', '--verbose', action='store_true')
@@ -178,19 +332,26 @@ def main():
     rows, errors = read_foods(args.foods)
     e, warnings = check_foods(rows)
     errors += e
+    recipe_rows, e = read_recipes(args.recipes)
+    errors += e
+    e, w, n_dishes, n_recipe = check_recipes(recipe_rows, rows)
+    errors += e
+    warnings += w
     e, _ = check_names(rows, args.names)
     errors += e
     n_classes = None
     if args.classes:
         e, n_classes = check_classes(rows, args.classes)
         errors += e
-    if args.foods == FOODS and args.names == NAMES:
+    if args.foods == FOODS and args.names == NAMES and args.recipes == RECIPES:
         sys.path.insert(0, HERE)
         import build
         errors += build.check()
     visual = sum(1 for _, r in rows if r['visual'] == '1')
-    print(f'{len(rows)} foods, {visual} visual' + (f', {n_classes} model classes checked' if n_classes is not None
-                                                   else ', no class list given'))
+    variants = sum(1 for _, r in rows if r.get('variant_of'))
+    print(f'{len(rows)} foods, {visual} visual, {variants} variants, {n_dishes} dishes with ingredients '
+          f'({n_recipe} computed from them)' +
+          (f', {n_classes} model classes checked' if n_classes is not None else ', no class list given'))
     if args.verbose or errors:
         for w in warnings:
             print('warning: ' + w)

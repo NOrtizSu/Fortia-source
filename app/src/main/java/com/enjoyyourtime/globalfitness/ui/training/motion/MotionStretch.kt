@@ -10,7 +10,7 @@ import kotlin.math.sin
 private const val TAU = 2 * PI.toFloat()
 
 /** 0 → 1 → 0 over the phase of a cycle, easing in and out: a slow breath deepening a stretch. */
-private fun breath(phase: Float): Float = (1 - cos(phase * TAU)) / 2
+internal fun breath(phase: Float): Float = (1 - cos(phase * TAU)) / 2
 
 /** Lying hamstring stretch: on the back, the near leg raised straight with a strap round the foot, the hands drawing it in. */
 internal fun hamstringStretch() = Motion.cycle(5f, camera = Camera(-26f, 6f)) { phase ->

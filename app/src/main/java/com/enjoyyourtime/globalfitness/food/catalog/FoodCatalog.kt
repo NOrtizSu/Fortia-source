@@ -6,24 +6,30 @@ import android.util.Log
 import com.enjoyyourtime.globalfitness.food.model.CatalogFood
 import com.enjoyyourtime.globalfitness.food.model.FoodGroup
 import com.enjoyyourtime.globalfitness.food.model.FoodItem
+import com.enjoyyourtime.globalfitness.food.model.RecipeIngredient
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
+import java.io.FileNotFoundException
 import java.util.Locale
 
 /**
- * The offline food catalog (`assets/food/foods.tsv`), read on first use off the main thread. Names
- * are the string resources `food_<id>` (and `food_group_<group>`) in the current language, found by
- * name so the catalog file and its strings can grow without code changes (res/raw/food_keep.xml
- * keeps them through resource shrinking).
+ * The offline food catalog (`assets/food/foods.tsv`) and the ingredients of its dishes
+ * (`assets/food/recipes.tsv`, optional), read on first use off the main thread. Names are the string
+ * resources `food_<id>` (and `food_group_<group>`) in the current language, found by name so the
+ * catalog file and its strings can grow without code changes (res/raw/food_keep.xml keeps them
+ * through resource shrinking).
  */
 class FoodCatalog(private val context: Context, private val io: CoroutineDispatcher = Dispatchers.IO) {
     private val mutex = Mutex()
 
     @Volatile
     private var foods: Map<String, CatalogFood>? = null
+
+    @Volatile
+    private var recipes: Map<String, List<RecipeIngredient>>? = null
 
     @Volatile
     private var named: Pair<String, List<FoodItem>>? = null
@@ -42,6 +48,27 @@ class FoodCatalog(private val context: Context, private val io: CoroutineDispatc
                     emptyList()
                 }.associateBy { it.id }
             }.also { foods = it }
+        }
+    }
+
+    /**
+     * The ingredients of every dish that has them, by dish id (only foods of the catalog; empty when
+     * the app ships no recipes).
+     */
+    suspend fun recipes(): Map<String, List<RecipeIngredient>> {
+        recipes?.let { return it }
+        val all = foods()
+        return mutex.withLock {
+            recipes ?: withContext(io) {
+                try {
+                    context.assets.open(RECIPES).bufferedReader(Charsets.UTF_8).use { RecipeParser.parse(it.readText(), all::containsKey) }
+                } catch (e: FileNotFoundException) {
+                    emptyMap()
+                } catch (e: Exception) {
+                    Log.w(TAG, "Food recipes not readable", e)
+                    emptyMap()
+                }
+            }.also { recipes = it }
         }
     }
 
@@ -74,8 +101,20 @@ class FoodCatalog(private val context: Context, private val io: CoroutineDispatc
         nameIds.getOrPut(name) { context.resources.getIdentifier(name, "string", context.packageName) }
     }
 
-    private companion object {
-        const val TAG = "FoodCatalog"
-        const val ASSET = "food/foods.tsv"
+    companion object {
+        private const val TAG = "FoodCatalog"
+        private const val ASSET = "food/foods.tsv"
+        private const val RECIPES = "food/recipes.tsv"
+
+        /**
+         * The variants offered with catalog food [id]: its base first (the "typical" one), then the
+         * base's variants in the catalog's order. Empty when the food has none.
+         */
+        fun variantsOf(id: String, foods: Map<String, CatalogFood>): List<CatalogFood> {
+            val food = foods[id] ?: return emptyList()
+            val base = food.variantOf?.let(foods::get) ?: food
+            val variants = foods.values.filter { it.variantOf == base.id }
+            return if (variants.isEmpty()) emptyList() else listOf(base) + variants
+        }
     }
 }

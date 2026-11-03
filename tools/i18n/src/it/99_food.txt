@@ -211,7 +211,7 @@ foodlog_today_open = Apri Nutrizione
 # Health Connect
 hc_type_nutrition = Alimentazione
 hc_meals_export_title = Salva i pasti in Health Connect
-hc_meals_export_text = Ogni alimento che registri viene salvato come dati di alimentazione (calorie, proteine, carboidrati, zuccheri, grassi, grassi saturi, fibre e sodio) nel suo pasto. Se lo modifichi o lo elimini, viene aggiornato anche Health Connect.
+hc_meals_export_text = Ogni alimento che registri viene salvato come dati di alimentazione nel suo pasto: calorie, proteine, carboidrati, zuccheri, grassi, grassi saturi, fibre e sodio, più colesterolo, grassi monoinsaturi e polinsaturi, minerali e vitamine se l'alimento li ha. Se lo modifichi o lo elimini, viene aggiornato anche Health Connect.
 hc_meals_export_missing_permission = Consenti a Fortia di scrivere l'alimentazione in Health Connect per salvarci i tuoi pasti.
 hc_meals_export_denied = Se non si apre nessuna finestra di autorizzazione, consenti “Alimentazione” per Fortia in Health Connect.
 hc_meals_export_off = I nuovi pasti non vengono salvati. Quelli già presenti in Health Connect restano lì.
@@ -230,4 +230,4 @@ notice_usda = Valori nutrizionali dell'elenco degli alimenti: U.S. Department of
 notice_ciqual = Valori nutrizionali dell'elenco degli alimenti: Anses, tabella di composizione degli alimenti Ciqual, con Licence Ouverte / Etalab 2.0.
 notice_food_model_name = Riconoscimento del cibo di Fortia
 notice_food_model_license = Modello nostro (vedi la sua scheda)
-notice_food_model = Il nostro modello, addestrato con immagini di Open Images (CC BY 2.0) e Wikimedia Commons (licenze libere); l'elenco delle immagini e dei loro autori è pubblicato con il codice sorgente.
+notice_food_model = I nostri modelli, basati su MobileNetV4 (timm, Apache-2.0) e Ultralytics YOLO11n (AGPL-3.0) e addestrati con immagini di Open Images (CC BY 2.0), Wikimedia Commons (licenze libere) e MyFoodRepo (CC BY 4.0); la stima del peso è calibrata con Nutrition5k (CC BY 4.0). L'elenco delle immagini e dei loro autori è pubblicato con il codice sorgente.

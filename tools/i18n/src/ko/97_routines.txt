@@ -14,3 +14,7 @@ routine_glutes = 둔근
 routine_core = 코어와 복근
 routine_mobility = 모빌리티와 스트레칭
 routine_cardio_mix = 유산소 머신
+
+# Added in 1.6.0
+routine_foam_rolling = 폼롤러 회복
+routine_hiit = 맨몸 HIIT

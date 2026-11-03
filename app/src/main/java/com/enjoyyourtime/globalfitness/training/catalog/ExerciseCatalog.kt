@@ -4,6 +4,7 @@ import androidx.health.connect.client.records.ExerciseSegment
 import androidx.health.connect.client.records.ExerciseSessionRecord
 import com.enjoyyourtime.globalfitness.R
 import com.enjoyyourtime.globalfitness.training.model.CatalogExercise
+import com.enjoyyourtime.globalfitness.training.model.Equipment
 import com.enjoyyourtime.globalfitness.training.model.Equipment.BAND
 import com.enjoyyourtime.globalfitness.training.model.Equipment.BARBELL
 import com.enjoyyourtime.globalfitness.training.model.Equipment.BODYWEIGHT
@@ -12,12 +13,14 @@ import com.enjoyyourtime.globalfitness.training.model.Equipment.CARDIO_MACHINE
 import com.enjoyyourtime.globalfitness.training.model.Equipment.DUMBBELL
 import com.enjoyyourtime.globalfitness.training.model.Equipment.KETTLEBELL
 import com.enjoyyourtime.globalfitness.training.model.Equipment.MACHINE
+import com.enjoyyourtime.globalfitness.training.model.Equipment.OTHER
 import com.enjoyyourtime.globalfitness.training.model.Equipment.SMITH_MACHINE
 import com.enjoyyourtime.globalfitness.training.model.ExerciseKind.ASSISTED_REPS
 import com.enjoyyourtime.globalfitness.training.model.ExerciseKind.BODYWEIGHT_REPS
 import com.enjoyyourtime.globalfitness.training.model.ExerciseKind.CARDIO
 import com.enjoyyourtime.globalfitness.training.model.ExerciseKind.DURATION
 import com.enjoyyourtime.globalfitness.training.model.ExerciseKind.WEIGHT_REPS
+import com.enjoyyourtime.globalfitness.training.model.Muscle
 import com.enjoyyourtime.globalfitness.training.model.Muscle.ABS
 import com.enjoyyourtime.globalfitness.training.model.Muscle.ADDUCTORS
 import com.enjoyyourtime.globalfitness.training.model.Muscle.BICEPS
@@ -224,6 +227,25 @@ object ExerciseCatalog {
             "neck_machine", R.string.ex_neck_machine, WEIGHT_REPS, MACHINE,
             primary = setOf(NECK), secondary = setOf(TRAPS),
         ),
+        // Plate-loaded and other machines added in 1.6.
+        CatalogExercise(
+            "iso_lateral_chest_press", R.string.ex_iso_lateral_chest_press, WEIGHT_REPS, MACHINE,
+            primary = setOf(CHEST), secondary = setOf(TRICEPS, SHOULDERS),
+            hcSegment = ExerciseSegment.EXERCISE_SEGMENT_TYPE_BENCH_PRESS,
+        ),
+        CatalogExercise(
+            "high_row_machine", R.string.ex_high_row_machine, WEIGHT_REPS, MACHINE,
+            primary = setOf(LATS), secondary = setOf(TRAPS, BICEPS, SHOULDERS),
+        ),
+        CatalogExercise(
+            "t_bar_row_machine", R.string.ex_t_bar_row_machine, WEIGHT_REPS, MACHINE,
+            primary = setOf(LATS, TRAPS), secondary = setOf(BICEPS, SHOULDERS),
+        ),
+        CatalogExercise(
+            "standing_leg_curl_machine", R.string.ex_standing_leg_curl_machine, WEIGHT_REPS, MACHINE,
+            primary = setOf(HAMSTRINGS),
+            hcSegment = ExerciseSegment.EXERCISE_SEGMENT_TYPE_LEG_CURL,
+        ),
 
         // Cable stations
         CatalogExercise(
@@ -327,6 +349,27 @@ object ExerciseCatalog {
             "cable_hip_abduction", R.string.ex_cable_hip_abduction, WEIGHT_REPS, CABLE,
             primary = setOf(GLUTES),
         ),
+        CatalogExercise(
+            "reverse_grip_lat_pulldown", R.string.ex_reverse_grip_lat_pulldown, WEIGHT_REPS, CABLE,
+            primary = setOf(LATS, BICEPS), secondary = setOf(FOREARMS, TRAPS),
+            hcSegment = ExerciseSegment.EXERCISE_SEGMENT_TYPE_LAT_PULL_DOWN,
+        ),
+        CatalogExercise(
+            "cable_chest_press", R.string.ex_cable_chest_press, WEIGHT_REPS, CABLE,
+            primary = setOf(CHEST), secondary = setOf(TRICEPS, SHOULDERS),
+        ),
+        CatalogExercise(
+            "cable_reverse_fly", R.string.ex_cable_reverse_fly, WEIGHT_REPS, CABLE,
+            primary = setOf(SHOULDERS), secondary = setOf(TRAPS),
+        ),
+        CatalogExercise(
+            "cable_y_raise", R.string.ex_cable_y_raise, WEIGHT_REPS, CABLE,
+            primary = setOf(SHOULDERS), secondary = setOf(TRAPS),
+        ),
+        CatalogExercise(
+            "cable_upright_row", R.string.ex_cable_upright_row, WEIGHT_REPS, CABLE,
+            primary = setOf(SHOULDERS, TRAPS), secondary = setOf(BICEPS),
+        ),
 
         // Smith machine
         CatalogExercise(
@@ -380,6 +423,11 @@ object ExerciseCatalog {
         CatalogExercise(
             "smith_calf_raise", R.string.ex_smith_calf_raise, WEIGHT_REPS, SMITH_MACHINE,
             primary = setOf(CALVES),
+        ),
+        CatalogExercise(
+            "smith_reverse_lunge", R.string.ex_smith_reverse_lunge, WEIGHT_REPS, SMITH_MACHINE,
+            primary = setOf(QUADS, GLUTES), secondary = setOf(ADDUCTORS, HAMSTRINGS),
+            hcSegment = ExerciseSegment.EXERCISE_SEGMENT_TYPE_LUNGE,
         ),
 
         // Barbell and EZ bar
@@ -532,6 +580,39 @@ object ExerciseCatalog {
             "landmine_rotation", R.string.ex_landmine_rotation, WEIGHT_REPS, BARBELL,
             primary = setOf(OBLIQUES), secondary = setOf(ABS, SHOULDERS),
             hcSegment = ExerciseSegment.EXERCISE_SEGMENT_TYPE_UPPER_TWIST,
+        ),
+        CatalogExercise(
+            "landmine_squat", R.string.ex_landmine_squat, WEIGHT_REPS, BARBELL,
+            primary = setOf(QUADS, GLUTES), secondary = setOf(ADDUCTORS),
+            hcSegment = ExerciseSegment.EXERCISE_SEGMENT_TYPE_SQUAT,
+        ),
+        // Functional and Olympic-style lifts (CrossFit boxes, functional gyms). The whole-body lifts
+        // have no Health Connect segment of their own: they export as weightlifting.
+        CatalogExercise(
+            "overhead_squat", R.string.ex_overhead_squat, WEIGHT_REPS, BARBELL,
+            primary = setOf(QUADS, GLUTES), secondary = setOf(SHOULDERS, TRAPS, ADDUCTORS),
+            hcSegment = ExerciseSegment.EXERCISE_SEGMENT_TYPE_SQUAT,
+        ),
+        CatalogExercise(
+            "thruster", R.string.ex_thruster, WEIGHT_REPS, BARBELL,
+            primary = setOf(QUADS, SHOULDERS), secondary = setOf(GLUTES, TRICEPS),
+        ),
+        CatalogExercise(
+            "push_press", R.string.ex_push_press, WEIGHT_REPS, BARBELL,
+            primary = setOf(SHOULDERS), secondary = setOf(TRICEPS, QUADS, GLUTES),
+            hcSegment = ExerciseSegment.EXERCISE_SEGMENT_TYPE_BARBELL_SHOULDER_PRESS,
+        ),
+        CatalogExercise(
+            "power_clean", R.string.ex_power_clean, WEIGHT_REPS, BARBELL,
+            primary = setOf(GLUTES, HAMSTRINGS, TRAPS), secondary = setOf(QUADS, LOWER_BACK, FOREARMS),
+        ),
+        CatalogExercise(
+            "hang_clean", R.string.ex_hang_clean, WEIGHT_REPS, BARBELL,
+            primary = setOf(GLUTES, HAMSTRINGS, TRAPS), secondary = setOf(QUADS, LOWER_BACK, FOREARMS),
+        ),
+        CatalogExercise(
+            "power_snatch", R.string.ex_power_snatch, WEIGHT_REPS, BARBELL,
+            primary = setOf(GLUTES, HAMSTRINGS, SHOULDERS), secondary = setOf(TRAPS, QUADS, LOWER_BACK, FOREARMS),
         ),
 
         // Dumbbells
@@ -690,6 +771,24 @@ object ExerciseCatalog {
             "dumbbell_side_bend", R.string.ex_dumbbell_side_bend, WEIGHT_REPS, DUMBBELL,
             primary = setOf(OBLIQUES), secondary = setOf(LOWER_BACK),
         ),
+        CatalogExercise(
+            "dumbbell_floor_press", R.string.ex_dumbbell_floor_press, WEIGHT_REPS, DUMBBELL,
+            primary = setOf(CHEST, TRICEPS), secondary = setOf(SHOULDERS),
+            hcSegment = ExerciseSegment.EXERCISE_SEGMENT_TYPE_BENCH_PRESS,
+        ),
+        CatalogExercise(
+            "incline_dumbbell_fly", R.string.ex_incline_dumbbell_fly, WEIGHT_REPS, DUMBBELL,
+            primary = setOf(CHEST), secondary = setOf(SHOULDERS),
+        ),
+        CatalogExercise(
+            "walking_lunge", R.string.ex_walking_lunge, WEIGHT_REPS, DUMBBELL,
+            primary = setOf(QUADS, GLUTES), secondary = setOf(ADDUCTORS, HAMSTRINGS),
+            hcSegment = ExerciseSegment.EXERCISE_SEGMENT_TYPE_LUNGE,
+        ),
+        CatalogExercise(
+            "dumbbell_snatch", R.string.ex_dumbbell_snatch, WEIGHT_REPS, DUMBBELL,
+            primary = setOf(GLUTES, HAMSTRINGS, SHOULDERS), secondary = setOf(LOWER_BACK, TRAPS, FOREARMS),
+        ),
 
         // Kettlebells
         CatalogExercise(
@@ -735,6 +834,10 @@ object ExerciseCatalog {
         CatalogExercise(
             "kettlebell_windmill", R.string.ex_kettlebell_windmill, WEIGHT_REPS, KETTLEBELL,
             primary = setOf(OBLIQUES), secondary = setOf(SHOULDERS, GLUTES, HAMSTRINGS),
+        ),
+        CatalogExercise(
+            "kettlebell_high_pull", R.string.ex_kettlebell_high_pull, WEIGHT_REPS, KETTLEBELL,
+            primary = setOf(TRAPS, SHOULDERS), secondary = setOf(GLUTES, HAMSTRINGS, BICEPS),
         ),
 
         // Bodyweight: repetitions, optionally with extra load (vest, belt, dumbbell). bodyweightFactor is the share
@@ -930,6 +1033,121 @@ object ExerciseCatalog {
             "side_lying_neck_flexion", R.string.ex_side_lying_neck_flexion, BODYWEIGHT_REPS, BODYWEIGHT,
             primary = setOf(NECK), secondary = setOf(TRAPS),
         ),
+        // Calisthenics and gym bodyweight variations added in 1.6. An archer push-up's share of the
+        // body weight is not established; rings and parallel handles move all of it, like the bar.
+        CatalogExercise(
+            "archer_push_up", R.string.ex_archer_push_up, BODYWEIGHT_REPS, BODYWEIGHT,
+            primary = setOf(CHEST), secondary = setOf(TRICEPS, SHOULDERS),
+        ),
+        CatalogExercise(
+            "ring_dip", R.string.ex_ring_dip, BODYWEIGHT_REPS, BODYWEIGHT,
+            primary = setOf(CHEST, TRICEPS), secondary = setOf(SHOULDERS),
+            bodyweightFactor = 1.0,
+        ),
+        CatalogExercise(
+            "neutral_grip_pull_up", R.string.ex_neutral_grip_pull_up, BODYWEIGHT_REPS, BODYWEIGHT,
+            primary = setOf(LATS), secondary = setOf(BICEPS, FOREARMS),
+            hcSegment = ExerciseSegment.EXERCISE_SEGMENT_TYPE_PULL_UP,
+            bodyweightFactor = 1.0,
+        ),
+        CatalogExercise(
+            "suspension_row", R.string.ex_suspension_row, BODYWEIGHT_REPS, BODYWEIGHT,
+            primary = setOf(LATS, TRAPS), secondary = setOf(BICEPS, SHOULDERS),
+        ),
+        CatalogExercise(
+            "sissy_squat", R.string.ex_sissy_squat, BODYWEIGHT_REPS, BODYWEIGHT,
+            primary = setOf(QUADS),
+            hcSegment = ExerciseSegment.EXERCISE_SEGMENT_TYPE_SQUAT,
+        ),
+        CatalogExercise(
+            "toes_to_bar", R.string.ex_toes_to_bar, BODYWEIGHT_REPS, BODYWEIGHT,
+            primary = setOf(ABS), secondary = setOf(OBLIQUES, FOREARMS),
+            hcSegment = ExerciseSegment.EXERCISE_SEGMENT_TYPE_LEG_RAISE,
+        ),
+        CatalogExercise(
+            "ghd_sit_up", R.string.ex_ghd_sit_up, BODYWEIGHT_REPS, BODYWEIGHT,
+            primary = setOf(ABS), secondary = setOf(QUADS),
+            hcSegment = ExerciseSegment.EXERCISE_SEGMENT_TYPE_SIT_UP,
+        ),
+
+        // Conditioning and HIIT: jumps by repetitions, the rest (circuits, intervals) by time,
+        // optionally with load (sled). They count as training like burpees and mountain climbers;
+        // their primary muscles are the ones that do the work. Ropes and sleds are "other" equipment.
+        CatalogExercise(
+            "jump_rope", R.string.ex_jump_rope, DURATION, OTHER,
+            primary = setOf(CALVES), secondary = setOf(FOREARMS, SHOULDERS),
+            hcSegment = ExerciseSegment.EXERCISE_SEGMENT_TYPE_JUMP_ROPE,
+        ),
+        CatalogExercise(
+            "jumping_jack", R.string.ex_jumping_jack, DURATION, BODYWEIGHT,
+            primary = setOf(CALVES), secondary = setOf(SHOULDERS, GLUTES),
+            hcSegment = ExerciseSegment.EXERCISE_SEGMENT_TYPE_JUMPING_JACK,
+        ),
+        CatalogExercise(
+            "high_knees", R.string.ex_high_knees, DURATION, BODYWEIGHT,
+            primary = setOf(QUADS), secondary = setOf(CALVES, ABS),
+        ),
+        CatalogExercise(
+            "butt_kicks", R.string.ex_butt_kicks, DURATION, BODYWEIGHT,
+            primary = setOf(HAMSTRINGS), secondary = setOf(CALVES),
+        ),
+        CatalogExercise(
+            "box_jump", R.string.ex_box_jump, BODYWEIGHT_REPS, BODYWEIGHT,
+            primary = setOf(QUADS, GLUTES), secondary = setOf(CALVES, HAMSTRINGS),
+        ),
+        CatalogExercise(
+            "tuck_jump", R.string.ex_tuck_jump, BODYWEIGHT_REPS, BODYWEIGHT,
+            primary = setOf(QUADS), secondary = setOf(GLUTES, CALVES, ABS),
+        ),
+        CatalogExercise(
+            "skater_jump", R.string.ex_skater_jump, BODYWEIGHT_REPS, BODYWEIGHT,
+            primary = setOf(GLUTES, QUADS), secondary = setOf(ADDUCTORS, CALVES),
+        ),
+        CatalogExercise(
+            "bear_crawl", R.string.ex_bear_crawl, DURATION, BODYWEIGHT,
+            primary = setOf(SHOULDERS, ABS), secondary = setOf(QUADS, TRICEPS),
+        ),
+        CatalogExercise(
+            "shadow_boxing", R.string.ex_shadow_boxing, DURATION, BODYWEIGHT,
+            primary = setOf(SHOULDERS), secondary = setOf(TRICEPS, OBLIQUES, CALVES),
+            hcSegment = ExerciseSegment.EXERCISE_SEGMENT_TYPE_PUNCH,
+        ),
+        CatalogExercise(
+            "step_aerobics", R.string.ex_step_aerobics, DURATION, BODYWEIGHT,
+            primary = setOf(QUADS), secondary = setOf(GLUTES, CALVES),
+        ),
+        CatalogExercise(
+            "battle_ropes", R.string.ex_battle_ropes, DURATION, OTHER,
+            primary = setOf(SHOULDERS), secondary = setOf(FOREARMS, ABS),
+        ),
+        CatalogExercise(
+            "sled_push", R.string.ex_sled_push, DURATION, OTHER,
+            primary = setOf(QUADS, GLUTES), secondary = setOf(CALVES, HAMSTRINGS),
+        ),
+        CatalogExercise(
+            "sled_drag", R.string.ex_sled_drag, DURATION, OTHER,
+            primary = setOf(QUADS), secondary = setOf(CALVES, FOREARMS),
+        ),
+
+        // Medicine ball and sandbag ("other" equipment): the ball's or bag's weight is the load.
+        CatalogExercise(
+            "wall_ball", R.string.ex_wall_ball, WEIGHT_REPS, OTHER,
+            primary = setOf(QUADS, SHOULDERS), secondary = setOf(GLUTES, TRICEPS),
+        ),
+        CatalogExercise(
+            "medicine_ball_slam", R.string.ex_medicine_ball_slam, WEIGHT_REPS, OTHER,
+            primary = setOf(LATS, ABS), secondary = setOf(SHOULDERS, TRICEPS),
+            hcSegment = ExerciseSegment.EXERCISE_SEGMENT_TYPE_BALL_SLAM,
+        ),
+        CatalogExercise(
+            "medicine_ball_rotational_throw", R.string.ex_medicine_ball_rotational_throw, WEIGHT_REPS, OTHER,
+            primary = setOf(OBLIQUES), secondary = setOf(ABS, SHOULDERS, GLUTES),
+            hcSegment = ExerciseSegment.EXERCISE_SEGMENT_TYPE_UPPER_TWIST,
+        ),
+        CatalogExercise(
+            "sandbag_carry", R.string.ex_sandbag_carry, DURATION, OTHER,
+            primary = setOf(TRAPS, ABS), secondary = setOf(BICEPS, QUADS),
+        ),
 
         // Timed holds and carries: seconds, optionally with load
         CatalogExercise(
@@ -1114,6 +1332,27 @@ object ExerciseCatalog {
             hcSegment = ExerciseSegment.EXERCISE_SEGMENT_TYPE_STRETCHING,
             mobility = true,
         ),
+        mobility("ankle_dorsiflexion_mobilization", R.string.ex_ankle_dorsiflexion_mobilization, setOf(CALVES)),
+        mobility("hip_90_90", R.string.ex_hip_90_90, setOf(GLUTES), setOf(ADDUCTORS)),
+        mobility("deep_squat_hold", R.string.ex_deep_squat_hold, setOf(ADDUCTORS, GLUTES), setOf(CALVES)),
+        mobility("hip_cars", R.string.ex_hip_cars, setOf(GLUTES), setOf(ADDUCTORS)),
+        mobility("shoulder_cars", R.string.ex_shoulder_cars, setOf(SHOULDERS), setOf(CHEST, LATS)),
+        mobility("thread_the_needle", R.string.ex_thread_the_needle, setOf(SHOULDERS, TRAPS), setOf(OBLIQUES)),
+        mobility("cobra_stretch", R.string.ex_cobra_stretch, setOf(ABS), setOf(CHEST)),
+        mobility("downward_dog", R.string.ex_downward_dog, setOf(HAMSTRINGS, CALVES), setOf(LATS, SHOULDERS)),
+        mobility("standing_quad_stretch", R.string.ex_standing_quad_stretch, setOf(QUADS)),
+        mobility("lying_spinal_twist", R.string.ex_lying_spinal_twist, setOf(OBLIQUES, LOWER_BACK), setOf(GLUTES)),
+        mobility("figure_four_stretch", R.string.ex_figure_four_stretch, setOf(GLUTES)),
+        mobility("wrist_mobility", R.string.ex_wrist_mobility, setOf(FOREARMS)),
+        // Foam rolling (self-massage on a foam roller, "other" equipment): logged and exported like the
+        // stretches, never training load; the primary muscles are the ones rolled.
+        mobility("foam_roll_quads", R.string.ex_foam_roll_quads, setOf(QUADS), equipment = OTHER),
+        mobility("foam_roll_hamstrings", R.string.ex_foam_roll_hamstrings, setOf(HAMSTRINGS), equipment = OTHER),
+        mobility("foam_roll_calves", R.string.ex_foam_roll_calves, setOf(CALVES), equipment = OTHER),
+        mobility("foam_roll_glutes", R.string.ex_foam_roll_glutes, setOf(GLUTES), equipment = OTHER),
+        mobility("foam_roll_it_band", R.string.ex_foam_roll_it_band, setOf(QUADS), setOf(GLUTES), equipment = OTHER),
+        mobility("foam_roll_upper_back", R.string.ex_foam_roll_upper_back, setOf(TRAPS), setOf(LATS), equipment = OTHER),
+        mobility("foam_roll_lats", R.string.ex_foam_roll_lats, setOf(LATS), equipment = OTHER),
 
         // Cardio machines: no muscles, they train the heart (see TrainingMath.countsForMuscles)
         CatalogExercise(
@@ -1170,9 +1409,43 @@ object ExerciseCatalog {
             hcSegment = ExerciseSegment.EXERCISE_SEGMENT_TYPE_OTHER_WORKOUT,
             hcSession = ExerciseSessionRecord.EXERCISE_TYPE_OTHER_WORKOUT,
         ),
+        // Walking on a treadmill is walking for Health Connect (it has no treadmill-walking type); the
+        // incline goes in the set's level field. The curved treadmill is run on, like the motorised one.
+        CatalogExercise(
+            "treadmill_walk", R.string.ex_treadmill_walk, CARDIO, CARDIO_MACHINE,
+            primary = emptySet(),
+            hcSegment = ExerciseSegment.EXERCISE_SEGMENT_TYPE_WALKING,
+            hcSession = ExerciseSessionRecord.EXERCISE_TYPE_WALKING,
+        ),
+        CatalogExercise(
+            "incline_treadmill_walk", R.string.ex_incline_treadmill_walk, CARDIO, CARDIO_MACHINE,
+            primary = emptySet(),
+            hcSegment = ExerciseSegment.EXERCISE_SEGMENT_TYPE_WALKING,
+            hcSession = ExerciseSessionRecord.EXERCISE_TYPE_WALKING,
+        ),
+        CatalogExercise(
+            "curved_treadmill", R.string.ex_curved_treadmill, CARDIO, CARDIO_MACHINE,
+            primary = emptySet(),
+            hcSegment = ExerciseSegment.EXERCISE_SEGMENT_TYPE_RUNNING_TREADMILL,
+            hcSession = ExerciseSessionRecord.EXERCISE_TYPE_RUNNING_TREADMILL,
+        ),
     ) + SportsCatalog.all
 
     private val byId: Map<String, CatalogExercise> = all.associateBy { it.id }
 
     operator fun get(id: String): CatalogExercise? = byId[id]
+
+    /** A stretch, mobility drill or foam-rolling entry: timed, a stretching segment, not training load. */
+    private fun mobility(
+        id: String,
+        nameRes: Int,
+        primary: Set<Muscle>,
+        secondary: Set<Muscle> = emptySet(),
+        equipment: Equipment = BODYWEIGHT,
+    ) = CatalogExercise(
+        id, nameRes, DURATION, equipment,
+        primary = primary, secondary = secondary,
+        hcSegment = ExerciseSegment.EXERCISE_SEGMENT_TYPE_STRETCHING,
+        mobility = true,
+    )
 }

@@ -34,3 +34,7 @@ ex_martial_arts = Võ thuật
 # Others
 ex_climbing = Leo núi đá
 ex_golf = Golf
+
+# 1.6.0
+ex_nordic_walking = Đi bộ Bắc Âu
+ex_stair_climbing = Leo cầu thang

@@ -195,7 +195,7 @@ foodlog_today_open = Abrir Comida
 
 hc_type_nutrition = Nutrição
 hc_meals_export_title = Salvar refeições no Health Connect
-hc_meals_export_text = Cada alimento que você registra é salvo como nutrição (calorias, proteínas, carboidratos, açúcares, gorduras, gorduras saturadas, fibras e sódio) na refeição correspondente. Se você editá-lo ou excluí-lo, o Health Connect também é atualizado.
+hc_meals_export_text = Cada alimento que você registra é salvo como nutrição na refeição correspondente: calorias, proteínas, carboidratos, açúcares, gorduras, gorduras saturadas, fibras e sódio, além de colesterol, gorduras monoinsaturadas e poli-insaturadas, minerais e vitaminas quando o alimento os tem. Se você editá-lo ou excluí-lo, o Health Connect também é atualizado.
 hc_meals_export_missing_permission = Permita que o Fortia grave nutrição no Health Connect para salvar suas refeições lá.
 hc_meals_export_denied = Se nenhuma janela de permissão abrir, permita “Nutrição” para o Fortia no Health Connect.
 hc_meals_export_off = As refeições novas não são salvas. As que já estão no Health Connect continuam lá.
@@ -213,4 +213,4 @@ notice_usda = Valores nutricionais da lista de alimentos: U.S. Department of Agr
 notice_ciqual = Valores nutricionais da lista de alimentos: Anses, tabela de composição nutricional dos alimentos Ciqual, sob a Licence Ouverte / Etalab 2.0.
 notice_food_model_name = Reconhecedor de alimentos do Fortia
 notice_food_model_license = Modelo próprio (veja a ficha do modelo)
-notice_food_model = Nosso próprio modelo, treinado com imagens do Open Images (CC BY 2.0) e do Wikimedia Commons (licenças livres); a lista de imagens e seus autores é publicada com o código-fonte.
+notice_food_model = Nossos próprios modelos, baseados no MobileNetV4 (timm, Apache-2.0) e no Ultralytics YOLO11n (AGPL-3.0) e treinados com imagens do Open Images (CC BY 2.0), do Wikimedia Commons (licenças livres) e do MyFoodRepo (CC BY 4.0); a estimativa de peso é calibrada com o Nutrition5k (CC BY 4.0). A lista de imagens e seus autores é publicada com o código-fonte.

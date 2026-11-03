@@ -16,8 +16,10 @@ ex_padel = Padel ||| Pádel
 ex_badminton = Badminton ||| Bádminton
 
 # On foot, on wheels, in the water
-ex_outdoor_walk = Walking ||| Caminata
+ex_outdoor_walk = Walking ||| Caminar
 ex_hiking = Hiking ||| Senderismo
+ex_nordic_walking = Nordic walking ||| Marcha nórdica
+ex_stair_climbing = Stair climbing ||| Subir escaleras
 ex_outdoor_run = Outdoor running ||| Correr al aire libre
 ex_outdoor_cycling = Outdoor cycling ||| Ciclismo al aire libre
 ex_swimming = Swimming ||| Natación

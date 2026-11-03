@@ -1,0 +1,125 @@
+# Search words of built-in exercises and sports: exa_<catalog id> (training/catalog/ExerciseAliases.kt). Never shown:
+# the exercise search also looks in them, so an exercise is found by the other words people use for it (gym slang,
+# brand names, verbs, the singular or plural). Comma-separated, lower case is fine; translate the idea, not word for word.
+
+# Walking, running and the other activities
+exa_outdoor_walk = jalan, berjalan, jalan-jalan, jalan santai, jalan cepat, jalan pagi, jalan sehat, walking
+exa_hiking = hiking, mendaki, naik gunung, pendakian, trekking, jalan di gunung
+exa_nordic_walking = nordic walk, jalan nordik, jalan dengan tongkat, tongkat jalan
+exa_stair_climbing = tangga, naik turun tangga, menaiki tangga, anak tangga
+exa_outdoor_run = lari, berlari, jogging, joging, lari pagi, running
+exa_outdoor_cycling = sepeda, bersepeda, gowes, bike, sepeda gunung, sepeda balap, roadbike, mtb
+exa_swimming = renang, kolam renang, swimming, gaya bebas
+
+# Cardio machines
+exa_treadmill = lari, berlari, jogging, alat lari
+exa_treadmill_walk = jalan, berjalan, jalan kaki, alat lari
+exa_incline_treadmill_walk = jalan menanjak, tanjakan, incline, incline walk, 12-3-30
+exa_curved_treadmill = treadmill manual, treadmill tanpa motor, assault runner, sprint, lari
+exa_stationary_bike = sepeda, gowes, bike, sepeda fitness
+exa_spin_bike = spinning, indoor cycling, kelas spinning, gowes, bike
+exa_recumbent_bike = sepeda, sepeda duduk, sepeda sandaran
+exa_air_bike = assault bike, fan bike, echo bike, sepeda kipas
+exa_elliptical = eliptikal, elips, cross trainer, elliptical trainer
+exa_rowing_machine = dayung, mendayung, rowing, rower, erg
+exa_stair_climber = stairmaster, stepmill, mesin tangga, tangga, stepper
+exa_ski_erg = skierg, ski
+
+# Machines and cables
+exa_pec_deck = butterfly, kupu-kupu, fly mesin, chest fly
+exa_reverse_pec_deck = rear delt, bahu belakang, reverse fly, butterfly terbalik
+exa_leg_press_machine = leg press 45, mesin leg press, tekan kaki
+exa_hip_abductor_machine = abduktor, abduction, paha luar, bokong samping
+exa_hip_adductor_machine = adduktor, adduction, paha dalam
+exa_iso_lateral_chest_press = hammer strength, plate loaded, press dada, chest press pelat
+exa_high_row_machine = hammer strength, row tinggi, high row
+exa_t_bar_row_machine = t-bar, t bar row, mesin t-bar
+exa_standing_leg_curl_machine = hamstring curl, leg curl berdiri, paha belakang
+exa_lat_pulldown_machine = pulldown, lat pull, tarik kabel atas, punggung
+exa_seated_cable_row = low row, cable row, row duduk, seated row
+exa_cable_crossover = crossover, cable fly, fly kabel
+exa_face_pull = tarik ke wajah, rope face pull
+exa_reverse_grip_lat_pulldown = underhand pulldown, pulldown terbalik, pulldown supinasi
+exa_cable_chest_press = standing chest press, press dada kabel
+exa_cable_reverse_fly = rear delt kabel, reverse crossover, bahu belakang
+exa_cable_y_raise = y raise, angkat y
+exa_cable_upright_row = upright row, tarik ke dagu
+
+# Free weights
+exa_barbell_bench_press = bench, bench press, press dada, dada
+exa_barbell_back_squat = squat, back squat, jongkok
+exa_barbell_deadlift = deadlift, deadlift konvensional
+exa_barbell_overhead_press = military press, ohp, shoulder press, press bahu
+exa_skull_crusher = lying triceps extension, ekstensi trisep berbaring, french press
+exa_barbell_hip_thrust = hip thrust, hipthrust, dorong pinggul, angkat pinggul, bokong
+exa_bulgarian_split_squat = split squat, bulgarian, rear-foot elevated
+exa_kettlebell_swing = kb swing, swing, ayun kettlebell
+exa_smith_reverse_lunge = reverse lunge, lunge mundur
+exa_landmine_squat = landmine goblet squat, squat landmine
+exa_overhead_squat = ohs, squat di atas kepala
+exa_thruster = thrusters, thruster
+exa_push_press = push press, press dengan dorongan kaki
+exa_power_clean = clean, angkat besi, olympic lifting, weightlifting
+exa_hang_clean = clean, angkat besi, olympic lifting, weightlifting
+exa_power_snatch = snatch, angkat besi, olympic lifting, weightlifting
+exa_dumbbell_floor_press = floor press, press lantai
+exa_incline_dumbbell_fly = incline fly, fly miring
+exa_walking_lunge = walking lunges, lunge berjalan, lunge jalan
+exa_dumbbell_snatch = db snatch, one-arm snatch, snatch satu tangan
+exa_kettlebell_high_pull = sumo high pull, high pull
+
+# Bodyweight and calisthenics
+exa_push_up = push up, pushup, press up
+exa_pull_up = pull up, pullup, tarik badan, palang tunggal
+exa_parallel_bar_dip = dips, dip, palang sejajar, paralel
+exa_burpee = burpees, burpi, squat thrust
+exa_mountain_climber = mountain climbers, climbers, lari di posisi plank
+exa_plank = front plank, forearm plank, plank lengan bawah
+exa_farmers_carry = farmer walk, farmer's walk, jalan petani
+exa_archer_push_up = archer, push up archer, push up pemanah
+exa_ring_dip = ring, ring dips, gelang-gelang
+exa_neutral_grip_pull_up = hammer grip pull-up, pegangan paralel, pull up netral
+exa_suspension_row = trx, ring row, row ring
+exa_sissy_squat = sissy
+exa_toes_to_bar = t2b, toes to bar, kaki ke palang
+exa_ghd_sit_up = ghd, glute ham developer, sit up ghd
+
+# Conditioning and HIIT
+exa_jump_rope = skipping, lompat tali, tali skipping, double under, tali
+exa_jumping_jack = jumping jacks, star jump, lompat bintang
+exa_high_knees = lari di tempat, angkat lutut, knee drive
+exa_butt_kicks = heel flicks, tendang bokong, lari di tempat
+exa_box_jump = plyo box, plyometric, pliometrik, lompat kotak
+exa_tuck_jump = knee tuck, lompat lutut ke dada
+exa_skater_jump = skaters, lompat samping, lateral bound, lompat skater
+exa_bear_crawl = merangkak, crawl, jalan beruang
+exa_shadow_boxing = tinju, boxing, pukulan, tinju bayangan
+exa_step_aerobics = step, aerobik, senam aerobik, senam step
+exa_battle_ropes = tali, battle ropes, gelombang tali, rope waves
+exa_sled_push = prowler, sled, dorong sled
+exa_sled_drag = sled pull, tarik sled, sled mundur
+exa_wall_ball = wall balls, medicine ball, lempar bola ke dinding
+exa_medicine_ball_slam = slam ball, ball slam, banting bola, medicine ball
+exa_medicine_ball_rotational_throw = lempar samping, lempar rotasi, medicine ball
+exa_sandbag_carry = sandbag, karung pasir, bawa sandbag
+
+# Stretching, mobility and foam rolling
+exa_ankle_dorsiflexion_mobilization = mobilitas pergelangan kaki, dorsifleksi, ankle mobility
+exa_hip_90_90 = 90 90, mobilitas pinggul, hip mobility
+exa_deep_squat_hold = jongkok, jongkok dalam, squat hold, asian squat
+exa_hip_cars = putar pinggul, hip circles, rotasi pinggul
+exa_shoulder_cars = putar bahu, putar lengan, arm circles, shoulder circles
+exa_thread_the_needle = rotasi punggung atas, mobilitas toraks, thread needle
+exa_cobra_stretch = cobra, kobra, upward dog, yoga
+exa_downward_dog = down dog, yoga, adho mukha
+exa_standing_quad_stretch = quad stretch, peregangan paha, peregangan quad
+exa_lying_spinal_twist = supine twist, spine twist, puntir tulang belakang, twist berbaring
+exa_figure_four_stretch = figure 4, angka 4, piriformis
+exa_wrist_mobility = peregangan pergelangan tangan, pemanasan pergelangan tangan, wrist stretch
+exa_foam_roll_quads = foam rolling, foam roll, roller, myofascial release, smr, pijat sendiri
+exa_foam_roll_hamstrings = foam rolling, foam roll, roller, myofascial release, smr, pijat sendiri
+exa_foam_roll_calves = foam rolling, foam roll, roller, myofascial release, smr, pijat sendiri
+exa_foam_roll_glutes = foam rolling, foam roll, roller, myofascial release, smr, pijat sendiri, piriformis
+exa_foam_roll_it_band = foam rolling, foam roll, roller, myofascial release, smr, pijat sendiri, itb
+exa_foam_roll_upper_back = foam rolling, foam roll, roller, myofascial release, smr, pijat sendiri, toraks
+exa_foam_roll_lats = foam rolling, foam roll, roller, myofascial release, smr, pijat sendiri

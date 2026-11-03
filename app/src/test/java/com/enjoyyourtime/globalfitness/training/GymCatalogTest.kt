@@ -20,10 +20,12 @@ class GymCatalogTest {
     @Test
     fun stretchesAreTimedBodyweightOrBandStretchingSegments() {
         val stretches = all.filter { it.mobility }
-        assertTrue("${stretches.size} stretches", stretches.size in 10..25)
+        assertTrue("${stretches.size} stretches", stretches.size in 30..45)
         for (e in stretches) {
             assertEquals(e.id, ExerciseKind.DURATION, e.kind)
-            assertTrue(e.id, e.equipment == Equipment.BODYWEIGHT || e.equipment == Equipment.BAND)
+            // Foam rolling uses the roller ("other" equipment); every other drill is bodyweight or a band.
+            val rolling = e.id.startsWith("foam_roll_")
+            assertTrue(e.id, if (rolling) e.equipment == Equipment.OTHER else e.equipment == Equipment.BODYWEIGHT || e.equipment == Equipment.BAND)
             assertEquals(e.id, ExerciseSegment.EXERCISE_SEGMENT_TYPE_STRETCHING, e.hcSegment)
             assertNull(e.id, e.bodyweightFactor)
             assertTrue("${e.id} stretches no muscle", e.primary.isNotEmpty())

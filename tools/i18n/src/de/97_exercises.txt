@@ -249,3 +249,81 @@ ex_cross_body_shoulder_stretch = Schulter-Dehnung über Kreuz
 ex_triceps_stretch = Trizeps-Dehnung hinter dem Kopf
 ex_shoulder_dislocate = Schulter-Dislocates mit Band
 ex_neck_stretch = Seitliche Nacken-Dehnung
+
+# 1.6: machines, cables, free weights and calisthenics
+ex_iso_lateral_chest_press = Iso-laterale Brustpresse (Scheiben)
+ex_high_row_machine = Hohes Rudern an der Maschine
+ex_t_bar_row_machine = T-Bar-Rudern mit Brustauflage
+ex_standing_leg_curl_machine = Stehender Beinbeuger
+ex_reverse_grip_lat_pulldown = Latzug im Untergriff
+ex_cable_chest_press = Stehende Brustpresse am Kabel
+ex_cable_reverse_fly = Reverse Flys am Kabel
+ex_cable_y_raise = Y-Raise am Kabel
+ex_cable_upright_row = Aufrechtes Rudern am Kabel
+ex_smith_reverse_lunge = Ausfallschritte rückwärts (Multipresse)
+ex_landmine_squat = Landmine-Kniebeuge
+ex_overhead_squat = Überkopfkniebeuge
+ex_thruster = Langhantel-Thruster
+ex_push_press = Push Press
+ex_power_clean = Power Clean
+ex_hang_clean = Hang Clean
+ex_power_snatch = Power Snatch
+ex_dumbbell_floor_press = Floor Press mit Kurzhanteln
+ex_incline_dumbbell_fly = Schrägbank-Fliegende mit Kurzhanteln
+ex_walking_lunge = Gehende Ausfallschritte mit Kurzhanteln
+ex_dumbbell_snatch = Kurzhantel-Snatch
+ex_kettlebell_high_pull = Kettlebell High Pull
+ex_archer_push_up = Archer-Liegestütze
+ex_ring_dip = Dips an den Ringen
+ex_neutral_grip_pull_up = Klimmzüge im Neutralgriff
+ex_suspension_row = Rudern am Schlingentrainer (TRX)
+ex_sissy_squat = Sissy Squat
+ex_toes_to_bar = Toes-to-Bar
+ex_ghd_sit_up = GHD-Sit-up
+
+# Conditioning and HIIT
+ex_jump_rope = Seilspringen
+ex_jumping_jack = Hampelmann
+ex_high_knees = Kniehebelauf
+ex_butt_kicks = Anfersen
+ex_box_jump = Box Jumps
+ex_tuck_jump = Hocksprünge
+ex_skater_jump = Skater Jumps
+ex_bear_crawl = Bärengang
+ex_shadow_boxing = Schattenboxen
+ex_step_aerobics = Step-Aerobic
+ex_battle_ropes = Battle Ropes
+ex_sled_push = Schlittenschieben
+ex_sled_drag = Schlittenziehen rückwärts
+
+# Medicine ball and sandbag
+ex_wall_ball = Wall Ball
+ex_medicine_ball_slam = Medizinball-Slam
+ex_medicine_ball_rotational_throw = Medizinball-Rotationswurf
+ex_sandbag_carry = Sandsack-Tragen (Bear Hug)
+
+# Stretching, mobility and foam rolling
+ex_ankle_dorsiflexion_mobilization = Sprunggelenk-Mobilisation (Knie zur Wand)
+ex_hip_90_90 = 90/90-Hüftwechsel
+ex_deep_squat_hold = Tiefe Hocke halten
+ex_hip_cars = Hüft-CARs (kontrollierte Kreise)
+ex_shoulder_cars = Schulter-CARs (kontrollierte Kreise)
+ex_thread_the_needle = Thread the Needle
+ex_cobra_stretch = Kobra
+ex_downward_dog = Herabschauender Hund
+ex_standing_quad_stretch = Quadrizeps-Dehnung im Stehen
+ex_lying_spinal_twist = Wirbelsäulen-Drehung im Liegen
+ex_figure_four_stretch = Gesäß-Dehnung (Figur 4)
+ex_wrist_mobility = Handgelenk-Mobilisation
+ex_foam_roll_quads = Faszienrolle: Quadrizeps
+ex_foam_roll_hamstrings = Faszienrolle: Beinbeuger
+ex_foam_roll_calves = Faszienrolle: Waden
+ex_foam_roll_glutes = Faszienrolle: Gesäß
+ex_foam_roll_it_band = Faszienrolle: IT-Band (Oberschenkelaußenseite)
+ex_foam_roll_upper_back = Faszienrolle: Oberer Rücken
+ex_foam_roll_lats = Faszienrolle: Latissimus
+
+# Cardio machines
+ex_treadmill_walk = Gehen auf dem Laufband
+ex_incline_treadmill_walk = Gehen mit Steigung (Laufband)
+ex_curved_treadmill = Kurvenlaufband (ohne Motor)

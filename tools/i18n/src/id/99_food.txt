@@ -228,7 +228,7 @@ foodlog_today_open = Buka Makanan
 # Health Connect: the switch next to "Save workouts to Health Connect" (same style as 52_health_training.txt)
 hc_type_nutrition = Nutrisi
 hc_meals_export_title = Simpan makanan ke Health Connect
-hc_meals_export_text = Setiap makanan yang Anda catat disimpan sebagai nutrisi (kalori, protein, karbohidrat, gula, lemak, lemak jenuh, serat, dan natrium) untuk waktu makannya. Jika Anda mengedit atau menghapusnya, Health Connect juga diperbarui.
+hc_meals_export_text = Setiap makanan yang Anda catat disimpan sebagai nutrisi untuk waktu makannya: kalori, protein, karbohidrat, gula, lemak, lemak jenuh, serat, dan natrium, serta kolesterol, lemak tak jenuh tunggal dan ganda, mineral, dan vitamin jika makanan tersebut memilikinya. Jika Anda mengedit atau menghapusnya, Health Connect juga diperbarui.
 hc_meals_export_missing_permission = Izinkan Fortia menulis nutrisi di Health Connect untuk menyimpan makanan Anda di sana.
 hc_meals_export_denied = Jika jendela izin tidak terbuka, izinkan “Nutrisi” untuk Fortia di Health Connect.
 hc_meals_export_off = Makanan baru tidak disimpan. Makanan yang sudah ada di Health Connect tetap tersimpan di sana.
@@ -246,4 +246,4 @@ notice_usda = Nilai gizi daftar makanan: U.S. Department of Agriculture, Agricul
 notice_ciqual = Nilai gizi daftar makanan: Anses, tabel komposisi pangan Prancis Ciqual, di bawah Licence Ouverte / Etalab 2.0.
 notice_food_model_name = Pengenal makanan Fortia
 notice_food_model_license = Model kami sendiri (lihat kartu modelnya)
-notice_food_model = Model kami sendiri, dilatih dengan gambar dari Open Images (CC BY 2.0) dan Wikimedia Commons (lisensi bebas); daftar gambar beserta pembuatnya dipublikasikan bersama kode sumber.
+notice_food_model = Model kami sendiri, berbasis MobileNetV4 (timm, Apache-2.0) dan Ultralytics YOLO11n (AGPL-3.0) serta dilatih dengan gambar dari Open Images (CC BY 2.0), Wikimedia Commons (lisensi bebas), dan MyFoodRepo (CC BY 4.0); perkiraan berat dikalibrasi dengan Nutrition5k (CC BY 4.0). Daftar gambar beserta pembuatnya dipublikasikan bersama kode sumber.

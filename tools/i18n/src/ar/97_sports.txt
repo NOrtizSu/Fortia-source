@@ -34,3 +34,7 @@ ex_martial_arts = الفنون القتالية
 # Others
 ex_climbing = التسلق
 ex_golf = الغولف
+
+# 1.6.0
+ex_nordic_walking = المشي النوردي
+ex_stair_climbing = صعود الدرج
