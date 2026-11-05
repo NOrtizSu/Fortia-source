@@ -46,6 +46,22 @@ def preprocess(path, spec):
     return x[None]
 
 
+class Lazy:
+    """The test pictures preprocessed on demand (keeping 16 k float tensors of 320 x 320 needs ~5 GB)."""
+
+    def __init__(self, paths, spec):
+        self.paths, self.spec = list(paths), spec
+
+    def __len__(self):
+        return len(self.paths)
+
+    def __getitem__(self, i):
+        return preprocess(self.paths[i], self.spec)
+
+    def __iter__(self):
+        return (self[i] for i in range(len(self)))
+
+
 def run_variant(path, xs, n_labels, threads=4):
     """-> (logits [n, n_labels], log_grams [n] or None)"""
     it = Interpreter(model_path=path, num_threads=threads)
@@ -115,7 +131,7 @@ def main():
     if a.limit:
         test, ref = test.head(a.limit), ref[:a.limit]
     labels = test.label.to_numpy()
-    xs = [preprocess(p, spec) for p in test.path]
+    xs = Lazy(test.path, spec)
     res = {"n": len(xs), "pytorch": dict(zip(("top1", "top5"), acc(ref, labels)))}
     ref_top1 = ref.argmax(1)
     ref_grams = None

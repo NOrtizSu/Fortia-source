@@ -166,6 +166,12 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
+        <!-- ML Kit (reading a package photo) starts only when first used (TextReader calls MlKit.initialize), not at app start -->
+        <provider
+            android:name="com.google.mlkit.common.internal.MlKitInitProvider"
+            android:authorities="${applicationId}.mlkitinitprovider"
+            tools:node="remove" />
+
         <!-- Same screen for Android 14+ ("view permission usage" from Health Connect) -->
         <activity-alias
             android:name="ViewPermissionUsageActivity"

@@ -26,11 +26,11 @@ class FoodsTsvContractTest {
     private val v2 = v1 + extra + "variant_of"
     private val groups = setOf(
         "fruit", "vegetables", "grains", "legumes", "meat", "fish", "eggs", "dairy", "fats_nuts", "sweets", "drinks",
-        "dishes", "fast_food", "snacks", "sauces",
+        "dishes", "fast_food", "snacks", "sauces", "supplements",
     )
     private val portionKeys = setOf(
         "unit", "piece", "slice", "plate", "small_plate", "bowl", "cup", "glass", "can", "bottle", "tbsp", "tsp",
-        "handful", "serving",
+        "handful", "serving", "scoop",
     )
 
     /**

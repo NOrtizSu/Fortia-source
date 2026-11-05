@@ -50,6 +50,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.takeOrElse
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.layout.ContentScale
@@ -209,23 +210,50 @@ fun FoodHost() {
     LaunchedEffect(vm, failed) { vm.writeFailed.collect { snackbar.showSnackbar(failed) } }
 }
 
-/** A meal photo (small, rounded), or the meal glyph when there is none. */
+/**
+ * A meal photo (small, rounded); else, for a product found by its barcode ([customFoodId]), its photo
+ * from Open Food Facts; else the meal glyph. Decorative for TalkBack: the name is read next to it
+ * wherever it shows. [onProductPhoto] says whether the product's photo is what shows (the credit line
+ * of Open Food Facts follows it).
+ */
 @Composable
-fun MealThumbnail(photo: String?, size: Dp, modifier: Modifier = Modifier) {
+fun MealThumbnail(photo: String?, size: Dp, modifier: Modifier = Modifier, customFoodId: String? = null, onProductPhoto: ((Boolean) -> Unit)? = null) {
     val vm = foodViewModel()
     val px = with(LocalDensity.current) { size.roundToPx() }
-    val bitmap by produceState(initialValue = null as androidx.compose.ui.graphics.ImageBitmap?, photo, px) {
-        value = photo?.let { vm.thumbnail(it, px * 2) }
+    val products by vm.productPhotos.collectAsStateWithLifecycle()
+    val product = customFoodId?.let(products::get)
+    // A product photo decoded before shows at once (a row scrolled back into view does not flash the glyph).
+    val decoded = if (photo == null) product?.let { vm.cachedProductThumbnail(it, px * 2) }?.let { Thumb(it, product = true) } else null
+    val thumb by produceState(initialValue = decoded, photo, product, px) {
+        value = photo?.let { vm.thumbnail(it, px * 2) }?.let { Thumb(it, product = false) }
+            ?: product?.let { vm.productThumbnail(it, px * 2) }?.let { Thumb(it, product = true) }
     }
+    val productShown = thumb?.product == true
+    val report by rememberUpdatedState(onProductPhoto)
+    LaunchedEffect(productShown) { report?.invoke(productShown) }
     val shape = RoundedCornerShape(12.dp)
-    val b = bitmap
-    if (b != null) {
-        Image(b, contentDescription = null, contentScale = ContentScale.Crop, modifier = modifier.size(size).clip(shape))
+    val t = thumb
+    if (t != null) {
+        Image(t.bitmap, contentDescription = null, contentScale = ContentScale.Crop, modifier = modifier.size(size).clip(shape))
     } else {
         Box(modifier.size(size).clip(shape).background(MaterialTheme.colorScheme.secondaryContainer), contentAlignment = Alignment.Center) {
             Icon(AppIcons.Restaurant, contentDescription = null, tint = MaterialTheme.colorScheme.onSecondaryContainer, modifier = Modifier.size(size / 2))
         }
     }
+}
+
+/** What [MealThumbnail] shows: a meal photo or a product's photo. */
+private class Thumb(val bitmap: ImageBitmap, val product: Boolean)
+
+/** The credit Open Food Facts asks for: its data (ODbL), and its product photo (CC BY-SA) when [photo] shows. */
+@Composable
+fun OffAttribution(photo: Boolean, modifier: Modifier = Modifier) {
+    Text(
+        stringResource(if (photo) R.string.foodlog_off_attribution_photo else R.string.foodlog_off_attribution),
+        style = MaterialTheme.typography.bodySmall,
+        color = MaterialTheme.colorScheme.onSurfaceVariant,
+        modifier = modifier,
+    )
 }
 
 /**
@@ -412,6 +440,7 @@ object FoodFormat {
         PortionKey.TSP -> R.string.food_portion_tsp
         PortionKey.HANDFUL -> R.string.food_portion_handful
         PortionKey.SERVING -> R.string.food_portion_serving
+        PortionKey.SCOOP -> R.string.food_portion_scoop
     }
 
     @StringRes

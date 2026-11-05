@@ -1352,6 +1352,7 @@
     <string name="exa_incline_dumbbell_fly">incline fly</string>
     <string name="exa_walking_lunge">walking lunges, lunge walk</string>
     <string name="exa_dumbbell_snatch">db snatch, one-arm snatch</string>
+    <string name="exa_kettlebell_snatch">kb snatch, one-arm snatch</string>
     <string name="exa_kettlebell_high_pull">sumo high pull</string>
     <!-- Bodyweight and calisthenics -->
     <string name="exa_push_up">press-up, pushup</string>
@@ -1377,7 +1378,7 @@
     <string name="exa_tuck_jump">knee tuck</string>
     <string name="exa_skater_jump">skaters, lateral bounds</string>
     <string name="exa_bear_crawl">crawl, crawling</string>
-    <string name="exa_shadow_boxing">boxing, punches</string>
+    <string name="exa_shadow_boxing">boxing, punches, jab, cross, one-two</string>
     <string name="exa_step_aerobics">step class, step-ups</string>
     <string name="exa_battle_ropes">ropes, rope waves</string>
     <string name="exa_sled_push">prowler</string>
@@ -1406,6 +1407,112 @@
     <string name="exa_foam_roll_it_band">foam rolling, roller, myofascial release, smr, itb</string>
     <string name="exa_foam_roll_upper_back">foam rolling, roller, myofascial release, smr, thoracic</string>
     <string name="exa_foam_roll_lats">foam rolling, roller, myofascial release, smr</string>
+    <!-- Sports and activities added in 1.8 -->
+    <string name="exa_alpine_skiing">ski, skiing, downhill skiing, slopes</string>
+    <string name="exa_cross_country_skiing">nordic skiing, xc skiing, ski touring, ski</string>
+    <string name="exa_snowboarding">snowboard, board</string>
+    <string name="exa_surfing">surf, surfboard, bodyboard</string>
+    <string name="exa_rowing">crew, sculling, row, boat</string>
+    <string name="exa_kayaking">canoe, canoeing, paddling, sup, paddle board</string>
+    <string name="exa_open_water_swimming">sea swimming, lake swimming, triathlon swim, swim</string>
+    <string name="exa_rugby">rugby union, rugby league, sevens</string>
+    <string name="exa_table_tennis">ping pong, ping-pong</string>
+    <string name="exa_squash">racquet, racket</string>
+    <string name="exa_inline_skating">roller skating, rollerblading, rollerblade, skates</string>
+    <string name="exa_ice_skating">skates, skating rink</string>
+    <!-- Advanced calisthenics (1.8) -->
+    <string name="exa_bar_muscle_up">muscle up, muscleup, calisthenics</string>
+    <string name="exa_ring_muscle_up">muscle up, muscleup, rings, calisthenics</string>
+    <string name="exa_wall_handstand">handstand, wall walk, hand balance</string>
+    <string name="exa_handstand">hand balance, freestanding</string>
+    <string name="exa_wall_handstand_push_up">hspu, handstand push-up</string>
+    <string name="exa_tuck_front_lever">lever, calisthenics</string>
+    <string name="exa_front_lever">lever, calisthenics</string>
+    <string name="exa_tuck_back_lever">lever, calisthenics</string>
+    <string name="exa_back_lever">lever, calisthenics</string>
+    <string name="exa_tuck_planche">planche, calisthenics</string>
+    <string name="exa_straddle_planche">planche, calisthenics</string>
+    <string name="exa_human_flag">flag, pole flag, calisthenics</string>
+    <string name="exa_tuck_l_sit">l sit, tuck sit</string>
+    <string name="exa_archer_pull_up">archer, calisthenics</string>
+    <string name="exa_typewriter_pull_up">typewriter, calisthenics</string>
+    <string name="exa_one_arm_push_up">one-hand push-up, single-arm push-up</string>
+    <string name="exa_shrimp_squat">shrimp, single-leg squat</string>
+    <string name="exa_skin_the_cat">rings, german hang</string>
+    <string name="exa_ring_support_hold">rings, support hold</string>
+    <string name="exa_ring_push_up">rings</string>
+    <string name="exa_hollow_body_rock">hollow rock, rocking</string>
+    <string name="exa_pseudo_planche_push_up">pppu, planche lean</string>
+    <string name="exa_clap_push_up">plyometric push-up, explosive push-up</string>
+    <string name="exa_hanging_windshield_wiper">windshield wipers, wipers</string>
+    <!-- Olympic lifts, kettlebells, strongman and CrossFit (1.8) -->
+    <string name="exa_push_jerk">jerk, olympic lifting, weightlifting</string>
+    <string name="exa_split_jerk">jerk, olympic lifting, weightlifting</string>
+    <string name="exa_clean_and_jerk">c&amp;j, clean, jerk, olympic lifting, weightlifting</string>
+    <string name="exa_squat_clean">full clean, clean, olympic lifting</string>
+    <string name="exa_hang_power_snatch">snatch, hang snatch, olympic lifting</string>
+    <string name="exa_squat_snatch">full snatch, snatch, olympic lifting</string>
+    <string name="exa_snatch_balance">snatch, drop snatch, olympic lifting</string>
+    <string name="exa_clean_pull">pull, olympic lifting</string>
+    <string name="exa_snatch_pull">pull, olympic lifting</string>
+    <string name="exa_trap_bar_deadlift">hex bar deadlift, hex bar</string>
+    <string name="exa_kettlebell_halo">halo, kb</string>
+    <string name="exa_kettlebell_bottoms_up_press">bottom-up press, kb press</string>
+    <string name="exa_double_kettlebell_front_squat">kb front squat, double kb</string>
+    <string name="exa_single_arm_kettlebell_swing">one-hand swing, kb swing</string>
+    <string name="exa_american_kettlebell_swing">overhead swing, kb swing, crossfit</string>
+    <string name="exa_kettlebell_overhead_carry">waiter\'s walk, waiter carry, kb carry</string>
+    <string name="exa_renegade_row">plank row</string>
+    <string name="exa_devil_press">crossfit, burpee</string>
+    <string name="exa_man_maker">crossfit, burpee</string>
+    <string name="exa_dumbbell_thruster">thrusters, crossfit</string>
+    <string name="exa_double_unders">du, double under, jump rope, crossfit</string>
+    <string name="exa_burpee_box_jump_over">bbjo, burpee box, crossfit</string>
+    <string name="exa_yoke_carry">yoke, strongman</string>
+    <string name="exa_log_press">log, strongman</string>
+    <string name="exa_atlas_stone">stone, stone to shoulder, strongman</string>
+    <string name="exa_tyre_flip">tire flip, tire, tyre, strongman</string>
+    <string name="exa_sandbag_to_shoulder">sandbag over shoulder, sandbag, strongman</string>
+    <!-- Suspension trainer, bosu, Swiss ball, balance and Pilates (1.8) -->
+    <string name="exa_suspension_chest_press">suspension trainer, push-up</string>
+    <string name="exa_suspension_y_raise">suspension trainer, y fly</string>
+    <string name="exa_suspension_curl">suspension trainer, biceps</string>
+    <string name="exa_suspension_triceps_extension">suspension trainer, triceps</string>
+    <string name="exa_suspension_pistol_squat">suspension trainer, assisted pistol</string>
+    <string name="exa_suspension_atomic_push_up">suspension trainer, push-up tuck</string>
+    <string name="exa_suspension_pike">suspension trainer</string>
+    <string name="exa_suspension_hamstring_curl">suspension trainer, leg curl</string>
+    <string name="exa_suspension_fallout">suspension trainer, rollout</string>
+    <string name="exa_bosu_squat">balance trainer, half ball</string>
+    <string name="exa_bosu_push_up">balance trainer, half ball</string>
+    <string name="exa_bosu_balance">balance trainer, half ball, proprioception</string>
+    <string name="exa_swiss_ball_crunch">stability ball, exercise ball, gym ball, fitball</string>
+    <string name="exa_swiss_ball_pike">stability ball, exercise ball, gym ball, fitball</string>
+    <string name="exa_swiss_ball_hamstring_curl">stability ball, exercise ball, gym ball, fitball, leg curl</string>
+    <string name="exa_swiss_ball_pass">stability ball, exercise ball, gym ball, fitball</string>
+    <string name="exa_stir_the_pot">stability ball, exercise ball, plank</string>
+    <string name="exa_single_leg_balance">balance, proprioception, stork stand</string>
+    <string name="exa_crow_pose">crow, crane pose, yoga</string>
+    <string name="exa_v_up">jackknife, v sit-up</string>
+    <string name="exa_pilates_hundred">the hundred, hundreds</string>
+    <string name="exa_pilates_roll_up">roll up, mat pilates</string>
+    <string name="exa_pilates_single_leg_stretch">mat pilates</string>
+    <string name="exa_pilates_double_leg_stretch">mat pilates</string>
+    <string name="exa_pilates_swimming">mat pilates, swimming</string>
+    <string name="exa_pilates_teaser">mat pilates, v sit</string>
+    <string name="exa_pilates_side_kick">mat pilates, side-lying leg raise</string>
+    <string name="exa_pilates_shoulder_bridge">mat pilates, glute bridge</string>
+    <!-- Combat drills (1.8) -->
+    <string name="exa_heavy_bag">punching bag, boxing bag, boxing</string>
+    <string name="exa_speed_bag">boxing</string>
+    <string name="exa_double_end_bag">floor-to-ceiling ball, reflex bag, boxing</string>
+    <string name="exa_pad_work">mitts, focus pads, boxing</string>
+    <string name="exa_shadow_hooks">boxing, punches</string>
+    <string name="exa_shadow_uppercuts">boxing, punches</string>
+    <string name="exa_dumbbell_punches">boxing, punches</string>
+    <string name="exa_bag_kicks">kickboxing, muay thai, kicks</string>
+    <string name="exa_knee_strikes">muay thai, knees</string>
+    <string name="exa_sprawl">mma, wrestling, takedown defence</string>
     <!-- How to do each built-in exercise: exg_<catalog id>_steps / exg_<catalog id>_tips (training/catalog/ExerciseGuides.kt). -->
     <!-- steps: 3-5 numbered lines ("1. ", "2. "...), tips: 2-3 lines starting with "• ". Keep the numbering, the bullets and the \n line breaks. -->
     <!-- Machines -->
@@ -2009,6 +2116,188 @@
     <string name="exg_incline_treadmill_walk_tips" formatted="false">• Holding the rails cancels much of the effort; slow down instead.\n• A popular plan is 12-3-30: 12 % incline, 3 mph (4.8 km/h), 30 minutes.</string>
     <string name="exg_curved_treadmill_steps">1. Hold the rails and step onto the curved belt; it only moves when you push it.\n2. Let go and walk or jog, landing on the front of the curve.\n3. Move further up the curve to go faster, and back towards the middle to slow down.\n4. For sprints, lean forward and drive your knees up; log the time, the distance and the calories.</string>
     <string name="exg_curved_treadmill_tips">• There\'s no motor: the speed is yours, so it\'s great for short sprint intervals.\n• Land on the balls of your feet; landing on your heels brakes the belt.</string>
+    <!-- Advanced calisthenics (1.8) -->
+    <string name="exg_bar_muscle_up_steps">1. Hang from a pull-up bar with your hands about shoulder-width apart, thumbs over the bar.\n2. Swing slightly and pull explosively, driving the bar towards your lower chest rather than your chin.\n3. As the bar reaches your chest, lean forward and roll your wrists over it so your elbows go back.\n4. Press down into a straight-arm support above the bar, then lower yourself under control back to the hang.</string>
+    <string name="exg_bar_muscle_up_tips">• Build up to it with chest-to-bar pull-ups and straight bar dips first.\n• The transition is the hard part: pull high and fast, and keep the bar close to your body.</string>
+    <string name="exg_ring_muscle_up_steps">1. Hang from gymnastic rings with a false grip: the base of your palms on top of the rings, wrists bent over them.\n2. Pull the rings down to your lower chest, keeping them close to your body.\n3. Lean forward over the rings and drive your elbows back, turning the pull into the bottom of a dip.\n4. Press up to straight arms, rings by your hips, then lower slowly back to the hang.</string>
+    <string name="exg_ring_muscle_up_tips">• Practise the false-grip hang and ring dips before trying the full move.\n• Keep the rings close the whole time; if they drift away from you, the transition fails.</string>
+    <string name="exg_wall_handstand_steps">1. Place your hands shoulder-width apart about a hand\'s length from a wall, fingers spread.\n2. Kick up one leg at a time until your heels rest lightly on the wall.\n3. Push the floor away with straight arms, squeeze your legs together and keep your ribs tucked in.\n4. Hold for your target time, then step down one leg at a time.</string>
+    <string name="exg_wall_handstand_tips">• Look at the floor between your hands, not at the wall.\n• If kicking up scares you, walk your feet up the wall facing it instead.</string>
+    <string name="exg_handstand_steps">1. Place your hands on the floor shoulder-width apart, fingers spread, a step in front of your feet.\n2. Kick up with one leg and bring the other to meet it, stacking hips over shoulders.\n3. Balance with your fingers: press them down if you tip forward, press with the heel of the hand if you tip back.\n4. Hold for your target time, then come down by stepping one foot back to the floor.</string>
+    <string name="exg_handstand_tips">• Learn to bail out safely first: turn a hand and step down to the side.\n• Practise against a wall until you can hold 30 to 60 seconds there.</string>
+    <string name="exg_wall_handstand_push_up_steps">1. Kick up into a handstand with your back to the wall, hands shoulder-width apart, a hand\'s length from it.\n2. Bend your elbows slowly, slightly forward, and lower your head towards the floor.\n3. Stop when your head lightly touches the floor or a folded mat.\n4. Press back up to straight arms, keeping your heels on the wall.</string>
+    <string name="exg_wall_handstand_push_up_tips">• Master pike push-ups with your feet on a box first.\n• Your head and hands form a triangle at the bottom; never land on the top of your head with a jolt.</string>
+    <string name="exg_tuck_front_lever_steps">1. Hang from a bar with straight arms, hands shoulder-width apart.\n2. Pull your knees tight to your chest.\n3. Press the bar down towards your hips with straight arms, lifting your back until it\'s level with the floor, face up.\n4. Hold for your target time, then lower back to the hang.</string>
+    <string name="exg_tuck_front_lever_tips">• Keep your arms locked straight; bending them turns it into a row.\n• Open the tuck little by little (advanced tuck, one leg out) on the way to the full lever.</string>
+    <string name="exg_front_lever_steps">1. Hang from a bar with straight arms, hands shoulder-width apart.\n2. Tighten your abs and glutes and squeeze your legs together.\n3. Press the bar down with straight arms and raise your whole body until it\'s straight and level with the floor, face up.\n4. Hold for your target time, then lower your legs back to the hang.</string>
+    <string name="exg_front_lever_tips">• Your body is one straight line from shoulders to toes; don\'t let the hips sag.\n• Train it with short holds and negatives (lowering slowly from a higher position).</string>
+    <string name="exg_tuck_back_lever_steps">1. Hang from a bar or rings, tuck your knees and roll backwards between your arms into an inverted hang.\n2. Keep the tuck and slowly lower your hips behind you, arms straight.\n3. Stop when your back is level with the floor, face down, knees still tucked.\n4. Hold for your target time, then roll back up and down to the hang.</string>
+    <string name="exg_tuck_back_lever_tips">• It loads the front of the shoulders and the biceps hard: do skin the cats first.\n• Keep your arms straight and close to your body.</string>
+    <string name="exg_back_lever_steps">1. From a hang on a bar or rings, tuck and roll backwards between your arms into an inverted hang.\n2. Straighten your legs up and squeeze your body tight.\n3. Lower your straight body behind you, face down, until it\'s level with the floor.\n4. Hold for your target time, then pull back up to inverted and come down.</string>
+    <string name="exg_back_lever_tips">• Progress from the tuck back lever; the full version strains the biceps if rushed.\n• Point your toes and keep your hips in line; an arched back makes it easier but is not the real lever.</string>
+    <string name="exg_tuck_planche_steps">1. Place your hands on the floor or on parallettes beside your hips, fingers turned slightly out.\n2. Lean your shoulders forward well past your hands, arms straight.\n3. Lift your feet off the floor and pull your knees tight to your chest, back rounded.\n4. Hold for your target time, then put your feet back down.</string>
+    <string name="exg_tuck_planche_tips">• Warm up your wrists well; parallettes are easier on them than the floor.\n• Push the floor away and round your upper back: shoulders forward, never shrugged.</string>
+    <string name="exg_straddle_planche_steps">1. Place your hands on the floor or on parallettes, fingers turned slightly out.\n2. Lean your shoulders far forward over your fingers with your arms locked straight.\n3. Lift your legs behind you, straight and wide apart, until your body is level with the floor.\n4. Hold for your target time, then lower your feet.</string>
+    <string name="exg_straddle_planche_tips">• It takes months of tuck and advanced tuck planche work; be patient with your wrists and elbows.\n• The wider the legs, the easier it is.</string>
+    <string name="exg_human_flag_steps">1. Grip a vertical pole with both hands about shoulder-width apart or wider, the top hand facing away, the bottom one facing you.\n2. Lock the bottom arm straight and push with it while you pull with the top arm.\n3. Kick your legs up to the side and hold your body straight and level with the floor.\n4. Hold for your target time, then lower your legs; switch sides on the next set.</string>
+    <string name="exg_human_flag_tips">• Start with the legs tucked or with a straddle, which shortens the lever.\n• Use a pole fixed to the ground and the wall, never a loose bar.</string>
+    <string name="exg_tuck_l_sit_steps">1. Place your hands on parallettes, dip bars or the floor beside your hips.\n2. Press down to straighten your arms and lift your body.\n3. Pull your knees up towards your chest and hold your feet off the floor.\n4. Hold for your target time, then lower your feet.</string>
+    <string name="exg_tuck_l_sit_tips">• Shoulders down, away from your ears, and arms locked.\n• Straighten one leg, then both, as it gets easier: that\'s the full L-sit.</string>
+    <string name="exg_archer_pull_up_steps">1. Hang from a bar with a very wide grip, palms facing away.\n2. Pull yourself up towards one hand, bending that elbow, while the other arm stays nearly straight.\n3. Bring your chin over that hand.\n4. Lower slowly to the hang and repeat to the other side, alternating.</string>
+    <string name="exg_archer_pull_up_tips">• A step towards the one-arm pull-up: master 10 strict pull-ups first.\n• The straight arm helps; push less with it as you get stronger.</string>
+    <string name="exg_typewriter_pull_up_steps">1. Hang from a bar with a wide grip, palms facing away.\n2. Pull up until your chin is over the bar.\n3. At the top, slide your chest towards one hand, then across to the other, keeping your chin above the bar.\n4. Come back to the middle and lower slowly to the hang.</string>
+    <string name="exg_typewriter_pull_up_tips">• Keep your body still below you; don\'t swing your legs to move across.\n• Each pass from side to side counts as one repetition.</string>
+    <string name="exg_one_arm_push_up_steps">1. Start in a push-up position with your feet wide apart and one hand under the middle of your chest.\n2. Put the other hand on your lower back.\n3. Lower your chest towards the floor, turning your body only slightly, elbow close to your side.\n4. Press back up; finish the set and switch arms.</string>
+    <string name="exg_one_arm_push_up_tips">• Start with slow negatives (lower on one arm, push up with both) or with your hand on a bench.\n• The wider your feet, the easier the balance.</string>
+    <string name="exg_shrimp_squat_steps">1. Stand on one leg, bend the other knee and hold that foot behind you with the hand on the same side.\n2. Reach your free arm forward for balance.\n3. Bend the standing leg and lower until the back knee lightly touches the floor behind your heel.\n4. Drive back up to standing; switch legs after the set.</string>
+    <string name="exg_shrimp_squat_tips">• Put a cushion or folded mat under the back knee while you learn.\n• Leaning your trunk forward makes it easier to balance.</string>
+    <string name="exg_skin_the_cat_steps">1. Hang from rings or a bar with straight arms.\n2. Tuck your knees and lift them through your arms, rolling backwards until you\'re upside down.\n3. Keep rolling slowly and lower your legs behind you until your shoulders feel a stretch (the German hang).\n4. Reverse the movement the same way back up and through to the hang.</string>
+    <string name="exg_skin_the_cat_tips">• Go only as far as your shoulders allow without pain; the stretch grows with practice.\n• Move slowly with your arms straight; never drop into the bottom.</string>
+    <string name="exg_ring_support_hold_steps">1. Set the rings at about hip height and grip them.\n2. Jump up and lock your arms straight, the rings by your hips.\n3. Turn the rings out a little, press your shoulders down and squeeze your body tight.\n4. Hold for your target time, then step down.</string>
+    <string name="exg_ring_support_hold_tips">• Keep the rings pressed against your sides; the shaking fades with practice.\n• It\'s the base of ring dips and muscle-ups: aim for 30 to 60 seconds.</string>
+    <string name="exg_ring_push_up_steps">1. Set the rings a few centimetres off the floor and take a push-up position holding them.\n2. Keep your body straight from head to heels.\n3. Lower your chest between the rings, keeping them steady and close to your sides.\n4. Press back up, turning the rings out slightly at the top.</string>
+    <string name="exg_ring_push_up_tips">• Raise the rings or put your knees down to make it easier.\n• Don\'t let the rings drift apart; it strains the shoulders.</string>
+    <string name="exg_hollow_body_rock_steps">1. Lie on your back, arms overhead and legs straight.\n2. Press your lower back into the floor and lift your shoulders and legs a little off it, body curved like a banana.\n3. Holding that shape, rock back and forth from your upper back to your hips.\n4. Keep rocking for your repetitions, then lie down.</string>
+    <string name="exg_hollow_body_rock_tips">• The shape must not change while you rock: the abs move you, not your arms or legs.\n• Bend your knees or bring your arms forward if your lower back lifts.</string>
+    <string name="exg_pseudo_planche_push_up_steps">1. Take a push-up position with your hands beside your waist, fingers turned out or back.\n2. Lean your shoulders forward past your hands and keep your body straight.\n3. Lower your chest towards the floor while keeping the forward lean.\n4. Press back up without letting your shoulders drift back over your hands.</string>
+    <string name="exg_pseudo_planche_push_up_tips">• Warm up your wrists first; turning the fingers out eases the strain.\n• The further you lean, the harder it gets: start with a small lean.</string>
+    <string name="exg_clap_push_up_steps">1. Start in a push-up position, hands a little wider than your shoulders.\n2. Lower your chest towards the floor.\n3. Push up explosively so your hands leave the floor, and clap once in front of your chest.\n4. Land with soft elbows and go straight into the next repetition.</string>
+    <string name="exg_clap_push_up_tips">• Start with explosive push-ups without the clap, or with your hands on a bench.\n• Keep your body straight; don\'t push with your hips first.</string>
+    <string name="exg_hanging_windshield_wiper_steps">1. Hang from a bar with straight arms, hands shoulder-width apart.\n2. Raise your legs together, as straight as you can, until they point up towards the bar.\n3. Keeping them up, turn your hips to lower your legs to one side, then sweep them across to the other side.\n4. Go side to side under control, then lower your legs.</string>
+    <string name="exg_hanging_windshield_wiper_tips">• Start with your knees bent, or do them lying on your back on the floor.\n• Each sweep to one side counts as one repetition.</string>
+    <!-- Olympic lifts, kettlebells, strongman and CrossFit-style work (1.8) -->
+    <string name="exg_push_jerk_steps">1. Hold the bar in the front rack on your shoulders, hands just outside shoulder-width, elbows up.\n2. Dip a few centimetres straight down by bending your knees, trunk upright.\n3. Drive up hard with your legs and push yourself under the bar as it rises, catching it on locked arms in a quarter squat.\n4. Stand up with the bar overhead, then lower it back to your shoulders.</string>
+    <string name="exg_push_jerk_tips">• Unlike the push press, you drop under the bar: the legs do the work, the arms finish it.\n• Keep the dip short and vertical; leaning forward sends the bar in front of you.</string>
+    <string name="exg_split_jerk_steps">1. Hold the bar in the front rack, feet hip-width apart.\n2. Dip by bending your knees a little, trunk upright, and drive up hard.\n3. As the bar leaves your shoulders, split your feet, one forward and one back on its toes, and catch the bar on locked arms.\n4. Step the front foot back, then the back foot forward, and lower the bar to your shoulders.</string>
+    <string name="exg_split_jerk_tips">• Land with the front shin vertical and the back knee slightly bent.\n• Practise the footwork with a broomstick until the split is automatic.</string>
+    <string name="exg_clean_and_jerk_steps">1. Clean the bar: pull it from the floor, jump and catch it on your shoulders in a squat, then stand up.\n2. Reset your feet and breathe, the bar in the front rack.\n3. Jerk it: dip and drive with your legs, and split your feet as you lock the bar out overhead.\n4. Recover your feet, then lower the bar to your hips and to the floor under control.</string>
+    <string name="exg_clean_and_jerk_tips">• It\'s the Olympic lift with the most technique: learn the clean and the jerk apart first, with a coach if you can.\n• Use bumper plates and a platform so you can drop the bar safely.</string>
+    <string name="exg_squat_clean_steps">1. Stand with your feet under the bar, grip it just outside your knees, flat back, hips above knees.\n2. Push the floor away and lift the bar close to your shins until it passes your knees.\n3. Jump and shrug, then pull yourself under the bar fast into a full front squat, elbows high.\n4. Stand up out of the squat with the bar on your shoulders, then lower it back to the floor.</string>
+    <string name="exg_squat_clean_tips">• You need a good front squat first: elbows up and trunk tall at the bottom.\n• Meet the bar on the way down; don\'t wait for it to fall onto you.</string>
+    <string name="exg_hang_power_snatch_steps">1. Stand tall holding the bar with a wide snatch grip, arms straight, the bar against your thighs.\n2. Push your hips back to lower the bar to just above your knees, back flat.\n3. Jump: extend your hips and knees explosively and pull the bar up close to your body.\n4. Punch it up to locked arms overhead, catching it in a quarter squat; stand up and lower it to your thighs.</string>
+    <string name="exg_hang_power_snatch_tips">• Keep the bar close: it brushes your thighs and passes near your face.\n• Learn it with a light bar or a broomstick first.</string>
+    <string name="exg_squat_snatch_steps">1. Grip the bar wide with your feet under it, back flat and chest up.\n2. Lift it close to your shins past your knees, then jump and extend your hips explosively.\n3. Pull yourself under the bar into a full overhead squat, arms locked as it lands.\n4. Stand up with the bar overhead, then lower it to your hips and to the floor.</string>
+    <string name="exg_squat_snatch_tips">• Your overhead squat must be solid first; the snatch balance trains the catch.\n• Use bumper plates: if you lose the bar, let it fall in front and step back.</string>
+    <string name="exg_snatch_balance_steps">1. Hold the bar on your upper back with a wide snatch grip, feet hip-width apart.\n2. Dip a little at the knees.\n3. Drive the bar up slightly and push yourself down under it fast into a full squat, arms locking overhead.\n4. Stand up with the bar overhead, then lower it carefully back to your upper back.</string>
+    <string name="exg_snatch_balance_tips">• Start with an empty bar or a broomstick: it builds speed and confidence under the bar.\n• Lock your arms as your hips go down, not after.</string>
+    <string name="exg_clean_pull_steps">1. Set up as for a clean: feet under the bar, grip just outside your knees, back flat.\n2. Lift the bar close to your shins until it passes your knees, keeping your shoulders over it.\n3. Extend your hips and knees explosively, rising onto your toes and shrugging, arms straight.\n4. Lower the bar to the floor under control.</string>
+    <string name="exg_clean_pull_tips">• The arms stay straight: it trains the pull of the clean, not the catch.\n• You can use more weight than in the clean; keep the same positions.</string>
+    <string name="exg_snatch_pull_steps">1. Set up as for a snatch: wide grip, feet under the bar, back flat and chest up.\n2. Lift the bar close to your legs until it passes your knees.\n3. Extend your hips and knees explosively, rising onto your toes and shrugging, arms straight.\n4. Lower the bar to the floor under control.</string>
+    <string name="exg_snatch_pull_tips">• Keep the bar brushing your thighs as your hips extend.\n• Don\'t pull with your arms early; finish the jump first.</string>
+    <string name="exg_trap_bar_deadlift_steps">1. Stand inside the hexagonal bar, feet hip-width apart and centred.\n2. Bend your hips and knees and grip the handles at your sides, back flat and chest up.\n3. Push the floor away and stand up tall, the bar rising straight up with you.\n4. Lower it to the floor by bending your hips and knees together.</string>
+    <string name="exg_trap_bar_deadlift_tips">• The load is beside you, not in front: it\'s easier on the lower back than a conventional deadlift.\n• Use the high handles for a shorter pull.</string>
+    <string name="exg_kettlebell_halo_steps">1. Stand tall holding a kettlebell upside down by its horns in front of your chest.\n2. Circle it around your head: past one ear, behind your head, past the other ear.\n3. Bring it back in front of your face to complete the circle.\n4. Keep circling for half your target time, then circle the other way.</string>
+    <string name="exg_kettlebell_halo_tips">• Keep the bell close to your head and your trunk still; don\'t arch your back.\n• A light bell is enough: it\'s a shoulder mobility and control drill.</string>
+    <string name="exg_kettlebell_bottoms_up_press_steps">1. Clean a light kettlebell to your shoulder and turn it upside down, the bell above your fist.\n2. Squeeze the handle hard, wrist straight and elbow under the bell.\n3. Press it straight up overhead, keeping it balanced bottom up.\n4. Lower it slowly to your shoulder; switch arms after the set.</string>
+    <string name="exg_kettlebell_bottoms_up_press_tips">• Use much less weight than for a normal press; balance is the challenge.\n• If it tips, let it go down to the side, away from your head.</string>
+    <string name="exg_double_kettlebell_front_squat_steps">1. Clean two kettlebells to the rack: bells resting on your forearms at your shoulders, fists by your chin.\n2. Stand with your feet shoulder-width apart, toes turned out slightly.\n3. Squat down between your heels with your chest up and elbows in.\n4. Drive up to standing.</string>
+    <string name="exg_double_kettlebell_front_squat_tips">• Keep the bells tight to your body; the load in front keeps your trunk upright.\n• Brace your abs before each repetition.</string>
+    <string name="exg_single_arm_kettlebell_swing_steps">1. Stand with your feet a little wider than your hips, a kettlebell on the floor in front of you.\n2. Hinge at the hips, grip it with one hand and hike it back between your legs.\n3. Snap your hips forward so the bell floats up to chest height on a straight arm.\n4. Let it swing back between your legs and repeat; switch hands after the set.</string>
+    <string name="exg_single_arm_kettlebell_swing_tips">• Don\'t let the bell twist your trunk: keep your shoulders square to the front.\n• The free arm can swing beside you for balance.</string>
+    <string name="exg_american_kettlebell_swing_steps">1. Stand with your feet a little wider than your hips and hold a kettlebell by the horns with both hands.\n2. Hinge and hike it back between your legs.\n3. Snap your hips forward and guide the bell all the way up until it\'s overhead, bottom pointing to the ceiling.\n4. Let it fall back through the same arc between your legs and repeat.</string>
+    <string name="exg_american_kettlebell_swing_tips">• Only do it if you can raise your arms fully overhead without arching your back.\n• The hips lift the bell; the arms only guide it the last part.</string>
+    <string name="exg_kettlebell_overhead_carry_steps">1. Press a kettlebell overhead with one arm, locking the elbow.\n2. Stand tall with your ribs down and your eyes ahead.\n3. Walk with short, steady steps, keeping the bell straight above your shoulder.\n4. Walk for your target time, lower the bell and switch arms.</string>
+    <string name="exg_kettlebell_overhead_carry_tips">• Don\'t lean away from the bell or arch your back; your trunk resists the sideways pull.\n• Bottom down is the usual way; holding it bottom up is harder.</string>
+    <string name="exg_renegade_row_steps">1. Take a push-up position holding two dumbbells on the floor, feet wide apart.\n2. Brace your abs and glutes so your hips stay level.\n3. Row one dumbbell up to your hip while pressing the other into the floor.\n4. Lower it and row with the other arm; keep alternating.</string>
+    <string name="exg_renegade_row_tips">• Use hexagonal dumbbells so they don\'t roll.\n• Your hips must not twist: the wider your feet, the easier it is.</string>
+    <string name="exg_devil_press_steps">1. Stand with a dumbbell on the floor at each side; squat down, hands on them, and jump your feet back into a plank.\n2. Lower your chest to the floor and push back up, then jump your feet in close to the dumbbells.\n3. With a flat back, swing both dumbbells between your legs and drive your hips forward.\n4. Send them in one movement all the way overhead to locked arms, then lower them to the floor.</string>
+    <string name="exg_devil_press_tips">• It\'s a burpee and a double dumbbell snatch together: start light.\n• The hips lift the dumbbells, not the shoulders.</string>
+    <string name="exg_man_maker_steps">1. Take a plank position holding a dumbbell in each hand on the floor.\n2. Do a push-up, then row one dumbbell to your hip and the other.\n3. Jump your feet in, stand up and clean the dumbbells to your shoulders.\n4. Press them overhead (or squat and press as a thruster), then lower them to the floor for the next rep.</string>
+    <string name="exg_man_maker_tips">• Use light, hexagonal dumbbells; it\'s a full-body conditioning move.\n• Keep your back flat every time you pick the dumbbells up from the floor.</string>
+    <string name="exg_dumbbell_thruster_steps">1. Hold two dumbbells at your shoulders, palms facing in, feet shoulder-width apart.\n2. Squat down with your chest up and elbows in front.\n3. Drive up out of the squat and use that push to press the dumbbells overhead.\n4. Lower them back to your shoulders as you go down into the next squat.</string>
+    <string name="exg_dumbbell_thruster_tips">• One smooth movement: the press starts as your legs finish the squat.\n• Keep your heels down at the bottom.</string>
+    <string name="exg_double_unders_steps">1. Hold the rope handles at your hips, elbows close to your sides.\n2. Jump a little higher than for normal skipping, on the balls of your feet with your legs nearly straight.\n3. Spin the rope fast with your wrists so it passes under your feet twice in each jump.\n4. Land softly and keep a steady rhythm; count the double-unders you do.</string>
+    <string name="exg_double_unders_tips">• The speed comes from the wrists, not from big arm circles.\n• Practise single jumps with one double now and then until you can link them.</string>
+    <string name="exg_burpee_box_jump_over_steps">1. Stand side-on next to a box and drop into a burpee: hands down, feet back, chest to the floor.\n2. Push up, jump your feet in and stand up.\n3. Jump sideways over the box with both feet, or step onto it and off the other side.\n4. Land with soft knees and do the next burpee on that side.</string>
+    <string name="exg_burpee_box_jump_over_tips">• Facing the box and turning round after each jump is the other common way.\n• Step over instead of jumping when you get tired; shins and boxes don\'t mix.\n• A burpee and a crossing make one repetition.</string>
+    <string name="exg_yoke_carry_steps">1. Step under the loaded yoke and set the crossbar on your upper back like a squat bar.\n2. Grip the uprights, brace your abs and stand up to lift it off the floor.\n3. Walk forward with short, quick steps, keeping your trunk upright.\n4. Walk for your target time or distance, then set the yoke down by bending your knees.</string>
+    <string name="exg_yoke_carry_tips">• Start light: the yoke sways, and controlling it is half the work.\n• Look ahead, not down, and breathe in short breaths while you walk.</string>
+    <string name="exg_log_press_steps">1. Lift the log to your lap, then roll it up onto your chest, gripping the neutral handles with your elbows high.\n2. Dip a few centimetres with your knees, trunk upright.\n3. Drive with your legs and press the log overhead, moving your head back and then through under it.\n4. Lock out your arms, then lower the log to your chest and back to the floor.</string>
+    <string name="exg_log_press_tips">• The log is thick: keep it close and move your chin out of its way.\n• Practise the clean to the chest separately; it is often the harder part.</string>
+    <string name="exg_atlas_stone_steps">1. Stand over the stone, feet either side of it, and squat down to wrap your arms and hands under and around it.\n2. Pull it up onto your lap, sitting back with your forearms underneath.\n3. Re-grip higher, then drive your hips forward and up, hugging the stone to your chest.\n4. Roll it onto the platform or over the bar; take it back down and set it on the floor.</string>
+    <string name="exg_atlas_stone_tips">• Use tacky (resin) on the forearms and keep the stone tight to your body.\n• Your back rounds over the stone: start very light and build up over weeks.</string>
+    <string name="exg_tyre_flip_steps">1. Squat down at the tyre with your chest against it and your fingers under its edge, palms up.\n2. Drive up and forward with your legs, as in a deadlift, lifting the near edge.\n3. As it rises, push a knee into it, switch your hands to palms forward and press it over.\n4. Let it fall, step up to it and repeat.</string>
+    <string name="exg_tyre_flip_tips">• Push forward into the tyre rather than lifting it straight up with your back.\n• Never try to catch a tyre that falls back towards you; step away.</string>
+    <string name="exg_sandbag_to_shoulder_steps">1. Stand over a sandbag, squat down and wrap your arms under it.\n2. Lift it to your lap, sitting back with your chest against it.\n3. Drive your hips forward explosively and pull the bag up onto one shoulder (or throw it over it).\n4. Let it down to the floor in front of you and repeat to the other shoulder.</string>
+    <string name="exg_sandbag_to_shoulder_tips">• The hips lift the bag; the arms only keep it close.\n• Alternate shoulders so both sides work the same.</string>
+    <!-- Suspension trainer (TRX), bosu, Swiss ball, balance and floor Pilates (1.8) -->
+    <string name="exg_suspension_chest_press_steps">1. Face away from the anchor holding the TRX handles with straight arms in front of your chest.\n2. Walk your feet back and lean forward until your body is straight and at an angle, on your toes.\n3. Bend your elbows and lower your chest between your hands, as in a push-up.\n4. Press back up to straight arms.</string>
+    <string name="exg_suspension_chest_press_tips">• The more you lean, the harder it is: move your feet to set the effort.\n• Keep the straps from rubbing your arms and your hips in line.</string>
+    <string name="exg_suspension_y_raise_steps">1. Face the anchor holding the TRX handles with straight arms in front of you, palms down.\n2. Walk your feet forward and lean back, body straight.\n3. Raise your straight arms up and out into a Y above your head, pulling your body up.\n4. Lower back slowly under control.</string>
+    <string name="exg_suspension_y_raise_tips">• Keep your arms straight and your shoulders down, away from your ears.\n• Stand more upright to make it easier; it works the back of the shoulders and upper back.</string>
+    <string name="exg_suspension_curl_steps">1. Face the anchor holding the TRX handles with straight arms in front of you, palms up.\n2. Walk your feet forward and lean back, body straight.\n3. Curl your hands towards your forehead, keeping your elbows high and still, so your body rises.\n4. Lower back slowly until your arms are straight.</string>
+    <string name="exg_suspension_curl_tips">• Only the elbows bend: don\'t row with your back.\n• Walk your feet further forward to make it harder.</string>
+    <string name="exg_suspension_triceps_extension_steps">1. Face away from the anchor holding the TRX handles above your head, arms straight.\n2. Lean forward on your toes with your body straight.\n3. Bend only your elbows to bring your hands towards your forehead, lowering your body.\n4. Straighten your arms to push back up.</string>
+    <string name="exg_suspension_triceps_extension_tips">• Keep your elbows pointing forward and close together.\n• Start upright and lean more as you get stronger.</string>
+    <string name="exg_suspension_pistol_squat_steps">1. Face the anchor holding the TRX handles with your arms slightly bent.\n2. Stand on one leg with the other leg straight out in front.\n3. Sit down slowly on the standing leg, using the straps only as much as you need.\n4. Push back up to standing; switch legs after the set.</string>
+    <string name="exg_suspension_pistol_squat_tips">• A step towards the free pistol squat: pull less with your arms over time.\n• Keep the heel down and the knee in line with your toes.</string>
+    <string name="exg_suspension_atomic_push_up_steps">1. Put your feet in the TRX foot cradles, hands on the floor under your shoulders, in a high plank.\n2. Do a push-up, lowering your chest towards the floor.\n3. Push back up, then pull your knees in towards your chest.\n4. Straighten your legs back out to the plank and repeat.</string>
+    <string name="exg_suspension_atomic_push_up_tips">• Set the straps so your feet hang a hand\'s length off the floor.\n• Keep your hips level in the plank: don\'t let them sag or rise.</string>
+    <string name="exg_suspension_pike_steps">1. Put your feet in the TRX foot cradles and take a high plank on your hands.\n2. Keeping your legs straight, lift your hips up towards the ceiling.\n3. Fold until your body forms an upside-down V, your feet swinging in under the anchor.\n4. Lower your hips slowly back to the plank.</string>
+    <string name="exg_suspension_pike_tips">• Keep your shoulders over your hands throughout.\n• Bend the knees (a tuck) if you can\'t keep the legs straight yet.</string>
+    <string name="exg_suspension_hamstring_curl_steps">1. Lie on your back with your heels in the TRX foot cradles, under the anchor, arms on the floor.\n2. Lift your hips so your body is straight from shoulders to heels.\n3. Bend your knees and pull your heels towards your glutes, keeping your hips up.\n4. Straighten your legs slowly and repeat.</string>
+    <string name="exg_suspension_hamstring_curl_tips">• Push your hips up as your heels come in.\n• Do it with one leg to make it harder.</string>
+    <string name="exg_suspension_fallout_steps">1. Face away from the anchor holding the TRX handles at chest height, arms straight.\n2. Lean forward onto your toes with your body straight.\n3. Let your straight arms rise overhead as your body falls forward, keeping your abs braced.\n4. Pull your arms back down to bring your body back up.</string>
+    <string name="exg_suspension_fallout_tips">• Go only as far as you can without your lower back arching.\n• Stand more upright to make it easier.</string>
+    <string name="exg_bosu_squat_steps">1. Step onto the dome of a bosu with your feet hip-width apart.\n2. Find your balance with your arms forward.\n3. Squat down slowly, hips back and knees over your toes.\n4. Stand back up without losing your balance.</string>
+    <string name="exg_bosu_squat_tips">• Squat less deep than on the floor until you feel steady.\n• Keep something to hold on to nearby the first times.</string>
+    <string name="exg_bosu_push_up_steps">1. Hold the edges of a bosu, dome side down, or put your hands on the dome.\n2. Walk your feet back into a push-up position, body straight.\n3. Lower your chest towards the bosu, keeping it steady.\n4. Press back up.</string>
+    <string name="exg_bosu_push_up_tips">• The unstable surface works your shoulders and abs more than a normal push-up.\n• Put your knees down to make it easier.</string>
+    <string name="exg_bosu_balance_steps">1. Step onto the middle of the bosu dome with one foot.\n2. Lift the other foot and bend the standing knee slightly.\n3. Hold your balance with your hips level and your eyes on a fixed point.\n4. Hold for your target time, then switch legs.</string>
+    <string name="exg_bosu_balance_tips">• Good for the ankles after a sprain: start on the floor, then move to the bosu.\n• Make it harder by closing your eyes or moving your arms.</string>
+    <string name="exg_swiss_ball_crunch_steps">1. Sit on a Swiss ball and walk your feet forward until your lower back rests on it, feet hip-width apart.\n2. Put your hands behind your head or across your chest.\n3. Curl your shoulders up towards your hips, squeezing your abs.\n4. Lower back over the ball under control, stretching your abs.</string>
+    <string name="exg_swiss_ball_crunch_tips">• The ball lets you start the crunch from a stretch, which a floor crunch can\'t.\n• Don\'t pull on your neck with your hands.</string>
+    <string name="exg_swiss_ball_pike_steps">1. Take a high plank with your hands on the floor and your shins on a Swiss ball.\n2. Keeping your legs straight, lift your hips towards the ceiling, rolling the ball in towards your hands.\n3. Fold until your body forms an upside-down V, toes on the ball.\n4. Lower your hips slowly back to the plank.</string>
+    <string name="exg_swiss_ball_pike_tips">• Start with knee tucks (bending the knees to the chest) if the pike is too hard.\n• Keep your shoulders over your hands.</string>
+    <string name="exg_swiss_ball_hamstring_curl_steps">1. Lie on your back with your heels on a Swiss ball and your arms on the floor.\n2. Lift your hips so your body is straight from shoulders to heels.\n3. Bend your knees and roll the ball towards your glutes, keeping your hips up.\n4. Roll it back out slowly until your legs are straight.</string>
+    <string name="exg_swiss_ball_hamstring_curl_tips">• Press your arms into the floor to keep the ball from rolling sideways.\n• Make it harder with one leg.</string>
+    <string name="exg_swiss_ball_pass_steps">1. Lie on your back holding a Swiss ball overhead in your hands, legs straight.\n2. Lift your arms and legs together and pass the ball from your hands to your feet above your hips.\n3. Lower your arms and legs, with the ball held between your ankles, towards the floor.\n4. Lift them again and pass the ball back to your hands.</string>
+    <string name="exg_swiss_ball_pass_tips">• Keep your lower back pressed into the floor; don\'t lower the legs so far that it lifts.\n• Each pass counts as one repetition.</string>
+    <string name="exg_stir_the_pot_steps">1. Kneel behind a Swiss ball and rest your forearms on it, then walk your feet back into a plank.\n2. Brace your abs and glutes, body straight.\n3. Draw small circles with your forearms, as if stirring a pot, keeping your hips still.\n4. Keep circling for your target time, changing direction halfway.</string>
+    <string name="exg_stir_the_pot_tips">• Small circles are enough; bigger ones are harder.\n• Feet wider apart make it more stable.</string>
+    <string name="exg_single_leg_balance_steps">1. Stand tall with your hands on your hips.\n2. Lift one foot off the floor, bending that knee to hip height.\n3. Hold still on the standing leg, knee soft and eyes on a fixed point.\n4. Hold for your target time, then switch legs.</string>
+    <string name="exg_single_leg_balance_tips">• Do it barefoot to work the foot and ankle more.\n• Close your eyes or stand on a cushion to make it harder.</string>
+    <string name="exg_crow_pose_steps">1. Squat with your hands flat on the floor shoulder-width apart, fingers spread.\n2. Bend your elbows a little and place your knees on the backs of your upper arms.\n3. Lean forward until your feet lift off the floor, balancing on your hands.\n4. Hold for your target time, then lower your feet.</string>
+    <string name="exg_crow_pose_tips">• Put a cushion in front of your face the first times.\n• Look slightly forward, not between your feet.</string>
+    <string name="exg_v_up_steps">1. Lie on your back with your arms straight overhead and your legs straight.\n2. In one movement, lift your legs and your trunk together.\n3. Reach your hands towards your feet, balancing on your hips in a V.\n4. Lower back down slowly without letting your feet hit the floor.</string>
+    <string name="exg_v_up_tips">• Bend your knees (a tuck-up) if your back arches when you lower.\n• Breathe out on the way up.</string>
+    <string name="exg_pilates_hundred_steps">1. Lie on your back and bring your knees over your hips, or straighten your legs up at an angle.\n2. Curl your head and shoulders off the mat and reach your arms long beside your hips.\n3. Pump your straight arms up and down with small beats, breathing in for five and out for five.\n4. Keep going for ten breaths (100 beats), then rest your head and feet down.</string>
+    <string name="exg_pilates_hundred_tips">• Keep your lower back on the mat; raise the legs higher if it lifts.\n• Look at your belly, not the ceiling, to keep your neck relaxed.</string>
+    <string name="exg_pilates_roll_up_steps">1. Lie on your back with your legs straight and your arms reaching overhead.\n2. Bring your arms up and curl your head, shoulders and back off the mat one vertebra at a time.\n3. Roll all the way up and reach forward over your legs, back rounded.\n4. Roll back down slowly, vertebra by vertebra, arms ending overhead.</string>
+    <string name="exg_pilates_roll_up_tips">• Move slowly and smoothly; don\'t jerk up with your arms.\n• Bend your knees a little if you can\'t roll up with the legs straight.</string>
+    <string name="exg_pilates_single_leg_stretch_steps">1. Lie on your back, curl your head and shoulders up and hug one knee to your chest.\n2. Stretch the other leg out long, low over the mat.\n3. Switch legs: pull the other knee in as you stretch the first leg out.\n4. Keep switching smoothly, one hand on the ankle and the other on the knee of the bent leg.</string>
+    <string name="exg_pilates_single_leg_stretch_tips">• Your trunk stays still and curled up while only the legs move.\n• Each pair of switches counts as one repetition.</string>
+    <string name="exg_pilates_double_leg_stretch_steps">1. Lie on your back, curl your head and shoulders up and hug both knees to your chest.\n2. Breathe in and stretch your arms overhead and your legs out long at the same time.\n3. Circle your arms out to the sides and back round.\n4. Breathe out as you hug your knees in again.</string>
+    <string name="exg_pilates_double_leg_stretch_tips">• Stretch only as low as you can keep your lower back on the mat.\n• Keep looking at your belly as you stretch out.</string>
+    <string name="exg_pilates_swimming_steps">1. Lie face down with your arms stretched out in front and your legs long behind.\n2. Lift your arms, chest and legs a little off the mat, eyes on the mat.\n3. Flutter opposite arm and leg up and down in small, quick movements, as if swimming.\n4. Keep going for your target time, breathing steadily, then lower down.</string>
+    <string name="exg_pilates_swimming_tips">• Lengthen through your fingers and toes rather than lifting high.\n• Keep your neck long; don\'t throw your head back.</string>
+    <string name="exg_pilates_teaser_steps">1. Lie on your back with your legs together, lifted at an angle, and your arms overhead.\n2. Bring your arms forward and roll your trunk up off the mat one vertebra at a time.\n3. Balance on your sit bones in a V, reaching your hands towards your feet.\n4. Roll back down slowly, keeping the legs up.</string>
+    <string name="exg_pilates_teaser_tips">• Bend your knees at 90 degrees (tabletop) to make it easier.\n• The roll-up comes before the teaser: master it first.</string>
+    <string name="exg_pilates_side_kick_steps">1. Lie on your side in a straight line, head resting on your lower arm, the top hand on the mat in front.\n2. Lift the top leg to hip height.\n3. Kick it forward with a double pulse, then sweep it back behind you, keeping your trunk still.\n4. Repeat, then switch sides.</string>
+    <string name="exg_pilates_side_kick_tips">• Only the leg moves; your hips stay stacked one above the other.\n• Move the feet slightly forward of the hips for a stable base.</string>
+    <string name="exg_pilates_shoulder_bridge_steps">1. Lie on your back with your knees bent, feet flat and hip-width apart, arms by your sides.\n2. Roll your hips up off the mat one vertebra at a time until you\'re resting on your shoulders.\n3. Lift one leg straight up towards the ceiling, lower it level with the other thigh and lift it again.\n4. Put the foot down, roll your spine back to the mat and repeat with the other leg.</string>
+    <string name="exg_pilates_shoulder_bridge_tips">• Keep your hips level as the leg moves.\n• Do only the bridge, without the leg, to start.</string>
+    <!-- Combat drills (1.8) -->
+    <string name="exg_heavy_bag_steps">1. Put on hand wraps and bag gloves and stand in your guard an arm\'s length from the bag.\n2. Throw jabs, crosses and hooks, turning your hips and back foot into each punch.\n3. Move around the bag between combinations, hands back to your chin after every punch.\n4. Work in rounds of your target time, usually 2 or 3 minutes with a minute\'s rest.</string>
+    <string name="exg_heavy_bag_tips">• Always wear wraps: a punch with a bent wrist can injure it.\n• Hit with the first two knuckles and breathe out with every punch.</string>
+    <string name="exg_speed_bag_steps">1. Set the bag so its bottom is at the height of your mouth and stand facing it, fists up by your chin.\n2. Hit the bag with the side of your fist in a small forward circle.\n3. Let it bounce off the board three times and hit it again as it comes back.\n4. Alternate hands in a steady rhythm for your target time.</string>
+    <string name="exg_speed_bag_tips">• Rhythm matters more than force: hit lightly and keep your shoulders relaxed.\n• Keep your elbows up; the small circles come from the shoulders.</string>
+    <string name="exg_double_end_bag_steps">1. Stand in your guard in front of the double-end bag, the ball at the height of your face.\n2. Throw a jab and let the ball fly back on its cords.\n3. Slip or block as it comes back at you, then punch again.\n4. Combine jabs and crosses in rounds of your target time.</string>
+    <string name="exg_double_end_bag_tips">• Start with single, light jabs until you can read the rebound.\n• Keep your eyes on the ball and your chin down.</string>
+    <string name="exg_pad_work_steps">1. Put on wraps and gloves; your partner holds the focus mitts at the height of your face.\n2. Stand in your guard and throw the punch or combination your partner calls.\n3. Hit the centre of each mitt and bring your hands back to the guard.\n4. Work in rounds of your target time, then swap roles.</string>
+    <string name="exg_pad_work_tips">• The pad holder meets each punch with a short push, never by reaching out to the fist.\n• Agree the calls (1 jab, 2 cross, 3 hook) before you start.</string>
+    <string name="exg_shadow_hooks_steps">1. Stand in your guard: feet staggered, knees soft, fists up by your chin.\n2. Throw a lead hook: turn your hips and front foot, swinging the fist in a short arc with the elbow at shoulder height.\n3. Bring it back to the guard and throw the rear hook the same way, pivoting on the back foot.\n4. Keep alternating, light on your feet, for your target time.</string>
+    <string name="exg_shadow_hooks_tips">• The power comes from turning the hips; the arm stays bent at about 90 degrees.\n• Keep the other hand guarding your chin.</string>
+    <string name="exg_shadow_uppercuts_steps">1. Stand in your guard, knees soft, fists up by your chin.\n2. Dip slightly towards the punching side by bending your knees.\n3. Drive up with your legs and hips and send the fist upwards in a short arc, palm facing you.\n4. Bring it back to the guard and throw with the other hand, alternating for your target time.</string>
+    <string name="exg_shadow_uppercuts_tips">• Don\'t drop your hand to wind up; the punch starts from the guard.\n• It\'s a short punch: the fist ends at about chin height.</string>
+    <string name="exg_dumbbell_punches_steps">1. Hold a light dumbbell in each hand at your chin, feet staggered in a guard.\n2. Punch one hand straight out in front at shoulder height.\n3. Bring it back to your chin and punch with the other hand.\n4. Keep alternating quickly for your target time.</string>
+    <string name="exg_dumbbell_punches_tips">• Use 0.5 to 2 kg: heavier weights strain the elbows and slow the punch.\n• Don\'t lock the elbow at the end of each punch.</string>
+    <string name="exg_bag_kicks_steps">1. Stand in your guard a leg\'s length from the heavy bag.\n2. Pivot on the ball of your front foot, turning your heel towards the bag.\n3. Swing the back leg round in an arc and hit the bag with your shin, turning your hips over.\n4. Bring the leg back to the guard; alternate legs or finish the round and switch.</string>
+    <string name="exg_bag_kicks_tips">• Kick with the shin, not the foot, and keep your hands up as you kick.\n• Start at waist height; high kicks need flexibility first.</string>
+    <string name="exg_knee_strikes_steps">1. Stand close to the heavy bag and hold it with both hands behind it, as in a clinch.\n2. Pull the bag towards you and drive one knee up into it, rising on the toes of your standing foot.\n3. Push your hips forward into the strike, then step the foot back down.\n4. Alternate knees for your target time.</string>
+    <string name="exg_knee_strikes_tips">• The hips drive the knee: lean back slightly as it goes in.\n• Point your toes down to strike with the knee, not the thigh.</string>
+    <string name="exg_sprawl_steps">1. Stand in a fighting stance, knees bent and hands up.\n2. Drop your hands to the floor and shoot your legs back.\n3. Drop your hips to the floor, chest up and weight on your hips, legs wide.\n4. Bring your feet back under you and jump up to the stance.</string>
+    <string name="exg_sprawl_tips">• It\'s the defence against a takedown: make it fast and explosive.\n• Land with your hips, not your knees, and your head up.</string>
     <!-- Built-in exercise and machine names: ex_<catalog id> (training/catalog/ExerciseCatalog.kt) -->
     <!-- Machines -->
     <string name="ex_machine_chest_press">Chest press machine</string>
@@ -2318,6 +2607,99 @@
     <string name="ex_treadmill_walk">Treadmill walk</string>
     <string name="ex_incline_treadmill_walk">Incline treadmill walk</string>
     <string name="ex_curved_treadmill">Curved treadmill (self-powered)</string>
+    <!-- Advanced calisthenics (1.8) -->
+    <string name="ex_bar_muscle_up">Bar muscle-up</string>
+    <string name="ex_ring_muscle_up">Ring muscle-up</string>
+    <string name="ex_wall_handstand">Wall handstand</string>
+    <string name="ex_handstand">Freestanding handstand</string>
+    <string name="ex_wall_handstand_push_up">Wall handstand push-up</string>
+    <string name="ex_tuck_front_lever">Tuck front lever</string>
+    <string name="ex_front_lever">Front lever</string>
+    <string name="ex_tuck_back_lever">Tuck back lever</string>
+    <string name="ex_back_lever">Back lever</string>
+    <string name="ex_tuck_planche">Tuck planche</string>
+    <string name="ex_straddle_planche">Straddle planche</string>
+    <string name="ex_human_flag">Human flag</string>
+    <string name="ex_tuck_l_sit">Tuck L-sit</string>
+    <string name="ex_archer_pull_up">Archer pull-up</string>
+    <string name="ex_typewriter_pull_up">Typewriter pull-up</string>
+    <string name="ex_one_arm_push_up">One-arm push-up</string>
+    <string name="ex_shrimp_squat">Shrimp squat</string>
+    <string name="ex_skin_the_cat">Skin the cat (rings)</string>
+    <string name="ex_ring_support_hold">Ring support hold</string>
+    <string name="ex_ring_push_up">Ring push-up</string>
+    <string name="ex_hollow_body_rock">Hollow body rock</string>
+    <string name="ex_pseudo_planche_push_up">Pseudo planche push-up</string>
+    <string name="ex_clap_push_up">Clap push-up</string>
+    <string name="ex_hanging_windshield_wiper">Hanging windshield wiper</string>
+    <!-- Olympic lifts, kettlebells, strongman and CrossFit-style work (1.8) -->
+    <string name="ex_push_jerk">Push jerk</string>
+    <string name="ex_split_jerk">Split jerk</string>
+    <string name="ex_clean_and_jerk">Clean and jerk</string>
+    <string name="ex_squat_clean">Squat clean</string>
+    <string name="ex_hang_power_snatch">Hang power snatch</string>
+    <string name="ex_squat_snatch">Squat snatch</string>
+    <string name="ex_snatch_balance">Snatch balance</string>
+    <string name="ex_clean_pull">Clean pull</string>
+    <string name="ex_snatch_pull">Snatch pull</string>
+    <string name="ex_trap_bar_deadlift">Trap bar deadlift</string>
+    <string name="ex_kettlebell_halo">Kettlebell halo</string>
+    <string name="ex_kettlebell_bottoms_up_press">Kettlebell bottoms-up press</string>
+    <string name="ex_double_kettlebell_front_squat">Double kettlebell front squat</string>
+    <string name="ex_single_arm_kettlebell_swing">One-arm kettlebell swing</string>
+    <string name="ex_american_kettlebell_swing">American kettlebell swing</string>
+    <string name="ex_kettlebell_overhead_carry">Overhead kettlebell carry</string>
+    <string name="ex_renegade_row">Renegade row</string>
+    <string name="ex_devil_press">Devil press</string>
+    <string name="ex_man_maker">Man maker</string>
+    <string name="ex_dumbbell_thruster">Dumbbell thruster</string>
+    <string name="ex_double_unders">Double-unders</string>
+    <string name="ex_burpee_box_jump_over">Burpee box jump-over</string>
+    <string name="ex_yoke_carry">Yoke carry</string>
+    <string name="ex_log_press">Log press</string>
+    <string name="ex_atlas_stone">Atlas stone</string>
+    <string name="ex_tyre_flip">Tyre flip</string>
+    <string name="ex_sandbag_to_shoulder">Sandbag to shoulder</string>
+    <!-- Suspension trainer (TRX), bosu, Swiss ball, balance and floor Pilates (1.8) -->
+    <string name="ex_suspension_chest_press">TRX chest press</string>
+    <string name="ex_suspension_y_raise">TRX Y raise</string>
+    <string name="ex_suspension_curl">TRX biceps curl</string>
+    <string name="ex_suspension_triceps_extension">TRX triceps extension</string>
+    <string name="ex_suspension_pistol_squat">TRX pistol squat</string>
+    <string name="ex_suspension_atomic_push_up">TRX atomic push-up</string>
+    <string name="ex_suspension_pike">TRX pike</string>
+    <string name="ex_suspension_hamstring_curl">TRX hamstring curl</string>
+    <string name="ex_suspension_fallout">TRX fallout</string>
+    <string name="ex_bosu_squat">Bosu squat</string>
+    <string name="ex_bosu_push_up">Bosu push-up</string>
+    <string name="ex_bosu_balance">Single-leg balance on a bosu</string>
+    <string name="ex_swiss_ball_crunch">Swiss ball crunch</string>
+    <string name="ex_swiss_ball_pike">Swiss ball pike</string>
+    <string name="ex_swiss_ball_hamstring_curl">Swiss ball hamstring curl</string>
+    <string name="ex_swiss_ball_pass">Swiss ball V-pass</string>
+    <string name="ex_stir_the_pot">Stir the pot (Swiss ball)</string>
+    <string name="ex_single_leg_balance">Single-leg balance</string>
+    <string name="ex_crow_pose">Crow pose</string>
+    <string name="ex_v_up">V-up</string>
+    <string name="ex_pilates_hundred">Pilates hundred</string>
+    <string name="ex_pilates_roll_up">Pilates roll-up</string>
+    <string name="ex_pilates_single_leg_stretch">Pilates single-leg stretch</string>
+    <string name="ex_pilates_double_leg_stretch">Pilates double-leg stretch</string>
+    <string name="ex_pilates_swimming">Pilates swimming</string>
+    <string name="ex_pilates_teaser">Pilates teaser</string>
+    <string name="ex_pilates_side_kick">Pilates side kick</string>
+    <string name="ex_pilates_shoulder_bridge">Pilates shoulder bridge</string>
+    <!-- Combat drills (1.8) -->
+    <string name="ex_heavy_bag">Heavy bag</string>
+    <string name="ex_speed_bag">Speed bag</string>
+    <string name="ex_double_end_bag">Double-end bag</string>
+    <string name="ex_pad_work">Pad work (focus mitts)</string>
+    <string name="ex_shadow_hooks">Hooks (shadow)</string>
+    <string name="ex_shadow_uppercuts">Uppercuts (shadow)</string>
+    <string name="ex_dumbbell_punches">Dumbbell punches</string>
+    <string name="ex_bag_kicks">Roundhouse kicks on the bag</string>
+    <string name="ex_knee_strikes">Knee strikes on the bag</string>
+    <string name="ex_sprawl">Sprawl</string>
     <!-- Food catalog names (app/src/main/assets/food/foods.tsv): food_group_<group> and food_<id>. -->
     <!-- Generated by tools/food-db/build.py from tools/food-db/mapping.txt: edit the names there, then rebuild. -->
     <!-- Food groups -->
@@ -2336,12 +2718,13 @@
     <string name="food_group_fast_food">Fast food</string>
     <string name="food_group_snacks">Snacks</string>
     <string name="food_group_sauces">Sauces and dressings</string>
+    <string name="food_group_supplements">Supplements and sports nutrition</string>
     <!-- Fruit -->
     <string name="food_apple">Apple</string>
     <string name="food_pear">Pear</string>
     <string name="food_banana">Banana</string>
     <string name="food_orange">Orange</string>
-    <string name="food_mandarin">Mandarin</string>
+    <string name="food_mandarin">Mandarin or clementine</string>
     <string name="food_lemon">Lemon</string>
     <string name="food_lime">Lime</string>
     <string name="food_grapefruit">Grapefruit</string>
@@ -2381,6 +2764,20 @@
     <string name="food_dried_apricots">Dried apricots</string>
     <string name="food_prunes">Prunes</string>
     <string name="food_peaches_in_syrup">Peaches in syrup</string>
+    <string name="food_guava">Guava</string>
+    <string name="food_red_currants">Redcurrants</string>
+    <string name="food_dried_figs">Dried figs</string>
+    <string name="food_plantain">Plantain, cooked</string>
+    <string name="food_canned_pineapple">Canned pineapple in juice</string>
+    <string name="food_fruit_cocktail">Fruit cocktail in syrup</string>
+    <string name="food_applesauce">Apple compote</string>
+    <string name="food_dried_cranberries">Dried cranberries</string>
+    <string name="food_goji_berries">Goji berries</string>
+    <string name="food_desiccated_coconut">Desiccated coconut</string>
+    <string name="food_cantaloupe">Cantaloupe melon</string>
+    <string name="food_baked_apple">Baked apple</string>
+    <string name="food_flat_peach">Flat peach</string>
+    <string name="food_prickly_pear">Prickly pear</string>
     <!-- Vegetables -->
     <string name="food_tomato">Tomato</string>
     <string name="food_cherry_tomatoes">Cherry tomatoes</string>
@@ -2433,6 +2830,28 @@
     <string name="food_canned_tomato">Canned tomatoes</string>
     <string name="food_fennel">Fennel</string>
     <string name="food_roasted_peppers">Roasted peppers</string>
+    <string name="food_turnip">Turnip, cooked</string>
+    <string name="food_parsnip">Parsnip</string>
+    <string name="food_cardoon">Cardoon, cooked</string>
+    <string name="food_watercress">Watercress</string>
+    <string name="food_lambs_lettuce">Lamb\'s lettuce</string>
+    <string name="food_escarole">Escarole</string>
+    <string name="food_red_cabbage">Red cabbage, cooked</string>
+    <string name="food_oyster_mushrooms">Oyster mushrooms</string>
+    <string name="food_shiitake">Shiitake mushrooms, cooked</string>
+    <string name="food_boletus">Porcini mushrooms</string>
+    <string name="food_mushrooms_raw">Button mushrooms, raw</string>
+    <string name="food_spinach_raw">Baby spinach, raw</string>
+    <string name="food_turnip_greens">Turnip greens, cooked</string>
+    <string name="food_palm_hearts">Hearts of palm</string>
+    <string name="food_bamboo_shoots">Bamboo shoots</string>
+    <string name="food_tomato_paste">Tomato paste</string>
+    <string name="food_cassava">Cassava, cooked</string>
+    <string name="food_ginger">Fresh ginger</string>
+    <string name="food_parsley">Parsley</string>
+    <string name="food_basil">Basil</string>
+    <string name="food_nori">Nori seaweed, dried</string>
+    <string name="food_kimchi">Kimchi</string>
     <!-- Bread, cereals and pasta -->
     <string name="food_bread">White bread</string>
     <string name="food_baguette">Baguette</string>
@@ -2473,6 +2892,22 @@
     <string name="food_corn_starch">Cornflour</string>
     <string name="food_puff_pastry">Puff pastry, raw</string>
     <string name="food_polenta">Polenta</string>
+    <string name="food_seeded_bread">Seeded bread</string>
+    <string name="food_bulgur">Bulgur, cooked</string>
+    <string name="food_oat_bran">Oat bran</string>
+    <string name="food_oat_flour">Oat flour</string>
+    <string name="food_wholemeal_flour">Wholemeal flour</string>
+    <string name="food_rice_noodles">Rice noodles, cooked</string>
+    <string name="food_corn_cakes">Corn cakes</string>
+    <string name="food_chocolate_rice_cakes">Chocolate rice cakes</string>
+    <string name="food_overnight_oats">Overnight oats</string>
+    <string name="food_protein_porridge">Protein porridge</string>
+    <string name="food_rice_flour">Rice flour (cream of rice)</string>
+    <string name="food_corn_flour">Maize flour</string>
+    <string name="food_millet">Millet, cooked</string>
+    <string name="food_buckwheat">Buckwheat, cooked</string>
+    <string name="food_basmati_rice">Basmati rice, cooked</string>
+    <string name="food_tortellini">Tortellini (cheese filling), cooked</string>
     <!-- Legumes -->
     <string name="food_edamame">Edamame</string>
     <string name="food_chickpeas">Chickpeas</string>
@@ -2488,6 +2923,14 @@
     <string name="food_chickpeas_dry">Chickpeas, dry</string>
     <string name="food_white_beans_dry">White beans, dry</string>
     <string name="food_lentils_vegetable">Lentil stew without meat</string>
+    <string name="food_red_lentils">Red lentils, cooked</string>
+    <string name="food_pinto_beans">Pinto beans, cooked</string>
+    <string name="food_split_peas">Split peas, cooked</string>
+    <string name="food_tempeh">Tempeh</string>
+    <string name="food_seitan">Seitan</string>
+    <string name="food_textured_soy">Textured soy protein, dry</string>
+    <string name="food_veggie_burger">Veggie burger (soy)</string>
+    <string name="food_lupini">Lupini beans</string>
     <!-- Meat and cold cuts -->
     <string name="food_steak">Steak</string>
     <string name="food_grilled_chicken">Grilled chicken breast</string>
@@ -2546,6 +2989,30 @@
     <string name="food_tripe">Beef tripe, cooked</string>
     <string name="food_sobrasada">Sobrasada</string>
     <string name="food_veal_escalope_raw">Veal escalope, raw</string>
+    <string name="food_entrecote">Rib steak (entrecôte)</string>
+    <string name="food_beef_tenderloin">Beef tenderloin steak</string>
+    <string name="food_veal_fillet">Veal steak, grilled</string>
+    <string name="food_beef_liver">Beef liver, cooked</string>
+    <string name="food_chicken_liver">Chicken liver, cooked</string>
+    <string name="food_oxtail">Oxtail, cooked</string>
+    <string name="food_quail">Quail, cooked</string>
+    <string name="food_kid">Kid goat, roasted</string>
+    <string name="food_duck_meat">Duck meat without skin</string>
+    <string name="food_chicken_drumstick">Chicken drumstick, roasted</string>
+    <string name="food_minced_pork">Minced pork, cooked</string>
+    <string name="food_minced_turkey">Minced turkey, cooked</string>
+    <string name="food_cecina">Cecina (cured beef)</string>
+    <string name="food_foie_gras">Foie gras</string>
+    <string name="food_butifarra">Catalan sausage (butifarra)</string>
+    <string name="food_pollo_al_ajillo">Garlic chicken</string>
+    <string name="food_conejo_al_ajillo">Garlic rabbit</string>
+    <string name="food_flamenquin">Flamenquín</string>
+    <string name="food_cachopo">Cachopo</string>
+    <string name="food_san_jacobo">San Jacobo (breaded ham and cheese)</string>
+    <string name="food_breaded_chicken">Breaded chicken breast</string>
+    <string name="food_meatloaf">Meatloaf</string>
+    <string name="food_venison">Venison, roasted</string>
+    <string name="food_wild_boar">Wild boar, roasted</string>
     <!-- Fish and seafood -->
     <string name="food_salmon">Salmon</string>
     <string name="food_smoked_salmon">Smoked salmon</string>
@@ -2584,6 +3051,37 @@
     <string name="food_anchovy_raw">Anchovies, raw</string>
     <string name="food_boiled_octopus">Boiled octopus</string>
     <string name="food_breaded_fish">Breaded fish, fried</string>
+    <string name="food_monkfish">Monkfish, grilled</string>
+    <string name="food_turbot">Turbot, baked</string>
+    <string name="food_pangasius">Pangasius, cooked</string>
+    <string name="food_swordfish">Swordfish, grilled</string>
+    <string name="food_red_mullet">Red mullet</string>
+    <string name="food_salmon_raw">Salmon, raw</string>
+    <string name="food_tuna_raw">Tuna, raw</string>
+    <string name="food_cod_raw">Cod, raw</string>
+    <string name="food_cuttlefish">Cuttlefish, raw</string>
+    <string name="food_langoustines">Langoustines, boiled</string>
+    <string name="food_scallops">Scallops</string>
+    <string name="food_cockles">Cockles</string>
+    <string name="food_canned_mackerel">Canned mackerel</string>
+    <string name="food_pulpo_con_cachelos">Galician octopus with potatoes</string>
+    <string name="food_bacalao_pil_pil">Cod pil-pil</string>
+    <string name="food_bacalao_vizcaina">Cod Biscay style</string>
+    <string name="food_merluza_salsa_verde">Hake in green sauce</string>
+    <string name="food_merluza_romana">Battered hake</string>
+    <string name="food_boquerones_fritos">Fried anchovies</string>
+    <string name="food_chopitos">Fried baby squid</string>
+    <string name="food_sepia_a_la_plancha">Griddled cuttlefish</string>
+    <string name="food_atun_encebollado">Tuna with onions</string>
+    <string name="food_salpicon">Seafood salad (salpicón)</string>
+    <string name="food_calamares_en_su_tinta">Squid in its ink</string>
+    <string name="food_mejillones_marinera">Mussels in marinara sauce</string>
+    <string name="food_zarzuela">Catalan fish and seafood stew</string>
+    <string name="food_gambas_plancha">Griddled prawns</string>
+    <string name="food_nigiri_salmon">Salmon nigiri</string>
+    <string name="food_maki_roll">Salmon maki</string>
+    <string name="food_horse_mackerel">Horse mackerel</string>
+    <string name="food_smoked_herring">Smoked herring</string>
     <!-- Eggs -->
     <string name="food_egg">Egg</string>
     <string name="food_fried_egg">Fried egg</string>
@@ -2597,6 +3095,13 @@
     <string name="food_egg_yolk">Egg yolk</string>
     <string name="food_omelette_ham_cheese">Ham and cheese omelette</string>
     <string name="food_shakshuka">Shakshuka</string>
+    <string name="food_quail_eggs">Quail eggs</string>
+    <string name="food_huevos_a_la_flamenca">Flamenco eggs</string>
+    <string name="food_revuelto_setas">Scrambled eggs with mushrooms</string>
+    <string name="food_revuelto_gambas">Scrambled eggs with prawns</string>
+    <string name="food_egg_white_omelette">Egg white omelette</string>
+    <string name="food_huevos_rancheros">Huevos rancheros</string>
+    <string name="food_tortilla_calabacin">Courgette omelette</string>
     <!-- Dairy -->
     <string name="food_milk">Semi-skimmed milk</string>
     <string name="food_whole_milk">Whole milk</string>
@@ -2627,8 +3132,20 @@
     <string name="food_butter">Butter</string>
     <string name="food_whipped_cream">Whipped cream</string>
     <string name="food_cooking_cream">Cooking cream</string>
-    <string name="food_whey_protein">Whey protein powder</string>
     <string name="food_condensed_milk">Condensed milk</string>
+    <string name="food_lactose_free_milk">Lactose-free milk</string>
+    <string name="food_heavy_cream" formatted="false">Whipping cream (30% fat)</string>
+    <string name="food_mascarpone">Mascarpone</string>
+    <string name="food_gouda">Gouda cheese</string>
+    <string name="food_emmental">Emmental cheese</string>
+    <string name="food_cheddar">Cheddar cheese</string>
+    <string name="food_provolone">Provolone</string>
+    <string name="food_burrata">Burrata</string>
+    <string name="food_light_cream_cheese">Light cream cheese</string>
+    <string name="food_quark" formatted="false">Quark, 0% fat</string>
+    <string name="food_soy_yogurt">Soy yogurt</string>
+    <string name="food_cuajada">Sheep\'s milk curd (cuajada)</string>
+    <string name="food_salted_butter">Salted butter</string>
     <!-- Oils, fats and nuts -->
     <string name="food_olives">Olives</string>
     <string name="food_black_olives">Black olives</string>
@@ -2649,6 +3166,18 @@
     <string name="food_chia_seeds">Chia seeds</string>
     <string name="food_flax_seeds">Flax seeds</string>
     <string name="food_peanut_butter">Peanut butter</string>
+    <string name="food_coconut_oil">Coconut oil</string>
+    <string name="food_sesame_oil">Sesame oil</string>
+    <string name="food_lard">Lard</string>
+    <string name="food_coconut_milk">Coconut milk</string>
+    <string name="food_roasted_almonds">Roasted salted almonds</string>
+    <string name="food_macadamia">Macadamia nuts</string>
+    <string name="food_pecans">Pecans</string>
+    <string name="food_brazil_nuts">Brazil nuts</string>
+    <string name="food_pine_nuts">Pine nuts</string>
+    <string name="food_sesame_seeds">Sesame seeds</string>
+    <string name="food_tahini">Tahini</string>
+    <string name="food_almond_butter">Almond butter</string>
     <!-- Sweets and desserts -->
     <string name="food_sugar">Sugar</string>
     <string name="food_honey">Honey</string>
@@ -2717,12 +3246,47 @@
     <string name="food_sorbet">Sorbet or slush</string>
     <string name="food_churros_with_sugar">Churros with sugar</string>
     <string name="food_ensaimada">Ensaïmada</string>
+    <string name="food_butter_biscuits">Butter biscuits</string>
+    <string name="food_wholemeal_biscuits">Wholemeal biscuits (digestive type)</string>
+    <string name="food_chocolate_biscuits">Chocolate-coated biscuits</string>
+    <string name="food_sandwich_cookies">Cream-filled chocolate biscuits</string>
+    <string name="food_chocolate_wafer">Chocolate wafer</string>
+    <string name="food_ladyfingers">Ladyfingers</string>
+    <string name="food_pain_aux_raisins">Raisin swirl pastry</string>
+    <string name="food_apple_turnover">Apple turnover</string>
+    <string name="food_chocolate_donut">Chocolate doughnut</string>
+    <string name="food_lemon_tart">Lemon tart</string>
+    <string name="food_marzipan">Marzipan</string>
+    <string name="food_sugared_almonds">Sugared almonds</string>
+    <string name="food_white_chocolate">White chocolate</string>
+    <string name="food_chocolate_almonds">Milk chocolate with nuts</string>
+    <string name="food_chocolate_biscuit_bar">Chocolate bar with biscuit</string>
+    <string name="food_chocolate_nougat_bar">Chocolate nougat bar</string>
+    <string name="food_coconut_bar">Chocolate coconut bar</string>
+    <string name="food_liquorice">Liquorice</string>
+    <string name="food_marshmallows">Marshmallows</string>
+    <string name="food_hard_candy">Boiled sweets</string>
+    <string name="food_ice_cream_bar">Chocolate-coated ice cream bar</string>
+    <string name="food_reduced_sugar_jam">Reduced-sugar jam</string>
+    <string name="food_brown_sugar">Brown sugar</string>
+    <string name="food_maple_syrup">Maple syrup</string>
+    <string name="food_baklava">Baklava</string>
+    <string name="food_tarta_de_santiago">Santiago almond cake</string>
+    <string name="food_polvorones">Polvorones</string>
+    <string name="food_roscon">Roscón de Reyes with cream</string>
+    <string name="food_leche_frita">Fried milk custard</string>
+    <string name="food_protein_pancakes">Oat and egg white pancakes</string>
+    <string name="food_tocino_de_cielo">Tocino de cielo (egg yolk custard)</string>
+    <string name="food_coulant">Chocolate lava cake</string>
+    <string name="food_pestinos">Pestiños (honey fritters)</string>
+    <string name="food_rosquillas">Rosquillas (Spanish doughnuts)</string>
+    <string name="food_tarta_de_la_abuela">Biscuit, custard and chocolate cake</string>
     <!-- Drinks -->
     <string name="food_water">Water</string>
     <string name="food_sparkling_water">Sparkling water</string>
     <string name="food_espresso">Espresso</string>
     <string name="food_black_coffee">Americano</string>
-    <string name="food_coffee_with_milk">Coffee with milk</string>
+    <string name="food_coffee_with_milk">Coffee with milk or latte</string>
     <string name="food_cortado">Cortado</string>
     <string name="food_iced_coffee">Iced coffee</string>
     <string name="food_tea">Tea</string>
@@ -2778,6 +3342,42 @@
     <string name="food_brandy">Brandy</string>
     <string name="food_clara">Shandy</string>
     <string name="food_kalimotxo">Kalimotxo</string>
+    <string name="food_orange_soda">Orange soda</string>
+    <string name="food_lemon_soda">Lemon soda</string>
+    <string name="food_soft_drink_zero">Sugar-free soft drink</string>
+    <string name="food_tonic_zero">Sugar-free tonic water</string>
+    <string name="food_energy_drink_zero">Sugar-free energy drink</string>
+    <string name="food_sports_drink_zero">Low-calorie sports drink</string>
+    <string name="food_ginger_ale">Ginger ale</string>
+    <string name="food_flavoured_water">Flavoured water</string>
+    <string name="food_grape_juice">Grape juice</string>
+    <string name="food_grapefruit_juice">Grapefruit juice</string>
+    <string name="food_tomato_juice">Tomato juice</string>
+    <string name="food_coconut_water">Coconut water</string>
+    <string name="food_kombucha">Kombucha</string>
+    <string name="food_rice_drink">Rice drink</string>
+    <string name="food_coconut_drink">Coconut drink</string>
+    <string name="food_mocha">Mocha</string>
+    <string name="food_strong_beer">Strong beer (abbey, craft)</string>
+    <string name="food_dark_beer">Dark beer</string>
+    <string name="food_light_beer">Light beer</string>
+    <string name="food_sweet_wine">Sweet wine (muscat)</string>
+    <string name="food_sherry">Dry sherry (fino, manzanilla)</string>
+    <string name="food_liqueur">Liqueur</string>
+    <string name="food_cream_liqueur">Cream liqueur</string>
+    <string name="food_orujo">Orujo or fruit brandy</string>
+    <string name="food_tequila">Tequila</string>
+    <string name="food_pina_colada">Piña colada</string>
+    <string name="food_margarita">Margarita</string>
+    <string name="food_daiquiri">Daiquiri</string>
+    <string name="food_cappuccino">Cappuccino</string>
+    <string name="food_whisky_cola">Whisky and cola</string>
+    <string name="food_vodka_orange">Vodka and orange soda</string>
+    <string name="food_vodka_lemon">Vodka and lemon soda</string>
+    <string name="food_rebujito">Rebujito</string>
+    <string name="food_green_tea">Green tea</string>
+    <string name="food_tea_with_milk">Tea with milk</string>
+    <string name="food_agua_de_valencia">Agua de Valencia</string>
     <!-- Dishes -->
     <string name="food_baked_potato">Baked potato</string>
     <string name="food_grilled_vegetables">Grilled vegetables</string>
@@ -2875,6 +3475,58 @@
     <string name="food_vichyssoise">Leek and potato cream soup</string>
     <string name="food_mixed_vegetables">Mixed cooked vegetables</string>
     <string name="food_acai_bowl">Açaí or smoothie bowl</string>
+    <string name="food_marmitako">Marmitako (tuna and potato stew)</string>
+    <string name="food_porrusalda">Leek and potato soup (porrusalda)</string>
+    <string name="food_caldo_gallego">Galician broth (caldo gallego)</string>
+    <string name="food_escalivada">Escalivada (roasted vegetables)</string>
+    <string name="food_menestra">Menestra (vegetable medley with ham)</string>
+    <string name="food_arroz_a_banda">Arroz a banda (seafood rice)</string>
+    <string name="food_arroz_con_pollo">Rice with chicken</string>
+    <string name="food_arroz_caldoso">Soupy seafood rice</string>
+    <string name="food_arroz_al_horno">Oven-baked rice (arroz al horno)</string>
+    <string name="food_paella_vegetable">Vegetable paella</string>
+    <string name="food_potaje_vigilia">Chickpea stew with cod and spinach</string>
+    <string name="food_fabes_con_almejas">Beans with clams</string>
+    <string name="food_rabo_de_toro">Oxtail stew</string>
+    <string name="food_patatas_a_lo_pobre">Poor man\'s potatoes</string>
+    <string name="food_patatas_alioli">Potatoes with alioli</string>
+    <string name="food_ajoblanco">Ajoblanco (cold almond soup)</string>
+    <string name="food_tomato_salad">Tomato salad</string>
+    <string name="food_pipirrana">Pipirrana (chopped salad)</string>
+    <string name="food_rice_salad">Rice salad</string>
+    <string name="food_chickpea_salad">Chickpea salad</string>
+    <string name="food_tuna_salad">Tuna salad</string>
+    <string name="food_quinoa_salad">Quinoa salad</string>
+    <string name="food_papas_arrugadas">Canarian wrinkled potatoes with mojo</string>
+    <string name="food_stuffed_peppers">Stuffed peppers</string>
+    <string name="food_stuffed_eggplant">Stuffed aubergine</string>
+    <string name="food_pasta_tuna">Pasta with tuna and tomato</string>
+    <string name="food_penne_arrabbiata">Penne arrabbiata</string>
+    <string name="food_spaghetti_aglio_olio">Spaghetti with garlic and oil</string>
+    <string name="food_fettuccine_alfredo">Fettuccine Alfredo</string>
+    <string name="food_spaghetti_vongole">Spaghetti with clams</string>
+    <string name="food_eggplant_parmigiana">Aubergine parmigiana</string>
+    <string name="food_mushroom_cream">Mushroom cream soup</string>
+    <string name="food_poke_bowl">Salmon poke bowl</string>
+    <string name="food_chicken_teriyaki">Chicken teriyaki</string>
+    <string name="food_yakisoba">Yakisoba</string>
+    <string name="food_kung_pao_chicken">Kung pao chicken</string>
+    <string name="food_beef_broccoli">Beef with broccoli</string>
+    <string name="food_chicken_tikka_masala">Chicken tikka masala</string>
+    <string name="food_thai_green_curry">Thai green curry</string>
+    <string name="food_dal">Dal (Indian lentils)</string>
+    <string name="food_biryani">Chicken biryani</string>
+    <string name="food_couscous_vegetables">Couscous with vegetables</string>
+    <string name="food_chicken_tagine">Chicken tagine</string>
+    <string name="food_chicken_rice_broccoli">Chicken with rice and broccoli</string>
+    <string name="food_yogurt_granola_bowl">Yogurt bowl with granola and fruit</string>
+    <string name="food_garbanzos_con_chorizo">Chickpea stew with chorizo</string>
+    <string name="food_patatas_con_costillas">Potato and pork rib stew</string>
+    <string name="food_pollo_guisado">Chicken stew</string>
+    <string name="food_carrot_cream">Carrot cream soup</string>
+    <string name="food_pasta_four_cheese">Pasta with four cheeses</string>
+    <string name="food_lemon_chicken">Lemon chicken</string>
+    <string name="food_lomo_saltado">Lomo saltado</string>
     <!-- Fast food -->
     <string name="food_chicken_nuggets">Chicken nuggets</string>
     <string name="food_fish_and_chips">Fish and chips</string>
@@ -2906,6 +3558,25 @@
     <string name="food_calamari_baguette">Fried squid baguette</string>
     <string name="food_pork_loin_baguette">Pork loin baguette</string>
     <string name="food_cheese_baguette">Cheese baguette</string>
+    <string name="food_chorizo_baguette">Chorizo baguette</string>
+    <string name="food_tuna_baguette">Tuna baguette</string>
+    <string name="food_chicken_baguette">Chicken baguette</string>
+    <string name="food_bacon_cheese_baguette">Bacon and cheese baguette</string>
+    <string name="food_ham_cheese_baguette">Ham and cheese baguette</string>
+    <string name="food_serranito">Serranito</string>
+    <string name="food_pepito">Steak baguette (pepito)</string>
+    <string name="food_club_sandwich">Club sandwich</string>
+    <string name="food_burrito">Burrito</string>
+    <string name="food_chicken_wrap">Chicken wrap</string>
+    <string name="food_enchiladas">Chicken enchiladas</string>
+    <string name="food_fajitas">Chicken fajitas</string>
+    <string name="food_shawarma">Chicken shawarma</string>
+    <string name="food_gyros">Gyros pita</string>
+    <string name="food_falafel_pita">Falafel pita</string>
+    <string name="food_tuna_sandwich">Tuna sandwich</string>
+    <string name="food_croissant_mixto">Ham and cheese croissant</string>
+    <string name="food_durum">Durum (kebab wrap)</string>
+    <string name="food_arepa">Arepa</string>
     <!-- Snacks -->
     <string name="food_potato_chips">Crisps</string>
     <string name="food_tortilla_chips">Tortilla chips</string>
@@ -2925,6 +3596,17 @@
     <string name="food_pakora">Pakora</string>
     <string name="food_arancini">Arancini</string>
     <string name="food_samosa">Samosa</string>
+    <string name="food_corn_nuts">Toasted corn kernels</string>
+    <string name="food_banana_chips">Banana chips</string>
+    <string name="food_light_crisps">Reduced-fat crisps</string>
+    <string name="food_caramel_popcorn">Caramel popcorn</string>
+    <string name="food_croquettes_chicken">Chicken croquettes</string>
+    <string name="food_croquettes_cod">Cod croquettes</string>
+    <string name="food_croquettes_mushroom">Mushroom croquettes</string>
+    <string name="food_empanadillas">Tuna empanadillas</string>
+    <string name="food_berenjenas_con_miel">Fried aubergine with honey</string>
+    <string name="food_pan_con_tomate_y_jamon">Bread with tomato and ham</string>
+    <string name="food_champinones_al_ajillo">Garlic mushrooms</string>
     <!-- Sauces and dressings -->
     <string name="food_hummus">Hummus</string>
     <string name="food_mayonnaise">Mayonnaise</string>
@@ -2946,6 +3628,30 @@
     <string name="food_paprika">Paprika</string>
     <string name="food_vinegar">Vinegar</string>
     <string name="food_lime_juice">Lime juice</string>
+    <string name="food_cooked_wine">Wine for cooking (alcohol evaporated)</string>
+    <string name="food_baba_ganoush">Baba ganoush</string>
+    <string name="food_mojo_picon">Red mojo (mojo picón)</string>
+    <string name="food_romesco">Romesco sauce</string>
+    <!-- Supplements and sports nutrition -->
+    <string name="food_whey_protein">Whey protein powder</string>
+    <string name="food_vegan_protein">Plant protein powder (soy)</string>
+    <string name="food_protein_shake_rtd">Protein shake, ready to drink</string>
+    <string name="food_protein_bar">Protein bar</string>
+    <string name="food_energy_bar">Energy bar (cereals and fruit)</string>
+    <string name="food_electrolyte_drink">Electrolyte drink</string>
+    <string name="food_isotonic_powder">Sports drink powder</string>
+    <string name="food_peanut_butter_powder">Defatted peanut flour (peanut powder)</string>
+    <string name="food_collagen">Collagen peptides</string>
+    <string name="food_fish_oil">Fish oil capsule (omega-3)</string>
+    <string name="food_meal_replacement_shake">Meal replacement shake</string>
+    <string name="food_protein_shake">Protein shake with milk</string>
+    <string name="food_protein_shake_water">Protein shake with water</string>
+    <string name="food_protein_shake_oat">Protein shake with oat drink</string>
+    <string name="food_mass_gainer">Mass gainer</string>
+    <string name="food_maltodextrin">Maltodextrin</string>
+    <string name="food_energy_gel">Energy gel</string>
+    <string name="food_creatine">Creatine monohydrate</string>
+    <string name="food_bcaa">BCAA / EAA amino acids</string>
     <!-- Built-in routine names: routine_<id> (training/catalog/RoutineCatalog.kt). Short: they label cards and list rows. -->
     <string name="routine_full_body_machines">Full body on machines</string>
     <string name="routine_full_body_free_weights">Full body, free weights</string>
@@ -2964,6 +3670,8 @@
     <string name="routine_foam_rolling">Foam roller recovery</string>
     <string name="routine_hiit">HIIT, no equipment</string>
     <string name="routine_cardio_mix">Cardio machines</string>
+    <string name="routine_kettlebell">Kettlebell full body</string>
+    <string name="routine_calisthenics">Calisthenics skills</string>
     <!-- How to do each sport and activity: exg_<catalog id>_steps / exg_<catalog id>_tips (training/catalog/SportsCatalog.kt). -->
     <!-- steps: 3-5 numbered lines ("1. ", "2. "...), tips: 2-3 lines starting with "• ". Keep the numbering, the bullets and the \n line breaks. -->
     <!-- The last step says how the activity is logged: the time typed as on the set's time field (1:30:00), the distance in km. -->
@@ -3017,6 +3725,34 @@
     <string name="exg_climbing_tips">• Rest between hard routes: your forearms and fingers need a few minutes to recover.\n• Check knots, harness and belay device with your partner before every route; when bouldering, fall onto the mats.</string>
     <string name="exg_golf_steps">1. Warm up with a few minutes of trunk rotations and arm swings, then some half swings with a short iron.\n2. Set up with your feet shoulder-width apart, knees soft, bending forward from the hips with your back straight.\n3. Turn your shoulders on the backswing, start the downswing with your hips and swing through to a balanced finish.\n4. In Fortia, log the time of your round or practice, for example 4:00:00.</string>
     <string name="exg_golf_tips">• Grip the club lightly: tension in your hands and arms costs speed and control.\n• Walking the course is part of the workout: pull a trolley instead of carrying a heavy bag on one shoulder.</string>
+    <!-- Snow (1.8) -->
+    <string name="exg_alpine_skiing_steps">1. Warm up before the first run: leg swings, squats and a few easy turns on a gentle slope.\n2. Stand centred over your boots with your shins pressing the tongues, knees and hips soft, hands forward.\n3. Turn by tipping both skis onto their edges and shifting your weight to the outside ski, looking where you want to go.\n4. In Fortia, log the time you skied, for example 3:00:00, and the calories if your watch shows them.</string>
+    <string name="exg_alpine_skiing_tips">• Wear a helmet and stay on runs that match your level.\n• Rest when your legs start to burn: most falls happen at the end of the day.</string>
+    <string name="exg_cross_country_skiing_steps">1. Warm up for 10 minutes gliding gently on flat ground.\n2. In the classic style, kick down on one ski and glide forward on the other, pushing with the opposite pole.\n3. Keep your ankles and knees soft and your weight over the gliding ski; on flats, push with both poles together.\n4. In Fortia, log the time and the distance in km, for example 1:30:00 and 15 km.</string>
+    <string name="exg_cross_country_skiing_tips">• Dress in thin layers: you warm up quickly and cool down fast when you stop.\n• Drink and eat regularly on long outings; the cold hides how much energy you use.</string>
+    <string name="exg_snowboarding_steps">1. Warm up with squats, leg swings and some easy straight runs on a gentle slope.\n2. Stand side-on over the board with your knees bent, weight centred and your arms relaxed in front.\n3. Turn by shifting your weight from the heel edge to the toe edge, leading with your head and shoulders.\n4. In Fortia, log the time you rode, for example 3:00:00, and the calories if your watch shows them.</string>
+    <string name="exg_snowboarding_tips">• Wear wrist guards and a helmet while you learn: falls on the hands are common.\n• Keep your front knee over the board, not inside it.</string>
+    <!-- Water (1.8) -->
+    <string name="exg_surfing_steps">1. Warm up on the beach with arm circles, push-ups and a few practice pop-ups.\n2. Lie on the board with your chest up and paddle with long, alternate arm strokes.\n3. When the wave lifts you, push up and bring your feet under you in one move, knees bent and arms out for balance.\n4. In Fortia, log the time you were in the water, for example 1:30:00.</string>
+    <string name="exg_surfing_tips">• Learn with a soft, long board and in small waves, never alone.\n• Paddling is most of the work: train your shoulders and back on land too.</string>
+    <string name="exg_rowing_steps">1. Set the foot stretchers so your shins are vertical with the seat forward, and warm up with easy strokes.\n2. Drive with your legs first, then swing your trunk back and finally pull the handles to your ribs.\n3. Recover in reverse: hands away, body forward, then slide the seat forward slowly.\n4. In Fortia, log the time and the distance in km, for example 1:00:00 and 10 km.</string>
+    <string name="exg_rowing_tips">• The legs give most of the power; pulling early with the arms tires them fast.\n• Wear a life jacket until you know the boat and the water well.</string>
+    <string name="exg_kayaking_steps">1. Sit upright with your feet on the footrests and knees slightly bent against the sides.\n2. Hold the paddle with your hands a little wider than your shoulders.\n3. Put the blade in near your feet and pull it back to your hip by turning your trunk, then do the same on the other side.\n4. In Fortia, log the time and the distance in km, for example 1:30:00 and 8 km.</string>
+    <string name="exg_kayaking_tips">• The power comes from turning the trunk, not from pulling with the arms.\n• Always wear a buoyancy aid and check the weather and the current before going out.</string>
+    <string name="exg_open_water_swimming_steps">1. Warm up on land with arm circles, then swim a few minutes easily near the shore.\n2. Swim front crawl with long strokes, breathing every two or three strokes.\n3. Lift your eyes just above the water every few strokes to sight a landmark and stay on course.\n4. In Fortia, log the time and the distance in km, for example 45:00 and 2 km.</string>
+    <string name="exg_open_water_swimming_tips">• Never swim alone: go with others or near a lifeguard, and use a bright cap and a tow float.\n• Cold water takes your breath away: get in slowly and wear a wetsuit when it\'s below about 18 °C.</string>
+    <!-- Team and racket sports (1.8) -->
+    <string name="exg_rugby_steps">1. Warm up for 15 minutes: jogging, side steps, sprints and passing in pairs.\n2. Carry the ball in both hands at chest height and run straight, ready to pass.\n3. Pass backwards or level with a swing of both arms across your body, following through towards your teammate.\n4. In Fortia, log the time you played, for example 1:20:00, and the calories if your watch shows them.</string>
+    <string name="exg_rugby_tips">• Learn to tackle and fall with a coach: head to the side, shoulder in, arms wrapped.\n• Wear a gum shield and boots with studs that suit the pitch.</string>
+    <string name="exg_table_tennis_steps">1. Warm up for a few minutes with easy rallies, forehand to forehand.\n2. Stand an arm\'s length from the table, feet apart, knees bent and the bat in front of you.\n3. Play the forehand with a short swing from your hip forwards and up, turning your waist; brush the ball for topspin.\n4. In Fortia, log the time you played, for example 1:00:00, and the calories if your watch shows them.</string>
+    <string name="exg_table_tennis_tips">• Move your feet to the ball instead of reaching with your arm.\n• Hold the bat loosely; a tight grip slows your wrist.</string>
+    <string name="exg_squash_steps">1. Warm up for 10 minutes: jogging, lunges and gentle drives against the front wall to warm the ball.\n2. After every shot, move back to the T in the middle of the court.\n3. Lunge towards the ball with your racket up and early, and hit it with a short, compact swing.\n4. In Fortia, log the time you played, for example 45:00, and the calories if your watch shows them.</string>
+    <string name="exg_squash_tips">• Wear protective glasses: the ball is small and very fast.\n• It\'s one of the most intense racket sports: build up your fitness and drink between games.</string>
+    <!-- Skating (1.8) -->
+    <string name="exg_inline_skating_steps">1. Put on a helmet and wrist, elbow and knee guards, and warm up with a few minutes of easy rolling.\n2. Stand with your knees bent, weight over the middle of the skates and your hands in front.\n3. Push each skate out to the side and slightly back, then bring it under you and glide on it.\n4. In Fortia, log the time and the distance in km, for example 1:00:00 and 15 km.</string>
+    <string name="exg_inline_skating_tips">• Learn to brake (with the heel brake or a T-stop) before you go fast.\n• If you fall, go forward onto your guards with your knees bent.</string>
+    <string name="exg_ice_skating_steps">1. Warm up with a few laps at an easy pace close to the boards.\n2. Bend your knees, keep your weight over the blades and your arms out a little for balance.\n3. Push one blade out to the side, glide on the other, then bring the pushing foot back under you.\n4. In Fortia, log the time you skated, for example 1:00:00, and the calories if your watch shows them.</string>
+    <string name="exg_ice_skating_tips">• Lace the skates firmly round the ankle and wear gloves on the ice.\n• Look ahead, not at your feet, and fall to the side with your knees bent.</string>
     <!-- Sports and outdoor activities of the catalog (training/catalog/SportsCatalog.kt): the category and ex_<catalog id> names. -->
     <!-- Category (Equipment.SPORT): filter chip, section header, info sheet -->
     <string name="equipment_sport">Sports &amp; activities</string>
@@ -3048,6 +3784,22 @@
     <!-- Others -->
     <string name="ex_climbing">Climbing</string>
     <string name="ex_golf">Golf</string>
+    <!-- Snow (1.8) -->
+    <string name="ex_alpine_skiing">Alpine skiing</string>
+    <string name="ex_cross_country_skiing">Cross-country skiing</string>
+    <string name="ex_snowboarding">Snowboarding</string>
+    <!-- Water (1.8) -->
+    <string name="ex_surfing">Surfing</string>
+    <string name="ex_rowing">Rowing (on the water)</string>
+    <string name="ex_kayaking">Kayak and canoe</string>
+    <string name="ex_open_water_swimming">Open-water swimming</string>
+    <!-- Team and racket sports (1.8) -->
+    <string name="ex_rugby">Rugby</string>
+    <string name="ex_table_tennis">Table tennis</string>
+    <string name="ex_squash">Squash</string>
+    <!-- Skating (1.8) -->
+    <string name="ex_inline_skating">Inline skating</string>
+    <string name="ex_ice_skating">Ice skating</string>
     <!-- Achievements: medals derived from the workouts and the weighings, the celebration shown when a level is reached, and the achievements page (Entreno tab card, Perfil row) -->
     <string name="achievements_title">Achievements</string>
     <!-- Medals earned out of all the levels on offer: "12 of 70 medals" -->
@@ -3300,6 +4052,8 @@
     <string name="food_portion_tsp">Teaspoon</string>
     <string name="food_portion_handful">Handful</string>
     <string name="food_portion_serving">Serving</string>
+    <!-- The measuring scoop that comes in a tub of protein powder (~30 g); in Spain people say "scoop" or "cacito" -->
+    <string name="food_portion_scoop">Scoop</string>
     <!-- Meals of the day (sections of the day, chips of the confirm page). In Spanish "Comida" is the tab, so lunch is "Almuerzo" -->
     <string name="foodlog_meal_breakfast">Breakfast</string>
     <string name="foodlog_meal_lunch">Lunch</string>
@@ -3506,11 +4260,11 @@
     <string name="notice_litert">Runs our food recognizer on the phone.</string>
     <string name="notice_zxing">Reads product barcodes from a photo.</string>
     <string name="open_source_food_data">Food data</string>
-    <string name="notice_open_food_facts">Packaged products found by their barcode. Data © Open Food Facts contributors, under the Open Database License (ODbL).</string>
+    <string name="notice_open_food_facts">Packaged products found by their barcode. Data © Open Food Facts contributors, under the Open Database License (ODbL); product photos © Open Food Facts contributors, under CC BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0/).</string>
     <string name="notice_usda">Nutrient values of the food list: U.S. Department of Agriculture, Agricultural Research Service, FoodData Central. Public domain (CC0).</string>
     <string name="notice_ciqual">Nutrient values of the food list: Anses, Ciqual French food composition table, under the Licence Ouverte / Etalab 2.0.</string>
     <string name="notice_food_model_name">Fortia food recognizer</string>
-    <string name="notice_food_model_license">Our own model (see its model card)</string>
+    <string name="notice_food_model_license">Our own model (see its model card) · AGPL-3.0 · food_model.tflite: AGPL-3.0 / CC BY-SA 4.0</string>
     <string name="notice_food_model">Our own models, built on MobileNetV4 (timm, Apache-2.0) and Ultralytics YOLO11n (AGPL-3.0) and trained on images from Open Images (CC BY 2.0), Wikimedia Commons (free licences) and MyFoodRepo (CC BY 4.0); the weight estimate is calibrated with Nutrition5k (CC BY 4.0). The list of images and their authors is published with the source code.</string>
     <!-- Comida in 1.6.0: more nutrients per food, variants of a dish, changing a dish's ingredients when logging it, -->
     <!-- several foods in one photo and the photo's grams suggestion. The rest of the food log is in 99_food.txt. -->
@@ -3614,6 +4368,48 @@
     <string name="foodlog_estimated_use">Use</string>
     <!-- A product found by its barcode that was logged before: how much last time ("Last time: 2 × Serving · 60 g") -->
     <string name="foodlog_barcode_last_time">Last time: %1$s</string>
+    <!-- Comida after 1.7.0: the photo of a product found by its barcode, from Open Food Facts; a packaged product -->
+    <!-- recognised from a meal photo of its package (its barcode, the products already scanned, the words on it). -->
+    <!-- The rest of the food log is in 99_food.txt, 99_food_160.txt and 99_food_170.txt. -->
+    <!-- The credit line under a product of Open Food Facts when its photo shows too (foodlog_off_attribution without one). -->
+    <!-- ODbL is the licence of the data, CC BY-SA the licence of the photo: keep both names as they are. -->
+    <string name="foodlog_off_attribution_photo">Data and photo: Open Food Facts (ODbL, CC BY-SA)</string>
+    <!-- A packaged product on the meal photo ("What's on the plate?" page). Three ways, shown at the top of the page: -->
+    <!-- a barcode read on the photo (its product page opens by itself once found), one of the products the user -->
+    <!-- already scanned that the photo looks like (compared on the phone), the words read on the package searched in -->
+    <!-- Open Food Facts (keep the name). Nothing is logged until the user picks the product and confirms. -->
+    <string name="foodlog_pack_barcode">Barcode %1$s on the photo</string>
+    <!-- One of the user's scanned products, with its photo: tap to use it. %1$s = the product's name. -->
+    <string name="foodlog_pack_match">Is it %1$s?</string>
+    <string name="foodlog_pack_match_text">One of the products you scanned</string>
+    <!-- Several of the user's scanned products look alike: none is picked. -->
+    <string name="foodlog_pack_suggestions">Maybe one of your products</string>
+    <!-- Button: read the words on the photo (on the phone) and search them in Open Food Facts. -->
+    <string name="foodlog_pack_search">Search the product by its package</string>
+    <string name="foodlog_pack_reading">Reading the package…</string>
+    <!-- A text field with the words searched (as read on the package, or empty when none could be read): the user -->
+    <!-- corrects them or types the brand and name, then searches again with the keyboard's search key or the search icon. -->
+    <string name="foodlog_pack_words_label">Words to search</string>
+    <string name="foodlog_pack_words_hint">Brand and product name</string>
+    <!-- %1$s = the words searched, as read on the package. -->
+    <string name="foodlog_pack_searching">Searching Open Food Facts for “%1$s”…</string>
+    <string name="foodlog_pack_results">Products for “%1$s”</string>
+    <string name="foodlog_pack_results_text">Choose yours: its values come from Open Food Facts.</string>
+    <string name="foodlog_pack_no_text">No words could be read on the package. Type its brand and name above, or take a photo of the barcode.</string>
+    <!-- The phone's text recognition failed (not the photo's fault). -->
+    <string name="foodlog_pack_read_failed">The package\'s text couldn\'t be read this time. Try again.</string>
+    <string name="foodlog_pack_none">Open Food Facts has no product for “%1$s”. Change the words above, take a photo of the barcode, or search for the food.</string>
+    <string name="foodlog_pack_offline">No connection: the package can\'t be searched. Try again, or take a photo of the barcode.</string>
+    <!-- Open Food Facts allows a few searches a minute. -->
+    <string name="foodlog_pack_busy">Too many searches in a short time. Try again in a minute.</string>
+    <string name="foodlog_pack_unavailable">Reading packages needs Google Play services. Type the brand and name above, or take a photo of the barcode.</string>
+    <!-- Google Play services downloads the text recognition the first time. -->
+    <string name="foodlog_pack_preparing">Text recognition is being installed on your phone. Try again in a moment.</string>
+    <string name="foodlog_pack_private">The text is read on your phone; only the words in the box are sent to Open Food Facts to search.</string>
+    <!-- Button: a photo of the package's barcode (the barcode page). -->
+    <string name="foodlog_pack_barcode_photo">Photo of the barcode</string>
+    <!-- Open source page: the text recognition library (Google ML Kit, through Google Play services). -->
+    <string name="notice_mlkit">Reads the words on a package photo, on the phone (Google Play services).</string>
     <!-- Music for today: five Spotify workout playlists a day, chosen by the day's training, on Hoy, the Entreno tab and the workout in progress -->
     <!-- Title of the card and of the sheet; also the workout's top-bar button, read by TalkBack -->
     <string name="music_title">Music for today</string>

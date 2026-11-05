@@ -24,6 +24,8 @@ food_portion_tbsp = ملعقة كبيرة
 food_portion_tsp = ملعقة صغيرة
 food_portion_handful = حفنة
 food_portion_serving = حصة
+# The measuring scoop that comes in a tub of protein powder (~30 g)
+food_portion_scoop = سكوب
 
 # Meals of the day
 foodlog_meal_breakfast = الفطور
@@ -228,9 +230,9 @@ health_rationale_write_meals = إذا سمحت بذلك، فسيكتب Fortia أ
 notice_litert = يشغّل نموذجنا للتعرّف على الطعام على الهاتف.
 notice_zxing = يقرأ الرموز الشريطية للمنتجات من صورة.
 open_source_food_data = بيانات الأطعمة
-notice_open_food_facts = منتجات معبأة يُعثر عليها عبر رمزها الشريطي. البيانات © المساهمون في Open Food Facts، بموجب Open Database License (ODbL).
+notice_open_food_facts = منتجات معبأة يُعثر عليها عبر رمزها الشريطي. البيانات © المساهمون في Open Food Facts، بموجب Open Database License (ODbL)؛ صور المنتجات © المساهمون في Open Food Facts، بموجب CC BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0/).
 notice_usda = القيم الغذائية لقائمة الأطعمة: U.S. Department of Agriculture, Agricultural Research Service, FoodData Central. ملكية عامة (CC0).
 notice_ciqual = القيم الغذائية لقائمة الأطعمة: Anses، جدول Ciqual الفرنسي لتركيب الأغذية، بموجب Licence Ouverte / Etalab 2.0.
 notice_food_model_name = نموذج Fortia للتعرّف على الطعام
-notice_food_model_license = نموذجنا الخاص (راجع بطاقة النموذج)
+notice_food_model_license = نموذجنا الخاص (راجع بطاقة النموذج) · AGPL-3.0 · food_model.tflite: AGPL-3.0 / CC BY-SA 4.0
 notice_food_model = نماذجنا الخاصة، المبنية على MobileNetV4 (timm، Apache-2.0) وUltralytics YOLO11n (AGPL-3.0) والمدرَّبة على صور من Open Images (CC BY 2.0) وWikimedia Commons (تراخيص حرة) وMyFoodRepo (CC BY 4.0)؛ وقد عُويِر تقدير الوزن باستخدام Nutrition5k (CC BY 4.0). وتُنشر قائمة الصور ومؤلفيها مع الشيفرة المصدرية.

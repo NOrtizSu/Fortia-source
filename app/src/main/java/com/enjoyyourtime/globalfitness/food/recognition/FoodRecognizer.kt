@@ -5,6 +5,8 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.os.SystemClock
 import android.util.Log
+import com.enjoyyourtime.globalfitness.food.pack.Embedded
+import com.enjoyyourtime.globalfitness.food.pack.PackMath
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -50,6 +52,8 @@ class FoodRecognizer(
         val logits: Output,
         /** The ln(grams) output when the spec enables it and the model has it. */
         val grams: Output?,
+        /** The image embedding output when the spec has one and the model has it (embedding_contract.md). */
+        val embedding: Output? = null,
     )
 
     private class LoadedDetector(val interpreter: Interpreter, val spec: DetectorSpec, val boxes: Int, val scores: Int, val count: Int, val k: Int)
@@ -68,6 +72,23 @@ class FoodRecognizer(
 
     /** Whether the app ships the item detector (cheap: no loading). */
     val detectorBundled: Boolean by lazy { hasAssets(DETECTOR_FILE, DETECTOR_SPEC_FILE) }
+
+    /**
+     * The classifier's embedding as its json describes it (cheap: the json only), null when the app's
+     * model has none, or once loading showed the model is unusable or lacks that output (remembered for
+     * this process): "products you already scanned" is then off.
+     */
+    val embeddingSpec: EmbeddingSpec?
+        get() = if (embeddingMissing) null else jsonEmbedding
+
+    private val jsonEmbedding: EmbeddingSpec? by lazy {
+        if (!bundled) return@lazy null
+        runCatching { ModelSpec.parse(context.assets.open("$DIR/$SPEC_FILE").bufferedReader().use { it.readText() }).embedding }.getOrNull()
+    }
+
+    /** Loading showed there is no usable embedding (the model failed to load, or its json names an output it lacks). */
+    @Volatile
+    private var embeddingMissing = false
 
     private fun hasAssets(vararg names: String): Boolean =
         runCatching { context.assets.list(DIR)?.toSet().orEmpty().containsAll(names.toList()) }.getOrDefault(false)
@@ -123,6 +144,52 @@ class FoodRecognizer(
             } catch (e: Exception) {
                 Log.w(TAG, "Food recognition failed", e)
                 null
+            } finally {
+                closeWhenIdle()
+            }
+        }
+    }
+
+    /**
+     * The image embedding of [bitmap] (embedding_contract.md): its own run of the classifier on the whole
+     * picture stretched to the input size, L2-normalised. [Embedded.Zero] when the model gives an all-zero
+     * vector for it (the picture has no usable embedding); [Embedded.Failed] when this picture's run
+     * failed (out of memory…: worth trying again later); [Embedded.Unavailable] when the model has no
+     * usable embedding at all (not bundled, could not load, no such output).
+     */
+    suspend fun embed(bitmap: Bitmap): Embedded = withContext(compute) {
+        mutex.withLock {
+            val m = load() ?: return@withLock Embedded.Unavailable
+            val out = m.embedding ?: return@withLock Embedded.Unavailable
+            val e = m.spec.embedding ?: return@withLock Embedded.Unavailable
+            val started = SystemClock.elapsedRealtime()
+            try {
+                val picture = if (e.stretch) stretched(bitmap, m.spec.width, m.spec.height) else bitmap
+                val w = picture.width
+                val h = picture.height
+                val pixels = IntArray(w * h)
+                picture.getPixels(pixels, 0, w, 0, 0, w, h)
+                if (picture !== bitmap) picture.recycle()
+                // Already the model's size when stretched: the preprocessing only normalises it.
+                val spec = if (e.stretch) m.spec.copy(centerCrop = false, cropFraction = 1f, bilinear = false, resizeShortSide = null) else m.spec
+                val input = RecognitionMath.preprocess(pixels, w, h, spec)
+                val inBuffer = when (m.inputType) {
+                    TensorType.FLOAT32 -> ByteBuffer.allocateDirect(input.size * 4).order(ByteOrder.nativeOrder()).apply { asFloatBuffer().put(input) }
+                    TensorType.UINT8, TensorType.INT8 -> ByteBuffer.allocateDirect(input.size).order(ByteOrder.nativeOrder()).apply {
+                        for (v in input) put(RecognitionMath.quantize(v, m.inputScale, m.inputZeroPoint, m.inputType).toByte())
+                        rewind()
+                    }
+                }
+                val buffer = ByteBuffer.allocateDirect(out.size * if (out.type == TensorType.FLOAT32) 4 else 1).order(ByteOrder.nativeOrder())
+                m.interpreter.runForMultipleInputsOutputs(arrayOf<Any>(inBuffer), mapOf(out.index to buffer))
+                PackMath.embedded(read(out, buffer))
+                    .also { Log.i(TAG, "Embedded ${bitmap.width}x${bitmap.height} in ${SystemClock.elapsedRealtime() - started} ms: ${it.javaClass.simpleName}") }
+            } catch (e: Exception) {
+                Log.w(TAG, "Image embedding failed", e)
+                Embedded.Failed
+            } catch (e: OutOfMemoryError) {
+                Log.w(TAG, "Image embedding out of memory", e)
+                Embedded.Failed
             } finally {
                 closeWhenIdle()
             }
@@ -225,7 +292,7 @@ class FoodRecognizer(
             try {
                 inspect(interpreter, spec).also {
                     loaded = it
-                    Log.i(TAG, "Food model loaded: ${it.spec.describe()}, input ${it.inputType}, output ${it.logits.type}${if (it.grams != null) " + grams" else ""}")
+                    Log.i(TAG, "Food model loaded: ${it.spec.describe()}, input ${it.inputType}, output ${it.logits.type}${if (it.grams != null) " + grams" else ""}${if (it.embedding != null) " + embedding ${it.embedding.size}" else ""}")
                 }
             } catch (e: Throwable) {
                 // A model that does not match its spec: its native memory is given back at once.
@@ -234,11 +301,13 @@ class FoodRecognizer(
             }
         } catch (e: Exception) {
             failed = true
+            embeddingMissing = true
             Log.w(TAG, "Food model not usable; search only", e)
             null
         } catch (e: LinkageError) {
             // The native runtime is missing for this ABI.
             failed = true
+            embeddingMissing = true
             Log.w(TAG, "LiteRT runtime not available; search only", e)
             null
         }
@@ -288,15 +357,27 @@ class FoodRecognizer(
             (named ?: outputs.firstOrNull { (i, t) -> i != logitsIndex && t.numElements() == 1 })?.let { (i, t) -> output(i, t, 1f, 0) }
         }
         if (spec.grams != null && grams == null) Log.w(TAG, "The spec enables grams but the model has no such output: no estimate")
+        // The embedding: the output the json names, else the one that is neither the logits nor a single value.
+        val embedding = spec.embedding?.let { e ->
+            fun usable(i: Int, t: Tensor) = i != logitsIndex && i != grams?.index && t.numElements() > 1
+            val named = e.outputIndex?.let { i -> outputs.firstOrNull { (j, t) -> j == i && usable(j, t) } }
+            (named ?: outputs.firstOrNull { (i, t) -> usable(i, t) && t.numElements() != spec.labels.size })?.let { (i, t) -> output(i, t, 1f, 0) }
+        }
+        if (spec.embedding != null && embedding == null) {
+            // Remembered: the background embedding is not tried again for nothing at every visit.
+            embeddingMissing = true
+            Log.w(TAG, "The spec has an embedding but the model has no such output: no product matching")
+        }
         val inQ = inTensor.quantizationParams()
         return Loaded(
             interpreter = interpreter,
-            spec = if (grams == null) effective.copy(grams = null) else effective,
+            spec = effective.let { if (grams == null) it.copy(grams = null) else it }.let { if (embedding == null) it.copy(embedding = null) else it },
             inputType = type(inTensor.dataType()),
             inputScale = spec.inputScale ?: inQ.scale.takeIf { it > 0f } ?: 1f,
             inputZeroPoint = spec.inputZeroPoint ?: inQ.zeroPoint,
             logits = output(logitsIndex, logitsTensor, spec.outputScale, spec.outputZeroPoint),
             grams = grams,
+            embedding = embedding,
         )
     }
 

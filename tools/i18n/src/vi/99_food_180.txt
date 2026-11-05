@@ -1,0 +1,30 @@
+# Comida after 1.7.0: the photo of a product found by its barcode, from Open Food Facts.
+# The rest of the food log is in 99_food.txt, 99_food_160.txt and 99_food_170.txt.
+
+# The credit line under a product of Open Food Facts when its photo shows too (foodlog_off_attribution without one).
+# ODbL is the licence of the data, CC BY-SA the licence of the photo: keep both names as they are.
+foodlog_off_attribution_photo = Dữ liệu và ảnh: Open Food Facts (ODbL, CC BY-SA)
+
+# A packaged product on the meal photo ("What's on the plate?" page).
+foodlog_pack_barcode = Mã vạch %1$s trong ảnh
+foodlog_pack_match = Có phải %1$s không?
+foodlog_pack_match_text = Một trong các sản phẩm bạn đã quét
+foodlog_pack_suggestions = Có thể là một sản phẩm của bạn
+foodlog_pack_search = Tìm sản phẩm theo bao bì
+foodlog_pack_reading = Đang đọc bao bì…
+foodlog_pack_words_label = Từ cần tìm
+foodlog_pack_words_hint = Thương hiệu và tên sản phẩm
+foodlog_pack_searching = Đang tìm “%1$s” trên Open Food Facts…
+foodlog_pack_results = Sản phẩm cho “%1$s”
+foodlog_pack_results_text = Chọn sản phẩm của bạn: giá trị của nó lấy từ Open Food Facts.
+foodlog_pack_no_text = Không đọc được chữ nào trên bao bì. Hãy nhập thương hiệu và tên ở trên, hoặc chụp ảnh mã vạch.
+foodlog_pack_read_failed = Lần này không đọc được chữ trên bao bì. Hãy thử lại.
+foodlog_pack_none = Open Food Facts không có sản phẩm nào cho “%1$s”. Hãy sửa các từ ở trên, chụp ảnh mã vạch hoặc tìm thực phẩm.
+foodlog_pack_offline = Không có kết nối: không thể tìm theo bao bì. Hãy thử lại hoặc chụp ảnh mã vạch.
+foodlog_pack_busy = Quá nhiều lượt tìm trong thời gian ngắn. Hãy thử lại sau một phút.
+foodlog_pack_unavailable = Cần có Dịch vụ Google Play để đọc bao bì. Hãy nhập thương hiệu và tên ở trên, hoặc chụp ảnh mã vạch.
+foodlog_pack_preparing = Tính năng nhận diện văn bản đang được cài đặt trên điện thoại. Hãy thử lại sau giây lát.
+foodlog_pack_private = Chữ được đọc ngay trên điện thoại của bạn; chỉ những từ trong ô được gửi đến Open Food Facts để tìm kiếm.
+foodlog_pack_barcode_photo = Ảnh mã vạch
+# Open source page: the text recognition library (Google ML Kit, through Google Play services).
+notice_mlkit = Đọc chữ trên ảnh bao bì, ngay trên điện thoại (Dịch vụ Google Play).

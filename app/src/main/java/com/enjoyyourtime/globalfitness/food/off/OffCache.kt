@@ -26,6 +26,8 @@ object OffCache {
         source = CustomFoodSource.OFF,
         createdAt = 0,
         updatedAt = 0,
+        // Asked just now: "" says Open Food Facts has no photo of it.
+        imageUrl = p.imageUrl.orEmpty(),
     )
 
     /** No real name (the code stands for it) or no kcal: Open Food Facts may know more by now. */
@@ -51,7 +53,7 @@ object OffCache {
         var per100 = if (unitChanged) Nutrients.NONE else cached.per100
         for (n in Nutrient.entries) p.per100[n]?.let { per100 = per100.with(n, it) }
         val fromOff = p.name != null || !p.per100.isEmpty
-        return cached.copy(
+        val refreshed = cached.copy(
             name = p.name ?: cached.name,
             brand = p.brand ?: cached.brand,
             unit = if (p.per100.isEmpty) cached.unit else p.unit,
@@ -61,5 +63,34 @@ object OffCache {
             source = if (fromOff) CustomFoodSource.OFF else cached.source,
             checkedAt = now,
         )
+        return withImage(refreshed, p.imageUrl)
+    }
+
+    /**
+     * [f] with the photo address Open Food Facts gives now ([url], null for none). A new address drops
+     * the photo kept (its file goes, the new one is downloaded); the same one keeps it. The user's own
+     * foods never have one.
+     */
+    fun withImage(f: CustomFood, url: String?): CustomFood {
+        if (f.source != CustomFoodSource.OFF) return f
+        val address = url.orEmpty()
+        return if (address == f.imageUrl) f else f.copy(imageUrl = address, image = null)
+    }
+
+    /**
+     * A product of Open Food Facts kept before this phone asked for photos (an older version, a
+     * backup): its next scan, or opening it to log it, asks for the photo's address only
+     * ([withImage]), not its values.
+     */
+    fun needsImageCheck(f: CustomFood): Boolean = f.source == CustomFoodSource.OFF && f.barcode != null && f.imageUrl == null
+
+    /**
+     * The photo address to download for [f]: it has one and its file is not there (never downloaded,
+     * failed, or a database restored without the photos); null otherwise. [exists] tells whether a
+     * photo file is on the phone.
+     */
+    fun imageToFetch(f: CustomFood, exists: (String) -> Boolean): String? {
+        val url = f.imageUrl?.takeIf { f.source == CustomFoodSource.OFF && it.isNotEmpty() } ?: return null
+        return url.takeIf { f.image == null || !exists(f.image) }
     }
 }

@@ -28,9 +28,14 @@ import com.enjoyyourtime.globalfitness.training.model.Tombstone
  * after the version 2 columns. 1.6.0 opens such a file as it is; a row it rewrites then loses them
  * (its values stay), which only means the next entry of that food starts from the food's own values,
  * or that the product is asked again a little earlier.
+ *
+ * Version 4: the product's photo from Open Food Facts in custom_foods (`image_url`, the address it
+ * gave, "" for none; `image`, the downloaded file; local only), after the version 3 columns. 1.7.0
+ * opens such a file as it is; a row it rewrites loses them, so that photo is downloaded again at the
+ * product's next lookup (the file left behind goes with the next clean-up of unused photos).
  */
 object FoodSchema {
-    const val VERSION = 3
+    const val VERSION = 4
 
     /** The eight nutrient columns of version 1, in [Nutrient] order. */
     val NUTRIENT_COLUMNS = Nutrient.LABEL.map { it.code }
@@ -62,8 +67,11 @@ object FoodSchema {
     /** Columns version 3 adds to custom_foods. */
     private val CUSTOM_FOOD_V3: List<Pair<String, String>> = listOf("checked_at" to "INTEGER")
 
+    /** Columns version 4 adds to custom_foods. */
+    private val CUSTOM_FOOD_V4: List<Pair<String, String>> = listOf("image_url" to "TEXT", "image" to "TEXT")
+
     /** Every column added to custom_foods after version 1, in order. */
-    private val CUSTOM_FOOD_ADDED = CUSTOM_FOOD_V2 + CUSTOM_FOOD_V3
+    private val CUSTOM_FOOD_ADDED = CUSTOM_FOOD_V2 + CUSTOM_FOOD_V3 + CUSTOM_FOOD_V4
 
     val ENTRY_COLUMNS = ENTRY_V1 + ENTRY_ADDED.map { it.first }
 

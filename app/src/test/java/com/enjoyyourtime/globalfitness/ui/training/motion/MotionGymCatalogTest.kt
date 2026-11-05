@@ -38,6 +38,36 @@ class MotionGymCatalogTest {
     }
 
     @Test
+    fun theLatestMotionsAreCatalogExercisesNotAlreadyMapped() {
+        val ids = ExerciseCatalog.all.map { it.id }.toSet()
+        assertEquals(emptySet<String>(), latestMotions.keys - ids)
+        for (other in listOf(MotionCatalog.baseIds, sportsMotions.keys, gymMotions.keys, moreMotions.keys)) {
+            assertEquals(emptySet<String>(), latestMotions.keys intersect other)
+        }
+        // The 1.8 additions: calisthenics, lifts and strongman, suspension / balance / Pilates, combat drills, and the new sports.
+        for (id in listOf("bar_muscle_up", "front_lever", "clean_and_jerk", "tyre_flip", "suspension_pike", "bosu_squat", "pilates_teaser", "heavy_bag", "sprawl")) {
+            assertTrue(id, id in latestMotions.keys)
+        }
+        for (id in listOf("alpine_skiing", "surfing", "rowing", "table_tennis", "ice_skating", "open_water_swimming")) assertTrue(id, id in sportsMotions.keys)
+    }
+
+    @Test
+    fun aDomeStandsOnItsBase() {
+        val dome = Dome(v(0f, 0.03f), radius = 0.315f, height = 0.21f)
+        assertEquals(0.21f, dome.surface(0f), 1e-4f)
+        assertEquals(0f, dome.surface(0.315f), 1e-4f)
+        assertTrue(dome.surface(0.15f) in 0f..0.21f)
+        // Drawn as one closed outline, inside the picture's view of the base and the top.
+        val scene = SceneBuilder(Camera(24f, 8f), emptySet()).build(Frame(FrameBuilder().apply { body.torso(v(0f, 1f)); body.standOn(0f) }.build().pose, listOf(dome), 0f))
+        val fills = scene.ops.filter { it.ink == Ink.PAD && it.type == OpType.FILL }
+        assertEquals(1, fills.size)
+        val ys = fills.single().points.filterIndexed { i, _ -> i % 2 == 1 }
+        assertTrue(ys.max() <= 0.03f + 0.21f + 3e-3f)
+        // The front of the base rim, seen from a little above, sits just below the base's centre.
+        assertTrue(ys.min() >= 0.03f - 0.315f * kotlin.math.sin(rad(8f)) - 1e-3f)
+    }
+
+    @Test
     fun customExercisesBorrowTheNewTypicalMovements() {
         assertEquals("dumbbell_wrist_curl", source(Equipment.DUMBBELL, Muscle.FOREARMS))
         assertEquals("dumbbell_calf_raise", source(Equipment.DUMBBELL, Muscle.CALVES))

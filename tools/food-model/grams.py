@@ -21,6 +21,13 @@ Steps (training venv):
             -> <run>/grams/{head.pt,grams.json,report.json}
   compare   fit for every container rule (none, drop_container, keep_container, drop_container_cover0.5) and
             prints the per-plate / per-item errors side by side.
+  tflite    (export venv) The exported food_model.tflite on the same pictures as `features` (the whole photo
+            and every detector crop), with the app's preprocessing: its `log_grams` output and top-5
+            -> <run>/grams/tflite.npz. Then `fit --tflite` keeps the head that is inside the file and fits only the
+            app formula and the clamp on what the app really computes (an int8 file's `log_grams` is not the
+            float head's), and reports those numbers. With `--with-features` on a debug export that also
+            outputs the features the grams layer reads (export.py onnx --features-output, never shipped),
+            `fit --tflite-features --int8-head` fits the head on the int8 network's own features.
 
 Caveat: Nutrition5k photos come from one rig (fixed camera height, the same white plates), so pixel size means
 the same physical size in every photo; a phone photo has no such scale. To keep the head from relying on that,
@@ -32,6 +39,9 @@ usage: python grams.py features --work D:/FoodML --run cls2 --detector D:/FoodML
            --detector-spec ../../app/src/main/assets/food/food_detector.json
        python grams.py fit|compare --work D:/FoodML --run cls2 --foods <foods.tsv> --classes classes.csv \
            [--rule drop_container]
+       python grams.py tflite --work D:/FoodML --run cls3q --tflite <assets>/food_model.tflite \
+           --spec <assets>/food_model.json --detector-spec <assets>/food_detector.json      (export venv)
+       python grams.py fit --tflite ... (as above)
 """
 import argparse
 import csv
@@ -40,7 +50,6 @@ import os
 import sys
 
 import numpy as np
-import torch
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from food_items import group_rule  # noqa: E402
@@ -75,6 +84,7 @@ def load_dishes(work):
 
 def step_features(a):
     import timm
+    import torch
     from PIL import Image
     from ultralytics import YOLO
     import train as T
@@ -83,7 +93,7 @@ def step_features(a):
     run = os.path.join(a.runs or os.path.join(a.work, "runs"), a.run)
     ck = torch.load(os.path.join(run, a.ckpt), map_location="cpu")
     T.configure_from_checkpoint(ck)
-    model = timm.create_model(ck["model"], pretrained=False, num_classes=ck["n_classes"])
+    model = T.build_model(ck["model"], ck["n_classes"], ck.get("head_hidden", 0), pretrained=False)
     model.load_state_dict(ck["state_dict"])
     model.eval().cuda()
     tf = T.eval_tf()
@@ -135,6 +145,58 @@ def step_features(a):
     print("written", out, len(rec["dish"]), "pictures")
 
 
+def step_tflite(a):
+    from ai_edge_litert.interpreter import Interpreter
+    from PIL import Image
+    from food_items import square_crop
+    from parity import preprocess
+
+    out = os.path.join(a.runs or os.path.join(a.work, "runs"), a.run, "grams")
+    z = np.load(os.path.join(out, "features.npz"))
+    spec = json.load(open(a.spec, encoding="utf-8"))
+    margin = json.load(open(a.detector_spec)).get("crop", {}).get("margin", 0.1) if a.detector_spec else 0.1
+    photo = {d: path for d, path, _, _, _ in load_dishes(a.work)}
+    it = Interpreter(model_path=a.tflite, num_threads=4)
+    it.allocate_tensors()
+    inp = it.get_input_details()[0]
+    outs = it.get_output_details()  # in output order: the json's indices
+    o_logits, o_grams = outs[spec["output"]["index"]], outs[spec["grams"]["output"]["index"]]
+    f_index = None
+    if a.with_features:
+        # a debug export (export.py onnx --features-output, converted the same way, never shipped) whose extra
+        # output is the int8 features the grams layer reads; its outputs are found by size
+        size = {k: int(np.prod(o["shape"])) for k, o in enumerate(outs)}
+        n, e = len(spec["labels"]), spec.get("embedding", {}).get("output", {}).get("shape", [1, 0])[1]
+        o_logits = outs[next(k for k, s in size.items() if s == n)]
+        o_grams = outs[next(k for k, s in size.items() if s == 1)]
+        f_index = outs[next(k for k, s in size.items() if s not in (n, 1, e))]["index"]
+    ys, top5, feats = [], [], []
+    cur = (None, None)
+    for k, (d, zz, kind, b) in enumerate(zip(z["dish"], z["zoom"], z["kind"], z["box"])):
+        if cur[0] != (d, zz):  # the same picture as `features`: the whole photo or its central part
+            full = Image.open(photo[d]).convert("RGB")
+            W0, H0 = full.size
+            cw, ch = round(W0 * zz), round(H0 * zz)
+            x0, y0 = (W0 - cw) // 2, (H0 - ch) // 2
+            cur = ((d, zz), full if zz == 1.0 else full.crop((x0, y0, x0 + cw, y0 + ch)))
+        im = cur[1]
+        if kind == "box":
+            W, H = im.size
+            left, top, side = square_crop((b[0] * W, b[1] * H, b[2] * W, b[3] * H), W, H, margin)
+            im = im.crop((left, top, left + side, top + side))
+        it.set_tensor(inp["index"], preprocess(im, spec))
+        it.invoke()
+        ys.append(float(it.get_tensor(o_grams["index"]).reshape(-1)[0]))
+        top5.append(np.argsort(-it.get_tensor(o_logits["index"]).reshape(-1))[:5])
+        if f_index is not None:
+            feats.append(it.get_tensor(f_index).reshape(-1).astype(np.float32))
+        if k % 2000 == 0:
+            print(k, flush=True)
+    extra = {"feat": np.array(feats, dtype=np.float32)} if feats else {}
+    np.savez_compressed(os.path.join(out, "tflite.npz"), y=np.array(ys), top5=np.array(top5), **extra)
+    print("written", os.path.join(out, "tflite.npz"), len(ys), "pictures")
+
+
 def load_portions(foods, labels):
     p = {}
     with open(foods, encoding="utf-8") as f:
@@ -152,6 +214,7 @@ def scores(est, true):
 
 
 def fit(a, rule_name, verbose=True):
+    import torch
     run = os.path.join(a.runs or os.path.join(a.work, "runs"), a.run)
     z = np.load(os.path.join(run, "grams", "features.npz"))
     labels = [r["id"] for r in csv.DictReader(open(a.classes, encoding="utf-8"))]
@@ -159,7 +222,16 @@ def fit(a, rule_name, verbose=True):
     dish, split, mass, kind, zoom, main = z["dish"], z["split"], z["mass"], z["kind"], z["zoom"], z["main"]
     box = z["box"]
     feat = torch.tensor(z["feat"], dtype=torch.float32)
-    p_top1 = portion[z["top5"][:, 0]]
+    top5 = z["top5"]
+    y_file = None
+    if a.tflite or a.tflite_features:  # the exported file's own outputs (grams.py tflite)
+        t = np.load(os.path.join(run, "grams", "tflite.npz"))
+        top5 = t["top5"]
+        if a.tflite:  # its log_grams: its head is kept as it is, only the app formula is fitted
+            y_file = t["y"]
+        else:  # its int8 features (tflite --with-features): a new head fitted on what the int8 network computes
+            feat = torch.tensor(t["feat"], dtype=torch.float32)
+    p_top1 = portion[top5[:, 0]]
     p_top1 = np.where(np.isnan(p_top1), np.nanmedian(portion), p_top1)
     rule = RULES[rule_name]
     rng = np.random.default_rng(0)
@@ -203,6 +275,15 @@ def fit(a, rule_name, verbose=True):
         mx = torch.full((n,), -1e9).scatter_reduce(0, gid, y.detach(), "amax")
         return mx + torch.log(torch.zeros(n).index_add(0, gid, torch.exp(y - mx[gid])))
 
+    def head_y(w, b, idx):
+        """y of the pictures idx. --int8-head: as a full-int8 file computes it: the exported weights w/sd share
+        one int8 scale (a one-output layer), rounded."""
+        if not a.int8_head:
+            return xf[idx] @ w + b
+        r = w / sd
+        s = r.abs().max().clamp(min=1e-8) / 127
+        return feat[idx] @ (torch.round(r / s) * s) + b - (mu * r).sum()
+
     def train_head(lam):
         idx, gid, logm, n = flat(("train",))
         x = xf[idx]
@@ -214,17 +295,20 @@ def fit(a, rule_name, verbose=True):
             loss = ((group_lse(x @ w + b, gid, n) - logm) ** 2).mean() + lam * (w ** 2).sum()
             loss.backward()
             opt.step()
+            if a.int8_head:  # every exported weight w/sd within ±head_max: one int8 scale then suits them all
+                with torch.no_grad():
+                    w.copy_(torch.maximum(torch.minimum(w, a.head_max * sd), -a.head_max * sd))
         return w.detach(), b.detach()
 
     def rows(w, b, part, flows, zz=None):
-        return [(g, (xf[g[0]] @ w + b).numpy()) for g in groups
-                if g[4] == part and g[3] in flows and (zz is None or g[5] == zz)]
+        return [(g, y_file[g[0]] if y_file is not None else head_y(w, b, torch.as_tensor(g[0])).numpy())
+                for g in groups if g[4] == part and g[3] in flows and (zz is None or g[5] == zz)]
 
     def head_total(rs):
         return np.array([np.exp(y).sum() for _, y in rs])
 
     best = None
-    for lam in a.lambdas:
+    for lam in ([] if y_file is not None else a.lambdas):
         w, b = train_head(lam)
         rs = rows(w, b, "val", ("single", "multi"))
         err = scores(head_total(rs), np.array([g[2] for g, _ in rs]))[0]
@@ -232,7 +316,7 @@ def fit(a, rule_name, verbose=True):
             print("lambda", lam, "val MdAPE", err, flush=True)
         if best is None or err < best[0]:
             best = (err, lam, w, b)
-    _, lam, w, b = best
+    _, lam, w, b = best if best is not None else (None, None, None, None)
 
     def app(rs, coef, lo=0.0, hi=1e9):
         b0, b1, b2, b3 = coef
@@ -264,7 +348,8 @@ def fit(a, rule_name, verbose=True):
     _, lo, hi = clamp
     const = float(np.median([g[2] for g in groups if g[4] == "train" and g[3] in ("single", "multi")]))
     rep = {"rule": rule_name, "lambda": lam, "coef_b0_bmodel_bportion_bshare": [round(float(c), 4) for c in coef],
-           "clamp_portion": [lo, hi], "test_dishes": int(len({d for d in dish[split == "test"]}))}
+           "clamp_portion": [lo, hi], "test_dishes": int(len({d for d in dish[split == "test"]})),
+           "y": "the exported file's log_grams (grams.py tflite)" if y_file is not None else "the float head"}
     for zz in sorted(set(zoom.tolist())):
         zkey = "" if zz == 1.0 else f"zoom{zz:g}/"
         for name, flows, one_only in (("plate_single", ("single",), False), ("plate_multi", ("multi",), False),
@@ -288,9 +373,11 @@ def step_fit(a):
     rep, w, b, mu, sd, coef, lo, hi = fit(a, a.rule)
     print(json.dumps(rep, indent=1))
     out = os.path.join(a.runs or os.path.join(a.work, "runs"), a.run, "grams")
-    # fold the feature standardisation into the head: y = w·(f - mu)/sd + b = (w/sd)·f + (b - w·mu/sd)
-    torch.save({"weight": (w / sd)[None, :].clone(), "bias": torch.tensor([float(b - (w * mu / sd).sum())])},
-               os.path.join(out, "head.pt"))
+    if w is not None:  # --tflite keeps the head that is in the exported file
+        import torch
+        # fold the feature standardisation into the head: y = w·(f - mu)/sd + b = (w/sd)·f + (b - w·mu/sd)
+        torch.save({"weight": (w / sd)[None, :].clone(), "bias": torch.tensor([float(b - (w * mu / sd).sum())])},
+                   os.path.join(out, "head.pt"))
     with open(os.path.join(out, "report.json"), "w") as f:
         json.dump(rep, f, indent=1)
     # enabled only if clearly better than the default portion on plates at every simulated camera distance
@@ -318,7 +405,7 @@ def step_compare(a):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("step", choices=("features", "fit", "compare"))
+    ap.add_argument("step", choices=("features", "fit", "compare", "tflite"))
     ap.add_argument("--work", default="D:/FoodML")
     ap.add_argument("--runs", default="")
     ap.add_argument("--run", required=True)
@@ -334,8 +421,18 @@ def main():
     ap.add_argument("--epochs", type=int, default=300)
     ap.add_argument("--min-gain", type=float, default=0.1, help="enable only if this much better than the portion")
     ap.add_argument("--zooms", default="1.0,0.65", help="features: also the central part of each photo")
+    ap.add_argument("--tflite", default="", help="tflite: the exported food_model.tflite; fit/compare: any value = "
+                                                  "use its outputs (grams/tflite.npz) instead of the float head")
+    ap.add_argument("--spec", default="", help="tflite: its food_model.json")
+    ap.add_argument("--int8-head", action="store_true",
+                    help="fit: exported weights kept within ±--head-max and evaluated rounded as in a full-int8 file")
+    ap.add_argument("--head-max", type=float, default=1.0)
+    ap.add_argument("--with-features", action="store_true",
+                    help="tflite: --tflite is a debug export with the features as an extra output; keep them")
+    ap.add_argument("--tflite-features", action="store_true",
+                    help="fit: train the head on those int8 features (and the file's top-5) instead of the float ones")
     a = ap.parse_args()
-    {"features": step_features, "fit": step_fit, "compare": step_compare}[a.step](a)
+    {"features": step_features, "fit": step_fit, "compare": step_compare, "tflite": step_tflite}[a.step](a)
 
 
 if __name__ == "__main__":

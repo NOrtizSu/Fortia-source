@@ -53,24 +53,55 @@ internal fun landmineSquat() = Motion.rep(Tempo.lowerFirst(), Camera(26f)) { p -
 // ---- Thruster and push press ----------------------------------------------------------------------
 
 /**
- * The front-rack lifts: squat depth [depth] (0 standing, 1 below parallel) with the bar on the front
- * of the shoulders, pressed [press] of the way to locked out overhead. Returns the bar.
+ * What a front-rack lift holds: a barbell, two dumbbells (palms facing in) or a strongman log, which is
+ * thicker (it rests further forward on the chest and the head moves further out of its way).
  */
-private fun FrameBuilder.frontRackPress(depth: Float, press: Float, toes: Float = 0f) {
+internal enum class RackLoad(val forward: Float, val half: Float, val dodge: Float) {
+    BAR(0.14f, 0.24f, 0.06f),
+    DUMBBELLS(0.18f, 0.21f, 0.03f),
+    LOG(0.22f, 0.2f, 0.1f),
+}
+
+/**
+ * The front-rack lifts: squat depth [depth] (0 standing, 1 below parallel) with the [load] on the
+ * front of the shoulders, pressed [press] of the way to locked out overhead. [split] (0..1) catches it
+ * in a split stance, the near foot forward and the far one back on its toes (the split jerk).
+ */
+private fun FrameBuilder.frontRackPress(depth: Float, press: Float, toes: Float = 0f, split: Float = 0f, load: RackLoad = RackLoad.BAR) {
     val lean = lerp(4f, 24f, depth)
     val basis = Basis.UPRIGHT.pitch(lean)
     val spine = BodySize.LOWER_SPINE + BodySize.UPPER_SPINE
-    val rack = basis.u * spine + basis.dir(0.14f, -0.07f, 0f)
+    val rack = basis.u * spine + basis.dir(load.forward, -0.07f, 0f)
+    // Balanced as with the bar on the shoulders (a log further forward would put the hips behind the heels).
+    val balance = basis.u * spine + basis.dir(RackLoad.BAR.forward, -0.07f, 0f)
     val rise = liftedAnkle(0f, 0f, toes).y - BodySize.ANKLE
-    val pelvis = v(MID_FOOT - rack.x, lerp(0.915f, 0.47f, depth) + rise)
+    val pelvis = v(MID_FOOT - balance.x - 0.06f * split, lerp(0.915f, 0.47f, depth) + rise - 0.25f * split)
     val dodge = sin(PI.toFloat() * press)
     body.torso(pelvis, basis, nod = -lean * 0.45f - 16f * dodge)
-    body.standOn(0f, width = 0.34f, out = 18f, lift = toes, pole = v(1f, 0.1f, 0.3f))
+    // As standOn(0, width 0.34, out 18) while the feet are together; the split moves them apart.
+    for (side in Side.entries) {
+        val front = side == Side.NEAR
+        body.stand(
+            side,
+            if (front) 0.3f * split else -0.55f * split,
+            z = side.sign * lerp(0.17f, 0.14f, split),
+            lift = if (front) toes * (1 - split) else toes + 58f * split,
+            out = lerp(18f, if (front) 10f else 6f, split),
+            pole = v(1f, 0.1f, side.sign * 0.3f),
+        )
+    }
     val shoulders = body.shoulders()
-    val half = 0.24f
+    val half = load.half
     val top = v(shoulders.x - 0.02f, shoulders.y + armReach(half - BodySize.SHOULDER_HALF, -0.02f))
-    val bar = lerp(pelvis + rack, top, Ease.IN_OUT.apply(press)) + V3.X * (0.06f * dodge)
-    barbell(bar)
+    val bar = lerp(pelvis + rack, top, Ease.IN_OUT.apply(press)) + V3.X * (load.dodge * dodge)
+    when (load) {
+        RackLoad.BAR -> barbell(bar)
+        RackLoad.DUMBBELLS -> for (side in Side.entries) dumbbell(bar.withZ(side.sign * half), axis = V3.X)
+        RackLoad.LOG -> {
+            add(Rod(bar.withZ(-0.7f), bar.withZ(0.7f), 0.15f, Ink.PLATE, bias = -0.04f))
+            for (s in listOf(-1f, 1f)) add(Disc(bar.withZ(s * 0.7f), V3.Z, 0.15f, 0.01f, Ink.PLATE_DARK, hub = 0.1f, bias = -0.03f))
+        }
+    }
     for (side in Side.entries) {
         // The elbows stay high in front (the rack) as the bar leaves the shoulders, swing out to the sides
         // as it passes the face (never through the line from the shoulder to the hand), and end down and
@@ -88,21 +119,52 @@ private fun FrameBuilder.frontRackPress(depth: Float, press: Float, toes: Float 
     }
 }
 
-/** Barbell thruster: a front squat that drives straight into a press overhead, then the bar back to the shoulders for the next squat. */
-internal fun thruster() = Motion.cycle(2.8f, camera = Camera(24f)) { phase ->
+/**
+ * Thruster: a front squat that drives straight into a press overhead, then the load back to the
+ * shoulders for the next squat; with a barbell or two dumbbells.
+ */
+internal fun thruster(load: RackLoad = RackLoad.BAR) = Motion.cycle(2.8f, camera = Camera(24f)) { phase ->
     val t = phase * 2.8f
     val depth = ramp(t, 0.15f to 0f, 0.95f to 1f, 1.35f to 0f)
     val press = ramp(t, 1.1f to 0f, 1.6f to 1f, 1.95f to 1f, 2.5f to 0f)
-    frontRackPress(depth, press)
+    frontRackPress(depth, press, load = load)
 }
 
-/** Push press: a short dip and an explosive leg drive that sends the bar from the shoulders to locked out overhead, then back to the rack. */
-internal fun pushPress() = Motion.cycle(2.6f, camera = Camera(24f)) { phase ->
+/**
+ * Push press: a short dip and an explosive leg drive that sends the load from the shoulders to locked
+ * out overhead, then back to the rack; with a barbell or a strongman log.
+ */
+internal fun pushPress(load: RackLoad = RackLoad.BAR) = Motion.cycle(2.6f, camera = Camera(24f)) { phase ->
     val t = phase * 2.6f
     val depth = ramp(t, 0.35f to 0f, 0.7f to 0.26f, 0.9f to 0f, 1.95f to 0f, 2.2f to 0.12f, 2.5f to 0f)
     val toes = ramp(t, 0.85f to 0f, 0.95f to 14f, 1.15f to 0f)
     val press = ramp(t, 0.85f to 0f, 1.3f to 1f, 1.6f to 1f, 2.2f to 0f)
+    frontRackPress(depth, press, toes, load = load)
+}
+
+/**
+ * Push jerk: the dip and drive of the push press, but the lifter drops under the rising bar and
+ * catches it on locked arms in a quarter squat, then stands up with it and lowers it to the rack.
+ */
+internal fun pushJerk() = Motion.cycle(2.8f, camera = Camera(24f)) { phase ->
+    val t = phase * 2.8f
+    val depth = ramp(t, 0.3f to 0f, 0.6f to 0.26f, 0.8f to 0f, 1.0f to 0.3f, 1.35f to 0.3f, 1.75f to 0f, 2.1f to 0f, 2.4f to 0.12f, 2.65f to 0f)
+    val toes = ramp(t, 0.72f to 0f, 0.8f to 14f, 0.95f to 0f)
+    val press = ramp(t, 0.68f to 0f, 1.16f to 1f, 2.1f to 1f, 2.5f to 0f)
     frontRackPress(depth, press, toes)
+}
+
+/**
+ * Split jerk: dip and drive, then the feet split (near foot forward, far foot back on its toes) as the
+ * arms lock the bar out overhead; the feet come back together and the bar returns to the rack.
+ */
+internal fun splitJerk() = Motion.cycle(3.0f, camera = Camera(24f)) { phase ->
+    val t = phase * 3.0f
+    val depth = ramp(t, 0.3f to 0f, 0.6f to 0.24f, 0.8f to 0f, 2.2f to 0f, 2.45f to 0.1f, 2.7f to 0f)
+    val toes = ramp(t, 0.72f to 0f, 0.8f to 14f, 0.95f to 0f)
+    val split = ramp(t, 0.8f to 0f, 1.0f to 1f, 1.45f to 1f, 1.95f to 0f)
+    val press = ramp(t, 0.62f to 0f, 1.2f to 1f, 2.15f to 1f, 2.55f to 0f)
+    frontRackPress(depth, press, toes, split)
 }
 
 // ---- Cleans and snatches --------------------------------------------------------------------------
@@ -111,10 +173,22 @@ internal fun pushPress() = Motion.cycle(2.6f, camera = Camera(24f)) { phase ->
  * The stages of a barbell clean or snatch, laid out on a 0..6 driver: the first pull from the start
  * (floor or hang) to the hips (0 → 1), the jump and high pull (→ 2), the turnover and the catch in a
  * quarter squat (→ 3), standing up (→ 4), lowering the bar to the hips (→ 5) and back to the start
- * (→ 6, the same pose as 0). [snatch] takes a wide grip and catches the bar overhead.
+ * (→ 6, the same pose as 0). [snatch] takes a wide grip and catches the bar overhead. [deep] catches
+ * it in a full squat (the squat clean and snatch); [pullOnly] keeps the arms straight in the jump
+ * (the clean and snatch pulls), which then goes back down without a catch.
  */
-private class Olympic(val fromFloor: Boolean, val snatch: Boolean) {
+private class Olympic(val fromFloor: Boolean, val snatch: Boolean, val deep: Boolean = false, val pullOnly: Boolean = false) {
     val half = if (snatch) 0.45f else 0.27f
+    private val catchPelvis = when {
+        !deep -> v(-0.1f, 0.76f)
+        snatch -> v(-0.19f, 0.49f)
+        else -> v(-0.33f, 0.49f)
+    }
+    private val catchLean = when {
+        !deep -> 14f
+        snatch -> 30f
+        else -> 24f
+    }
     private val start = if (fromFloor) v(0.12f, 0.225f) else v(0.13f, 0.56f)
     private val startLean = when {
         fromFloor && snatch -> 62f
@@ -152,17 +226,26 @@ private class Olympic(val fromFloor: Boolean, val snatch: Boolean) {
                 val pelvis = lerp(from, v(0.0f, 0.97f), e)
                 body.torso(pelvis, Basis.UPRIGHT.pitch(lerp(12f, -6f, e)), nod = lerp(-6f, 4f, e), shrug = 0.06f * e)
                 stance(26f * e)
-                val bar = lerp(power, v(0.12f, if (snatch) 1.18f else 1.05f), e)
-                barbell(bar, plateRadius = 0.225f)
-                for (side in Side.entries) body.arm(side, bar.withZ(side.sign * half), lerp(straight(side), highPull(side), e))
+                if (pullOnly) {
+                    // Arms straight: the bar rides up the thighs at arm's length below the shoulders.
+                    val lateral = abs(half - BodySize.SHOULDER_HALF)
+                    val rel = lerp(v(0f, -armReach(lateral, 0f, 0.985f)), v(0.02f, -armReach(lateral, 0.02f, 0.985f)), e)
+                    val bar = body.shoulders().withZ(0f) + rel
+                    barbell(bar, plateRadius = 0.225f)
+                    for (side in Side.entries) body.arm(side, bar.withZ(side.sign * half), straight(side))
+                } else {
+                    val bar = lerp(power, v(0.12f, if (snatch) 1.18f else 1.05f), e)
+                    barbell(bar, plateRadius = 0.225f)
+                    for (side in Side.entries) body.arm(side, bar.withZ(side.sign * half), lerp(straight(side), highPull(side), e))
+                }
             }
             s <= 4f -> {
-                // Turnover and catch in a quarter squat (2 → 3), then standing up (3 → 4).
+                // Turnover and catch in a quarter (or full) squat (2 → 3), then standing up (3 → 4).
                 val catch = Ease.IN_OUT.apply((s - 2f).coerceAtMost(1f))
                 val up = Ease.IN_OUT.apply((s - 3f).coerceAtLeast(0f))
-                val lean = lerp(lerp(-6f, 14f, catch), 2f, up)
+                val lean = lerp(lerp(-6f, catchLean, catch), 2f, up)
                 val basis = Basis.UPRIGHT.pitch(lean)
-                val pelvis = lerp(lerp(v(0.0f, 0.97f), v(-0.1f, 0.76f), catch), standPelvis, up)
+                val pelvis = lerp(lerp(v(0.0f, 0.97f), catchPelvis, catch), standPelvis, up)
                 body.torso(pelvis, basis, nod = lerp(lerp(4f, -6f, catch), -1f, up), shrug = 0.06f * (1 - catch))
                 stance(26f * (1 - catch))
                 val pull = v(0.12f, if (snatch) 1.18f else 1.05f)
@@ -224,6 +307,51 @@ private class Olympic(val fromFloor: Boolean, val snatch: Boolean) {
         }
     }
 
+    /**
+     * The jerk after a clean, from the pose the clean stands up in (stage 4): a [depth] dip and drive
+     * onto the [toes], the bar pressed [press] of the way overhead while the feet [split]; then
+     * [lower] brings it down in front to the hang (the pose of stage 5), for the rest of the loop.
+     */
+    fun jerk(b: FrameBuilder, depth: Float, press: Float, split: Float, toes: Float, lower: Float) = with(b) {
+        val rise = liftedAnkle(0f, 0f, toes).y - BodySize.ANKLE
+        val dodge = sin(PI.toFloat() * press) * (1f - lower)
+        body.torso(standPelvis + v(-0.04f * split, rise - 0.445f * depth - 0.25f * split), Basis.UPRIGHT.pitch(2f + 10f * depth), nod = -1f - 16f * dodge)
+        for (side in Side.entries) {
+            val front = side == Side.NEAR
+            body.stand(
+                side,
+                -0.03f + if (front) 0.3f * split else -0.55f * split,
+                z = side.sign * 0.135f,
+                lift = if (front) toes * (1 - split) else toes + 58f * split,
+                out = 8f,
+                pole = v(1f, 0.1f, side.sign * 0.15f),
+            )
+        }
+        val shoulders = body.shoulders()
+        val top = v(shoulders.x - 0.02f, shoulders.y + armReach(0.24f - BodySize.SHOULDER_HALF, -0.02f))
+        if (lower <= 0f) {
+            val bar = lerp(body.onChest(0.14f, -0.07f), top, Ease.IN_OUT.apply(press)) + V3.X * (0.06f * dodge)
+            barbell(bar, plateRadius = 0.225f)
+            for (side in Side.entries) {
+                val rack = body.chest.dir(0.3f, 1f, side.sign * 0.25f)
+                val out = v(0.3f, 0.3f, side.sign * 1f)
+                val lockout = v(0.6f, -1f, side.sign * 1f)
+                val pole = when {
+                    press < 0.05f -> rack
+                    press < 0.35f -> lerp(rack, out, (press - 0.05f) / 0.3f)
+                    else -> lerp(out, lockout, (press - 0.35f) / 0.65f)
+                }
+                body.arm(side, bar.withZ(side.sign * 0.24f), pole)
+            }
+        } else {
+            // Down in front of the face and the chest to the hang, the grip widening to the clean's.
+            val e = Ease.IN_OUT.apply(lower)
+            val bar = lerp(top, hang, e) + V3.X * (0.2f * sin(PI.toFloat() * e))
+            barbell(bar, plateRadius = 0.225f)
+            for (side in Side.entries) body.arm(side, bar.withZ(side.sign * lerp(0.24f, half, e)), lerp(v(0.6f, -1f, side.sign * 1f), v(-0.3f, 0.2f, side.sign * 1f), e))
+        }
+    }
+
     /** Pelvis of the power position (the end of the first pull). */
     private fun powerPelvis(): V3 = hingePelvis(power, 12f, 0f)
 
@@ -234,14 +362,18 @@ private class Olympic(val fromFloor: Boolean, val snatch: Boolean) {
     }
 }
 
-/** A clean or snatch on the 0..6 stage driver ([Olympic]) over [loop] seconds. */
-private fun olympicLift(fromFloor: Boolean, snatch: Boolean): Motion {
-    val lift = Olympic(fromFloor, snatch)
-    val loop = if (fromFloor) 5.0f else 4.6f
+/**
+ * A clean or snatch on the 0..6 stage driver ([Olympic]) over [loop] seconds; [deep] catches it in a
+ * full squat, which takes longer to stand up from.
+ */
+private fun olympicLift(fromFloor: Boolean, snatch: Boolean, deep: Boolean = false): Motion {
+    val lift = Olympic(fromFloor, snatch, deep)
+    val up = if (deep) 0.35f else 0f
+    val loop = (if (fromFloor) 5.0f else 4.6f) + up
     val keys = if (fromFloor) {
-        listOf(0f to 0f, 0.4f to 0f, 1.05f to 1f, 1.3f to 2f, 1.58f to 3f, 2.15f to 4f, 2.6f to 4f, 3.75f to 5f, 4.7f to 6f, loop to 6f)
+        listOf(0f to 0f, 0.4f to 0f, 1.05f to 1f, 1.3f to 2f, 1.58f + up * 0.6f to 3f, 2.15f + up to 4f, 2.6f + up to 4f, 3.75f + up to 5f, 4.7f + up to 6f, loop to 6f)
     } else {
-        listOf(0f to 0f, 0.4f to 0f, 0.85f to 1f, 1.1f to 2f, 1.38f to 3f, 1.95f to 4f, 2.4f to 4f, 3.55f to 5f, 4.3f to 6f, loop to 6f)
+        listOf(0f to 0f, 0.4f to 0f, 0.85f to 1f, 1.1f to 2f, 1.38f + up * 0.6f to 3f, 1.95f + up to 4f, 2.4f + up to 4f, 3.55f + up to 5f, 4.3f + up to 6f, loop to 6f)
     }
     return Motion.cycle(loop, camera = Camera(24f)) { phase ->
         lift.frame(this, ramp(phase * loop, *keys.toTypedArray()))
@@ -253,6 +385,69 @@ internal fun powerClean() = olympicLift(fromFloor = true, snatch = false)
 internal fun hangClean() = olympicLift(fromFloor = false, snatch = false)
 
 internal fun powerSnatch() = olympicLift(fromFloor = true, snatch = true)
+
+internal fun squatClean() = olympicLift(fromFloor = true, snatch = false, deep = true)
+
+internal fun hangPowerSnatch() = olympicLift(fromFloor = false, snatch = true)
+
+internal fun squatSnatch() = olympicLift(fromFloor = true, snatch = true, deep = true)
+
+/**
+ * Clean or snatch pull: the first pull from the floor and the jump onto the toes with a shrug, the
+ * arms straight throughout, then the bar back down to the floor.
+ */
+internal fun olympicPull(snatch: Boolean): Motion {
+    val lift = Olympic(fromFloor = true, snatch = snatch, pullOnly = true)
+    val keys = listOf(0f to 0f, 0.4f to 0f, 1.05f to 1f, 1.35f to 2f, 1.6f to 2f, 2.3f to 1f, 3.1f to 0f, 3.4f to 0f)
+    return Motion.cycle(3.4f, camera = Camera(24f)) { phase -> lift.frame(this, ramp(phase * 3.4f, *keys.toTypedArray())) }
+}
+
+/**
+ * Clean and jerk: a squat clean to standing, then a split jerk, the feet back together with the bar
+ * overhead, and the bar lowered in front to the hips and to the floor.
+ */
+internal fun cleanAndJerk(): Motion {
+    val lift = Olympic(fromFloor = true, snatch = false, deep = true)
+    val loop = 5.9f
+    val clean = listOf(0f to 0f, 0.35f to 0f, 0.95f to 1f, 1.2f to 2f, 1.5f to 3f, 2.15f to 4f)
+    return Motion.cycle(loop, camera = Camera(24f)) { phase ->
+        val t = phase * loop
+        when {
+            t < 2.15f -> lift.frame(this, ramp(t, *clean.toTypedArray()))
+            t < 4.85f -> {
+                val depth = ramp(t, 2.3f to 0f, 2.55f to 0.24f, 2.75f to 0f)
+                val toes = ramp(t, 2.68f to 0f, 2.76f to 14f, 2.9f to 0f)
+                val press = ramp(t, 2.62f to 0f, 3.12f to 1f)
+                val split = ramp(t, 2.76f to 0f, 2.95f to 1f, 3.3f to 1f, 3.75f to 0f)
+                lift.jerk(this, depth, press, split, toes, lower = ramp(t, 3.95f to 0f, 4.85f to 1f))
+            }
+            else -> lift.frame(this, ramp(t, 4.85f to 5f, 5.6f to 6f))
+        }
+    }
+}
+
+/**
+ * Snatch balance: the bar on the upper back with a snatch grip; a short dip, then the lifter drives
+ * the bar up a little and drops under it into a full overhead squat, arms locking, stands up and
+ * lowers the bar back to the upper back.
+ */
+internal fun snatchBalance() = Motion.cycle(3.2f, camera = Camera(26f, 4f)) { phase ->
+    val t = phase * 3.2f
+    val depth = ramp(t, 0.3f to 0f, 0.55f to 0.18f, 0.75f to 0.05f, 1.15f to 1f, 1.45f to 1f, 2.15f to 0f)
+    val over = ramp(t, 0.72f to 0f, 1.15f to 1f, 2.4f to 1f, 3.0f to 0f)
+    val lean = lerp(3f, 30f, depth)
+    val basis = Basis.UPRIGHT.pitch(lean)
+    val pelvis = v(MID_FOOT - SPINE * sin(rad(lean)) - 0.01f, lerp(0.915f, 0.48f, depth))
+    body.torso(pelvis, basis, nod = -lean * 0.3f)
+    body.standOn(0f, width = 0.36f, out = 18f, pole = v(1f, 0.1f, 0.3f))
+    val half = 0.46f
+    val shoulders = body.shoulders()
+    val back = pelvis + basis.u * (BodySize.LOWER_SPINE + BodySize.UPPER_SPINE) + basis.dir(-0.13f, -0.06f, 0f)
+    val top = v(MID_FOOT, shoulders.y + armReach(half - BodySize.SHOULDER_HALF, MID_FOOT - shoulders.x, straightness = 0.99f))
+    val bar = lerp(back, top, Ease.IN_OUT.apply(over)) + V3.Y * (0.06f * sin(PI.toFloat() * over))
+    barbell(bar)
+    for (side in Side.entries) body.arm(side, bar.withZ(side.sign * half), lerp(basis.dir(-0.7f, -1f, side.sign * 0.4f), v(0f, -0.3f, side.sign * 1f), over))
+}
 
 /**
  * One-arm dumbbell snatch: squatting to the dumbbell between the feet, the hips snap forward and the

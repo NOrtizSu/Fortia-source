@@ -22,6 +22,7 @@ food_portion_tbsp = 1큰술
 food_portion_tsp = 1작은술
 food_portion_handful = 한 줌
 food_portion_serving = 1인분
+food_portion_scoop = 1스쿱
 
 # Meals of the day
 foodlog_meal_breakfast = 아침
@@ -221,9 +222,9 @@ health_rationale_write_meals = 허용하면 Fortia는 기록한 음식(영양)�
 notice_litert = 휴대전화에서 음식 인식 모델을 실행합니다.
 notice_zxing = 사진에서 제품 바코드를 읽습니다.
 open_source_food_data = 식품 데이터
-notice_open_food_facts = 바코드로 찾는 포장 제품. 데이터 © Open Food Facts 기여자, Open Database License(ODbL)에 따름.
+notice_open_food_facts = 바코드로 찾는 포장 제품. 데이터 © Open Food Facts 기여자, Open Database License(ODbL)에 따름. 제품 사진 © Open Food Facts 기여자, CC BY-SA 3.0(https://creativecommons.org/licenses/by-sa/3.0/)에 따름.
 notice_usda = 식품 목록의 영양 성분: U.S. Department of Agriculture, Agricultural Research Service, FoodData Central. 퍼블릭 도메인(CC0).
 notice_ciqual = 식품 목록의 영양 성분: Anses, Ciqual 프랑스 식품 성분표, Licence Ouverte / Etalab 2.0에 따름.
 notice_food_model_name = Fortia 음식 인식 모델
-notice_food_model_license = 자체 모델(모델 카드 참조)
+notice_food_model_license = 자체 모델(모델 카드 참조) · AGPL-3.0 · food_model.tflite: AGPL-3.0 / CC BY-SA 4.0
 notice_food_model = MobileNetV4(timm, Apache-2.0)와 Ultralytics YOLO11n(AGPL-3.0)을 기반으로 Open Images(CC BY 2.0), Wikimedia Commons(자유 라이선스), MyFoodRepo(CC BY 4.0)의 이미지로 학습한 자체 모델입니다. 무게 추정은 Nutrition5k(CC BY 4.0)로 보정했습니다. 이미지 목록과 저작자는 소스 코드와 함께 공개됩니다.

@@ -166,7 +166,11 @@ fun FoodSearchScreen(onOpen: (String) -> Unit, onBack: () -> Unit) {
     }
 }
 
-/** A food of the results; the user's own foods (and kept products) also have a menu on a long press: edit, delete. */
+/**
+ * A food of the results, led like the day's entries by its product photo or the meal glyph (every row
+ * starts its text at the same place); the user's own foods (and kept products) also have a menu on a
+ * long press: edit, delete.
+ */
 @Composable
 private fun ResultRow(item: FoodItem, onClick: () -> Unit, onEdit: () -> Unit, onDelete: () -> Unit) {
     val kcal = item.per100.kcal?.let { stringResource(FoodFormat.kcalPer100Res(item.unit), FoodFormat.kcal(it)) }
@@ -177,6 +181,7 @@ private fun ResultRow(item: FoodItem, onClick: () -> Unit, onEdit: () -> Unit, o
         ListItem(
             headlineContent = { Text(item.name, maxLines = 2, overflow = TextOverflow.Ellipsis) },
             supportingContent = { Text(detail, style = MaterialTheme.typography.bodyMedium.merge(TabularNumbers), maxLines = 1, overflow = TextOverflow.Ellipsis) },
+            leadingContent = { MealThumbnail(null, 48.dp, customFoodId = item.customFoodId) },
             colors = ListItemDefaults.colors(containerColor = Color.Transparent),
             modifier = if (own) {
                 Modifier.combinedClickable(

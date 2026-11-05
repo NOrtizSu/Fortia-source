@@ -2,6 +2,7 @@ package com.enjoyyourtime.globalfitness.ui.food
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -21,18 +22,22 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.ListItemDefaults
@@ -45,28 +50,47 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.produceState
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.LiveRegionMode
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.heading
+import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.LifecycleResumeEffect
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.enjoyyourtime.globalfitness.R
 import com.enjoyyourtime.globalfitness.food.domain.FoodMath
 import com.enjoyyourtime.globalfitness.food.model.FoodUnit
 import com.enjoyyourtime.globalfitness.food.model.Meal
+import com.enjoyyourtime.globalfitness.food.pack.PackageText
 import com.enjoyyourtime.globalfitness.food.recognition.RecognitionMath
 import com.enjoyyourtime.globalfitness.ui.Fmt
 import com.enjoyyourtime.globalfitness.ui.components.AppCard
+import com.enjoyyourtime.globalfitness.ui.components.AppIcons
+import com.enjoyyourtime.globalfitness.ui.components.LocalAppSnackbar
 import com.enjoyyourtime.globalfitness.ui.theme.TabularNumbers
 import kotlin.math.abs
+import kotlinx.coroutines.launch
 
 /**
  * A meal photo and what the recognizer saw in it: the five most likely foods with a plain hint of how
@@ -86,6 +110,32 @@ fun FoodPhotoScreen(onOpen: (String) -> Unit, onDone: () -> Unit) {
         onDone()
     }
     BackHandler(onBack = close)
+    // A barcode read on the photo opens its product by itself, only while this page is in front (resumed:
+    // not while it is leaving or covered).
+    LifecycleResumeEffect(Unit) {
+        vm.setPhotoPageShown(true)
+        onPauseOrDispose { vm.setPhotoPageShown(false) }
+    }
+    val autoOpen by vm.photoOpen.collectAsStateWithLifecycle(minActiveState = Lifecycle.State.RESUMED)
+    LaunchedEffect(autoOpen) {
+        autoOpen?.let {
+            vm.onPhotoOpened()
+            onOpen(it)
+        }
+    }
+    // "Photo of the barcode" for the package on this photo (its entry keeps this photo).
+    val snackbar = LocalAppSnackbar.current
+    val scope = rememberCoroutineScope()
+    val unavailable = stringResource(R.string.foodlog_camera_unavailable)
+    val barcodeLauncher = rememberImageLauncher(
+        vm.cameraTarget,
+        onImage = { uri, fromCamera ->
+            vm.onBarcodePhoto(uri, fromCamera, forPhoto = true)
+            onOpen(FoodRoutes.BARCODE)
+        },
+        onUnavailable = { scope.launch { snackbar.showSnackbar(unavailable) } },
+    )
+    val barcodePhoto = { if (barcodeLauncher.canTakePhoto) barcodeLauncher.takePhoto() else barcodeLauncher.pickPhoto() }
     val s = session
     val items = s?.showsItems == true
     FoodSubPage(
@@ -153,6 +203,7 @@ fun FoodPhotoScreen(onOpen: (String) -> Unit, onDone: () -> Unit) {
                     }
                 }
             }
+            packItems(s.pack, onOpen = onOpen, onBarcodePhoto = barcodePhoto)
             if (items) {
                 item(key = "plate-title") {
                     Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
@@ -173,6 +224,7 @@ fun FoodPhotoScreen(onOpen: (String) -> Unit, onDone: () -> Unit) {
                         Text(stringResource(R.string.foodlog_plate_as_one))
                     }
                 }
+                if (vm.canReadPackages && s.pack.text == PackText.Idle) item(key = "pack-search") { PackSearchButton(onClick = vm::searchPackage) }
                 item(key = "privacy") { FoodSupporting(stringResource(R.string.foodlog_photo_private)) }
                 return@LazyColumn
             }
@@ -245,6 +297,7 @@ fun FoodPhotoScreen(onOpen: (String) -> Unit, onDone: () -> Unit) {
                         Text(stringResource(label), modifier = Modifier.padding(start = 8.dp))
                     }
                 }
+                if (vm.canReadPackages && s.preview != null && s.pack.text == PackText.Idle) item(key = "pack-search") { PackSearchButton(onClick = vm::searchPackage) }
             }
             item(key = "privacy") { FoodSupporting(stringResource(R.string.foodlog_photo_private)) }
         }
@@ -351,3 +404,284 @@ private fun PlateItemCard(item: PlateItem, onSearch: () -> Unit) {
 
 /** Suggestions shown for each food of a plate. */
 private const val PLATE_SUGGESTIONS = 3
+
+/**
+ * The packaged product the photo may show, at the top of the page: the barcode read on it (its page
+ * opens by itself once found), the scanned products it looks like ("Is it …?", or a few suggestions),
+ * and the products Open Food Facts has for the words on the package. Each opens the product's page
+ * (Found → Use), nothing is logged from here.
+ */
+private fun LazyListScope.packItems(pack: PackUi, onOpen: (String) -> Unit, onBarcodePhoto: () -> Unit) {
+    pack.barcode?.let { b ->
+        item(key = "pack-barcode") {
+            val vm = foodViewModel()
+            val found = b.state as? BarcodeState.Found
+            val looking = b.state is BarcodeState.LookingUp
+            val status = when (b.state) {
+                is BarcodeState.Found -> listOfNotNull(found?.item?.brand, stringResource(R.string.foodlog_pack_barcode, b.code)).joinToString(" · ")
+                is BarcodeState.LookingUp -> stringResource(R.string.foodlog_barcode_looking_up, b.code)
+                is BarcodeState.NotFound -> stringResource(R.string.foodlog_barcode_not_found)
+                is BarcodeState.Offline -> stringResource(R.string.foodlog_barcode_offline)
+                else -> stringResource(R.string.foodlog_barcode_failed)
+            }
+            AppCard(containerColor = MaterialTheme.colorScheme.primaryContainer) {
+                ProductRow(
+                    name = found?.item?.name ?: stringResource(R.string.foodlog_pack_barcode, b.code),
+                    detail = status,
+                    customFoodId = found?.item?.customFoodId,
+                    fromOpenFoodFacts = found?.item?.fromOpenFoodFacts == true,
+                    working = looking,
+                    onClick = {
+                        vm.openPhotoBarcode()
+                        onOpen(FoodRoutes.BARCODE)
+                    }.takeUnless { looking },
+                )
+            }
+        }
+    }
+    pack.match?.let { m ->
+        item(key = "pack-match") {
+            val vm = foodViewModel()
+            AppCard(containerColor = MaterialTheme.colorScheme.primaryContainer) {
+                ProductRow(
+                    name = stringResource(R.string.foodlog_pack_match, m.name),
+                    detail = listOfNotNull(m.brand, stringResource(R.string.foodlog_pack_match_text)).joinToString(" · "),
+                    customFoodId = m.customFoodId,
+                    fromOpenFoodFacts = true,
+                    onClick = { if (vm.choosePackProduct(m.customFoodId)) onOpen(FoodRoutes.BARCODE) },
+                )
+            }
+        }
+    }
+    if (pack.suggestions.isNotEmpty()) {
+        item(key = "pack-suggestions") {
+            val vm = foodViewModel()
+            AppCard {
+                Column(Modifier.padding(top = 12.dp)) {
+                    Text(
+                        stringResource(R.string.foodlog_pack_suggestions),
+                        style = MaterialTheme.typography.titleSmall,
+                        modifier = Modifier.padding(horizontal = 16.dp).semantics { heading() },
+                    )
+                    pack.suggestions.forEach { p ->
+                        ProductRow(
+                            name = p.name,
+                            detail = p.brand,
+                            customFoodId = p.customFoodId,
+                            fromOpenFoodFacts = true,
+                            onClick = { if (vm.choosePackProduct(p.customFoodId)) onOpen(FoodRoutes.BARCODE) },
+                        )
+                    }
+                }
+            }
+        }
+    }
+    val text = pack.text
+    if (text == PackText.Idle) return
+    item(key = "pack-text") { PackTextStatus(text, foodViewModel(), onOpen, onBarcodePhoto) }
+}
+
+/** TalkBack says what the reading and the search come to as it changes (the status lines only, not the field). */
+private val announced = Modifier.semantics { liveRegion = LiveRegionMode.Polite }
+
+/**
+ * What the package search shows: the words searched in a field the user can correct and search again
+ * (a logo is not text, so the words read may be the small print), or an empty field to type the brand
+ * and name when none could be read; then the search working, its products, or why there are none
+ * (with what can be done).
+ */
+@Composable
+private fun PackTextStatus(text: PackText, vm: FoodViewModel, onOpen: (String) -> Unit, onBarcodePhoto: () -> Unit) {
+    val start = PhotoPackRules.wordsField(text)
+    if (start == null) {
+        if (text == PackText.Reading) PackWorking(stringResource(R.string.foodlog_pack_reading))
+        return
+    }
+    // The field's text, as the user sees it: what any search (the field's own, or "Try again") sends.
+    var words by rememberSaveable { mutableStateOf(start) }
+    var edited by rememberSaveable { mutableStateOf(false) }
+    LaunchedEffect(start) { words = PhotoPackRules.fieldAfter(words, edited, start) }
+    val search = {
+        edited = false
+        vm.searchPackageWords(words)
+    }
+    val padded = Modifier.padding(horizontal = 16.dp)
+    AppCard {
+        Column(Modifier.padding(vertical = 12.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            PackWordsField(
+                words,
+                onChange = {
+                    words = it.take(PackageText.MAX_TYPED)
+                    edited = true
+                },
+                searching = text is PackText.Searching,
+                onSearch = search,
+                modifier = padded,
+            )
+            when (text) {
+                PackText.Idle, PackText.Reading -> Unit
+                is PackText.Searching -> PackWorking(stringResource(R.string.foodlog_pack_searching, text.query), padded)
+                is PackText.Results -> {
+                    Column(padded, verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                        Text(
+                            stringResource(R.string.foodlog_pack_results, text.query),
+                            style = MaterialTheme.typography.titleMedium,
+                            modifier = announced.semantics { heading() },
+                        )
+                        FoodSupporting(stringResource(R.string.foodlog_pack_results_text))
+                    }
+                    Column {
+                        text.hits.forEachIndexed { i, hit ->
+                            if (i > 0) HorizontalDivider(color = MaterialTheme.colorScheme.surfaceContainerHighest)
+                            ListItem(
+                                headlineContent = { Text(hit.name, maxLines = 2, overflow = TextOverflow.Ellipsis) },
+                                supportingContent = {
+                                    listOfNotNull(hit.brand, hit.quantity).joinToString(" · ").takeIf { it.isNotEmpty() }?.let {
+                                        Text(it, maxLines = 1, overflow = TextOverflow.Ellipsis)
+                                    }
+                                },
+                                leadingContent = { HitThumbnail(hit.imageUrl, 48.dp) },
+                                colors = ListItemDefaults.colors(containerColor = Color.Transparent),
+                                modifier = Modifier.clickable(role = Role.Button) {
+                                    vm.choosePackHit(hit)
+                                    onOpen(FoodRoutes.BARCODE)
+                                },
+                            )
+                        }
+                    }
+                    OffAttribution(photo = text.hits.any { it.imageUrl != null }, padded)
+                }
+                PackText.NoText -> PackProblem(stringResource(R.string.foodlog_pack_no_text), onBarcodePhoto = onBarcodePhoto)
+                PackText.ReadFailed -> PackProblem(stringResource(R.string.foodlog_pack_read_failed), onRetry = vm::searchPackage, onBarcodePhoto = onBarcodePhoto)
+                is PackText.NotFound -> PackProblem(stringResource(R.string.foodlog_pack_none, text.query), onBarcodePhoto = onBarcodePhoto)
+                is PackText.Offline -> PackProblem(stringResource(R.string.foodlog_pack_offline), onRetry = search, onBarcodePhoto = onBarcodePhoto)
+                is PackText.Busy -> PackProblem(stringResource(R.string.foodlog_pack_busy), onRetry = search, onBarcodePhoto = onBarcodePhoto)
+                is PackText.Failed -> PackProblem(stringResource(R.string.foodlog_barcode_failed), onRetry = search, onBarcodePhoto = onBarcodePhoto)
+                is PackText.Unavailable -> if (text.preparing) {
+                    PackProblem(stringResource(R.string.foodlog_pack_preparing), onRetry = vm::searchPackage, onBarcodePhoto = onBarcodePhoto)
+                } else {
+                    PackProblem(stringResource(R.string.foodlog_pack_unavailable), onBarcodePhoto = onBarcodePhoto)
+                }
+            }
+            FoodSupporting(stringResource(R.string.foodlog_pack_private), padded)
+        }
+    }
+}
+
+/**
+ * The words searched in Open Food Facts, editable ([words], kept by the caller: "Try again" sends them
+ * too): the words read or last searched, empty with a hint when none could be read; searched again only
+ * when submitted. Autocorrect is off (brand names).
+ */
+@Composable
+private fun PackWordsField(words: String, onChange: (String) -> Unit, searching: Boolean, onSearch: () -> Unit, modifier: Modifier = Modifier) {
+    val keyboard = LocalSoftwareKeyboardController.current
+    val canSearch = !searching && PackageText.typed(words) != null
+    val submit = {
+        if (canSearch) {
+            keyboard?.hide()
+            onSearch()
+        }
+    }
+    OutlinedTextField(
+        value = words,
+        onValueChange = onChange,
+        singleLine = true,
+        label = { Text(stringResource(R.string.foodlog_pack_words_label)) },
+        placeholder = { Text(stringResource(R.string.foodlog_pack_words_hint)) },
+        trailingIcon = {
+            IconButton(onClick = submit, enabled = canSearch) {
+                Icon(Icons.Filled.Search, contentDescription = stringResource(R.string.foodlog_barcode_search))
+            }
+        },
+        keyboardOptions = KeyboardOptions(autoCorrectEnabled = false, imeAction = ImeAction.Search),
+        keyboardActions = KeyboardActions(onSearch = { submit() }),
+        modifier = modifier.fillMaxWidth(),
+    )
+}
+
+/** A product with its photo (from Open Food Facts, credited once shown): tap to open it. */
+@Composable
+private fun ProductRow(
+    name: String,
+    detail: String?,
+    customFoodId: String?,
+    fromOpenFoodFacts: Boolean,
+    onClick: (() -> Unit)?,
+    working: Boolean = false,
+) {
+    var photoShown by remember(customFoodId) { mutableStateOf(false) }
+    Column {
+        ListItem(
+            headlineContent = { Text(name, style = MaterialTheme.typography.titleMedium, maxLines = 2, overflow = TextOverflow.Ellipsis) },
+            supportingContent = detail?.takeIf { it.isNotEmpty() }?.let { { Text(it, maxLines = 2, overflow = TextOverflow.Ellipsis) } },
+            leadingContent = {
+                if (customFoodId != null) {
+                    MealThumbnail(null, 56.dp, customFoodId = customFoodId, onProductPhoto = { photoShown = it })
+                } else {
+                    Icon(AppIcons.Barcode, contentDescription = null, modifier = Modifier.size(32.dp))
+                }
+            },
+            trailingContent = {
+                when {
+                    working -> CircularProgressIndicator(Modifier.size(24.dp))
+                    onClick != null -> Icon(AppIcons.ChevronRight, contentDescription = null)
+                }
+            },
+            colors = ListItemDefaults.colors(containerColor = Color.Transparent),
+            modifier = if (onClick != null) Modifier.clickable(role = Role.Button, onClick = onClick) else Modifier,
+        )
+        if (fromOpenFoodFacts && photoShown) OffAttribution(photo = true, Modifier.padding(start = 16.dp, end = 16.dp, bottom = 12.dp))
+    }
+}
+
+/** A product of the package search's photo (downloaded for the list, kept in memory only), or the generic icon. */
+@Composable
+private fun HitThumbnail(url: String?, size: Dp) {
+    val vm = foodViewModel()
+    val px = with(LocalDensity.current) { size.roundToPx() }
+    val photo by produceState(initialValue = url?.let(vm::cachedHitPhoto), url, px) {
+        if (url != null && value == null) value = vm.hitPhoto(url, px * 2)
+    }
+    val shape = RoundedCornerShape(12.dp)
+    val p = photo
+    if (p != null) {
+        Image(p, contentDescription = null, contentScale = ContentScale.Crop, modifier = Modifier.size(size).clip(shape))
+    } else {
+        Box(Modifier.size(size).clip(shape).background(MaterialTheme.colorScheme.secondaryContainer), contentAlignment = Alignment.Center) {
+            Icon(AppIcons.Restaurant, contentDescription = null, tint = MaterialTheme.colorScheme.onSecondaryContainer, modifier = Modifier.size(size / 2))
+        }
+    }
+}
+
+@Composable
+private fun PackWorking(text: String, modifier: Modifier = Modifier) {
+    Row(modifier, verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+        CircularProgressIndicator(Modifier.padding(4.dp))
+        FoodSupporting(text, announced)
+    }
+}
+
+/** Why the package search found nothing, with what can be done instead ("Try again", a photo of the barcode). */
+@Composable
+private fun PackProblem(text: String, onBarcodePhoto: () -> Unit, onRetry: (() -> Unit)? = null) {
+    Column(Modifier.padding(horizontal = 16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+        FoodSupporting(text, announced)
+        FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            onRetry?.let { Button(onClick = it, modifier = Modifier.heightIn(min = 48.dp)) { Text(stringResource(R.string.action_retry)) } }
+            OutlinedButton(onClick = onBarcodePhoto, modifier = Modifier.heightIn(min = 48.dp)) {
+                Icon(AppIcons.Barcode, contentDescription = null, modifier = Modifier.size(18.dp))
+                Text(stringResource(R.string.foodlog_pack_barcode_photo), modifier = Modifier.padding(start = 8.dp))
+            }
+        }
+    }
+}
+
+/** "Search the product by its package": its words read on the phone, then searched in Open Food Facts. */
+@Composable
+private fun PackSearchButton(onClick: () -> Unit) {
+    OutlinedButton(onClick = onClick, modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp)) {
+        Icon(Icons.Filled.ShoppingCart, contentDescription = null)
+        Text(stringResource(R.string.foodlog_pack_search), modifier = Modifier.padding(start = 8.dp))
+    }
+}

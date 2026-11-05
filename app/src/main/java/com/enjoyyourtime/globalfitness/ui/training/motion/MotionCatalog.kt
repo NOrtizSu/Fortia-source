@@ -175,7 +175,7 @@ internal object MotionCatalog {
         "ski_erg" to { skiErg() },
     )
 
-    private val builtIn: Map<String, () -> Motion> = base + sportsMotions + gymMotions + moreMotions
+    private val builtIn: Map<String, () -> Motion> = base + sportsMotions + gymMotions + moreMotions + latestMotions
 
     /**
      * The built-in exercise whose animation a custom one borrows, by main muscle and equipment; a

@@ -17,3 +17,5 @@ routine_cardio_mix = Macchine cardio
 routine_mobility = Mobilità e stretching
 routine_foam_rolling = Recupero con foam roller
 routine_hiit = HIIT senza attrezzi
+routine_kettlebell = Full body con kettlebell
+routine_calisthenics = Calisthenics: skill

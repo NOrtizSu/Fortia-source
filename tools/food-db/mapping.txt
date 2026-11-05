@@ -2,7 +2,7 @@
 # and tools/i18n/src/master/97_foods.txt.
 #
 # id          food id ([a-z0-9_]+); the model's class ids are kept exactly (visual = 1)
-# group       fruit vegetables grains legumes meat fish eggs dairy fats_nuts sweets drinks dishes fast_food snacks sauces
+# group       fruit vegetables grains legumes meat fish eggs dairy fats_nuts sweets drinks dishes fast_food snacks sauces supplements
 # unit        g (values per 100 g) or ml (per 100 ml)
 # visual      1 = a class of the on-device model (tools/food-model/classes.csv), else 0
 # source      fdc:<FoodData Central id>, ciqual:<CIQUAL 2025 code> or recipe (recipes.toml, same id)
@@ -20,7 +20,7 @@ apple | fruit | g | 1 | ciqual:13039 |  | 150 | unit:150 | Apple | Manzana | App
 pear | fruit | g | 1 | ciqual:13037 |  | 150 | unit:150 | Pear | Pera | Pear, flesh and skin, raw |
 banana | fruit | g | 1 | ciqual:13005 |  | 120 | unit:120 | Banana | Plátano | Banana, flesh without skin, raw | medium banana without peel
 orange | fruit | g | 1 | ciqual:13034 |  | 150 | unit:150 | Orange | Naranja | Orange, flesh without skin, without seeds, raw |
-mandarin | fruit | g | 1 | ciqual:13024 |  | 60 | unit:60 | Mandarin | Mandarina | Clementine or Mandarin orange, flesh without skin, without seeds, raw | clementine or mandarin
+mandarin | fruit | g | 1 | ciqual:13024 |  | 60 | unit:60 | Mandarin or clementine | Mandarina o clementina | Clementine or Mandarin orange, flesh without skin, without seeds, raw | clementine or mandarin
 lemon | fruit | g | 1 | fdc:167746 |  | 60 | unit:60 | Lemon | Limón | Lemons, raw, without peel | without peel (CIQUAL lemon had no fibre value)
 lime | fruit | g | 1 | ciqual:13067 |  | 50 | unit:50 | Lime | Lima | Lime, flesh without skin, without seeds, raw |
 grapefruit | fruit | g | 1 | ciqual:13040 |  | 250 | unit:250 | Grapefruit | Pomelo | Grapefruit, flesh without skin, without seeds, raw |
@@ -121,7 +121,7 @@ canned_tomato | vegetables | g | 0 | ciqual:20169 |  | 100 | serving:100 can:390
 fennel | vegetables | g | 1 | ciqual:20028 |  | 100 | small_plate:100 unit:200 | Fennel | Hinojo | Fennel, raw | raw; unit = edible part of one bulb
 
 # --- Legumes ---
-edamame | legumes | g | 0 | fdc:168411 |  | 100 | bowl:100 | Edamame | Edamame | Edamame, frozen, prepared | shelled, cooked
+edamame | legumes | g | 1 | fdc:168411 |  | 100 | bowl:100 | Edamame | Edamame | Edamame, frozen, prepared | shelled, cooked
 chickpeas | legumes | g | 1 | fdc:173757 |  | 150 | small_plate:150 plate:250 | Chickpeas | Garbanzos cocidos | Chickpeas (garbanzo beans, bengal gram), mature seeds, cooked, boiled, without salt | boiled, no salt
 beans | legumes | g | 1 | ciqual:20502 |  | 150 | small_plate:150 plate:250 | Beans | Alubias cocidas | Haricot bean, boiled/cooked in water | white haricot beans, boiled
 kidney_beans | legumes | g | 0 | ciqual:20503 |  | 150 | small_plate:150 plate:250 | Red beans | Alubias rojas cocidas | Red kidney bean, boiled/cooked in water | boiled
@@ -131,7 +131,7 @@ cooked_lentils | legumes | g | 0 | ciqual:20360 | zero=vit_b12 | 150 | small_pla
 lentils | legumes | g | 1 | recipe |  | 350 | plate:350 small_plate:250 | Lentil stew | Lentejas estofadas | Lentil stew with chorizo: lentils, chorizo, potato, vegetables, olive oil, paprika | class "lentil stew / dal": Spanish lentejas with chorizo
 bean_stew | dishes | g | 1 | recipe |  | 350 | plate:350 | Fabada (bean stew) | Fabada asturiana | Fabada asturiana: white beans with chorizo, morcilla and pork belly | with chorizo, morcilla and pork belly; the meatless potaje is potaje_alubias
 potaje_alubias | dishes | g | 0 | recipe | variant_of=bean_stew | 350 | plate:350 | White bean stew | Potaje de alubias | Potaje de alubias: white beans stewed with potato and vegetables, olive oil and paprika | with potato and vegetables, no meat
-baked_beans | legumes | g | 0 | ciqual:20194 | fill=fdc:175182 | 150 | small_plate:150 | Baked beans | Alubias con tomate | Haricot beans with tomato sauce, canned | canned
+baked_beans | legumes | g | 1 | ciqual:20194 | fill=fdc:175182 | 150 | small_plate:150 | Baked beans | Alubias con tomate | Haricot beans with tomato sauce, canned | canned
 hummus | sauces | g | 1 | ciqual:25621 | fill=fdc:174289 | 50 | serving:50 tbsp:15 | Hummus | Hummus | Hummus, prepacked |
 tofu | legumes | g | 1 | ciqual:20904 |  | 100 | serving:100 | Tofu | Tofu | Tofu, plain, prepacked |
 lentils_dry | legumes | g | 0 | ciqual:20359 | fill=fdc:172420; zero=vit_b12 | 70 | serving:70 | Lentils, dry | Lentejas (en crudo) | Lentil, dried (average) | to weigh before cooking
@@ -204,7 +204,7 @@ arroz_negro | dishes | g | 0 | recipe | variant_of=paella | 350 | plate:350 | Bl
 fideua | dishes | g | 0 | recipe | variant_of=paella | 350 | plate:350 | Fideuà | Fideuà | Fideuà: short noodles cooked in fish stock with prawns, squid, tomato and olive oil | short noodles with seafood; alioli apart
 carbonara_italian | dishes | g | 0 | recipe | variant_of=carbonara | 270 | plate:270 | Carbonara (Italian style) | Carbonara italiana (sin nata) | Carbonara, Italian style: pasta, guanciale or bacon, egg yolk and egg, pecorino or parmesan, no cream | egg yolk, guanciale or bacon, cheese, no cream
 pasta_tomato_chorizo | dishes | g | 0 | recipe | variant_of=pasta_tomato | 330 | plate:330 | Macaroni with tomato and chorizo | Macarrones con tomate y chorizo | Macaroni with tomato sauce, chorizo and grated cheese |
-gnocchi | dishes | g | 0 | ciqual:25510 |  | 250 | plate:250 | Gnocchi | Ñoquis | Gnocchi, from potato, cooked | potato gnocchi, cooked, without sauce
+gnocchi | dishes | g | 1 | ciqual:25510 |  | 250 | plate:250 | Gnocchi | Ñoquis | Gnocchi, from potato, cooked | potato gnocchi, cooked, without sauce
 onigiri | dishes | g | 1 | recipe |  | 110 | unit:110 | Onigiri | Onigiri | Onigiri: rice ball filled with tuna and mayonnaise | rice ball with tuna and mayonnaise (the nori sheet, ~1 g, is left out)
 
 # --- Eggs (one egg = 50 g edible) ---
@@ -250,7 +250,7 @@ pork_loin | meat | g | 0 | fdc:168240 |  | 100 | unit:100 | Grilled pork loin | 
 pork_loin_raw | meat | g | 0 | ciqual:28480 | fill=fdc:167839 | 125 | serving:125 | Pork loin, raw | Lomo de cerdo (en crudo) | Pork, eye of shortloin, raw | lean loin, to weigh before cooking
 pork_tenderloin | meat | g | 0 | ciqual:28203 | fill=fdc:168250 | 150 | serving:150 | Pork tenderloin | Solomillo de cerdo | Pork, filet mignon, cooked | cooked
 ribs | meat | g | 1 | ciqual:28401 |  | 200 | serving:200 | Ribs | Costillas | Pork, spare-ribs, braised | pork spare-ribs, cooked, edible part
-pork_belly | meat | g | 0 | fdc:2341307 |  | 100 | serving:100 | Pork belly | Panceta | Pork, belly | cooked
+pork_belly | meat | g | 1 | fdc:2341307 |  | 100 | serving:100 | Pork belly | Panceta | Pork, belly | cooked
 pulled_pork | meat | g | 1 | fdc:2341820 |  | 150 | serving:150 | Pulled pork | Cerdo desmenuzado | Barbecue pork, with sauce | with barbecue sauce
 suckling_pig | meat | g | 1 | fdc:167844 |  | 200 | serving:200 | Roast suckling pig | Cochinillo asado | Pork, fresh, shoulder, whole, separable lean and fat, cooked, roasted | roast pork shoulder, lean and fat (no open data for cochinillo)
 skewers | meat | g | 1 | recipe |  | 120 | unit:60 serving:120 | Meat skewers | Pinchos morunos o brochetas | Pork skewers (pinchos morunos): marinated pork shoulder, grilled | pork; unit = one skewer
@@ -270,7 +270,7 @@ mortadella | meat | g | 0 | ciqual:30789 | fill=fdc:174573 | 15 | slice:15 | Mor
 sausages | meat | g | 1 | ciqual:30005 |  | 50 | unit:50 serving:100 | Sausages | Salchichas | Chipolata sausage, cooked | fresh pork sausages, cooked
 frankfurters | meat | g | 0 | ciqual:30134 | variant_of=sausages | 40 | unit:40 | Frankfurters | Salchichas tipo frankfurt | Frankfurter sausage |
 bacon | meat | g | 1 | fdc:168322 |  | 8 | slice:8 serving:30 | Bacon | Beicon (bacon) | Pork, cured, bacon, pre-sliced, cooked, pan-fried | cooked (pan-fried) slices, as photographed and eaten; slice = one cooked rasher
-black_pudding | meat | g | 0 | ciqual:8704 |  | 30 | slice:30 serving:100 | Black pudding | Morcilla | Black pudding, grilled/pan-fried | grilled
+black_pudding | meat | g | 1 | ciqual:8704 |  | 30 | slice:30 serving:100 | Black pudding | Morcilla | Black pudding, grilled/pan-fried | grilled
 pork_pate | meat | g | 0 | ciqual:8305 |  | 15 | tbsp:15 serving:25 | Pâté | Paté | Pork liver pâté | pork liver pâté
 tripe_stew | dishes | g | 1 | recipe |  | 300 | plate:300 | Tripe stew | Callos | Callos a la madrileña: beef tripe stewed with chorizo, morcilla, tomato and paprika | callos a la madrileña
 # raw meats to weigh before cooking (also recipe ingredients)
@@ -304,7 +304,7 @@ tuna_steak | fish | g | 0 | ciqual:26041 | zero=vit_c; variant_of=grilled_fish |
 mackerel | fish | g | 0 | ciqual:26020 | fill=fdc:175120 | 150 | unit:150 | Mackerel | Caballa | Mackerel, fried | fried
 canned_tuna | fish | g | 1 | ciqual:26245 | zero=vit_c | 56 | can:56 | Canned tuna in oil | Atún en aceite | Tuna, flaked, in sunflower oil, canned, drained | drained; can = small round tin (RO-85)
 canned_tuna_water | fish | g | 0 | ciqual:26039 | variant_of=canned_tuna | 56 | can:56 | Canned tuna in water | Atún al natural | Tuna,  canned in brine, drained | drained
-sardines | fish | g | 0 | ciqual:26136 |  | 150 | serving:150 unit:35 | Sardines | Sardinas | European pilchard or sardine, grilled/pan-fried without added fat | grilled, edible part
+sardines | fish | g | 1 | ciqual:26136 |  | 150 | serving:150 unit:35 | Sardines | Sardinas | European pilchard or sardine, grilled/pan-fried without added fat | grilled, edible part
 canned_sardines | fish | g | 0 | ciqual:26040 | variant_of=sardines | 85 | can:85 | Canned sardines | Sardinas en lata | European pilchard or sardine, in olive oil, canned, drained | in olive oil, drained
 anchovies | fish | g | 1 | recipe |  | 100 | small_plate:100 | Anchovies in vinegar | Boquerones en vinagre | Boquerones en vinagre: anchovy fillets cured in vinegar, served in olive oil with garlic | boquerones en vinagre (recipe: raw fillets, vinegar, olive oil); salted anchovies in oil are canned_anchovies
 canned_anchovies | fish | g | 0 | ciqual:26177 | fill=fdc:174183; variant_of=anchovies | 30 | can:30 unit:4 | Canned anchovies | Anchoas en aceite | Anchovy, fillets, salted, in oil, semi-preserved, drained | salted, in oil, drained
@@ -346,7 +346,7 @@ drinking_yogurt | dairy | ml | 0 | ciqual:19508 | density=1.05 | 100 | unit:100 
 kefir | dairy | ml | 0 | ciqual:19865 | density=1.03 | 200 | glass:200 | Kefir | Kéfir | Milk kefir |
 cheese | dairy | g | 1 | ciqual:12747 | fill=fdc:171249 | 30 | slice:15 serving:30 | Cheese | Queso semicurado | Pyrénées firm cheese, from ewe's milk | firm ewe's milk cheese stands for "cheese"
 cured_cheese | dairy | g | 0 | ciqual:12119 | fill=fdc:171249; variant_of=cheese | 15 | slice:15 serving:60 | Cured cheese | Queso curado (tipo manchego) | Ossau-Iraty cheese, from ewe's milk | hard ewe's milk cheese (Manchego type, values of Ossau-Iraty)
-fresh_cheese | dairy | g | 0 | ciqual:12805 | fill=fdc:173435; variant_of=cheese | 60 | slice:60 unit:250 | Fresh cheese | Queso fresco | Cheese, fresh, from goat's milk, | goat's fresh cheese values, close to queso de Burgos labels
+fresh_cheese | dairy | g | 0 | ciqual:12805 | fill=fdc:173435; variant_of=cheese | 60 | slice:60 unit:250 | Fresh cheese | Queso fresco (de Burgos) | Cheese, fresh, from goat's milk, | goat's fresh cheese values, close to queso de Burgos labels
 edam_cheese | dairy | g | 0 | ciqual:12729 | variant_of=cheese | 20 | slice:20 | Edam cheese | Queso de bola | Edam cheese, from cow's milk |
 cheese_slices | dairy | g | 0 | ciqual:12300 | fill=fdc:171290; variant_of=cheese | 20 | slice:20 | Cheese slices | Queso en lonchas | Processed cheese, in slices, from cow's milk | processed sandwich slices
 grated_cheese | dairy | g | 0 | ciqual:12118 | variant_of=cheese | 30 | handful:30 tbsp:7 | Grated cheese | Queso rallado | Emmental cheese, grated, from cow's milk | emmental
@@ -361,7 +361,7 @@ cottage_cheese | dairy | g | 1 | fdc:172182 |  | 100 | serving:100 | Cottage che
 butter | dairy | g | 1 | ciqual:16400 |  | 10 | serving:10 tbsp:12 | Butter | Mantequilla | Butter, 80% fat minimum, unsalted | serving = one individual portion
 whipped_cream | dairy | g | 0 | ciqual:19420 |  | 20 | serving:20 | Whipped cream | Nata montada | Whipped cream, aerosol, UHT | aerosol
 cooking_cream | dairy | g | 0 | ciqual:19436 | fill=fdc:170857 | 15 | tbsp:15 serving:50 | Cooking cream | Nata para cocinar | Cream, 12-20% fat, light, fluid, refrigerated | light, 12-20% fat
-whey_protein | dairy | g | 0 | fdc:173180 |  | 30 | serving:30 | Whey protein powder | Proteína whey en polvo | Beverages, Protein powder whey based | serving = one scoop
+whey_protein | supplements | g | 0 | fdc:173180 |  | 30 | scoop:30 | Whey protein powder | Proteína whey en polvo | Beverages, Protein powder whey based | serving = one scoop
 condensed_milk | dairy | g | 0 | ciqual:19027 |  | 20 | tbsp:20 | Condensed milk | Leche condensada | Condensed milk, with sugar(s), whole | sweetened, whole
 
 # --- Oils, fats, nuts and seeds ---
@@ -375,7 +375,7 @@ peanuts | fats_nuts | g | 1 | ciqual:15002 |  | 30 | handful:30 | Peanuts | Caca
 cashews | fats_nuts | g | 1 | ciqual:15054 | zero=vit_b12 | 25 | handful:25 | Cashews | Anacardos | Cashew nut, grilled, no added salt | roasted, no salt
 pistachios | fats_nuts | g | 0 | ciqual:15009 | variant_of=nuts | 30 | handful:30 | Pistachios | Pistachos | Pistachio nut, grilled, salted | roasted, salted, shelled weight
 hazelnuts | fats_nuts | g | 1 | ciqual:15004 |  | 25 | handful:25 | Hazelnuts | Avellanas | Hazelnut, no added salt |
-chestnuts | fats_nuts | g | 0 | ciqual:15021 |  | 100 | serving:100 unit:10 | Chestnuts | Castañas | Chestnut, grilled | roasted, peeled
+chestnuts | fats_nuts | g | 1 | ciqual:15021 |  | 100 | serving:100 unit:10 | Chestnuts | Castañas | Chestnut, grilled | roasted, peeled
 sunflower_seeds | fats_nuts | g | 0 | ciqual:15045 | replace=fdc:169418:zinc | 30 | handful:30 | Sunflower seeds | Pipas de girasol | Sunflower seed, grilled, salted | roasted, salted, shelled weight; zinc from USDA (CIQUAL's 36 mg is ~7x every other source)
 pumpkin_seeds | fats_nuts | g | 0 | ciqual:15064 |  | 25 | handful:25 | Pumpkin seeds | Pipas de calabaza | Pumpkin and squash, seed, dried |
 chia_seeds | fats_nuts | g | 0 | ciqual:15047 | zero=vit_d | 12 | tbsp:12 | Chia seeds | Semillas de chía | Chia, seed, dried |
@@ -396,8 +396,8 @@ bonbons | sweets | g | 1 | ciqual:31063 | fill=fdc:169580 | 12 | unit:12 | Choco
 candy | sweets | g | 1 | ciqual:31060 | zero=cholesterol | 30 | serving:30 unit:5 | Sweets | Golosinas | Jelly candy | jelly candy
 cocoa_powder | sweets | g | 0 | ciqual:18101 |  | 18 | serving:18 tbsp:9 | Sweetened cocoa powder | Cacao en polvo azucarado | Cocoa or chocolate powder, for beverages, with sugar(s) | for milk
 cocoa_powder_pure | sweets | g | 0 | ciqual:18100 |  | 5 | tsp:5 tbsp:8 | Unsweetened cocoa powder | Cacao puro en polvo | Cocoa powder, no added sugars, powder, instant | no added sugar
-turron | sweets | g | 0 | recipe |  | 30 | piece:30 | Turrón | Turrón | Hard turrón (Alicante type): almonds, honey, sugar and egg white | hard (Alicante); soft Jijona turrón is similar in energy
-croissant | sweets | g | 1 | ciqual:7615 |  | 60 | unit:60 | Croissant | Cruasán | Croissant, ordinary, from bakery | bakery
+turron | sweets | g | 1 | recipe |  | 30 | piece:30 | Turrón | Turrón | Hard turrón (Alicante type): almonds, honey, sugar and egg white | hard (Alicante); soft Jijona turrón is similar in energy
+croissant | sweets | g | 1 | ciqual:7615 |  | 60 | unit:60 | Croissant | Cruasán o croissant | Croissant, ordinary, from bakery | bakery
 pain_au_chocolat | sweets | g | 1 | ciqual:7730 |  | 80 | unit:80 | Pain au chocolat | Napolitana de chocolate | Chocolate croissant, from bakery | bakery
 pastries | sweets | g | 1 | ciqual:7600 |  | 70 | unit:70 | Pastries | Bollería | Viennese pastry (average) | Viennese pastry, average
 brioche | sweets | g | 1 | ciqual:7746 |  | 50 | unit:50 | Brioche | Brioche o bollo | Brioche (average) |
@@ -428,7 +428,7 @@ pumpkin_pie | sweets | g | 1 | fdc:2343493 |  | 120 | slice:120 | Pumpkin pie | 
 tart | sweets | g | 1 | ciqual:23498 |  | 120 | slice:120 | Fruit tart | Tarta de fruta | Fruit tart (average) | average
 custard_tart | sweets | g | 1 | recipe |  | 65 | unit:65 | Custard tart | Pastel de nata | Pastel de nata: puff pastry filled with egg-yolk custard, baked | pastel de nata: puff pastry and egg-yolk custard
 apple_strudel | sweets | g | 1 | fdc:2343522 |  | 120 | slice:120 | Apple strudel | Strudel de manzana | Strudel, apple |
-mille_feuille | sweets | g | 0 | ciqual:24666 |  | 100 | unit:100 | Mille-feuille | Milhojas | Mille-feuille pastry |
+mille_feuille | sweets | g | 1 | ciqual:24666 |  | 100 | unit:100 | Mille-feuille | Milhojas | Mille-feuille pastry |
 cream_puffs | sweets | g | 1 | ciqual:23455 | fill=fdc:167534 | 30 | unit:30 serving:90 | Profiteroles or éclairs | Profiteroles o pepitos de crema | Chou pastry filled cream (whipped or custard) | cream-filled choux
 pancakes | sweets | g | 1 | fdc:2343787 |  | 150 | unit:50 serving:150 | Pancakes | Tortitas | Pancakes, plain | plain, without syrup; serving = 3 medium pancakes (FNDDS 50 g each)
 crepes | sweets | g | 1 | ciqual:23799 |  | 55 | unit:55 | Crêpes | Crepes | Crepe, plain, prepacked, refrigerated | plain
@@ -480,7 +480,7 @@ bread_with_tomato | snacks | g | 1 | recipe |  | 160 | unit:160 | Bread with tom
 canapes | snacks | g | 1 | recipe |  | 55 | unit:55 serving:220 | Canapés | Canapés o montaditos | Montaditos: bread slices with ham, cheese, tuna with mayonnaise and roasted pepper | assorted; unit = one montadito
 spring_rolls | snacks | g | 1 | ciqual:25674 |  | 60 | unit:60 | Spring rolls | Rollitos de primavera | Egg roll or nem, prepacked, cooked (average) | fried, average
 falafel | snacks | g | 1 | ciqual:25571 | zero=vit_b12 | 100 | serving:100 unit:20 | Falafel | Falafel | Falafel, from take-away |
-onion_rings | snacks | g | 0 | fdc:2345582 |  | 100 | serving:100 | Onion rings | Aros de cebolla | Fried onion rings |
+onion_rings | snacks | g | 1 | fdc:2345582 |  | 100 | serving:100 | Onion rings | Aros de cebolla | Fried onion rings |
 pakora | snacks | g | 1 | recipe |  | 100 | serving:100 | Pakora | Pakora | Pakora: onion and spinach fritters in chickpea batter, deep-fried | onion and spinach in chickpea batter, deep-fried (FNDDS pakora, 125 kcal, was too lean for a fried food)
 arancini | snacks | g | 0 | recipe |  | 100 | unit:100 | Arancini | Arancini | Arancini: rice balls with mozzarella and tomato, breaded and fried |
 pizza_margherita | fast_food | g | 0 | fdc:2344100 | variant_of=pizza | 110 | slice:110 unit:440 | Pizza margherita | Pizza margarita | Pizza, cheese, from restaurant or fast food, medium crust | restaurant, medium crust (FNDDS)
@@ -504,7 +504,7 @@ gazpacho | dishes | g | 1 | recipe |  | 250 | bowl:250 glass:200 | Gazpacho | Ga
 salmorejo | dishes | g | 0 | recipe | variant_of=gazpacho | 200 | bowl:200 | Salmorejo | Salmorejo | Salmorejo: tomato, bread, olive oil, garlic; topped with ham and egg | with ham and egg on top
 cocido | dishes | g | 0 | recipe |  | 450 | plate:450 | Cocido | Cocido madrileño | Cocido madrileño (chickpeas, meats and vegetables, without the soup) | chickpeas, meats and vegetables; the soup is separate
 migas | dishes | g | 0 | recipe |  | 250 | plate:250 | Migas | Migas | Migas: fried breadcrumbs with garlic, chorizo, pork belly and peppers |
-patatas_bravas | dishes | g | 0 | recipe | variant_of=french_fries | 200 | serving:200 | Patatas bravas | Patatas bravas | Patatas bravas: fried potato cubes with spicy tomato sauce | serving = bar ración
+patatas_bravas | dishes | g | 1 | recipe |  | 200 | serving:200 | Patatas bravas | Patatas bravas | Patatas bravas: fried potato cubes with spicy tomato sauce | serving = bar ración
 ratatouille | dishes | g | 1 | recipe |  | 200 | small_plate:200 | Ratatouille | Pisto | Pisto: zucchini, peppers, onion and tomato slowly fried in olive oil | Spanish pisto
 potato_salad | dishes | g | 1 | recipe |  | 150 | small_plate:150 | Russian salad | Ensaladilla rusa | Ensaladilla rusa: potato, carrot, peas, tuna, egg and mayonnaise | also potato salad
 ensalada_mixta | dishes | g | 0 | recipe |  | 350 | plate:350 | Mixed salad | Ensalada mixta | Mixed salad: lettuce, tomato, onion, tuna, egg, olives, corn, carrot, olive oil and vinegar | with tuna and egg, dressed
@@ -524,7 +524,7 @@ avocado_toast | dishes | g | 0 | recipe | variant_of=toast | 136 | unit:136 | Av
 toast_with_olive_oil | dishes | g | 0 | recipe | variant_of=toast | 70 | unit:70 | Toast with olive oil | Tostada con aceite | Toast with olive oil | breakfast tostada
 toast_with_butter_and_jam | dishes | g | 0 | recipe | variant_of=toast | 90 | unit:90 | Toast with butter and jam | Tostada con mantequilla y mermelada | Toast with butter and jam | breakfast tostada
 arroz_a_la_cubana | dishes | g | 0 | recipe |  | 420 | plate:420 | Cuban-style rice | Arroz a la cubana | Arroz a la cubana: white rice with tomato sauce, a fried egg and fried banana | with fried egg and banana
-roasted_peppers | vegetables | g | 0 | ciqual:20088 | fill=fdc:170110; variant_of=bell_pepper | 100 | small_plate:100 | Roasted peppers | Pimientos asados | Sweet pepper, red, cooked | red, cooked, no oil
+roasted_peppers | vegetables | g | 0 | ciqual:20088 | fill=fdc:170110; variant_of=bell_pepper | 100 | small_plate:100 | Roasted peppers | Pimientos asados o del piquillo | Sweet pepper, red, cooked | red, cooked, no oil
 soup | dishes | g | 1 | ciqual:25903 |  | 300 | bowl:300 | Soup | Sopa o caldo | Soup, mixed vegetables, prepacked, to be reheated | vegetable soup stands for soup/broth
 broth | dishes | g | 0 | ciqual:25947 | zero=vit_d; variant_of=soup | 300 | bowl:300 | Broth | Caldo | Broth or stock, poultry, dehydrated and reconstituted | poultry broth
 sopa_de_ajo | dishes | g | 0 | recipe | variant_of=soup | 300 | bowl:300 | Garlic soup | Sopa de ajo | Sopa de ajo: garlic, bread, paprika and ham in broth, with egg | with bread, ham and egg
@@ -534,7 +534,7 @@ chicken_soup | dishes | g | 1 | fdc:2344639 |  | 300 | bowl:300 | Chicken soup |
 minestrone | dishes | g | 0 | ciqual:25916 | fill=fdc:171550 | 300 | bowl:300 | Minestrone | Minestrone | Soup, minestrone, prepacked, to be reheated |
 french_onion_soup | dishes | g | 0 | ciqual:25910 |  | 300 | bowl:300 | Onion soup | Sopa de cebolla | Soup, onion, prepacked, to be reheated |
 miso_soup | dishes | g | 1 | fdc:2342931 |  | 250 | bowl:250 | Miso soup | Sopa de miso | Soybean soup, miso broth |
-clam_chowder | dishes | g | 0 | fdc:2342606 |  | 300 | bowl:300 | Clam chowder | Crema de almejas | Clam chowder, New England, prepared with milk | New England style
+clam_chowder | dishes | g | 1 | fdc:2342606 |  | 300 | bowl:300 | Clam chowder | Crema de almejas | Clam chowder, New England, prepared with milk | New England style
 fish_soup | dishes | g | 1 | ciqual:25904 |  | 300 | bowl:300 | Fish soup | Sopa de pescado | Soup, fish and/or crustacean, prepacked, to be reheated |
 stew | dishes | g | 1 | recipe |  | 350 | plate:350 | Meat stew | Estofado de ternera | Beef stew (estofado): beef, potatoes, carrot, onion, peas and tomato | beef with potatoes and vegetables
 chili_con_carne | dishes | g | 1 | ciqual:25111 |  | 300 | plate:300 | Chili con carne | Chili con carne | Chili con carne, prepacked |
@@ -566,7 +566,7 @@ water | drinks | ml | 1 | ciqual:18066 |  | 250 | glass:250 bottle:500 | Water |
 sparkling_water | drinks | ml | 0 | ciqual:18046 | variant_of=water | 250 | glass:250 bottle:500 | Sparkling water | Agua con gas | Mineral sparkling water, bottled (average) |
 espresso | drinks | ml | 1 | ciqual:18071 |  | 40 | cup:40 | Espresso | Café solo | Espresso coffee non instant coffee, no added sugars, ready-to-drink | no sugar; also americano (see black_coffee)
 black_coffee | drinks | ml | 0 | ciqual:18004 | variant_of=espresso | 200 | cup:200 | Americano | Café americano | Coffee, non instant no added sugars, ready-to-drink | no sugar
-coffee_with_milk | drinks | ml | 1 | recipe | density=1.024 | 200 | cup:200 | Coffee with milk | Café con leche | Coffee with milk: espresso + semi-skimmed milk (1 : 4) | semi-skimmed milk, no sugar; also cappuccino/latte
+coffee_with_milk | drinks | ml | 1 | recipe | density=1.024 | 200 | cup:200 | Coffee with milk or latte | Café con leche o latte | Coffee with milk: espresso + semi-skimmed milk (1 : 4) | semi-skimmed milk, no sugar; also cappuccino/latte
 cortado | drinks | ml | 0 | recipe | density=1.013; variant_of=coffee_with_milk | 70 | cup:70 | Cortado | Café cortado | Cortado: espresso + a dash of semi-skimmed milk | no sugar
 iced_coffee | drinks | ml | 1 | recipe | density=1.0 | 100 | glass:100 | Iced coffee | Café con hielo | Café con hielo: espresso poured over ice, no sugar | no sugar (log it apart, as for the other coffees); glass = the drink once the ice melts
 tea | drinks | ml | 1 | ciqual:18020 |  | 250 | cup:250 | Tea | Té | Tea, brewed, no added sugars | no sugar
@@ -643,3 +643,378 @@ salt | sauces | g | 0 | ciqual:11017 |  | 5 | tsp:5 | Salt | Sal | Salt, white (
 paprika | sauces | g | 0 | ciqual:11049 |  | 2 | tsp:2 | Paprika | Pimentón | Paprika, powder | sweet or hot
 vinegar | sauces | g | 0 | ciqual:11018 |  | 15 | tbsp:15 | Vinegar | Vinagre | Vinegar | wine vinegar
 lime_juice | sauces | g | 0 | ciqual:2030 |  | 15 | tbsp:15 | Lime juice | Zumo de lima | Lime juice, fresh | fresh
+
+# === Added in 1.8.0 (2026-11-04): more basics, dishes, drinks and snacks, supplements ===
+
+# --- 1.8.0 fruit ---
+guava | fruit | g | 0 | ciqual:13083 |  | 100 | unit:100 | Guava | Guayaba | Guava, flesh without skin, raw | flesh of one fruit
+red_currants | fruit | g | 0 | ciqual:13019 |  | 100 | bowl:100 handful:40 | Redcurrants | Grosellas | Red currant, raw |
+dried_figs | fruit | g | 0 | ciqual:13013 | variant_of=dried_fruit | 20 | unit:20 handful:40 | Dried figs | Higos secos | Fig, dried |
+plantain | fruit | g | 0 | ciqual:53101 |  | 150 | serving:150 | Plantain, cooked | Plátano macho cocido | Plantain banana, cooked | boiled or baked; fried (tostones, patacones) has more fat
+canned_pineapple | fruit | g | 0 | ciqual:13716 | zero=sat_fat,mono_fat,poly_fat,vit_d,vit_b12; variant_of=pineapple | 80 | slice:40 serving:80 | Canned pineapple in juice | Piña en su jugo (en lata) | Pineapple, in pineapple juice, canned, drained | drained; slice = one ring
+fruit_cocktail | fruit | g | 0 | ciqual:13706 | zero=sat_fat,mono_fat,poly_fat,vit_d,vit_b12 | 120 | bowl:120 | Fruit cocktail in syrup | Macedonia de frutas en almíbar | Fruit cocktail or salad, canned in syrup, drained | canned, drained
+applesauce | fruit | g | 0 | ciqual:13038 |  | 100 | unit:100 | Apple compote | Compota de manzana | Apple compote, prepacked | prepacked; unit = one pot
+dried_cranberries | fruit | g | 0 | ciqual:13178 | variant_of=dried_fruit | 30 | handful:30 tbsp:10 | Dried cranberries | Arándanos rojos deshidratados | Cranberry, dried, with sugar(s) | sweetened
+goji_berries | fruit | g | 0 | ciqual:13183 | zero=vit_b12; variant_of=dried_fruit | 20 | handful:20 tbsp:10 | Goji berries | Bayas de goji | Goji berry, dried | dried
+desiccated_coconut | fruit | g | 0 | ciqual:15007 | variant_of=coconut | 5 | tbsp:5 handful:20 | Desiccated coconut | Coco rallado | Coconut, pulp, dried | dried
+cantaloupe | fruit | g | 0 | fdc:169092 |  | 200 | slice:200 | Cantaloupe melon | Melón cantalupo | Melons, cantaloupe, raw | slice without rind; USDA (CIQUAL's cantaloupe, 60 kcal at 84% water, looked wrong)
+baked_apple | fruit | g | 0 | ciqual:13175 | zero=vit_b12; unknown=fiber | 150 | unit:150 | Baked apple | Manzana asada | Apple, flesh without skin, roasted/baked | without added sugar; fibre unknown (CIQUAL "< 1" for flesh that has 2.5 g raw)
+flat_peach | fruit | g | 0 | ciqual:13043 |  | 100 | unit:100 | Flat peach | Paraguayo | Peach, flesh and skin, pitted, raw | values of peach (same species); one medium fruit
+prickly_pear | fruit | g | 0 | fdc:167750 |  | 100 | unit:100 | Prickly pear | Higo chumbo | Prickly pears, raw | peeled; USDA, sugars unknown (CIQUAL's 1 g of 9.8 g carbohydrate looked wrong)
+
+# --- 1.8.0 vegetables ---
+turnip | vegetables | g | 0 | ciqual:20033 |  | 100 | serving:100 | Turnip, cooked | Nabo cocido | Turnip, cooked |
+parsnip | vegetables | g | 0 | ciqual:20181 |  | 100 | serving:100 | Parsnip | Chirivía | Parsnip, raw | raw weight
+cardoon | vegetables | g | 0 | ciqual:20241 | fill=ciqual:20054 | 200 | plate:200 | Cardoon, cooked | Cardo cocido | Cardoon, cooked | plain; a sauce (almonds, ham) is extra; sugars from raw cardoon
+watercress | vegetables | g | 0 | ciqual:20022 |  | 30 | handful:30 | Watercress | Berros | Watercress, raw | raw
+lambs_lettuce | vegetables | g | 0 | ciqual:20099 |  | 30 | handful:30 small_plate:80 | Lamb's lettuce | Canónigos | Lamb's lettuce, raw | raw
+escarole | vegetables | g | 0 | ciqual:20090 |  | 80 | small_plate:80 handful:30 | Escarole | Escarola | Escaroles, raw | raw
+red_cabbage | vegetables | g | 0 | ciqual:20095 | variant_of=cabbage | 200 | plate:200 small_plate:100 | Red cabbage, cooked | Lombarda cocida | Red cabbage, boiled/cooked in water | boiled
+oyster_mushrooms | vegetables | g | 0 | ciqual:20114 | variant_of=mushrooms | 150 | serving:150 | Oyster mushrooms | Setas (gírgolas) | Oyster mushroom, raw | raw weight; griddled with oil: log the oil too
+shiitake | vegetables | g | 0 | ciqual:20212 | variant_of=mushrooms | 100 | serving:100 | Shiitake mushrooms, cooked | Shiitake cocinado | Shiitake mushroom, cooked |
+boletus | vegetables | g | 0 | ciqual:20160 | variant_of=mushrooms | 100 | serving:100 | Porcini mushrooms | Boletus | Cep or boletus mushroom, raw | raw weight
+mushrooms_raw | vegetables | g | 0 | ciqual:20056 | variant_of=mushrooms | 100 | serving:100 handful:30 | Button mushrooms, raw | Champiñones crudos | Button mushroom or cultivated mushroom, raw |
+spinach_raw | vegetables | g | 0 | ciqual:20270 | zero=vit_b12; variant_of=spinach | 30 | handful:30 small_plate:80 | Baby spinach, raw | Espinacas baby (crudas) | Spinach, young leaves for salad, raw | young leaves for salad
+turnip_greens | vegetables | g | 0 | fdc:170139 |  | 200 | plate:200 | Turnip greens, cooked | Grelos o nabizas cocidos | Turnip greens, cooked, boiled, drained, with salt | boiled with salt
+palm_hearts | vegetables | g | 0 | ciqual:20018 |  | 60 | serving:60 unit:30 | Hearts of palm | Palmitos | Palm heart, canned, drained | canned, drained
+bamboo_shoots | vegetables | g | 0 | ciqual:20188 |  | 50 | serving:50 | Bamboo shoots | Brotes de bambú | Bamboo shoots, canned, drained | canned, drained
+tomato_paste | vegetables | g | 0 | ciqual:20068 |  | 15 | tbsp:15 | Tomato paste | Tomate concentrado | Tomato paste, concentrated, canned | canned
+cassava | vegetables | g | 0 | ciqual:54034 | fill=ciqual:54031 | 150 | serving:150 | Cassava, cooked | Yuca cocida | Cassava or manioc, root, cooked | boiled; nutrients the source lacks from raw cassava
+ginger | vegetables | g | 0 | fdc:169231 |  | 5 | tsp:5 | Fresh ginger | Jengibre fresco | Ginger root, raw | USDA ginger root (CIQUAL's 33 kcal, 3.4 g carbohydrate is far below every other table)
+parsley | vegetables | g | 0 | ciqual:11014 |  | 5 | tbsp:5 handful:20 | Parsley | Perejil | Parsley, fresh | fresh
+basil | vegetables | g | 0 | ciqual:11033 |  | 10 | handful:10 | Basil | Albahaca | Basil, fresh | fresh leaves
+nori | vegetables | g | 0 | ciqual:20987 | variant_of=seaweed | 3 | unit:3 | Nori seaweed, dried | Alga nori seca | Laver (Porphyra sp.), dried or dehydrated | unit = one sheet
+kimchi | vegetables | g | 1 | fdc:170392 |  | 50 | serving:50 | Kimchi | Kimchi | Cabbage, kimchi |
+
+# --- 1.8.0 legumes ---
+red_lentils | legumes | g | 0 | ciqual:20589 | zero=vit_b12 | 210 | plate:210 | Red lentils, cooked | Lentejas rojas cocidas | Lentil, pink or red, boiled/cooked in water | boiled; plate = 80 g dry
+pinto_beans | legumes | g | 0 | fdc:175200 |  | 200 | plate:200 | Pinto beans, cooked | Alubias pintas cocidas | Beans, pinto, mature seeds, cooked, boiled, without salt | boiled, no salt
+split_peas | legumes | g | 0 | ciqual:20506 |  | 200 | plate:200 | Split peas, cooked | Guisantes secos cocidos | Split pea, boiled/cooked in water | boiled
+tempeh | legumes | g | 1 | ciqual:20917 |  | 100 | serving:100 | Tempeh | Tempeh | Tempeh |
+seitan | legumes | g | 0 | ciqual:25598 | zero=cholesterol | 100 | serving:100 | Seitan | Seitán | Seitan, prepacked | wheat protein, with the plant proteins (like tofu)
+textured_soy | legumes | g | 0 | fdc:2342926 |  | 40 | serving:40 | Textured soy protein, dry | Soja texturizada (seca) | Textured vegetable protein, dry | dry weight; it takes up about twice its weight of water
+veggie_burger | legumes | g | 0 | ciqual:20914 |  | 100 | unit:100 | Veggie burger (soy) | Hamburguesa vegetal (de soja) | Plant-based burger or steak from soybean | soy-based patty, cooked
+lupini | legumes | g | 0 | fdc:173804 |  | 50 | handful:50 | Lupini beans | Altramuces | Lupins, mature seeds, cooked, boiled, with salt | boiled with salt, drained (as sold in brine)
+
+# --- 1.8.0 bread, cereals, pasta ---
+seeded_bread | grains | g | 0 | ciqual:7255 | zero=vit_b12; variant_of=bread | 40 | slice:40 | Seeded bread | Pan de semillas o multicereales | Bread, multigrain and/or with seeds |
+bulgur | grains | g | 0 | ciqual:9691 |  | 180 | plate:180 | Bulgur, cooked | Bulgur cocido | Wheat bulgur, cooked, no added salt | plate = ~70 g dry
+oat_bran | grains | g | 0 | ciqual:9640 |  | 30 | tbsp:10 serving:30 | Oat bran | Salvado de avena | Oat bran |
+oat_flour | grains | g | 0 | fdc:169741 |  | 40 | tbsp:10 serving:40 | Oat flour | Harina de avena | Oat flour, partially debranned |
+wholemeal_flour | grains | g | 0 | fdc:168893 |  | 10 | tbsp:10 serving:100 | Wholemeal flour | Harina integral | Wheat flour, whole-grain (Includes foods for USDA's Food Distribution Program) | whole-grain wheat flour (not enriched)
+rice_noodles | grains | g | 0 | fdc:168914 |  | 200 | plate:200 | Rice noodles, cooked | Fideos de arroz cocidos | Rice noodles, cooked |
+corn_cakes | grains | g | 0 | ciqual:7354 | zero=vit_d,vit_b12; variant_of=rice_cakes | 8 | unit:8 | Corn cakes | Tortitas de maíz | Puffed corn/maize textured bread | puffed; unit = one cake
+chocolate_rice_cakes | grains | g | 0 | ciqual:7355 | variant_of=rice_cakes | 15 | unit:15 | Chocolate rice cakes | Tortitas de arroz con chocolate | Puffed rice textured bread, with chocolate covering | chocolate-coated; unit = one cake
+
+# --- 1.8.0 meat ---
+entrecote | meat | g | 0 | ciqual:6100 | variant_of=steak | 250 | unit:250 | Rib steak (entrecôte) | Entrecot o chuletón | Beef, rib steak, lean, grilled/pan-fried | rib steak, lean, grilled; chuletón is the same cut on the bone
+beef_tenderloin | meat | g | 0 | fdc:171811 | variant_of=steak | 180 | unit:180 | Beef tenderloin steak | Solomillo de ternera | Beef, tenderloin, steak, separable lean only, trimmed to 1/8" fat, all grades, cooked, broiled | grilled, lean
+veal_fillet | meat | g | 0 | ciqual:6511 | variant_of=steak | 150 | unit:150 | Veal steak, grilled | Filete de ternera a la plancha | Veal, chop, grilled/pan-fried | veal chop values (thin Spanish filete)
+beef_liver | meat | g | 0 | ciqual:40105 |  | 120 | serving:120 | Beef liver, cooked | Hígado de ternera | Liver, heifer, cooked | pan-fried
+chicken_liver | meat | g | 0 | fdc:171061 |  | 100 | serving:100 | Chicken liver, cooked | Higaditos de pollo | Chicken, liver, all classes, cooked, simmered |
+oxtail | meat | g | 0 | ciqual:6310 | fill=ciqual:6123 | 200 | serving:200 | Oxtail, cooked | Rabo de ternera cocido | Beef, oxtail, boiled/cooked in water | meat without bone; the values the source lacks from braised beef short ribs (a similar fatty cut)
+quail | meat | g | 0 | ciqual:36102 |  | 100 | unit:100 | Quail, cooked | Codorniz | Quail, meat and skin, cooked | meat and skin; unit = one quail without bones
+kid | meat | g | 0 | ciqual:21801 |  | 200 | serving:200 | Kid goat, roasted | Cabrito asado | Kid meat, cooked |
+duck_meat | meat | g | 0 | fdc:172411 | variant_of=duck | 150 | serving:150 | Duck meat without skin | Pato sin piel | Duck, domesticated, meat only, cooked, roasted | roasted, meat only
+chicken_drumstick | meat | g | 0 | fdc:173612 |  | 80 | unit:80 | Chicken drumstick, roasted | Jamoncito de pollo asado | Chicken, broilers or fryers, drumstick, meat and skin, cooked, roasted | meat and skin, without bone
+minced_pork | meat | g | 0 | fdc:167903 |  | 100 | serving:100 | Minced pork, cooked | Carne picada de cerdo | Pork, fresh, ground, cooked |
+minced_turkey | meat | g | 0 | fdc:171506 |  | 100 | serving:100 | Minced turkey, cooked | Carne picada de pavo | Turkey, Ground, cooked |
+cecina | meat | g | 0 | ciqual:28860 |  | 10 | slice:10 small_plate:60 | Cecina (cured beef) | Cecina | Viande des Grisons or dried beef meat | values of Grisons dried beef (the same kind of dry-cured beef)
+foie_gras | meat | g | 0 | ciqual:8323 |  | 30 | serving:30 | Foie gras | Foie gras | Foie gras block, duck, without pieces | duck, block
+butifarra | meat | g | 0 | ciqual:30011 | variant_of=sausages | 150 | unit:150 | Catalan sausage (butifarra) | Butifarra | Toulouse sausage, cooked | fresh pork sausage, cooked; values of Toulouse sausage (the same kind)
+
+# --- 1.8.0 fish and seafood ---
+monkfish | fish | g | 0 | ciqual:26081 | variant_of=grilled_fish | 150 | serving:150 | Monkfish, grilled | Rape a la plancha | Anglerfish, grilled/pan-fried without added fat | without added fat
+turbot | fish | g | 0 | ciqual:26094 | variant_of=grilled_fish | 150 | serving:150 | Turbot, baked | Rodaballo al horno | Turbot, roasted/baked |
+pangasius | fish | g | 0 | ciqual:27018 | variant_of=grilled_fish | 150 | serving:150 | Pangasius, cooked | Panga | Pangasius, filets, cooked |
+swordfish | fish | g | 0 | fdc:173704 |  | 150 | serving:150 | Swordfish, grilled | Pez espada o emperador | Fish, swordfish, cooked, dry heat | cooked, dry heat
+red_mullet | fish | g | 0 | ciqual:26110 |  | 120 | serving:120 | Red mullet | Salmonetes | Surmullet or red mullet, steamed | steamed; fried ones: log the oil too
+salmon_raw | fish | g | 0 | ciqual:26036 |  | 100 | serving:100 | Salmon, raw | Salmón crudo | Salmon, raw, farmed | farmed; for poke, tartare and sushi
+tuna_raw | fish | g | 0 | fdc:175159 |  | 100 | serving:100 | Tuna, raw | Atún crudo | Fish, tuna, fresh, yellowfin, raw | yellowfin; for poke, tartare and sushi
+cod_raw | fish | g | 0 | ciqual:26043 |  | 150 | serving:150 | Cod, raw | Bacalao fresco (crudo) | Cod, raw |
+cuttlefish | fish | g | 0 | ciqual:10016 |  | 150 | serving:150 | Cuttlefish, raw | Sepia (cruda) | Cuttlefish, raw | griddled: sepia_a_la_plancha
+langoustines | fish | g | 0 | ciqual:10044 |  | 100 | serving:100 unit:15 | Langoustines, boiled | Cigalas cocidas | Norway lobster, boiled/cooked in water | edible part; unit = one langoustine
+scallops | fish | g | 0 | ciqual:10004 |  | 100 | serving:100 unit:25 | Scallops | Vieiras | Scallop, with coral, cooked | cooked, with coral; unit = one scallop
+cockles | fish | g | 0 | ciqual:10034 |  | 60 | serving:60 | Cockles | Berberechos | Cockle, cooked | cooked; serving = a small tin, drained
+canned_mackerel | fish | g | 0 | ciqual:26123 |  | 85 | unit:85 | Canned mackerel | Caballa en lata | Mackerel, fillet (grilled or not grilled), canned in brine, drained | fillets, drained; values in brine (in olive oil, drained: ~2 g more fat)
+
+# --- 1.8.0 dairy ---
+lactose_free_milk | dairy | ml | 0 | ciqual:19060 | density=1.03; fill=ciqual:19041; variant_of=milk | 250 | glass:250 cup:200 | Lactose-free milk | Leche sin lactosa | Milk, semi-skimmed, UHT, reduced lactose | semi-skimmed; values the source lacks from semi-skimmed milk
+heavy_cream | dairy | g | 0 | ciqual:19415 | variant_of=cooking_cream | 15 | tbsp:15 serving:50 | Whipping cream (30% fat) | Nata para montar (30%) | Cream 30% fat, semi-thick, UHT | UHT
+mascarpone | dairy | g | 0 | ciqual:19584 |  | 30 | tbsp:15 serving:30 | Mascarpone | Mascarpone | Mascarpone cheese, from cow's milk |
+gouda | dairy | g | 0 | ciqual:12736 | variant_of=cheese | 20 | slice:20 | Gouda cheese | Queso gouda | Gouda cheese, from cow's milk |
+emmental | dairy | g | 0 | ciqual:12115 | variant_of=cheese | 20 | slice:20 | Emmental cheese | Queso emmental | Emmental cheese, from cow's milk |
+cheddar | dairy | g | 0 | ciqual:12726 | variant_of=cheese | 20 | slice:20 | Cheddar cheese | Queso cheddar | Cheddar cheese, from cow's milk |
+provolone | dairy | g | 0 | ciqual:12716 | variant_of=cheese | 20 | slice:20 serving:100 | Provolone | Provolone | Provolone cheese, from cow's milk | serving = one grilled provolone
+burrata | dairy | g | 0 | ciqual:12072 | zero=vit_c; variant_of=mozzarella | 125 | unit:125 | Burrata | Burrata | Burrata, from cow's milk |
+light_cream_cheese | dairy | g | 0 | ciqual:12069 | zero=vit_c; variant_of=cream_cheese | 15 | tbsp:15 serving:30 | Light cream cheese | Queso crema light | Uncured soft cheese, spreadable, plain, in tray, reduced fat, from cow's milk | reduced fat
+quark | dairy | g | 0 | ciqual:19644 |  | 125 | unit:125 | Quark, 0% fat | Queso fresco batido 0% | Quark, plain, 0% fat | plain; unit = one pot
+soy_yogurt | dairy | g | 0 | ciqual:19693 | zero=vit_b12 | 125 | unit:125 | Soy yogurt | Yogur de soja | Soy dessert, plain, no added sugars, not fortified, fermented, refrigerated | plain, no added sugar
+cuajada | dairy | g | 0 | fdc:170882 | fill=ciqual:19023 | 125 | unit:125 | Sheep's milk curd (cuajada) | Cuajada | Milk, sheep, fluid | sheep's milk set with rennet: values of whole sheep's milk (sugars and missing vitamins from whole cow's milk); honey separately
+salted_butter | dairy | g | 0 | ciqual:16402 | variant_of=butter | 10 | serving:10 tbsp:12 | Salted butter | Mantequilla con sal | Butter, 80% fat minimum, half-salted | half-salted
+
+# --- 1.8.0 eggs ---
+quail_eggs | eggs | g | 1 | ciqual:22050 |  | 10 | unit:10 | Quail eggs | Huevos de codorniz | Quail egg, raw | unit = one egg without shell
+
+# --- 1.8.0 oils, fats, nuts and seeds ---
+coconut_oil | fats_nuts | g | 0 | ciqual:16040 |  | 12 | tbsp:12 tsp:4 | Coconut oil | Aceite de coco | Coconut fat or oil |
+sesame_oil | fats_nuts | g | 0 | ciqual:17400 |  | 12 | tbsp:12 tsp:4 | Sesame oil | Aceite de sésamo | Sesame oil |
+lard | fats_nuts | g | 0 | ciqual:16520 |  | 12 | tbsp:12 | Lard | Manteca de cerdo | Lard or pork fat |
+coconut_milk | fats_nuts | g | 0 | ciqual:18041 |  | 100 | serving:100 tbsp:15 | Coconut milk | Leche de coco | Coconut milk | for cooking (not the coconut drink)
+roasted_almonds | fats_nuts | g | 0 | ciqual:15042 | variant_of=almonds | 25 | handful:25 | Roasted salted almonds | Almendras tostadas con sal | Almond, grilled, salted | fried Marcona almonds are similar
+macadamia | fats_nuts | g | 0 | ciqual:15027 | variant_of=nuts | 25 | handful:25 | Macadamia nuts | Nueces de macadamia | Macadamia nut, no added salt | no salt
+pecans | fats_nuts | g | 0 | ciqual:15026 | variant_of=nuts | 25 | handful:25 | Pecans | Nueces pecanas | Pecan nut, no added salt |
+brazil_nuts | fats_nuts | g | 0 | ciqual:15008 | variant_of=nuts | 25 | handful:25 unit:5 | Brazil nuts | Nueces de Brasil | Brazil nut, no added salt |
+pine_nuts | fats_nuts | g | 0 | ciqual:15025 |  | 10 | tbsp:10 handful:25 | Pine nuts | Piñones | Pine nut |
+sesame_seeds | fats_nuts | g | 0 | ciqual:15010 |  | 10 | tbsp:10 tsp:3 | Sesame seeds | Sésamo | Sesame seed |
+tahini | fats_nuts | g | 0 | ciqual:15203 |  | 15 | tbsp:15 | Tahini | Tahini (pasta de sésamo) | Tahini (sesame paste) |
+almond_butter | fats_nuts | g | 0 | fdc:168588 |  | 15 | tbsp:15 | Almond butter | Crema de almendras | Nuts, almond butter, plain, without salt added | no salt added
+
+# --- 1.8.0 sweets and desserts ---
+butter_biscuits | sweets | g | 0 | ciqual:24015 | variant_of=cookie | 10 | unit:10 serving:30 | Butter biscuits | Galletas de mantequilla (pastas de té) | Butter biscuit (cookie) |
+wholemeal_biscuits | sweets | g | 0 | ciqual:24021 | variant_of=cookie | 15 | unit:15 serving:30 | Wholemeal biscuits (digestive type) | Galletas integrales (tipo digestive) | Butter biscuit (cookie), whole wheat |
+chocolate_biscuits | sweets | g | 0 | ciqual:24016 | variant_of=cookie | 15 | unit:15 serving:30 | Chocolate-coated biscuits | Galletas bañadas en chocolate | Biscuit (cookie),  with a chocolate bar covering |
+sandwich_cookies | sweets | g | 0 | ciqual:24224 | variant_of=cookie | 11 | unit:11 serving:33 | Cream-filled chocolate biscuits | Galletas de chocolate rellenas de crema | Chocolate biscuit (cookie),  with vanilla filling, round, black and white | black and white sandwich cookies
+chocolate_wafer | sweets | g | 0 | ciqual:24311 |  | 20 | unit:20 | Chocolate wafer | Barquillo con chocolate | Wafer biscuit, filled or coated with chocolate | wafer filled or coated with chocolate
+ladyfingers | sweets | g | 0 | ciqual:24430 |  | 7 | unit:7 serving:35 | Ladyfingers | Bizcochos de soletilla | Biscuit (cookie), sponge fingers or lady fingers |
+pain_aux_raisins | sweets | g | 0 | ciqual:7720 | variant_of=pastries | 90 | unit:90 | Raisin swirl pastry | Caracola de pasas | Raisin puff pastry (Viennese pastries), from bakery | bakery
+apple_turnover | sweets | g | 0 | ciqual:23480 | variant_of=pastries | 100 | unit:100 | Apple turnover | Hojaldre de manzana (lazo) | Apple turnover | puff pastry with apple
+chocolate_donut | sweets | g | 0 | ciqual:23885 | variant_of=donut | 55 | unit:55 | Chocolate doughnut | Dónut o berlina de chocolate | Doughnut filled or covered with chocolate or with chocolate and hazelut paste, prepacked | filled or covered with chocolate
+lemon_tart | sweets | g | 0 | ciqual:23485 | variant_of=tart | 100 | slice:100 | Lemon tart | Tarta de limón | Lemon tart |
+marzipan | sweets | g | 1 | ciqual:15201 | zero=vit_b12 | 12 | unit:12 serving:36 | Marzipan | Mazapán | Marzipan or almond paste, prepacked | unit = one figurita
+sugared_almonds | sweets | g | 0 | ciqual:31036 | zero=vit_b12 | 20 | handful:20 unit:4 | Sugared almonds | Peladillas | Sugared almond |
+white_chocolate | sweets | g | 0 | ciqual:31010 | variant_of=chocolate | 20 | piece:10 serving:20 unit:100 | White chocolate | Chocolate blanco | White chocolate, bar | piece = one square; unit = a bar
+chocolate_almonds | sweets | g | 0 | ciqual:31018 | variant_of=chocolate | 20 | piece:10 serving:20 unit:100 | Milk chocolate with nuts | Chocolate con leche y almendras o avellanas | Milk chocolate, with dried fruits (nuts, almonds, raisins, praliné), bar | with almonds, hazelnuts or raisins
+chocolate_biscuit_bar | sweets | g | 0 | ciqual:31000 |  | 45 | unit:45 | Chocolate bar with biscuit | Barrita de chocolate con galleta | Chocolate bar with biscuit |
+chocolate_nougat_bar | sweets | g | 0 | ciqual:31098 |  | 50 | unit:50 | Chocolate nougat bar | Barrita de chocolate con nougat | Chocolate bar, milk chocolate, with nougat | milk chocolate with nougat
+coconut_bar | sweets | g | 0 | ciqual:31002 |  | 30 | unit:30 | Chocolate coconut bar | Barrita de coco con chocolate | Coconut bar, chocolate-coated |
+liquorice | sweets | g | 0 | ciqual:31112 | zero=cholesterol; fill=ciqual:31060; variant_of=candy | 30 | serving:30 | Liquorice | Regaliz | Jelly candy, liquorice, roll or stick | values the source lacks from jelly sweets
+marshmallows | sweets | g | 1 | ciqual:31050 |  | 30 | serving:30 unit:7 | Marshmallows | Nubes o malvaviscos | Marshmallow |
+hard_candy | sweets | g | 0 | ciqual:31059 | variant_of=candy | 5 | unit:5 | Boiled sweets | Caramelos | Hard candy and lollipop | also lollipops; unit = one sweet
+ice_cream_bar | sweets | g | 0 | ciqual:31035 | variant_of=ice_cream | 70 | unit:70 | Chocolate-coated ice cream bar | Bombón helado | Ice cream bar, chocolate |
+reduced_sugar_jam | sweets | g | 0 | ciqual:30887 | zero=vit_b12; variant_of=jam | 20 | tbsp:20 tsp:7 | Reduced-sugar jam | Mermelada light (baja en azúcar) | Other jam, reduced sugar |
+brown_sugar | sweets | g | 0 | ciqual:31017 |  | 5 | tsp:5 tbsp:12 | Brown sugar | Azúcar moreno o panela | Sugar, brown |
+maple_syrup | sweets | g | 0 | fdc:169661 |  | 20 | tbsp:20 | Maple syrup | Sirope de arce | Syrups, maple |
+baklava | sweets | g | 1 | ciqual:23300 |  | 30 | unit:30 serving:90 | Baklava | Baklava | Baklava (oriental pastry with almonds and syrup) | filo with nuts and syrup (CIQUAL, almonds; FNDDS baklava has a third of the sugars of a syrup-soaked one); unit = one piece
+
+# --- 1.8.0 snacks ---
+corn_nuts | snacks | g | 0 | fdc:2343678 |  | 30 | handful:30 | Toasted corn kernels | Maíz tostado (quicos) | Corn nuts | salted
+banana_chips | snacks | g | 0 | fdc:168849 |  | 30 | handful:30 | Banana chips | Chips de plátano | Snacks, banana chips |
+light_crisps | snacks | g | 0 | ciqual:4038 | zero=vit_d; variant_of=potato_chips | 40 | serving:40 handful:15 | Reduced-fat crisps | Patatas fritas light | Potato crisps and similar, plain or flavoured, reduced fat |
+caramel_popcorn | snacks | g | 0 | fdc:167552 | variant_of=popcorn | 30 | bowl:30 | Caramel popcorn | Palomitas dulces (de caramelo) | Snacks, popcorn, caramel-coated, without peanuts |
+
+# --- 1.8.0 drinks (per 100 ml) ---
+orange_soda | drinks | ml | 0 | fdc:174854 | zero=vit_d; density=1.04; fill=ciqual:18049 | 330 | can:330 glass:250 bottle:500 | Orange soda | Refresco de naranja | Beverages, carbonated, orange | with sugar; sugars from CIQUAL's fruit soft drink
+lemon_soda | drinks | ml | 0 | fdc:173205 | density=1.04 | 330 | can:330 glass:250 bottle:500 | Lemon soda | Refresco de limón | Beverages, carbonated, lemon-lime soda, no caffeine | lemon-lime, with sugar
+soft_drink_zero | drinks | ml | 0 | ciqual:18001 | variant_of=soft_drink | 330 | can:330 glass:250 bottle:500 | Sugar-free soft drink | Refresco zero (sin azúcar) | Carbonated beverage or soft drink, without fruit , no added sugars and with sweetener(s) | with sweeteners
+tonic_zero | drinks | ml | 0 | ciqual:18013 | zero=vit_c,vit_d,vit_b12; variant_of=soft_drink | 200 | bottle:200 | Sugar-free tonic water | Tónica zero | Tonic drink, no added sugars, with sweetener(s) | with sweeteners
+energy_drink_zero | drinks | ml | 0 | fdc:2346346 | variant_of=soft_drink | 250 | can:250 | Sugar-free energy drink | Bebida energética sin azúcar | Energy drink, sugar free |
+sports_drink_zero | drinks | ml | 0 | fdc:2346352 | variant_of=soft_drink | 500 | bottle:500 can:330 | Low-calorie sports drink | Bebida isotónica zero | Sports drink, low calorie |
+ginger_ale | drinks | ml | 0 | fdc:174846 | density=1.03 | 200 | bottle:200 can:330 | Ginger ale | Ginger ale | Beverages, carbonated, ginger ale |
+flavoured_water | drinks | ml | 0 | fdc:171940 | unknown=calcium,magnesium,zinc,vit_a,vit_c,vit_e,vit_b12; variant_of=water | 500 | bottle:500 glass:250 | Flavoured water | Agua con sabor | Water, with corn syrup and/or sugar and low calorie sweetener, fruit flavored | fruit-flavoured, sugar and sweeteners; the US product's added vitamins unknown
+grape_juice | drinks | ml | 0 | ciqual:2016 | density=1.06; variant_of=juice | 200 | glass:200 | Grape juice | Mosto (zumo de uva) | Grape juice, pure juice | pure juice
+grapefruit_juice | drinks | ml | 0 | ciqual:2025 | density=1.04; variant_of=juice | 200 | glass:200 | Grapefruit juice | Zumo de pomelo | Grapefruit juice, fresh | fresh
+tomato_juice | drinks | ml | 0 | ciqual:2032 | density=1.03; variant_of=juice | 200 | glass:200 | Tomato juice | Zumo de tomate | Tomato juice, pure juice, 6 g salt/L | 6 g of salt per litre
+coconut_water | drinks | ml | 0 | ciqual:18011 | density=1.02 | 330 | can:330 glass:250 | Coconut water | Agua de coco | Coconut water |
+kombucha | drinks | ml | 0 | ciqual:18025 | zero=cholesterol; density=1.01 | 330 | bottle:330 | Kombucha | Kombucha | Kombucha, prepacked |
+rice_drink | drinks | ml | 0 | ciqual:18904 | zero=vit_b12; density=1.03; variant_of=milk | 250 | glass:250 cup:200 | Rice drink | Bebida de arroz | Rice drink, plain, prepacked | plain
+coconut_drink | drinks | ml | 0 | ciqual:18907 | zero=vit_b12; variant_of=milk | 250 | glass:250 cup:200 | Coconut drink | Bebida de coco | Coconut drink, plain, prepacked | plain
+mocha | drinks | ml | 0 | fdc:2345970 | density=1.04 | 250 | cup:250 | Mocha | Café moca | Coffee, Cafe Mocha | coffee, milk and chocolate syrup
+strong_beer | drinks | ml | 0 | ciqual:5002 | density=1.01; variant_of=beer | 330 | bottle:330 glass:200 | Strong beer (abbey, craft) | Cerveza fuerte (de abadía o artesana) | Beer, strong (>8° alcohol) | over 8% vol; a 5-6% craft beer is between this and beer
+dark_beer | drinks | ml | 0 | ciqual:5000 | zero=vit_b12; density=1.01; variant_of=beer | 330 | bottle:330 glass:200 can:330 | Dark beer | Cerveza negra | Beer, dark |
+light_beer | drinks | ml | 0 | fdc:168749 | variant_of=beer | 330 | can:330 glass:200 | Light beer | Cerveza light | Alcoholic beverage, beer, light |
+sweet_wine | drinks | ml | 0 | fdc:173176 | density=1.03 | 100 | glass:100 | Sweet wine (muscat) | Vino dulce (moscatel) | Alcoholic beverage, wine, dessert, sweet | dessert wine; glass = a small 100 ml glass
+sherry | drinks | ml | 0 | recipe | density=0.99 | 100 | glass:100 | Dry sherry (fino, manzanilla) | Vino fino o manzanilla | Fino or manzanilla (dry sherry), 15% vol: documented composition | documented composition: 15% vol, dry
+liqueur | drinks | ml | 0 | ciqual:1003 | density=1.05 | 50 | glass:50 | Liqueur | Licor (de hierbas, pacharán) | Liqueur | sweet liqueur, average
+cream_liqueur | drinks | ml | 0 | fdc:2346257 | density=1.07; variant_of=liqueur | 50 | glass:50 | Cream liqueur | Licor de crema (crema de orujo) | Liqueur with cream |
+orujo | drinks | ml | 0 | ciqual:1001 | density=0.95; variant_of=spirits | 30 | glass:30 | Orujo or fruit brandy | Orujo o aguardiente | Fruit brandy or eau-de-vie | glass = a chupito
+tequila | drinks | ml | 0 | fdc:2346281 | density=0.95; variant_of=spirits | 30 | glass:30 | Tequila | Tequila | Tequila | glass = a chupito
+pina_colada | drinks | ml | 0 | fdc:168752 | zero=vit_d; density=1.05; variant_of=cocktail | 200 | glass:200 | Piña colada | Piña colada | Alcoholic beverage, pina colada, prepared-from-recipe |
+margarita | drinks | ml | 0 | fdc:2346214 | density=1.02; variant_of=cocktail | 150 | glass:150 | Margarita | Margarita (cóctel) | Margarita |
+daiquiri | drinks | ml | 0 | fdc:2346206 | density=1.02; variant_of=cocktail | 150 | glass:150 | Daiquiri | Daiquiri | Daiquiri |
+
+cooked_wine | sauces | ml | 0 | ciqual:5217 | density=0.99; fill=ciqual:5214 | 100 | glass:100 tbsp:15 | Wine for cooking (alcohol evaporated) | Vino para cocinar (alcohol evaporado) | Wine, cooked (alcohol evaporated) | what a stew keeps of the wine once the alcohol has evaporated; sugars from red wine
+
+# --- 1.8.0 supplements and sports nutrition ---
+vegan_protein | supplements | g | 0 | ciqual:20903 | variant_of=whey_protein | 30 | scoop:30 | Plant protein powder (soy) | Proteína vegetal en polvo (soja) | Soy protein | soy protein isolate
+protein_shake_rtd | supplements | ml | 0 | fdc:2346303 | density=1.05; unknown=iron,magnesium,zinc,vit_a,vit_c,vit_d,vit_e,vit_b12,folate | 330 | bottle:330 | Protein shake, ready to drink | Batido de proteínas listo para tomar | Nutritional drink or shake, high protein, ready-to-drink, NFS | high protein, ready to drink; added vitamins and minerals of the US product unknown
+protein_bar | supplements | g | 0 | fdc:2343610 | unknown=calcium,iron,magnesium,zinc,vit_a,vit_c,vit_d,vit_e,vit_b12,folate | 60 | unit:60 | Protein bar | Barrita de proteínas | Nutrition bar or meal replacement bar, NFS | USDA generic nutrition bar (30% protein); its minerals and vitamins are a US fortified bar's, so unknown; unit = one bar
+energy_bar | supplements | g | 0 | ciqual:31113 |  | 40 | unit:40 | Energy bar (cereals and fruit) | Barrita energética (cereales y fruta) | Cereal bar with fruit | cereal bar with fruit
+electrolyte_drink | supplements | ml | 0 | fdc:2346353 |  | 500 | bottle:500 glass:250 | Electrolyte drink | Bebida de electrolitos (suero oral) | Fluid replacement, electrolyte solution | oral rehydration type
+isotonic_powder | supplements | g | 0 | fdc:2346191 | unknown=vit_c | 35 | serving:35 | Sports drink powder | Isotónico en polvo | Sports drink, dry concentrate, not reconstituted | dry; serving = for 500 ml of water
+peanut_butter_powder | supplements | g | 0 | fdc:174267 |  | 15 | scoop:15 tbsp:7 | Defatted peanut flour (peanut powder) | Harina de cacahuete desgrasada (cacahuete en polvo) | Peanut flour, defatted | what peanut butter powders are made of; brands that keep part of the fat (~12 g) or add sugar and salt have more energy
+collagen | supplements | g | 0 | fdc:169599 |  | 10 | scoop:10 | Collagen peptides | Colágeno hidrolizado | Gelatins, dry powder, unsweetened | values of unflavoured gelatin powder (gelatin is collagen; hydrolysed collagen has its composition)
+fish_oil | supplements | g | 0 | ciqual:17645 | fill=fdc:172343 | 1 | unit:1 | Fish oil capsule (omega-3) | Cápsula de aceite de pescado (omega 3) | Salmon oil | salmon oil; fatty acids and vitamins from USDA salmon oil; unit = one 1 g capsule
+meal_replacement_shake | supplements | ml | 0 | ciqual:42003 | density=1.05 | 250 | bottle:250 | Meal replacement shake | Batido sustitutivo de comida | Meal replacement, low calorie, ready-to-drink | low calorie, ready to drink
+
+# --- 1.8.0 dishes (recipes.toml: values computed from the ingredients) ---
+marmitako | dishes | g | 0 | recipe |  | 400 | plate:400 | Marmitako (tuna and potato stew) | Marmitako | Marmitako: tuna, potatoes, onion, peppers and tomato stewed in olive oil | Basque tuna stew
+porrusalda | dishes | g | 0 | recipe | variant_of=soup | 400 | bowl:400 | Leek and potato soup (porrusalda) | Porrusalda | Porrusalda: leek, potato and carrot soup with olive oil |
+caldo_gallego | dishes | g | 0 | recipe | variant_of=soup | 400 | bowl:400 | Galician broth (caldo gallego) | Caldo gallego | Caldo gallego: white beans, potato, turnip greens, pork belly and chorizo | beans, potato, turnip greens, pork
+escalivada | dishes | g | 0 | recipe | variant_of=mixed_vegetables | 200 | plate:200 | Escalivada (roasted vegetables) | Escalivada | Escalivada: roasted red pepper, aubergine and onion with olive oil | roasted pepper, aubergine and onion
+menestra | dishes | g | 0 | recipe | variant_of=mixed_vegetables | 300 | plate:300 | Menestra (vegetable medley with ham) | Menestra de verduras | Menestra: artichoke, green beans, peas, carrot, asparagus and cauliflower with ham |
+arroz_a_banda | dishes | g | 0 | recipe | variant_of=paella | 350 | plate:350 | Arroz a banda (seafood rice) | Arroz a banda | Arroz a banda: rice cooked in fish stock with squid and prawns |
+arroz_con_pollo | dishes | g | 0 | recipe | variant_of=paella | 350 | plate:350 | Rice with chicken | Arroz con pollo | Rice with chicken: rice, chicken, pepper, tomato and peas |
+arroz_caldoso | dishes | g | 0 | recipe | variant_of=paella | 400 | plate:400 | Soupy seafood rice | Arroz caldoso de marisco | Soupy seafood rice: rice in plenty of fish stock with prawns, squid, mussels and clams |
+arroz_al_horno | dishes | g | 0 | recipe | variant_of=paella | 350 | plate:350 | Oven-baked rice (arroz al horno) | Arroz al horno | Arroz al horno: rice baked with pork, morcilla, chickpeas, potato and tomato | Valencian, with pork, morcilla and chickpeas
+paella_vegetable | dishes | g | 0 | recipe | variant_of=paella | 350 | plate:350 | Vegetable paella | Paella de verduras | Vegetable paella: rice with artichoke, green beans, pepper and tomato |
+potaje_vigilia | dishes | g | 0 | recipe | variant_of=garbanzos_con_espinacas | 350 | plate:350 | Chickpea stew with cod and spinach | Potaje de vigilia | Potaje de vigilia: chickpeas with desalted cod, spinach and boiled egg |
+fabes_con_almejas | dishes | g | 0 | recipe | variant_of=bean_stew | 350 | plate:350 | Beans with clams | Fabes con almejas | Fabes con almejas: white beans stewed with clams, onion, garlic and white wine |
+rabo_de_toro | dishes | g | 0 | recipe | variant_of=stew | 300 | plate:300 | Oxtail stew | Rabo de toro | Rabo de toro: oxtail stewed in red wine with onion, carrot and tomato | meat without bones, with its sauce
+patatas_a_lo_pobre | dishes | g | 0 | recipe | variant_of=fried_potatoes | 250 | plate:250 small_plate:150 | Poor man's potatoes | Patatas a lo pobre | Patatas a lo pobre: potatoes slowly fried in olive oil with onion and green pepper | fried with onion and green pepper
+patatas_alioli | dishes | g | 0 | recipe |  | 150 | small_plate:150 plate:250 | Potatoes with alioli | Patatas alioli | Patatas alioli: boiled potatoes in alioli with parsley | tapa
+ajoblanco | dishes | g | 0 | recipe | variant_of=gazpacho | 250 | bowl:250 | Ajoblanco (cold almond soup) | Ajoblanco | Ajoblanco: cold soup of almonds, bread, garlic, olive oil and vinegar, with grapes |
+tomato_salad | dishes | g | 0 | recipe |  | 250 | plate:250 | Tomato salad | Ensalada de tomate | Tomato salad: tomato and onion with olive oil and salt | with onion and olive oil
+pipirrana | dishes | g | 0 | recipe |  | 250 | plate:250 | Pipirrana (chopped salad) | Pipirrana | Pipirrana: chopped tomato, green pepper, cucumber and onion with egg, tuna and olive oil | tomato, pepper, cucumber, onion, egg and tuna
+rice_salad | dishes | g | 0 | recipe |  | 300 | plate:300 | Rice salad | Ensalada de arroz | Rice salad: rice with tuna, sweetcorn, tomato, boiled egg, olives and olive oil | with tuna, sweetcorn, egg and olives
+chickpea_salad | dishes | g | 0 | recipe |  | 300 | plate:300 | Chickpea salad | Ensalada de garbanzos | Chickpea salad: chickpeas with tomato, onion, green pepper, tuna, boiled egg and olive oil | with tuna, egg and vegetables
+tuna_salad | dishes | g | 0 | recipe |  | 300 | plate:300 | Tuna salad | Ensalada de atún | Tuna salad: lettuce, tomato, onion, tuna in water and sweetcorn with olive oil and vinegar | lettuce, tomato, tuna in water, sweetcorn
+quinoa_salad | dishes | g | 0 | recipe |  | 300 | plate:300 | Quinoa salad | Ensalada de quinoa | Quinoa salad: quinoa with cucumber, tomato, onion, feta, olive oil and lemon | with feta and vegetables
+papas_arrugadas | dishes | g | 0 | recipe |  | 200 | plate:200 | Canarian wrinkled potatoes with mojo | Papas arrugadas con mojo | Papas arrugadas: small potatoes boiled in salted water with red mojo |
+stuffed_peppers | dishes | g | 1 | recipe |  | 300 | plate:300 unit:150 | Stuffed peppers | Pimientos rellenos de carne | Peppers stuffed with minced beef, rice, onion and tomato, roasted | unit = one pepper
+stuffed_eggplant | dishes | g | 0 | recipe |  | 300 | plate:300 unit:150 | Stuffed aubergine | Berenjenas rellenas | Aubergines stuffed with minced beef, onion and tomato, gratinated with cheese | unit = half an aubergine
+pasta_tuna | dishes | g | 0 | recipe | variant_of=pasta_tomato | 300 | plate:300 | Pasta with tuna and tomato | Macarrones con atún y tomate | Macarrones con atún: pasta with tomate frito, tuna in oil and grated cheese |
+penne_arrabbiata | dishes | g | 0 | recipe | variant_of=pasta_tomato | 300 | plate:300 | Penne arrabbiata | Macarrones o penne all'arrabbiata | Penne arrabbiata: pasta in a spicy tomato, garlic and olive oil sauce | spicy tomato
+spaghetti_aglio_olio | dishes | g | 0 | recipe |  | 250 | plate:250 | Spaghetti with garlic and oil | Espaguetis aglio e olio | Spaghetti aglio e olio: pasta with garlic, olive oil, chilli and parsley |
+fettuccine_alfredo | dishes | g | 0 | recipe |  | 300 | plate:300 | Fettuccine Alfredo | Fettuccine Alfredo (con nata y parmesano) | Fettuccine Alfredo: pasta with butter, cream and parmesan |
+spaghetti_vongole | dishes | g | 0 | recipe |  | 300 | plate:300 | Spaghetti with clams | Espaguetis con almejas | Spaghetti alle vongole: pasta with clams, garlic, olive oil and white wine |
+eggplant_parmigiana | dishes | g | 0 | recipe |  | 300 | plate:300 | Aubergine parmigiana | Berenjenas a la parmesana | Aubergine parmigiana: fried aubergine layered with tomato sauce, mozzarella and parmesan |
+mushroom_cream | dishes | g | 0 | recipe | variant_of=cream_soup | 300 | bowl:300 | Mushroom cream soup | Crema de champiñones | Mushroom cream soup: mushrooms, onion, potato and cream |
+poke_bowl | dishes | g | 0 | recipe |  | 450 | bowl:450 | Salmon poke bowl | Poke bowl de salmón | Salmon poke bowl: rice, raw salmon, avocado, edamame, cucumber, carrot, soy sauce and sesame | rice, raw salmon, avocado, edamame
+chicken_teriyaki | dishes | g | 1 | recipe |  | 200 | plate:200 | Chicken teriyaki | Pollo teriyaki | Chicken teriyaki: chicken breast glazed with soy sauce, sugar, honey, garlic and ginger | without rice
+yakisoba | dishes | g | 0 | recipe | variant_of=noodles | 350 | plate:350 | Yakisoba | Yakisoba (fideos salteados) | Yakisoba: noodles stir-fried with pork, cabbage, carrot and onion in a soy and ketchup sauce | with pork and vegetables
+kung_pao_chicken | dishes | g | 0 | recipe | variant_of=stir_fry | 300 | plate:300 | Kung pao chicken | Pollo kung pao | Kung pao chicken: chicken stir-fried with peanuts, peppers, spring onion, chilli and soy sauce | without rice
+beef_broccoli | dishes | g | 0 | recipe | variant_of=stir_fry | 300 | plate:300 | Beef with broccoli | Ternera con brócoli | Beef with broccoli: beef strips and broccoli stir-fried in soy sauce, garlic and ginger | without rice
+chicken_tikka_masala | dishes | g | 0 | recipe | variant_of=curry | 300 | plate:300 | Chicken tikka masala | Pollo tikka masala | Chicken tikka masala: chicken marinated in yogurt, in a tomato, cream and butter sauce | without rice
+thai_green_curry | dishes | g | 0 | recipe | variant_of=curry | 300 | plate:300 | Thai green curry | Curry verde tailandés | Thai green curry: chicken and aubergine in coconut milk with green chilli, garlic, ginger and basil | chicken in coconut milk, without rice
+dal | dishes | g | 0 | recipe | variant_of=lentils | 300 | plate:300 | Dal (Indian lentils) | Dal (lentejas a la india) | Dal: red lentils with onion, tomato, butter, garlic, ginger and spices | red lentils with tomato and spices
+biryani | dishes | g | 0 | recipe | variant_of=pilaf | 350 | plate:350 | Chicken biryani | Biryani de pollo | Chicken biryani: rice layered with chicken in yogurt, fried onion, butter and spices |
+couscous_vegetables | dishes | g | 0 | recipe | variant_of=couscous | 350 | plate:350 | Couscous with vegetables | Cuscús con verduras | Couscous with vegetables: couscous, chickpeas, carrot, courgette, pumpkin, onion and raisins in broth | with chickpeas
+chicken_tagine | dishes | g | 0 | recipe |  | 350 | plate:350 | Chicken tagine | Tajín de pollo | Chicken tagine: chicken stewed with onion, preserved lemon, olives, garlic, ginger and olive oil | with lemon and olives
+chicken_rice_broccoli | dishes | g | 0 | recipe |  | 460 | plate:460 | Chicken with rice and broccoli | Pollo con arroz y brócoli | Chicken with rice and broccoli: grilled chicken breast, white rice and broccoli with olive oil | fitness plate: 150 g each
+yogurt_granola_bowl | dishes | g | 0 | recipe |  | 250 | bowl:250 | Yogurt bowl with granola and fruit | Bol de yogur con granola y fruta | Yogurt bowl: Greek yogurt with granola, banana and honey |
+
+# --- 1.8.0 fish and seafood dishes ---
+pulpo_con_cachelos | fish | g | 0 | recipe | variant_of=octopus | 300 | plate:300 | Galician octopus with potatoes | Pulpo a la gallega con cachelos | Pulpo á feira con cachelos: boiled octopus and potatoes with olive oil, paprika and coarse salt |
+bacalao_pil_pil | fish | g | 0 | recipe |  | 250 | plate:250 | Cod pil-pil | Bacalao al pil-pil | Bacalao al pil-pil: desalted cod in an emulsion of olive oil and its gelatine, with garlic and chilli | desalted cod in its garlic and oil emulsion
+bacalao_vizcaina | fish | g | 0 | recipe |  | 300 | plate:300 | Cod Biscay style | Bacalao a la vizcaína | Bacalao a la vizcaína: desalted cod in a sauce of onion, choricero pepper and tomato | with red pepper and onion sauce
+merluza_salsa_verde | fish | g | 0 | recipe |  | 300 | plate:300 | Hake in green sauce | Merluza en salsa verde | Merluza en salsa verde: hake and clams in a sauce of olive oil, garlic, parsley, flour, wine and fish stock | with clams
+merluza_romana | fish | g | 0 | recipe | variant_of=fried_fish | 200 | serving:200 | Battered hake | Merluza a la romana | Merluza a la romana: hake in flour and beaten egg, fried in sunflower oil | in flour and egg, fried
+boquerones_fritos | fish | g | 0 | recipe | variant_of=fried_fish | 150 | serving:150 | Fried anchovies | Boquerones fritos | Boquerones fritos: fresh anchovies in flour, fried in olive oil |
+chopitos | fish | g | 0 | recipe | variant_of=calamari | 150 | serving:150 | Fried baby squid | Chopitos o puntillitas | Chopitos: baby squid in flour, fried in olive oil |
+sepia_a_la_plancha | fish | g | 0 | recipe |  | 200 | serving:200 | Griddled cuttlefish | Sepia a la plancha | Sepia a la plancha: cuttlefish griddled with olive oil, garlic and parsley | with garlic and parsley
+atun_encebollado | fish | g | 0 | recipe |  | 300 | plate:300 | Tuna with onions | Atún encebollado | Atún encebollado: tuna with slowly cooked onion, olive oil and white wine |
+salpicon | fish | g | 0 | recipe |  | 200 | plate:200 | Seafood salad (salpicón) | Salpicón de marisco | Salpicón de marisco: prawns, mussels and surimi with onion and peppers in a vinaigrette |
+
+# --- 1.8.0 meat dishes ---
+pollo_al_ajillo | meat | g | 0 | recipe |  | 300 | plate:300 | Garlic chicken | Pollo al ajillo | Pollo al ajillo: chicken pieces fried in olive oil with garlic and white wine | meat without bones
+conejo_al_ajillo | meat | g | 0 | recipe |  | 300 | plate:300 | Garlic rabbit | Conejo al ajillo | Conejo al ajillo: rabbit pieces fried in olive oil with garlic and white wine | meat without bones
+flamenquin | meat | g | 0 | recipe | variant_of=breaded_cutlet | 200 | unit:200 | Flamenquín | Flamenquín | Flamenquín: pork loin rolled around serrano ham, in flour, egg and breadcrumbs, fried | rolled pork loin and ham, breaded and fried
+cachopo | meat | g | 0 | recipe | variant_of=breaded_cutlet | 350 | unit:350 | Cachopo | Cachopo | Cachopo: two veal fillets with serrano ham and cheese, in flour, egg and breadcrumbs, fried | two veal fillets with ham and cheese, breaded; a whole one is often shared
+san_jacobo | meat | g | 0 | recipe | variant_of=breaded_cutlet | 120 | unit:120 | San Jacobo (breaded ham and cheese) | San Jacobo | San Jacobo: cooked ham and cheese slices in flour, egg and breadcrumbs, fried |
+breaded_chicken | meat | g | 0 | recipe | variant_of=breaded_cutlet | 150 | unit:150 | Breaded chicken breast | Pechuga de pollo empanada | Breaded chicken breast: chicken fillets in flour, egg and breadcrumbs, fried |
+meatloaf | meat | g | 0 | recipe |  | 200 | slice:100 serving:200 | Meatloaf | Pastel de carne (rollo de carne) | Meatloaf: minced beef with egg, breadcrumbs, onion and milk, baked with ketchup |
+
+# --- 1.8.0 egg dishes ---
+huevos_a_la_flamenca | eggs | g | 0 | recipe |  | 300 | plate:300 | Flamenco eggs | Huevos a la flamenca | Huevos a la flamenca: eggs baked in tomato sauce with chorizo, serrano ham, peas and roasted pepper | baked in tomato with chorizo, ham and peas
+revuelto_setas | eggs | g | 0 | recipe | variant_of=scrambled_eggs | 170 | plate:170 | Scrambled eggs with mushrooms | Revuelto de setas | Revuelto de setas: eggs scrambled with oyster mushrooms, garlic and olive oil |
+revuelto_gambas | eggs | g | 0 | recipe | variant_of=scrambled_eggs | 190 | plate:190 | Scrambled eggs with prawns | Revuelto de gambas | Revuelto de gambas: eggs scrambled with prawns, garlic and olive oil |
+egg_white_omelette | eggs | g | 0 | recipe | variant_of=omelette | 185 | unit:185 | Egg white omelette | Tortilla de claras | Egg white omelette: egg whites with a little olive oil | 200 g of egg whites
+huevos_rancheros | eggs | g | 0 | recipe |  | 370 | plate:370 | Huevos rancheros | Huevos rancheros | Huevos rancheros: fried eggs on corn tortillas with tomato salsa, black beans and avocado | fried eggs on corn tortillas with salsa and beans
+
+# --- 1.8.0 fast food, sandwiches, wraps ---
+chorizo_baguette | fast_food | g | 0 | recipe | variant_of=baguette_sandwich | 170 | unit:170 | Chorizo baguette | Bocadillo de chorizo | Chorizo bocadillo: half a barra with sliced chorizo | half a barra
+tuna_baguette | fast_food | g | 0 | recipe | variant_of=baguette_sandwich | 216 | unit:216 | Tuna baguette | Bocadillo de atún | Tuna bocadillo: half a barra with tuna in oil, tomato and mayonnaise | half a barra with tuna, tomato and mayonnaise
+chicken_baguette | fast_food | g | 0 | recipe | variant_of=baguette_sandwich | 245 | unit:245 | Chicken baguette | Bocadillo de pollo | Chicken bocadillo: half a barra with grilled chicken, lettuce, tomato and mayonnaise | grilled chicken, lettuce, tomato, mayonnaise
+bacon_cheese_baguette | fast_food | g | 0 | recipe | variant_of=baguette_sandwich | 190 | unit:190 | Bacon and cheese baguette | Bocadillo de bacon y queso | Bacon and cheese bocadillo: half a barra with bacon and cheese |
+ham_cheese_baguette | fast_food | g | 0 | recipe | variant_of=baguette_sandwich | 185 | unit:185 | Ham and cheese baguette | Bocadillo de jamón york y queso | Ham and cheese bocadillo: half a barra with cooked ham and cheese slices |
+serranito | fast_food | g | 0 | recipe | variant_of=baguette_sandwich | 275 | unit:275 | Serranito | Serranito | Serranito: bread with pork loin, serrano ham, fried green pepper and tomato | pork loin, serrano ham, fried green pepper and tomato
+pepito | fast_food | g | 0 | recipe | variant_of=baguette_sandwich | 215 | unit:215 | Steak baguette (pepito) | Pepito de ternera | Pepito de ternera: half a barra with a griddled veal steak |
+club_sandwich | fast_food | g | 0 | recipe | variant_of=sandwich | 240 | unit:240 | Club sandwich | Sándwich club | Club sandwich: three slices of toasted bread with chicken, bacon, egg, lettuce, tomato and mayonnaise | chicken, bacon, egg, lettuce, tomato, mayonnaise
+burrito | fast_food | g | 0 | recipe | variant_of=wrap | 330 | unit:330 | Burrito | Burrito | Burrito: flour tortilla with minced beef, rice, black beans, cheese, salsa, cream and lettuce | beef, rice, beans, cheese and salsa
+chicken_wrap | fast_food | g | 0 | recipe | variant_of=wrap | 200 | unit:200 | Chicken wrap | Wrap de pollo | Chicken wrap: flour tortilla with grilled chicken, lettuce, tomato, cheese and yogurt sauce |
+enchiladas | fast_food | g | 1 | recipe |  | 330 | plate:330 unit:110 | Chicken enchiladas | Enchiladas de pollo | Chicken enchiladas: corn tortillas rolled with chicken, baked in red sauce with cheese and cream | unit = one enchilada
+fajitas | fast_food | g | 1 | recipe |  | 280 | plate:280 unit:140 | Chicken fajitas | Fajitas de pollo | Chicken fajitas: flour tortillas with chicken strips fried with peppers and onion | unit = one fajita
+shawarma | fast_food | g | 0 | recipe | variant_of=kebab | 290 | unit:290 | Chicken shawarma | Shawarma de pollo | Chicken shawarma: flatbread with marinated chicken, tomato, lettuce, onion, pickles and yogurt sauce |
+gyros | fast_food | g | 0 | recipe | variant_of=kebab | 285 | unit:285 | Gyros pita | Gyros (pita griega) | Gyros pita: pita with pork, tzatziki, tomato, onion and chips | pork, tzatziki, tomato, onion and chips
+
+# --- 1.8.0 tapas and snacks ---
+croquettes_chicken | snacks | g | 0 | recipe | variant_of=croquettes | 30 | unit:30 serving:180 | Chicken croquettes | Croquetas de pollo | Chicken croquettes: thick bechamel with roast chicken, breaded and fried | serving = ración of 6
+croquettes_cod | snacks | g | 0 | recipe | variant_of=croquettes | 30 | unit:30 serving:180 | Cod croquettes | Croquetas de bacalao | Cod croquettes: thick bechamel with desalted cod, breaded and fried | serving = ración of 6
+croquettes_mushroom | snacks | g | 0 | recipe | variant_of=croquettes | 30 | unit:30 serving:180 | Mushroom croquettes | Croquetas de setas | Mushroom croquettes: thick bechamel with mushrooms and onion, breaded and fried | serving = ración of 6
+empanadillas | snacks | g | 0 | recipe | variant_of=empanada | 40 | unit:40 serving:160 | Tuna empanadillas | Empanadillas de atún | Tuna empanadillas: wheat pastry discs filled with tuna, tomato and egg, fried | fried; unit = one empanadilla
+berenjenas_con_miel | snacks | g | 0 | recipe |  | 150 | small_plate:150 | Fried aubergine with honey | Berenjenas con miel | Berenjenas con miel: aubergine sticks in flour, fried, with cane honey | tapa
+pan_con_tomate_y_jamon | snacks | g | 0 | recipe | variant_of=bread_with_tomato | 190 | unit:190 | Bread with tomato and ham | Pan con tomate y jamón | Pan con tomate y jamón: toasted bread with grated tomato, olive oil and serrano ham |
+baba_ganoush | sauces | g | 0 | recipe |  | 30 | tbsp:15 serving:30 | Baba ganoush | Baba ganoush (crema de berenjena) | Baba ganoush: roasted aubergine with tahini, lemon, olive oil and garlic |
+
+# --- 1.8.0 sweets (recipes) ---
+tarta_de_santiago | sweets | g | 0 | recipe |  | 80 | slice:80 | Santiago almond cake | Tarta de Santiago | Tarta de Santiago: ground almonds, sugar and eggs, baked |
+polvorones | sweets | g | 0 | recipe |  | 30 | unit:30 | Polvorones | Polvorones o mantecados | Polvorones: toasted flour, lard, icing sugar and ground almonds | unit = one polvorón
+roscon | sweets | g | 0 | recipe | variant_of=brioche | 120 | slice:120 | Roscón de Reyes with cream | Roscón de Reyes con nata | Roscón de Reyes with cream: brioche ring filled with whipped cream | the plain roscón is brioche
+leche_frita | sweets | g | 0 | recipe |  | 100 | serving:100 unit:50 | Fried milk custard | Leche frita | Leche frita: thick milk custard squares in flour and egg, fried, with sugar and cinnamon | unit = one square
+protein_pancakes | sweets | g | 0 | recipe | variant_of=pancakes | 205 | serving:205 | Oat and egg white pancakes | Tortitas de avena y claras | Oat and egg white pancakes: rolled oats, egg whites, banana and a little whey protein | with banana and a little whey
+overnight_oats | grains | g | 0 | recipe | variant_of=oatmeal | 285 | bowl:285 | Overnight oats | Avena remojada (overnight oats) | Overnight oats: rolled oats soaked in semi-skimmed milk with yogurt, chia seeds and honey | oats, milk, yogurt, chia and honey
+protein_porridge | grains | g | 0 | recipe | variant_of=oatmeal | 320 | bowl:320 | Protein porridge | Gachas de avena con proteína | Protein porridge: rolled oats cooked in semi-skimmed milk with a scoop of whey | oats in milk with a scoop of whey
+
+# --- 1.8.0 drinks (recipes, per 100 ml) ---
+cappuccino | drinks | ml | 0 | recipe | density=1.023 | 160 | cup:160 | Cappuccino | Capuchino | Cappuccino: espresso with foamed semi-skimmed milk (1 : 3) | espresso and foamed semi-skimmed milk
+whisky_cola | drinks | ml | 0 | recipe | density=1.022; variant_of=rum_and_cola | 250 | glass:250 | Whisky and cola | Whisky con cola | Whisky and cola: 50 ml whisky + 200 ml cola |
+vodka_orange | drinks | ml | 0 | recipe | density=1.022; variant_of=rum_and_cola | 250 | glass:250 | Vodka and orange soda | Vodka con naranja | Vodka and orange: 50 ml vodka + 200 ml orange soda |
+vodka_lemon | drinks | ml | 0 | recipe | density=1.022; variant_of=rum_and_cola | 250 | glass:250 | Vodka and lemon soda | Vodka con limón | Vodka and lemon: 50 ml vodka + 200 ml lemon soda |
+rebujito | drinks | ml | 0 | recipe | density=1.026 | 350 | glass:350 | Rebujito | Rebujito | Rebujito: 100 ml manzanilla + 250 ml lemon soda | manzanilla and lemon soda
+
+# --- 1.8.0 supplements (recipes and documented compositions) ---
+protein_shake | supplements | ml | 0 | recipe | density=1.06 | 270 | glass:270 | Protein shake with milk | Batido de proteínas con leche | Protein shake: 30 g whey protein in 250 ml semi-skimmed milk | one scoop of whey in 250 ml of semi-skimmed milk
+protein_shake_water | supplements | ml | 0 | recipe | density=1.03; variant_of=protein_shake | 270 | glass:270 | Protein shake with water | Batido de proteínas con agua | Protein shake: 30 g whey protein in 250 ml water |
+protein_shake_oat | supplements | ml | 0 | recipe | density=1.06; variant_of=protein_shake | 270 | glass:270 | Protein shake with oat drink | Batido de proteínas con bebida de avena | Protein shake: 30 g whey protein in 250 ml oat drink |
+mass_gainer | supplements | g | 0 | recipe |  | 100 | serving:100 | Mass gainer | Ganador de peso (gainer) | Mass gainer powder: whey protein and maltodextrin (30 : 70) | serving = 100 g powder; mixed with water
+maltodextrin | supplements | g | 0 | recipe |  | 30 | scoop:30 | Maltodextrin | Maltodextrina | Maltodextrin powder: documented composition | documented composition
+energy_gel | supplements | g | 0 | recipe |  | 40 | unit:40 | Energy gel | Gel energético | Energy gel: glucose syrup with water and salt | glucose syrup gel; unit = one sachet
+creatine | supplements | g | 0 | recipe |  | 5 | scoop:5 | Creatine monohydrate | Creatina monohidrato | Creatine monohydrate powder: documented composition | documented composition; scoop = 5 g
+bcaa | supplements | g | 0 | recipe |  | 7 | scoop:7 | BCAA / EAA amino acids | Aminoácidos BCAA o EAA | BCAA / EAA amino acid powder, unflavoured: documented composition | documented composition, unflavoured powder
+
+# --- 1.8.0 more basics ---
+rice_flour | grains | g | 0 | ciqual:9520 |  | 40 | serving:40 tbsp:10 | Rice flour (cream of rice) | Harina de arroz (crema de arroz) | Rice flour | also eaten as a porridge (cream of rice)
+corn_flour | grains | g | 0 | ciqual:9545 |  | 10 | tbsp:10 serving:100 | Maize flour | Harina de maíz | Maize/corn flour | also precooked flour for arepas
+green_tea | drinks | ml | 0 | fdc:171917 |  | 250 | cup:250 | Green tea | Té verde | Beverages, tea, green, brewed, regular | brewed, no sugar
+
+# --- 1.8.0 more dishes (recipes.toml) ---
+garbanzos_con_chorizo | dishes | g | 0 | recipe | variant_of=garbanzos_con_espinacas | 350 | plate:350 | Chickpea stew with chorizo | Garbanzos con chorizo | Garbanzos con chorizo: chickpeas stewed with chorizo, potato, carrot and onion |
+patatas_con_costillas | dishes | g | 0 | recipe | variant_of=stew | 400 | plate:400 | Potato and pork rib stew | Patatas con costillas | Patatas con costillas: potatoes stewed with pork ribs, onion, pepper, tomato and paprika |
+pollo_guisado | dishes | g | 0 | recipe |  | 350 | plate:350 | Chicken stew | Pollo guisado | Pollo guisado: chicken stewed with onion, carrot, tomato and white wine | in tomato and wine sauce, meat without bones
+carrot_cream | dishes | g | 0 | recipe | variant_of=cream_soup | 300 | bowl:300 | Carrot cream soup | Crema de zanahoria | Carrot cream soup: carrot, onion and potato in stock with olive oil |
+pasta_four_cheese | dishes | g | 0 | recipe |  | 300 | plate:300 | Pasta with four cheeses | Pasta a los cuatro quesos | Pasta with four cheeses: pasta in a cream sauce with blue cheese, mozzarella, parmesan and cured cheese |
+lemon_chicken | dishes | g | 0 | recipe | variant_of=sweet_sour_chicken | 250 | plate:250 | Lemon chicken | Pollo al limón | Lemon chicken: battered chicken pieces, fried, in a sweet lemon sauce | Chinese-restaurant style, battered
+lomo_saltado | dishes | g | 0 | recipe |  | 300 | plate:300 | Lomo saltado | Lomo saltado | Lomo saltado: beef strips stir-fried with onion, tomato, soy sauce and vinegar, with chips | Peruvian beef stir-fry with chips, without rice
+calamares_en_su_tinta | fish | g | 0 | recipe |  | 250 | plate:250 | Squid in its ink | Calamares en su tinta | Calamares en su tinta: squid stewed in its ink with onion, tomato and wine |
+mejillones_marinera | fish | g | 0 | recipe | variant_of=mussels | 250 | plate:250 | Mussels in marinara sauce | Mejillones a la marinera | Mejillones a la marinera: mussels in a sauce of onion, tomato, wine, flour and paprika | mussel meat with its sauce
+zarzuela | fish | g | 0 | recipe |  | 350 | plate:350 | Catalan fish and seafood stew | Zarzuela de pescado y marisco | Zarzuela: hake, prawns, squid, mussels and clams in a tomato, wine and almond sauce |
+gambas_plancha | fish | g | 0 | recipe | variant_of=prawns | 150 | serving:150 | Griddled prawns | Gambas a la plancha | Gambas a la plancha: prawns griddled with a little olive oil and coarse salt | peeled weight
+nigiri_salmon | fish | g | 0 | recipe | variant_of=sushi | 204 | unit:34 serving:204 | Salmon nigiri | Nigiri de salmón | Salmon nigiri: vinegared sushi rice topped with raw salmon | serving = 6 pieces
+maki_roll | fish | g | 0 | recipe | variant_of=sushi | 108 | unit:18 serving:108 | Salmon maki | Maki de salmón | Salmon maki: sushi rice with salmon and cucumber rolled in nori | serving = 6 pieces
+tortilla_calabacin | eggs | g | 0 | recipe | variant_of=spanish_omelette | 150 | slice:150 | Courgette omelette | Tortilla de calabacín | Courgette omelette: eggs with courgette and onion fried in olive oil |
+champinones_al_ajillo | snacks | g | 0 | recipe |  | 150 | small_plate:150 | Garlic mushrooms | Champiñones al ajillo | Champiñones al ajillo: mushrooms sautéed in olive oil with garlic, chilli and parsley | tapa
+falafel_pita | fast_food | g | 0 | recipe | variant_of=falafel | 255 | unit:255 | Falafel pita | Pita de falafel | Falafel pita: pita with falafel, tahini, tomato, lettuce and cucumber |
+tuna_sandwich | fast_food | g | 0 | recipe | variant_of=sandwich | 160 | unit:160 | Tuna sandwich | Sándwich de atún | Tuna sandwich: sandwich bread with tuna in oil, mayonnaise, lettuce and tomato |
+croissant_mixto | fast_food | g | 0 | recipe | variant_of=croissant | 100 | unit:100 | Ham and cheese croissant | Cruasán mixto (jamón y queso) | Croissant mixto: croissant with cooked ham and cheese |
+durum | fast_food | g | 0 | recipe | variant_of=kebab | 290 | unit:290 | Durum (kebab wrap) | Dürüm (kebab enrollado) | Dürüm: flour wrap with chicken kebab meat, lettuce, tomato, onion and yogurt sauce | chicken
+arepa | fast_food | g | 0 | recipe |  | 120 | unit:120 | Arepa | Arepa | Arepa: maize flour dough griddled with a little oil | plain maize flatbread; fillings are extra
+tocino_de_cielo | sweets | g | 0 | recipe |  | 60 | serving:60 | Tocino de cielo (egg yolk custard) | Tocino de cielo | Tocino de cielo: egg yolks and sugar syrup baked over caramel |
+coulant | sweets | g | 0 | recipe | variant_of=chocolate_cake | 100 | unit:100 | Chocolate lava cake | Coulant de chocolate | Chocolate coulant: dark chocolate, butter, eggs, sugar and a little flour, baked soft in the middle |
+pestinos | sweets | g | 0 | recipe |  | 30 | unit:30 | Pestiños (honey fritters) | Pestiños | Pestiños: wheat dough with olive oil, wine and sesame, fried and glazed with honey |
+rosquillas | sweets | g | 0 | recipe |  | 30 | unit:30 | Rosquillas (Spanish doughnuts) | Rosquillas | Rosquillas: fried rings of flour, sugar, egg, milk and oil | fried
+tarta_de_la_abuela | sweets | g | 0 | recipe |  | 120 | slice:120 | Biscuit, custard and chocolate cake | Tarta de la abuela (de galletas) | Tarta de la abuela: layers of María biscuits dipped in milk, custard and a chocolate top |
+tea_with_milk | drinks | ml | 0 | recipe | density=1.006; variant_of=tea | 250 | cup:250 | Tea with milk | Té con leche | Tea with milk: black tea with a dash of semi-skimmed milk |
+agua_de_valencia | drinks | ml | 0 | recipe | density=1.02; variant_of=cocktail | 200 | glass:200 | Agua de Valencia | Agua de Valencia | Agua de Valencia: cava, orange juice, gin and vodka with sugar | cava, orange juice, gin and vodka
+
+# --- 1.8.0 a few more basics and two Spanish sauces ---
+millet | grains | g | 0 | fdc:168871 |  | 180 | plate:180 | Millet, cooked | Mijo cocido | Millet, cooked |
+buckwheat | grains | g | 0 | fdc:170686 |  | 180 | plate:180 | Buckwheat, cooked | Trigo sarraceno cocido | Buckwheat groats, roasted, cooked | roasted groats (kasha), cooked
+horse_mackerel | fish | g | 0 | ciqual:26236 | fill=fdc:173672 | 150 | serving:150 | Horse mackerel | Jurel o chicharro | Horse mackerel, oily (autumn, winter), raw | raw weight; CIQUAL autumn-winter catch (its average row has more saturated fat than fat allows), missing values from USDA jack mackerel (same genus)
+basmati_rice | grains | g | 0 | ciqual:9125 | variant_of=rice | 180 | plate:180 | Basmati rice, cooked | Arroz basmati cocido | Rice, basmati, cooked, no added salt | no added salt
+tortellini | grains | g | 0 | ciqual:25155 | variant_of=ravioli | 250 | plate:250 | Tortellini (cheese filling), cooked | Tortellini rellenos de queso | Fresh pasta, stuffed with cheese and vegetables (e.g. ravioli), cooked, prepacked | fresh, stuffed with cheese and vegetables, prepacked
+venison | meat | g | 0 | ciqual:14007 |  | 150 | serving:150 | Venison, roasted | Ciervo asado | Venison, hart, roasted/baked |
+wild_boar | meat | g | 0 | ciqual:14003 |  | 150 | serving:150 | Wild boar, roasted | Jabalí asado | Wild boar, roasted/baked |
+smoked_herring | fish | g | 0 | ciqual:25998 |  | 50 | serving:50 | Smoked herring | Arenque ahumado | Atlantic herring, smoked |
+mojo_picon | sauces | g | 0 | recipe |  | 15 | tbsp:15 | Red mojo (mojo picón) | Mojo picón (rojo) | Mojo picón: olive oil, garlic, paprika and dried chilli, vinegar and salt | Canarian sauce
+romesco | sauces | g | 0 | recipe |  | 30 | tbsp:15 serving:30 | Romesco sauce | Salsa romesco | Romesco: roasted tomato and pepper with almonds, hazelnuts, bread, garlic, olive oil and vinegar | Catalan sauce for calçots and fish

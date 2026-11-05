@@ -93,7 +93,7 @@ exa_box_jump = box, salto sul box, pliometria, salto sul cassone
 exa_tuck_jump = tuck jump, salto raccolto, ginocchia al petto
 exa_skater_jump = pattinatore, skater, balzi laterali, salti laterali
 exa_bear_crawl = orso, camminata dell'orso, quadrupedia, gattonare
-exa_shadow_boxing = boxe, boxe a vuoto, pugni, shadow
+exa_shadow_boxing = boxe, boxe a vuoto, pugni, shadow, jab, diretto, cross, uno-due
 exa_step_aerobics = step, aerobica, step class
 exa_battle_ropes = corde, battle ropes, onde, corde navali
 exa_sled_push = slitta, prowler, spinta slitta
@@ -123,3 +123,117 @@ exa_foam_roll_glutes = rullo, foam rolling, automassaggio, rilascio miofasciale,
 exa_foam_roll_it_band = rullo, foam rolling, automassaggio, rilascio miofasciale, smr, itb, tensore della fascia lata
 exa_foam_roll_upper_back = rullo, foam rolling, automassaggio, rilascio miofasciale, smr, schiena, toracica
 exa_foam_roll_lats = rullo, foam rolling, automassaggio, rilascio miofasciale, smr
+
+# Free weights
+exa_kettlebell_snatch = kb snatch, one arm snatch, strappo, strappo con kettlebell, strappo a un braccio
+
+# Sports and activities added in 1.8
+exa_alpine_skiing = sci, sciare, discesa, piste, neve, settimana bianca
+exa_cross_country_skiing = fondo, sci nordico, skating, tecnica classica, sci, neve
+exa_snowboarding = snowboard, tavola, board, neve
+exa_surfing = surfare, tavola da surf, bodyboard, onde
+exa_rowing = remare, voga, barca, singolo, otto, regata
+exa_kayaking = canoa, canoismo, kayak, pagaia, pagaiare, sup, stand up paddle
+exa_open_water_swimming = nuoto in mare, mare, lago, acque libere, triathlon, nuotare
+exa_rugby = rugby a 15, rugby a 13, rugby a 7, sevens, palla ovale
+exa_table_tennis = tennistavolo, tennis da tavolo, pingpong, ping-pong
+exa_squash = racchetta, pallina da squash
+exa_inline_skating = pattini in linea, rollerblade, roller, pattinare, pattini a rotelle
+exa_ice_skating = pattini da ghiaccio, pattinare, pista di pattinaggio, ghiaccio, pattinaggio artistico
+
+# Advanced calisthenics (1.8)
+exa_bar_muscle_up = muscle up, muscleup, sbarra, calisthenics, street workout
+exa_ring_muscle_up = muscle up, muscleup, anelli, calisthenics, street workout
+exa_wall_handstand = verticale, handstand, verticale al muro, wall walk, equilibrio
+exa_handstand = verticale, handstand, verticale libera, equilibrio sulle mani
+exa_wall_handstand_push_up = hspu, handstand push-up, piegamenti in verticale, flessioni in verticale
+exa_tuck_front_lever = front lever, leva, leva frontale, tuck, calisthenics
+exa_front_lever = leva, leva frontale, calisthenics, street workout
+exa_tuck_back_lever = back lever, leva, leva dorsale, tuck, calisthenics
+exa_back_lever = leva, leva dorsale, calisthenics, street workout
+exa_tuck_planche = planche, planche raccolta, tuck, calisthenics
+exa_straddle_planche = planche, planche divaricata, straddle, calisthenics
+exa_human_flag = bandiera, bandiera umana, flag, human flag, calisthenics
+exa_tuck_l_sit = l sit, l-sit, squadra, squadra raccolta, tuck sit
+exa_archer_pull_up = archer, trazioni arciere, calisthenics
+exa_typewriter_pull_up = typewriter, macchina da scrivere, calisthenics
+exa_one_arm_push_up = flessioni a una mano, piegamenti a un braccio, one arm push-up
+exa_shrimp_squat = shrimp, squat gambero, squat su una gamba, single leg squat
+exa_skin_the_cat = anelli, german hang
+exa_ring_support_hold = anelli, appoggio, support hold, tenuta agli anelli
+exa_ring_push_up = anelli, piegamenti agli anelli
+exa_hollow_body_rock = hollow rock, hollow, dondolo, oscillazione
+exa_pseudo_planche_push_up = pppu, planche lean, flessioni inclinate in avanti
+exa_clap_push_up = flessioni pliometriche, flessioni esplosive, piegamenti con battito, clap push-up
+exa_hanging_windshield_wiper = tergicristalli, windshield wipers, obliqui alla sbarra
+
+# Olympic lifts, kettlebells, strongman and CrossFit (1.8)
+exa_push_jerk = jerk, slancio, spinta, sollevamento olimpico, pesistica
+exa_split_jerk = jerk, slancio, sforbiciata, sollevamento olimpico, pesistica
+exa_clean_and_jerk = c&j, clean, jerk, slancio, girata, pesistica
+exa_squat_clean = full clean, clean, girata, girata completa, pesistica
+exa_hang_power_snatch = snatch, hang snatch, strappo, strappo dalla sospensione, pesistica
+exa_squat_snatch = full snatch, snatch, strappo, strappo completo, pesistica
+exa_snatch_balance = snatch, drop snatch, strappo, pesistica
+exa_clean_pull = pull, tirata, tirata di girata, pesistica
+exa_snatch_pull = pull, tirata, tirata di strappo, pesistica
+exa_trap_bar_deadlift = hex bar, hex bar deadlift, trap bar, bilanciere esagonale, stacco esagonale
+exa_kettlebell_halo = halo, kb, cerchi attorno alla testa
+exa_kettlebell_bottoms_up_press = bottoms up, bottom up press, kb press, kettlebell capovolto
+exa_double_kettlebell_front_squat = kb front squat, double kb, due kettlebell, squat frontale
+exa_single_arm_kettlebell_swing = one arm swing, kb swing, swing a una mano
+exa_american_kettlebell_swing = overhead swing, kb swing, crossfit, swing sopra la testa
+exa_kettlebell_overhead_carry = waiter walk, camminata del cameriere, kb carry, trasporto sopra la testa
+exa_renegade_row = plank row, rematore in plank
+exa_devil_press = crossfit, burpee, devil's press, burpee con manubri
+exa_man_maker = crossfit, burpee, manmaker, man makers
+exa_dumbbell_thruster = thrusters, crossfit, squat e spinta, manubri
+exa_double_unders = du, double under, doppi, doppio salto, salto con la corda, crossfit
+exa_burpee_box_jump_over = bbjo, burpee box, burpee oltre il box, box, crossfit
+exa_yoke_carry = yoke, giogo, strongman
+exa_log_press = log, tronco, strongman
+exa_atlas_stone = pietra, pietre, atlas stone, stone to shoulder, strongman
+exa_tyre_flip = tire flip, tyre flip, pneumatico, gomma, ribaltare la gomma, strongman
+exa_sandbag_to_shoulder = sandbag over shoulder, sandbag, sacco di sabbia, strongman
+
+# Suspension trainer, bosu, Swiss ball, balance and Pilates (1.8)
+exa_suspension_chest_press = trx, cinghie, allenamento in sospensione, piegamenti
+exa_suspension_y_raise = trx, cinghie, allenamento in sospensione, y fly, y raise
+exa_suspension_curl = trx, cinghie, allenamento in sospensione, bicipiti
+exa_suspension_triceps_extension = trx, cinghie, allenamento in sospensione, tricipiti
+exa_suspension_pistol_squat = trx, cinghie, pistol assistito, squat su una gamba
+exa_suspension_atomic_push_up = trx, cinghie, atomic push-up, piegamenti con ginocchia al petto
+exa_suspension_pike = trx, cinghie, allenamento in sospensione, pike
+exa_suspension_hamstring_curl = trx, cinghie, allenamento in sospensione, femorali, leg curl
+exa_suspension_fallout = trx, cinghie, allenamento in sospensione, rollout
+exa_bosu_squat = mezza sfera, semisfera, balance trainer, equilibrio
+exa_bosu_push_up = mezza sfera, semisfera, balance trainer
+exa_bosu_balance = mezza sfera, semisfera, balance trainer, propriocezione
+exa_swiss_ball_crunch = fitball, palla svizzera, swiss ball, palla da ginnastica, palla da pilates
+exa_swiss_ball_pike = fitball, palla svizzera, swiss ball, palla da ginnastica
+exa_swiss_ball_hamstring_curl = fitball, palla svizzera, swiss ball, palla da ginnastica, leg curl
+exa_swiss_ball_pass = fitball, palla svizzera, swiss ball, palla da ginnastica, passaggio
+exa_stir_the_pot = fitball, palla svizzera, swiss ball, plank, mescolare la pentola
+exa_single_leg_balance = equilibrio, propriocezione, fenicottero, su una gamba
+exa_crow_pose = corvo, gru, bakasana, yoga, equilibrio sulle braccia
+exa_v_up = jackknife, sit-up a v, coltello, addominali a v
+exa_pilates_hundred = the hundred, hundred, cento, pilates a terra, matwork
+exa_pilates_roll_up = roll up, arrotolamento, pilates a terra, matwork
+exa_pilates_single_leg_stretch = pilates a terra, matwork, allungamento di una gamba
+exa_pilates_double_leg_stretch = pilates a terra, matwork, allungamento delle due gambe
+exa_pilates_swimming = pilates a terra, matwork, nuotatore
+exa_pilates_teaser = pilates a terra, matwork, v sit, seduta a v
+exa_pilates_side_kick = pilates a terra, matwork, slanci laterali, alzate laterali della gamba
+exa_pilates_shoulder_bridge = pilates a terra, matwork, ponte, ponte glutei
+
+# Combat drills (1.8)
+exa_heavy_bag = sacco, sacco pesante, sacco da boxe, boxe, colpi
+exa_speed_bag = pera, pera veloce, speed bag, boxe
+exa_double_end_bag = palla a doppio elastico, doppio elastico, pera elastica, boxe
+exa_pad_work = colpitori, pao, focus pad, passate, boxe
+exa_shadow_hooks = boxe, pugni, gancio, hook
+exa_shadow_uppercuts = boxe, pugni, montante, uppercut
+exa_dumbbell_punches = boxe, pugni, pugni con i pesi, punches
+exa_bag_kicks = kickboxing, muay thai, calci, calcio circolare, roundhouse
+exa_knee_strikes = muay thai, ginocchio, ginocchiate, kickboxing
+exa_sprawl = mma, lotta, wrestling, difesa dal takedown, difesa dalle prese

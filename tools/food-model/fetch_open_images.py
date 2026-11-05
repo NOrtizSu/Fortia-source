@@ -79,11 +79,14 @@ def main():
     ap.add_argument("--cap", type=int, default=1000)
     ap.add_argument("--not-food", type=int, default=4500)
     ap.add_argument("--threads", type=int, default=48)
+    ap.add_argument("--classes", default="", help="only these classes (comma-separated)")
     a = ap.parse_args()
     oi = os.path.join(a.work, "oi")
     img_dir = os.path.join(a.work, "images", "oi")
     os.makedirs(img_dir, exist_ok=True)
     asg = pd.read_parquet(os.path.join(oi, "assign.parquet"))
+    if a.classes:  # v3: only the photos of these classes (the new ones); meta.parquet then lists only them
+        asg = asg[asg.cls.isin(a.classes.split(","))]
     asg = asg.sample(frac=1.0, random_state=11)
     # photos already on disk first (a rerun with a higher cap or a changed class list keeps the earlier photos)
     have = {os.path.splitext(f)[0] for f in os.listdir(img_dir)}

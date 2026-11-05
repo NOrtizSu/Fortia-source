@@ -11,6 +11,7 @@ import android.os.Build
 import com.enjoyyourtime.globalfitness.training.data.ExercisePhotos
 import java.io.File
 import java.io.FileOutputStream
+import java.io.IOException
 import java.util.UUID
 import kotlin.math.max
 import kotlin.math.roundToInt
@@ -57,7 +58,10 @@ class MealPhotos(context: Context) {
         null
     }
 
-    /** Stores [bitmap] (scaled down to [MAX_SIDE_PX] if needed) as a new JPEG; returns its file name. */
+    /**
+     * Stores [bitmap] (scaled down to [MAX_SIDE_PX] if needed) as a new JPEG; returns its file name.
+     * Throws an IOException when it could not be written (no file is left behind).
+     */
     fun store(bitmap: Bitmap): String {
         val long = max(bitmap.width, bitmap.height)
         val scaled = if (long > MAX_SIDE_PX) {
@@ -68,8 +72,15 @@ class MealPhotos(context: Context) {
         }
         val name = "meal_" + System.currentTimeMillis() + "_" + UUID.randomUUID().toString().take(8) + ".jpg"
         val tmp = File(dir, "$name.tmp")
-        FileOutputStream(tmp).use { scaled.compress(Bitmap.CompressFormat.JPEG, QUALITY, it) }
-        if (scaled !== bitmap) scaled.recycle()
+        val written = try {
+            FileOutputStream(tmp).use { scaled.compress(Bitmap.CompressFormat.JPEG, QUALITY, it) }
+        } finally {
+            if (scaled !== bitmap) scaled.recycle()
+        }
+        if (!written || tmp.length() == 0L) {
+            tmp.delete()
+            throw IOException("Could not write the meal photo")
+        }
         val target = file(name)
         if (!tmp.renameTo(target)) {
             tmp.copyTo(target, overwrite = true)

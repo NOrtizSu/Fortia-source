@@ -17,6 +17,11 @@
 
 BEDCA and websites/apps with unclear licences are not used.
 
+1.8.0 (AUDIT.md, last section) keeps this order and adds: generic USDA rows only (never a USDA row named after a
+brand), recipes for every new dish (so its ingredients can be adjusted and add up exactly), a `cooked_wine`
+ingredient (CIQUAL wine with the alcohol evaporated) for wine that is simmered, and documented compositions for
+four products with no open data (creatine, amino acids, maltodextrin, fino/manzanilla).
+
 ## Data cleaning
 
 - Salt = sodium × 2.5 (also for CIQUAL, which publishes its own salt column).
@@ -72,8 +77,22 @@ yield: 1 kg potatoes, 6 eggs) and a slice 156 g (1/8), olive oil tablespoon 12 g
 the sources' own values (rice 180 g, pasta 175 g, brown rice 230 g, wholemeal pasta 160 g), so a plate and 80 g of
 the dry food log the same energy. Cooked weights for meat and fish (edible part). The default portion is the one people log most:
 one piece for fruit and countable foods, a plate/bowl for dishes, a slice for bread, cold cuts and cheese.
+1.8.0: a scoop of protein powder 30 g (`scoop`, also 5 g of creatine, 7 g of amino acids, 10 g of collagen), a shaker
+of protein shake 270 ml (30 g whey in 250 ml), a bar 40-60 g, a gel 40 g, a fish-oil capsule 1 g, a bocadillo half a
+barra (120 g of bread) plus its filling, a chupito 30 ml, a glass of sweet wine or fino 100 ml.
 
 ## Model classes (visual = 1)
+
+1.8.0: food-model3's class list v3 (`.omc/handoffs/2026-11-04/food_classes_v3.csv`, 351 classes: the 329 of v2 kept,
+22 new) has a row for every class and none is a variant: 12 existing rows become visual (edamame, baked_beans,
+black_pudding, pork_belly, sardines, chestnuts, turron, patatas_bravas, onion_rings, clam_chowder, mille_feuille,
+gnocchi), 9 rows added in 1.8.0 too (kimchi, fajitas, chicken_teriyaki, marshmallows, enchiladas, stuffed_peppers,
+quail_eggs, tempeh, marzipan) and `baklava` got a row (CIQUAL). `patatas_bravas` and `marshmallows` are no longer
+variants (of french_fries and candy). The visual column is synced from it (`python tools/food-db/build.py --sync-visual
+<food_classes_v3.csv>`; `validate.py --classes <food_classes_v3.csv>` passes). Until food-model3's branch (its
+`tools/food-model/classes.csv` v3 and v3 model) is merged, this branch's own v2 classes.csv and model have 22 classes
+fewer than the visual column, so the class checks that read them fail here; after the merge, rerun the sync from
+`tools/food-model/classes.csv` (no change expected).
 
 1.6.0: food-model2's class list v2 (`.omc/handoffs/2026-11-02/food_classes_v2.csv`, 329 classes: 300 kept,
 19 recovered, 10 new) has a row for every class. The new ones that had no row got one (fennel, mixed_vegetables,

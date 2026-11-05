@@ -36,3 +36,23 @@ ex_martial_arts = Dövüş sanatları
 # Others
 ex_climbing = Tırmanış
 ex_golf = Golf
+
+# Snow (1.8)
+ex_alpine_skiing = Alp disiplini kayak
+ex_cross_country_skiing = Kros kayağı
+ex_snowboarding = Snowboard
+
+# Water (1.8)
+ex_surfing = Sörf
+ex_rowing = Kürek (suda)
+ex_kayaking = Kano
+ex_open_water_swimming = Açık su yüzme
+
+# Team and racket sports (1.8)
+ex_rugby = Ragbi
+ex_table_tennis = Masa tenisi
+ex_squash = Squash
+
+# Skating (1.8)
+ex_inline_skating = Tekerlekli paten
+ex_ice_skating = Buz pateni

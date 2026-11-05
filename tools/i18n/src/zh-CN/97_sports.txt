@@ -38,3 +38,17 @@ ex_golf = 高尔夫
 # Added in 1.6.0
 ex_nordic_walking = 北欧式健走
 ex_stair_climbing = 爬楼梯
+
+# Added in 1.8.0
+ex_alpine_skiing = 双板滑雪
+ex_cross_country_skiing = 越野滑雪
+ex_snowboarding = 单板滑雪
+ex_surfing = 冲浪
+ex_rowing = 赛艇
+ex_kayaking = 皮划艇
+ex_open_water_swimming = 公开水域游泳
+ex_rugby = 橄榄球
+ex_table_tennis = 乒乓球
+ex_squash = 壁球
+ex_inline_skating = 轮滑
+ex_ice_skating = 滑冰

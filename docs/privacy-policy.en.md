@@ -1,6 +1,6 @@
 # Fortia Privacy Policy
 
-Last updated: 3 November 2026 · Contact: **enjoyyourtime.online@gmail.com** ·
+Last updated: 4 November 2026 · Contact: **enjoyyourtime.online@gmail.com** ·
 Web version (Spanish, with an English summary): [globalfitness-app.web.app/privacy.html#en](https://globalfitness-app.web.app/privacy.html#en)
 
 This is the English version of the privacy policy. If it differs from the Spanish version, the
@@ -33,7 +33,8 @@ For any privacy question, write to **enjoyyourtime.online@gmail.com**.
   your gallery); they are downscaled and stored in the app's private storage. With your logged body weight
   the phone calculates the estimated 1RM and the progress per muscle.
 - **Food**: what you log that you eat (food, amount, meal, date and time and its nutrient values), the foods
-  you create, the products you find by their barcode and your daily goal (with the weight you type if you have
+  you create, the products you find by their barcode (with the product's photo from Open Food Facts, if it has
+  one; see section 10) and your daily goal (with the weight you type if you have
   no measurements yet). If you take a **photo of your plate**, it is downscaled, stored in the app's private
   storage and **analysed on the phone itself** by our recognition models, which find each food on the plate,
   recognise it and estimate its grams as a suggestion you confirm: **the photo never leaves the phone** (it is
@@ -41,7 +42,12 @@ For any privacy question, write to **enjoyyourtime.online@gmail.com**.
   from one photo, each keeps its crop of the photo, which also stays on the phone and is deleted with it. With
   each food the app keeps what the model proposed, how sure it was and how many grams it estimated, and the
   ingredients you change in a dish, only on your phone (and in your cloud backup if you use it), to improve its
-  suggestions.
+  suggestions. If the photo shows a **packaged product**, the phone looks for its barcode on it,
+  compares it with the products you already scanned and, if you ask (or if it sees no food on it or isn't sure what
+  it is), reads the package's text (see section 10). To recognise your products, the app keeps **on the phone
+  only** a numeric fingerprint of the photo of each product you scanned and of the photos you logged a product from
+  its package with (at most five per product; never the photos themselves, which follow the rules above): it never
+  leaves the phone, is not in the cloud backup or Android's backup, and is deleted when you delete the product.
 - **Xiaomi Smart Band**: the band's pairing key is stored only on the phone and **never leaves it**
   (not to the cloud, not to Android backups). The heart rate you record in direct mode (date, time
   and beats per minute) is also stored only on the phone.
@@ -98,7 +104,7 @@ If you sign in with Google (through Firebase Authentication):
   reported by the scale, source and scale model) and your configured scales (model, name and user
   number on the scale), your workouts, your routines and your own machines and exercises with their notes,
   favourites and photos, and what you log in Food (foods, amounts, values and whether you changed them by hand, the ingredients you change and your own foods), **without
-  the photos of your meals**. The band key, the encryption keys, PINs or pairing keys of the scales, the
+  the photos of your meals** or those of the products. The band key, the encryption keys, PINs or pairing keys of the scales, the
   Bluetooth addresses, Health Connect data and phone-specific settings are **not** uploaded.
   If you bought "Remove ads", an informational `premium` flag is also stored.
 - **Where**: on Google Cloud servers in the **European Union (region europe-southwest1, Madrid)**. The
@@ -144,25 +150,56 @@ If Android backup is on, the system may store an encrypted copy of the app's dat
 your Google Drive account and restore it when you reinstall or change phones. **Excluded** are the
 bands and watches set up in the app (with their keys, settings and the heart rate recorded in
 direct mode), the Health Connect cache, the photos of your machines (because of their size; if you use
-the app's cloud backup, they are kept there) and the photos of your meals (kept on the phone only). You can
-turn it off in the Android settings.
+the app's cloud backup, they are kept there), the photos of your meals (kept on the phone only) and the photos of
+the Open Food Facts products (downloaded again the next time you scan the product or open it to log it) and the
+fingerprints of your products' photos (computed again on the phone). You can turn it off in the Android settings.
 
 ## 10. Who the data is shared with
 
 Only with the providers needed for the app to work, acting as processors or as independent
-controllers depending on the case: **Google** (Firebase Authentication, Cloud Firestore, AdMob/UMP and
-Google Play). We do not sell personal data.
+controllers depending on the case: **Google** (Firebase Authentication, Cloud Firestore, AdMob/UMP, Google
+Play and the ML Kit text recognition of Google Play services). We do not sell personal data.
 
 **Barcodes (Open Food Facts).** When you take a photo of a product's barcode, the barcode is read on the
 phone and **only the barcode number and the app's language** (for the product name in your language) are sent
 to **Open Food Facts** (world.openfoodfacts.org, an open database
-of food products run by a French non-profit association) to get the product's name, brand and nutrient values.
+of food products run by a French non-profit association) to get the product's name, brand and nutrient values and
+the address of its photo. If the product has a photo, the app then downloads it from Open Food Facts' image servers
+(on openfoodfacts.org only; today images.openfoodfacts.org), asking only for that image's address.
 Open Food Facts receives your IP address and an app User-Agent ("Fortia/", its version and our contact email);
-nothing else is sent: no photo, account, identifier or personal data. The product found is kept on the phone (and
+nothing else is sent: no photo you take, account, identifier or personal data. The product found is kept on the phone (and
 in your cloud backup if you use it) and asked again, when you scan it, only if data is missing or it is over 90
-days old. It only happens when you scan a barcode; searching the
-app's food list sends nothing. Legal basis: providing the service you ask for (GDPR art. 6(1)(b)). Open Food
-Facts data is published under the Open Database License (ODbL).
+days old. If an Open Food Facts product has no photo on the phone yet (a download failed, an earlier version of the
+app kept it, or it came from your cloud backup or Android's backup), the app downloads it when you scan the product or
+open it to log it; if it does not know the photo's address yet, it asks for the product again (same barcode number
+and language) and uses only that address. The product photo is kept on the phone only: it is not uploaded to your
+cloud backup or included in Android's backup, and it is deleted when you delete the product. It only happens when you
+scan a barcode, when a photo you take to log food shows a barcode (see the next paragraph), or when you open an Open
+Food Facts product to log it; searching the app's food list sends nothing. Legal basis: providing the service you ask for (GDPR art. 6(1)(b)). Open Food
+Facts data is published under the Open Database License (ODbL), and its product photos under the Creative Commons
+Attribution-ShareAlike 3.0 licence (CC BY-SA 3.0).
+
+**Packaged products on a meal photo.** When you take a photo to log food, the phone looks for a barcode on it (if it
+finds one, it is looked up in Open Food Facts as above, with nothing more to do) and compares it, **offline and on the
+phone itself**, with the products you already scanned. If you tap "Search the product by its package" (or the app
+does it by itself when it sees no food on the photo or isn't sure what it is), the **package's text is read on the
+phone** by Google's **ML
+Kit** text recognition, part of Google Play services (Latin script, or Chinese, Japanese, Korean or Devanagari by the
+app's language; packages are not read in Russian or Arabic). ML Kit only starts the first time a package is read
+(Google Play services may then download it): **neither the photo nor the text read is sent to Google**. As its terms say, ML Kit sends Google usage and diagnostic metrics (the phone's make and
+model, Android version, the app's name and version, device and installation identifiers, timings, the size of the
+data processed, configuration and error codes) for ML Kit's diagnostics and usage statistics; Google processes them
+under its [ML Kit terms](https://developers.google.com/ml-kit/terms) and its
+[Privacy Policy](https://policies.google.com/privacy), encrypted in transit. Then **only the words found on the
+package** (at most five that may be its name or brand; no quantities, dates, lot numbers or the nutrition table),
+shown in a box where you can correct them or type your own (which are then sent instead), **and the app's language**
+are sent to the search of
+**Open Food Facts** (world.openfoodfacts.org; if it does not answer, search.openfoodfacts.org, the same association's
+search service), which also receives your IP address and the same User-Agent; nothing else. The small photos of the
+products found are downloaded from its image servers to show you the list and are not kept. When you pick one, that
+product is asked for by its barcode, as when you scan it, and kept the same way. The app searches no more than a few
+times a minute (the limit Open Food Facts asks for) and remembers, in memory only, what it searched for half an hour.
+Nothing is logged until you confirm it. Legal basis: providing the service you ask for (GDPR art. 6(1)(b)).
 
 **Music for today (Spotify).** The covers and names of the Spotify playlists the app suggests are only
 loaded **if you allow it**: the app asks once, at start, right after the ad consent, and you can change

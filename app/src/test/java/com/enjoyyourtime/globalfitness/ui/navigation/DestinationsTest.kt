@@ -10,9 +10,9 @@ import org.junit.Test
 class DestinationsTest {
     @Test
     fun fiveSectionsInBarOrder() {
-        // Comida sits between Entreno and Progreso.
-        assertEquals(listOf(TopLevel.TODAY, TopLevel.TRAINING, TopLevel.FOOD, TopLevel.PROGRESS, TopLevel.PROFILE), TopLevel.entries)
-        assertEquals(listOf("hoy", "entreno", "comida", "progreso", "perfil"), TopLevel.entries.map { it.route })
+        // Since 1.8.0: Comida first, Hoy in the middle (still the section the app opens on).
+        assertEquals(listOf(TopLevel.FOOD, TopLevel.TRAINING, TopLevel.TODAY, TopLevel.PROGRESS, TopLevel.PROFILE), TopLevel.entries)
+        assertEquals(listOf("comida", "entreno", "hoy", "progreso", "perfil"), TopLevel.entries.map { it.route })
     }
 
     @Test

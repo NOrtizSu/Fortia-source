@@ -150,11 +150,19 @@ private val LIBRARIES = listOf(
     ),
     Notice("LiteRT (TensorFlow Lite)", "Apache-2.0", R.string.notice_litert, "https://ai.google.dev/edge/litert"),
     Notice("ZXing", "Apache-2.0", R.string.notice_zxing, "https://github.com/zxing/zxing"),
+    Notice(
+        "Google ML Kit (text recognition)",
+        "",
+        R.string.notice_mlkit,
+        "https://developers.google.com/ml-kit/terms",
+        licenseRes = R.string.notice_google_terms,
+    ),
 )
 
 /** The food data and the food recognizer: their sources and licences (attribution required by most). */
 private val FOOD_DATA = listOf(
-    Notice("Open Food Facts", "ODbL 1.0", R.string.notice_open_food_facts, "https://world.openfoodfacts.org"),
+    // The data (ODbL) and the product photos shown in the food log (CC BY-SA, by the same contributors).
+    Notice("Open Food Facts", "ODbL 1.0 · CC BY-SA 3.0", R.string.notice_open_food_facts, "https://world.openfoodfacts.org"),
     Notice("USDA FoodData Central", "CC0 1.0", R.string.notice_usda, "https://fdc.nal.usda.gov"),
     Notice("Ciqual (Anses)", "Licence Ouverte / Etalab 2.0", R.string.notice_ciqual, "https://ciqual.anses.fr"),
     Notice(

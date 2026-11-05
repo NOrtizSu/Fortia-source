@@ -11,13 +11,14 @@ import com.enjoyyourtime.globalfitness.R
 import com.enjoyyourtime.globalfitness.ui.components.AppIcons
 
 /**
- * The five sections of the bottom navigation bar. Body and Activity live inside Progreso (as
- * tabs) and Devices is a sub-page of Perfil, so every route here owns the bar and the ad banner.
+ * The five sections of the bottom navigation bar, in bar order (Hoy, in the middle, is the one the
+ * app opens on). Body and Activity live inside Progreso (as tabs) and Devices is a sub-page of
+ * Perfil, so every route here owns the bar and the ad banner.
  */
 enum class TopLevel(val route: String, @param:StringRes val label: Int, val selectedIcon: ImageVector, val icon: ImageVector) {
-    TODAY("hoy", R.string.nav_today, Icons.Filled.Home, Icons.Outlined.Home),
-    TRAINING("entreno", R.string.nav_training, AppIcons.FitnessCenter, AppIcons.FitnessCenter),
     FOOD("comida", R.string.nav_food, AppIcons.Restaurant, AppIcons.Restaurant),
+    TRAINING("entreno", R.string.nav_training, AppIcons.FitnessCenter, AppIcons.FitnessCenter),
+    TODAY("hoy", R.string.nav_today, Icons.Filled.Home, Icons.Outlined.Home),
     PROGRESS("progreso", R.string.nav_progress, AppIcons.Insights, AppIcons.Insights),
     PROFILE("perfil", R.string.nav_profile, Icons.Filled.Person, Icons.Outlined.Person),
     ;

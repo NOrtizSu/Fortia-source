@@ -1,0 +1,331 @@
+id,en_name,es_name_hint,group,status,n_images
+apple,Apple,manzana,fruit,kept,1500
+banana,Banana,plátano,fruit,kept,1500
+orange,Orange,naranja,fruit,kept,1500
+mandarin,Mandarin,mandarina,fruit,kept,636
+lemon,Lemon,limón,fruit,kept,1500
+lime,Lime,lima,fruit,kept,394
+grapefruit,Grapefruit,pomelo,fruit,kept,686
+strawberry,Strawberries,fresas,fruit,kept,1500
+grapes,Grapes,uvas,fruit,kept,1500
+watermelon,Watermelon,sandía,fruit,kept,1227
+melon,Melon,melón,fruit,kept,699
+pineapple,Pineapple,piña,fruit,kept,1398
+kiwi,Kiwi,kiwi,fruit,kept,670
+pear,Pear,pera,fruit,kept,1179
+peach,Peach / nectarine,melocotón / nectarina,fruit,kept,1196
+cherries,Cherries,cerezas,fruit,kept,657
+blueberries,Blueberries,arándanos,fruit,kept,905
+raspberries,Raspberries,frambuesas,fruit,kept,1057
+blackberries,Blackberries,moras,fruit,kept,584
+mango,Mango,mango,fruit,kept,851
+avocado,Avocado,aguacate,fruit,kept,1120
+pomegranate,Pomegranate,granada,fruit,kept,901
+papaya,Papaya,papaya,fruit,kept,747
+apricot,Apricot,albaricoque,fruit,kept,427
+plum,Plum,ciruela,fruit,kept,561
+fig,Fig,higo,fruit,kept,337
+coconut,Coconut,coco,fruit,kept,811
+dragon_fruit,Dragon fruit,pitahaya,fruit,kept,653
+persimmon,Persimmon,caqui,fruit,kept,675
+lychee,Lychee,lichi,fruit,kept,224
+passion_fruit,Passion fruit,maracuyá,fruit,kept,222
+dried_fruit,Dried fruit,fruta deshidratada,fruit,kept,970
+tomato,Tomato,tomate,vegetables,kept,1500
+cucumber,Cucumber,pepino,vegetables,kept,1500
+carrot,Carrot,zanahoria,vegetables,kept,1500
+broccoli,Broccoli,brócoli,vegetables,kept,1500
+cauliflower,Cauliflower,coliflor,vegetables,kept,624
+lettuce,Lettuce / salad leaves,lechuga / hojas de ensalada,vegetables,kept,506
+spinach,Spinach,espinacas,vegetables,kept,941
+chard,Chard,acelgas,vegetables,kept,466
+cabbage,Cabbage,col / repollo,vegetables,kept,1174
+bell_pepper,Bell pepper,pimiento,vegetables,kept,1500
+chili_pepper,Chili pepper,guindilla / chile,vegetables,kept,664
+onion,Onion,cebolla,vegetables,kept,852
+spring_onion,Spring onion,cebolleta,vegetables,kept,517
+garlic,Garlic,ajo,vegetables,kept,392
+potato,Potato (boiled),patata cocida,vegetables,kept,1500
+sweet_potato,Sweet potato,boniato,vegetables,kept,664
+pumpkin,Pumpkin,calabaza,vegetables,kept,1500
+zucchini,Courgette,calabacín,vegetables,kept,1466
+eggplant,Aubergine,berenjena,vegetables,kept,680
+corn,Corn on the cob,mazorca de maíz,vegetables,kept,1326
+mushrooms,Mushrooms,champiñones / setas,vegetables,kept,1500
+asparagus,Asparagus,espárragos,vegetables,kept,901
+green_beans,Green beans,judías verdes,vegetables,kept,937
+peas,Peas,guisantes,vegetables,kept,672
+artichoke,Artichoke,alcachofa,vegetables,kept,783
+brussels_sprouts,Brussels sprouts,coles de Bruselas,vegetables,kept,439
+beetroot,Beetroot,remolacha,vegetables,kept,698
+radish,Radish,rábano,vegetables,kept,1205
+olives,Olives,aceitunas,fats_nuts,kept,1065
+beans,Beans,alubias,legumes,kept,512
+lentils,Lentil stew / dal,lentejas,legumes,kept,1301
+bean_stew,Bean stew (fabada),fabada / potaje de alubias,dishes,kept,707
+hummus,Hummus,hummus,sauces,kept,666
+tofu,Tofu,tofu,legumes,kept,802
+bread,Bread,pan,grains,kept,1500
+wholemeal_bread,Wholemeal bread,pan integral,grains,kept,1500
+baguette,Baguette,barra de pan,grains,kept,648
+bread_roll,Bread roll,panecillo,grains,kept,490
+toast,Toast,tostada,grains,kept,806
+croissant,Croissant,cruasán,sweets,kept,1296
+bagel,Bagel,bagel,grains,kept,1088
+pretzel,Pretzel,pretzel,snacks,kept,861
+flatbread,Flatbread / naan,pan plano / naan,grains,kept,440
+tortilla_wrap,Flour or corn tortilla,tortilla de trigo / maíz,grains,kept,468
+focaccia,Focaccia,focaccia,grains,kept,289
+rice,White rice,arroz blanco,grains,kept,1500
+pasta,Pasta,pasta,grains,kept,1500
+noodles,Noodles (stir-fried),fideos salteados,grains,kept,683
+oatmeal,Porridge,gachas de avena,grains,kept,731
+cereal,Breakfast cereal / muesli,cereales / muesli,grains,kept,1121
+couscous,Couscous / bulgur,cuscús / bulgur,grains,kept,448
+popcorn,Popcorn,palomitas,snacks,kept,523
+crackers,Crackers,galletas saladas,snacks,kept,726
+fried_rice,Fried rice,arroz frito,dishes,kept,536
+risotto,Risotto,risotto,dishes,kept,600
+paella,Paella,paella,dishes,kept,1004
+pilaf,Pilaf / biryani,arroz pilaf / biryani,dishes,kept,372
+egg,Eggs,huevos,eggs,kept,1500
+fried_egg,Fried egg,huevo frito,eggs,kept,866
+boiled_egg,Boiled egg,huevo cocido,eggs,kept,502
+scrambled_eggs,Scrambled eggs,huevos revueltos,eggs,kept,600
+omelette,Omelette,tortilla francesa,eggs,kept,844
+spanish_omelette,Spanish omelette,tortilla de patatas,eggs,kept,289
+poached_egg,Poached egg,huevo poché,eggs,kept,357
+eggs_benedict,Eggs Benedict,huevos Benedict,dishes,kept,221
+steak,Steak,filete / chuletón,meat,kept,909
+grilled_chicken,Grilled chicken,pollo a la plancha,meat,kept,1308
+roast_chicken,Roast chicken,pollo asado,meat,kept,872
+fried_chicken,Fried chicken,pollo frito,meat,kept,925
+chicken_wings,Chicken wings,alitas de pollo,meat,kept,371
+chicken_nuggets,Chicken nuggets,nuggets de pollo,fast_food,kept,468
+tandoori_chicken,Tandoori chicken,pollo tandoori,dishes,kept,266
+sweet_sour_chicken,Sweet and sour chicken,pollo agridulce,dishes,kept,410
+stir_fry,Stir-fry,salteado (wok),dishes,kept,399
+pork_chop,Pork chop,chuleta de cerdo,meat,kept,441
+ribs,Ribs,costillas,meat,kept,528
+sausages,Sausages,salchichas,meat,kept,1108
+hot_dog,Hot dog,perrito caliente,fast_food,kept,612
+bacon,Bacon,beicon,meat,kept,984
+cured_ham,Cured ham,jamón serrano,meat,kept,1013
+chorizo,Chorizo,chorizo,meat,kept,621
+salami,Salami / salchichón,salchichón / fuet,meat,kept,716
+cold_cuts,Charcuterie board,tabla de embutidos,meat,kept,571
+meatballs,Meatballs,albóndigas,meat,kept,564
+breaded_cutlet,Breaded cutlet / schnitzel,filete empanado,meat,kept,393
+roast_beef,Roast beef,rosbif / asado,meat,kept,298
+pulled_pork,Pulled pork,cerdo desmechado,meat,kept,191
+kebab,Kebab / shawarma,kebab,fast_food,kept,545
+skewers,Meat skewers,brochetas / pinchos morunos,meat,kept,422
+lamb,Lamb,cordero,meat,kept,876
+duck,Roast duck,pato asado,meat,kept,244
+turkey,Roast turkey,pavo asado,meat,kept,325
+suckling_pig,Roast suckling pig,cochinillo asado,meat,kept,297
+mixed_grill,Mixed grill,parrillada de carne,meat,kept,447
+korean_bbq,Korean barbecue,barbacoa coreana,dishes,kept,567
+tripe_stew,Tripe stew,callos,dishes,kept,202
+salmon,Salmon,salmón,fish,kept,1123
+smoked_salmon,Smoked salmon,salmón ahumado,fish,kept,525
+grilled_fish,Grilled fish,pescado a la plancha,fish,kept,1112
+fried_fish,Fried fish,pescado frito,fish,kept,670
+fish_and_chips,Fish and chips,pescado con patatas fritas,fast_food,kept,269
+prawns,Prawns,gambas / langostinos,fish,kept,1500
+mussels,Mussels,mejillones,fish,kept,244
+clams,Clams,almejas,fish,kept,305
+oysters,Oysters,ostras,fish,kept,1118
+lobster,Lobster,bogavante / langosta,fish,kept,521
+crab,Crab,cangrejo / centollo,fish,kept,917
+calamari,Calamari,calamares,fish,kept,670
+octopus,Octopus (pulpo a la gallega),pulpo,fish,kept,270
+sushi,Sushi,sushi,fish,kept,1500
+sashimi,Sashimi,sashimi,fish,kept,303
+anchovies,Anchovies,boquerones / anchoas,fish,kept,301
+ceviche,Ceviche,ceviche,dishes,kept,343
+cheese,Cheese,queso,dairy,kept,1500
+mozzarella,Mozzarella,mozzarella,dairy,kept,695
+parmesan,Parmesan,parmesano,dairy,kept,764
+blue_cheese,Blue cheese,queso azul,dairy,kept,604
+brie,Brie / camembert,brie / camembert,dairy,kept,577
+cream_cheese,Cream cheese,queso crema,dairy,kept,377
+cottage_cheese,Cottage cheese / ricotta,requesón,dairy,kept,388
+yogurt,Yogurt,yogur,dairy,kept,739
+milk,Milk,leche,dairy,kept,631
+butter,Butter,mantequilla,dairy,kept,1500
+ice_cream,Ice cream,helado,sweets,kept,1500
+ice_pop,Ice lolly,polo (helado),sweets,kept,238
+sorbet,Sorbet / slush,sorbete / granizado,sweets,kept,574
+nuts,Mixed nuts,frutos secos,fats_nuts,kept,709
+peanut_butter,Peanut butter,crema de cacahuete,fats_nuts,kept,412
+cake,Cake,tarta / pastel,sweets,kept,1500
+chocolate_cake,Chocolate cake,tarta de chocolate,sweets,kept,1136
+cheesecake,Cheesecake,tarta de queso,sweets,kept,984
+carrot_cake,Carrot cake,tarta de zanahoria,sweets,kept,259
+sponge_cake,Sponge cake,bizcocho,sweets,kept,789
+cupcake,Cupcake,cupcake,sweets,kept,261
+muffin,Muffin,magdalena / muffin,sweets,kept,1500
+donut,Doughnut,dónut / berlina,sweets,kept,1335
+churros,Churros,churros,sweets,kept,207
+cookie,Biscuits / cookies,galletas,sweets,kept,1500
+brownie,Brownie,brownie,sweets,kept,523
+chocolate,Chocolate,chocolate,sweets,kept,1165
+bonbons,Chocolates / truffles,bombones,sweets,kept,857
+candy,Sweets / candy,golosinas / caramelos,sweets,kept,1500
+fruit_pie,Sweet pie,pastel dulce (pie),sweets,kept,686
+pumpkin_pie,Pumpkin pie,pastel de calabaza,sweets,kept,324
+tart,Fruit tart,tarta de fruta,sweets,kept,916
+custard_tart,Custard tart (pastel de nata),pastel de nata,sweets,kept,432
+danish_pastry,Danish pastry,pastel danés,sweets,kept,187
+cinnamon_roll,Cinnamon roll,rollo de canela,sweets,kept,425
+brioche,Brioche,brioche / bollo,sweets,kept,405
+scones,Scones,scones,sweets,kept,276
+pancakes,Pancakes,tortitas,sweets,kept,1217
+crepes,Crêpes,crepes,sweets,kept,542
+waffles,Waffles,gofres,sweets,kept,973
+french_toast,French toast (torrija),torrija,sweets,kept,242
+tiramisu,Tiramisu,tiramisú,sweets,kept,480
+flan,Crème caramel,flan,sweets,kept,264
+creme_brulee,Crème brûlée / crema catalana,crema catalana,sweets,kept,293
+custard,Custard (natillas),natillas,sweets,kept,464
+mousse,Chocolate mousse / pudding,mousse de chocolate,sweets,kept,377
+rice_pudding,Rice pudding,arroz con leche,sweets,kept,486
+panna_cotta,Panna cotta,panna cotta,sweets,kept,242
+cream_puffs,Profiteroles / éclairs,profiteroles / pepito,sweets,kept,249
+meringue,Meringue / pavlova,merengue / pavlova,sweets,kept,506
+macarons,Macarons,macarons,sweets,kept,295
+gingerbread,Gingerbread,pan de jengibre,sweets,kept,337
+apple_strudel,Apple strudel,strudel de manzana,sweets,kept,238
+jelly,Jelly,gelatina,sweets,kept,614
+jam,Jam,mermelada,sweets,kept,1500
+dulce_de_leche,Dulce de leche,dulce de leche,sweets,kept,218
+french_fries,French fries,patatas fritas,fast_food,kept,1500
+potato_chips,Crisps,patatas fritas de bolsa,snacks,kept,398
+tortilla_chips,Tortilla chips,totopos,snacks,kept,353
+nachos,Nachos,nachos con queso,fast_food,kept,353
+spring_rolls,Spring rolls,rollitos de primavera,snacks,kept,273
+dumplings,Dumplings / gyoza,gyozas / dumplings,dishes,kept,675
+pierogi,Pierogi,pierogi,dishes,kept,263
+steamed_buns,Steamed buns (bao),bao (bollo al vapor),dishes,kept,409
+empanada,Empanada,empanada / empanadilla,snacks,kept,734
+croquettes,Croquettes,croquetas,snacks,kept,852
+falafel,Falafel,falafel,snacks,kept,319
+pakora,Pakora,pakora,snacks,kept,591
+tempura,Tempura,tempura,dishes,kept,516
+bread_with_tomato,Bread with tomato / bruschetta,pan con tomate / bruschetta,snacks,kept,222
+canapes,Canapés,canapés / montaditos,snacks,kept,486
+guacamole,Guacamole,guacamole,sauces,kept,636
+salsa,Salsa / pico de gallo,salsa / pico de gallo,sauces,kept,515
+tzatziki,Tzatziki,tzatziki,sauces,kept,394
+mayonnaise,Mayonnaise / aioli,mayonesa / alioli,sauces,kept,854
+pizza,Pizza,pizza,fast_food,kept,1500
+calzone,Calzone,calzone,fast_food,kept,186
+hamburger,Hamburger,hamburguesa,fast_food,kept,1500
+sandwich,Sandwich,sándwich,fast_food,kept,1500
+baguette_sandwich,Baguette sandwich,bocadillo,fast_food,kept,1315
+wrap,Wrap / burrito,wrap / burrito,fast_food,kept,602
+tacos,Tacos,tacos,fast_food,kept,1035
+quesadilla,Quesadilla,quesadilla,fast_food,kept,275
+green_salad,Green salad,ensalada verde / mixta,dishes,kept,1500
+caesar_salad,Caesar salad,ensalada César,dishes,kept,202
+greek_salad,Greek salad,ensalada griega,dishes,kept,342
+caprese_salad,Caprese salad,ensalada caprese,dishes,kept,433
+pasta_salad,Pasta salad,ensalada de pasta,dishes,kept,256
+potato_salad,Potato salad (ensaladilla),ensaladilla rusa,dishes,kept,580
+coleslaw,Coleslaw,ensalada de col,dishes,kept,304
+fruit_salad,Fruit salad,macedonia,dishes,kept,614
+soup,Soup / broth,sopa / caldo,dishes,kept,818
+cream_soup,Cream soup,crema de verduras,dishes,kept,688
+tomato_soup,Tomato soup,sopa de tomate,dishes,kept,315
+chicken_soup,Chicken soup,sopa de pollo,dishes,kept,190
+miso_soup,Miso soup,sopa de miso,dishes,kept,377
+noodle_soup,Noodle soup,sopa de fideos,dishes,kept,1046
+ramen,Ramen,ramen,dishes,kept,501
+pho,Pho,pho,dishes,kept,454
+gazpacho,Gazpacho,gazpacho,dishes,kept,208
+stew,Meat stew,estofado / guiso de carne,dishes,kept,948
+chili_con_carne,Chili con carne,chili con carne,dishes,kept,287
+curry,Curry,curry,dishes,kept,1409
+lasagna,Lasagne,lasaña,dishes,kept,345
+carbonara,Pasta carbonara,pasta a la carbonara,dishes,kept,377
+pasta_tomato,Pasta with tomato sauce,pasta con tomate,dishes,kept,686
+pesto_pasta,Pasta with pesto,pasta al pesto,dishes,kept,299
+mac_and_cheese,Macaroni and cheese,macarrones con queso,dishes,kept,337
+ravioli,Ravioli / tortellini,raviolis / tortellini,dishes,kept,387
+pad_thai,Pad thai,pad thai,dishes,kept,357
+bibimbap,Bibimbap,bibimbap,dishes,kept,281
+hot_pot,Hot pot,hot pot,dishes,kept,259
+quiche,Quiche,quiche,dishes,kept,573
+pot_pie,Pot pie,pastel de carne,dishes,kept,207
+gratin,Gratin / casserole,gratinado,dishes,kept,634
+mashed_potatoes,Mashed potatoes,puré de patatas,dishes,kept,773
+baked_potato,Baked potato,patata asada,dishes,kept,433
+fried_potatoes,Sautéed potatoes,patatas salteadas,dishes,kept,887
+ratatouille,Ratatouille (pisto),pisto,dishes,kept,404
+full_breakfast,Full English breakfast,desayuno inglés,dishes,kept,462
+espresso,Espresso / black coffee,café solo,drinks,kept,1500
+coffee_with_milk,Coffee with milk / cappuccino,café con leche / capuchino,drinks,kept,1500
+iced_coffee,Iced coffee,café con hielo,drinks,kept,473
+tea,Tea,té / infusión,drinks,kept,1500
+iced_tea,Iced tea,té helado,drinks,kept,443
+hot_chocolate,Hot chocolate,chocolate caliente,drinks,kept,452
+orange_juice,Orange juice,zumo de naranja,drinks,kept,924
+juice,Fruit juice,zumo de frutas,drinks,kept,1500
+smoothie,Smoothie,smoothie / batido de frutas,drinks,kept,615
+milkshake,Milkshake,batido,drinks,kept,305
+beer,Beer,cerveza,drinks,kept,1500
+red_wine,Red wine,vino tinto,drinks,kept,1272
+white_wine,White wine,vino blanco,drinks,kept,943
+sparkling_wine,Sparkling wine / cava,cava / champán,drinks,kept,232
+cocktail,Cocktail,cóctel,drinks,kept,1500
+mojito,Mojito,mojito,drinks,kept,304
+gin_tonic,Gin and tonic,gin-tonic,drinks,kept,317
+sangria,Sangria / tinto de verano,sangría / tinto de verano,drinks,kept,488
+vermouth,Vermouth,vermut,drinks,kept,283
+spirits,"Spirits (whisky, brandy)","licores (whisky, coñac)",drinks,kept,1149
+cola,Cola,refresco de cola,drinks,kept,643
+lemonade,Lemonade,limonada,drinks,kept,433
+jackfruit,Jackfruit,yaca,fruit,kept,348
+durian,Durian,durián,fruit,kept,286
+pickles,Pickles,encurtidos / pepinillos,vegetables,kept,783
+seaweed,Seaweed,algas,vegetables,kept,538
+garlic_bread,Garlic bread,pan de ajo,grains,kept,212
+pastries,Pastries,bollería,sweets,kept,749
+fruitcake,Fruit cake / panettone,panettone / plum cake,sweets,kept,467
+loaf_cake,Banana bread / loaf cake,bizcocho de plátano,sweets,kept,533
+swiss_roll,Swiss roll,brazo de gitano,sweets,kept,223
+fritters,Fritters (buñuelos),buñuelos,sweets,kept,630
+potato_pancakes,Potato pancakes / hash browns,tortitas de patata,dishes,kept,713
+fish_soup,Fish soup,sopa de pescado,dishes,kept,390
+soft_drink,Soft drink,refresco,drinks,kept,1413
+dates,Dates,dátiles,fruit,recovered,222
+raisins,Raisins,pasas,fruit,recovered,258
+leek,Leek,puerro,vegetables,recovered,217
+sauerkraut,Sauerkraut,chucrut,vegetables,recovered,214
+chickpeas,Chickpeas,garbanzos,legumes,recovered,497
+pain_au_chocolat,Pain au chocolat,napolitana de chocolate,sweets,recovered,244
+brown_rice,Brown rice,arroz integral,grains,recovered,191
+ham,Cooked ham,jamón cocido,meat,recovered,520
+feta,Feta,queso feta,dairy,recovered,537
+goat_cheese,Goat cheese,queso de cabra,dairy,recovered,179
+almonds,Almonds,almendras,fats_nuts,recovered,517
+walnuts,Walnuts,nueces,fats_nuts,recovered,423
+peanuts,Peanuts,cacahuetes,fats_nuts,recovered,419
+cashews,Cashews,anacardos,fats_nuts,recovered,297
+hazelnuts,Hazelnuts,avellanas,fats_nuts,recovered,204
+honey,Honey,miel,sweets,recovered,557
+chocolate_spread,Chocolate spread,crema de cacao,sweets,recovered,264
+tabbouleh,Tabbouleh,tabulé,dishes,recovered,238
+spaghetti_bolognese,Spaghetti bolognese,espaguetis a la boloñesa,dishes,recovered,239
+water,Water,agua,drinks,new,1500
+quinoa,Quinoa,quinoa,grains,new,265
+canned_tuna,Tuna (canned),atún en conserva,fish,new,322
+ketchup,Ketchup,kétchup,sauces,new,328
+fennel,Fennel,hinojo,vegetables,new,385
+mixed_vegetables,Mixed cooked vegetables,verduras salteadas / menestra,dishes,new,1500
+rose_wine,Rosé wine,vino rosado,drinks,new,265
+endive,Endive,endibia,vegetables,new,192
+samosa,Samosa,samosa,snacks,new,232
+onigiri,Onigiri,onigiri,dishes,new,168
+_not_food,Not food,no es comida,,kept,5000

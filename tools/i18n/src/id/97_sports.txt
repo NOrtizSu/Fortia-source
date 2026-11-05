@@ -36,3 +36,23 @@ ex_martial_arts = Seni bela diri
 # Others
 ex_climbing = Panjat tebing
 ex_golf = Golf
+
+# Snow (1.8)
+ex_alpine_skiing = Ski alpin
+ex_cross_country_skiing = Ski lintas alam
+ex_snowboarding = Snowboard
+
+# Water (1.8)
+ex_surfing = Selancar
+ex_rowing = Dayung (di air)
+ex_kayaking = Kayak dan kano
+ex_open_water_swimming = Renang perairan terbuka
+
+# Team and racket sports (1.8)
+ex_rugby = Rugbi
+ex_table_tennis = Tenis meja
+ex_squash = Squash
+
+# Skating (1.8)
+ex_inline_skating = Sepatu roda (inline)
+ex_ice_skating = Seluncur es

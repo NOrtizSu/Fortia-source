@@ -1,0 +1,53 @@
+# Comida after 1.7.0: the photo of a product found by its barcode, from Open Food Facts.
+# The rest of the food log is in 99_food.txt, 99_food_160.txt and 99_food_170.txt.
+
+# The credit line under a product of Open Food Facts when its photo shows too (foodlog_off_attribution without one).
+# ODbL is the licence of the data, CC BY-SA the licence of the photo: keep both names as they are.
+foodlog_off_attribution_photo = Данные и фото: Open Food Facts (ODbL, CC BY-SA)
+
+# A packaged product on the meal photo ("What's on the plate?" page). Three ways, shown at the top of the page:
+# a barcode read on the photo (its product page opens by itself once found), one of the products the user
+# already scanned that the photo looks like (compared on the phone), the words read on the package searched in
+# Open Food Facts (keep the name). Nothing is logged until the user picks the product and confirms.
+foodlog_pack_barcode = Штрихкод %1$s на фото
+
+# One of the user's scanned products, with its photo: tap to use it. %1$s = the product's name.
+foodlog_pack_match = Это %1$s?
+foodlog_pack_match_text = Один из продуктов, которые вы сканировали
+
+# Several of the user's scanned products look alike: none is picked.
+foodlog_pack_suggestions = Возможно, один из ваших продуктов
+
+# Button: read the words on the photo (on the phone) and search them in Open Food Facts.
+foodlog_pack_search = Найти продукт по упаковке
+foodlog_pack_reading = Читаем упаковку…
+
+# A text field with the words searched (as read on the package, or empty when none could be read): the user
+# corrects them or types the brand and name, then searches again with the keyboard's search key or the search icon.
+foodlog_pack_words_label = Слова для поиска
+foodlog_pack_words_hint = Бренд и название продукта
+
+# %1$s = the words searched, as read on the package.
+foodlog_pack_searching = Ищем «%1$s» в Open Food Facts…
+foodlog_pack_results = Продукты по запросу «%1$s»
+foodlog_pack_results_text = Выберите свой: его значения взяты из Open Food Facts.
+foodlog_pack_no_text = На упаковке не удалось прочитать ни одного слова. Введите выше бренд и название или сфотографируйте штрихкод.
+
+# The phone's text recognition failed (not the photo's fault).
+foodlog_pack_read_failed = Сейчас не удалось прочитать текст упаковки. Повторите попытку.
+foodlog_pack_none = В Open Food Facts нет продуктов по запросу «%1$s». Измените слова выше, сфотографируйте штрихкод или найдите продукт через поиск.
+foodlog_pack_offline = Нет подключения: упаковку не удаётся найти. Повторите попытку или сфотографируйте штрихкод.
+
+# Open Food Facts allows a few searches a minute.
+foodlog_pack_busy = Слишком много поисков за короткое время. Повторите через минуту.
+foodlog_pack_unavailable = Для чтения упаковок нужны сервисы Google Play. Введите выше бренд и название или сфотографируйте штрихкод.
+
+# Google Play services downloads the text recognition the first time.
+foodlog_pack_preparing = На телефон устанавливается распознавание текста. Повторите чуть позже.
+foodlog_pack_private = Текст читается на телефоне; в Open Food Facts для поиска отправляются только слова из поля.
+
+# Button: a photo of the package's barcode (the barcode page).
+foodlog_pack_barcode_photo = Фото штрихкода
+
+# Open source page: the text recognition library (Google ML Kit, through Google Play services).
+notice_mlkit = Читает слова на фото упаковки прямо на телефоне (сервисы Google Play).

@@ -16,3 +16,5 @@ routine_mobility = Mobilitas dan peregangan
 routine_foam_rolling = Pemulihan dengan foam roller
 routine_hiit = HIIT tanpa alat
 routine_cardio_mix = Mesin kardio
+routine_kettlebell = Seluruh tubuh dengan kettlebell
+routine_calisthenics = Skill kalistenik

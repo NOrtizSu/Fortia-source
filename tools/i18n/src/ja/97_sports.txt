@@ -38,3 +38,17 @@ ex_golf = ゴルフ
 # Added in 1.6.0
 ex_nordic_walking = ノルディックウォーキング
 ex_stair_climbing = 階段のぼり
+
+# Added in 1.8.0
+ex_alpine_skiing = スキー
+ex_cross_country_skiing = クロスカントリースキー
+ex_snowboarding = スノーボード
+ex_surfing = サーフィン
+ex_rowing = ボート（ローイング）
+ex_kayaking = カヤック・カヌー
+ex_open_water_swimming = オープンウォータースイミング
+ex_rugby = ラグビー
+ex_table_tennis = 卓球
+ex_squash = スカッシュ
+ex_inline_skating = インラインスケート
+ex_ice_skating = アイススケート

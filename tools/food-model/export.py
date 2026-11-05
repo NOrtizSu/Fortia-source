@@ -115,34 +115,44 @@ def step_onnx(a):
     ck = torch.load(os.path.join(run, a.ckpt), map_location="cpu")
     TR.configure_from_checkpoint(ck)
     SIZE, RESIZE, MEAN, STD = TR.SIZE, TR.RESIZE, TR.MEAN, TR.STD
-    model = timm.create_model(ck["model"], pretrained=False, num_classes=ck["n_classes"])
+    model = TR.build_model(ck["model"], ck["n_classes"], ck.get("head_hidden", 0), pretrained=False)
     model.load_state_dict(ck["state_dict"])
     model.eval()
     make_static(model, SIZE)
 
     class WithGrams(torch.nn.Module):
-        """(logits, log_grams): the classifier and a linear grams head on the same pooled features."""
+        """(logits, log_grams[, embedding]): the classifier, a linear grams head on the same pooled features and
+        (v3, --embedding) the image embedding: the spatial maximum of the last conv's ReLU output (960 values;
+        embed_eval.py chose it: the best retrieval of Open Food Facts photos, never all-zero, exact in int8). The
+        app L2-normalises it (embedding_contract.md), so int8 never rounds normalised values."""
 
-        def __init__(self, net, head):
+        def __init__(self, net, head, embedding=False, features=False):
             super().__init__()
             self.net = net
+            self.embedding = embedding
+            self.features = features
             self.grams = torch.nn.Linear(head["weight"].shape[1], 1)
             self.grams.weight.data.copy_(head["weight"])
             self.grams.bias.data.copy_(head["bias"])
 
         def forward(self, x):
-            f = self.net.forward_head(self.net.forward_features(x), pre_logits=True)
+            m = self.net.forward_features(x)
+            f = self.net.forward_head(m, pre_logits=True)
+            if self.features:  # debug export for grams.py tflite --with-features: also the features the head reads
+                return self.net.get_classifier()(f), self.grams(f), m.amax(dim=(2, 3)), f
+            if self.embedding:
+                return self.net.get_classifier()(f), self.grams(f), m.amax(dim=(2, 3))
             return self.net.get_classifier()(f), self.grams(f)
 
     grams = bool(a.grams_head)
     if grams:
         head = torch.load(a.grams_head, map_location="cpu")
-        model = WithGrams(model, head).eval()
+        model = WithGrams(model, head, embedding=a.embedding or a.features_output, features=a.features_output).eval()
     x = torch.zeros(1, 3, SIZE, SIZE)
     onnx_path = os.path.join(out, "model.onnx")
-    torch.onnx.export(model, x, onnx_path, input_names=["input"],
-                      output_names=["logits", "log_grams"] if grams else ["logits"],
-                      opset_version=17, dynamo=False)
+    names = ["logits", "log_grams", "embedding", "features"][:(4 if grams and a.features_output else
+                                                                3 if grams and a.embedding else 2 if grams else 1)]
+    torch.onnx.export(model, x, onnx_path, input_names=["input"], output_names=names, opset_version=17, dynamo=False)
     print("Pad ops folded into Conv:", fuse_pads(onnx_path))
     import onnxruntime as ort
     xr = torch.randn(2, 3, SIZE, SIZE)
@@ -156,7 +166,9 @@ def step_onnx(a):
         assert np.abs(got - ref[k]).max() < 1e-3
     tf = T.Compose([T.Resize(RESIZE, interpolation=T.InterpolationMode.BILINEAR, antialias=True),
                     T.CenterCrop(SIZE)])
-    val = pd.read_csv(os.path.join(a.work, a.dataset, "val.csv")).sample(a.calib, random_state=3)
+    val = pd.read_csv(os.path.join(a.work, a.dataset, "val.csv")).sample(frac=1.0, random_state=3)
+    val = val[[os.path.exists(fast_path(p)) for p in val.path[:a.calib * 2]] + [False] * (len(val) - min(len(val), a.calib * 2))]
+    val = val.head(a.calib)
     arr = np.stack([np.asarray(tf(Image.open(fast_path(p)).convert("RGB")), dtype=np.float32) / 255.0
                     for p in val.path])
     np.save(os.path.join(out, "calib.npy"), arr)
@@ -166,27 +178,35 @@ def step_onnx(a):
     np.save(os.path.join(out, "calibration_image_sample_data_20x128x128x3_float32.npy"), small)
     meta = {"model": ck["model"], "n_classes": ck["n_classes"], "epoch": ck.get("epoch"),
             "checkpoint": a.ckpt, "val_top1": ck.get("val_top1"), "size": SIZE, "resize": RESIZE,
-            "mean": list(MEAN), "std": list(STD), "grams_output": grams}
+            "mean": list(MEAN), "std": list(STD), "grams_output": grams,
+            "embedding_output": bool(grams and a.embedding)}
     with open(os.path.join(out, "export_meta.json"), "w") as f:
         json.dump(meta, f, indent=1)
     print("onnx + calibration written to", out)
 
 
 def reorder_outputs(path, n_labels, logits_first=True):
-    """Puts the logits output (n_labels values) first (or last) in the flatbuffer's output list; returns the
-    final {"logits": i, "log_grams": j} indices as the LiteRT interpreter reports them."""
+    """Puts the outputs in the order logits (n_labels values), log_grams (1 value), embedding (the rest) — or
+    with logits last (the v2 dummy's test order) — in the flatbuffer's output list; returns the final
+    {"logits": i, "log_grams": j, "embedding": k} indices as the LiteRT interpreter reports them."""
+    import numpy as np
     from ai_edge_litert.interpreter import Interpreter
     from tensorflow.lite.tools import flatbuffer_utils as fu
 
+    def kind(n):
+        return "logits" if n == n_labels else "log_grams" if n == 1 else "embedding"
+
     def order():
-        it = Interpreter(model_path=path)
-        outs = it.get_output_details()
-        return {("logits" if int(np.prod(o["shape"])) == n_labels else "log_grams"): k for k, o in enumerate(outs)}
-    import numpy as np
+        outs = Interpreter(model_path=path).get_output_details()
+        return {kind(int(np.prod(o["shape"]))): k for k, o in enumerate(outs)}
     idx = order()
-    if len(idx) > 1 and (idx["logits"] == 0) != logits_first:
+    want = [k for k in ("logits", "log_grams", "embedding") if k in idx]
+    if not logits_first:
+        want = want[1:] + want[:1]
+    if [idx[k] for k in want] != list(range(len(want))):
         m = fu.read_model(path)
-        m.subgraphs[0].outputs = list(reversed(list(m.subgraphs[0].outputs)))
+        outs = list(m.subgraphs[0].outputs)
+        m.subgraphs[0].outputs = [outs[idx[k]] for k in want]
         fu.write_model(m, path)
         idx = order()
     return idx
@@ -216,6 +236,12 @@ def step_tflite(a):
     dst = os.path.join(a.assets, "food_model.tflite")
     shutil.copyfile(src, dst)
     idx = reorder_outputs(dst, len(labels), logits_first=a.outputs_order == "logits_first")
+    if a.strip:  # tensor names and other strings the app never reads (~20 KB); outputs keep their order
+        from tensorflow.lite.tools import flatbuffer_utils as fu
+        m = fu.read_model(dst)
+        fu.strip_strings(m)
+        fu.write_model(m, dst)
+        assert reorder_outputs(dst, len(labels), logits_first=a.outputs_order == "logits_first") == idx
     has_grams = "log_grams" in idx
     spec = {
         "version": 2 if has_grams or size != 224 else 1,
@@ -242,6 +268,20 @@ def step_tflite(a):
         }
         if "notes" in g:
             spec["grams"]["notes"] = g["notes"]
+    if "embedding" in idx:  # v3: embedding_contract.md
+        e = json.load(open(a.embedding_spec)) if a.embedding_spec else {}
+        spec["version"] = 3
+        spec["embedding"] = {
+            "output": {"index": idx["embedding"], "shape": [1, int(e.get("dim", 1280))], "dtype": "float32",
+                       "kind": "embedding"},
+            # its own run of the model: the whole upright picture stretched to the input size (as the detector's
+            # input, no crop); then the same 0..1 and mean/std as "input"
+            "input": {"resize": "stretch"},
+            "l2_normalize": True, "metric": "cosine", "space": e.get("space", a.name),
+            "match": e.get("match", {"threshold": 0.85, "margin": 0.05, "suggest_threshold": 0.8, "suggest_max": 3}),
+        }
+        if "notes" in e:
+            spec["embedding"]["notes"] = e["notes"]
     with open(os.path.join(a.assets, "food_model.json"), "w", encoding="utf-8", newline="\n") as f:
         json.dump(spec, f, ensure_ascii=False, indent=1)
         f.write("\n")
@@ -270,6 +310,12 @@ def main():
     ap.add_argument("--grams-head", default="", help="onnx step: grams.py head.pt -> second output log_grams")
     ap.add_argument("--grams", default="", help="tflite step: grams.py grams.json (the json's grams block)")
     ap.add_argument("--outputs-order", default="logits_first", choices=("logits_first", "logits_last"))
+    ap.add_argument("--embedding", action="store_true", help="onnx step: a third output, the image embedding")
+    ap.add_argument("--embedding-spec", default="", help="tflite step: json with dim, space, match (thresholds)")
+    ap.add_argument("--strip", action="store_true", help="tflite step: strip tensor names from the copied asset")
+    ap.add_argument("--features-output", action="store_true",
+                    help="onnx step, debug only: a 4th output, the features the grams head reads (grams.py tflite "
+                         "--with-features on the converted file; never shipped)")
     a = ap.parse_args()
     step_onnx(a) if a.step == "onnx" else step_tflite(a)
 

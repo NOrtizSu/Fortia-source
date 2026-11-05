@@ -25,6 +25,9 @@ food_portion_tsp = Чайная ложка
 food_portion_handful = Горсть
 food_portion_serving = Порция
 
+# The measuring scoop that comes in a tub of protein powder (~30 g); in Spain people say "scoop" or "cacito"
+food_portion_scoop = Мерная ложка (скуп)
+
 # Meals of the day
 foodlog_meal_breakfast = Завтрак
 foodlog_meal_lunch = Обед
@@ -226,9 +229,9 @@ health_rationale_write_meals = Если вы разрешите, Fortia такж
 notice_litert = Запускает на телефоне нашу модель распознавания еды.
 notice_zxing = Считывает штрихкоды продуктов с фото.
 open_source_food_data = Данные о продуктах
-notice_open_food_facts = Упакованные продукты, найденные по штрихкоду. Данные © участники Open Food Facts, по лицензии Open Database License (ODbL).
+notice_open_food_facts = Упакованные продукты, найденные по штрихкоду. Данные © участники Open Food Facts, по лицензии Open Database License (ODbL); фото продуктов © участники Open Food Facts, по лицензии CC BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0/).
 notice_usda = Пищевая ценность продуктов из списка: U.S. Department of Agriculture, Agricultural Research Service, FoodData Central. Общественное достояние (CC0).
 notice_ciqual = Пищевая ценность продуктов из списка: Anses, французская таблица состава продуктов Ciqual, по лицензии Licence Ouverte / Etalab 2.0.
 notice_food_model_name = Модель распознавания еды Fortia
-notice_food_model_license = Собственная модель (см. её карточку)
+notice_food_model_license = Собственная модель (см. её карточку) · AGPL-3.0 · food_model.tflite: AGPL-3.0 / CC BY-SA 4.0
 notice_food_model = Наши собственные модели на основе MobileNetV4 (timm, Apache-2.0) и Ultralytics YOLO11n (AGPL-3.0), обученные на изображениях из Open Images (CC BY 2.0), Wikimedia Commons (свободные лицензии) и MyFoodRepo (CC BY 4.0); оценка веса откалибрована по данным Nutrition5k (CC BY 4.0). Список изображений и их авторов опубликован вместе с исходным кодом.

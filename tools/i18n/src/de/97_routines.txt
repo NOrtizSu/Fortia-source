@@ -17,3 +17,5 @@ routine_cardio_mix = Cardiogeräte
 routine_mobility = Mobilität und Dehnen
 routine_foam_rolling = Erholung mit der Faszienrolle
 routine_hiit = HIIT ohne Geräte
+routine_kettlebell = Ganzkörper mit Kettlebell
+routine_calisthenics = Calisthenics-Skills

@@ -18,3 +18,6 @@ routine_cardio_mix = Máy cardio
 # 1.6.0
 routine_foam_rolling = Phục hồi với con lăn foam
 routine_hiit = HIIT không dụng cụ
+
+routine_kettlebell = Toàn thân với tạ ấm
+routine_calisthenics = Kỹ năng calisthenics

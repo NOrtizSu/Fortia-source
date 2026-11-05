@@ -17,6 +17,9 @@
 # list        = false: values only, not offered for adjusting (e.g. an estimate from two cuts of ham)
 # expand      = true: ingredients that are themselves recipe dishes are listed as their own ingredients
 # basis       = where the amounts come from
+# composition = {kcal = …, protein = …, …} per 100 g instead of ingredients (1.8.0): a documented composition of a
+#               product no open table has (creatine, amino acids, maltodextrin, fino); needs list = false and a basis;
+#               the nutrients it does not list are unknown
 #
 # Amounts are typical home recipes (our own composition of standard Spanish recipes); the nutrient values come only
 # from the USDA/CIQUAL foods behind each catalog food.
@@ -2040,3 +2043,1816 @@ ingredients = [
   ["granola", 40, "granola"],
 ]
 basis = "one bowl"
+
+# ============================================================================================================
+# Added in 1.8.0 (2026-11-04). Same rules: typical Spanish home or bar recipes (our own composition of standard
+# recipes), every nutrient from the USDA/CIQUAL food behind each catalog ingredient. Yields are estimates of the
+# water lost (stews, roasting, frying) or taken up (rice, dry legumes).
+# ============================================================================================================
+
+# --- Spanish stews, soups and rice ---
+
+[marmitako]
+name = "Marmitako: tuna, potatoes, onion, peppers and tomato stewed in olive oil"
+yield = 0.85
+ingredients = [
+  ["potato_raw", 1000, "potatoes"],
+  ["tuna_steak", 400, "bonito or tuna (cooked weight)"],
+  ["onion", 200, "onion"],
+  ["green_pepper", 150, "green pepper"],
+  ["red_pepper", 50, "choricero or red pepper"],
+  ["canned_tomato", 150, "crushed tomato"],
+  ["olive_oil", 60, "olive oil"],
+  ["garlic", 10, "garlic"],
+  ["salt", 10, "salt"],
+  ["water", 1000, "water or fish stock"],
+]
+basis = "home recipe for 6 (~2.6 kg after simmering)"
+
+[porrusalda]
+name = "Porrusalda: leek, potato and carrot soup with olive oil"
+yield = 0.85
+ingredients = [
+  ["leek", 400, "leeks"],
+  ["potato_raw", 500, "potatoes"],
+  ["carrot", 150, "carrot"],
+  ["olive_oil", 50, "olive oil"],
+  ["garlic", 10, "garlic"],
+  ["salt", 8, "salt"],
+  ["water", 1500, "water"],
+]
+basis = "Basque home recipe for 5 bowls"
+
+[caldo_gallego]
+name = "Caldo gallego: white beans, potato, turnip greens, pork belly and chorizo"
+yield = 0.78
+ingredients = [
+  ["white_beans_dry", 200, "dry white beans"],
+  ["potato_raw", 600, "potatoes"],
+  ["turnip_greens", 400, "grelos (cooked weight)"],
+  ["salted_pork_belly", 100, "salted pork belly (unto/tocino)"],
+  ["chorizo", 100, "chorizo"],
+  ["salt", 5, "salt"],
+  ["water", 2500, "water"],
+]
+basis = "home recipe for 7 bowls (~3 kg with its broth)"
+
+[escalivada]
+name = "Escalivada: roasted red pepper, aubergine and onion with olive oil"
+yield = 0.6
+ingredients = [
+  ["red_pepper", 600, "red peppers"],
+  ["eggplant_raw", 600, "aubergines"],
+  ["onion", 300, "onions"],
+  ["olive_oil", 50, "olive oil"],
+  ["salt", 4, "salt"],
+]
+basis = "Catalan recipe for 4; vegetables lose ~40% of their weight when roasted and peeled"
+
+[menestra]
+name = "Menestra: artichoke, green beans, peas, carrot, asparagus and cauliflower with ham"
+yield = 0.95
+ingredients = [
+  ["artichoke", 200, "artichoke hearts, cooked"],
+  ["green_beans", 200, "green beans, cooked"],
+  ["peas", 150, "peas"],
+  ["carrot_cooked", 150, "carrot, cooked"],
+  ["white_asparagus", 100, "white asparagus"],
+  ["cauliflower", 150, "cauliflower, cooked"],
+  ["cured_ham", 80, "serrano ham, diced"],
+  ["onion", 100, "onion"],
+  ["olive_oil", 50, "olive oil"],
+  ["wheat_flour", 10, "flour"],
+  ["salt", 4, "salt"],
+]
+basis = "Navarre/Rioja style for 4"
+
+[arroz_a_banda]
+name = "Arroz a banda: rice cooked in fish stock with squid and prawns"
+yield = 0.69
+ingredients = [
+  ["rice_dry", 400, "round rice, raw"],
+  ["squid_raw", 200, "squid"],
+  ["prawns_raw", 200, "prawns, peeled"],
+  ["canned_tomato", 100, "crushed tomato"],
+  ["olive_oil", 70, "olive oil"],
+  ["garlic", 10, "garlic"],
+  ["paprika", 5, "paprika"],
+  ["salt", 8, "salt"],
+  ["broth", 1200, "fish stock"],
+]
+basis = "Valencian/Alicante recipe for 5, same yield as the paella (rice x2.5)"
+
+[arroz_con_pollo]
+name = "Rice with chicken: rice, chicken, pepper, tomato and peas"
+yield = 0.69
+ingredients = [
+  ["rice_dry", 400, "round rice, raw"],
+  ["chicken_raw", 700, "chicken, meat and skin"],
+  ["onion", 150, "onion"],
+  ["red_pepper", 150, "red pepper"],
+  ["canned_tomato", 150, "crushed tomato"],
+  ["peas", 100, "peas"],
+  ["olive_oil", 60, "olive oil"],
+  ["garlic", 10, "garlic"],
+  ["paprika", 3, "paprika"],
+  ["salt", 10, "salt"],
+  ["broth", 1200, "stock"],
+]
+basis = "home recipe for 6"
+
+[arroz_caldoso]
+name = "Soupy seafood rice: rice in plenty of fish stock with prawns, squid, mussels and clams"
+yield = 0.85
+ingredients = [
+  ["rice_dry", 300, "round rice, raw"],
+  ["prawns_raw", 200, "prawns, peeled"],
+  ["squid_raw", 200, "squid"],
+  ["mussels_raw", 200, "mussel meat"],
+  ["clams", 100, "clam meat"],
+  ["onion", 100, "onion"],
+  ["canned_tomato", 150, "crushed tomato"],
+  ["olive_oil", 60, "olive oil"],
+  ["garlic", 10, "garlic"],
+  ["salt", 8, "salt"],
+  ["broth", 2000, "fish stock"],
+]
+basis = "home recipe for 6 deep plates"
+
+[arroz_al_horno]
+name = "Arroz al horno: rice baked with pork, morcilla, chickpeas, potato and tomato"
+yield = 0.75
+ingredients = [
+  ["rice_dry", 400, "round rice, raw"],
+  ["pork_shoulder_raw", 200, "pork ribs or shoulder"],
+  ["black_pudding_raw", 150, "morcilla"],
+  ["salted_pork_belly", 100, "salted pork belly"],
+  ["chickpeas", 200, "cooked chickpeas"],
+  ["potato_raw", 250, "potato, sliced"],
+  ["tomato", 200, "tomato"],
+  ["olive_oil", 60, "olive oil"],
+  ["garlic", 30, "a head of garlic"],
+  ["salt", 8, "salt"],
+  ["broth", 900, "stock (often from the cocido)"],
+]
+basis = "Valencian recipe for 6"
+
+[paella_vegetable]
+name = "Vegetable paella: rice with artichoke, green beans, pepper and tomato"
+yield = 0.69
+ingredients = [
+  ["rice_dry", 400, "round rice, raw"],
+  ["artichoke", 200, "artichokes"],
+  ["green_beans", 200, "green beans (bajoqueta)"],
+  ["red_pepper", 150, "red pepper"],
+  ["tomato", 150, "grated tomato"],
+  ["olive_oil", 70, "olive oil"],
+  ["paprika", 3, "paprika"],
+  ["salt", 8, "salt"],
+  ["broth", 1200, "vegetable stock or water"],
+]
+basis = "home recipe for 5"
+
+[potaje_vigilia]
+name = "Potaje de vigilia: chickpeas with desalted cod, spinach and boiled egg"
+yield = 0.75
+ingredients = [
+  ["chickpeas_dry", 400, "dry chickpeas"],
+  ["cod", 200, "desalted cod (cooked weight)"],
+  ["spinach", 300, "spinach, cooked"],
+  ["boiled_egg", 100, "two boiled eggs"],
+  ["onion", 100, "onion"],
+  ["olive_oil", 50, "olive oil"],
+  ["garlic", 10, "garlic"],
+  ["paprika", 5, "paprika"],
+  ["salt", 10, "salt"],
+  ["water", 2000, "water"],
+]
+basis = "Lent recipe for 7 plates (~2.4 kg)"
+
+[fabes_con_almejas]
+name = "Fabes con almejas: white beans stewed with clams, onion, garlic and white wine"
+yield = 0.81
+ingredients = [
+  ["white_beans_dry", 400, "dry white beans (fabes)"],
+  ["clams", 300, "clam meat"],
+  ["onion", 100, "onion"],
+  ["olive_oil", 50, "olive oil"],
+  ["garlic", 10, "garlic"],
+  ["cooked_wine", 100, "white wine, 100 ml (alcohol evaporated)"],
+  ["parsley", 5, "parsley"],
+  ["salt", 8, "salt"],
+  ["water", 1500, "water"],
+]
+basis = "Asturian recipe for 5, same yield as the fabada"
+
+[rabo_de_toro]
+name = "Rabo de toro: oxtail stewed in red wine with onion, carrot and tomato"
+yield = 0.65
+ingredients = [
+  ["oxtail", 800, "oxtail meat, cooked weight without bone"],
+  ["cooked_wine", 500, "red wine, 500 ml (alcohol evaporated)"],
+  ["onion", 300, "onion"],
+  ["carrot", 200, "carrot"],
+  ["canned_tomato", 200, "crushed tomato"],
+  ["olive_oil", 60, "olive oil"],
+  ["wheat_flour", 20, "flour"],
+  ["garlic", 15, "garlic"],
+  ["salt", 8, "salt"],
+  ["broth", 500, "beef stock"],
+]
+basis = "Cordoban recipe for 6; the sauce reduces for hours (yield an estimate)"
+
+# --- Potatoes, vegetables, salads ---
+
+[patatas_a_lo_pobre]
+name = "Patatas a lo pobre: potatoes slowly fried in olive oil with onion and green pepper"
+yield = 0.75
+ingredients = [
+  ["potato_raw", 1000, "potatoes, sliced"],
+  ["onion", 300, "onion"],
+  ["green_pepper", 200, "green pepper"],
+  ["olive_oil", 120, "olive oil absorbed"],
+  ["garlic", 10, "garlic"],
+  ["salt", 8, "salt"],
+]
+basis = "Andalusian recipe for 5"
+
+[patatas_alioli]
+name = "Patatas alioli: boiled potatoes in alioli with parsley"
+ingredients = [
+  ["potato", 800, "boiled potatoes"],
+  ["alioli", 150, "alioli"],
+  ["parsley", 5, "parsley"],
+  ["salt", 3, "salt"],
+]
+basis = "bar tapa for 6"
+
+[ajoblanco]
+name = "Ajoblanco: cold soup of almonds, bread, garlic, olive oil and vinegar, with grapes"
+ingredients = [
+  ["almonds", 200, "raw almonds"],
+  ["bread", 100, "day-old bread"],
+  ["olive_oil", 100, "olive oil"],
+  ["garlic", 10, "garlic"],
+  ["vinegar", 30, "sherry vinegar"],
+  ["salt", 6, "salt"],
+  ["water", 800, "cold water"],
+  ["grapes", 100, "grapes to serve"],
+]
+basis = "Málaga recipe for 5 bowls"
+
+[tomato_salad]
+name = "Tomato salad: tomato and onion with olive oil and salt"
+ingredients = [
+  ["tomato", 400, "tomatoes"],
+  ["onion", 50, "onion"],
+  ["olive_oil", 25, "olive oil"],
+  ["salt", 2, "salt"],
+]
+basis = "plate for 2"
+
+[pipirrana]
+name = "Pipirrana: chopped tomato, green pepper, cucumber and onion with egg, tuna and olive oil"
+ingredients = [
+  ["tomato", 500, "tomatoes"],
+  ["green_pepper", 150, "green pepper"],
+  ["cucumber", 150, "cucumber"],
+  ["onion", 100, "onion"],
+  ["boiled_egg", 100, "two boiled eggs"],
+  ["canned_tuna", 56, "a tin of tuna in oil, drained"],
+  ["olive_oil", 50, "olive oil"],
+  ["vinegar", 20, "vinegar"],
+  ["salt", 4, "salt"],
+]
+basis = "Jaén recipe for 4"
+
+[rice_salad]
+name = "Rice salad: rice with tuna, sweetcorn, tomato, boiled egg, olives and olive oil"
+ingredients = [
+  ["rice", 400, "cooked rice"],
+  ["canned_tuna", 112, "two tins of tuna in oil, drained"],
+  ["sweet_corn", 100, "sweetcorn"],
+  ["tomato", 150, "tomato"],
+  ["boiled_egg", 100, "two boiled eggs"],
+  ["olives", 50, "olives"],
+  ["olive_oil", 30, "olive oil"],
+  ["vinegar", 15, "vinegar"],
+  ["salt", 3, "salt"],
+]
+basis = "home recipe for 3"
+
+[chickpea_salad]
+name = "Chickpea salad: chickpeas with tomato, onion, green pepper, tuna, boiled egg and olive oil"
+ingredients = [
+  ["chickpeas", 400, "cooked chickpeas"],
+  ["tomato", 150, "tomato"],
+  ["onion", 50, "onion"],
+  ["green_pepper", 80, "green pepper"],
+  ["canned_tuna", 112, "two tins of tuna in oil, drained"],
+  ["boiled_egg", 100, "two boiled eggs"],
+  ["olive_oil", 30, "olive oil"],
+  ["vinegar", 15, "vinegar"],
+  ["salt", 3, "salt"],
+]
+basis = "home recipe for 3 (empedrado style)"
+
+[tuna_salad]
+name = "Tuna salad: lettuce, tomato, onion, tuna in water and sweetcorn with olive oil and vinegar"
+ingredients = [
+  ["lettuce", 150, "lettuce"],
+  ["tomato", 150, "tomato"],
+  ["onion", 30, "onion"],
+  ["canned_tuna_water", 112, "two tins of tuna in water, drained"],
+  ["sweet_corn", 50, "sweetcorn"],
+  ["olive_oil", 10, "olive oil"],
+  ["vinegar", 10, "vinegar"],
+]
+basis = "a large plate for 1-2"
+
+[quinoa_salad]
+name = "Quinoa salad: quinoa with cucumber, tomato, onion, feta, olive oil and lemon"
+ingredients = [
+  ["quinoa", 300, "cooked quinoa"],
+  ["cucumber", 100, "cucumber"],
+  ["tomato", 150, "cherry or plum tomatoes"],
+  ["onion", 30, "red onion"],
+  ["feta", 60, "feta"],
+  ["olive_oil", 30, "olive oil"],
+  ["lemon", 20, "lemon juice"],
+  ["salt", 3, "salt"],
+]
+basis = "home recipe for 2"
+
+[papas_arrugadas]
+name = "Papas arrugadas: small potatoes boiled in salted water with red mojo"
+ingredients = [
+  ["potato", 1000, "small potatoes boiled in their skins"],
+  ["salt", 15, "salt crust left on the skins"],
+  ["olive_oil", 40, "olive oil (mojo)"],
+  ["garlic", 10, "garlic (mojo)"],
+  ["paprika", 5, "paprika and dried pepper (mojo)"],
+  ["vinegar", 15, "vinegar (mojo)"],
+]
+basis = "Canarian recipe for 5; most of the salt stays in the water"
+
+[stuffed_peppers]
+name = "Peppers stuffed with minced beef, rice, onion and tomato, roasted"
+yield = 0.75
+ingredients = [
+  ["red_pepper", 800, "red peppers"],
+  ["minced_beef_raw", 400, "minced beef"],
+  ["onion", 150, "onion"],
+  ["canned_tomato", 200, "crushed tomato"],
+  ["rice_dry", 50, "rice, raw"],
+  ["olive_oil", 40, "olive oil"],
+  ["garlic", 5, "garlic"],
+  ["salt", 6, "salt"],
+]
+basis = "home recipe for 4 (8 peppers)"
+
+[stuffed_eggplant]
+name = "Aubergines stuffed with minced beef, onion and tomato, gratinated with cheese"
+yield = 0.75
+ingredients = [
+  ["eggplant_raw", 800, "aubergines"],
+  ["minced_beef_raw", 300, "minced beef"],
+  ["onion", 150, "onion"],
+  ["tomato_sauce", 200, "tomate frito"],
+  ["grated_cheese", 80, "grated cheese"],
+  ["olive_oil", 40, "olive oil"],
+  ["salt", 5, "salt"],
+]
+basis = "home recipe for 4 (8 halves)"
+
+# --- Pasta ---
+
+[pasta_tuna]
+name = "Macarrones con atún: pasta with tomate frito, tuna in oil and grated cheese"
+ingredients = [
+  ["pasta", 600, "cooked pasta (~250 g dry)"],
+  ["tomato_sauce", 250, "tomate frito"],
+  ["canned_tuna", 160, "tuna in oil, drained"],
+  ["grated_cheese", 30, "grated cheese"],
+  ["olive_oil", 10, "olive oil"],
+]
+basis = "Spanish home recipe for 3-4"
+
+[penne_arrabbiata]
+name = "Penne arrabbiata: pasta in a spicy tomato, garlic and olive oil sauce"
+yield = 0.95
+ingredients = [
+  ["pasta", 600, "cooked penne"],
+  ["canned_tomato", 400, "crushed tomato"],
+  ["olive_oil", 40, "olive oil"],
+  ["garlic", 10, "garlic"],
+  ["chili_pepper", 5, "chilli"],
+  ["parsley", 5, "parsley"],
+  ["salt", 4, "salt"],
+]
+basis = "Italian recipe for 3-4; the sauce reduces"
+
+[spaghetti_aglio_olio]
+name = "Spaghetti aglio e olio: pasta with garlic, olive oil, chilli and parsley"
+ingredients = [
+  ["pasta", 700, "cooked spaghetti"],
+  ["olive_oil", 60, "olive oil"],
+  ["garlic", 20, "garlic"],
+  ["chili_pepper", 5, "chilli"],
+  ["parsley", 10, "parsley"],
+  ["salt", 3, "salt"],
+]
+basis = "Italian recipe for 3"
+
+[fettuccine_alfredo]
+name = "Fettuccine Alfredo: pasta with butter, cream and parmesan"
+ingredients = [
+  ["pasta", 600, "cooked fettuccine"],
+  ["cooking_cream", 200, "cream"],
+  ["butter", 40, "butter"],
+  ["parmesan", 80, "parmesan"],
+  ["salt", 3, "salt"],
+]
+basis = "restaurant-style recipe for 3"
+
+[spaghetti_vongole]
+name = "Spaghetti alle vongole: pasta with clams, garlic, olive oil and white wine"
+yield = 0.95
+ingredients = [
+  ["pasta", 600, "cooked spaghetti"],
+  ["clams", 300, "clam meat"],
+  ["olive_oil", 50, "olive oil"],
+  ["garlic", 15, "garlic"],
+  ["cooked_wine", 100, "white wine, 100 ml (alcohol evaporated)"],
+  ["parsley", 10, "parsley"],
+  ["chili_pepper", 3, "chilli"],
+  ["salt", 3, "salt"],
+]
+basis = "Italian recipe for 3-4"
+
+[eggplant_parmigiana]
+name = "Aubergine parmigiana: fried aubergine layered with tomato sauce, mozzarella and parmesan"
+yield = 0.7
+ingredients = [
+  ["eggplant_raw", 1000, "aubergines"],
+  ["tomato_sauce", 400, "tomato sauce"],
+  ["mozzarella", 250, "mozzarella"],
+  ["parmesan", 60, "parmesan"],
+  ["olive_oil", 80, "olive oil"],
+  ["basil", 10, "basil"],
+  ["salt", 5, "salt"],
+]
+basis = "Italian recipe for 4; aubergine loses water when fried and baked"
+
+# --- Soups ---
+
+[mushroom_cream]
+name = "Mushroom cream soup: mushrooms, onion, potato and cream"
+yield = 0.85
+ingredients = [
+  ["mushrooms_raw", 400, "mushrooms"],
+  ["onion", 100, "onion"],
+  ["potato_raw", 150, "potato"],
+  ["cooking_cream", 100, "cream"],
+  ["olive_oil", 20, "olive oil"],
+  ["salt", 6, "salt"],
+  ["broth", 600, "stock"],
+]
+basis = "home recipe for 4 bowls"
+
+# --- World dishes ---
+
+[poke_bowl]
+name = "Salmon poke bowl: rice, raw salmon, avocado, edamame, cucumber, carrot, soy sauce and sesame"
+ingredients = [
+  ["rice", 150, "cooked sushi rice"],
+  ["salmon_raw", 100, "raw salmon"],
+  ["avocado", 50, "avocado"],
+  ["edamame", 40, "edamame"],
+  ["cucumber", 40, "cucumber"],
+  ["carrot", 30, "carrot"],
+  ["mango", 30, "mango"],
+  ["soy_sauce", 15, "soy sauce"],
+  ["sesame_oil", 5, "sesame oil"],
+  ["sesame_seeds", 5, "sesame seeds"],
+]
+basis = "one bowl as sold in Spanish poke shops"
+
+[chicken_teriyaki]
+name = "Chicken teriyaki: chicken breast glazed with soy sauce, sugar, honey, garlic and ginger"
+yield = 0.8
+ingredients = [
+  ["chicken_breast_raw", 500, "chicken breast"],
+  ["soy_sauce", 60, "soy sauce"],
+  ["sugar", 30, "sugar"],
+  ["honey", 20, "honey"],
+  ["sunflower_oil", 15, "oil"],
+  ["corn_starch", 5, "corn starch"],
+  ["garlic", 5, "garlic"],
+  ["ginger", 5, "ginger"],
+  ["sesame_seeds", 5, "sesame seeds"],
+]
+basis = "home recipe for 3, without rice"
+
+[yakisoba]
+name = "Yakisoba: noodles stir-fried with pork, cabbage, carrot and onion in a soy and ketchup sauce"
+yield = 0.9
+ingredients = [
+  ["egg_noodles", 600, "cooked noodles"],
+  ["pork_loin_raw", 200, "pork"],
+  ["cabbage_raw", 200, "cabbage"],
+  ["carrot", 100, "carrot"],
+  ["onion", 100, "onion"],
+  ["soy_sauce", 40, "soy sauce"],
+  ["ketchup", 30, "ketchup (sauce)"],
+  ["sugar", 5, "sugar", 0],
+  ["sunflower_oil", 30, "oil"],
+]
+basis = "home recipe for 3-4"
+
+[kung_pao_chicken]
+name = "Kung pao chicken: chicken stir-fried with peanuts, peppers, spring onion, chilli and soy sauce"
+yield = 0.8
+ingredients = [
+  ["chicken_breast_raw", 500, "chicken breast"],
+  ["peanuts", 60, "peanuts"],
+  ["green_pepper", 100, "green pepper"],
+  ["red_pepper", 100, "red pepper"],
+  ["spring_onion", 30, "spring onion", 1],
+  ["soy_sauce", 40, "soy sauce"],
+  ["sugar", 15, "sugar"],
+  ["vinegar", 15, "vinegar"],
+  ["sunflower_oil", 40, "oil"],
+  ["corn_starch", 10, "corn starch"],
+  ["garlic", 10, "garlic"],
+  ["chili_pepper", 10, "dried chillies"],
+]
+basis = "home recipe for 3, without rice"
+
+[beef_broccoli]
+name = "Beef with broccoli: beef strips and broccoli stir-fried in soy sauce, garlic and ginger"
+yield = 0.8
+ingredients = [
+  ["beef_raw", 500, "beef strips"],
+  ["broccoli_raw", 400, "broccoli"],
+  ["soy_sauce", 50, "soy sauce"],
+  ["sugar", 15, "sugar"],
+  ["sunflower_oil", 30, "oil"],
+  ["corn_starch", 10, "corn starch"],
+  ["garlic", 10, "garlic"],
+  ["ginger", 10, "ginger"],
+]
+basis = "home recipe for 3, without rice"
+
+[chicken_tikka_masala]
+name = "Chicken tikka masala: chicken marinated in yogurt, in a tomato, cream and butter sauce"
+yield = 0.75
+ingredients = [
+  ["chicken_breast_raw", 600, "chicken breast"],
+  ["yogurt", 150, "yogurt"],
+  ["canned_tomato", 400, "crushed tomato"],
+  ["cooking_cream", 150, "cream"],
+  ["onion", 150, "onion"],
+  ["butter", 30, "butter"],
+  ["sunflower_oil", 20, "oil"],
+  ["garlic", 15, "garlic"],
+  ["ginger", 10, "ginger"],
+  ["paprika", 10, "paprika and garam masala"],
+  ["salt", 8, "salt"],
+]
+basis = "restaurant-style recipe for 4, without rice"
+
+[thai_green_curry]
+name = "Thai green curry: chicken and aubergine in coconut milk with green chilli, garlic, ginger and basil"
+yield = 0.85
+ingredients = [
+  ["chicken_breast_raw", 500, "chicken breast"],
+  ["coconut_milk", 400, "coconut milk"],
+  ["eggplant_raw", 200, "aubergine"],
+  ["chili_pepper", 20, "green chillies (paste)"],
+  ["garlic", 10, "garlic (paste)"],
+  ["ginger", 10, "ginger or galangal (paste)"],
+  ["spring_onion", 20, "spring onion (paste)"],
+  ["soy_sauce", 20, "fish or soy sauce"],
+  ["sugar", 10, "sugar"],
+  ["sunflower_oil", 15, "oil"],
+  ["basil", 10, "basil"],
+]
+basis = "home recipe for 4, without rice"
+
+[dal]
+name = "Dal: red lentils with onion, tomato, butter, garlic, ginger and spices"
+yield = 0.9
+ingredients = [
+  ["red_lentils", 800, "cooked red lentils"],
+  ["onion", 100, "onion"],
+  ["canned_tomato", 150, "tomato"],
+  ["butter", 30, "butter or ghee"],
+  ["garlic", 10, "garlic"],
+  ["ginger", 10, "ginger"],
+  ["paprika", 5, "spices"],
+  ["salt", 6, "salt"],
+  ["water", 200, "water"],
+]
+basis = "home recipe for 4"
+
+[biryani]
+name = "Chicken biryani: rice layered with chicken in yogurt, fried onion, butter and spices"
+yield = 0.8
+ingredients = [
+  ["rice_dry", 400, "basmati rice, raw"],
+  ["chicken_raw", 600, "chicken, meat and skin"],
+  ["yogurt", 150, "yogurt"],
+  ["onion", 300, "onion, fried"],
+  ["sunflower_oil", 60, "oil"],
+  ["butter", 30, "butter or ghee"],
+  ["garlic", 10, "garlic"],
+  ["ginger", 10, "ginger"],
+  ["paprika", 5, "spices"],
+  ["salt", 10, "salt"],
+  ["water", 800, "water"],
+]
+basis = "home recipe for 5-6"
+
+[couscous_vegetables]
+name = "Couscous with vegetables: couscous, chickpeas, carrot, courgette, pumpkin, onion and raisins in broth"
+yield = 0.95
+ingredients = [
+  ["couscous", 500, "cooked couscous"],
+  ["chickpeas", 200, "cooked chickpeas"],
+  ["carrot_cooked", 150, "carrot"],
+  ["zucchini", 200, "courgette"],
+  ["pumpkin", 150, "pumpkin"],
+  ["onion", 100, "onion"],
+  ["raisins", 30, "raisins"],
+  ["olive_oil", 40, "olive oil"],
+  ["salt", 6, "salt"],
+  ["broth", 300, "vegetable broth"],
+]
+basis = "home recipe for 5"
+
+[chicken_tagine]
+name = "Chicken tagine: chicken stewed with onion, preserved lemon, olives, garlic, ginger and olive oil"
+yield = 0.75
+ingredients = [
+  ["chicken_raw", 1000, "chicken, meat and skin"],
+  ["onion", 300, "onion"],
+  ["olives", 100, "green olives"],
+  ["lemon", 50, "preserved lemon"],
+  ["olive_oil", 50, "olive oil"],
+  ["garlic", 15, "garlic"],
+  ["ginger", 10, "ginger"],
+  ["salt", 6, "salt"],
+  ["broth", 300, "broth"],
+]
+basis = "Moroccan home recipe for 4"
+
+[chicken_rice_broccoli]
+name = "Chicken with rice and broccoli: grilled chicken breast, white rice and broccoli with olive oil"
+ingredients = [
+  ["grilled_chicken", 150, "grilled chicken breast"],
+  ["rice", 150, "cooked rice"],
+  ["broccoli", 150, "cooked broccoli"],
+  ["olive_oil", 10, "olive oil"],
+  ["salt", 1, "salt"],
+]
+basis = "the gym meal-prep plate"
+
+[yogurt_granola_bowl]
+name = "Yogurt bowl: Greek yogurt with granola, banana and honey"
+ingredients = [
+  ["greek_yogurt", 150, "Greek yogurt"],
+  ["granola", 40, "granola"],
+  ["banana", 50, "banana"],
+  ["honey", 10, "honey"],
+]
+basis = "one breakfast bowl"
+
+# --- Fish and seafood dishes ---
+
+[pulpo_con_cachelos]
+name = "Pulpo á feira con cachelos: boiled octopus and potatoes with olive oil, paprika and coarse salt"
+ingredients = [
+  ["boiled_octopus", 500, "boiled octopus"],
+  ["potato", 500, "boiled potatoes (cachelos)"],
+  ["olive_oil", 50, "olive oil"],
+  ["paprika", 6, "paprika"],
+  ["salt", 6, "coarse salt"],
+]
+basis = "pulpeira recipe for 3 plates"
+
+[bacalao_pil_pil]
+name = "Bacalao al pil-pil: desalted cod in an emulsion of olive oil and its gelatine, with garlic and chilli"
+yield = 0.95
+ingredients = [
+  ["cod", 800, "desalted cod (cooked weight)"],
+  ["olive_oil", 150, "olive oil in the sauce"],
+  ["garlic", 30, "garlic"],
+  ["chili_pepper", 5, "chilli"],
+  ["salt", 6, "salt left in the desalted cod"],
+]
+basis = "Basque recipe for 4"
+
+[bacalao_vizcaina]
+name = "Bacalao a la vizcaína: desalted cod in a sauce of onion, choricero pepper and tomato"
+yield = 0.85
+ingredients = [
+  ["cod", 800, "desalted cod (cooked weight)"],
+  ["onion", 400, "onion"],
+  ["red_pepper", 100, "choricero or red pepper"],
+  ["canned_tomato", 200, "crushed tomato"],
+  ["olive_oil", 80, "olive oil"],
+  ["garlic", 15, "garlic"],
+  ["salt", 6, "salt"],
+]
+basis = "Basque recipe for 5"
+
+[merluza_salsa_verde]
+name = "Merluza en salsa verde: hake and clams in a sauce of olive oil, garlic, parsley, flour, wine and fish stock"
+yield = 0.8
+ingredients = [
+  ["hake_raw", 800, "hake"],
+  ["clams", 200, "clam meat"],
+  ["olive_oil", 60, "olive oil"],
+  ["garlic", 15, "garlic"],
+  ["parsley", 15, "parsley"],
+  ["wheat_flour", 15, "flour"],
+  ["cooked_wine", 100, "white wine, 100 ml (alcohol evaporated)"],
+  ["salt", 6, "salt"],
+  ["broth", 300, "fish stock"],
+]
+basis = "Basque recipe for 4"
+
+[merluza_romana]
+name = "Merluza a la romana: hake in flour and beaten egg, fried in sunflower oil"
+yield = 0.85
+ingredients = [
+  ["hake_raw", 600, "hake fillets"],
+  ["wheat_flour", 60, "flour"],
+  ["egg", 100, "two eggs"],
+  ["sunflower_oil", 80, "oil absorbed when fried"],
+  ["salt", 5, "salt"],
+]
+basis = "home recipe for 4"
+
+[boquerones_fritos]
+name = "Boquerones fritos: fresh anchovies in flour, fried in olive oil"
+yield = 0.85
+ingredients = [
+  ["anchovy_raw", 500, "fresh anchovies, cleaned"],
+  ["wheat_flour", 50, "flour"],
+  ["olive_oil", 60, "oil absorbed when fried"],
+  ["salt", 5, "salt"],
+]
+basis = "Andalusian recipe for 3 raciones"
+
+[chopitos]
+name = "Chopitos: baby squid in flour, fried in olive oil"
+yield = 0.8
+ingredients = [
+  ["squid_raw", 500, "baby squid"],
+  ["wheat_flour", 70, "flour"],
+  ["olive_oil", 70, "oil absorbed when fried"],
+  ["salt", 5, "salt"],
+]
+basis = "bar recipe for 3 raciones"
+
+[sepia_a_la_plancha]
+name = "Sepia a la plancha: cuttlefish griddled with olive oil, garlic and parsley"
+yield = 0.75
+ingredients = [
+  ["cuttlefish", 500, "cuttlefish"],
+  ["olive_oil", 20, "olive oil"],
+  ["garlic", 5, "garlic"],
+  ["parsley", 5, "parsley"],
+  ["salt", 2, "salt"],
+]
+basis = "bar recipe for 2 raciones; cuttlefish loses ~25% of its weight on the griddle"
+
+[atun_encebollado]
+name = "Atún encebollado: tuna with slowly cooked onion, olive oil and white wine"
+yield = 0.75
+ingredients = [
+  ["tuna_steak", 500, "tuna (cooked weight)"],
+  ["onion", 600, "onion"],
+  ["olive_oil", 60, "olive oil"],
+  ["cooked_wine", 100, "white wine, 100 ml (alcohol evaporated)"],
+  ["garlic", 10, "garlic"],
+  ["salt", 5, "salt"],
+]
+basis = "Andalusian recipe for 4"
+
+[salpicon]
+name = "Salpicón de marisco: prawns, mussels and surimi with onion and peppers in a vinaigrette"
+ingredients = [
+  ["prawns", 200, "boiled prawns"],
+  ["mussels", 200, "cooked mussels"],
+  ["surimi", 100, "surimi"],
+  ["onion", 50, "onion"],
+  ["green_pepper", 80, "green pepper"],
+  ["red_pepper", 80, "red pepper"],
+  ["olive_oil", 40, "olive oil"],
+  ["vinegar", 20, "vinegar"],
+  ["salt", 3, "salt"],
+]
+basis = "home recipe for 4"
+
+# --- Meat dishes ---
+
+[pollo_al_ajillo]
+name = "Pollo al ajillo: chicken pieces fried in olive oil with garlic and white wine"
+yield = 0.75
+ingredients = [
+  ["chicken_raw", 1200, "chicken, meat and skin"],
+  ["olive_oil", 50, "olive oil absorbed"],
+  ["garlic", 50, "garlic"],
+  ["cooked_wine", 150, "white wine, 150 ml (alcohol evaporated)"],
+  ["parsley", 5, "parsley"],
+  ["salt", 10, "salt"],
+]
+basis = "home recipe for 4; chicken loses ~25% of its weight when fried and braised"
+
+[conejo_al_ajillo]
+name = "Conejo al ajillo: rabbit pieces fried in olive oil with garlic and white wine"
+yield = 0.75
+ingredients = [
+  ["rabbit_raw", 1200, "rabbit"],
+  ["olive_oil", 50, "olive oil absorbed"],
+  ["garlic", 50, "garlic"],
+  ["cooked_wine", 150, "white wine, 150 ml (alcohol evaporated)"],
+  ["parsley", 5, "parsley"],
+  ["salt", 10, "salt"],
+]
+basis = "home recipe for 4"
+
+[flamenquin]
+name = "Flamenquín: pork loin rolled around serrano ham, in flour, egg and breadcrumbs, fried"
+yield = 0.8
+ingredients = [
+  ["pork_loin_raw", 400, "thin pork loin fillets"],
+  ["cured_ham", 120, "serrano ham"],
+  ["wheat_flour", 40, "flour"],
+  ["egg", 100, "two eggs"],
+  ["breadcrumbs", 120, "breadcrumbs"],
+  ["sunflower_oil", 100, "oil absorbed when fried"],
+  ["salt", 3, "salt"],
+]
+basis = "Cordoban recipe for 3-4"
+
+[cachopo]
+name = "Cachopo: two veal fillets with serrano ham and cheese, in flour, egg and breadcrumbs, fried"
+yield = 0.82
+ingredients = [
+  ["veal_escalope_raw", 500, "veal fillets"],
+  ["cured_ham", 100, "serrano ham"],
+  ["cheese", 100, "cheese"],
+  ["egg", 100, "two eggs"],
+  ["wheat_flour", 40, "flour"],
+  ["breadcrumbs", 120, "breadcrumbs"],
+  ["sunflower_oil", 100, "oil absorbed when fried"],
+  ["salt", 3, "salt"],
+]
+basis = "Asturian recipe: one large cachopo (~870 g) for 2-3"
+
+[san_jacobo]
+name = "San Jacobo: cooked ham and cheese slices in flour, egg and breadcrumbs, fried"
+yield = 0.9
+ingredients = [
+  ["ham", 60, "cooked ham"],
+  ["cheese_slices", 40, "cheese slices"],
+  ["egg", 50, "egg"],
+  ["wheat_flour", 20, "flour"],
+  ["breadcrumbs", 50, "breadcrumbs"],
+  ["sunflower_oil", 40, "oil absorbed when fried"],
+]
+basis = "two san jacobos"
+
+[breaded_chicken]
+name = "Breaded chicken breast: chicken fillets in flour, egg and breadcrumbs, fried"
+yield = 0.82
+ingredients = [
+  ["chicken_breast_raw", 500, "chicken breast fillets"],
+  ["wheat_flour", 40, "flour"],
+  ["egg", 100, "two eggs"],
+  ["breadcrumbs", 120, "breadcrumbs"],
+  ["sunflower_oil", 80, "oil absorbed when fried"],
+  ["salt", 4, "salt"],
+]
+basis = "home recipe for 4"
+
+[meatloaf]
+name = "Meatloaf: minced beef with egg, breadcrumbs, onion and milk, baked with ketchup"
+yield = 0.8
+ingredients = [
+  ["minced_beef_raw", 700, "minced beef"],
+  ["egg", 100, "two eggs"],
+  ["breadcrumbs", 60, "breadcrumbs"],
+  ["onion", 100, "onion"],
+  ["whole_milk", 100, "whole milk, 100 ml"],
+  ["ketchup", 40, "ketchup"],
+  ["salt", 8, "salt"],
+]
+basis = "home recipe for 5"
+
+# --- Egg dishes ---
+
+[huevos_a_la_flamenca]
+name = "Huevos a la flamenca: eggs baked in tomato sauce with chorizo, serrano ham, peas and roasted pepper"
+yield = 0.9
+ingredients = [
+  ["egg", 400, "eight eggs"],
+  ["tomato_sauce", 300, "tomate frito"],
+  ["chorizo", 80, "chorizo"],
+  ["cured_ham", 60, "serrano ham"],
+  ["peas", 150, "peas"],
+  ["roasted_peppers", 100, "roasted red pepper"],
+  ["olive_oil", 20, "olive oil"],
+]
+basis = "Sevillian recipe for 4 cazuelas"
+
+[revuelto_setas]
+name = "Revuelto de setas: eggs scrambled with oyster mushrooms, garlic and olive oil"
+yield = 0.8
+ingredients = [
+  ["egg", 200, "four eggs"],
+  ["oyster_mushrooms", 200, "oyster mushrooms"],
+  ["olive_oil", 20, "olive oil"],
+  ["garlic", 5, "garlic"],
+  ["salt", 2, "salt"],
+]
+basis = "plate for 2"
+
+[revuelto_gambas]
+name = "Revuelto de gambas: eggs scrambled with prawns, garlic and olive oil"
+yield = 0.9
+ingredients = [
+  ["egg", 200, "four eggs"],
+  ["prawns_raw", 150, "peeled prawns"],
+  ["olive_oil", 20, "olive oil"],
+  ["garlic", 5, "garlic"],
+  ["salt", 2, "salt"],
+]
+basis = "plate for 2"
+
+[egg_white_omelette]
+name = "Egg white omelette: egg whites with a little olive oil"
+yield = 0.9
+ingredients = [
+  ["egg_whites", 200, "egg whites (about 6)"],
+  ["olive_oil", 5, "olive oil"],
+  ["salt", 1, "salt"],
+]
+basis = "one omelette"
+
+[huevos_rancheros]
+name = "Huevos rancheros: fried eggs on corn tortillas with tomato salsa, black beans and avocado"
+ingredients = [
+  ["corn_tortilla", 60, "two corn tortillas"],
+  ["fried_egg", 100, "two fried eggs"],
+  ["salsa", 100, "tomato salsa"],
+  ["black_beans", 80, "black beans"],
+  ["avocado", 30, "avocado"],
+]
+basis = "one plate"
+
+# --- Bocadillos, sandwiches, wraps ---
+
+[chorizo_baguette]
+name = "Chorizo bocadillo: half a barra with sliced chorizo"
+ingredients = [
+  ["baguette", 120, "half a barra"],
+  ["chorizo", 50, "chorizo"],
+]
+basis = "one bar bocadillo"
+
+[tuna_baguette]
+name = "Tuna bocadillo: half a barra with tuna in oil, tomato and mayonnaise"
+ingredients = [
+  ["baguette", 120, "half a barra"],
+  ["canned_tuna", 56, "a tin of tuna in oil, drained"],
+  ["tomato", 30, "tomato"],
+  ["mayonnaise", 10, "mayonnaise"],
+]
+basis = "one bar bocadillo"
+
+[chicken_baguette]
+name = "Chicken bocadillo: half a barra with grilled chicken, lettuce, tomato and mayonnaise"
+ingredients = [
+  ["baguette", 120, "half a barra"],
+  ["grilled_chicken", 80, "grilled chicken breast"],
+  ["lettuce", 15, "lettuce"],
+  ["tomato", 20, "tomato"],
+  ["mayonnaise", 10, "mayonnaise"],
+]
+basis = "one bar bocadillo"
+
+[bacon_cheese_baguette]
+name = "Bacon and cheese bocadillo: half a barra with bacon and cheese"
+ingredients = [
+  ["baguette", 120, "half a barra"],
+  ["bacon", 40, "bacon, fried"],
+  ["cheese", 30, "cheese"],
+]
+basis = "one bar bocadillo"
+
+[ham_cheese_baguette]
+name = "Ham and cheese bocadillo: half a barra with cooked ham and cheese slices"
+ingredients = [
+  ["baguette", 120, "half a barra"],
+  ["ham", 40, "cooked ham"],
+  ["cheese_slices", 25, "cheese slices"],
+]
+basis = "one bar bocadillo"
+
+[serranito]
+name = "Serranito: bread with pork loin, serrano ham, fried green pepper and tomato"
+ingredients = [
+  ["baguette", 120, "bread roll (mollete or barra)"],
+  ["pork_loin", 70, "griddled pork loin"],
+  ["cured_ham", 20, "serrano ham"],
+  ["green_pepper", 40, "green pepper"],
+  ["olive_oil", 10, "olive oil to fry the pepper"],
+  ["tomato", 15, "tomato"],
+]
+basis = "Sevillian bar recipe, one serranito"
+
+[pepito]
+name = "Pepito de ternera: half a barra with a griddled veal steak"
+ingredients = [
+  ["baguette", 120, "half a barra"],
+  ["veal_fillet", 90, "veal steak, griddled"],
+  ["olive_oil", 5, "olive oil"],
+]
+basis = "one bar pepito"
+
+[club_sandwich]
+name = "Club sandwich: three slices of toasted bread with chicken, bacon, egg, lettuce, tomato and mayonnaise"
+ingredients = [
+  ["sliced_bread", 75, "three slices of sandwich bread"],
+  ["grilled_chicken", 60, "grilled chicken"],
+  ["bacon", 20, "bacon"],
+  ["boiled_egg", 25, "boiled egg"],
+  ["lettuce", 15, "lettuce"],
+  ["tomato", 30, "tomato"],
+  ["mayonnaise", 15, "mayonnaise"],
+]
+basis = "one café club sandwich"
+
+[burrito]
+name = "Burrito: flour tortilla with minced beef, rice, black beans, cheese, salsa, cream and lettuce"
+ingredients = [
+  ["tortilla_wrap", 70, "large flour tortilla"],
+  ["rice", 60, "cooked rice"],
+  ["black_beans", 60, "black beans"],
+  ["minced_beef", 60, "minced beef, cooked"],
+  ["cheddar", 20, "cheese"],
+  ["salsa", 30, "tomato salsa"],
+  ["cooking_cream", 15, "cream"],
+  ["lettuce", 15, "lettuce"],
+]
+basis = "one Tex-Mex burrito"
+
+[chicken_wrap]
+name = "Chicken wrap: flour tortilla with grilled chicken, lettuce, tomato, cheese and yogurt sauce"
+ingredients = [
+  ["tortilla_wrap", 60, "flour tortilla"],
+  ["grilled_chicken", 70, "grilled chicken"],
+  ["lettuce", 20, "lettuce"],
+  ["tomato", 30, "tomato"],
+  ["cheese_slices", 15, "cheese"],
+  ["tzatziki", 20, "yogurt sauce"],
+]
+basis = "one wrap"
+
+[enchiladas]
+name = "Chicken enchiladas: corn tortillas rolled with chicken, baked in red sauce with cheese and cream"
+yield = 0.95
+ingredients = [
+  ["corn_tortilla", 120, "four corn tortillas"],
+  ["roast_chicken", 200, "shredded chicken"],
+  ["tomato_sauce", 200, "red sauce"],
+  ["cheddar", 80, "cheese"],
+  ["onion", 50, "onion"],
+  ["cooking_cream", 30, "cream"],
+]
+basis = "four enchiladas for 2"
+
+[fajitas]
+name = "Chicken fajitas: flour tortillas with chicken strips fried with peppers and onion"
+yield = 0.8
+ingredients = [
+  ["tortilla_wrap", 160, "four flour tortillas"],
+  ["chicken_breast_raw", 400, "chicken breast strips"],
+  ["red_pepper", 150, "red pepper"],
+  ["green_pepper", 150, "green pepper"],
+  ["onion", 150, "onion"],
+  ["sunflower_oil", 30, "oil"],
+  ["paprika", 3, "spices"],
+  ["salt", 4, "salt"],
+]
+basis = "six fajitas for 3"
+
+[shawarma]
+name = "Chicken shawarma: flatbread with marinated chicken, tomato, lettuce, onion, pickles and yogurt sauce"
+ingredients = [
+  ["flatbread", 80, "flatbread"],
+  ["chicken_thigh", 100, "roast chicken thigh meat"],
+  ["sunflower_oil", 5, "oil of the marinade"],
+  ["tomato", 30, "tomato"],
+  ["lettuce", 20, "lettuce"],
+  ["onion", 15, "onion"],
+  ["pickles", 10, "pickles"],
+  ["tzatziki", 30, "garlic yogurt sauce"],
+]
+basis = "one shawarma"
+
+[gyros]
+name = "Gyros pita: pita with pork, tzatziki, tomato, onion and chips"
+ingredients = [
+  ["flatbread", 80, "pita"],
+  ["pork_chop", 90, "griddled pork"],
+  ["tzatziki", 40, "tzatziki"],
+  ["tomato", 30, "tomato"],
+  ["onion", 15, "onion"],
+  ["french_fries", 30, "chips"],
+]
+basis = "one Greek pita gyros"
+
+# --- Tapas and snacks ---
+
+[croquettes_chicken]
+name = "Chicken croquettes: thick bechamel with roast chicken, breaded and fried"
+yield = 0.79
+ingredients = [
+  ["butter", 50, "butter"],
+  ["olive_oil", 30, "olive oil (roux)"],
+  ["wheat_flour", 100, "wheat flour"],
+  ["whole_milk", 1000, "whole milk, 1 l"],
+  ["roast_chicken", 150, "roast chicken, chopped"],
+  ["onion", 50, "onion"],
+  ["salt", 7, "salt"],
+  ["egg", 100, "egg (coating)"],
+  ["breadcrumbs", 120, "breadcrumbs (coating)"],
+  ["sunflower_oil", 120, "sunflower oil absorbed when deep-fried"],
+]
+basis = "the ham croquette recipe with chicken (often from the cocido)"
+
+[croquettes_cod]
+name = "Cod croquettes: thick bechamel with desalted cod, breaded and fried"
+yield = 0.79
+ingredients = [
+  ["butter", 50, "butter"],
+  ["olive_oil", 30, "olive oil (roux)"],
+  ["wheat_flour", 100, "wheat flour"],
+  ["whole_milk", 1000, "whole milk, 1 l"],
+  ["cod", 150, "desalted cod, flaked"],
+  ["onion", 50, "onion"],
+  ["salt", 8, "salt"],
+  ["egg", 100, "egg (coating)"],
+  ["breadcrumbs", 120, "breadcrumbs (coating)"],
+  ["sunflower_oil", 120, "sunflower oil absorbed when deep-fried"],
+]
+basis = "the ham croquette recipe with cod"
+
+[croquettes_mushroom]
+name = "Mushroom croquettes: thick bechamel with mushrooms and onion, breaded and fried"
+yield = 0.79
+ingredients = [
+  ["butter", 50, "butter"],
+  ["olive_oil", 30, "olive oil (roux)"],
+  ["wheat_flour", 100, "wheat flour"],
+  ["whole_milk", 1000, "whole milk, 1 l"],
+  ["mushrooms", 200, "mushrooms, sautéed"],
+  ["onion", 80, "onion"],
+  ["salt", 7, "salt"],
+  ["egg", 100, "egg (coating)"],
+  ["breadcrumbs", 120, "breadcrumbs (coating)"],
+  ["sunflower_oil", 120, "sunflower oil absorbed when deep-fried"],
+]
+basis = "the ham croquette recipe with mushrooms"
+
+[empanadillas]
+name = "Tuna empanadillas: wheat pastry discs filled with tuna, tomato and egg, fried"
+yield = 0.85
+ingredients = [
+  ["wheat_flour", 200, "flour (pastry)"],
+  ["sunflower_oil", 40, "oil (pastry)"],
+  ["water", 80, "water (pastry)"],
+  ["canned_tuna", 160, "tuna in oil, drained"],
+  ["tomato_sauce", 150, "tomate frito"],
+  ["boiled_egg", 50, "boiled egg"],
+  ["sunflower_oil", 80, "oil absorbed when fried"],
+  ["salt", 3, "salt"],
+]
+basis = "home recipe, about 16 empanadillas"
+
+[berenjenas_con_miel]
+name = "Berenjenas con miel: aubergine sticks in flour, fried, with cane honey"
+yield = 0.7
+ingredients = [
+  ["eggplant_raw", 500, "aubergine"],
+  ["wheat_flour", 60, "flour"],
+  ["sunflower_oil", 120, "oil absorbed when fried"],
+  ["honey", 60, "cane honey (miel de caña)"],
+  ["salt", 5, "salt"],
+]
+basis = "Andalusian bar recipe for 3 raciones"
+
+[pan_con_tomate_y_jamon]
+name = "Pan con tomate y jamón: toasted bread with grated tomato, olive oil and serrano ham"
+ingredients = [
+  ["baguette", 100, "toasted bread"],
+  ["tomato", 50, "grated tomato"],
+  ["olive_oil", 10, "olive oil"],
+  ["cured_ham", 30, "serrano ham"],
+]
+basis = "the Spanish breakfast toast"
+
+[baba_ganoush]
+name = "Baba ganoush: roasted aubergine with tahini, lemon, olive oil and garlic"
+yield = 0.6
+ingredients = [
+  ["eggplant_raw", 600, "aubergines, roasted"],
+  ["tahini", 60, "tahini"],
+  ["lemon", 30, "lemon juice"],
+  ["olive_oil", 30, "olive oil"],
+  ["garlic", 10, "garlic"],
+  ["salt", 4, "salt"],
+]
+basis = "home recipe, ~440 g"
+
+# --- Sweets ---
+
+[tarta_de_santiago]
+name = "Tarta de Santiago: ground almonds, sugar and eggs, baked"
+yield = 0.92
+ingredients = [
+  ["almonds", 250, "ground almonds"],
+  ["sugar", 260, "sugar (and icing sugar on top)"],
+  ["egg", 250, "five eggs"],
+  ["lemon", 5, "lemon zest"],
+  ["butter", 5, "butter for the mould"],
+]
+basis = "Galician recipe, one 24 cm cake (~700 g)"
+
+[polvorones]
+name = "Polvorones: toasted flour, lard, icing sugar and ground almonds"
+yield = 0.95
+ingredients = [
+  ["wheat_flour", 250, "toasted flour"],
+  ["lard", 125, "lard"],
+  ["sugar", 125, "icing sugar"],
+  ["almonds", 60, "toasted ground almonds"],
+]
+basis = "Andalusian Christmas recipe, about 18 polvorones"
+
+[roscon]
+name = "Roscón de Reyes with cream: brioche ring filled with whipped cream"
+ingredients = [
+  ["brioche", 400, "roscón (brioche dough)"],
+  ["whipped_cream", 150, "whipped cream filling"],
+  ["sugar", 10, "sugar topping"],
+]
+basis = "a medium filled roscón for 5"
+
+[leche_frita]
+name = "Leche frita: thick milk custard squares in flour and egg, fried, with sugar and cinnamon"
+yield = 0.9
+ingredients = [
+  ["whole_milk", 500, "whole milk, 500 ml"],
+  ["sugar", 120, "sugar (custard and coating)"],
+  ["corn_starch", 50, "corn starch"],
+  ["wheat_flour", 60, "flour (custard and coating)"],
+  ["egg_yolk", 40, "two egg yolks"],
+  ["butter", 10, "butter"],
+  ["egg", 50, "egg (coating)"],
+  ["sunflower_oil", 60, "oil absorbed when fried"],
+]
+basis = "home recipe, about 16 squares"
+
+[protein_pancakes]
+name = "Oat and egg white pancakes: rolled oats, egg whites, banana and a little whey protein"
+yield = 0.9
+ingredients = [
+  ["rolled_oats", 50, "rolled oats"],
+  ["egg_whites", 100, "egg whites"],
+  ["banana", 60, "half a banana"],
+  ["whey_protein", 15, "half a scoop of whey"],
+  ["sunflower_oil", 3, "oil for the pan"],
+]
+basis = "the gym breakfast, 3-4 small pancakes"
+
+[overnight_oats]
+name = "Overnight oats: rolled oats soaked in semi-skimmed milk with yogurt, chia seeds and honey"
+ingredients = [
+  ["rolled_oats", 50, "rolled oats"],
+  ["milk", 150, "semi-skimmed milk, 150 ml"],
+  ["yogurt", 60, "yogurt"],
+  ["chia_seeds", 10, "chia seeds"],
+  ["honey", 10, "honey"],
+]
+basis = "one jar"
+
+[protein_porridge]
+name = "Protein porridge: rolled oats cooked in semi-skimmed milk with a scoop of whey"
+yield = 0.95
+ingredients = [
+  ["rolled_oats", 50, "rolled oats"],
+  ["milk", 250, "semi-skimmed milk, 250 ml"],
+  ["whey_protein", 30, "a scoop of whey"],
+]
+basis = "one bowl"
+
+# --- Drinks (ml dishes: per 100 g, then mapping.txt's density; ml ingredients in ml) ---
+
+[cappuccino]
+name = "Cappuccino: espresso with foamed semi-skimmed milk (1 : 3)"
+ingredients = [
+  ["espresso", 40, "espresso"],
+  ["milk", 120, "semi-skimmed milk, 120 ml"],
+]
+basis = "a 160 ml cup"
+
+[whisky_cola]
+name = "Whisky and cola: 50 ml whisky + 200 ml cola"
+ingredients = [
+  ["spirits", 50, "whisky, 50 ml"],
+  ["cola", 200, "cola with sugar, 200 ml"],
+]
+basis = "Spanish bar pour (50 ml) and 200 ml of cola"
+
+[vodka_orange]
+name = "Vodka and orange: 50 ml vodka + 200 ml orange soda"
+ingredients = [
+  ["vodka", 50, "vodka, 50 ml"],
+  ["orange_soda", 200, "orange soda with sugar, 200 ml"],
+]
+basis = "Spanish bar pour (50 ml) and 200 ml of orange soda"
+
+[vodka_lemon]
+name = "Vodka and lemon: 50 ml vodka + 200 ml lemon soda"
+ingredients = [
+  ["vodka", 50, "vodka, 50 ml"],
+  ["lemon_soda", 200, "lemon soda with sugar, 200 ml"],
+]
+basis = "Spanish bar pour (50 ml) and 200 ml of lemon soda"
+
+[rebujito]
+name = "Rebujito: 100 ml manzanilla + 250 ml lemon soda"
+ingredients = [
+  ["sherry", 100, "manzanilla or fino, 100 ml"],
+  ["lemon_soda", 250, "lemon soda with sugar, 250 ml"],
+]
+basis = "Feria de Abril mix, about 1 : 2.5"
+
+# --- Supplements ---
+
+[protein_shake]
+name = "Protein shake: 30 g whey protein in 250 ml semi-skimmed milk"
+ingredients = [
+  ["whey_protein", 30, "one scoop of whey"],
+  ["milk", 250, "semi-skimmed milk, 250 ml"],
+]
+basis = "one scoop in a shaker; ~270 ml"
+
+[protein_shake_water]
+name = "Protein shake: 30 g whey protein in 250 ml water"
+ingredients = [
+  ["whey_protein", 30, "one scoop of whey"],
+  ["water", 250, "water, 250 ml"],
+]
+basis = "one scoop in a shaker; ~270 ml"
+
+[protein_shake_oat]
+name = "Protein shake: 30 g whey protein in 250 ml oat drink"
+ingredients = [
+  ["whey_protein", 30, "one scoop of whey"],
+  ["oat_drink", 250, "oat drink, 250 ml"],
+]
+basis = "one scoop in a shaker; ~270 ml"
+
+[mass_gainer]
+name = "Mass gainer powder: whey protein and maltodextrin (30 : 70)"
+ingredients = [
+  ["whey_protein", 30, "whey protein"],
+  ["maltodextrin", 70, "maltodextrin"],
+]
+basis = "the usual gainer composition (~20-25% protein, ~65-70% carbohydrate); flavoured products add cocoa, sugar or oat flour"
+
+[energy_gel]
+list = false
+name = "Energy gel: glucose syrup with water and salt"
+ingredients = [
+  ["fdc:168837", 85, "glucose (corn) syrup"],
+  ["water", 15, "water, 15 ml"],
+  ["salt", 0.3, "salt"],
+]
+basis = "a typical 40 g sports gel gives ~25 g carbohydrate; gels made with maltodextrin have the same energy and carbohydrate and fewer sugars"
+
+[maltodextrin]
+list = false
+name = "Maltodextrin powder: documented composition"
+composition = {kcal = 380, protein = 0, carbs = 95, fat = 0, sat_fat = 0, fiber = 0, salt = 0, mono_fat = 0, poly_fat = 0, cholesterol = 0}
+basis = "maltodextrin is a starch hydrolysate (dextrose equivalent under 20, Codex/EU definition) with ~5% water: 95 g available carbohydrate at the EU factor of 4 kcal/g = 380 kcal; its mono- and disaccharides vary with the dextrose equivalent, so sugars stay unknown (check the label)"
+
+[sherry]
+list = false
+name = "Fino or manzanilla (dry sherry), 15% vol: documented composition"
+composition = {kcal = 88, protein = 0.1, carbs = 1.0, sugars = 0.5, fat = 0, sat_fat = 0, fiber = 0, salt = 0.02, alcohol = 12.0, mono_fat = 0, poly_fat = 0, cholesterol = 0, potassium = 92, calcium = 8, iron = 0.24, magnesium = 9, zinc = 0.07, vit_a = 0, vit_c = 0, vit_d = 0, vit_e = 0, vit_b12 = 0, folate = 0}
+basis = "fino and manzanilla are dry (under 5 g of sugar per litre) and 15% vol: 15 ml x 0.789 g/ml = 11.8 g of alcohol per 100 ml (12 g per 100 g at 0.99 g/ml) at 7 kcal/g, ~1 g of carbohydrate (sugars and glycerol); minerals of USDA's dry dessert (fortified) wine. ~87 kcal per 100 ml; USDA's dry dessert wine (152 kcal, 11.7 g carbohydrate) is a sweeter, stronger wine"
+
+[creatine]
+list = false
+name = "Creatine monohydrate powder: documented composition"
+composition = {kcal = 0, protein = 0, carbs = 0, sugars = 0, fat = 0, sat_fat = 0, fiber = 0, salt = 0, mono_fat = 0, poly_fat = 0, cholesterol = 0, potassium = 0, calcium = 0, iron = 0, magnesium = 0, zinc = 0, vit_a = 0, vit_c = 0, vit_d = 0, vit_e = 0, vit_b12 = 0, folate = 0}
+basis = "pure creatine monohydrate (C4H9N3O2·H2O) is not protein, carbohydrate or fat under EU labelling and contains no minerals or vitamins: EU labels declare 0 kcal"
+
+[bcaa]
+list = false
+name = "BCAA / EAA amino acid powder, unflavoured: documented composition"
+composition = {kcal = 400, protein = 100, carbs = 0, sugars = 0, fat = 0, sat_fat = 0, fiber = 0, salt = 0, mono_fat = 0, poly_fat = 0, cholesterol = 0}
+basis = "free amino acids (leucine, isoleucine, valine; EAA also the other essential ones) counted as protein at the EU factor of 4 kcal/g; flavoured powders add sweeteners and acids (a few kcal per serving); minerals and vitamins unknown"
+
+# --- 1.8.0, second batch ---
+
+[garbanzos_con_chorizo]
+name = "Garbanzos con chorizo: chickpeas stewed with chorizo, potato, carrot and onion"
+yield = 0.72
+ingredients = [
+  ["chickpeas_dry", 400, "dry chickpeas"],
+  ["chorizo", 150, "chorizo"],
+  ["potato_raw", 300, "potato"],
+  ["onion", 100, "onion"],
+  ["carrot", 100, "carrot"],
+  ["olive_oil", 30, "olive oil"],
+  ["paprika", 5, "paprika"],
+  ["garlic", 10, "garlic"],
+  ["salt", 8, "salt"],
+  ["water", 2000, "water"],
+]
+basis = "home recipe for 6 plates (~2.2 kg)"
+
+[patatas_con_costillas]
+name = "Patatas con costillas: potatoes stewed with pork ribs, onion, pepper, tomato and paprika"
+yield = 0.8
+ingredients = [
+  ["pork_shoulder_raw", 500, "pork rib meat"],
+  ["potato_raw", 1000, "potatoes"],
+  ["onion", 150, "onion"],
+  ["green_pepper", 100, "green pepper"],
+  ["canned_tomato", 150, "crushed tomato"],
+  ["olive_oil", 40, "olive oil"],
+  ["paprika", 5, "paprika"],
+  ["garlic", 10, "garlic"],
+  ["cooked_wine", 100, "white wine, 100 ml (alcohol evaporated)"],
+  ["salt", 10, "salt"],
+  ["water", 800, "water"],
+]
+basis = "home recipe for 6"
+
+[pollo_guisado]
+name = "Pollo guisado: chicken stewed with onion, carrot, tomato and white wine"
+yield = 0.8
+ingredients = [
+  ["chicken_raw", 1000, "chicken, meat and skin"],
+  ["onion", 200, "onion"],
+  ["carrot", 150, "carrot"],
+  ["canned_tomato", 300, "crushed tomato"],
+  ["cooked_wine", 150, "white wine, 150 ml (alcohol evaporated)"],
+  ["olive_oil", 40, "olive oil"],
+  ["garlic", 10, "garlic"],
+  ["salt", 8, "salt"],
+]
+basis = "home recipe for 4"
+
+[carrot_cream]
+name = "Carrot cream soup: carrot, onion and potato in stock with olive oil"
+yield = 0.85
+ingredients = [
+  ["carrot", 600, "carrots"],
+  ["onion", 100, "onion"],
+  ["potato_raw", 150, "potato"],
+  ["olive_oil", 25, "olive oil"],
+  ["salt", 6, "salt"],
+  ["broth", 700, "stock"],
+]
+basis = "home recipe for 4 bowls"
+
+[pasta_four_cheese]
+name = "Pasta with four cheeses: pasta in a cream sauce with blue cheese, mozzarella, parmesan and cured cheese"
+ingredients = [
+  ["pasta", 600, "cooked pasta"],
+  ["cooking_cream", 150, "cream"],
+  ["blue_cheese", 40, "blue cheese"],
+  ["mozzarella", 60, "mozzarella"],
+  ["parmesan", 30, "parmesan"],
+  ["cheese", 30, "semi-cured cheese"],
+  ["salt", 2, "salt"],
+]
+basis = "home recipe for 3"
+
+[lemon_chicken]
+name = "Lemon chicken: battered chicken pieces, fried, in a sweet lemon sauce"
+yield = 0.8
+ingredients = [
+  ["chicken_breast_raw", 500, "chicken breast"],
+  ["wheat_flour", 40, "flour (batter)"],
+  ["corn_starch", 30, "corn starch (batter and sauce)"],
+  ["egg", 50, "egg (batter)"],
+  ["sunflower_oil", 80, "oil absorbed when fried"],
+  ["sugar", 40, "sugar (sauce)"],
+  ["lemon", 60, "lemon juice (sauce)"],
+  ["salt", 4, "salt"],
+  ["water", 100, "water (sauce)"],
+]
+basis = "Chinese-restaurant style for 3"
+
+[lomo_saltado]
+name = "Lomo saltado: beef strips stir-fried with onion, tomato, soy sauce and vinegar, with chips"
+yield = 0.85
+ingredients = [
+  ["beef_raw", 400, "beef sirloin strips"],
+  ["french_fries", 200, "chips"],
+  ["onion", 150, "red onion"],
+  ["tomato", 150, "tomato"],
+  ["soy_sauce", 30, "soy sauce"],
+  ["vinegar", 15, "vinegar"],
+  ["sunflower_oil", 30, "oil"],
+  ["garlic", 5, "garlic"],
+  ["salt", 3, "salt"],
+]
+basis = "Peruvian home recipe for 3, without the rice (log it separately)"
+
+[calamares_en_su_tinta]
+name = "Calamares en su tinta: squid stewed in its ink with onion, tomato and wine"
+yield = 0.75
+ingredients = [
+  ["squid_raw", 800, "squid"],
+  ["onion", 300, "onion"],
+  ["tomato", 100, "tomato"],
+  ["olive_oil", 60, "olive oil"],
+  ["cooked_wine", 100, "white wine, 100 ml (alcohol evaporated)"],
+  ["garlic", 10, "garlic"],
+  ["salt", 6, "salt"],
+]
+basis = "Basque recipe for 4; the ink adds colour, not nutrients worth counting"
+
+[mejillones_marinera]
+name = "Mejillones a la marinera: mussels in a sauce of onion, tomato, wine, flour and paprika"
+yield = 0.85
+ingredients = [
+  ["mussels_raw", 600, "mussel meat (from ~2 kg of mussels)"],
+  ["onion", 150, "onion"],
+  ["canned_tomato", 150, "crushed tomato"],
+  ["olive_oil", 40, "olive oil"],
+  ["cooked_wine", 150, "white wine, 150 ml (alcohol evaporated)"],
+  ["wheat_flour", 10, "flour"],
+  ["garlic", 10, "garlic"],
+  ["paprika", 3, "paprika"],
+  ["salt", 3, "salt"],
+]
+basis = "home recipe for 4"
+
+[zarzuela]
+name = "Zarzuela: hake, prawns, squid, mussels and clams in a tomato, wine and almond sauce"
+yield = 0.8
+ingredients = [
+  ["hake_raw", 400, "hake"],
+  ["prawns_raw", 200, "prawns"],
+  ["squid_raw", 200, "squid"],
+  ["mussels_raw", 200, "mussel meat"],
+  ["clams", 150, "clam meat"],
+  ["onion", 200, "onion"],
+  ["canned_tomato", 200, "crushed tomato"],
+  ["olive_oil", 60, "olive oil"],
+  ["cooked_wine", 150, "white wine, 150 ml (alcohol evaporated)"],
+  ["almonds", 20, "almonds (picada)"],
+  ["garlic", 10, "garlic"],
+  ["salt", 8, "salt"],
+  ["broth", 300, "fish stock"],
+]
+basis = "Catalan recipe for 5"
+
+[gambas_plancha]
+name = "Gambas a la plancha: prawns griddled with a little olive oil and coarse salt"
+yield = 0.8
+ingredients = [
+  ["prawns_raw", 500, "prawns"],
+  ["olive_oil", 10, "olive oil"],
+  ["salt", 5, "coarse salt"],
+]
+basis = "bar recipe for 3 raciones"
+
+[nigiri_salmon]
+name = "Salmon nigiri: vinegared sushi rice topped with raw salmon"
+ingredients = [
+  ["rice", 200, "cooked short-grain rice"],
+  ["salmon_raw", 120, "raw salmon"],
+  ["sugar", 6, "sugar (rice seasoning)"],
+  ["vinegar", 12, "rice vinegar"],
+  ["salt", 2, "salt"],
+]
+basis = "10 nigiri of ~34 g"
+
+[maki_roll]
+name = "Salmon maki: sushi rice with salmon and cucumber rolled in nori"
+ingredients = [
+  ["rice", 200, "cooked short-grain rice"],
+  ["nori", 9, "three nori sheets"],
+  ["salmon_raw", 60, "raw salmon"],
+  ["cucumber", 30, "cucumber"],
+  ["sugar", 6, "sugar (rice seasoning)"],
+  ["vinegar", 12, "rice vinegar"],
+  ["salt", 2, "salt"],
+]
+basis = "three rolls, 18 pieces of ~18 g"
+
+[tortilla_calabacin]
+name = "Courgette omelette: eggs with courgette and onion fried in olive oil"
+yield = 0.75
+ingredients = [
+  ["egg", 300, "six eggs"],
+  ["zucchini_raw", 400, "courgette"],
+  ["onion", 100, "onion"],
+  ["olive_oil", 40, "olive oil"],
+  ["salt", 4, "salt"],
+]
+basis = "home recipe, one tortilla of ~630 g"
+
+[champinones_al_ajillo]
+name = "Champiñones al ajillo: mushrooms sautéed in olive oil with garlic, chilli and parsley"
+yield = 0.7
+ingredients = [
+  ["mushrooms_raw", 500, "mushrooms"],
+  ["olive_oil", 40, "olive oil"],
+  ["garlic", 15, "garlic"],
+  ["parsley", 5, "parsley"],
+  ["chili_pepper", 2, "chilli"],
+  ["salt", 4, "salt"],
+]
+basis = "bar recipe for 3 tapas"
+
+[falafel_pita]
+name = "Falafel pita: pita with falafel, tahini, tomato, lettuce and cucumber"
+ingredients = [
+  ["flatbread", 80, "pita"],
+  ["falafel", 90, "three falafel"],
+  ["tahini", 15, "tahini sauce"],
+  ["tomato", 30, "tomato"],
+  ["lettuce", 20, "lettuce"],
+  ["cucumber", 20, "cucumber"],
+]
+basis = "one pita"
+
+[tuna_sandwich]
+name = "Tuna sandwich: sandwich bread with tuna in oil, mayonnaise, lettuce and tomato"
+ingredients = [
+  ["sliced_bread", 60, "two slices of sandwich bread"],
+  ["canned_tuna", 56, "a tin of tuna in oil, drained"],
+  ["mayonnaise", 15, "mayonnaise"],
+  ["lettuce", 10, "lettuce"],
+  ["tomato", 20, "tomato"],
+]
+basis = "one sandwich"
+
+[croissant_mixto]
+name = "Croissant mixto: croissant with cooked ham and cheese"
+ingredients = [
+  ["croissant", 60, "croissant"],
+  ["ham", 20, "cooked ham"],
+  ["cheese_slices", 20, "cheese slice"],
+]
+basis = "one café croissant, often warmed"
+
+[durum]
+name = "Dürüm: flour wrap with chicken kebab meat, lettuce, tomato, onion and yogurt sauce"
+ingredients = [
+  ["tortilla_wrap", 90, "large flour wrap"],
+  ["chicken_thigh", 100, "chicken kebab meat"],
+  ["sunflower_oil", 5, "oil of the marinade"],
+  ["lettuce", 20, "lettuce"],
+  ["tomato", 30, "tomato"],
+  ["onion", 15, "onion"],
+  ["tzatziki", 30, "yogurt sauce"],
+]
+basis = "one dürüm as sold in Spanish kebab shops"
+
+[arepa]
+name = "Arepa: maize flour dough griddled with a little oil"
+yield = 0.85
+ingredients = [
+  ["corn_flour", 250, "precooked maize flour"],
+  ["water", 300, "water, 300 ml"],
+  ["salt", 5, "salt"],
+  ["sunflower_oil", 10, "oil for the griddle"],
+]
+basis = "four arepas of ~120 g"
+
+[tocino_de_cielo]
+name = "Tocino de cielo: egg yolks and sugar syrup baked over caramel"
+yield = 0.85
+ingredients = [
+  ["egg_yolk", 240, "twelve egg yolks"],
+  ["sugar", 300, "sugar (syrup and caramel)"],
+  ["water", 125, "water, 125 ml"],
+  ["lemon", 5, "lemon peel"],
+]
+basis = "Andalusian recipe, ~570 g (10 servings)"
+
+[coulant]
+name = "Chocolate coulant: dark chocolate, butter, eggs, sugar and a little flour, baked soft in the middle"
+yield = 0.9
+ingredients = [
+  ["dark_chocolate", 150, "dark chocolate"],
+  ["butter", 100, "butter"],
+  ["egg", 200, "four eggs"],
+  ["sugar", 75, "sugar"],
+  ["wheat_flour", 40, "flour"],
+]
+basis = "five individual coulants of ~100 g"
+
+[pestinos]
+name = "Pestiños: wheat dough with olive oil, wine and sesame, fried and glazed with honey"
+yield = 0.85
+ingredients = [
+  ["wheat_flour", 300, "flour"],
+  ["olive_oil", 60, "olive oil (dough)"],
+  ["cooked_wine", 100, "white wine, 100 ml (alcohol evaporated)"],
+  ["sesame_seeds", 10, "sesame and aniseed"],
+  ["olive_oil", 80, "oil absorbed when fried"],
+  ["honey", 150, "honey glaze"],
+]
+basis = "Andalusian Easter recipe, about 20 pestiños"
+
+[rosquillas]
+name = "Rosquillas: fried rings of flour, sugar, egg, milk and oil"
+yield = 0.85
+ingredients = [
+  ["wheat_flour", 300, "flour"],
+  ["sugar", 100, "sugar"],
+  ["egg", 100, "two eggs"],
+  ["whole_milk", 60, "whole milk, 60 ml"],
+  ["sunflower_oil", 50, "oil (dough)"],
+  ["sunflower_oil", 70, "oil absorbed when fried"],
+  ["lemon", 5, "lemon zest"],
+]
+basis = "home recipe, about 20 rosquillas"
+
+[tarta_de_la_abuela]
+name = "Tarta de la abuela: layers of María biscuits dipped in milk, custard and a chocolate top"
+ingredients = [
+  ["maria_biscuits", 200, "María biscuits"],
+  ["whole_milk", 150, "whole milk to dip them, 150 ml"],
+  ["custard", 500, "custard (natillas)"],
+  ["dark_chocolate", 100, "dark chocolate"],
+  ["butter", 30, "butter"],
+]
+basis = "home recipe, ~1 kg (8 slices)"
+
+[tea_with_milk]
+name = "Tea with milk: black tea with a dash of semi-skimmed milk"
+ingredients = [
+  ["tea", 200, "tea, 200 ml"],
+  ["milk", 50, "semi-skimmed milk, 50 ml"],
+]
+basis = "a 250 ml cup"
+
+[agua_de_valencia]
+name = "Agua de Valencia: cava, orange juice, gin and vodka with sugar"
+ingredients = [
+  ["sparkling_wine", 300, "cava, 300 ml"],
+  ["orange_juice", 300, "orange juice, 300 ml"],
+  ["gin", 50, "gin, 50 ml"],
+  ["vodka", 50, "vodka, 50 ml"],
+  ["sugar", 20, "sugar"],
+]
+basis = "a 700 ml jug for 3-4 glasses"
+
+[mojo_picon]
+name = "Mojo picón: olive oil, garlic, paprika and dried chilli, vinegar and salt"
+ingredients = [
+  ["olive_oil", 100, "olive oil"],
+  ["garlic", 15, "garlic"],
+  ["paprika", 10, "paprika"],
+  ["chili_pepper", 5, "chilli"],
+  ["vinegar", 30, "vinegar"],
+  ["salt", 5, "salt"],
+  ["water", 20, "water"],
+]
+basis = "Canarian recipe, ~185 g"
+
+[romesco]
+name = "Romesco: roasted tomato and pepper with almonds, hazelnuts, bread, garlic, olive oil and vinegar"
+yield = 0.85
+ingredients = [
+  ["tomato", 300, "tomatoes, roasted"],
+  ["roasted_peppers", 100, "roasted ñora or red pepper"],
+  ["almonds", 50, "toasted almonds"],
+  ["hazelnuts", 30, "toasted hazelnuts"],
+  ["bread", 30, "fried bread"],
+  ["olive_oil", 100, "olive oil"],
+  ["garlic", 15, "roasted garlic"],
+  ["vinegar", 20, "vinegar"],
+  ["salt", 5, "salt"],
+]
+basis = "Tarragona recipe, ~550 g"

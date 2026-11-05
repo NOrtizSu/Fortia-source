@@ -18,3 +18,7 @@ routine_cardio_mix = 有氧器械
 # Added in 1.6.0
 routine_foam_rolling = 泡沫轴放松恢复
 routine_hiit = 无器械 HIIT
+
+# Added in 1.8.0
+routine_kettlebell = 壶铃全身训练
+routine_calisthenics = 徒手健身技巧

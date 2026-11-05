@@ -18,3 +18,7 @@ routine_cardio_mix = 유산소 머신
 # Added in 1.6.0
 routine_foam_rolling = 폼롤러 회복
 routine_hiit = 맨몸 HIIT
+
+# Added in 1.8.0
+routine_kettlebell = 케틀벨 전신 운동
+routine_calisthenics = 칼리스데닉스 기술

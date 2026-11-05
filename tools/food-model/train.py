@@ -34,6 +34,7 @@ from PIL import Image
 from timm.utils import ModelEmaV3
 from torch.utils.data import DataLoader, Dataset, IterableDataset, WeightedRandomSampler, get_worker_info
 from torchvision.transforms import v2 as T
+from torchvision.transforms.v2 import functional as TF
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from food_items import fast_path  # noqa: E402
@@ -60,6 +61,41 @@ def configure_from_checkpoint(ck):
     configure(ck.get("size", 224), ck.get("resize", 256), ck.get("mean", (0.5,) * 3), ck.get("std", (0.5,) * 3))
 
 
+def narrow_head(model, hidden, keep=None):
+    """v3 (size budget): MobileNet's head (global pool -> 1x1 conv_head -> BN + ReLU -> classifier) with `hidden`
+    units instead of 1 280; `keep` = the indices of the units kept (their weights are copied), else new ones."""
+    import torch.nn as nn
+    from timm.layers.norm_act import BatchNormAct2d
+    old_c, old_n, old_l = model.conv_head, model.norm_head, model.get_classifier()
+    keep = torch.arange(hidden) if keep is None else torch.as_tensor(keep)
+    conv = nn.Conv2d(old_c.in_channels, hidden, 1, bias=old_c.bias is not None)
+    norm = BatchNormAct2d(hidden, eps=old_n.eps, act_layer=type(old_n.act))
+    lin = nn.Linear(hidden, old_l.out_features)
+    with torch.no_grad():
+        conv.weight.copy_(old_c.weight[keep])
+        for k in ("weight", "bias", "running_mean", "running_var"):
+            getattr(norm, k).copy_(getattr(old_n, k)[keep])
+        lin.weight.copy_(old_l.weight[:, keep])
+        lin.bias.copy_(old_l.bias)
+    model.conv_head, model.norm_head, model.classifier = conv, norm, lin
+    model.head_hidden_size = hidden
+    return model
+
+
+def build_model(name, n_classes, head_hidden=0, **kw):
+    """timm model (+ narrow_head when a checkpoint says `head_hidden`): use for every checkpoint of ours."""
+    model = timm.create_model(name, num_classes=n_classes, **kw)
+    if head_hidden and head_hidden != model.conv_head.out_channels:
+        narrow_head(model, head_hidden)
+    return model
+
+
+def model_from_checkpoint(ck):
+    model = build_model(ck["model"], ck["n_classes"], ck.get("head_hidden", 0), pretrained=False)
+    model.load_state_dict(ck["state_dict"])
+    return model
+
+
 class Rot90:
     def __call__(self, img):
         k = np.random.randint(4)
@@ -75,6 +111,21 @@ def train_tf(size=None):
         T.TrivialAugmentWide(),
         T.ToImage(),
     ])
+
+
+class ViewTf:
+    """v3 distillation: the crop and flip of a stored teacher view (teacher.py), then the rest of train_tf."""
+
+    def __init__(self, size):
+        self.size = size
+        self.rest = T.Compose([T.RandomApply([Rot90()], p=0.25), T.TrivialAugmentWide(), T.ToImage()])
+
+    def __call__(self, img, view):
+        top, left, h, w, flip = (int(v) for v in view)
+        img = TF.resized_crop(img, top, left, h, w, [self.size, self.size], antialias=True)
+        if flip:
+            img = TF.horizontal_flip(img)
+        return self.rest(img)
 
 
 def eval_tf():
@@ -164,7 +215,7 @@ class PackStream(IterableDataset):
     balance: each photo is repeated Poisson(weight) times, weight = n_class^-0.5 scaled so that an epoch has
     about as many samples as photos (square-root balancing, sampling with replacement)."""
 
-    def __init__(self, csv_path, tf, block=512, group=4, seed=0, boost=None):
+    def __init__(self, csv_path, tf, block=512, group=4, seed=0, boost=None, views=None):
         base = os.path.splitext(csv_path)[0]
         self.pack = base + ".bin"
         self.offsets = np.load(base + ".idx.npy")
@@ -175,16 +226,22 @@ class PackStream(IterableDataset):
             w[self.labels == label] *= factor
         self.rate = w * len(w) / w.sum()
         self.tf, self.block, self.group, self.seed = tf, block, group, seed
+        self.views = views  # [n, V, 5] teacher views (crop on the packed picture): tf is then a ViewTf
         self.epoch = 0
 
     def __len__(self):
         return len(self.labels)
 
     def _item(self, args):
+        """(picture, label, code): code = i * V + v, the teacher view used (-1 without a teacher)."""
         buf, start, i = args
         with Image.open(io.BytesIO(buf[self.offsets[i] - start:self.offsets[i + 1] - start])) as im:
             img = im.convert("RGB")
-        return self.tf(img), int(self.labels[i])
+        if self.views is None:
+            return self.tf(img), int(self.labels[i]), -1
+        V = self.views.shape[1]
+        v = np.random.randint(V)
+        return self.tf(img, self.views[i, v]), int(self.labels[i]), int(i * V + v)
 
     def __iter__(self):
         info = get_worker_info()
@@ -270,6 +327,13 @@ def main():
                          "(~5e-5) with a 10-20x higher head lr, else its pretrained features are lost early")
     ap.add_argument("--zero-head", action="store_true",
                     help="start the classifier at zero (no large random logits, no huge first gradients)")
+    ap.add_argument("--init-classes", default="", help="v3: the class list (csv, id column) of the --init checkpoint; "
+                    "its classifier rows are copied to the same ids of --classes, new classes start at zero")
+    ap.add_argument("--classes", default="", help="v3: this run's class list (csv in label order)")
+    ap.add_argument("--teacher", default="", help="v3: teacher.py folder (train_views.npy, train_teacher_logits.npy)")
+    ap.add_argument("--kd-alpha", type=float, default=0.7, help="weight of the distillation loss")
+    ap.add_argument("--kd-t", type=float, default=1.0, help="distillation temperature")
+    ap.add_argument("--head-hidden", type=int, default=0, help="v3: narrow the 1 280-unit head (size budget)")
     a = ap.parse_args()
     torch.manual_seed(0)
     np.random.seed(0)
@@ -290,9 +354,18 @@ def main():
     print(f"size {SIZE} (resize {RESIZE}), mean {MEAN}, std {STD}, sizes {sizes} switch at {switch_epoch}",
           flush=True)
     val_ds = Photos(os.path.join(ds_dir, "val.csv"), eval_tf())
+    views = teacher_logits = None
+    if a.teacher:
+        views = np.load(os.path.join(a.teacher, "train_views.npy"))
+        tl = np.load(os.path.join(a.teacher, "train_teacher_logits.npy"), mmap_mode="r")
+        assert tl.shape[0] == len(pd.read_csv(train_csv)), "teacher made for another train.csv"
+        teacher_logits = torch.from_numpy(np.ascontiguousarray(tl).reshape(-1, tl.shape[-1])).to(device)
+        print(f"teacher: {tl.shape[1]} views per picture, alpha {a.kd_alpha}, T {a.kd_t}", flush=True)
+
     def make_loader(size, first_epoch=0):
         not_food = int(pd.read_csv(train_csv).label.max())  # `_not_food` is the last label
-        ds = PackStream(train_csv, train_tf(size), boost={not_food: a.boost_not_food})
+        ds = PackStream(train_csv, ViewTf(size) if views is not None else train_tf(size),
+                        boost={not_food: a.boost_not_food}, views=views)
         ds.epoch = first_epoch
         return ds, DataLoader(ds, a.batch, num_workers=a.workers, pin_memory=False, drop_last=True,
                               persistent_workers=True, prefetch_factor=3)
@@ -313,10 +386,58 @@ def main():
     model = timm.create_model(a.model, pretrained=not a.init, num_classes=n_classes, drop_rate=0.2,
                               drop_path_rate=a.drop_path)
     if a.init:
-        model.load_state_dict(torch.load(a.init, map_location="cpu")["state_dict"])
+        sd = torch.load(a.init, map_location="cpu", weights_only=False)["state_dict"]
+        if a.init_classes:  # class lists differ: copy the classifier rows by class id
+            old = pd.read_csv(a.init_classes).id.tolist()
+            new = pd.read_csv(a.classes).id.tolist()
+            assert len(new) == n_classes, (len(new), n_classes)
+            wk = [k for k in sd if k.endswith("classifier.weight")][0]
+            bk = wk[:-len("weight")] + "bias"
+            w = torch.zeros(n_classes, sd[wk].shape[1])
+            b = torch.zeros(n_classes)
+            for j, cid in enumerate(new):
+                if cid in old:
+                    w[j], b[j] = sd[wk][old.index(cid)], sd[bk][old.index(cid)]
+                else:  # a new class starts as the average class (its logit = the mean logit: never the top one)
+                    w[j], b[j] = sd[wk].mean(0), sd[bk].mean()
+            sd[wk], sd[bk] = w, b
+            print(f"init from {a.init}: {sum(c in old for c in new)} classes copied, "
+                  f"{sum(c not in old for c in new)} new", flush=True)
+        model.load_state_dict(sd)
     elif a.zero_head:
         torch.nn.init.zeros_(model.get_classifier().weight)
         torch.nn.init.zeros_(model.get_classifier().bias)
+    if a.head_hidden and a.head_hidden < model.conv_head.out_channels:
+        if a.init and not a.resume:
+            # keep the head units that matter most (mean activation on training pictures x weight to the classes),
+            # then refit the classifier on the kept units to reproduce the full head's logits (least squares), so
+            # training starts close to the trained model instead of from a crippled head
+            feats = []
+            h = model.norm_head.register_forward_hook(lambda m, i, o: feats.append(o.detach().float().flatten(1).cpu()))
+            model.to(device).eval()
+            with torch.no_grad():
+                for k, batch in enumerate(train_dl):
+                    with torch.autocast("cuda", dtype=torch.float16):
+                        model(gpu_normalize(batch[0].to(device)))
+                    if k >= 60:
+                        break
+            h.remove()
+            f = torch.cat(feats)  # [n, 1280] pre-logits (after BN + ReLU, pooled)
+            lin = model.get_classifier()
+            z = f @ lin.weight.detach().cpu().T + lin.bias.detach().cpu()
+            imp = f.mean(0) * lin.weight.detach().cpu().norm(dim=0)
+            keep = imp.argsort(descending=True)[:a.head_hidden].sort().values
+            narrow_head(model.cpu(), a.head_hidden, keep)
+            fk = torch.cat([f[:, keep], torch.ones(len(f), 1)], 1)
+            sol = torch.linalg.solve(fk.T @ fk + 1e-2 * torch.eye(fk.shape[1]), fk.T @ z)
+            with torch.no_grad():
+                model.get_classifier().weight.copy_(sol[:-1].T)
+                model.get_classifier().bias.copy_(sol[-1])
+            fit = 1 - float(((fk @ sol - z) ** 2).mean() / z.var(0).mean())
+            print(f"head narrowed to {a.head_hidden} units (kept {float(imp[keep].sum() / imp.sum()):.3f} of the "
+                  f"importance; classifier refit on {len(f)} pictures, logits R^2 {fit:.3f})", flush=True)
+        else:
+            narrow_head(model, a.head_hidden)
     model.to(device)
     ema = ModelEmaV3(model, decay=a.ema)
     opt = torch.optim.AdamW(param_groups(model, a.wd, a.lr, a.head_lr), lr=a.lr, betas=(0.9, 0.999))
@@ -354,11 +475,18 @@ def main():
             print(f"training size {want} from epoch {epoch}", flush=True)
         model.train()
         t0, seen, loss_sum = time.time(), 0, 0.0
-        for x, y in train_dl:
+        for batch in train_dl:
+            x, y = batch[0], batch[1]
             x = gpu_random_erasing(gpu_normalize(x.to(device, non_blocking=True)))
             y = y.to(device, non_blocking=True)
             with torch.autocast("cuda", dtype=torch.float16):
-                loss = F.cross_entropy(model(x), y, label_smoothing=0.1)
+                logits = model(x)
+                loss = F.cross_entropy(logits, y, label_smoothing=0.1)
+                if teacher_logits is not None:
+                    t = teacher_logits[batch[2].to(device, non_blocking=True)].float() / a.kd_t
+                    kd = F.kl_div(F.log_softmax(logits.float() / a.kd_t, 1), F.log_softmax(t, 1), log_target=True,
+                                  reduction="batchmean") * a.kd_t ** 2
+                    loss = (1 - a.kd_alpha) * loss + a.kd_alpha * kd
             opt.zero_grad(set_to_none=True)
             scaler.scale(loss).backward()
             scaler.unscale_(opt)
@@ -382,7 +510,7 @@ def main():
         log.append(rec)
         print(json.dumps(rec), flush=True)
         ck = {"model": a.model, "n_classes": n_classes, "epoch": epoch, "size": SIZE, "resize": RESIZE,
-              "mean": list(MEAN), "std": list(STD)}
+              "mean": list(MEAN), "std": list(STD), "head_hidden": int(model.conv_head.out_channels)}
         torch.save(ck | {"state_dict": ema.module.state_dict()}, os.path.join(out, "last_ema.pt"))
         if max(t1, m1) > best:
             best = max(t1, m1)

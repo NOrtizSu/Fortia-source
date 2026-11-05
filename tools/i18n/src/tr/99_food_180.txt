@@ -1,0 +1,53 @@
+# Comida after 1.7.0: the photo of a product found by its barcode, from Open Food Facts.
+# The rest of the food log is in 99_food.txt, 99_food_160.txt and 99_food_170.txt.
+
+# The credit line under a product of Open Food Facts when its photo shows too (foodlog_off_attribution without one).
+# ODbL is the licence of the data, CC BY-SA the licence of the photo: keep both names as they are.
+foodlog_off_attribution_photo = Veriler ve fotoğraf: Open Food Facts (ODbL, CC BY-SA)
+
+# A packaged product on the meal photo ("What's on the plate?" page). Three ways, shown at the top of the page:
+# a barcode read on the photo (its product page opens by itself once found), one of the products the user
+# already scanned that the photo looks like (compared on the phone), the words read on the package searched in
+# Open Food Facts (keep the name). Nothing is logged until the user picks the product and confirms.
+foodlog_pack_barcode = Fotoğrafta barkod: %1$s
+
+# One of the user's scanned products, with its photo: tap to use it. %1$s = the product's name.
+foodlog_pack_match = %1$s olabilir mi?
+foodlog_pack_match_text = Taradığınız ürünlerden biri
+
+# Several of the user's scanned products look alike: none is picked.
+foodlog_pack_suggestions = Belki ürünlerinizden biri
+
+# Button: read the words on the photo (on the phone) and search them in Open Food Facts.
+foodlog_pack_search = Ürünü ambalajından ara
+foodlog_pack_reading = Ambalaj okunuyor…
+
+# A text field with the words searched (as read on the package, or empty when none could be read): the user
+# corrects them or types the brand and name, then searches again with the keyboard's search key or the search icon.
+foodlog_pack_words_label = Aranacak kelimeler
+foodlog_pack_words_hint = Marka ve ürün adı
+
+# %1$s = the words searched, as read on the package.
+foodlog_pack_searching = Open Food Facts'te “%1$s” aranıyor…
+foodlog_pack_results = “%1$s” için ürünler
+foodlog_pack_results_text = Sizinkini seçin: değerleri Open Food Facts'ten gelir.
+foodlog_pack_no_text = Ambalajda hiçbir kelime okunamadı. Markasını ve adını yukarıya yazın veya barkodun fotoğrafını çekin.
+
+# The phone's text recognition failed (not the photo's fault).
+foodlog_pack_read_failed = Ambalajdaki yazı bu sefer okunamadı. Tekrar deneyin.
+foodlog_pack_none = Open Food Facts'te “%1$s” için ürün yok. Yukarıdaki kelimeleri değiştirin, barkodun fotoğrafını çekin veya yiyeceği arayın.
+foodlog_pack_offline = Bağlantı yok: ambalaj aranamıyor. Tekrar deneyin veya barkodun fotoğrafını çekin.
+
+# Open Food Facts allows a few searches a minute.
+foodlog_pack_busy = Kısa sürede çok fazla arama yapıldı. Bir dakika sonra tekrar deneyin.
+foodlog_pack_unavailable = Ambalajları okumak için Google Play hizmetleri gerekir. Markayı ve adı yukarıya yazın veya barkodun fotoğrafını çekin.
+
+# Google Play services downloads the text recognition the first time.
+foodlog_pack_preparing = Metin tanıma telefonunuza yükleniyor. Biraz sonra tekrar deneyin.
+foodlog_pack_private = Yazı telefonunuzda okunur; aramak için Open Food Facts'e yalnızca kutudaki kelimeler gönderilir.
+
+# Button: a photo of the package's barcode (the barcode page).
+foodlog_pack_barcode_photo = Barkodun fotoğrafı
+
+# Open source page: the text recognition library (Google ML Kit, through Google Play services).
+notice_mlkit = Ambalaj fotoğrafındaki kelimeleri telefonda okur (Google Play hizmetleri).

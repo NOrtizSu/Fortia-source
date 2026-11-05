@@ -17,16 +17,22 @@ import com.google.zxing.oned.UPCEReader
  * binarizers (uneven light, glossy packaging). Pure Java/Kotlin: [luminance] is one byte per pixel.
  */
 object BarcodeReader {
-    private val FORMATS = listOf(BarcodeFormat.EAN_13, BarcodeFormat.EAN_8, BarcodeFormat.UPC_A, BarcodeFormat.UPC_E)
+    /** The formats of a photo aimed at a barcode. */
+    val FORMATS = listOf(BarcodeFormat.EAN_13, BarcodeFormat.EAN_8, BarcodeFormat.UPC_A, BarcodeFormat.UPC_E)
 
-    private val hints = mapOf(
-        DecodeHintType.POSSIBLE_FORMATS to FORMATS,
-        DecodeHintType.TRY_HARDER to true,
-    )
+    /**
+     * On a meal photo (not aimed at a barcode) UPC-E is left out: its 6 digits are easily "found" in a
+     * busy picture, and it is rare outside North America.
+     */
+    val MEAL_PHOTO_FORMATS = listOf(BarcodeFormat.EAN_13, BarcodeFormat.EAN_8, BarcodeFormat.UPC_A)
 
-    /** The digits of the barcode in the [width]×[height] grey image, or null when none is found. */
-    fun decode(luminance: ByteArray, width: Int, height: Int): String? {
+    /** The digits of the barcode of one of [formats] in the [width]×[height] grey image, or null when none is found. */
+    fun decode(luminance: ByteArray, width: Int, height: Int, formats: List<BarcodeFormat> = FORMATS): String? {
         require(luminance.size >= width * height)
+        val hints = mapOf(
+            DecodeHintType.POSSIBLE_FORMATS to formats,
+            DecodeHintType.TRY_HARDER to true,
+        )
         val reader = MultiFormatReader().apply { setHints(hints) }
         val sources = sequenceOf(GreySource(luminance, width, height), GreySource(rotate90(luminance, width, height), height, width))
         for (source in sources) {

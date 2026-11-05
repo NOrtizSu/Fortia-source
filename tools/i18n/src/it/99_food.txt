@@ -225,9 +225,12 @@ health_rationale_write_meals = Se lo consenti, Fortia scrive anche gli alimenti 
 notice_litert = Esegue il nostro riconoscimento del cibo sul telefono.
 notice_zxing = Legge i codici a barre dei prodotti da una foto.
 open_source_food_data = Dati sugli alimenti
-notice_open_food_facts = Prodotti confezionati trovati tramite il codice a barre. Dati © collaboratori di Open Food Facts, con licenza Open Database License (ODbL).
+notice_open_food_facts = Prodotti confezionati trovati tramite il codice a barre. Dati © collaboratori di Open Food Facts, con licenza Open Database License (ODbL); foto dei prodotti © collaboratori di Open Food Facts, con licenza CC BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0/).
 notice_usda = Valori nutrizionali dell'elenco degli alimenti: U.S. Department of Agriculture, Agricultural Research Service, FoodData Central. Pubblico dominio (CC0).
 notice_ciqual = Valori nutrizionali dell'elenco degli alimenti: Anses, tabella di composizione degli alimenti Ciqual, con Licence Ouverte / Etalab 2.0.
 notice_food_model_name = Riconoscimento del cibo di Fortia
-notice_food_model_license = Modello nostro (vedi la sua scheda)
+notice_food_model_license = Modello nostro (vedi la sua scheda) · AGPL-3.0 · food_model.tflite: AGPL-3.0 / CC BY-SA 4.0
 notice_food_model = I nostri modelli, basati su MobileNetV4 (timm, Apache-2.0) e Ultralytics YOLO11n (AGPL-3.0) e addestrati con immagini di Open Images (CC BY 2.0), Wikimedia Commons (licenze libere) e MyFoodRepo (CC BY 4.0); la stima del peso è calibrata con Nutrition5k (CC BY 4.0). L'elenco delle immagini e dei loro autori è pubblicato con il codice sorgente.
+
+# The measuring scoop that comes in a tub of protein powder (~30 g); in Spain people say "scoop" or "cacito"
+food_portion_scoop = Misurino

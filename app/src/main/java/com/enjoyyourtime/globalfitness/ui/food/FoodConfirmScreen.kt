@@ -149,6 +149,8 @@ fun FoodConfirmScreen(editId: String?, onSaved: (fromPhoto: Boolean) -> Unit, on
 
     val option = d.options.firstOrNull { it.item.foodId != null && it.item.foodId == optionId } ?: d.current
     val item = option.item
+    // A product's photo from Open Food Facts is credited when the header really shows it (no meal photo).
+    var productPhoto by remember(key) { mutableStateOf(false) }
     // Portions of the food, plus the entry's own one when editing a portion the catalog no longer has.
     val portions = (item.portions + listOfNotNull(d.portion.takeIf { option.item.ref == d.item.ref })).distinctBy { it.key }
     val portion = portions.firstOrNull { it.key.code == portionCode }
@@ -280,7 +282,7 @@ fun FoodConfirmScreen(editId: String?, onSaved: (fromPhoto: Boolean) -> Unit, on
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                MealThumbnail(d.photo, 56.dp)
+                MealThumbnail(d.photo, 56.dp, customFoodId = item.customFoodId, onProductPhoto = { productPhoto = it })
                 Spacer(Modifier.width(12.dp))
                 Column(Modifier.weight(1f)) {
                     Text(item.name, style = MaterialTheme.typography.titleLarge)
@@ -474,9 +476,7 @@ fun FoodConfirmScreen(editId: String?, onSaved: (fromPhoto: Boolean) -> Unit, on
                             }
                         }
                     }
-                    if (item.fromOpenFoodFacts) {
-                        Text(stringResource(R.string.foodlog_off_attribution), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
-                    }
+                    if (item.fromOpenFoodFacts) OffAttribution(productPhoto)
                 }
             }
         }

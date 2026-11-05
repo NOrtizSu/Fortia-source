@@ -67,8 +67,8 @@
  "model": {
   "name": "fortia-food-detector-1",
   "architecture": "YOLO11n (Ultralytics, AGPL-3.0)",
-  "quantization": "fp16",
-  "trained": "2026-11-03",
-  "notes": "one class (food item), fine-tuned from COCO YOLO11n on Open Images V7 boxes + MyFoodRepo (FRB 2022); score_threshold chosen on validation"
+  "quantization": "dynint8",
+  "trained": "2026-11-04",
+  "notes": "one class (food item), the 1.6.0 weights (YOLO11n fine-tuned from COCO on Open Images V7 boxes + MyFoodRepo); v3 export: boxes normalised and never concatenated with the scores; int8 weights, float activations"
  }
 }

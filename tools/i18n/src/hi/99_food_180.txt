@@ -1,0 +1,30 @@
+# Comida after 1.7.0: the photo of a product found by its barcode, from Open Food Facts.
+# The rest of the food log is in 99_food.txt, 99_food_160.txt and 99_food_170.txt.
+
+# The credit line under a product of Open Food Facts when its photo shows too (foodlog_off_attribution without one).
+# ODbL is the licence of the data, CC BY-SA the licence of the photo: keep both names as they are.
+foodlog_off_attribution_photo = डेटा और फ़ोटो: Open Food Facts (ODbL, CC BY-SA)
+
+# A packaged product on the meal photo ("What's on the plate?" page).
+foodlog_pack_barcode = फ़ोटो में बारकोड %1$s
+foodlog_pack_match = क्या यह %1$s है?
+foodlog_pack_match_text = आपके स्कैन किए गए प्रोडक्ट में से एक
+foodlog_pack_suggestions = शायद आपके प्रोडक्ट में से कोई
+foodlog_pack_search = पैकेट से प्रोडक्ट खोजें
+foodlog_pack_reading = पैकेट पढ़ा जा रहा है…
+foodlog_pack_words_label = खोजने के लिए शब्द
+foodlog_pack_words_hint = ब्रांड और प्रोडक्ट का नाम
+foodlog_pack_searching = Open Food Facts में “%1$s” खोजा जा रहा है…
+foodlog_pack_results = “%1$s” के लिए प्रोडक्ट
+foodlog_pack_results_text = अपना प्रोडक्ट चुनें: इसकी वैल्यू Open Food Facts से आती हैं।
+foodlog_pack_no_text = पैकेट पर कोई शब्द नहीं पढ़ा जा सका। ऊपर उसका ब्रांड और नाम लिखें, या बारकोड की फ़ोटो लें।
+foodlog_pack_read_failed = इस बार पैकेट का टेक्स्ट नहीं पढ़ा जा सका। फिर से कोशिश करें।
+foodlog_pack_none = Open Food Facts में “%1$s” के लिए कोई प्रोडक्ट नहीं है। ऊपर दिए शब्द बदलें, बारकोड की फ़ोटो लें, या फ़ूड आइटम खोजें।
+foodlog_pack_offline = कनेक्शन नहीं है: पैकेट नहीं खोजा जा सकता। फिर से कोशिश करें, या बारकोड की फ़ोटो लें।
+foodlog_pack_busy = कम समय में बहुत ज़्यादा खोजें। एक मिनट बाद फिर से कोशिश करें।
+foodlog_pack_unavailable = पैकेट पढ़ने के लिए Google Play services ज़रूरी है। ऊपर ब्रांड और नाम लिखें, या बारकोड की फ़ोटो लें।
+foodlog_pack_preparing = आपके फ़ोन पर टेक्स्ट पहचानने की सुविधा इंस्टॉल हो रही है। थोड़ी देर में फिर से कोशिश करें।
+foodlog_pack_private = टेक्स्ट आपके फ़ोन पर ही पढ़ा जाता है; खोजने के लिए सिर्फ़ बॉक्स में लिखे शब्द Open Food Facts को भेजे जाते हैं।
+foodlog_pack_barcode_photo = बारकोड की फ़ोटो
+# Open source page: the text recognition library (Google ML Kit, through Google Play services).
+notice_mlkit = पैकेट की फ़ोटो पर लिखे शब्द फ़ोन पर ही पढ़ता है (Google Play services)।

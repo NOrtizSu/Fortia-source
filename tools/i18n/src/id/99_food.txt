@@ -26,6 +26,9 @@ food_portion_tsp = Sendok teh
 food_portion_handful = Genggam
 food_portion_serving = Porsi
 
+# The measuring scoop that comes in a tub of protein powder (~30 g); in Spain people say "scoop" or "cacito"
+food_portion_scoop = Scoop (sendok takar)
+
 # Meals of the day (sections of the day, chips of the confirm page). In Spanish "Comida" is the tab, so lunch is "Almuerzo"
 foodlog_meal_breakfast = Sarapan
 foodlog_meal_lunch = Makan siang
@@ -241,9 +244,9 @@ health_rationale_write_meals = Jika Anda mengizinkan, Fortia juga menulis makana
 notice_litert = Menjalankan pengenal makanan kami di ponsel.
 notice_zxing = Membaca barcode produk dari foto.
 open_source_food_data = Data makanan
-notice_open_food_facts = Produk kemasan yang ditemukan lewat barcode-nya. Data © kontributor Open Food Facts, di bawah Open Database License (ODbL).
+notice_open_food_facts = Produk kemasan yang ditemukan lewat barcode-nya. Data © kontributor Open Food Facts, di bawah Open Database License (ODbL); foto produk © kontributor Open Food Facts, di bawah CC BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0/).
 notice_usda = Nilai gizi daftar makanan: U.S. Department of Agriculture, Agricultural Research Service, FoodData Central. Domain publik (CC0).
 notice_ciqual = Nilai gizi daftar makanan: Anses, tabel komposisi pangan Prancis Ciqual, di bawah Licence Ouverte / Etalab 2.0.
 notice_food_model_name = Pengenal makanan Fortia
-notice_food_model_license = Model kami sendiri (lihat kartu modelnya)
+notice_food_model_license = Model kami sendiri (lihat kartu modelnya) · AGPL-3.0 · food_model.tflite: AGPL-3.0 / CC BY-SA 4.0
 notice_food_model = Model kami sendiri, berbasis MobileNetV4 (timm, Apache-2.0) dan Ultralytics YOLO11n (AGPL-3.0) serta dilatih dengan gambar dari Open Images (CC BY 2.0), Wikimedia Commons (lisensi bebas), dan MyFoodRepo (CC BY 4.0); perkiraan berat dikalibrasi dengan Nutrition5k (CC BY 4.0). Daftar gambar beserta pembuatnya dipublikasikan bersama kode sumber.

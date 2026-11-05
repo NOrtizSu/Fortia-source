@@ -10,6 +10,7 @@ import com.enjoyyourtime.globalfitness.food.off.OffCache
 import com.enjoyyourtime.globalfitness.food.off.OffProduct
 import com.enjoyyourtime.globalfitness.food.off.OffResult
 import com.enjoyyourtime.globalfitness.food.off.OpenFoodFacts
+import com.enjoyyourtime.globalfitness.food.off.PhotoResult
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.MultiFormatWriter
 import kotlinx.coroutines.test.runTest
@@ -146,6 +147,9 @@ class BarcodeAndOffTest {
         assertTrue(url.startsWith("https://world.openfoodfacts.org/api/v2/product/8410000810004?fields="))
         assertTrue(url.contains("product_name_es") && url.contains("nutriments") && url.endsWith("&lc=es"))
         assertTrue("a bad language code falls back to English", OpenFoodFacts.url("1", "x-y").endsWith("&lc=en"))
+        // Android's legacy code for Indonesian is "in"; Open Food Facts uses "id".
+        val indonesian = OpenFoodFacts.url("1", "in")
+        assertTrue(indonesian.contains("product_name_id") && indonesian.endsWith("&lc=id"))
     }
 
     @Test
@@ -209,5 +213,194 @@ class BarcodeAndOffTest {
         assertEquals(kept().per100, empty.per100)
         assertEquals(FoodUnit.G, empty.unit)
         assertEquals("Galletas", empty.name)
+    }
+
+    // ---- the product's photo ---------------------------------------------------------------------------
+
+    private val front = "https://images.openfoodfacts.org/images/products/301/762/042/2003/front_es.621.400.jpg"
+    private val frontSmall = "https://images.openfoodfacts.org/images/products/301/762/042/2003/front_es.621.200.jpg"
+
+    private fun withImages(fields: String) = """{"status":1,"product":{"product_name":"Nutella","nutriments":{"energy-kcal_100g":539}$fields}}"""
+
+    @Test
+    fun theRequestAsksForTheFrontPhotoInTheUsersLanguage() {
+        val url = OpenFoodFacts.url("3017620422003", "es")
+        assertTrue(url.contains("image_front_url") && url.contains("image_front_small_url"))
+        assertTrue("lc picks the photo's language", url.endsWith("&lc=es"))
+    }
+
+    @Test
+    fun parsesTheFrontPhotoAddress() {
+        fun image(fields: String) = (OpenFoodFacts.parse(withImages(fields), "3017620422003", "es") as OffResult.Found).product.imageUrl
+        assertEquals("the 400 px one", front, image(""","image_front_url":"$front","image_front_small_url":"$frontSmall""""))
+        assertEquals("else the 200 px one", frontSmall, image(""","image_front_small_url":"$frontSmall""""))
+        assertNull("no photo", image(""))
+        assertNull("blank", image(""","image_front_url":" """"))
+        assertEquals("not over HTTPS: the other one", frontSmall, image(""","image_front_url":"http://images.openfoodfacts.org/a.jpg","image_front_small_url":"$frontSmall""""))
+        assertNull("another server", image(""","image_front_url":"https://example.com/front.jpg""""))
+        assertNull("a look-alike server", image(""","image_front_url":"https://openfoodfacts.org.example.com/front.jpg""""))
+        assertNull((OpenFoodFacts.parse(complete, "8410000810004", "es") as OffResult.Found).product.imageUrl)
+    }
+
+    @Test
+    fun onlyOpenFoodFactsServersOverHttpsServePhotos() {
+        assertTrue(OpenFoodFacts.isImageUrl(front))
+        assertTrue(OpenFoodFacts.isImageUrl("https://static.openfoodfacts.org/images/x.jpg"))
+        assertTrue(OpenFoodFacts.isImageUrl("https://openfoodfacts.org/x.jpg"))
+        assertFalse(OpenFoodFacts.isImageUrl("http://images.openfoodfacts.org/x.jpg"))
+        assertFalse(OpenFoodFacts.isImageUrl("https://images.openfoodfacts.org:8443/x.jpg"))
+        assertFalse(OpenFoodFacts.isImageUrl("https://user@images.openfoodfacts.org/x.jpg"))
+        assertFalse(OpenFoodFacts.isImageUrl("https://evilopenfoodfacts.org/x.jpg"))
+        assertFalse(OpenFoodFacts.isImageUrl("file:///data/x.jpg"))
+        assertFalse(OpenFoodFacts.isImageUrl("not a url"))
+    }
+
+    private val jpeg = byteArrayOf(0xFF.toByte(), 0xD8.toByte(), 0xFF.toByte(), 0xE0.toByte(), 1, 2, 3)
+    private val png = byteArrayOf(0x89.toByte(), 'P'.code.toByte(), 'N'.code.toByte(), 'G'.code.toByte(), 0x0D, 0x0A, 0x1A, 0x0A, 0, 0)
+    private val webp = "RIFF\u0000\u0000\u0000\u0000WEBPVP8 ".toByteArray(Charsets.ISO_8859_1)
+
+    @Test
+    fun aPhotoIsKeptOnlyWhenItIsAnImageOfAllowedSize() {
+        fun answer(body: ByteArray?, type: String? = "image/jpeg", code: Int = 200) = OpenFoodFacts.imageOf(OpenFoodFacts.ImageAnswer(code, type, body))
+        assertTrue(jpeg.contentEquals(answer(jpeg)))
+        assertTrue("a type with parameters", jpeg.contentEquals(answer(jpeg, "Image/JPEG; charset=binary")))
+        assertTrue(png.contentEquals(answer(png, "image/png")))
+        assertTrue(webp.contentEquals(answer(webp, "image/webp")))
+        assertNull("not an image type", answer(jpeg, "text/html"))
+        assertNull("no type", answer(jpeg, null))
+        assertNull("an image type, but not image bytes", answer("<html>".toByteArray(), "image/jpeg"))
+        assertNull("an SVG is not kept", answer("<svg/>".toByteArray(), "image/svg+xml"))
+        assertNull("empty", answer(ByteArray(0)))
+        assertNull("not read (too large while reading)", answer(null))
+        assertNull("not 200", answer(jpeg, code = 404))
+        val large = ByteArray(OpenFoodFacts.MAX_IMAGE_BYTES + 1).also { jpeg.copyInto(it) }
+        assertNull("over 2 MB", answer(large))
+        val largest = ByteArray(OpenFoodFacts.MAX_IMAGE_BYTES).also { jpeg.copyInto(it) }
+        assertTrue("2 MB exactly", largest.contentEquals(answer(largest)))
+    }
+
+    /** A client whose image server answers [answers] by address (anything else: a test failure). */
+    private fun imageClient(asked: MutableList<String>, sentAgent: (String) -> Unit = {}, answers: (String) -> OpenFoodFacts.ImageAnswer) = OpenFoodFacts(
+        "Fortia/1.7.0 (enjoyyourtime.online@gmail.com)",
+        http = { _, _ -> error("no product request expected") },
+        io = kotlinx.coroutines.Dispatchers.Unconfined,
+        imageHttp = { url, ua ->
+            asked += url
+            sentAgent(ua)
+            answers(url)
+        },
+    )
+
+    @Test
+    fun photoDownloadOutcomes() = runTest {
+        val asked = mutableListOf<String>()
+        var agent: String? = null
+        fun client(answer: () -> OpenFoodFacts.ImageAnswer) = imageClient(asked, { agent = it }) { answer() }
+        val photo = client { OpenFoodFacts.ImageAnswer(200, "image/jpeg", jpeg) }.image(front)
+        assertTrue(jpeg.contentEquals((photo as PhotoResult.Photo).bytes))
+        assertEquals("only the photo's address is asked", listOf(front), asked)
+        assertEquals("Fortia/1.7.0 (enjoyyourtime.online@gmail.com)", agent)
+        // Failures say why, for the log (never the address).
+        assertEquals("offline", PhotoResult.Failed("UnknownHostException"), client { throw UnknownHostException() }.image(front))
+        assertEquals("cut", PhotoResult.Failed("IOException"), client { throw IOException("reset") }.image(front))
+        assertEquals(PhotoResult.Failed("not an image"), client { OpenFoodFacts.ImageAnswer(200, "text/html", "<html>".toByteArray()) }.image(front))
+        assertEquals(PhotoResult.Failed("too large or unreadable"), client { OpenFoodFacts.ImageAnswer(200, "image/jpeg", null) }.image(front))
+        assertEquals("server error: tried again later", PhotoResult.Failed("HTTP 503"), client { OpenFoodFacts.ImageAnswer(503, null, null) }.image(front))
+        assertEquals("no longer there", PhotoResult.Gone, client { OpenFoodFacts.ImageAnswer(404, "text/html", null) }.image(front))
+        assertEquals("gone", PhotoResult.Gone, client { OpenFoodFacts.ImageAnswer(410, null, null) }.image(front))
+        asked.clear()
+        val outside = PhotoResult.Failed("not an Open Food Facts address")
+        assertEquals("another server: nothing is asked", outside, client { error("no request expected") }.image("https://example.com/a.jpg"))
+        assertEquals("not HTTPS: nothing is asked", outside, client { error("no request expected") }.image("http://images.openfoodfacts.org/a.jpg"))
+        assertTrue(asked.isEmpty())
+    }
+
+    @Test
+    fun redirectsAreFollowedOnlyToOpenFoodFactsAndOnlyTwice() = runTest {
+        val moved = "https://static.openfoodfacts.org/images/products/301/762/042/2003/front_es.621.400.jpg"
+        val asked = mutableListOf<String>()
+        fun redirect(to: String) = OpenFoodFacts.ImageAnswer(301, null, null, location = to)
+        val ok = OpenFoodFacts.ImageAnswer(200, "image/jpeg", jpeg)
+
+        val once = imageClient(asked) { url -> if (url == front) redirect(moved) else ok }.image(front)
+        assertTrue("to another Open Food Facts server", once is PhotoResult.Photo)
+        assertEquals(listOf(front, moved), asked)
+
+        asked.clear()
+        val relative = imageClient(asked) { url -> if (url == front) redirect("/images/x.jpg") else ok }.image(front)
+        assertTrue("a relative address stays on that server", relative is PhotoResult.Photo)
+        assertEquals("https://images.openfoodfacts.org/images/x.jpg", asked.last())
+
+        asked.clear()
+        val outside = imageClient(asked) { url -> if (url == front) redirect("https://example.com/x.jpg") else error("never asked: $url") }.image(front)
+        assertEquals("never to another server", PhotoResult.Failed("redirect to another server"), outside)
+        assertEquals(listOf(front), asked)
+
+        asked.clear()
+        val downgraded = imageClient(asked) { url -> if (url == front) redirect("http://images.openfoodfacts.org/x.jpg") else error("never asked: $url") }.image(front)
+        assertEquals("never to plain HTTP", PhotoResult.Failed("redirect to another server"), downgraded)
+
+        asked.clear()
+        val hops = listOf(front, "https://images.openfoodfacts.org/2.jpg", "https://images.openfoodfacts.org/3.jpg", "https://images.openfoodfacts.org/4.jpg")
+        val loop = imageClient(asked) { url -> redirect(hops[hops.indexOf(url) + 1]) }.image(front)
+        assertEquals("at most two redirects", PhotoResult.Failed("too many redirects"), loop)
+        assertEquals(hops.take(3), asked)
+
+        asked.clear()
+        val noLocation = imageClient(asked) { OpenFoodFacts.ImageAnswer(302, null, null) }.image(front)
+        assertEquals("a redirect to nowhere", PhotoResult.Failed("HTTP 302"), noLocation)
+
+        asked.clear()
+        val broken = imageClient(asked) { redirect("https://images.openfoodfacts.org/a b|c") }.image(front)
+        assertEquals("a redirect that is not an address", PhotoResult.Failed("bad redirect"), broken)
+    }
+
+    @Test
+    fun aProductKeepsThePhotoAddressOpenFoodFactsGives() {
+        val p = OffProduct("3017620422003", "Nutella", "Ferrero", FoodUnit.G, Nutrients(kcal = 539.0), 15.0, imageUrl = front)
+        val stored = OffCache.customFoodOf(p, "3017620422003")
+        assertEquals(front, stored.imageUrl)
+        assertNull("downloaded afterwards", stored.image)
+        assertEquals("asked: none", "", OffCache.customFoodOf(p.copy(imageUrl = null), "3017620422003").imageUrl)
+
+        val withFile = stored.copy(image = "off_1.jpg")
+        assertEquals("the same address keeps the photo", withFile, OffCache.withImage(withFile, front))
+        val moved = OffCache.withImage(withFile, frontSmall)
+        assertEquals(frontSmall, moved.imageUrl)
+        assertNull("a new address: the old photo goes", moved.image)
+        val gone = OffCache.withImage(withFile, null)
+        assertEquals("", gone.imageUrl)
+        assertNull(gone.image)
+        val own = withFile.copy(source = CustomFoodSource.USER, imageUrl = null, image = null)
+        assertEquals("the user's own food never has one", own, OffCache.withImage(own, front))
+
+        // A refresh: the photo follows Open Food Facts; asked again with nothing new, it stays.
+        val refreshed = OffCache.refreshed(withFile, p, now = 50)
+        assertEquals("off_1.jpg", refreshed.image)
+        assertEquals(front, refreshed.imageUrl)
+        val newPhoto = OffCache.refreshed(withFile, p.copy(imageUrl = frontSmall), now = 50)
+        assertEquals(frontSmall, newPhoto.imageUrl)
+        assertNull(newPhoto.image)
+        val userFood = kept(name = "8410000000000", kcal = null, source = CustomFoodSource.USER)
+        assertEquals("a food of the user's that Open Food Facts now knows becomes its product, photo included",
+            front, OffCache.refreshed(userFood, p, now = 50).imageUrl)
+    }
+
+    @Test
+    fun whenAPhotoIsAskedForOrDownloaded() {
+        val stored = kept().copy(imageUrl = front)
+        val none = setOf<String>()
+        assertTrue("kept by an older version: asked once", OffCache.needsImageCheck(kept()))
+        assertFalse("asked already", OffCache.needsImageCheck(stored))
+        assertFalse("asked already: none", OffCache.needsImageCheck(kept().copy(imageUrl = "")))
+        assertFalse("the user's own food", OffCache.needsImageCheck(kept(source = CustomFoodSource.USER)))
+        assertFalse("no barcode", OffCache.needsImageCheck(kept().copy(barcode = null)))
+
+        assertEquals("not downloaded yet", front, OffCache.imageToFetch(stored, none::contains))
+        assertEquals("its file is gone (a restored database)", front, OffCache.imageToFetch(stored.copy(image = "off_1.jpg"), none::contains))
+        assertNull("its file is there", OffCache.imageToFetch(stored.copy(image = "off_1.jpg"), setOf("off_1.jpg")::contains))
+        assertNull("none on Open Food Facts", OffCache.imageToFetch(kept().copy(imageUrl = ""), none::contains))
+        assertNull("not asked yet", OffCache.imageToFetch(kept(), none::contains))
+        assertNull("the user's own food", OffCache.imageToFetch(stored.copy(source = CustomFoodSource.USER), none::contains))
     }
 }

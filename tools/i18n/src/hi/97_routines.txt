@@ -18,3 +18,6 @@ routine_cardio_mix = कार्डियो मशीनें
 # 1.6.0
 routine_foam_rolling = फ़ोम रोलर रिकवरी
 routine_hiit = HIIT, बिना उपकरण
+
+routine_kettlebell = केटलबेल फ़ुल बॉडी
+routine_calisthenics = कैलिस्थेनिक्स स्किल्स

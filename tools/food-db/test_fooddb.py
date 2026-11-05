@@ -126,6 +126,21 @@ class BuildTest(unittest.TestCase):
         self.assertEqual(vals['iron'], 1.0)
         self.assertEqual(vals['vit_c'], 0.0)
 
+    def test_unknown_blanks_values_that_do_not_describe_the_food(self):
+        # a US fortified bar: its vitamins are not those of a European one
+        rows = [mapping_row('bar', 'fdc:1', opts='unknown=vit_a,vit_c; fill=fdc:2')]
+        sources = {'fdc:1': values(kcal=426.0, protein=30.0, vit_a=1050.0, vit_c=120.0, iron=None),
+                   'fdc:2': values(kcal=400.0, vit_a=5.0, iron=2.0)}
+        vals = catalog(rows, {}, sources).food('bar')
+        self.assertIsNone(vals['vit_a'])  # not refilled by fill= either
+        self.assertIsNone(vals['vit_c'])
+        self.assertEqual(vals['iron'], 2.0)
+        with self.assertRaises(SystemExit):  # the four required values cannot be blanked
+            catalog([mapping_row('bar', 'fdc:1', opts='unknown=kcal')], {}, sources).food('bar')
+        with self.assertRaises(SystemExit):  # not on recipe dishes (their values are their ingredients)
+            catalog([mapping_row('a', 'fdc:1'), mapping_row('dish', opts='unknown=iron', line=2)],
+                    {'dish': {'ingredients': [['a', 10]]}}, sources).food('dish')
+
     def test_fill_recipe_uses_the_typical_recipe(self):
         rows = [mapping_row('rice', 'ciqual:1'), mapping_row('risotto', 'ciqual:2', opts='fill=recipe', line=2)]
         sources = {'ciqual:1': values(kcal=150.0, carbs=33.0, fat=1.0, iron=0.2),
@@ -175,8 +190,33 @@ class BuildTest(unittest.TestCase):
         with self.assertRaises(SystemExit):
             catalog(rows, {'a': {'ingredients': [['nope', 1]]}}, {}).food('a')
 
+    def test_composition_gives_the_documented_values_and_leaves_the_rest_unknown(self):
+        rows = [mapping_row('creatine')]
+        comp = {'kcal': 0, 'protein': 0, 'carbs': 0, 'fat': 0, 'salt': 0}
+        recipe = {'list': False, 'composition': comp, 'basis': 'pure compound'}
+        cat = catalog(rows, {'creatine': recipe}, {})
+        vals = cat.food('creatine')
+        self.assertEqual((vals['kcal'], vals['protein'], vals['salt']), (0.0, 0.0, 0.0))
+        self.assertIsNone(vals['sugars'])
+        self.assertIn('sugars', cat.missing['creatine'])
+        self.assertEqual(build.recipe_amounts(cat, 'creatine'), {})
+        bad = [{'composition': comp, 'basis': 'x'},  # listed: it has no ingredients to list
+               {'list': False, 'composition': comp},  # no basis
+               {'list': False, 'composition': comp | {'vit_q': 1}, 'basis': 'x'},
+               {'list': False, 'composition': comp | {'fat': -1}, 'basis': 'x'},
+               {'list': False, 'composition': {'kcal': 0}, 'basis': 'x'},
+               {'list': False, 'composition': comp, 'basis': 'x', 'ingredients': [['a', 1]]}]
+        for r in bad:
+            with self.assertRaises(SystemExit, msg=r):
+                catalog(rows, {'creatine': r}, {}).food('creatine')
+        # a food with its own source code cannot borrow a composition as its typical recipe
+        rows = [mapping_row('gel', 'ciqual:1', opts='fill=recipe')]
+        with self.assertRaises(SystemExit):
+            catalog(rows, {'gel': recipe}, {'ciqual:1': values(kcal=240.0, sugars=None)}).food('gel')
+
     def test_portions_only_accept_the_fixed_keys(self):
         self.assertEqual(build.parse_portions('unit:120 slice:30', 'x'), [('unit', 120), ('slice', 30)])
+        self.assertEqual(build.parse_portions('scoop:30', 'x'), [('scoop', 30)])
         with self.assertRaises(SystemExit):
             build.parse_portions('ración:120', 'x')
         with self.assertRaises(SystemExit):
@@ -427,6 +467,105 @@ class RepoFilesTest(unittest.TestCase):
         for r in rows:
             self.assertIn(r['group'], build.GROUPS, r['id'])
             self.assertTrue(r['description'], f'{r["id"]}: run build.py --fix-descriptions')
+        # one name per food and language, so a search never shows two identical lines
+        for lang in ('en', 'es'):
+            names = [r[lang].lower() for r in rows]
+            self.assertEqual(sorted({n for n in names if names.count(n) > 1}), [], lang)
+
+
+def normalize(s):
+    """FoodSearch.normalize of the app (Latin scripts): lowercase, no accents, letters and digits, single spaces."""
+    import unicodedata
+    plain = ''.join(c for c in unicodedata.normalize('NFD', s) if unicodedata.category(c) != 'Mn').lower()
+    return ' '.join(''.join(c if c.isalnum() else ' ' for c in plain).split())
+
+
+def tier(name, query):
+    """FoodSearch.tier of the app: 3 starts with the query, 2 every word starts a word, 1 every word is in it."""
+    if not query:
+        return 0
+    if name.startswith(query):
+        return 3
+    words, terms = name.split(' '), query.split(' ')
+    if all(any(w.startswith(t) for w in words) for t in terms):
+        return 2
+    return 1 if all(t in name for t in terms) else 0
+
+
+# What people type (Spanish first, then English) -> the food it must find. The app has no synonyms: a food is
+# found by the words of its name in the user's language, so names carry the common alternatives ("o latte").
+SEARCHES = [
+    ('proteina', 'whey_protein'), ('whey', 'whey_protein'), ('proteina vegetal', 'vegan_protein'),
+    ('batido de proteinas', 'protein_shake'), ('batido proteinas agua', 'protein_shake_water'),
+    ('barrita proteinas', 'protein_bar'), ('barrita energetica', 'energy_bar'), ('gel energetico', 'energy_gel'),
+    ('creatina', 'creatine'), ('bcaa', 'bcaa'), ('aminoacidos', 'bcaa'), ('gainer', 'mass_gainer'),
+    ('maltodextrina', 'maltodextrin'), ('colageno', 'collagen'), ('omega 3', 'fish_oil'),
+    ('electrolitos', 'electrolyte_drink'), ('isotonica', 'sports_drink'), ('isotonico', 'isotonic_powder'),
+    ('cacahuete en polvo', 'peanut_butter_powder'), ('sustitutivo', 'meal_replacement_shake'),
+    ('refresco de naranja', 'orange_soda'), ('refresco de limon', 'lemon_soda'), ('refresco zero', 'soft_drink_zero'),
+    ('tonica', 'tonic_water'), ('mosto', 'grape_juice'), ('zumo de tomate', 'tomato_juice'),
+    ('agua de coco', 'coconut_water'), ('kombucha', 'kombucha'), ('capuchino', 'cappuccino'),
+    ('latte', 'coffee_with_milk'), ('cerveza sin alcohol', 'alcohol_free_beer'), ('cerveza negra', 'dark_beer'),
+    ('cava', 'sparkling_wine'), ('fino', 'sherry'), ('manzanilla', 'sherry'), ('moscatel', 'sweet_wine'),
+    ('pacharan', 'liqueur'), ('orujo', 'orujo'), ('cubata', 'rum_and_cola'), ('gin tonic', 'gin_tonic'),
+    ('whisky cola', 'whisky_cola'), ('rebujito', 'rebujito'), ('pina colada', 'pina_colada'),
+    ('galletas maria', 'maria_biscuits'), ('digestive', 'wholemeal_biscuits'), ('napolitana', 'pain_au_chocolat'),
+    ('magdalena', 'muffin'), ('berlina', 'donut'), ('mazapan', 'marzipan'), ('polvoron', 'polvorones'),
+    ('mantecado', 'polvorones'), ('peladillas', 'sugared_almonds'), ('roscon', 'roscon'),
+    ('chocolate blanco', 'white_chocolate'), ('regaliz', 'liquorice'), ('nubes', 'marshmallows'),
+    ('bombon helado', 'ice_cream_bar'), ('quicos', 'corn_nuts'), ('palomitas', 'popcorn'),
+    ('marmitako', 'marmitako'), ('pil pil', 'bacalao_pil_pil'), ('salsa verde', 'merluza_salsa_verde'),
+    ('arroz a banda', 'arroz_a_banda'), ('arroz con pollo', 'arroz_con_pollo'), ('rabo de toro', 'rabo_de_toro'),
+    ('cachopo', 'cachopo'), ('flamenquin', 'flamenquin'), ('san jacobo', 'san_jacobo'), ('serranito', 'serranito'),
+    ('pulpo', 'octopus'), ('cachelos', 'pulpo_con_cachelos'), ('caldo gallego', 'caldo_gallego'),
+    ('papas arrugadas', 'papas_arrugadas'), ('escalivada', 'escalivada'), ('menestra', 'menestra'),
+    ('croquetas de pollo', 'croquettes_chicken'), ('bocadillo de atun', 'tuna_baguette'),
+    ('empanadillas', 'empanadillas'), ('pimientos rellenos', 'stuffed_peppers'),
+    ('macarrones con atun', 'pasta_tuna'), ('poke', 'poke_bowl'), ('burrito', 'burrito'),
+    ('tikka masala', 'chicken_tikka_masala'), ('curry verde', 'thai_green_curry'), ('shawarma', 'shawarma'),
+    ('tortitas de avena', 'protein_pancakes'), ('pollo con arroz', 'chicken_rice_broccoli'),
+    ('tortilla de claras', 'egg_white_omelette'), ('pipirrana', 'pipirrana'), ('ajoblanco', 'ajoblanco'),
+    ('clementina', 'mandarin'), ('paraguayo', 'flat_peach'), ('higo chumbo', 'prickly_pear'),
+    ('piquillo', 'roasted_peppers'), ('queso de burgos', 'fresh_cheese'), ('canonigos', 'lambs_lettuce'),
+    ('setas', 'oyster_mushrooms'), ('grelos', 'turnip_greens'), ('soja texturizada', 'textured_soy'),
+    ('altramuces', 'lupini'), ('seitan', 'seitan'), ('harina de avena', 'oat_flour'), ('cecina', 'cecina'),
+    ('solomillo de ternera', 'beef_tenderloin'), ('chuleton', 'entrecote'), ('rape', 'monkfish'),
+    ('panga', 'pangasius'), ('emperador', 'swordfish'), ('cigalas', 'langoustines'), ('sepia', 'cuttlefish'),
+    ('leche sin lactosa', 'lactose_free_milk'), ('queso batido', 'quark'), ('cuajada', 'cuajada'),
+    ('nata para montar', 'heavy_cream'), ('aceite de coco', 'coconut_oil'), ('pinones', 'pine_nuts'),
+    ('tahini', 'tahini'), ('croissant', 'croissant'), ('cruasan mixto', 'croissant_mixto'), ('durum', 'durum'),
+    ('zarzuela', 'zarzuela'), ('nigiri', 'nigiri_salmon'), ('maki', 'maki_roll'), ('arepa', 'arepa'),
+    ('te verde', 'green_tea'), ('crema de arroz', 'rice_flour'), ('pollo al limon', 'lemon_chicken'),
+    ('tres delicias', 'fried_rice'), ('garbanzos con chorizo', 'garbanzos_con_chorizo'),
+    ('mejillones a la marinera', 'mejillones_marinera'), ('tarta de la abuela', 'tarta_de_la_abuela'),
+    ('basmati', 'basmati_rice'), ('jabali', 'wild_boar'), ('mojo picon', 'mojo_picon'), ('romesco', 'romesco'),
+    ('jurel', 'horse_mackerel'), ('chicharro', 'horse_mackerel'), ('mijo', 'millet'), ('trigo sarraceno', 'buckwheat'),
+    ('baklava', 'baklava'), ('malvaviscos', 'marshmallows'), ('hojaldre de manzana', 'apple_turnover'), ('cerveza negra', 'dark_beer'), ('peanut powder', 'peanut_butter_powder'),
+    ('protein powder', 'whey_protein'), ('protein shake', 'protein_shake'), ('protein bar', 'protein_bar'),
+    ('creatine', 'creatine'), ('energy gel', 'energy_gel'), ('collagen', 'collagen'), ('orange soda', 'orange_soda'),
+    ('diet', 'cola_zero'), ('sugar-free', 'soft_drink_zero'), ('cappuccino', 'cappuccino'), ('sherry', 'sherry'),
+    ('digestive', 'wholemeal_biscuits'), ('marzipan', 'marzipan'), ('tuna salad', 'tuna_salad'),
+    ('cod', 'cod'), ('oxtail', 'rabo_de_toro'), ('poke', 'poke_bowl'), ('overnight oats', 'overnight_oats'),
+    ('chicken wrap', 'chicken_wrap'), ('hake', 'hake'), ('monkfish', 'monkfish'), ('lactose-free', 'lactose_free_milk'),
+]
+
+
+class SearchTest(unittest.TestCase):
+    def test_common_names_find_the_food(self):
+        rows = build.read_mapping()
+        by_id = {r['id']: r for r in rows}
+        for query, fid in SEARCHES:
+            self.assertIn(fid, by_id, query)
+            r = by_id[fid]
+            q = normalize(query)
+            self.assertTrue(tier(normalize(r['es']), q) or tier(normalize(r['en']), q),
+                            f'{query!r} does not find {fid} ({r["en"]} / {r["es"]})')
+
+    def test_normalize_matches_the_app(self):
+        self.assertEqual(normalize('Café con leche o latte'), 'cafe con leche o latte')
+        self.assertEqual(normalize('Gin-tonic'), 'gin tonic')
+        self.assertEqual(tier('proteina whey en polvo', 'whey'), 2)
+        self.assertEqual(tier('bocadillo de atun', 'atun boca'), 2)
 
 
 if __name__ == '__main__':

@@ -25,6 +25,8 @@ food_portion_tbsp = बड़ा चम्मच
 food_portion_tsp = छोटा चम्मच
 food_portion_handful = मुट्ठी
 food_portion_serving = सर्विंग
+# The measuring scoop that comes in a tub of protein powder (~30 g)
+food_portion_scoop = स्कूप
 
 # Meals of the day (sections of the day, chips of the confirm page). In Spanish "Comida" is the tab, so lunch is "Almuerzo"
 foodlog_meal_breakfast = नाश्ता
@@ -242,9 +244,9 @@ health_rationale_write_meals = अगर आप अनुमति देते 
 notice_litert = हमारा खाना पहचानने वाला मॉडल फ़ोन पर चलाता है।
 notice_zxing = फ़ोटो से प्रोडक्ट के बारकोड पढ़ता है।
 open_source_food_data = खाने का डेटा
-notice_open_food_facts = बारकोड से मिलने वाले पैक्ड प्रोडक्ट। डेटा © Open Food Facts योगदानकर्ता, Open Database License (ODbL) के तहत।
+notice_open_food_facts = बारकोड से मिलने वाले पैक्ड प्रोडक्ट। डेटा © Open Food Facts योगदानकर्ता, Open Database License (ODbL) के तहत; प्रोडक्ट की फ़ोटो © Open Food Facts योगदानकर्ता, CC BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0/) के तहत।
 notice_usda = फ़ूड सूची की पोषक वैल्यू: U.S. Department of Agriculture, Agricultural Research Service, FoodData Central. पब्लिक डोमेन (CC0)।
 notice_ciqual = फ़ूड सूची की पोषक वैल्यू: Anses, Ciqual फ़्रेंच खाद्य संरचना तालिका, Licence Ouverte / Etalab 2.0 के तहत।
 notice_food_model_name = Fortia का खाना पहचानने वाला मॉडल
-notice_food_model_license = हमारा अपना मॉडल (इसका मॉडल कार्ड देखें)
+notice_food_model_license = हमारा अपना मॉडल (इसका मॉडल कार्ड देखें) · AGPL-3.0 · food_model.tflite: AGPL-3.0 / CC BY-SA 4.0
 notice_food_model = हमारे अपने मॉडल, जो MobileNetV4 (timm, Apache-2.0) और Ultralytics YOLO11n (AGPL-3.0) पर आधारित हैं और Open Images (CC BY 2.0), Wikimedia Commons (मुक्त लाइसेंस) और MyFoodRepo (CC BY 4.0) की तस्वीरों पर ट्रेन किए गए हैं; वज़न का अनुमान Nutrition5k (CC BY 4.0) से कैलिब्रेट किया गया है। तस्वीरों और उनके लेखकों की सूची सोर्स कोड के साथ प्रकाशित है।

@@ -42,9 +42,9 @@ MICRO_MAX = {'mono_fat': 100, 'poly_fat': 100, 'cholesterol': 1500, 'potassium':
              'magnesium': 800, 'zinc': 40, 'vit_a': 15000, 'vit_c': 2000, 'vit_d': 60, 'vit_e': 150, 'vit_b12': 100,
              'folate': 3000}
 GROUPS = ['fruit', 'vegetables', 'grains', 'legumes', 'meat', 'fish', 'eggs', 'dairy', 'fats_nuts', 'sweets', 'drinks',
-          'dishes', 'fast_food', 'snacks', 'sauces']
+          'dishes', 'fast_food', 'snacks', 'sauces', 'supplements']
 PORTION_KEYS = ['unit', 'piece', 'slice', 'plate', 'small_plate', 'bowl', 'cup', 'glass', 'can', 'bottle', 'tbsp',
-                'tsp', 'handful', 'serving']
+                'tsp', 'handful', 'serving', 'scoop']
 ID = re.compile(r'^[a-z0-9_]+$')
 DEC = re.compile(r'^\d+(\.\d)?$')
 DEC2 = re.compile(r'^\d+(\.\d{1,2})?$')
@@ -54,7 +54,11 @@ NAME = re.compile(r'^(food_[a-z0-9_]+) = (.+?) \|\|\| (.+)$')
 # Drinks with alcohol (7 kcal/g, not a column): their energy is more than the macronutrients explain.
 ALCOHOLIC = {'beer', 'red_wine', 'white_wine', 'rose_wine', 'sparkling_wine', 'sangria', 'tinto_de_verano', 'cider',
              'vermouth', 'spirits', 'cocktail', 'mojito', 'gin_tonic', 'rum_and_cola', 'rum', 'gin', 'vodka',
-             'brandy', 'carajillo', 'clara', 'kalimotxo'}
+             'brandy', 'carajillo', 'clara', 'kalimotxo',
+             # 1.8.0
+             'strong_beer', 'dark_beer', 'light_beer', 'sweet_wine', 'sherry', 'liqueur', 'cream_liqueur', 'orujo',
+             'tequila', 'pina_colada', 'margarita', 'daiquiri', 'whisky_cola', 'vodka_orange', 'vodka_lemon',
+             'rebujito', 'agua_de_valencia'}
 # A typical recipe's ingredients (dishes with their own USDA/CIQUAL values) must explain the dish's energy within
 # this share (the app applies ingredient changes as deltas, so the amounts must be realistic).
 TYPICAL_KCAL = 0.25

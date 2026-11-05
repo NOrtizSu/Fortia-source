@@ -38,3 +38,20 @@ ex_golf = الغولف
 # 1.6.0
 ex_nordic_walking = المشي النوردي
 ex_stair_climbing = صعود الدرج
+
+# Snow (1.8)
+ex_alpine_skiing = التزلج على الثلج
+ex_cross_country_skiing = التزلج الريفي
+ex_snowboarding = السنوبورد
+# Water (1.8)
+ex_surfing = ركوب الأمواج
+ex_rowing = التجديف في الماء
+ex_kayaking = الكاياك والكانو
+ex_open_water_swimming = السباحة في المياه المفتوحة
+# Team and racket sports (1.8)
+ex_rugby = الرغبي
+ex_table_tennis = تنس الطاولة
+ex_squash = الاسكواش
+# Skating (1.8)
+ex_inline_skating = التزلج بالعجلات
+ex_ice_skating = التزلج على الجليد

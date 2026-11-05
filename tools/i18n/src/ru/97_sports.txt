@@ -36,3 +36,23 @@ ex_martial_arts = Боевые искусства
 # Others
 ex_climbing = Скалолазание
 ex_golf = Гольф
+
+# Snow (1.8)
+ex_alpine_skiing = Горные лыжи
+ex_cross_country_skiing = Беговые лыжи
+ex_snowboarding = Сноуборд
+
+# Water (1.8)
+ex_surfing = Сёрфинг
+ex_rowing = Гребля (на воде)
+ex_kayaking = Каяк и каноэ
+ex_open_water_swimming = Плавание на открытой воде
+
+# Team and racket sports (1.8)
+ex_rugby = Регби
+ex_table_tennis = Настольный теннис
+ex_squash = Сквош
+
+# Skating (1.8)
+ex_inline_skating = Катание на роликах
+ex_ice_skating = Катание на коньках

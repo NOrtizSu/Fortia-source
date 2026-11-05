@@ -26,7 +26,7 @@ import torch
 from torch.utils.data import DataLoader
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from train import Photos, configure_from_checkpoint, eval_tf, evaluate  # noqa: E402
+from train import Photos, build_model, configure_from_checkpoint, eval_tf, evaluate  # noqa: E402
 
 NOT_FOOD = "_not_food"
 # Dishes and foods typical of Spain / southern Europe, reported separately.
@@ -96,7 +96,7 @@ def main():
     os.makedirs(out, exist_ok=True)
     ck = torch.load(os.path.join(run, a.ckpt), map_location="cpu")
     configure_from_checkpoint(ck)
-    model = timm.create_model(ck["model"], pretrained=False, num_classes=ck["n_classes"])
+    model = build_model(ck["model"], ck["n_classes"], ck.get("head_hidden", 0), pretrained=False)
     model.load_state_dict(ck["state_dict"])
     device = torch.device("cuda")
     model.to(device)

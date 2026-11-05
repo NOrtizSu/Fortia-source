@@ -78,6 +78,8 @@ object FoodRows {
         put("created_at", f.createdAt)
         put("updated_at", f.updatedAt)
         put("checked_at", f.checkedAt)
+        put("image_url", f.imageUrl)
+        put("image", f.image)
     }
 
     fun customFoodOf(row: (String) -> Any?): CustomFood = CustomFood(
@@ -92,6 +94,8 @@ object FoodRows {
         createdAt = row.long("created_at")!!,
         updatedAt = row.long("updated_at")!!,
         checkedAt = row.long("checked_at"),
+        imageUrl = row.text("image_url"),
+        image = row.text("image"),
     )
 
     /** Every nutrient column (the column is the nutrient's code). */

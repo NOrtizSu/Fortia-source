@@ -25,6 +25,20 @@ internal class Ball(val center: V3, val radius: Float, ink: Ink = Ink.PLATE, fit
 /** A thin line through [points]: cables, ropes, bands, belts. */
 internal class Cord(val points: List<V3>, val width: Float, ink: Ink = Ink.CABLE, fit: Boolean = true, bias: Float = 0f) : Prop(ink, fit, bias)
 
+/**
+ * A spherical cap standing on the floor (or a level surface) with its flat base centred at [base]:
+ * the dome of a balance trainer (bosu), [radius] wide at the base and [height] tall.
+ */
+internal class Dome(val base: V3, val radius: Float, val height: Float, ink: Ink = Ink.PAD, fit: Boolean = true, bias: Float = 0f) :
+    Prop(ink, fit, bias) {
+    /** Radius of the sphere the cap is cut from, and how far its centre sits below the base. */
+    val sphere: Float get() = (radius * radius + height * height) / (2 * height)
+    val drop: Float get() = sphere - height
+
+    /** Height of the dome's surface above the base at [distance] metres from its axis (the base at the rim). */
+    fun surface(distance: Float): Float = kotlin.math.sqrt((sphere * sphere - distance * distance).coerceAtLeast(0f)) - drop
+}
+
 // Equipment built from the primitives above. Sizes are real-world-ish, a little exaggerated where
 // it helps reading (plates, handles) at the size of a bottom sheet.
 

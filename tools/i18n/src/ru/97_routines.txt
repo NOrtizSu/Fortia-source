@@ -16,3 +16,5 @@ routine_mobility = Мобильность и растяжка
 routine_foam_rolling = Восстановление с массажным роликом
 routine_hiit = HIIT без инвентаря
 routine_cardio_mix = Кардиотренажёры
+routine_kettlebell = Всё тело с гирей
+routine_calisthenics = Калистеника: элементы

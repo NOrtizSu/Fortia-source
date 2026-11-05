@@ -1,10 +1,12 @@
 package com.enjoyyourtime.globalfitness.ui.food
 
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.os.SystemClock
 import android.util.Log
+import android.util.LruCache
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.core.os.bundleOf
@@ -57,21 +59,33 @@ import com.enjoyyourtime.globalfitness.food.model.Portion
 import com.enjoyyourtime.globalfitness.food.model.PortionKey
 import com.enjoyyourtime.globalfitness.food.model.RecipeIngredient
 import com.enjoyyourtime.globalfitness.food.off.OffCache
+import com.enjoyyourtime.globalfitness.food.off.OffHit
 import com.enjoyyourtime.globalfitness.food.off.OffResult
+import com.enjoyyourtime.globalfitness.food.off.PhotoResult
+import com.enjoyyourtime.globalfitness.food.off.SearchResult
+import com.enjoyyourtime.globalfitness.food.pack.PackFind
+import com.enjoyyourtime.globalfitness.food.pack.PackSearch
+import com.enjoyyourtime.globalfitness.food.pack.PackageText
+import com.enjoyyourtime.globalfitness.food.pack.TextReading
+import com.enjoyyourtime.globalfitness.food.pack.TextScript
 import com.enjoyyourtime.globalfitness.food.catalog.FoodCatalog
 import com.enjoyyourtime.globalfitness.food.recognition.Detection
 import com.enjoyyourtime.globalfitness.food.recognition.DetectionMath
 import com.enjoyyourtime.globalfitness.food.recognition.GramsEstimator
 import com.enjoyyourtime.globalfitness.food.recognition.Recognition
+import com.enjoyyourtime.globalfitness.training.data.ExercisePhotos
 import com.enjoyyourtime.globalfitness.health.HcAvailability
 import com.enjoyyourtime.globalfitness.health.HealthDataType
 import com.enjoyyourtime.globalfitness.health.HealthPermissions
 import com.enjoyyourtime.globalfitness.ui.Fmt
+import com.google.zxing.BarcodeFormat
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.async
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -80,6 +94,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.mapLatest
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
@@ -92,6 +107,7 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.LocalTime
 import java.time.ZoneId
+import java.util.Locale
 import java.util.concurrent.ConcurrentHashMap
 
 /** The day's goal: the targets, and how the automatic one was computed (null when it cannot be yet). */
@@ -139,10 +155,60 @@ data class PhotoSession(
     val asOne: Boolean = false,
     /** "Add all" is saving the items. */
     val addingItems: Boolean = false,
+    /** The packaged product the photo may show (its barcode, the user's scanned products, the words on it). */
+    val pack: PackUi = PackUi(),
 ) {
     /** The page shows the plate's items (not the whole photo's suggestions). */
     val showsItems: Boolean get() = items.size >= 2 && !asOne
 }
+
+/** How a packaged product was found from the meal photo: its entry keeps the photo, and the photo's embedding is kept for that product. */
+enum class PackWay { BARCODE, MATCH, TEXT }
+
+/** A barcode read on the meal photo and what looking it up gave ([BarcodeState.LookingUp] meanwhile). */
+data class PhotoBarcode(val code: String, val state: BarcodeState)
+
+/** One of the user's scanned products the photo looks like. */
+data class PackProduct(val customFoodId: String, val name: String, val brand: String?)
+
+/** "Search the product by its package": the words read on the photo, searched in Open Food Facts. */
+sealed interface PackText {
+    data object Idle : PackText
+
+    data object Reading : PackText
+
+    data class Searching(val query: String) : PackText
+
+    /** Up to [com.enjoyyourtime.globalfitness.food.pack.PackSearch.SHOWN] products, those sold in the user's country first. */
+    data class Results(val query: String, val hits: List<OffHit>) : PackText
+
+    /** No words that could name a product. */
+    data object NoText : PackText
+
+    /** The text recognition failed on this photo (not the photo's fault: worth another try). */
+    data object ReadFailed : PackText
+
+    data class NotFound(val query: String) : PackText
+
+    data class Offline(val query: String) : PackText
+
+    /** Too many searches in a short time (Open Food Facts' limit). */
+    data class Busy(val query: String) : PackText
+
+    data class Failed(val query: String) : PackText
+
+    /** Text recognition is being downloaded by Google Play services ([preparing]), or this phone has no Play services. */
+    data class Unavailable(val preparing: Boolean) : PackText
+}
+
+data class PackUi(
+    val barcode: PhotoBarcode? = null,
+    /** "Is it …?": one of the scanned products clearly ahead. */
+    val match: PackProduct? = null,
+    /** Otherwise the scanned products it may be (none picked). */
+    val suggestions: List<PackProduct> = emptyList(),
+    val text: PackText = PackText.Idle,
+)
 
 /**
  * One food item the detector found on the plate: its square crop (the entry's photo once added), what
@@ -209,6 +275,8 @@ data class FoodDraft(
     val own: Nutrients? = item.per100,
     /** The edited entry had values typed by hand. */
     val valuesEdited: Boolean = false,
+    /** A product found from the photo of its package: once logged, the photo's embedding is kept for it. */
+    val fromPackage: Boolean = false,
 ) {
     /** [item] and its recipe as an option (it may have no variants). */
     val current: DraftOption get() = DraftOption(item, recipe, recall, own)
@@ -360,6 +428,15 @@ class FoodViewModel(private val container: AppContainer, private val state: Save
         custom.map(FoodItem::of) + catalog
     }.flowOn(Dispatchers.Default).stateIn(viewModelScope, SharingStarted.Eagerly, emptyList())
 
+    /**
+     * The photo file of every product that has one on this phone (from Open Food Facts), by custom food
+     * id (a database restored without the photos names files that are not there yet).
+     */
+    val productPhotos: StateFlow<Map<String, String>> = repository.customFoods
+        .map { foods -> foods.mapNotNull { f -> f.image?.takeIf(food.productPhotos::exists)?.let { f.id to it } }.toMap() }
+        .flowOn(Dispatchers.IO)
+        .stateIn(viewModelScope, SharingStarted.Eagerly, emptyMap())
+
     private var catalogJob: Job? = null
 
     /**
@@ -384,9 +461,14 @@ class FoodViewModel(private val container: AppContainer, private val state: Save
         return foods
     }
 
-    /** The Comida tab shows: the catalog (the model loads only when a meal photo is on its way). */
+    /**
+     * The Comida tab shows: the catalog (the model loads only when a meal photo is on its way), and the
+     * scanned products' photos not embedded yet are embedded in the background (nothing when the model has
+     * no embedding or all are done; it pauses while a meal photo is recognized).
+     */
     fun onTabShown() {
         ensureCatalog()
+        food.packs.sync()
     }
 
     /** A meal photo is about to be taken or picked: the model loads meanwhile (and is closed again when unused). */
@@ -544,37 +626,310 @@ class FoodViewModel(private val container: AppContainer, private val state: Save
     /**
      * A meal photo from the camera or the gallery: stored small, then recognized on the phone. With the
      * item detector and two or more foods found, each is recognized on its own crop; otherwise the
-     * whole photo, as one food.
+     * whole photo, as one food. Meanwhile a barcode on the photo is read (a packaged product: looked up
+     * like a scanned barcode, its page opens); without one, the photo is compared with the products the
+     * user already scanned, and a photo that looks like a package has its words searched in Open Food
+     * Facts. None of them logs anything.
      */
     fun onMealPhoto(uri: Uri, fromCamera: Boolean) {
         closePhotoSession()
         val now = System.currentTimeMillis()
         val meal = defaultMeal(now)
         _photo.value = PhotoSession(null, null, PhotoStatus.RECOGNIZING, meal = meal, eatenAt = now)
+        // Its page is coming in: not left yet (it shows once resumed).
+        photoPageLeft = false
+        photoPageShown = false
         photoJob = viewModelScope.launch {
-            val bitmap = withContext(Dispatchers.IO) { photos.decode(uri, RECOGNITION_SIDE_PX) }
-            if (fromCamera) withContext(Dispatchers.IO) { runCatching { photos.cameraTarget.delete() } }
-            if (bitmap == null) {
-                _photo.update { it?.copy(status = PhotoStatus.UNREADABLE) }
-                return@launch
+            // The scanned products' background embedding waits while this photo uses the model.
+            val hold = food.packs.hold()
+            try {
+                recognizePhoto(uri, fromCamera)
+            } finally {
+                hold.close()
             }
-            photoBitmap = bitmap
-            val name = withContext(Dispatchers.IO) { runCatching { photos.store(bitmap) }.getOrNull() }
-            _photo.update { it?.copy(photo = name, preview = bitmap.asImageBitmap()) }
-            val known = awaitCatalog()
-            val started = SystemClock.elapsedRealtime()
-            val detection = if (food.recognizer.detectorBundled) food.recognizer.detect(bitmap) else null
-            if (detection != null && detection.boxes.size >= 2) {
-                val items = plateItems(bitmap, detection, known)
-                Log.i(TAG, "Plate of ${items.size} items recognized in ${SystemClock.elapsedRealtime() - started} ms")
-                if (items.any { it.recognition != null }) {
-                    _photo.update { it?.copy(status = PhotoStatus.DONE, items = items) }
-                    return@launch
+        }
+    }
+
+    private suspend fun recognizePhoto(uri: Uri, fromCamera: Boolean) = coroutineScope {
+        val bitmap = withContext(Dispatchers.IO) { photos.decode(uri, RECOGNITION_SIDE_PX) }
+        if (fromCamera) withContext(Dispatchers.IO) { runCatching { photos.cameraTarget.delete() } }
+        if (bitmap == null) {
+            _photo.update { it?.copy(status = PhotoStatus.UNREADABLE) }
+            return@coroutineScope
+        }
+        photoBitmap = bitmap
+        val name = withContext(Dispatchers.IO) { runCatching { photos.store(bitmap) }.getOrNull() }
+        _photo.update { it?.copy(photo = name, preview = bitmap.asImageBitmap()) }
+        // (1) A barcode on the photo, read while the food is recognized: its product, when found, is the answer.
+        val barcode = async {
+            val readAt = SystemClock.elapsedRealtime()
+            val code = withContext(Dispatchers.Default) {
+                try {
+                    barcodeOf(bitmap)
+                } catch (e: Exception) {
+                    // ZXing may throw more than its own exceptions on an odd picture: no barcode, no crash.
+                    Log.w(TAG, "Could not read a barcode on the photo", e)
+                    null
                 }
             }
-            val result = food.recognizer.recognize(bitmap) { it in known }
-            _photo.update { it?.copy(status = if (result == null) PhotoStatus.NO_MODEL else PhotoStatus.DONE, recognition = result) }
+            Log.i(TAG, "Barcode in the photo: ${if (code == null) "none" else "read"} in ${SystemClock.elapsedRealtime() - readAt} ms")
+            code?.let { lookUpPhotoBarcode(it) }
         }
+        val known = awaitCatalog()
+        val started = SystemClock.elapsedRealtime()
+        val detection = if (food.recognizer.detectorBundled) food.recognizer.detect(bitmap) else null
+        var items = emptyList<PlateItem>()
+        if (detection != null && detection.boxes.size >= 2) {
+            items = plateItems(bitmap, detection, known)
+            Log.i(TAG, "Plate of ${items.size} items recognized in ${SystemClock.elapsedRealtime() - started} ms")
+            if (items.any { it.recognition != null }) _photo.update { it?.copy(status = PhotoStatus.DONE, items = items) } else items = emptyList()
+        }
+        val result = if (items.isEmpty()) food.recognizer.recognize(bitmap) { it in known } else null
+        if (items.isEmpty()) _photo.update { it?.copy(status = if (result == null) PhotoStatus.NO_MODEL else PhotoStatus.DONE, recognition = result) }
+        val barcodeState = barcode.await()
+        if (PhotoPackRules.barcodeDecides(barcodeState)) return@coroutineScope
+        // (2) One of the products the user already scanned (offline): the whole photo and its largest items.
+        val lookAt = SystemClock.elapsedRealtime()
+        val look = food.packs.look(listOf(bitmap) + items.sortedByDescending { it.share }.take(PACK_CROPS).map { it.crop })
+        if (look != null) {
+            Log.i(TAG, "Compared with the scanned products in ${SystemClock.elapsedRealtime() - lookAt} ms (${look.queries.size} pictures): ${look.find?.javaClass?.simpleName ?: "nothing close"}")
+            packQueries = look.queries
+            showPackFind(look.find)
+        }
+        // (3) A photo that looks like a package (no food seen, or only a weak guess) has its words read, and searched when enough.
+        if (PhotoPackRules.readsByItself(items.isNotEmpty(), barcodeState, look?.find, result, canReadPackages, photoPageLeft)) {
+            startTextSearch(bitmap, auto = true)
+        }
+    }
+
+    // ---- adding: a packaged product on the meal photo -----------------------------------------------
+
+    /** How the barcode page was opened from the meal photo (null: scanned from the Comida tab, no photo). */
+    private var barcodeForPhoto: PackWay? = null
+
+    /** The embeddings of the photo being logged (the whole photo first), once compared with the scanned products. */
+    private var packQueries: List<FloatArray>? = null
+
+    /** The words read on the photo being logged (read once per photo). */
+    private var packWords: String? = null
+
+    private var textJob: Job? = null
+
+    private val _photoOpen = MutableStateFlow<String?>(null)
+
+    /** A page the photo page opens by itself (the barcode read on the photo was found); [onPhotoOpened] once opened. */
+    val photoOpen: StateFlow<String?> = _photoOpen.asStateFlow()
+
+    /** The photo page is in front (resumed). */
+    @Volatile
+    private var photoPageShown = false
+
+    /**
+     * The user left the photo page of this photo (chose a food, a product or the search, or the page was
+     * covered after it showed): nothing opens or is read by itself any more. A lookup that ends while the
+     * page is still coming in is not "left": its page opens once the photo page is in front.
+     */
+    @Volatile
+    private var photoPageLeft = false
+
+    fun setPhotoPageShown(shown: Boolean) {
+        if (!shown) {
+            if (photoPageShown) photoPageLeft = true
+            _photoOpen.value = null
+        }
+        photoPageShown = shown
+    }
+
+    fun onPhotoOpened() {
+        _photoOpen.value = null
+    }
+
+    /** The user goes on from the photo page (a food, a product, the search): nothing opens by itself any more. */
+    private fun leavePhotoPage() {
+        photoPageLeft = true
+        _photoOpen.value = null
+    }
+
+    /** Packages can be read in the app's language (ML Kit has a recognizer for its writing system). */
+    val canReadPackages: Boolean get() = TextScript.forLanguage(Fmt.locale.language) != null
+
+    private fun updatePack(transform: (PackUi) -> PackUi) = _photo.update { it?.copy(pack = transform(it.pack)) }
+
+    /** The digits of a barcode in [bitmap] (a meal photo: no UPC-E), or null ([bitmap] is left as it is). */
+    private fun barcodeOf(bitmap: Bitmap, formats: List<BarcodeFormat> = BarcodeReader.MEAL_PHOTO_FORMATS): String? {
+        val w = bitmap.width
+        val h = bitmap.height
+        val pixels = IntArray(w * h)
+        bitmap.getPixels(pixels, 0, w, 0, 0, w, h)
+        return BarcodeReader.decode(BarcodeReader.luminanceOf(pixels, w, h), w, h, formats)
+    }
+
+    /**
+     * The barcode read on the meal photo, looked up like a scanned one for the photo's card. The barcode
+     * page's own state is only set when that page opens by itself (the product was found while the photo
+     * page is in front), so a page showing another product is never changed.
+     */
+    private suspend fun lookUpPhotoBarcode(code: String): BarcodeState {
+        val canonical = BarcodeReader.canonical(code)
+        updatePack { it.copy(barcode = PhotoBarcode(canonical, BarcodeState.LookingUp(canonical))) }
+        val started = SystemClock.elapsedRealtime()
+        val cached = repository.customFoodByBarcode(canonical)
+        val state = cached?.let { foundCached(canonical, it) } ?: fetchProduct(canonical)
+        Log.i(TAG, "Barcode of the photo looked up in ${SystemClock.elapsedRealtime() - started} ms: ${state.javaClass.simpleName}")
+        updatePack { it.copy(barcode = PhotoBarcode(canonical, state)) }
+        if (PhotoPackRules.opensBarcodePage(state, photoPageLeft)) {
+            barcodeJob?.cancel()
+            barcodeForPhoto = PackWay.BARCODE
+            _barcode.value = state
+            _photoOpen.value = FoodRoutes.BARCODE
+        }
+        // A kept product: refreshed when due and its photo looked after, as after a scan (in the background).
+        cached?.let { viewModelScope.launch { lookAfterCached(canonical, it) } }
+        return state
+    }
+
+    /** "Open" on the photo's barcode: its page (looked up again: the photo page shows what it gave). */
+    fun openPhotoBarcode() {
+        val code = _photo.value?.pack?.barcode?.code ?: return
+        openProduct(code, PackWay.BARCODE)
+    }
+
+    /** One of the scanned products the photo looks like ("Is it …?" or a suggestion) opened as its barcode page. */
+    fun choosePackProduct(customFoodId: String): Boolean {
+        val code = repository.customFood(customFoodId)?.barcode ?: return false
+        openProduct(code, PackWay.MATCH)
+        return true
+    }
+
+    /** A product of the package search chosen: looked up by its barcode (kept like a scanned one), its page opens. */
+    fun choosePackHit(hit: OffHit) = openProduct(hit.barcode, PackWay.TEXT)
+
+    private fun openProduct(code: String, way: PackWay) {
+        leavePhotoPage()
+        barcodeJob?.cancel()
+        barcodeForPhoto = way
+        _barcode.value = BarcodeState.LookingUp(BarcodeReader.canonical(code))
+        barcodeJob = viewModelScope.launch {
+            lookUp(code)
+            if (way == PackWay.BARCODE) _barcode.value?.let { s -> updatePack { it.copy(barcode = it.barcode?.copy(state = s)) } }
+        }
+    }
+
+    private fun showPackFind(find: PackFind?) {
+        fun product(id: String) = repository.customFood(id)?.let { PackProduct(it.id, it.name, it.brand) }
+        when (find) {
+            is PackFind.Match -> updatePack { it.copy(match = product(find.best.productId), suggestions = emptyList()) }
+            is PackFind.Suggestions -> updatePack { it.copy(match = null, suggestions = find.products.mapNotNull { p -> product(p.productId) }) }
+            null -> updatePack { it.copy(match = null, suggestions = emptyList()) }
+        }
+    }
+
+    /** "Search the product by its package" (or "Try again"): nothing while a reading or a search runs. */
+    fun searchPackage() {
+        val bitmap = photoBitmap ?: return
+        if (_photo.value == null || !canReadPackages) return
+        startTextSearch(bitmap, auto = false)
+    }
+
+    private fun startTextSearch(bitmap: Bitmap, auto: Boolean) {
+        if (textJob?.isActive == true) return
+        textJob = viewModelScope.launch { readPackage(bitmap, auto) }
+    }
+
+    /**
+     * The words of the search field, typed or corrected by the user (a logo is not text: the words read
+     * may be the small print), searched exactly as given (within the same limits: a few a minute, the same
+     * words from memory). Nothing while a reading or a search runs.
+     */
+    fun searchPackageWords(input: String) {
+        val words = PackageText.typed(input) ?: return
+        if (_photo.value == null || textJob?.isActive == true) return
+        textJob = viewModelScope.launch { searchWords(words, broaden = false) }
+    }
+
+    /**
+     * The words on the photo read on the phone, then searched in Open Food Facts. [auto]: the photo
+     * looked like a package; it is searched only when enough words were read (the page then shows the
+     * button again) and while the photo page is in front.
+     */
+    private suspend fun readPackage(bitmap: Bitmap, auto: Boolean) {
+        val script = TextScript.forLanguage(Fmt.locale.language) ?: return
+        val words = packWords ?: run {
+            updatePack { it.copy(text = PackText.Reading) }
+            val started = SystemClock.elapsedRealtime()
+            when (val r = food.textReader.read(bitmap, script)) {
+                is TextReading.Lines -> {
+                    var q = PackageText.query(r.lines)
+                    // Another script's recognizer that read nothing of its own: the Latin one reads Latin brand names better.
+                    if (PackageText.needsLatin(script, r.lines, q)) {
+                        (food.textReader.read(bitmap, TextScript.LATIN) as? TextReading.Lines)?.let { latin -> PackageText.latinQuery(latin.lines)?.let { q = it } }
+                    }
+                    Log.i(TAG, "Package read in ${SystemClock.elapsedRealtime() - started} ms: ${r.lines.size} lines, ${q?.split(' ')?.size ?: 0} words kept")
+                    packWords = q.orEmpty()
+                    q
+                }
+                is TextReading.Unavailable -> {
+                    updatePack { it.copy(text = if (auto) PackText.Idle else PackText.Unavailable(r.preparing)) }
+                    return
+                }
+                TextReading.Failed -> {
+                    updatePack { it.copy(text = if (auto) PackText.Idle else PackText.ReadFailed) }
+                    return
+                }
+            }
+        }
+        if (!PhotoPackRules.searches(words, auto) || auto && photoPageLeft) {
+            updatePack { it.copy(text = if (auto || !words.isNullOrEmpty()) PackText.Idle else PackText.NoText) }
+            return
+        }
+        searchWords(words.orEmpty(), broaden = true)
+    }
+
+    /** [query] searched in Open Food Facts; [broaden]: words read on the package, searched again with fewer when all of them find nothing. */
+    private suspend fun searchWords(query: String, broaden: Boolean) {
+        updatePack { it.copy(text = PackText.Searching(query)) }
+        val started = SystemClock.elapsedRealtime()
+        var searched: String = query
+        var result = food.packSearch.search(query, Fmt.locale.language)
+        // Nothing for all the words (one misread): once more with fewer.
+        if (broaden && result is SearchResult.Hits && result.hits.isEmpty()) {
+            PackageText.broader(query)?.let { fewer ->
+                searched = fewer
+                updatePack { it.copy(text = PackText.Searching(fewer)) }
+                result = food.packSearch.search(fewer, Fmt.locale.language)
+            }
+        }
+        Log.i(TAG, "Package searched in ${SystemClock.elapsedRealtime() - started} ms: ${result.javaClass.simpleName}${if (searched != query) " (fewer words)" else ""}")
+        val country = PackSearch.countryTag(Locale.getDefault()) ?: PackSearch.countryTag(Fmt.locale)
+        val found = result
+        updatePack {
+            it.copy(
+                text = when (found) {
+                    is SearchResult.Hits -> if (found.hits.isEmpty()) PackText.NotFound(searched) else PackText.Results(searched, PackSearch.ranked(found.hits, country))
+                    SearchResult.Offline -> PackText.Offline(searched)
+                    SearchResult.Busy -> PackText.Busy(searched)
+                    is SearchResult.Failed -> PackText.Failed(searched)
+                },
+            )
+        }
+    }
+
+    /** Photos of the package search's products, by address: shown in the list, never stored (memory only). */
+    private val hitPhotos = object : LruCache<String, ImageBitmap>(HIT_PHOTOS_BYTES) {
+        override fun sizeOf(key: String, value: ImageBitmap): Int = value.width * value.height * 4
+    }
+
+    fun cachedHitPhoto(url: String): ImageBitmap? = hitPhotos.get(url)
+
+    /** The photo of a product of the package search (downloaded from Open Food Facts' image server, kept in memory), or null. */
+    suspend fun hitPhoto(url: String, px: Int): ImageBitmap? = hitPhotos.get(url) ?: withContext(Dispatchers.IO) {
+        val bytes = (food.openFoodFacts.image(url) as? PhotoResult.Photo)?.bytes ?: return@withContext null
+        runCatching {
+            val bounds = BitmapFactory.Options().apply { inJustDecodeBounds = true }
+            BitmapFactory.decodeByteArray(bytes, 0, bytes.size, bounds)
+            val opts = BitmapFactory.Options().apply { inSampleSize = ExercisePhotos.sampleSize(bounds.outWidth, bounds.outHeight, px) }
+            BitmapFactory.decodeByteArray(bytes, 0, bytes.size, opts)?.asImageBitmap()
+        }.getOrNull()?.also { hitPhotos.put(url, it) }
     }
 
     /** Each box of the plate cropped, recognized and given its first food, amount and variants. */
@@ -742,7 +1097,12 @@ class FoodViewModel(private val container: AppContainer, private val state: Save
     /** The photo flow ends: a photo no entry uses (nor one being saved) is deleted. */
     fun closePhotoSession() {
         photoJob?.cancel()
+        textJob?.cancel()
         photoBitmap = null
+        packQueries = null
+        packWords = null
+        barcodeForPhoto = null
+        _photoOpen.value = null
         if (searchTarget != null) searchTarget = null
         val session = _photo.value ?: return
         _photo.value = null
@@ -782,6 +1142,7 @@ class FoodViewModel(private val container: AppContainer, private val state: Save
     val searchingForItem: Boolean get() = searchTarget != null
 
     fun startSearch(forPhoto: Boolean) {
+        leavePhotoPage()
         searchForPhoto = forPhoto && _photo.value != null
         searchTarget = null
         _query.value = ""
@@ -789,6 +1150,7 @@ class FoodViewModel(private val container: AppContainer, private val state: Save
 
     /** "Other…" on item [id] of the plate. */
     fun startItemSearch(id: Int) {
+        leavePhotoPage()
         searchForPhoto = false
         searchTarget = id.takeIf { _photo.value?.items?.any { it.id == id } == true }
         _query.value = ""
@@ -848,8 +1210,10 @@ class FoodViewModel(private val container: AppContainer, private val state: Save
 
     private var barcodeJob: Job? = null
 
-    fun onBarcodePhoto(uri: Uri, fromCamera: Boolean) {
+    /** A barcode photo; [forPhoto]: taken from the meal photo's page (for the package on it: the entry keeps the meal photo). */
+    fun onBarcodePhoto(uri: Uri, fromCamera: Boolean, forPhoto: Boolean = false) {
         barcodeJob?.cancel()
+        barcodeForPhoto = PackWay.BARCODE.takeIf { forPhoto && _photo.value != null }
         _barcode.value = BarcodeState.Reading
         barcodeJob = viewModelScope.launch {
             val code = withContext(Dispatchers.Default) {
@@ -876,32 +1240,55 @@ class FoodViewModel(private val container: AppContainer, private val state: Save
         onBarcodeTyped(code)
     }
 
-    private fun readBarcode(bitmap: Bitmap): String? {
-        val w = bitmap.width
-        val h = bitmap.height
-        val pixels = IntArray(w * h)
-        bitmap.getPixels(pixels, 0, w, 0, 0, w, h)
+    /** The barcode of a photo aimed at one (every product format); an odd picture ZXing cannot take reads as none. */
+    private fun readBarcode(bitmap: Bitmap): String? = try {
+        barcodeOf(bitmap, BarcodeReader.FORMATS)
+    } catch (e: Exception) {
+        Log.w(TAG, "Could not read the barcode photo", e)
+        null
+    } finally {
         bitmap.recycle()
-        return BarcodeReader.decode(BarcodeReader.luminanceOf(pixels, w, h), w, h)
     }
 
     private suspend fun lookUp(scanned: String) {
         val code = BarcodeReader.canonical(scanned)
         repository.customFoodByBarcode(code)?.let { cached ->
-            val last = FoodRecall.lastEntry(repository.entries.value, FoodRef.Custom(cached.id))
-            _barcode.value = BarcodeState.Found(code, FoodItem.of(cached), missingOf(cached.per100), fromCache = true, last = last)
-            if (OffCache.needsRefresh(cached, System.currentTimeMillis())) refresh(code, cached)
+            _barcode.value = foundCached(code, cached)
+            lookAfterCached(code, cached)
             return
         }
         _barcode.value = BarcodeState.LookingUp(code)
-        _barcode.value = when (val r = food.openFoodFacts.product(code, Fmt.locale.language)) {
+        _barcode.value = fetchProduct(code)
+    }
+
+    /** A kept product found again by its barcode (with its last entry, if it was logged before). */
+    private fun foundCached(code: String, cached: CustomFood): BarcodeState.Found {
+        val last = FoodRecall.lastEntry(repository.entries.value, FoodRef.Custom(cached.id))
+        return BarcodeState.Found(code, FoodItem.of(cached), missingOf(cached.per100), fromCache = true, last = last)
+    }
+
+    /** After a kept product is found: asked again when due; its photo comes (or is downloaded again) in the background once its address is known. */
+    private suspend fun lookAfterCached(code: String, cached: CustomFood) {
+        when {
+            OffCache.needsRefresh(cached, System.currentTimeMillis()) -> refresh(code, cached)
+            OffCache.needsImageCheck(cached) -> writing { food.checkProductPhoto(cached, Fmt.locale.language) }
+        }
+        food.fetchProductPhoto(cached.id)
+    }
+
+    /** The product of [code] from Open Food Facts, kept for next time when found (only the number is sent). */
+    private suspend fun fetchProduct(code: String): BarcodeState =
+        when (val r = food.openFoodFacts.product(code, Fmt.locale.language)) {
             is OffResult.Found -> {
                 val p = r.product
                 if (p.name == null && p.per100.isEmpty) {
                     BarcodeState.NotFound(code)
                 } else {
                     writing { repository.addCustomFood(OffCache.customFoodOf(p, code)) }
-                        ?.let { stored -> BarcodeState.Found(code, FoodItem.of(stored), p.missing, fromCache = false) }
+                        ?.let { stored ->
+                            food.fetchProductPhoto(stored.id)
+                            BarcodeState.Found(code, FoodItem.of(stored), p.missing, fromCache = false)
+                        }
                         ?: BarcodeState.Failed(code)
                 }
             }
@@ -909,7 +1296,6 @@ class FoodViewModel(private val container: AppContainer, private val state: Save
             OffResult.Offline -> BarcodeState.Offline(code)
             is OffResult.Failed -> BarcodeState.Failed(code)
         }
-    }
 
     /**
      * A kept product that is incomplete or old is asked again while the cached one shows; the page takes
@@ -930,9 +1316,11 @@ class FoodViewModel(private val container: AppContainer, private val state: Save
 
     private fun missingOf(n: Nutrients) = Nutrient.LABEL.filter { n[it] == null }
 
+    /** "Use this product"; opened from a meal photo, the entry keeps that photo (meal and time too). */
     fun useBarcodeProduct() {
         val found = _barcode.value as? BarcodeState.Found ?: return
-        startDraft(found.item, EntrySource.BARCODE, null, recall = true)
+        val session = _photo.value.takeIf { barcodeForPhoto != null }
+        startDraft(found.item, EntrySource.BARCODE, session, recall = true, fromPackage = session != null)
     }
 
     /** "Complete the values" of a product with missing ones, or "Enter manually" for one not found. */
@@ -962,6 +1350,7 @@ class FoodViewModel(private val container: AppContainer, private val state: Save
 
     fun clearBarcode() {
         barcodeJob?.cancel()
+        barcodeForPhoto = null
         _barcode.value = null
     }
 
@@ -1074,7 +1463,10 @@ class FoodViewModel(private val container: AppContainer, private val state: Save
         estimate: Double? = null,
         grams: GramsEstimator? = null,
         recall: Boolean = false,
+        fromPackage: Boolean = false,
     ) {
+        // The confirm page opens: a product found on the photo's barcode must not open over it.
+        leavePhotoPage()
         val now = System.currentTimeMillis()
         val eatenAt = session?.eatenAt ?: eatenAtFor(_day.value, now)
         val shape = FoodDrafts.shape(item, catalogFoods.value, catalogRecipes.value, food.catalog::name)
@@ -1105,7 +1497,14 @@ class FoodViewModel(private val container: AppContainer, private val state: Save
             estimatedAmount = estimate.takeIf { amount == null },
             grams = grams.takeIf { amount == null },
             recall = asLast,
+            fromPackage = fromPackage && session?.photo != null && item.customFoodId != null,
         )
+        lookAfterPhoto(item.customFoodId)
+    }
+
+    /** A product opened to be logged gets its photo from Open Food Facts if it has none yet (in the background). */
+    private fun lookAfterPhoto(customFoodId: String?) {
+        customFoodId?.let(repository::customFood)?.let { food.lookAfterProductPhoto(it, Fmt.locale.language) }
     }
 
     /** Opens an existing entry in the confirm screen. Returns false when it no longer exists (or food.db is not open). */
@@ -1158,6 +1557,7 @@ class FoodViewModel(private val container: AppContainer, private val state: Save
         )
         // The entry's own option is the draft's (its values, the food's own ones to restore).
         _draft.value = draft.copy(options = draft.options.map { if (it.item.ref == item.ref) draft.current else it })
+        lookAfterPhoto(custom?.id)
         return true
     }
 
@@ -1240,6 +1640,10 @@ class FoodViewModel(private val container: AppContainer, private val state: Save
         settings.markUsed()
         // The day shown follows the entry, so the user sees it there.
         showDay(entry.localDate)
+        // A product logged from a photo of its package: the photo's embedding helps recognise it next time.
+        if (d.fromPackage && d.photo != null && _photo.value?.photo == d.photo) {
+            item.customFoodId?.let { food.packs.remember(it, d.photo, packQueries, photoBitmap) }
+        }
         if (d.photo != null) {
             _photo.update { s -> if (s != null && s.photo == d.photo) s.copy(added = s.added + entry.name, meal = c.meal, eatenAt = c.eatenAt) else s }
         }
@@ -1312,6 +1716,22 @@ class FoodViewModel(private val container: AppContainer, private val state: Save
         runCatching { photos.loadBitmap(name, px)?.asImageBitmap() }.getOrNull()
     }
 
+    /**
+     * Product photos already decoded, by file name and size: a row scrolled back into view shows its
+     * photo at once (a file name is never reused for another photo).
+     */
+    private val productThumbnails = object : LruCache<String, ImageBitmap>(PRODUCT_THUMBNAILS_BYTES) {
+        override fun sizeOf(key: String, value: ImageBitmap): Int = value.width * value.height * 4
+    }
+
+    /** A product's photo already decoded at [px] ([productThumbnail]), or null. */
+    fun cachedProductThumbnail(name: String, px: Int): ImageBitmap? = productThumbnails.get("$name@$px")
+
+    /** A product's photo ([productPhotos]) for the lists (small), or null. */
+    suspend fun productThumbnail(name: String, px: Int): ImageBitmap? = cachedProductThumbnail(name, px) ?: withContext(Dispatchers.IO) {
+        runCatching { food.productPhotos.loadBitmap(name, px)?.asImageBitmap() }.getOrNull()?.also { productThumbnails.put("$name@$px", it) }
+    }
+
     // ---- Health Connect ------------------------------------------------------------------------
 
     private val _askHealth = MutableStateFlow(false)
@@ -1378,6 +1798,15 @@ class FoodViewModel(private val container: AppContainer, private val state: Save
 
         /** How long "Undo" is offered after deleting an entry (the snackbar's long duration). */
         const val UNDO_MS = 10_000L
+
+        /** Memory for decoded product photos (a 400 px photo takes about 0.5 MB). */
+        private const val PRODUCT_THUMBNAILS_BYTES = 8 * 1024 * 1024
+
+        /** Memory for the photos of the package search's products (200 px ones: about 0.15 MB each). */
+        private const val HIT_PHOTOS_BYTES = 4 * 1024 * 1024
+
+        /** The largest items of a plate also compared with the scanned products (besides the whole photo). */
+        private const val PACK_CROPS = 3
 
         /** The day is checked at least this often (a clock or time zone change moves midnight). */
         private const val MAX_DAY_CHECK_MS = 15 * 60_000L

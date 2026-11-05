@@ -96,7 +96,13 @@ class SportsCatalogTest {
     @Test
     fun onlyTheActivitiesThatCoverADistanceLogOne() {
         val withDistance = sports.filter { SportsCatalog.coversDistance(lookup(it.id)) }.map { it.id }.toSet()
-        assertEquals(setOf("outdoor_walk", "hiking", "nordic_walking", "outdoor_run", "outdoor_cycling", "swimming"), withDistance)
+        assertEquals(
+            setOf(
+                "outdoor_walk", "hiking", "nordic_walking", "outdoor_run", "outdoor_cycling", "swimming",
+                "cross_country_skiing", "rowing", "kayaking", "open_water_swimming", "inline_skating",
+            ),
+            withDistance,
+        )
         // The user's own sport may cover one: the field is there, optional.
         assertTrue(SportsCatalog.coversDistance(ownSport()))
     }
@@ -224,6 +230,18 @@ class SportsCatalogTest {
                 "martial_arts" to EXERCISE_TYPE_MARTIAL_ARTS,
                 "climbing" to EXERCISE_TYPE_ROCK_CLIMBING,
                 "golf" to EXERCISE_TYPE_GOLF,
+                "alpine_skiing" to EXERCISE_TYPE_SKIING,
+                "cross_country_skiing" to EXERCISE_TYPE_SKIING,
+                "snowboarding" to EXERCISE_TYPE_SNOWBOARDING,
+                "surfing" to EXERCISE_TYPE_SURFING,
+                "rowing" to EXERCISE_TYPE_ROWING,
+                "kayaking" to EXERCISE_TYPE_PADDLING,
+                "open_water_swimming" to EXERCISE_TYPE_SWIMMING_OPEN_WATER,
+                "rugby" to EXERCISE_TYPE_RUGBY,
+                "table_tennis" to EXERCISE_TYPE_TABLE_TENNIS,
+                "squash" to EXERCISE_TYPE_SQUASH,
+                "inline_skating" to EXERCISE_TYPE_SKATING,
+                "ice_skating" to EXERCISE_TYPE_ICE_SKATING,
             )
         }
     }

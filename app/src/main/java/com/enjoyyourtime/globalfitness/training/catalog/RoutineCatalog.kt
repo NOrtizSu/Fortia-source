@@ -212,6 +212,34 @@ object RoutineCatalog {
                 timed("rowing_machine", 1, 600),
             ),
         ),
+        // Kettlebell full body (1.8): everything with a single bell. The halo warms the shoulders up,
+        // swings and get-ups train the posterior chain and the core.
+        CatalogRoutine(
+            "kettlebell", R.string.routine_kettlebell,
+            listOf(
+                timed("kettlebell_halo", 2, 30),
+                e("kettlebell_swing", 4, 15),
+                e("kettlebell_goblet_squat", 3, 10),
+                e("kettlebell_clean_and_press", 3, 8),
+                e("kettlebell_row", 3, 10),
+                e("turkish_get_up", 2, 3),
+                timed("kettlebell_overhead_carry", 2, 40),
+            ),
+        ),
+        // Calisthenics skills (1.8): the skills first, while fresh (short holds an intermediate can
+        // manage), then pulling and pushing strength and the core.
+        CatalogRoutine(
+            "calisthenics", R.string.routine_calisthenics,
+            listOf(
+                timed("wall_handstand", 3, 20),
+                timed("tuck_front_lever", 4, 8),
+                timed("tuck_l_sit", 3, 10),
+                e("pull_up", 4, 6),
+                e("parallel_bar_dip", 3, 8),
+                e("pike_push_up", 3, 8),
+                e("hollow_body_rock", 3, 12),
+            ),
+        ),
     )
 
     private val byId: Map<String, CatalogRoutine> = all.associateBy { it.id }

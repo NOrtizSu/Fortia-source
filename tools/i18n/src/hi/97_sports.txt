@@ -38,3 +38,20 @@ ex_golf = गोल्फ़
 # 1.6.0
 ex_nordic_walking = नॉर्डिक वॉकिंग
 ex_stair_climbing = सीढ़ियां चढ़ना
+
+# Snow (1.8)
+ex_alpine_skiing = अल्पाइन स्कीइंग
+ex_cross_country_skiing = क्रॉस-कंट्री स्कीइंग
+ex_snowboarding = स्नोबोर्डिंग
+# Water (1.8)
+ex_surfing = सर्फ़िंग
+ex_rowing = रोइंग (पानी में)
+ex_kayaking = कयाकिंग और कैनोइंग
+ex_open_water_swimming = खुले पानी में तैराकी
+# Team and racket sports (1.8)
+ex_rugby = रग्बी
+ex_table_tennis = टेबल टेनिस
+ex_squash = स्क्वैश
+# Skating (1.8)
+ex_inline_skating = इनलाइन स्केटिंग
+ex_ice_skating = आइस स्केटिंग

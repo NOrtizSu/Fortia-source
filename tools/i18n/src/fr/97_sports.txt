@@ -35,3 +35,23 @@ ex_climbing = Escalade
 ex_golf = Golf
 ex_nordic_walking = Marche nordique
 ex_stair_climbing = Montée d'escaliers
+
+# Snow (1.8)
+ex_alpine_skiing = Ski alpin
+ex_cross_country_skiing = Ski de fond
+ex_snowboarding = Snowboard
+
+# Water (1.8)
+ex_surfing = Surf
+ex_rowing = Aviron
+ex_kayaking = Kayak et canoë
+ex_open_water_swimming = Nage en eau libre
+
+# Team and racket sports (1.8)
+ex_rugby = Rugby
+ex_table_tennis = Tennis de table
+ex_squash = Squash
+
+# Skating (1.8)
+ex_inline_skating = Roller
+ex_ice_skating = Patin à glace

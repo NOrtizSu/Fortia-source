@@ -182,7 +182,12 @@ class FoodDataTest {
             val sql = sql(db)
             FoodSchema.upgrade(sql, 2)
             assertEquals(
-                listOf("ALTER TABLE food_entries ADD COLUMN values_edited INTEGER", "ALTER TABLE custom_foods ADD COLUMN checked_at INTEGER"),
+                listOf(
+                    "ALTER TABLE food_entries ADD COLUMN values_edited INTEGER",
+                    "ALTER TABLE custom_foods ADD COLUMN checked_at INTEGER",
+                    "ALTER TABLE custom_foods ADD COLUMN image_url TEXT",
+                    "ALTER TABLE custom_foods ADD COLUMN image TEXT",
+                ),
                 sql.statements.filter { it.startsWith("ALTER") },
             )
             assertEquals("the same columns as a file created by this version", FoodSchema.ENTRY_COLUMNS, columns(db, "food_entries"))
@@ -224,6 +229,63 @@ class FoodDataTest {
                 assertNull("the rewritten row lost the mark (its values stay)", rs.getObject(1))
                 assertEquals(600.0, rs.getDouble(2), 0.0)
             }
+        }
+    }
+
+    /** food.db as 1.7.0 created it (version 3): that of 1.6.0 plus its two columns. */
+    private fun v3Schema(db: Connection) {
+        v2Schema(db)
+        db.createStatement().execute("ALTER TABLE food_entries ADD COLUMN values_edited INTEGER")
+        db.createStatement().execute("ALTER TABLE custom_foods ADD COLUMN checked_at INTEGER")
+    }
+
+    @Test
+    fun aFileOf170UpgradesKeepingItsProducts() {
+        DriverManager.getConnection("jdbc:sqlite::memory:").use { db ->
+            v3Schema(db)
+            db.createStatement().execute(
+                "INSERT INTO custom_foods (id, name, barcode, unit, kcal, source, created_at, updated_at, checked_at) " +
+                    "VALUES ('c1', 'Nutella', '3017620422003', 'g', 539, 'off', 1, 2, 3)",
+            )
+            val sql = sql(db)
+            FoodSchema.upgrade(sql, 3)
+            assertEquals(
+                listOf("ALTER TABLE custom_foods ADD COLUMN image_url TEXT", "ALTER TABLE custom_foods ADD COLUMN image TEXT"),
+                sql.statements.filter { it.startsWith("ALTER") },
+            )
+            assertEquals("the same columns as a file created by this version", FoodSchema.CUSTOM_FOOD_COLUMNS, columns(db, "custom_foods"))
+            assertEquals(FoodSchema.ENTRY_COLUMNS, columns(db, "food_entries"))
+            val kept = readAll(db, "custom_foods", FoodSchema.CUSTOM_FOOD_COLUMNS, FoodRows::customFoodOf).single()
+            assertEquals("Nutella", kept.name)
+            assertEquals(3L, kept.checkedAt)
+            assertNull("not asked for its photo yet", kept.imageUrl)
+            assertNull(kept.image)
+            assertTrue(OffCache.needsImageCheck(kept))
+            // Run again (a file this version upgraded, opened by 1.7.0, upgraded again): nothing added twice.
+            sql.statements.clear()
+            FoodSchema.upgrade(sql, 3)
+            assertTrue(sql.statements.none { it.startsWith("ALTER") })
+        }
+    }
+
+    @Test
+    fun aFileOfThisVersionOpenedBy170AndBackAgain() {
+        DriverManager.getConnection("jdbc:sqlite::memory:").use { db ->
+            FoodSchema.CREATE.forEach { db.createStatement().execute(it) }
+            val product = CustomFood("c1", "Nutella", "Ferrero", "3017620422003", FoodUnit.G, Nutrients(kcal = 539.0), 15.0, CustomFoodSource.OFF, 1, 2, checkedAt = 3, imageUrl = "https://images.openfoodfacts.org/a.jpg", image = "off_1.jpg")
+            insert(db, "custom_foods", FoodRows.customFoodRow(product))
+            // 1.7.0 opens it as it is and rewrites the row with the columns it knows (REPLACE).
+            val known = FoodSchema.CUSTOM_FOOD_COLUMNS - listOf("image_url", "image")
+            insert(db, "custom_foods", FoodRows.customFoodRow(product.copy(name = "Nutella 400 g")).filterKeys { it in known })
+            // Android then marks the file version 3: this version upgrades it again without failing or adding twice.
+            val sql = sql(db)
+            FoodSchema.upgrade(sql, 3)
+            assertTrue(sql.statements.none { it.startsWith("ALTER") })
+            val back = readAll(db, "custom_foods", FoodSchema.CUSTOM_FOOD_COLUMNS, FoodRows::customFoodOf).single()
+            assertEquals("Nutella 400 g", back.name)
+            assertNull("the rewritten row lost its photo: asked again at its next scan", back.imageUrl)
+            assertNull(back.image)
+            assertTrue(OffCache.needsImageCheck(back))
         }
     }
 
@@ -277,9 +339,10 @@ class FoodDataTest {
 
             val checked = CustomFood("c1", "Galletas", "Marca", "841", FoodUnit.G, Nutrients(kcal = 436.0, iron = 2.0), 25.0, CustomFoodSource.OFF, 1, 2, checkedAt = 99)
             val never = checked.copy(id = "c2", checkedAt = null)
-            insert(db, "custom_foods", FoodRows.customFoodRow(checked))
-            insert(db, "custom_foods", FoodRows.customFoodRow(never))
-            assertEquals(listOf(checked, never), readAll(db, "custom_foods", FoodSchema.CUSTOM_FOOD_COLUMNS, FoodRows::customFoodOf))
+            val photo = checked.copy(id = "c3", imageUrl = "https://images.openfoodfacts.org/a.jpg", image = "off_1.jpg")
+            val noPhoto = checked.copy(id = "c4", imageUrl = "")
+            for (f in listOf(checked, never, photo, noPhoto)) insert(db, "custom_foods", FoodRows.customFoodRow(f))
+            assertEquals(listOf(checked, never, photo, noPhoto), readAll(db, "custom_foods", FoodSchema.CUSTOM_FOOD_COLUMNS, FoodRows::customFoodOf))
         }
     }
 
@@ -397,6 +460,43 @@ class FoodDataTest {
         repo.applyRemoteIfUnchanged(FoodBatch(upsertCustomFoods = listOf(fromCloud)), FoodVersions(customFoods = mapOf(changed.id to changed.updatedAt)))
         assertEquals(now, repo.customFood(changed.id)!!.checkedAt)
         assertEquals("Galletas María", repo.customFood(changed.id)!!.name)
+    }
+
+    @Test
+    fun aProductsPhotoStaysOnThePhoneAndIsNoNewVersion() = runTest {
+        val store = FakeFoodStore()
+        val repo = repo(store)
+        advanceUntilIdle()
+        val url = "https://images.openfoodfacts.org/a.jpg"
+        val product = repo.addCustomFood(food().copy(imageUrl = url))
+        now += 10
+        // The download finished: only this phone's photo changed, nothing to back up.
+        val withPhoto = repo.updateCustomFood(product.id) { it.copy(image = "off_1.jpg") }!!
+        assertEquals("no new version", product.updatedAt, withPhoto.updatedAt)
+        assertEquals("off_1.jpg", store.foods.getValue(product.id).image)
+        // Open Food Facts gives another address: still no new version.
+        val moved = repo.updateCustomFood(product.id) { OffCache.withImage(it, "https://images.openfoodfacts.org/b.jpg") }!!
+        assertEquals(product.updatedAt, moved.updatedAt)
+        assertNull(moved.image)
+        repo.updateCustomFood(product.id) { it.copy(imageUrl = url, image = "off_2.jpg") }
+        // The user renames it: a new version, the photo stays.
+        now += 10
+        val renamed = repo.updateCustomFood(product.id) { it.copy(name = "Galletas María") }!!
+        assertTrue(renamed.updatedAt > product.updatedAt)
+        assertEquals("off_2.jpg", renamed.image)
+        // A newer copy from the cloud (never carrying the photo) keeps this phone's photo and address.
+        val fromCloud = renamed.copy(brand = "Otra", checkedAt = null, imageUrl = null, image = null, updatedAt = renamed.updatedAt + 100)
+        repo.applyRemoteIfUnchanged(FoodBatch(upsertCustomFoods = listOf(fromCloud)), FoodVersions(customFoods = mapOf(renamed.id to renamed.updatedAt)))
+        val kept = repo.customFood(product.id)!!
+        assertEquals("Otra", kept.brand)
+        assertEquals(url, kept.imageUrl)
+        assertEquals("off_2.jpg", kept.image)
+        assertEquals("off_2.jpg", store.foods.getValue(product.id).image)
+        // A product new to this phone from the cloud has none yet: asked at its first scan here.
+        val other = food(id = "c9", barcode = "3017620422003", updatedAt = 5)
+        repo.applyRemoteIfUnchanged(FoodBatch(upsertCustomFoods = listOf(other)), FoodVersions())
+        assertNull(repo.customFood("c9")!!.imageUrl)
+        assertTrue(OffCache.needsImageCheck(repo.customFood("c9")!!))
     }
 
     @Test

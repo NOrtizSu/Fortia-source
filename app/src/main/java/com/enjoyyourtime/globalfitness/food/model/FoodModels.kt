@@ -191,6 +191,7 @@ enum class FoodGroup(val code: String) {
     FAST_FOOD("fast_food"),
     SNACKS("snacks"),
     SAUCES("sauces"),
+    SUPPLEMENTS("supplements"),
     ;
 
     companion object {
@@ -214,6 +215,7 @@ enum class PortionKey(val code: String) {
     TSP("tsp"),
     HANDFUL("handful"),
     SERVING("serving"),
+    SCOOP("scoop"),
     ;
 
     companion object {
@@ -301,7 +303,18 @@ data class CustomFood(
      * no new version: a refresh that changes nothing only moves this). Null: not since it was stored.
      */
     val checkedAt: Long? = null,
-)
+    /**
+     * The address of the product's front photo that Open Food Facts gave at the last lookup on this
+     * phone: "" when it has none, null when not asked since the product was stored here (an older
+     * version, a backup). Local only, like [checkedAt].
+     */
+    val imageUrl: String? = null,
+    /** The file of that photo on this phone (see ProductPhotos), once downloaded. Local only. */
+    val image: String? = null,
+) {
+    /** This food with [local]'s fields that only this phone keeps (never backed up, not part of a version). */
+    fun withLocalOf(local: CustomFood?): CustomFood = copy(checkedAt = local?.checkedAt, imageUrl = local?.imageUrl, image = local?.image)
+}
 
 /** What an entry was logged from: a catalog food or a custom food (a quick manual entry has none). */
 sealed interface FoodRef {

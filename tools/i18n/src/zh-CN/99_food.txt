@@ -22,6 +22,7 @@ food_portion_tbsp = 1 汤匙
 food_portion_tsp = 1 茶匙
 food_portion_handful = 1 把
 food_portion_serving = 1 份
+food_portion_scoop = 1 勺
 
 # Meals of the day
 foodlog_meal_breakfast = 早餐
@@ -221,9 +222,9 @@ health_rationale_write_meals = 如果你允许，Fortia 还会写入你记录的
 notice_litert = 在手机上运行我们的食物识别模型。
 notice_zxing = 从照片中读取产品条形码。
 open_source_food_data = 食物数据
-notice_open_food_facts = 通过条形码查找的包装食品。数据 © Open Food Facts 贡献者，采用 Open Database License（ODbL）授权。
+notice_open_food_facts = 通过条形码查找的包装食品。数据 © Open Food Facts 贡献者，采用 Open Database License（ODbL）授权；商品照片 © Open Food Facts 贡献者，采用 CC BY-SA 3.0（https://creativecommons.org/licenses/by-sa/3.0/）授权。
 notice_usda = 食物列表的营养数据：U.S. Department of Agriculture, Agricultural Research Service, FoodData Central。公有领域（CC0）。
 notice_ciqual = 食物列表的营养数据：Anses，Ciqual 法国食物成分表，采用 Licence Ouverte / Etalab 2.0 授权。
 notice_food_model_name = Fortia 食物识别模型
-notice_food_model_license = 自研模型（见模型卡）
+notice_food_model_license = 自研模型（见模型卡） · AGPL-3.0 · food_model.tflite: AGPL-3.0 / CC BY-SA 4.0
 notice_food_model = 我们自研的模型，基于 MobileNetV4（timm，Apache-2.0）和 Ultralytics YOLO11n（AGPL-3.0），使用来自 Open Images（CC BY 2.0）、Wikimedia Commons（自由许可）和 MyFoodRepo（CC BY 4.0）的图像训练；重量估算使用 Nutrition5k（CC BY 4.0）校准。图像及其作者列表随源代码一同发布。

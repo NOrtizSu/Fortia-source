@@ -83,16 +83,16 @@ brussels_sprouts;Brussels sprouts;coles de Bruselas;vegetables;1;Brussels sprout
 beetroot;Beetroot;remolacha;vegetables;1;Beetroot,Beet;Beetroot|1;
 radish;Radish;rábano;vegetables;1;Radish;Radishes|1;
 kale;Kale;col rizada (kale);vegetables;1;Kale;;
-celery;Celery;apio;vegetables;1;Celery;Celery as food|1,Celery|0;
+celery;Celery;apio;vegetables;1;Celery;Celery as food|1,Celery|0,Celery as food|2,search:celery sticks,search:celery stalks,search:celery stick,search:stalk of celery;
 sauerkraut;Sauerkraut;chucrut;vegetables;2;Sauerkraut;Sauerkraut|1;
 grilled_vegetables;Grilled vegetables;verduras a la plancha;dishes;3;;;
 olives;Olives;aceitunas;fats_nuts;1;Olive;Olives as food|1;food
-edamame;Edamame;edamame;legumes;1;Edamame;Edamame|0;
+edamame;Edamame;edamame;legumes;1;Edamame;Edamame|0,search:edamame;
 chickpeas;Chickpeas;garbanzos;legumes;1;Chickpea;;
 beans;Beans;alubias;legumes;1;Bean,Common bean,Navy bean;;
 lentils;Lentil stew / dal;lentejas;legumes;4;Lentil,Dal,Dal makhani;Lentil soups|2,Lentils (food)|1,Dal|1;
 bean_stew;Bean stew (fabada);fabada / potaje de alubias;dishes;4;Fabada asturiana,Soup beans,Feijoada;Fabada,Bean stews|1;
-baked_beans;Baked beans;alubias con tomate;legumes;3;Baked beans;Baked beans|1;
+baked_beans;Baked beans;alubias con tomate;legumes;3;Baked beans;Baked beans|1,search:baked beans,search:beans on toast,search:baked bean,search:pork and beans;
 hummus;Hummus;hummus;sauces;3;Hummus;Hummus|1;
 tofu;Tofu;tofu;legumes;2;Tofu;Tofu|1;
 bread;Bread;pan;grains;1;Bread,Loaf,Plain loaf,White bread,Sourdough,Ciabatta,Sliced bread;;
@@ -129,7 +129,7 @@ omelette;Omelette;tortilla francesa;eggs;3;Omelette,Indian omelette,Tomato omele
 spanish_omelette;Spanish omelette;tortilla de patatas;eggs;5;Tortilla de patatas;Spanish omelette|2;
 poached_egg;Poached egg;huevo poché;eggs;3;Poached egg;Poached eggs|1;
 eggs_benedict;Eggs Benedict;huevos Benedict;dishes;4;Eggs benedict,Eggs sardou;;
-deviled_eggs;Deviled eggs;huevos rellenos;eggs;3;Deviled egg;Deviled eggs|1;
+deviled_eggs;Deviled eggs;huevos rellenos;eggs;3;Deviled egg;Deviled eggs|1,search:deviled eggs,search:huevos rellenos,search:devilled eggs,search:stuffed eggs,search:oeufs mimosa,search:eggs mimosa;
 steak;Steak;filete / chuletón;meat;3;Steak,Sirloin steak,Rib eye steak,Delmonico steak,Flat iron steak,Beef tenderloin,Kobe beef,Wagyu beef,Matsusaka beef,Steak frites;Entrecôte;
 grilled_chicken;Grilled chicken;pollo a la plancha;meat;2;Chicken meat,Chicken breast,Chicken thighs,Barbecue chicken;Grilled chicken|1;
 roast_chicken;Roast chicken;pollo asado;meat;3;Hendl;Roast chicken|1;
@@ -149,7 +149,7 @@ cured_ham;Cured ham;jamón serrano;meat;3;Jamón serrano,Jamón,Prosciutto,Bayon
 chorizo;Chorizo;chorizo;meat;3;Chorizo,Chistorra;Chorizo|1;
 salami;Salami / salchichón;salchichón / fuet;meat;2;Salami,Salchichón,Fuet,Soppressata,Salumi;Salami|1,Salchichón,Fuet;
 cold_cuts;Charcuterie board;tabla de embutidos;meat;3;Charcuterie,Cold cut;Charcuterie boards|1;
-black_pudding;Blood sausage;morcilla;meat;2;Black pudding,Kaszanka;Blood sausages|1;
+black_pudding;Blood sausage;morcilla;meat;2;Black pudding,Kaszanka;Blood sausages|1,search:morcilla,search:black pudding;
 meatballs;Meatballs;albóndigas;meat;3;Meatball,Frikadeller,Kofta;Meatballs|1,Albóndigas|1;
 breaded_cutlet;Breaded cutlet / schnitzel;filete empanado;meat;3;Schnitzel,Cotoletta,Milanesa,Tonkatsu,Cutlet;Cachopo|1,Flamenquín;
 roast_beef;Roast beef;rosbif / asado;meat;3;Roast beef,Pot roast,Rinderbraten,Sauerbraten,Brisket;;
@@ -159,7 +159,7 @@ skewers;Meat skewers;brochetas / pinchos morunos;meat;3;Brochette,Skewer,Shashli
 lamb;Lamb;cordero;meat;2;Lamb and mutton;Lamb and mutton dishes|1;
 duck;Roast duck;pato asado;meat;3;Peking duck,Duck meat,Roast goose,Pressed duck;;
 turkey;Roast turkey;pavo asado;meat;2;Turkey meat;Roast turkey|1;
-pork_belly;Pork belly;panceta;meat;2;Pork belly,Samgyeopsal;Pork belly dishes|1;
+pork_belly;Pork belly;panceta;meat;2;Pork belly,Samgyeopsal;Pork belly dishes|1,search:pork belly,search:samgyeopsal;
 suckling_pig;Roast suckling pig;cochinillo asado;meat;4;Suckling pig,Lechon,Pig roast;Cochinillo asado;
 mixed_grill;Mixed grill;parrillada de carne;meat;3;Mixed grill,Churrasco food,Barbecue;;
 korean_bbq;Korean barbecue;barbacoa coreana;dishes;4;Bulgogi,Galbi,Yakiniku;;
@@ -180,7 +180,7 @@ calamari;Calamari;calamares;fish;4;Squid (Food);Calamari|1,Calamares a la romana
 octopus;Octopus (pulpo a la gallega);pulpo;fish;3;Octopus;Octopus as food|1,Polbo á feira|1;food
 sushi;Sushi;sushi;fish;4;Sushi,California roll,Gimbap;;
 sashimi;Sashimi;sashimi;fish;4;Sashimi;;
-sardines;Sardines;sardinas;fish;2;Sardines,Sardine;Sardine dishes|1;food
+sardines;Sardines;sardinas;fish;2;Sardines,Sardine;Sardine dishes|1,search:grilled sardines,search:sardinas asadas,search:espetos,search:sardinas,search:grilled sardine,search:sardines grillées;food
 anchovies;Anchovies;boquerones / anchoas;fish;2;Anchovy (food),Anchovy;Boquerones en vinagre,Anchovy dishes|1,Anchovies as food|1;food
 ceviche;Ceviche;ceviche;dishes;4;Ceviche;Ceviche|1;
 cheese;Cheese;queso;dairy;1;Cheese,Cheddar cheese,Gruyère cheese,Gouda cheese,Sheep milk cheese,Processed cheese,American cheese,Havarti Cheese,Colby cheese,Toma cheese,Limburger cheese,Caerphilly cheese,Montasio,Swiss cheese,Muenster cheese,Provolone;Manchego cheese|1;
@@ -205,7 +205,7 @@ peanuts;Peanuts;cacahuetes;fats_nuts;1;Peanut;Peanuts as food|0;
 cashews;Cashews;anacardos;fats_nuts;1;Cashew;Cashew nuts|0;
 pistachios;Pistachios;pistachos;fats_nuts;1;Pistachio;;
 hazelnuts;Hazelnuts;avellanas;fats_nuts;1;Hazelnut;Hazelnuts as food|0;
-chestnuts;Chestnuts;castañas;fats_nuts;1;Chestnut;Roasted chestnuts|0;food
+chestnuts;Chestnuts;castañas;fats_nuts;1;Chestnut;Roasted chestnuts|0,Chestnuts as food|1,search:roasted chestnuts,search:castañas asadas;food
 peanut_butter;Peanut butter;crema de cacahuete;fats_nuts;2;Peanut butter,Nut butter,Peanut paste;Peanut butter|1;
 cake;Cake;tarta / pastel;sweets;3;Cake,Birthday cake,Torte,Kuchen,Red velvet cake;;
 chocolate_cake;Chocolate cake;tarta de chocolate;sweets;4;Chocolate cake,Flourless chocolate cake,Sachertorte,Black forest cake,Torta caprese;;
@@ -246,7 +246,7 @@ macarons;Macarons;macarons;sweets;3;Macaroon;;
 gingerbread;Gingerbread;pan de jengibre;sweets;3;Gingerbread,Lebkuchen;;
 apple_strudel;Apple strudel;strudel de manzana;sweets;4;Apple strudel,Strudel;Apple strudel|1;
 jelly;Jelly;gelatina;sweets;3;Gelatin dessert;Gelatin desserts|1;
-turron;Turrón;turrón;sweets;4;Turrón;Turrón|1;
+turron;Turrón;turrón;sweets;4;Turrón;search:turrón,search:turron,Turrón|2,search:turrón de;
 honey;Honey;miel;sweets;2;Honey;;food
 jam;Jam;mermelada;sweets;2;Fruit preserve,Lingonberry jam;Jam|1;
 chocolate_spread;Chocolate spread;crema de cacao;sweets;2;Chocolate spread;Nutella|0;
@@ -255,7 +255,7 @@ french_fries;French fries;patatas fritas;fast_food;3;French fries,Potato wedges;
 potato_chips;Crisps;patatas fritas de bolsa;snacks;2;Potato chip,Chip;;
 tortilla_chips;Tortilla chips;totopos;snacks;2;Tortilla chip,Totopo,Corn chip;Tortilla chips|1;
 nachos;Nachos;nachos con queso;fast_food;4;Nachos;Nachos|1;
-patatas_bravas;Patatas bravas;patatas bravas;dishes;5;Patatas bravas;Patatas bravas;
+patatas_bravas;Patatas bravas;patatas bravas;dishes;5;Patatas bravas;Patatas bravas,search:patatas bravas,search:papas bravas;
 spring_rolls;Spring rolls;rollitos de primavera;snacks;3;Spring roll,Egg roll,Lumpia,Nem rán;;
 dumplings;Dumplings / gyoza;gyozas / dumplings;dishes;3;Dumpling,Jiaozi,Mandu,Momo,Wonton,Xiaolongbao,Shumai,Dim sim,Buuz,Dim sum;Gyoza|1;
 pierogi;Pierogi;pierogi;dishes;3;Pierogi,Varenyky,Pelmeni,Kreplach;Varenyky|1,Pelmeni|1;
@@ -263,10 +263,10 @@ steamed_buns;Steamed buns (bao);bao (bollo al vapor);dishes;3;Baozi,Cha siu bao,
 empanada;Empanada;empanada / empanadilla;snacks;3;Empanada;Empanadas|2;
 croquettes;Croquettes;croquetas;snacks;4;Croquette,Korokke;Croquettes|1,Croquetas,Korokke|1;
 falafel;Falafel;falafel;snacks;3;Falafel;Falafel|1;
-onion_rings;Onion rings;aros de cebolla;snacks;3;Onion ring;;
+onion_rings;Onion rings;aros de cebolla;snacks;3;Onion ring;search:onion rings;
 pakora;Pakora;pakora;snacks;3;Pakora,Bonda;Pakora|1;
 tempura;Tempura;tempura;dishes;3;Tempura;Tempura|1;
-arancini;Arancini;arancini;snacks;3;Arancini;Arancini|0;
+arancini;Arancini;arancini;snacks;3;Arancini;Arancini|0,search:arancini;
 bread_with_tomato;Bread with tomato / bruschetta;pan con tomate / bruschetta;snacks;3;Bruschetta;Pa amb tomàquet|1,Pan con tomate|1,Bruschetta|0;
 canapes;Canapés;canapés / montaditos;snacks;3;Canapé,Cicchetti,Hors d'oeuvre,Pincho;;
 dolma;Stuffed vine leaves;hojas de parra rellenas;dishes;3;Grape leaves;;
@@ -295,10 +295,10 @@ soup;Soup / broth;sopa / caldo;dishes;3;Soup,Broth,Consommé;;
 cream_soup;Cream soup;crema de verduras;dishes;4;Vichyssoise,Cream of mushroom soup,Bisque,Potage;Pumpkin soups|1;
 tomato_soup;Tomato soup;sopa de tomate;dishes;4;Tomato soup;Tomato soup|1;
 chicken_soup;Chicken soup;sopa de pollo;dishes;4;Chicken soup,Cock-a-leekie soup,Soto ayam;;
-minestrone;Minestrone;minestrone;dishes;4;Minestrone;Minestrone|1;
-french_onion_soup;French onion soup;sopa de cebolla;dishes;4;French onion soup;French onion soup|1,Onion soup|1;
+minestrone;Minestrone;minestrone;dishes;4;Minestrone;Minestrone|1,search:minestrone;
+french_onion_soup;French onion soup;sopa de cebolla;dishes;4;French onion soup;French onion soup|1,Onion soup|1,search:onion soup,search:soupe à l'oignon,search:sopa de cebolla,search:zwiebelsuppe;
 miso_soup;Miso soup;sopa de miso;dishes;4;Miso soup;Miso soup|1;
-clam_chowder;Clam chowder;crema de almejas;dishes;4;Clam chowder;Clam chowder|1;
+clam_chowder;Clam chowder;crema de almejas;dishes;4;Clam chowder;Clam chowder|1,search:clam chowder,search:chowder;
 noodle_soup;Noodle soup;sopa de fideos;dishes;4;Noodle soup,Beef noodle soup,Wonton noodles,Laksa,Udon,Soba,Okinawa soba,Kalguksu,Curry mee,Hae mee,Thukpa;;
 ramen;Ramen;ramen;dishes;5;Ramen;Ramen|1;
 pho;Pho;pho;dishes;5;Pho,Bún bò huế;Phos|1;
@@ -306,7 +306,7 @@ gazpacho;Gazpacho;gazpacho;dishes;5;Gazpacho;Gazpacho;
 stew;Meat stew;estofado / guiso de carne;dishes;3;Stew,Irish stew,Goulash,Boeuf à la mode;Stews|1,Beef stews|1;
 chili_con_carne;Chili con carne;chili con carne;dishes;4;Chili con carne;Chili con carne|1;
 curry;Curry;curry;dishes;3;Curry,Red curry,Yellow curry,Thai curry,Japanese curry,Massaman curry,Korma,Vindaloo,Rice and curry,Karahi,Chicken tikka masala,Pasanda,Gosht;;
-moussaka;Moussaka;musaka;dishes;4;Moussaka;Musaka|1;
+moussaka;Moussaka;musaka;dishes;4;Moussaka;Musaka|1,search:moussaka,search:musaka,search:mousaka;
 lasagna;Lasagne;lasaña;dishes;5;Lasagne;;
 spaghetti_bolognese;Spaghetti bolognese;espaguetis a la boloñesa;dishes;4;Bolognese sauce;;
 carbonara;Pasta carbonara;pasta a la carbonara;dishes;4;Carbonara;Carbonara|1;
@@ -348,7 +348,7 @@ vermouth;Vermouth;vermut;drinks;3;Vermouth;Vermouth|1;
 spirits;Spirits (whisky, brandy);licores (whisky, coñac);drinks;2;Whisky,Bourbon whiskey,Brandy,Blended whiskey,Liqueur,Distilled beverage;;
 cola;Cola;refresco de cola;drinks;3;Cola,Coca-cola;;
 lemonade;Lemonade;limonada;drinks;2;Lemonade,Limeade,Limonana;Lemonade|1;
-horchata;Horchata;horchata;drinks;3;Horchata;Horchata|1;
+horchata;Horchata;horchata;drinks;3;Horchata;Horchata|1,search:horchata,search:orxata,search:horchata de chufa,search:orchata;
 cider;Cider;sidra;drinks;2;Cider;;
 kumquat;Kumquat;kumquat;fruit;1;Kumquat;;
 jackfruit;Jackfruit;yaca;fruit;1;Jackfruit;Jackfruit|1;
@@ -357,13 +357,13 @@ pickles;Pickles;encurtidos / pepinillos;vegetables;2;Pickled cucumber,Pickling;P
 seaweed;Seaweed;algas;vegetables;1;Nori,Wakame,Laver;Seaweed salad|1,Seaweed as food|1,Seaweed dishes|1,Nori|1;
 garlic_bread;Garlic bread;pan de ajo;grains;3;Garlic bread;Garlic bread|1;
 pastries;Pastries;bollería;sweets;1;Pastry,Viennoiserie,Pâtisserie,Puff pastry;;
-mille_feuille;Mille-feuille;milhojas;sweets;3;Mille-feuille;Mille-feuille|1,Milhojas|0;
+mille_feuille;Mille-feuille;milhojas;sweets;3;Mille-feuille;Mille-feuille|1,Milhojas|0,search:mille-feuille,search:milhojas,search:millefeuille,search:napoleon cake;
 fruitcake;Fruit cake / panettone;panettone / plum cake;sweets;4;Fruitcake,Panettone,Stollen;Panettone|1;
 loaf_cake;Banana bread / loaf cake;bizcocho de plátano;sweets;4;Banana bread,Pumpkin bread;Banana bread|1;
 swiss_roll;Swiss roll;brazo de gitano;sweets;4;Swiss roll,Roulade;Swiss rolls|1,Brazo de gitano;
 fritters;Fritters (buñuelos);buñuelos;sweets;3;Buñuelo,Beignet,Zeppole,Loukoumades;Buñuelos|1,Beignets|1;
 potato_pancakes;Potato pancakes / hash browns;tortitas de patata;dishes;3;Potato pancake,Hash browns;Potato pancakes|1,Hash browns|1,Rösti|1,Latkes|1;
-shepherds_pie;Shepherd's pie;pastel de carne y puré;dishes;4;Cottage pie;Shepherd's pie|1,Cottage pie|1;
+shepherds_pie;Shepherd's pie;pastel de carne y puré;dishes;4;Cottage pie;Shepherd's pie|1,Cottage pie|1,search:shepherd's pie,search:cottage pie;
 fish_soup;Fish soup;sopa de pescado;dishes;4;Bouillabaisse;Fish soup|1;
 soft_drink;Soft drink;refresco;drinks;2;Soft drink,Carbonated soft drinks,Orange soft drink,Lemon-lime,Root beer,Ginger ale;;food
 water;Water;agua;drinks;2;Drinking water,Bottled water,Mineral water;Glasses of water|1;food
@@ -373,21 +373,33 @@ ketchup;Ketchup;kétchup;sauces;2;Ketchup;;
 fennel;Fennel;hinojo;vegetables;1;Fennel;Fennel as food|1,Fennel bulbs|1;food
 mixed_vegetables;Mixed cooked vegetables;verduras salteadas / menestra;dishes;3;;Mixed vegetables|1,Menestra|0,Grilled vegetables|1,Escalivada|0;
 rose_wine;Rosé wine;vino rosado;drinks;2;;Rosé wine|1,Glasses of rosé wine|0;
-gnocchi;Gnocchi;ñoquis;grains;3;Gnocchi;Gnocchi|1;
+gnocchi;Gnocchi;ñoquis;grains;3;Gnocchi;Gnocchi|1,search:potato gnocchi,search:gnocchi di,search:gnocchi alla,search:ñoquis;
 polenta;Polenta;polenta;grains;3;Polenta;Polenta|1;
-sobrasada;Sobrasada;sobrasada;meat;3;Sobrassada;Sobrassada|1;
-cocido;Cocido (chickpea stew);cocido;dishes;5;Cocido madrileño;Cocido madrileño|1;
+sobrasada;Sobrasada;sobrasada;meat;3;Sobrassada;Sobrassada|1,search:sobrasada,search:sobrassada;
+cocido;Cocido (chickpea stew);cocido;dishes;5;Cocido madrileño;Cocido madrileño|1,search:cocido madrileño,search:cocido montañés,search:cocido maragato;
 migas;Migas;migas;dishes;5;Migas;Migas|1;
-pimientos_de_padron;Padrón peppers;pimientos de Padrón;vegetables;4;;Pimientos de Padrón|1;
-huevos_rotos;Huevos rotos;huevos rotos;eggs;5;;Huevos estrellados|1;
-salmorejo;Salmorejo;salmorejo;dishes;5;;Salmorejo|1;
-fideua;Fideuà;fideuá;dishes;5;;Fideuà|1;
-ensaimada;Ensaïmada;ensaimada;sweets;4;;Ensaïmada|1;
+pimientos_de_padron;Padrón peppers;pimientos de Padrón;vegetables;4;;Pimientos de Padrón|1,search:pimientos de padrón,search:padrón peppers,search:pementos de padrón;
+huevos_rotos;Huevos rotos;huevos rotos;eggs;5;;Huevos estrellados|1,search:huevos rotos,search:huevos estrellados;
+salmorejo;Salmorejo;salmorejo;dishes;5;;Salmorejo|1,search:salmorejo;
+fideua;Fideuà;fideuá;dishes;5;;Fideuà|1,search:fideuà,search:fideua;
+ensaimada;Ensaïmada;ensaimada;sweets;4;;Ensaïmada|1,search:ensaimada,search:ensaïmada;
 endive;Endive;endibia;vegetables;1;Endive;;food
 samosa;Samosa;samosa;snacks;3;Samosa;Samosas|1;
 onigiri;Onigiri;onigiri;dishes;3;Rice ball;Onigiri|1;
 acai_bowl;Açaí / smoothie bowl;bol de açaí;dishes;4;Açaí na tigela;Açaí na tigela|1;
-shakshuka;Shakshuka;shakshuka;eggs;4;;Shakshuka|1;
+shakshuka;Shakshuka;shakshuka;eggs;4;;Shakshuka|1,search:shakshuka,search:shakshouka;
+baklava;Baklava;baklava;sweets;4;Baklava;Baklava|1,search:baklava;
+kimchi;Kimchi;kimchi;vegetables;3;Kimchi,Baek kimchi;Kimchi|1;
+fajitas;Fajitas;fajitas;fast_food;4;Fajita;Fajitas|1,search:fajitas;
+chicken_teriyaki;Teriyaki;pollo teriyaki;dishes;4;Teriyaki;Teriyaki|1,search:teriyaki;
+dal;Dal (lentil curry);dal;dishes;4;Dal bhat,Dal baati;Dal|1,search:dal makhani,search:dal tadka;
+marshmallows;Marshmallows;nubes (malvaviscos);sweets;2;Marshmallow;Marshmallows|1;
+enchiladas;Enchiladas;enchiladas;fast_food;4;Enchilada;Enchiladas|1,search:enchiladas;
+stuffed_peppers;Stuffed peppers;pimientos rellenos;dishes;4;Stuffed peppers;Stuffed peppers|1,Stuffed bell peppers|1,search:stuffed peppers,search:pimientos rellenos;
+quail_eggs;Quail eggs;huevos de codorniz;eggs;2;;Quail eggs|1,search:quail eggs;
+tempeh;Tempeh;tempeh;legumes;2;Tempeh;Tempeh|1,search:tempe goreng,search:tempe mendoan,search:tempeh;
+marzipan;Marzipan;mazapán;sweets;2;Marzipan;Marzipan|1,search:mazapán;
+roscon;Roscón de Reyes;roscón de Reyes;sweets;4;;Roscón de Reyes|1,search:roscón;
 """
 
 

@@ -9,7 +9,9 @@
     (files/exercise_photos) are left out of the Drive backup only (25 MB quota; the app's cloud backup
     keeps them) and are copied in a device-to-device transfer. Meal photos (files/meal_photos) never
     leave the phone: they are left out of both (the privacy policy says so), and the entries moved to a
-    new phone simply show no photo.
+    new phone simply show no photo. Product photos from Open Food Facts (files/product_photos) stay on
+    the phone too (left out of both): the new phone downloads them again when the product is next
+    scanned or opened to log it.
 -->
 <data-extraction-rules>
     <cloud-backup>
@@ -31,6 +33,7 @@
         <exclude domain="database" path="firestore.%5BDEFAULT%5D.globalfitness-app.%28default%29-shm" />
         <exclude domain="file" path="exercise_photos/" />
         <exclude domain="file" path="meal_photos/" />
+        <exclude domain="file" path="product_photos/" />
     </cloud-backup>
     <device-transfer>
         <exclude domain="sharedpref" path="band_prefs.xml" />
@@ -50,5 +53,6 @@
         <exclude domain="database" path="firestore.%5BDEFAULT%5D.globalfitness-app.%28default%29-wal" />
         <exclude domain="database" path="firestore.%5BDEFAULT%5D.globalfitness-app.%28default%29-shm" />
         <exclude domain="file" path="meal_photos/" />
+        <exclude domain="file" path="product_photos/" />
     </device-transfer>
 </data-extraction-rules>

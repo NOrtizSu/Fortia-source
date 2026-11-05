@@ -40,6 +40,19 @@ internal val sportsMotions: Map<String, () -> Motion> = mapOf(
     "martial_arts" to { frontKick() },
     "climbing" to { climbing() },
     "golf" to { golfSwing() },
+    // Added in 1.8 (MotionSportsMore, and the racket strokes and front crawl here).
+    "alpine_skiing" to { alpineSkiing() },
+    "cross_country_skiing" to { crossCountrySkiing() },
+    "snowboarding" to { snowboarding() },
+    "surfing" to { surfing() },
+    "rowing" to { rowingBoat() },
+    "kayaking" to { kayaking() },
+    "open_water_swimming" to { frontCrawl(openWater = true) },
+    "rugby" to { rugby() },
+    "table_tennis" to { racketStroke(Racket.TABLE_TENNIS) },
+    "squash" to { racketStroke(Racket.SQUASH) },
+    "inline_skating" to { skating(ice = false) },
+    "ice_skating" to { skating(ice = true) },
 )
 
 // ---- Shared pieces ------------------------------------------------------------------------------
@@ -208,11 +221,18 @@ private fun roadCycling() = Motion.cycle(1.8f, cycles = 2, camera = Camera(18f))
 /**
  * Front crawl seen from the side: the arms pull under the body and recover over the water half a
  * stroke apart, the body rolls towards the pulling arm, the legs flutter-kick three times a stroke.
+ * [openWater]: the head lifts once a stroke to sight ahead, and a tow float trails behind.
  */
-private fun frontCrawl() = Motion.cycle(2.2f, camera = Camera(18f, 14f)) { phase ->
+private fun frontCrawl(openWater: Boolean = false) = Motion.cycle(2.2f, camera = Camera(18f, 14f)) { phase ->
     // High enough above the floor line that the view frames the swimmer and the water only.
     val water = 1.72f
-    body.torso(v(-0.45f, 1.6f), Basis.PRONE.turn(26f * sin(phase * TAU)), nod = -14f)
+    val sight = if (openWater) ramp(phase, 0.05f to 0f, 0.18f to 1f, 0.3f to 0f) else 0f
+    body.torso(v(-0.45f, 1.6f), Basis.PRONE.turn(26f * sin(phase * TAU)), nod = -14f - 28f * sight)
+    if (openWater) {
+        val float = v(-1.75f, water + 0.04f + 0.02f * sin(phase * TAU), 0.1f)
+        add(Cord(listOf(body.onHips(0f, 0f, 0.1f), float), 0.008f, Ink.CABLE, fit = false, bias = -0.1f))
+        add(Ball(float, 0.13f, Ink.BAND, fit = false, bias = -0.05f))
+    }
     for (side in Side.entries) {
         val p = (phase + if (side == Side.NEAR) 0f else 0.5f) % 1f
         if (p < 0.5f) {
@@ -383,8 +403,11 @@ private fun FrameBuilder.throwFrame(t: Float, release: V3) {
 
 // ---- Racket sports ------------------------------------------------------------------------------
 
-/** Racket strokes: a tennis forehand, a compact padel forehand with its solid racket, a badminton overhead clear. */
-private enum class Racket { TENNIS, PADEL, BADMINTON }
+/**
+ * Racket strokes: a tennis forehand, a compact padel forehand with its solid racket, a badminton
+ * overhead clear, a table tennis forehand over the table and a squash forehand drive.
+ */
+private enum class Racket { TENNIS, PADEL, BADMINTON, TABLE_TENNIS, SQUASH }
 
 /** The keyed channels of a racket stroke over its loop. */
 private class Stroke(val loop: Float, times: List<Float>, hands: List<V3>, dirs: List<V3>, val twist: Track, val hips: Track, val guide: Track) {
@@ -422,6 +445,26 @@ private fun stroke(kind: Racket): Stroke = when (kind) {
         hips = Track.keys(0f to 0f, 0.2f to 0f, 0.6f to 25f, 0.85f to 0f, 1.1f to -18f, 1.3f to -18f, 1.9f to 0f, 2.2f to 0f),
         guide = Track.keys(0f to 30f, 0.2f to 30f, 0.6f to 120f, 0.85f to 90f, 1.1f to 20f, 1.9f to 30f, 2.2f to 30f),
     )
+    // A short forehand topspin: low take-back by the hip, the bat brushing up and forward over the table.
+    Racket.TABLE_TENNIS -> Stroke(
+        loop = 1.6f,
+        times = listOf(0f, 0.15f, 0.32f, 0.46f, 0.6f, 0.78f, 0.92f, 1.3f, 1.6f),
+        hands = listOf(v(0.32f, -0.3f, -0.06f), v(0.32f, -0.3f, -0.06f), v(0.08f, -0.4f, 0.3f), v(0.0f, -0.42f, 0.3f), v(0.36f, -0.25f, 0.12f), v(0.3f, 0.02f, -0.2f), v(0.3f, 0.02f, -0.2f), v(0.32f, -0.3f, -0.06f), v(0.32f, -0.3f, -0.06f)),
+        dirs = listOf(v(0.5f, 0.6f, -0.3f), v(0.5f, 0.6f, -0.3f), v(0.2f, 0.5f, 0.6f), v(0.1f, 0.45f, 0.7f), v(0.6f, 0.45f, 0.3f), v(0.2f, 0.9f, -0.3f), v(0.2f, 0.9f, -0.3f), v(0.5f, 0.6f, -0.3f), v(0.5f, 0.6f, -0.3f)),
+        twist = Track.keys(0f to 0f, 0.15f to 0f, 0.46f to 26f, 0.6f to -8f, 0.78f to -26f, 0.92f to -26f, 1.3f to 0f, 1.6f to 0f),
+        hips = Track.keys(0f to 0f, 0.15f to 0f, 0.46f to 16f, 0.6f to -6f, 0.78f to -14f, 0.92f to -14f, 1.3f to 0f, 1.6f to 0f),
+        guide = Track.keys(0f to 40f, 0.15f to 40f, 0.46f to 60f, 0.78f to 35f, 1.6f to 40f),
+    )
+    // A forehand drive: the racket up and cocked early, a short swing low through the ball, the follow-through across.
+    Racket.SQUASH -> Stroke(
+        loop = 2.0f,
+        times = listOf(0f, 0.2f, 0.4f, 0.6f, 0.8f, 1.0f, 1.2f, 1.7f, 2.0f),
+        hands = listOf(v(0.3f, -0.3f, -0.08f), v(0.3f, -0.3f, -0.08f), v(0.0f, -0.05f, 0.42f), v(-0.18f, 0.0f, 0.32f), v(0.36f, -0.42f, 0.2f), v(0.15f, -0.05f, -0.4f), v(0.15f, -0.05f, -0.4f), v(0.3f, -0.3f, -0.08f), v(0.3f, -0.3f, -0.08f)),
+        dirs = listOf(v(0.3f, 0.7f, -0.4f), v(0.3f, 0.7f, -0.4f), v(-0.1f, 0.9f, 0.3f), v(-0.3f, 0.85f, 0.25f), v(0.2f, 0.0f, 0.98f), v(-0.3f, 0.8f, -0.4f), v(-0.3f, 0.8f, -0.4f), v(0.3f, 0.7f, -0.4f), v(0.3f, 0.7f, -0.4f)),
+        twist = Track.keys(0f to 0f, 0.2f to 0f, 0.6f to 30f, 0.8f to -10f, 1.0f to -30f, 1.2f to -30f, 1.7f to 0f, 2.0f to 0f),
+        hips = Track.keys(0f to 0f, 0.2f to 0f, 0.6f to 22f, 0.8f to -10f, 1.0f to -16f, 1.2f to -16f, 1.7f to 0f, 2.0f to 0f),
+        guide = Track.keys(0f to 30f, 0.2f to 30f, 0.6f to 70f, 0.8f to 40f, 1.0f to 25f, 1.7f to 30f, 2.0f to 30f),
+    )
 }
 
 /**
@@ -431,11 +474,19 @@ private fun stroke(kind: Racket): Stroke = when (kind) {
 private fun racketStroke(kind: Racket): Motion {
     val s = stroke(kind)
     val overhead = kind == Racket.BADMINTON
+    // Table tennis and squash are played lower, leaning further over the ball.
+    val low = kind == Racket.TABLE_TENNIS || kind == Racket.SQUASH
     return Motion.cycle(s.loop, camera = Camera(if (overhead) 40f else 56f, 6f)) { phase ->
         val t = phase * s.loop
-        body.torso(v(-0.02f, 0.84f + 0.01f * cos(phase * TAU)), Basis.UPRIGHT.pitch(if (overhead) 4f else 14f).turn(s.hips.value(t)), twist = s.twist.value(t), nod = -8f)
-        body.stand(Side.NEAR, -0.14f, z = 0.2f, out = 25f)
-        body.stand(Side.FAR, 0.16f, z = -0.18f, out = 15f)
+        val lean = when (kind) {
+            Racket.BADMINTON -> 4f
+            Racket.TABLE_TENNIS -> 24f
+            Racket.SQUASH -> 20f
+            else -> 14f
+        }
+        body.torso(v(if (low) -0.06f else -0.02f, (if (low) 0.79f else 0.84f) + 0.01f * cos(phase * TAU)), Basis.UPRIGHT.pitch(lean).turn(s.hips.value(t)), twist = s.twist.value(t), nod = -8f)
+        body.stand(Side.NEAR, -0.14f, z = if (low) 0.24f else 0.2f, out = 25f)
+        body.stand(Side.FAR, 0.16f, z = if (low) -0.22f else -0.18f, out = 15f)
         val hand = body.shoulder(Side.NEAR) + s.hand.at(t)
         body.arm(Side.NEAR, hand, if (overhead) v(0.1f, -0.2f, 1f) else v(-0.2f, -1f, 0.6f))
         body.swingArm(Side.FAR, s.guide.value(t), out = 20f, elbow = 30f)
@@ -445,6 +496,14 @@ private fun racketStroke(kind: Racket): Motion {
             Racket.TENNIS -> racket(hand, dir, face, handle = 0.27f, head = 0.13f, thick = 0.02f)
             Racket.PADEL -> racket(hand, dir, face, handle = 0.15f, head = 0.15f, thick = 0.035f)
             Racket.BADMINTON -> racket(hand, dir, face, handle = 0.36f, head = 0.1f, thick = 0.012f)
+            Racket.TABLE_TENNIS -> {
+                racket(hand, dir, face, handle = 0.06f, head = 0.08f, thick = 0.014f)
+                // The table's near half and its legs; the net in the middle.
+                add(Block(v(1.65f, 0.74f), Basis.UPRIGHT, v(0.68f, 0.02f, 0.76f), Ink.PAD, fit = false, bias = -0.4f))
+                for (z in listOf(-0.6f, 0.6f)) add(Rod(v(1.15f, 0.02f, z), v(1.15f, 0.72f, z), 0.025f, Ink.FRAME, fit = false, bias = -0.5f))
+                add(Rod(v(2.33f, 0.76f, -0.8f), v(2.33f, 0.76f, 0.8f), 0.05f, Ink.FRAME, fit = false, bias = -0.45f))
+            }
+            Racket.SQUASH -> racket(hand, dir, face, handle = 0.32f, head = 0.1f, thick = 0.012f)
         }
     }
 }

@@ -170,6 +170,9 @@ def step_build(a):
         nf = tr[tr["class"] == "_not_food"].sample(frac=1.0, random_state=4).head(a.not_food)
         for p in nf.path:
             jobs.append((p, os.path.join(root, "images", "train", "nf_" + os.path.basename(p)), [], a.size))
+    if a.splits:  # e.g. only val,test (to evaluate an exported detector again)
+        keep = {os.sep + "images" + os.sep + s + os.sep for s in a.splits.split(",")}
+        jobs = [j for j in jobs if any(k in os.path.normpath(j[1]) for k in keep)]
     print(len(jobs), "photos", flush=True)
     ok = 0
     with cf.ThreadPoolExecutor(12) as pool:
@@ -194,6 +197,7 @@ def main():
     ap.add_argument("--max-download", type=int, default=0)
     ap.add_argument("--not-food", type=int, default=3000)
     ap.add_argument("--out-root", default="", help="where to write the YOLO dataset (an SSD: read at random)")
+    ap.add_argument("--splits", default="", help="build only these splits (comma-separated), e.g. val,test")
     ap.add_argument("--only-fast", action="store_true", help="only Open Images photos already on the mirror")
     a = ap.parse_args()
     {"select": step_select, "download": step_download, "build": step_build}[a.step](a)

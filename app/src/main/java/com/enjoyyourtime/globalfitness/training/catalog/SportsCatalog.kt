@@ -20,6 +20,7 @@ import com.enjoyyourtime.globalfitness.training.model.Muscle.LOWER_BACK
 import com.enjoyyourtime.globalfitness.training.model.Muscle.OBLIQUES
 import com.enjoyyourtime.globalfitness.training.model.Muscle.QUADS
 import com.enjoyyourtime.globalfitness.training.model.Muscle.SHOULDERS
+import com.enjoyyourtime.globalfitness.training.model.Muscle.TRAPS
 import com.enjoyyourtime.globalfitness.training.model.Muscle.TRICEPS
 
 /**
@@ -38,9 +39,11 @@ import com.enjoyyourtime.globalfitness.training.model.Muscle.TRICEPS
  * is saved as. Football and futsal are "Soccer", padel (which Health Connect does not have) is
  * "Tennis", its closest racket sport, and swimming is "Swimming (pool)", where most people log their
  * lengths; such a session takes the activity's own name as its title (see WorkoutExerciseInfo.title).
+ * Alpine and cross-country skiing are both "Skiing", kayaking and canoeing "Paddling" and inline
+ * skating "Skating".
  * [CatalogExercise.hcSegment] is set only where a segment type names the activity and its session
- * type accepts it (walking, Nordic walking, stairs, running, cycling, pool swimming, yoga,
- * pilates); the others are written as "other workout" segments, like the sets of a mixed workout.
+ * type accepts it (walking, Nordic walking, stairs, running, cycling, pool and open-water swimming,
+ * yoga, pilates); the others are written as "other workout" segments, like the sets of a mixed workout.
  */
 object SportsCatalog {
     val all: List<CatalogExercise> = listOf(
@@ -169,10 +172,81 @@ object SportsCatalog {
             primary = setOf(OBLIQUES, SHOULDERS), secondary = setOf(FOREARMS, GLUTES, LOWER_BACK),
             hcSession = ExerciseSessionRecord.EXERCISE_TYPE_GOLF,
         ),
+        // Added in 1.8. Snow: both kinds of skiing are "Skiing" for Health Connect.
+        CatalogExercise(
+            "alpine_skiing", R.string.ex_alpine_skiing, CARDIO, SPORT,
+            primary = setOf(QUADS, GLUTES), secondary = setOf(ADDUCTORS, HAMSTRINGS, OBLIQUES),
+            hcSession = ExerciseSessionRecord.EXERCISE_TYPE_SKIING,
+        ),
+        CatalogExercise(
+            "cross_country_skiing", R.string.ex_cross_country_skiing, CARDIO, SPORT,
+            primary = setOf(QUADS, GLUTES, LATS), secondary = setOf(TRICEPS, ABS, CALVES),
+            hcSession = ExerciseSessionRecord.EXERCISE_TYPE_SKIING,
+        ),
+        CatalogExercise(
+            "snowboarding", R.string.ex_snowboarding, CARDIO, SPORT,
+            primary = setOf(QUADS, GLUTES), secondary = setOf(CALVES, OBLIQUES, HAMSTRINGS),
+            hcSession = ExerciseSessionRecord.EXERCISE_TYPE_SNOWBOARDING,
+        ),
+        // Water: open-water swimming has its own segment type, like the pool.
+        CatalogExercise(
+            "surfing", R.string.ex_surfing, CARDIO, SPORT,
+            primary = setOf(SHOULDERS, LATS), secondary = setOf(TRICEPS, LOWER_BACK, QUADS),
+            hcSession = ExerciseSessionRecord.EXERCISE_TYPE_SURFING,
+        ),
+        CatalogExercise(
+            "rowing", R.string.ex_rowing, CARDIO, SPORT,
+            primary = setOf(LATS, QUADS, GLUTES), secondary = setOf(BICEPS, HAMSTRINGS, LOWER_BACK),
+            hcSession = ExerciseSessionRecord.EXERCISE_TYPE_ROWING,
+        ),
+        CatalogExercise(
+            "kayaking", R.string.ex_kayaking, CARDIO, SPORT,
+            primary = setOf(SHOULDERS, LATS, OBLIQUES), secondary = setOf(BICEPS, TRICEPS, ABS),
+            hcSession = ExerciseSessionRecord.EXERCISE_TYPE_PADDLING,
+        ),
+        CatalogExercise(
+            "open_water_swimming", R.string.ex_open_water_swimming, CARDIO, SPORT,
+            primary = setOf(LATS, SHOULDERS), secondary = setOf(TRICEPS, CHEST, ABS),
+            hcSegment = ExerciseSegment.EXERCISE_SEGMENT_TYPE_SWIMMING_OPEN_WATER,
+            hcSession = ExerciseSessionRecord.EXERCISE_TYPE_SWIMMING_OPEN_WATER,
+        ),
+        // Team and racket sports.
+        CatalogExercise(
+            "rugby", R.string.ex_rugby, CARDIO, SPORT,
+            primary = setOf(QUADS, GLUTES, SHOULDERS), secondary = setOf(HAMSTRINGS, CALVES, TRAPS),
+            hcSession = ExerciseSessionRecord.EXERCISE_TYPE_RUGBY,
+        ),
+        CatalogExercise(
+            "table_tennis", R.string.ex_table_tennis, CARDIO, SPORT,
+            primary = setOf(SHOULDERS, QUADS), secondary = setOf(FOREARMS, CALVES, OBLIQUES),
+            hcSession = ExerciseSessionRecord.EXERCISE_TYPE_TABLE_TENNIS,
+        ),
+        CatalogExercise(
+            "squash", R.string.ex_squash, CARDIO, SPORT,
+            primary = setOf(QUADS, GLUTES, SHOULDERS), secondary = setOf(CALVES, FOREARMS, OBLIQUES),
+            hcSession = ExerciseSessionRecord.EXERCISE_TYPE_SQUASH,
+        ),
+        // Skating: inline (and roller) skating is Health Connect's "Skating".
+        CatalogExercise(
+            "inline_skating", R.string.ex_inline_skating, CARDIO, SPORT,
+            primary = setOf(QUADS, GLUTES), secondary = setOf(ADDUCTORS, HAMSTRINGS, CALVES),
+            hcSession = ExerciseSessionRecord.EXERCISE_TYPE_SKATING,
+        ),
+        CatalogExercise(
+            "ice_skating", R.string.ex_ice_skating, CARDIO, SPORT,
+            primary = setOf(QUADS, GLUTES), secondary = setOf(ADDUCTORS, CALVES, ABS),
+            hcSession = ExerciseSessionRecord.EXERCISE_TYPE_ICE_SKATING,
+        ),
     )
 
-    /** The built-in activities that cover a distance worth logging (km): walks, hikes, runs, rides, swims. */
-    private val distance = setOf("outdoor_walk", "hiking", "nordic_walking", "outdoor_run", "outdoor_cycling", "swimming")
+    /**
+     * The built-in activities that cover a distance worth logging (km): walks, hikes, runs, rides,
+     * swims, cross-country skiing, rowing, paddling and inline skating.
+     */
+    private val distance = setOf(
+        "outdoor_walk", "hiking", "nordic_walking", "outdoor_run", "outdoor_cycling", "swimming",
+        "cross_country_skiing", "rowing", "kayaking", "open_water_swimming", "inline_skating",
+    )
 
     /**
      * Whether a sport's sets have a distance field: the built-in activities in [distance], and the
@@ -204,5 +278,17 @@ object SportsCatalog {
         "martial_arts" to ExerciseGuide(R.string.exg_martial_arts_steps, R.string.exg_martial_arts_tips),
         "climbing" to ExerciseGuide(R.string.exg_climbing_steps, R.string.exg_climbing_tips),
         "golf" to ExerciseGuide(R.string.exg_golf_steps, R.string.exg_golf_tips),
+        "alpine_skiing" to ExerciseGuide(R.string.exg_alpine_skiing_steps, R.string.exg_alpine_skiing_tips),
+        "cross_country_skiing" to ExerciseGuide(R.string.exg_cross_country_skiing_steps, R.string.exg_cross_country_skiing_tips),
+        "snowboarding" to ExerciseGuide(R.string.exg_snowboarding_steps, R.string.exg_snowboarding_tips),
+        "surfing" to ExerciseGuide(R.string.exg_surfing_steps, R.string.exg_surfing_tips),
+        "rowing" to ExerciseGuide(R.string.exg_rowing_steps, R.string.exg_rowing_tips),
+        "kayaking" to ExerciseGuide(R.string.exg_kayaking_steps, R.string.exg_kayaking_tips),
+        "open_water_swimming" to ExerciseGuide(R.string.exg_open_water_swimming_steps, R.string.exg_open_water_swimming_tips),
+        "rugby" to ExerciseGuide(R.string.exg_rugby_steps, R.string.exg_rugby_tips),
+        "table_tennis" to ExerciseGuide(R.string.exg_table_tennis_steps, R.string.exg_table_tennis_tips),
+        "squash" to ExerciseGuide(R.string.exg_squash_steps, R.string.exg_squash_tips),
+        "inline_skating" to ExerciseGuide(R.string.exg_inline_skating_steps, R.string.exg_inline_skating_tips),
+        "ice_skating" to ExerciseGuide(R.string.exg_ice_skating_steps, R.string.exg_ice_skating_tips),
     )
 }

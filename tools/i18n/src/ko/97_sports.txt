@@ -38,3 +38,17 @@ ex_golf = 골프
 # Added in 1.6.0
 ex_nordic_walking = 노르딕 워킹
 ex_stair_climbing = 계단 오르기
+
+# Added in 1.8.0
+ex_alpine_skiing = 스키
+ex_cross_country_skiing = 크로스컨트리 스키
+ex_snowboarding = 스노보드
+ex_surfing = 서핑
+ex_rowing = 조정(수상)
+ex_kayaking = 카약·카누
+ex_open_water_swimming = 오픈워터 수영
+ex_rugby = 럭비
+ex_table_tennis = 탁구
+ex_squash = 스쿼시
+ex_inline_skating = 인라인 스케이트
+ex_ice_skating = 아이스 스케이트

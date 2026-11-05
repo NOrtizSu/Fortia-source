@@ -102,20 +102,25 @@ are described in docs/third-party/food-data/README.md:
     fdc.nal.usda.gov.
   - Ciqual 2025 food composition table: Etalab Open Licence 2.0. Anses. 2025. Table de composition
     nutritionnelle des aliments Ciqual (version of 2025-11-03). https://ciqual.anses.fr/
-  - Open Food Facts (looked up online for barcodes, not bundled): Open Database License (ODbL 1.0),
-    https://world.openfoodfacts.org
+  - Open Food Facts (looked up online for barcodes and for the words read on a package photo, not
+    bundled): Open Database License (ODbL 1.0),
+    https://world.openfoodfacts.org. Product photos shown for a product found there (downloaded to the
+    phone, not bundled): Open Food Facts contributors, Creative Commons Attribution-ShareAlike 3.0
+    (CC BY-SA 3.0), https://creativecommons.org/licenses/by-sa/3.0/
 
 
 Food recognition models
 =======================
 
-app/src/main/assets/food/food_model.tflite (food classifier with a grams-estimate head) and
-food_detector.tflite (food-item detector) are our own models, trained with the scripts in tools/food-model/
-(see tools/food-model/MODEL_CARD.md).
+app/src/main/assets/food/food_model.tflite (food classifier with a grams-estimate head and an image-embedding
+output) and food_detector.tflite (food-item detector) are our own models, trained with the scripts in
+tools/food-model/ (see tools/food-model/MODEL_CARD.md).
 
 - The classifier starts from the ImageNet-12k/1k weights of MobileNetV4-Conv-Medium by timm
   (https://github.com/huggingface/pytorch-image-models, Apache-2.0; architecture by Google). Its grams head
   is calibrated on Nutrition5k (Google, CC BY 4.0, https://github.com/google-research-datasets/Nutrition5k).
+  Since 1.8.0 it is also trained to match a teacher built on SigLIP 2 ViT-B/16 image features (Google,
+  Apache-2.0, via timm); the teacher is used for training only and is not distributed.
 - The detector is Ultralytics YOLO11n (Copyright Ultralytics, AGPL-3.0, https://github.com/ultralytics/ultralytics),
   fine-tuned from its COCO weights.
 - Both were trained on photos from Open Images V7 (Google LLC; annotations and boxes CC BY 4.0, images listed
@@ -125,6 +130,13 @@ food_detector.tflite (food-item detector) are our own models, trained with the s
 
 docs/third-party/food-model/ names every photo used, with its author, licence and source page. The
 photos themselves are not distributed.
+
+Licence of the model files: food_model.tflite and food_model.json (the classifier) are distributed under the
+GNU AGPL-3.0 like the rest of the app and, at your choice, also under the Creative Commons
+Attribution-ShareAlike 4.0 International licence (CC BY-SA 4.0, https://creativecommons.org/licenses/by-sa/4.0/),
+because some of their training photos are CC BY-SA. Attribution: "Fortia food recognizer", with the credits in
+docs/third-party/food-model/ (the photos were resized and cropped for training). food_detector.tflite and
+food_detector.json derive from Ultralytics YOLO11n weights and are AGPL-3.0 only.
 
 
 Libraries
@@ -140,6 +152,9 @@ The app links the following libraries, each under its own license:
     (https://developers.google.com/terms) and the Android SDK license.
   - Google Play In-App Review: Play Core Software Development Kit Terms of Service
     (https://developer.android.com/guide/playcore#license).
+  - Google ML Kit text recognition, Latin, Chinese, Japanese, Korean and Devanagari (through Google
+    Play services; reads the words on a package photo on the phone): ML Kit Terms of Service (https://developers.google.com/ml-kit/terms), which
+    incorporate Google's terms. See docs/third-party/ml-kit/README.md.
 
 
 Trademarks

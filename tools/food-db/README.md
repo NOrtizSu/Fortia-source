@@ -4,8 +4,8 @@ Builds `app/src/main/assets/food/foods.tsv` (the foods the app can log, with 22 
 default portions and dish variants), `app/src/main/assets/food/recipes.tsv` (the ingredients of the dishes, so the
 user can adjust them when logging) and `tools/i18n/src/master/97_foods.txt` (English and Spanish names) from two
 open food composition tables, USDA FoodData Central (CC0) and Anses CIQUAL 2025 (Etalab 2.0), plus recipes of ours.
-Sources, licences and attributions: `docs/third-party/food-data/README.md`. What was checked and fixed in 1.6.0:
-`AUDIT.md`.
+Sources, licences and attributions: `docs/third-party/food-data/README.md`. What was checked and fixed in 1.6.0,
+and what 1.8.0 added (595 → 917 foods, the supplements group): `AUDIT.md`.
 
 ## Reproduce end to end
 
@@ -42,7 +42,7 @@ full tables. `build.py --check` (also run by validate.py and the tests) fails if
 | `recipes.toml` | Ingredients of dishes (catalog food ids and amounts for a whole recipe, cooking yield): recipe dishes are computed from them; for USDA/CIQUAL dishes they are a typical recipe for adjusting. Format at the top of the file. |
 | `sources_used.tsv` | The USDA/CIQUAL rows used by mapping.txt and recipes.toml, as extract.py writes them (written by build.py). |
 | `notes.md` | Decisions: how vague model classes were resolved, portions, energy-check outliers. |
-| `AUDIT.md` | The 1.6.0 audit: what was checked, every value fixed (old → new, why), gaps and open issues. |
+| `AUDIT.md` | The 1.6.0 audit (what was checked, every value fixed: old → new, why) and the 1.8.0 additions (sources per group, checks, coverage), gaps and open issues. |
 | `download.py`, `extract.py` | Get and flatten the source tables. |
 | `search.py` | Find source codes: `python tools/food-db/search.py -d ciqual lentil` or `-k ciqual:20587` (with USDA portions). |
 | `build.py` | Generates the outputs. `--fix-descriptions` refreshes the description column after a source change. |
@@ -56,6 +56,7 @@ full tables. `build.py --check` (also run by validate.py and the tests) fails if
 | `fill=<key>` | Nutrients the source lacks are borrowed from another USDA/CIQUAL food (fatty acids scaled to this food's fat). `fill=recipe`: from the food's own typical recipe in recipes.toml. |
 | `zero=<n>,<n>` | Nutrients the source lacks that this kind of food does not contain (cholesterol, vitamin D or B12 in plant foods, vitamin C in fresh meat, fish and cheese…) are 0. |
 | `replace=<key>:<n>,<n>` | A value of the source that is clearly wrong is taken from another source instead (AUDIT.md says why). |
+| `unknown=<n>,<n>` | Values of the source that do not describe the food as eaten here (the added vitamins of a US fortified product, a "< x" that contradicts the raw food) are left unknown (1.8.0; AUDIT.md says why). |
 | `variant_of=<id>` | This food is a variant of a base food (contract 2): visual = 0, the base exists and is not a variant itself. |
 
 ## Rules the build follows
@@ -80,9 +81,19 @@ full tables. `build.py --check` (also run by validate.py and the tests) fails if
   + 3·organic acids; the build lists foods off by more than max(15 kcal, 12%), validate.py fails above
   max(25 kcal, 20%), except the alcoholic drinks listed in validate.py (alcohol is not a column). validate.py also
   checks saturated + mono + poly fat ≤ fat and plausible upper bounds for the micronutrients.
+- Documented compositions (1.8.0): a few products that no open table has (creatine, BCAA/EAA amino acids,
+  maltodextrin, fino/manzanilla sherry) are `recipe` foods whose recipes.toml entry has `composition = {kcal = …, …}` per 100 g instead of
+  ingredients, `list = false` and a `basis` saying where the values come from (chemistry and the EU energy
+  factors); the nutrients it does not list are unknown.
+- Groups: the 15 of 1.5.0 plus `supplements` (1.8.0: protein powders and shakes, bars, gels, creatine, amino acids…;
+  `whey_protein` moved there from dairy).
 - Portions: Spanish servings (plate of lentils ~350 g, slice of bread 30 g, egg 50 g, glass of wine 150 ml,
-  can 330 ml…), only the keys `unit piece slice plate small_plate bowl cup glass can bottle tbsp tsp handful serving`;
-  the default portion is one of them.
+  can 330 ml…), only the keys
+  `unit piece slice plate small_plate bowl cup glass can bottle tbsp tsp handful serving scoop` (`scoop`, 1.8.0:
+  the measuring scoop of a protein tub, ~30 g); the default portion is one of them.
+- Search: the app finds foods by the words of their name in the user's language (no synonyms), so names carry the
+  usual alternatives ("Café con leche o latte", "Mandarina o clementina"); `test_fooddb.SearchTest` checks that
+  common Spanish and English searches find their food, and that no two foods share a name.
 - Ids are `[a-z0-9_]+` and never renamed or deleted (saved entries point to them); the on-device model's class ids
   are kept exactly and have `visual = 1`. Names are the strings `food_<id>` and `food_group_<group>` (English in
   British spelling, Spanish es-ES); 97_foods.txt is generated, so change names in mapping.txt. Translators add

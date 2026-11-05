@@ -5,10 +5,12 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -23,6 +25,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -43,12 +46,14 @@ import com.enjoyyourtime.globalfitness.ui.components.InfoRow
 /**
  * A packaged product from a photo of its barcode: read on the phone (ZXing), then looked up in Open
  * Food Facts (only the number is sent). Not found → manual entry with the barcode; values missing →
- * the user completes them; no connection → retry. A product found once is kept for next time.
+ * the user completes them; no connection → retry. A product found once is kept for next time, with
+ * its photo from Open Food Facts when it has one (downloaded in the background).
  */
 @Composable
 fun FoodBarcodeScreen(onOpen: (String) -> Unit, onBack: () -> Unit) {
     val vm = foodViewModel()
     val state by vm.barcode.collectAsStateWithLifecycle()
+    val productPhotos by vm.productPhotos.collectAsStateWithLifecycle()
     val back = {
         vm.clearBarcode()
         onBack()
@@ -100,11 +105,23 @@ fun FoodBarcodeScreen(onOpen: (String) -> Unit, onBack: () -> Unit) {
                 }
                 is BarcodeState.Found -> {
                     val item = s.item
+                    // The product's photo from Open Food Facts, once downloaded (it may arrive while the page shows);
+                    // credited when it really shows.
+                    val photo = item.customFoodId?.let(productPhotos::get) != null
+                    var photoShown by remember(item.customFoodId) { mutableStateOf(false) }
                     AppCard {
                         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                            Text(item.name, style = MaterialTheme.typography.titleLarge)
-                            item.brand?.let { FoodSupporting(it) }
-                            FoodSupporting(stringResource(R.string.foodlog_barcode_code, s.code))
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                if (photo) {
+                                    MealThumbnail(null, 72.dp, customFoodId = item.customFoodId, onProductPhoto = { photoShown = it })
+                                    Spacer(Modifier.width(12.dp))
+                                }
+                                Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                                    Text(item.name, style = MaterialTheme.typography.titleLarge)
+                                    item.brand?.let { FoodSupporting(it) }
+                                    FoodSupporting(stringResource(R.string.foodlog_barcode_code, s.code))
+                                }
+                            }
                             // Logged before: "Use this product" starts as that time ("Last time: 2 × Serving · 60 g").
                             s.last?.let { FoodSupporting(stringResource(R.string.foodlog_barcode_last_time, FoodFormat.entryAmount(it))) }
                             Text(
@@ -118,14 +135,7 @@ fun FoodBarcodeScreen(onOpen: (String) -> Unit, onBack: () -> Unit) {
                             }
                             // Values the user added to a kept product (Open Food Facts gives only the label's).
                             ExtraNutrientRows(item.per100, knownOnly = true)
-                            if (item.fromOpenFoodFacts) {
-                                Text(
-                                    stringResource(R.string.foodlog_off_attribution),
-                                    style = MaterialTheme.typography.bodySmall,
-                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                    modifier = Modifier.padding(top = 8.dp),
-                                )
-                            }
+                            if (item.fromOpenFoodFacts) OffAttribution(photo && photoShown, Modifier.padding(top = 8.dp))
                         }
                     }
                     if (s.missing.isNotEmpty()) {

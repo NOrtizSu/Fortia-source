@@ -297,6 +297,7 @@ internal class SceneBuilder(private val camera: Camera, private val muscles: Set
             is Disc -> disc(prop)
             is Block -> block(prop)
             is Ball -> Group(camera.depth(prop.center) + prop.bias, prop.fit).also { groups += it }.circle(prop.center, prop.radius, prop.ink)
+            is Dome -> dome(prop)
             is Cord -> {
                 var sum = 0.0
                 for (p in prop.points) sum += camera.depth(p)
@@ -343,6 +344,36 @@ internal class SceneBuilder(private val camera: Camera, private val muscles: Set
         if (rim != null) g.fill(rim, disc.ink.dark)
         g.fill(faceShape, disc.ink)
         if (disc.hub > 0f) g.fill(ellipse(face + front * 0.002f, n, disc.hub), disc.ink.dark)
+    }
+
+    /**
+     * A spherical cap on a level base: under the orthographic camera the sphere's outline is a circle,
+     * so the cap is the arc of that circle above its base, closed by the front half of the base's rim.
+     */
+    private fun dome(d: Dome) {
+        val g = Group(camera.depth(d.base + V3.Y * (d.height * 0.4f)) + d.bias, d.fit).also { groups += it }
+        val bx = camera.x(d.base)
+        val by = camera.y(d.base)
+        val cp = camera.up.y
+        val sp = abs(V3.Y dot camera.toViewer)
+        val rs = d.sphere
+        val cy = by - d.drop * cp
+        val a0 = kotlin.math.asin(((by - cy) / rs).coerceIn(-1f, 1f))
+        val n = ELLIPSE_POINTS
+        val out = FloatArray((2 * n + 2) * 2)
+        var k = 0
+        for (i in 0..n) {
+            val a = a0 + (PI.toFloat() - 2 * a0) * i / n
+            out[k++] = bx + rs * cos(a)
+            out[k++] = cy + rs * sin(a)
+        }
+        for (i in 0..n) {
+            val b = PI.toFloat() * (1f - i.toFloat() / n)
+            out[k++] = bx + d.radius * cos(b)
+            out[k++] = by - d.radius * sp * sin(b)
+        }
+        g.halo(out)
+        g.fill(out, d.ink)
     }
 
     private fun block(block: Block) {

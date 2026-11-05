@@ -18,3 +18,6 @@ routine_mobility = Mobilidade e alongamentos
 
 routine_foam_rolling = Recuperação com foam roller
 routine_hiit = HIIT sem material
+
+routine_kettlebell = Corpo inteiro com kettlebell
+routine_calisthenics = Calistenia: habilidades

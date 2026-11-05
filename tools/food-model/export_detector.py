@@ -47,12 +47,16 @@ def step_onnx(a):
     os.makedirs(a.out, exist_ok=True)
     y = YOLO(a.weights)
     net = y.model.float().fuse().eval()
+    S = a.size
     for m in net.modules():
         if isinstance(m, Detect):
             m.export = True
             m.format = "onnx"
             m.dynamic = False
-    S = a.size
+            # v3 (int8): never concatenate the decoded boxes (pixels, 0..S) with the scores (0..1) as Ultralytics
+            # does: one int8 scale for both rounds every score to 0 or ~S/255. Boxes are normalised to 0..1
+            # and the two stay separate tensors all the way to the outputs.
+            m._inference = (lambda x, m=m: (m._get_decode_boxes(x) / S, x["scores"].sigmoid()))
     chans = [int(c) for c in a.score_classes.split(",")]
 
     class Wrap(torch.nn.Module):
@@ -61,12 +65,11 @@ def step_onnx(a):
             self.net = net
 
         def forward(self, images):
-            out = self.net(images)
-            out = out[0] if isinstance(out, (list, tuple)) else out  # [1, 4 + nc, A]: cx, cy, w, h (pixels), scores
-            cx, cy, w, h = out[:, 0], out[:, 1], out[:, 2], out[:, 3]
-            boxes = torch.stack([(cy - h / 2) / S, (cx - w / 2) / S, (cy + h / 2) / S, (cx + w / 2) / S], -1)
+            dbox, cls = self.net(images)  # [1, 4, A] cx, cy, w, h normalised; [1, nc, A] sigmoid scores
+            cx, cy, w, h = dbox[:, 0], dbox[:, 1], dbox[:, 2], dbox[:, 3]
+            boxes = torch.stack([cy - h / 2, cx - w / 2, cy + h / 2, cx + w / 2], -1)
             boxes = boxes.clamp(0.0, 1.0)
-            sc = out[:, 4:][:, chans]
+            sc = cls[:, chans]
             scores = sc.max(1).values if len(chans) > 1 else sc[:, 0]
             return boxes, scores
 
@@ -150,13 +153,15 @@ def step_tflite(a):
     det = Det()
     conc = det.serve.get_concrete_function()
     variants = {}
-    for v in ("fp32", "fp16", "int8"):
+    for v in ("fp32", "fp16", "int8", "dynint8"):
         if a.variant != "all" and v != a.variant:
             continue
         conv = tf.lite.TFLiteConverter.from_concrete_functions([conc], det)
         if v == "fp16":
             conv.optimizations = [tf.lite.Optimize.DEFAULT]
             conv.target_spec.supported_types = [tf.float16]
+        elif v == "dynint8":  # int8 weights, float activations (dynamic-range quantisation)
+            conv.optimizations = [tf.lite.Optimize.DEFAULT]
         elif v == "int8":
             calib = np.load(os.path.join(a.out, "calib.npy"))
 
@@ -208,6 +213,11 @@ def step_tflite(a):
     if a.assets and a.variant != "all":
         os.makedirs(a.assets, exist_ok=True)
         shutil.copyfile(variants[a.variant], os.path.join(a.assets, "food_detector.tflite"))
+        if a.strip:  # tensor names the app never reads; the outputs keep their order (checked above by rank)
+            from tensorflow.lite.tools import flatbuffer_utils as fu
+            m = fu.read_model(os.path.join(a.assets, "food_detector.tflite"))
+            fu.strip_strings(m)
+            fu.write_model(m, os.path.join(a.assets, "food_detector.tflite"))
         spec = {
             "version": 1,
             "kind": "food_item_detector",
@@ -250,7 +260,7 @@ def main():
     ap.add_argument("--score-classes", default="0")
     ap.add_argument("--calib-dir", default="")
     ap.add_argument("--calib", type=int, default=300)
-    ap.add_argument("--variant", default="int8", choices=("fp32", "fp16", "int8", "all"))
+    ap.add_argument("--variant", default="int8", choices=("fp32", "fp16", "int8", "dynint8", "all"))
     ap.add_argument("--max-detections", type=int, default=10)
     ap.add_argument("--iou", type=float, default=0.5)
     ap.add_argument("--graph-score-floor", type=float, default=0.1)
@@ -267,6 +277,7 @@ def main():
     ap.add_argument("--notes", default="")
     ap.add_argument("--skip-convert", action="store_true")
     ap.add_argument("--keep-float", type=int, default=0, help="int8: keep the N worst layers in float")
+    ap.add_argument("--strip", action="store_true", help="strip tensor names from the copied asset")
     a = ap.parse_args()
     step_onnx(a) if a.step == "onnx" else step_tflite(a)
 

@@ -1,0 +1,53 @@
+# Comida after 1.7.0: the photo of a product found by its barcode, from Open Food Facts.
+# The rest of the food log is in 99_food.txt, 99_food_160.txt and 99_food_170.txt.
+
+# The credit line under a product of Open Food Facts when its photo shows too (foodlog_off_attribution without one).
+# ODbL is the licence of the data, CC BY-SA the licence of the photo: keep both names as they are.
+foodlog_off_attribution_photo = Data dan foto: Open Food Facts (ODbL, CC BY-SA)
+
+# A packaged product on the meal photo ("What's on the plate?" page). Three ways, shown at the top of the page:
+# a barcode read on the photo (its product page opens by itself once found), one of the products the user
+# already scanned that the photo looks like (compared on the phone), the words read on the package searched in
+# Open Food Facts (keep the name). Nothing is logged until the user picks the product and confirms.
+foodlog_pack_barcode = Barcode %1$s di foto
+
+# One of the user's scanned products, with its photo: tap to use it. %1$s = the product's name.
+foodlog_pack_match = Apakah ini %1$s?
+foodlog_pack_match_text = Salah satu produk yang pernah Anda pindai
+
+# Several of the user's scanned products look alike: none is picked.
+foodlog_pack_suggestions = Mungkin salah satu produk Anda
+
+# Button: read the words on the photo (on the phone) and search them in Open Food Facts.
+foodlog_pack_search = Cari produk dari kemasannya
+foodlog_pack_reading = Membaca kemasan…
+
+# A text field with the words searched (as read on the package, or empty when none could be read): the user
+# corrects them or types the brand and name, then searches again with the keyboard's search key or the search icon.
+foodlog_pack_words_label = Kata yang dicari
+foodlog_pack_words_hint = Merek dan nama produk
+
+# %1$s = the words searched, as read on the package.
+foodlog_pack_searching = Mencari “%1$s” di Open Food Facts…
+foodlog_pack_results = Produk untuk “%1$s”
+foodlog_pack_results_text = Pilih produk Anda: nilainya berasal dari Open Food Facts.
+foodlog_pack_no_text = Tidak ada kata yang terbaca di kemasan. Ketik merek dan namanya di atas, atau foto barcode-nya.
+
+# The phone's text recognition failed (not the photo's fault).
+foodlog_pack_read_failed = Teks kemasan tidak dapat dibaca kali ini. Coba lagi.
+foodlog_pack_none = Open Food Facts tidak memiliki produk untuk “%1$s”. Ubah kata di atas, foto barcode-nya, atau cari makanannya.
+foodlog_pack_offline = Tidak ada koneksi: kemasan tidak dapat dicari. Coba lagi, atau foto barcode-nya.
+
+# Open Food Facts allows a few searches a minute.
+foodlog_pack_busy = Terlalu banyak pencarian dalam waktu singkat. Coba lagi dalam satu menit.
+foodlog_pack_unavailable = Membaca kemasan memerlukan layanan Google Play. Ketik merek dan namanya di atas, atau foto barcode-nya.
+
+# Google Play services downloads the text recognition the first time.
+foodlog_pack_preparing = Pengenalan teks sedang dipasang di ponsel Anda. Coba lagi sebentar lagi.
+foodlog_pack_private = Teks dibaca di ponsel Anda; hanya kata-kata di kolom yang dikirim ke Open Food Facts untuk dicari.
+
+# Button: a photo of the package's barcode (the barcode page).
+foodlog_pack_barcode_photo = Foto barcode
+
+# Open source page: the text recognition library (Google ML Kit, through Google Play services).
+notice_mlkit = Membaca kata-kata di foto kemasan, di ponsel (layanan Google Play).

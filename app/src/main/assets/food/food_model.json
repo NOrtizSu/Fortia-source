@@ -1,5 +1,5 @@
 {
- "version": 2,
+ "version": 3,
  "labels": [
   "apple",
   "banana",
@@ -330,6 +330,28 @@
   "endive",
   "samosa",
   "onigiri",
+  "edamame",
+  "baked_beans",
+  "black_pudding",
+  "pork_belly",
+  "sardines",
+  "chestnuts",
+  "turron",
+  "patatas_bravas",
+  "onion_rings",
+  "clam_chowder",
+  "mille_feuille",
+  "gnocchi",
+  "baklava",
+  "kimchi",
+  "fajitas",
+  "chicken_teriyaki",
+  "marshmallows",
+  "enchiladas",
+  "stuffed_peppers",
+  "quail_eggs",
+  "tempeh",
+  "marzipan",
   "_not_food"
  ],
  "input": {
@@ -361,15 +383,15 @@
   "kind": "logits",
   "index": 0
  },
- "temperature": 0.78,
+ "temperature": 0.82,
  "min_confidence": 0.05,
  "not_food_label": "_not_food",
  "model": {
-  "name": "fortia-food-2",
+  "name": "fortia-food-3",
   "backbone": "mobilenetv4_conv_medium.e250_r384_in12k_ft_in1k",
-  "quantization": "float16",
-  "trained": "2026-11-03",
-  "notes": "MobileNetV4-Conv-Medium (timm in12k+in1k weights), 329 foods + _not_food, 320 px, not-food logit -0.75, grams head calibrated on Nutrition5k; fp16 weights (full int8 loses 16 points of top-1)"
+  "quantization": "integer_quant",
+  "trained": "2026-11-05",
+  "notes": "351 foods + not food (v3); distilled from a SigLIP 2 + 1.6.0 teacher; head narrowed to 640 units; exact per-channel re-parametrisation + quantisation-aware fine-tuning; full int8, float32 input/outputs; grams head fitted on its own int8 features; embedding output (embedding_contract.md)"
  },
  "grams": {
   "enabled": true,
@@ -382,18 +404,42 @@
    "dtype": "float32",
    "kind": "log_grams"
   },
-  "b0": 0.5484,
-  "b_model": 0.8824,
-  "b_portion": 0.0402,
-  "b_share": 0.3893,
+  "b0": 0.341,
+  "b_model": 0.8816,
+  "b_portion": 0.074,
+  "b_share": 0.3433,
   "clamp_portion": [
    0.1,
-   4.0
+   6.0
   ],
   "clamp_grams": [
    5,
    1500
   ],
   "round_to": 5
+ },
+ "embedding": {
+  "output": {
+   "index": 2,
+   "shape": [
+    1,
+    960
+   ],
+   "dtype": "float32",
+   "kind": "embedding"
+  },
+  "input": {
+   "resize": "stretch"
+  },
+  "l2_normalize": true,
+  "metric": "cosine",
+  "space": "fortia-food-3-int8-2026-11-05",
+  "match": {
+   "threshold": 0.67,
+   "margin": 0.075,
+   "suggest_threshold": 0.57,
+   "suggest_max": 3
+  },
+  "notes": "spatial max of the last conv features of the v3 int8 classifier, whole photo stretched to 320x320; thresholds measured on Open Food Facts front photos with this file (embedding_contract.md)"
  }
 }

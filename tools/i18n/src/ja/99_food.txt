@@ -22,6 +22,7 @@ food_portion_tbsp = 大さじ 1
 food_portion_tsp = 小さじ 1
 food_portion_handful = ひとつかみ
 food_portion_serving = 1 食分
+food_portion_scoop = スクープ 1 杯
 
 # Meals of the day
 foodlog_meal_breakfast = 朝食
@@ -221,9 +222,9 @@ health_rationale_write_meals = 許可すると、Fortia は記録した食品（
 notice_litert = 食品認識モデルをスマートフォン上で実行します。
 notice_zxing = 写真から商品のバーコードを読み取ります。
 open_source_food_data = 食品データ
-notice_open_food_facts = バーコードで検索する包装食品。データ © Open Food Facts のコントリビューター、Open Database License（ODbL）に基づく。
+notice_open_food_facts = バーコードで検索する包装食品。データ © Open Food Facts のコントリビューター、Open Database License（ODbL）に基づく。商品写真 © Open Food Facts のコントリビューター、CC BY-SA 3.0（https://creativecommons.org/licenses/by-sa/3.0/）に基づく。
 notice_usda = 食品リストの栄養価：U.S. Department of Agriculture, Agricultural Research Service, FoodData Central。パブリックドメイン（CC0）。
 notice_ciqual = 食品リストの栄養価：Anses、Ciqual フランス食品成分表、Licence Ouverte / Etalab 2.0 に基づく。
 notice_food_model_name = Fortia 食品認識モデル
-notice_food_model_license = 独自モデル（モデルカードを参照）
+notice_food_model_license = 独自モデル（モデルカードを参照） · AGPL-3.0 · food_model.tflite: AGPL-3.0 / CC BY-SA 4.0
 notice_food_model = MobileNetV4（timm、Apache-2.0）と Ultralytics YOLO11n（AGPL-3.0）をベースに、Open Images（CC BY 2.0）、Wikimedia Commons（フリーライセンス）、MyFoodRepo（CC BY 4.0）の画像で学習した独自モデルです。重さの推定は Nutrition5k（CC BY 4.0）で調整しています。画像とその作者のリストはソースコードとともに公開されています。

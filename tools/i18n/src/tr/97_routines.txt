@@ -16,3 +16,5 @@ routine_mobility = Mobilite ve germe
 routine_foam_rolling = Foam roller ile toparlanma
 routine_hiit = Ekipmansız HIIT
 routine_cardio_mix = Kardiyo makineleri
+routine_kettlebell = Kettlebell ile tüm vücut
+routine_calisthenics = Kalistenik: beceriler

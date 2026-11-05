@@ -51,6 +51,8 @@ data class ModelSpec(
     val resizeShortSide: Int? = null,
     /** The grams estimate of the model's second output (version 2; null: none, or not enabled). */
     val grams: GramsSpec? = null,
+    /** The image embedding output for "products you already scanned" (version 3; null: none, the feature is off). */
+    val embedding: EmbeddingSpec? = null,
 ) {
     /** For the log: everything but the labels. */
     fun describe(): String =
@@ -58,7 +60,8 @@ data class ModelSpec(
             "mean=$mean, std=$std, unit=$unitRange, crop=$centerCrop/$cropFraction/${resizeShortSide ?: "-"}, " +
             "${if (bilinear) "bilinear" else "area"}, in=$inputScale/$inputZeroPoint, " +
             "out=$outputType/$outputScale/$outputZeroPoint, logits=$logits, T=$temperature, min=$minConfidence, " +
-            "grams=${grams?.let { "output ${it.outputIndex ?: "?"}" } ?: "off"}"
+            "grams=${grams?.let { "output ${it.outputIndex ?: "?"}" } ?: "off"}, " +
+            "embedding=${embedding?.let { "output ${it.outputIndex ?: "?"} ${it.space}" } ?: "off"}"
 
     companion object {
         const val NOT_FOOD = "_not_food"
@@ -105,6 +108,7 @@ data class ModelSpec(
                 bilinear = (input["interpolation"] as? String).equals("bilinear", ignoreCase = true),
                 resizeShortSide = shortSide?.let { kotlin.math.round(it).toInt() }?.takeIf { it in 1..MAX_SIDE },
                 grams = GramsSpec.parse(root["grams"] as? Map<*, *>),
+                embedding = EmbeddingSpec.parse(root["embedding"] as? Map<*, *>),
             )
         }
 
@@ -164,6 +168,46 @@ data class GramsSpec(
                 clampGramsMin = grams.first,
                 clampGramsMax = grams.second,
                 roundTo = d("round_to", 5.0).takeIf { it > 0 } ?: 5.0,
+            )
+        }
+    }
+}
+
+/**
+ * The classifier's image embedding (`embedding` in food_model.json, see embedding_contract.md): its
+ * own run of the model on the whole photo stretched to the input size (same normalisation), whose
+ * [outputIndex] output (else the one that is neither the logits nor a single value) is L2-normalised
+ * here and compared by cosine. Embeddings of another [space] are not comparable.
+ */
+data class EmbeddingSpec(
+    val outputIndex: Int?,
+    val space: String,
+    /** The whole photo stretched to the input size (the contract), else the classifier's own crop. */
+    val stretch: Boolean = true,
+    /** "Is it …?": the best product scores at least [threshold] and [margin] more than any other. */
+    val threshold: Float = 0.67f,
+    val margin: Float = 0.075f,
+    /** Otherwise up to [suggestMax] products scoring at least [suggestThreshold] are suggested. */
+    val suggestThreshold: Float = 0.57f,
+    val suggestMax: Int = 3,
+) {
+    companion object {
+        /** The block, or null when absent or without a `space` (no embedding: the feature is off). */
+        fun parse(block: Map<*, *>?): EmbeddingSpec? {
+            if (block == null) return null
+            val space = (block["space"] as? String)?.trim()?.takeIf { it.isNotEmpty() } ?: return null
+            val output = block["output"] as? Map<*, *>
+            val input = block["input"] as? Map<*, *>
+            val match = block["match"] as? Map<*, *> ?: emptyMap<String, Any?>()
+            fun f(key: String, default: Float) = ModelSpec.float(match[key])?.takeIf { it in -1f..1f } ?: default
+            return EmbeddingSpec(
+                outputIndex = ModelSpec.int(output?.get("index"))?.takeIf { it >= 0 },
+                space = space,
+                stretch = (input?.get("resize") as? String)?.lowercase()?.contains("crop") != true,
+                threshold = f("threshold", 0.67f),
+                margin = (ModelSpec.float(match["margin"])?.takeIf { it in 0f..2f }) ?: 0.075f,
+                suggestThreshold = f("suggest_threshold", 0.57f),
+                suggestMax = (ModelSpec.int(match["suggest_max"]) ?: 3).coerceIn(0, 10),
             )
         }
     }

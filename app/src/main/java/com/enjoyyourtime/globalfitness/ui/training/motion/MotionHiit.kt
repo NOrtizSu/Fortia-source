@@ -189,17 +189,18 @@ internal fun curvedTreadmill() = Motion.cycle(1.44f, cycles = 2, camera = Camera
 
 /**
  * Jump rope: small bounces on the balls of the feet, the wrists turning the rope over the head and
- * under the feet once per jump, at the top of each bounce.
+ * under the feet once per jump, at the top of each bounce. [double]: double-unders, a higher jump
+ * with the rope passing under the feet twice.
  */
-internal fun jumpRope() = Motion.cycle(1.0f, cycles = 2, camera = Camera(20f, 4f)) { phase ->
+internal fun jumpRope(double: Boolean = false) = Motion.cycle(if (double) 1.3f else 1.0f, cycles = 2, camera = Camera(20f, 4f)) { phase ->
     val hop = 0.5f - 0.5f * cos(phase * TAU)
-    val h = 0.05f * hop
+    val h = (if (double) 0.11f else 0.05f) * hop
     val lift = 25f + 8f * hop
     val ankleY = liftedAnkle(0f, h, lift).y
     body.torso(v(0f, ankleY + 0.79f), Basis.UPRIGHT.pitch(4f), nod = -4f)
     for (side in Side.entries) body.onBall(side, 0f, side.sign * 0.1f, floor = h, lift = lift)
     // The rope turns forward: overhead at the start of the jump, under the feet at its top.
-    val turn = rad(90f - 360f * phase)
+    val turn = rad(90f - (if (double) 720f else 360f) * phase)
     val handY = ankleY + 0.85f
     val hands = Side.entries.associateWith { side -> v(0.12f + 0.03f * cos(turn), handY + 0.03f * sin(turn), side.sign * 0.27f) }
     for (side in Side.entries) body.arm(side, hands.getValue(side), v(-1f, -0.3f, side.sign * 0.4f))

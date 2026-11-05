@@ -52,7 +52,7 @@ REQUIRED = ('kcal', 'protein', 'carbs', 'fat')
 # Ingredients the user does not adjust when logging a dish (contract 3: water, salt, spices); a recipe line can
 # override it with a 4th element (0 or 1).
 NOT_ADJUSTABLE = {'water', 'salt', 'paprika', 'garlic', 'vinegar', 'broth', 'lemon', 'lime_juice', 'spring_onion',
-                  'chili_pepper', 'sparkling_water'}
+                  'chili_pepper', 'sparkling_water', 'parsley', 'basil', 'ginger'}
 # A recipe nutrient is unknown when the ingredients that lack it weigh at least this share of the recipe.
 MISSING_SHARE = 0.05
 GROUPS = {
@@ -71,11 +71,12 @@ GROUPS = {
     'fast_food': ('Fast food', 'Comida rápida'),
     'snacks': ('Snacks', 'Aperitivos'),
     'sauces': ('Sauces and dressings', 'Salsas y aliños'),
+    'supplements': ('Supplements and sports nutrition', 'Suplementos y nutrición deportiva'),
 }
 PORTION_KEYS = ['unit', 'piece', 'slice', 'plate', 'small_plate', 'bowl', 'cup', 'glass', 'can', 'bottle', 'tbsp',
-                'tsp', 'handful', 'serving']
+                'tsp', 'handful', 'serving', 'scoop']
 COLUMNS = ['id', 'group', 'unit', 'visual', 'source', 'opts', 'portion', 'portions', 'en', 'es', 'description', 'note']
-OPTIONS = ('fill', 'density', 'variant_of', 'zero', 'replace')
+OPTIONS = ('fill', 'density', 'variant_of', 'zero', 'replace', 'unknown')
 ID = re.compile(r'^[a-z0-9_]+$')
 KEY = re.compile(r'^(fdc|ciqual):\d+$')
 
@@ -131,7 +132,7 @@ def parse_opts(text, where):
         k, v = (s.strip() for s in part.split('=', 1))
         if k not in OPTIONS:
             raise SystemExit(f'{where}: unknown option {k!r}')
-        if k in ('zero', 'replace'):
+        if k in ('zero', 'replace', 'unknown'):
             names = v
             if k == 'replace':
                 parts = v.split(':', 2)
@@ -239,7 +240,7 @@ class Catalog:
         if r['source'] == 'recipe':
             if fid not in self.recipes:
                 raise SystemExit(f'{where}: no [{fid}] in recipes.toml')
-            bad = [o for o in ('fill', 'zero', 'replace') if o in opts]
+            bad = [o for o in ('fill', 'zero', 'replace', 'unknown') if o in opts]
             if bad:
                 raise SystemExit(f'{where}: {bad} not allowed on a recipe dish (its values are its ingredients)')
             if r['unit'] == 'ml' and 'density' not in opts:
@@ -285,6 +286,12 @@ class Catalog:
                 if other.get(k) is None:
                     raise SystemExit(f'{where}: replace= source {key} has no {k}')
                 vals[k] = other[k]
+        for k in filter(None, (s.strip() for s in opts.get('unknown', '').split(','))):
+            # A value of the source that does not describe the food as eaten here (a US product's added vitamins,
+            # a "< x" that contradicts the raw food): unknown rather than wrong (AUDIT.md says why).
+            if k in REQUIRED:
+                raise SystemExit(f'{where}: unknown= cannot blank {k}')
+            vals[k] = None
         if r['unit'] == 'ml':
             d = float(opts.get('density', '1'))
             vals = {k: (v * d if v is not None else None) for k, v in vals.items()}
@@ -310,6 +317,8 @@ class Catalog:
         """Values per 100 g of the finished dish, the nutrients left unknown, and the recipe lines (kept in
         self.lines / self.finished for recipes.tsv)."""
         recipe = self.recipes[fid]
+        if 'composition' in recipe:
+            return self.composition(fid, recipe, where)
         total = {k: 0.0 for k in ALL}
         lacking = {k: 0.0 for k in ALL}
         weight = 0.0
@@ -355,6 +364,28 @@ class Catalog:
         self.lines[fid] = lines
         self.finished[fid] = cooked
         return vals, missing
+
+    def composition(self, fid, recipe, where):
+        """A documented composition per 100 g of a product no open table has (creatine, amino acids): the values
+        written in the entry, the others unknown. It has no ingredients and is not listed in recipes.tsv."""
+        comp = recipe['composition']
+        if 'ingredients' in recipe or recipe.get('list', True) is not False:
+            raise SystemExit(f'{where}: a composition has no ingredients and needs list = false')
+        if self.rows[fid]['source'] != 'recipe' or not recipe.get('basis'):
+            raise SystemExit(f'{where}: a composition is for a recipe-source food and needs a basis')
+        bad = [k for k in comp if k not in ALL]
+        if bad:
+            raise SystemExit(f'{where}: composition lists unknown nutrients {bad}')
+        for k, v in comp.items():
+            if type(v) not in (int, float) or v < 0:
+                raise SystemExit(f'{where}: composition {k} must be a number >= 0')
+        lacking = [k for k in REQUIRED if k not in comp]
+        if lacking:
+            raise SystemExit(f'{where}: composition needs {lacking}')
+        vals = {k: (float(comp[k]) if k in comp else None) for k in ALL}
+        self.lines[fid] = []
+        self.finished[fid] = 100.0
+        return vals, [k for k in VALUES if vals[k] is None]
 
 
 def recipe_amounts(cat, fid):

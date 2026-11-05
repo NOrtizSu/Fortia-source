@@ -117,6 +117,23 @@ def category_files(cat, depth, cache_dir, seen_cats, found, level=0, ingredient=
             category_files(sc, depth - 1, cache_dir, seen_cats, found, level + 1, ingredient)
 
 
+def search_files(term, cache_dir, found, level=1, limit=1500):
+    """v3: adds to `found` the photos whose file name contains `term` (Commons search, `intitle:` + bitmap only),
+    for dishes whose categories hold few photos (many photos are uncategorised or filed under a restaurant)."""
+    cont = {}
+    n = 0
+    while n < limit:
+        d = api({"action": "query", "list": "search", "srnamespace": 6, "srlimit": 500, "srwhat": "text",
+                 "srsearch": f'intitle:"{term}" filetype:bitmap', **cont}, cache_dir)
+        hits = d.get("query", {}).get("search", [])
+        for m in hits:
+            found[m["title"]] = min(level, found.get(m["title"], level))
+        n += len(hits)
+        if "continue" not in d or not hits:
+            break
+        cont = d["continue"]
+
+
 def strip_html(s):
     s = re.sub(r"<[^>]+>", "", s or "")
     return re.sub(r"\s+", " ", html.unescape(s)).strip()
@@ -232,6 +249,9 @@ def plan(args, root, cache_dir):
             continue
         found, seen = {}, set()
         for spec in cats:
+            if spec.startswith("search:"):
+                search_files(spec[len("search:"):], cache_dir, found)
+                continue
             name, _, depth = spec.partition("|")
             cat = "Category:" + name
             seen.add(cat)

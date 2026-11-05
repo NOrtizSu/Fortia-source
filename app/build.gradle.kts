@@ -211,6 +211,12 @@ dependencies {
     // from a photo (ZXing core, no camera preview).
     implementation(libs.litert)
     implementation(libs.zxing.core)
+    // The words on a package photo are read on the phone (ML Kit text recognition through Google Play services).
+    implementation(libs.mlkit.text.recognition)
+    implementation(libs.mlkit.text.recognition.chinese)
+    implementation(libs.mlkit.text.recognition.japanese)
+    implementation(libs.mlkit.text.recognition.korean)
+    implementation(libs.mlkit.text.recognition.devanagari)
 
     testImplementation(libs.junit)
     testImplementation(libs.kotlinx.coroutines.test)

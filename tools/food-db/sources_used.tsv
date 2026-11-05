@@ -1,5 +1,7 @@
 key	dataset	description	description_fr	kcal	protein	carbs	sugars	fat	sat_fat	fiber	salt	alcohol	water	polyols	organic_acids	mono_fat	poly_fat	cholesterol	potassium	calcium	iron	magnesium	zinc	vit_a	vit_c	vit_d	vit_e	vit_b12	folate	fortified
+ciqual:1001	ciqual	Fruit brandy or eau-de-vie	Eau de vie de fruits	233	0	0.63	0	0	0	0	0.003	32.9	66.4	0	0	0	0	0	1.44	1	0.04	0	0.019	0	0	0	0	0	0	0
 ciqual:1002	ciqual	Gin	Gin	265	0	0	0	0	0	0	0.005	37.9	62.1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+ciqual:1003	ciqual	Liqueur	Liqueur	225	0.1	25.4	17.4	0.23	0.11	0	0.02	17.3	55.8	0	0	0.022	0.11	0	30	1	0.06	3	0.03	0	0	0	0	0	0	0
 ciqual:1004	ciqual	Rum	Rhum	234	0	0	0	0	0	0	0.003	33.4	66.6	0	0	0	0	0	2	0	0.12	0	0.07	0	0	0	0	0	0	0
 ciqual:1005	ciqual	Whisky	Whisky	252	0	0.096	0.096	0	0	0	0	36	63.9	0	0	0	0	0	1	0	0.02	0	0.02	0	0	0	0	0	0	0
 ciqual:1007	ciqual	Wine-based aperitif	Apéritif à base de vin ou vermouth	137	0.054	11.3	11.1	0	0	0	0.037	13.1	75.3	0	0	0	0	0	48	7.37	0.44	7	0.035	0		0	0	0.003	0	0
@@ -8,7 +10,10 @@ ciqual:1012	ciqual	Cocktail, rum-based	Cocktail à base de rhum	121	0	7.74	7.74	
 ciqual:1017	ciqual	Sangria	Sangria, faite maison	88.7	0	11	9.5	0.05	0	0	0.007	6.32	83			0.013	0.027	0	123	9.35	0.37	10.7	0.07	4.5	12.1	0	0.14	0	9.11	0
 ciqual:1023	ciqual	Brandy, Armagnac or Cognac type	Eau de vie de vin type armagnac ou cognac	222	0	0.76	0	0	0	0	0.002	31.3	67.9	0	0	0	0	0	2	0	0		0.011	0	0	0	0	0	0	0
 ciqual:2013	ciqual	Orange juice, fresh	Jus d'orange, frais	44.8	0.7	9.19	8.4	0.2	0.024	0.2	0	0	88.3		1.01	0.036	0.04	0	200	10.5	0.079	13.2	0.027	2.75	50	0	0.04	0	30	0
+ciqual:2016	ciqual	Grape juice, pure juice	Jus de raisin, pur jus	69.2	0.25	16.3	16	0.057	0.031	0.14	0.01	0	82.4	0	0.8	0.003	0.022	0	114	8.29	0.47	8.35	0.056	0.42		0	0	0	0	0
+ciqual:2025	ciqual	Grapefruit juice, fresh	Jus de pamplemousse (pomélo), frais	43.7	0.5	9.1	9.1	0.1	0.014	0.1	0.003	0	90		1.4	0.013	0.024	0	162	9	0.2	12	0.05	0.33	38	0	0.22	0	10	0
 ciqual:2030	ciqual	Lime juice, fresh	Jus de citron vert, frais	9.87	0.42	1.69	1.69	0.07	0.008	0.4	0.005	0	90.8			0.008	0.023	0	117	14	0.09	8	0.08	2.5	30	0	0.22	0	10	0
+ciqual:2032	ciqual	Tomato juice, pure juice, 6 g salt/L	Jus de tomate, pur jus, salé à 6 g/L	20.1	0.88	3.32	3.3	0.11	0.07	0.56	0.578	0	93.7	0	0.4	0.007	0.025	0	302	5.1	0.42	13.7	0.18	19.6	25.8	0	0.53	0	12	0
 ciqual:2035	ciqual	Multifruit juice, pure juice, standard	Jus multifruit, pur jus, standard	46.5	0.25	11.2	10.1	0	0	0	0.002	0	87.3	0	0.55	0	0	0	140	5.4	0.08	7	0	7.08	11.5	0	0.2	0	0	0
 ciqual:2061	ciqual	Multifruit nectar, standard	Nectar multifruit, standard	49.7	0.3	11.5	11	0.089	0.013	0.3	0.009	0	87.2	0	0.38	0	0	0	87.4	9.17	0	5.35	0	122	20.6	0	0.97	0	22.1	0
 ciqual:2073	ciqual	Pineapple juice, pure juice	Jus d'ananas, pur jus	52.9	0.41	12.1	12.1	0.074	0.031	0.22	0.013	0	86.3	0	0.6	0.01	0.03	0	134	8.08	0.18	13.6	0.073	0	14	0	0.02	0	23	0
@@ -21,22 +26,30 @@ ciqual:4008	ciqual	Potato, peeled, raw	Pomme de terre, sans peau, crue	80	2.02	1
 ciqual:4015	ciqual	Potato, sautéed/pan-fried with fat	Pomme de terre poêlée, avec matière grasse	137	2.5	17.3	2.2	5.7	1.16	2.6	0.51	0	69.9	0	0.49	3.58	0.66		680	18	0.73	28	0.35	0.85	1.97		0.37		26	
 ciqual:4026	ciqual	Potato, roasted/baked	Pomme de terre, rôtie/cuite au four	91.4	2.5	19	1.18	0.13	0.035	2.2	0.025	0	74.9	0	0	0.003	0.058	0	535	15	1.08	28	0.36	0.5	9.6	0	0.04	0	28	0
 ciqual:4032	ciqual	French fries or chips, frozen, deep-fried	Frites de pommes de terre, surgelées, cuites en friteuse	258	3.28	32.7	0.61	11.9	2.86	3.9	0.072	0	48.7	0	0	4.99	1.87	0	684	23.8	0.9	23.3	0.36	1.25	19	0	5.03	0.04	32.3	
+ciqual:4038	ciqual	Potato crisps and similar, plain or flavoured, reduced fat	Chips de pommes de terre nature ou aromatisées, allégées en matière grasse (et assimilés )	481	6.57	61.4	1.41	22.1	1.98	4.78	1.218	0	1.3	0	0	18.4	1.79	1.01	1300	56	1.2	67	0.87	0.802			3.32	0.049	254	
 ciqual:4040	ciqual	Mashed potatoes, prepared with milk and butter, salted	Purée de pomme de terre, avec lait et beurre, salée	117	1.98	11.3	1.28	6.7	3.7	1.79	0.5	0	77	0	0	0.89	0.1													
 ciqual:4102	ciqual	Sweet potato, cooked	Patate douce, cuite	79.1	1.69	16.3	6.11	0.15	0.042	2.9	0.079	0	78	0	0	0.002	0.077	0	353	32.5	0.71	22.5	0.26	873	16.2	0	0.83	0	6	0
+ciqual:5000	ciqual	Beer, dark	Bière brune	40.5	0.43	4.1	4.1	0	0	0	0.029	3.19	92.7		0	0	0	0	45	6.91	0.02	9.55	0.17	0	0	0	0		8.5	0
 ciqual:5001	ciqual	Beer, regular (4-5° alcohol)	Bière "coeur de marché" (4-5° alcool)	39	0.39	3.12	0.05	0	0	0	0.005	3.57	92		0	0	0	0	36.6	6.05	0.01	7.2	0	0	0	0	0	0.02	5.64	0
+ciqual:5002	ciqual	Beer, strong (>8° alcohol)	Bière forte (>8° alcool)	62.5	0.51	4.6		0	0	0	0.017	6	88.8		0	0	0	0	64.2	4.3	0.02	9	0.013	0	0	0	0	0.02	2.6	0
 ciqual:5003	ciqual	Cider (average)	Cidre (aliment moyen)	36.5	0.075	3.67	3.23	0	0	0	0.01	3.18	93.4	0.44		0	0	0	100	7.9	0.61	3.14	0.022	0.062	9.97					0
 ciqual:5030	ciqual	Beer, alcohol-free (<1,2° alcohol), without added sugars, flavoured or unflavoured	Bière sans alcool (<1,2° alcool) et sans sucres ajoutés, aromatisée ou non	29.4	0.2	6.08	3.27	0.053	0.008	0	0.004	0.62	94	0.01		0	0	0	29.3	4.75	0.011	6.2	0	0		0	0	0.009	5	0
 ciqual:5201	ciqual	Wine, white, sparkling	Vin blanc mousseux	72.3	0.1	1.78	1.78	0	0	0	0.004	9.26	88.5			0	0	0	54.8	9.16	0.6	5.28	0.024	0	0	0	0	0	0.1	0
 ciqual:5214	ciqual	Wine, red	Vin rouge	75.7	0.16	0	0	0	0	0	0	10.8	87.2	0	0.037	0	0	0	115	6.31	0.36	10.5	0	1.25	0	0	0	0	0.85	0
 ciqual:5216	ciqual	Wine, rose	Vin rosé	69.2	0.15	1.4	1.4	0	0	0	0.01	9	88.1			0	0	0	75	12	0.95	7	0.034	0	0	0	0	0	0.1	0
+ciqual:5217	ciqual	Wine, cooked (alcohol evaporated)	Vin cuisiné (alcool évaporé)	15	0.1	3.66		0	0	0	0.007	0			0	0	0	0	111	8.38	0.66		0.1	0	0.038	0	0		0.88	0
+ciqual:6100	ciqual	Beef, rib steak, lean, grilled/pan-fried	Boeuf, entrecôte, partie maigre grillée/poêlée	198	25.5	0	0	10.7	4.75	0	0.145	0	62.3	0	0	4.08	0.38	45	279	12	2.55	23	6.34	7	0	0.1	0.58	1.85	6	
 ciqual:6102	ciqual	Beef, round, raw	Boeuf, gîte à la noix cru	187	20.7	0	0	11.5	4.54	0	0.14	0	66.9	0	0	4.99	0.44	73	327	20	1.74	22	3.82	0	0	0.4	0.35	1.49	11	
 ciqual:6110	ciqual	Beef, sirloin steak, grilled/pan-fried	Boeuf, faux-filet grillé/poêlé	182	27.1	0	0	8.17	3.39	0	0.14	0	64.3	0	0	3.34	0.33	60	336	20	2.26	22	3.95	0	0	0.2	0.44	1.19	8	
+ciqual:6123	ciqual	Beef, short ribs, braised or boiled	Boeuf, plat de côtes braisé ou bouilli/cuit à l'eau	269	37.3	0	0	13.3	5.58	0	0.125	0	48.9	0	0	5.26	0.54	66	224	12	1.41	15	8.02	0	0	0.7	0.29	2.57	5	
 ciqual:6210	ciqual	Beef, roast beef, roasted/baked	Boeuf, rosbif rôti/cuit au four	126	24.1	0.3	0	3.16	0.62	0	0.176	0	71.1	0	0	0.67	0.29	18.1	369	10.1	3.1	32	5.43	0		0	0.2	1.3	11.7	
 ciqual:6231	ciqual	Beef, stewing meat, raw	Boeuf, à bourguignon ou pot-au-feu, cru	164	24	0	0	7.5	2.7	0	0.104	0		0	0	2.64	0.25			18	2.1									
 ciqual:6252	ciqual	Beef, minced steak, 10% fat, raw	Boeuf, steak haché 10% MG cru	170	20	0	0	10	3.93	0	0.165	0	69.5	0	0	4.19	0.35	65	321	12	2.24	20	4.79	4	0	0.1	0.17	2.21	6	
 ciqual:6253	ciqual	Beef, minced steak, 10% fat, cooked	Boeuf, steak haché 10% MG cuit	210	26.1	0	0	11.8	4.63	0	0.17	0	61.2	0	0	4.94	0.42	88	333	13	2.71	22	6.37	3	0	0	0.12	2.56	8	
 ciqual:6254	ciqual	Beef, minced steak, 15% fat, raw	Boeuf, steak haché 15% MG cru	215	20.2	0.47	0	14.8	6.86	0	0.104	0	65.4	0	0	7.15	0.49	68	295	15	2.64	18	4.8	4	0	0.1	0.17	1.9	6	
 ciqual:6255	ciqual	Beef, minced steak, 15% fat, cooked	Boeuf, steak haché 15% MG cuit	239	23.6	0	0	16.1	5.9	0	0.211	0	59.1	0	0	6.67	0.48	76.3	318	15	2.6	29.5	4.9	3	0	0	0.12	2.3	9	
+ciqual:6310	ciqual	Beef, oxtail, boiled/cooked in water	Boeuf, queue bouillie/cuite à l'eau	196	28	0	0	9.3	3.72	0		0		0	0	4.43	0.18	82			2.9		8				0.16	1.1		
+ciqual:6511	ciqual	Veal, chop, grilled/pan-fried	Veau, côte grillée/poêlée	156	25.1	0	0	6.24	2.11	0	0.25	0	69.4	0	0	2.55	0.62	89.5	305	29	1.3	22.5	6.54	69.3	0	0	0.49	2.82	0	
 ciqual:6521	ciqual	Veal, escalope, raw	Veau, escalope crue	114	20.5	0.58	0	3.28	0.83	0	0.097	0	73.7	0	0	1.15	1.31		380	9.79	1.8	21	2.56	0			0.15	2	5	
 ciqual:7001	ciqual	Bread, French bread, baguette	Pain blanc (par ex. : baguette, boule…)	287	8.27	58.3	2.3	1.4	0.45	2.7	1.25	0	30	0	0	0.32	0.53	0.075	180	22	1.2	23	0.73	0	0	0	0.32		26.8	0
 ciqual:7004	ciqual	Bread, French bread, toasted	Pain blanc, passé au grille-pain	317	9.46	64	1.4	1.3	0.52	3.7	1.505	0	19.6	0	0	0.56	0.16		140	20	0.97	25	0.65	1	0	0	0.24		19.6	
@@ -46,53 +59,69 @@ ciqual:7111	ciqual	Sandwich loaf, wholemeal, prepacked	Pain de mie complet, pré
 ciqual:7125	ciqual	Rye and wheat bread	Pain de seigle et froment	260	8.27	51.5	2.4	1	0.32	4.5	1.125	0	31.6	0	0	0.28	0.33	0	170	33	1.2	27	0.86	0.21	0	0	0.26	0	49.3	
 ciqual:7180	ciqual	Bread, pita	Pain pita	249	7.48	48.8	2.51	1.5	0.2	3.7	1.357	0	34.1	0	0	0.24	0.25		134	52.7	1	18.1	0	0			0		21	
 ciqual:7200	ciqual	Sandwich loaf, prepacked	Pain de mie blanc, préemballé	279	7.06	50.4	6.14	4.37	0.54	2.83	1.073	0.2	33.3	0	0	1.8	1	3.2	120	88	0.7	17	0.47	0.21	0	0	0.12		13.3	
+ciqual:7255	ciqual	Bread, multigrain and/or with seeds	Pain aux céréales et/ou graines	269	9.58	46.9	2.2	3.2	0.45	5.2	1.125	0	31.6	0	0	0.84	1.71	0	230	40	1.6	53	1.1	1.21	0	0	0.85		30.5	
 ciqual:7258	ciqual	Bread, bagel	Pain bagel	301	9.83	53	6.48	4.58	1.08	2.7	1.025	0	31.1	0	0	0.18	0.78	0	122	37.3	1.83	36.3	0.95	0.17	0	0	0.32	0	25	
 ciqual:7259	ciqual	Rolls for burger/hotdog (buns), prepacked	Pain pour burger ou hot dog (bun), préemballé	283	8.21	47.2	6.46	4.9	0.84	3.5	1.125	0.89	33.2	0	0.46	2.11	1.41	0	130	62.7	0.82	25.5	0.75	9.25	0	0	0.52	0	8.15	0
 ciqual:7300	ciqual	Rusk	Biscotte classique	394	10	73.2	6.92	5.43	1.29	4.32	1.272	0	2.8	0	0	2.69	0.92	0	160	29	1.1	24	0.79	53	0	0	0.83		22.3	
 ciqual:7351	ciqual	Wheat crackers	Cracker de table au froment	442	10.4	68.6	1.63	12.3	5.66	4.1	1.873	0	1.3	0	0.99	4.43	1.76	0	159	24.8	1.2	28.9	0.87	9.25	0	0	1.59	0	5.2	
 ciqual:7352	ciqual	Puffed rice textured bread, whole grain	Galette de riz complet soufflé	381	8.39	77.9	0.55	3	0.75	3.4	0.22	0	5.8	0	0.074	0.94	1.01	0	297	13.2	1.2	134	2.1	0	0		2.26		5.4	
+ciqual:7354	ciqual	Puffed corn/maize textured bread	Galette de maïs soufflé	387	7.02	83.5	0.74	1.9	0.45	3	0.36	0	3.6	0	0.07	0.58	0.87	0	169	0	0.61	39	0.75	0	0		0.35		11.4	0
+ciqual:7355	ciqual	Puffed rice textured bread, with chocolate covering	Galette de riz soufflé, nappée de chocolat	494	7.32	60.7	26.3	23.2	13	5.1	0.048	0	1.7	0.31	0.5	7.13	1.11	4.9	367	65.3	3.9	111	1.8	63.3	0	0	1.61	0.24	12.3	
 ciqual:7500	ciqual	Breadcrumbs	Chapelure	365	9.41	74.3	4.29	1.6	0.46	5.4	0.72	0	7.6	0	0.46	0.26	0.81	0	208	26.8	1.1	31.3	0.81	9.25	0	0	0	0	4.3	
 ciqual:7525	ciqual	Grissini or bread stick, plain (without sesame)	Gressin, nature (sans sésame)	428	11.4	68.8	1.93	10.5	3.21	4.25	1.933	0	2.48	0	0	2.94	1.05		213	48	1.2	66.3	1.4		7		3	0.26	80	
 ciqual:7600	ciqual	Viennese pastry (average)	Viennoiserie (aliment moyen)	385	7.63	49	12.9	17	8.33	2.43	1.045	0.025	22.6	0	0.14	5.45	1.68	55.9	142	40.3	1.71	22.2	0.72	86.5	0.49	0.13	1.73	0.15	28	
 ciqual:7615	ciqual	Croissant, ordinary, from bakery	Croissant ordinaire, artisanal	412	6.33	47.6	7.88	21.1	11.6	1.8	1.308	0	21.4	0	0.13	6.52	1.89	21.7	130	21	0.85	17	0.63	16.4	0	0	1.35	0.089	32.8	
 ciqual:7719	ciqual	Brioche, (italian pastry filled with raisins and orange candied peel), prepacked	Panettone (brioche italienne aux raisins secs et écorces d'orange confite), préemballée	352	6.88	50.6	25.9	12.7	7.04	3.4	0.46	0	24.9	0	0.5	3.04	0.97	82.1	227	39.4	1.3	19.2	0.63	58.3	0	0	1.61	0	3.7	
+ciqual:7720	ciqual	Raisin puff pastry (Viennese pastries), from bakery	Pain aux raisins (viennoiserie), artisanal	345	5.81	53.4	20.9	11.5	5.66	1.4	0.805	0	25.8	0	0	2.94	0.89	43	278	32.1	0.77	18.6	0	38.1	0	0	0.97	0.54	132	
 ciqual:7730	ciqual	Chocolate croissant, from bakery	Pain au chocolat, artisanal	423	7.47	45.4	12.8	22.5	14.7	3	0.98	0	20	0	0.18	5.43	0.85	69.4	160	23	4.1	29	0.78	170	0	0	0.6	0.09	33.8	
 ciqual:7746	ciqual	Brioche (average)	Brioche, sans précision (aliment moyen)	363	8.41	52.1	13.9	13	5.09	1.94	1.058	0	23.5	0	0.088	4.69	1.64	64.4	136	34	1.24	20.5	0.74	66.5	0	0	1.78	0.21	27.9	
 ciqual:7813	ciqual	Maize/corn tortilla wrap, to be filled	Tortilla souple (à garnir), à base de maïs	316	6.08	58	2.37	5.57	1.13	3.57	1.075	0	26	0	0	3.26	1.17		120	23	0.81	20	0.63	1.058	0		1.04		24.5	
 ciqual:7815	ciqual	Wheat tortilla wrap, to be filled	Tortilla souple (à garnir), à base de blé	320	8.01	53	2.12	7.48	1.39	2.89	1.625	0	26	0	0	4.08	2.01	0.79	150	45	0.76	19	0.57	10.7			0		39.4	
 ciqual:8305	ciqual	Pork liver pâté	Pâté de foie de porc	355	10.8	2.91	1.38	33.3	11.6	0.2	1.677	0	50.7	0	0	13.5	4.2	127	144	17.6	5.32	12.3	2.09	8800	11.3	0	1.07	6.55	138	
+ciqual:8323	ciqual	Foie gras block, duck, without pieces	Foie gras, canard, bloc, sans morceaux	478	5.75	1.09	1.09	50	19.7	0.35	1.143	0	40.8	0	0	26.6	0.73	395	130	1.7	5.2	8.4	1.2	1430	14.7	2.75	2.4	4.55	142	
 ciqual:8703	ciqual	Black pudding, to cook	Boudin noir, à cuire	297	12.2	0.29	0.2	27.1	9.57	1.42	1.435	0	57.2	0	0	10.9	3.5	82.5	162	22.4	17.4	6.84	0.37			0	0.12	0.19	2.22	
 ciqual:8704	ciqual	Black pudding, grilled/pan-fried	Boudin noir, grillé/poêlé	246	11.9	3.78	2.86	20.3	7.46	0	1.312	0	61.8	0	0.27	9.13	2.72	73.8	155	27.2	22.8	8.5	0.7	10.3	0	0.75	0.13	0.2	25.4	
 ciqual:9100	ciqual	Rice, white, raw	Riz blanc, cru	350	7.02	77.5	0.12	0.79	0.16	1.53	0.006	0	12.6	0	0	0.18	0.16	0	92.3	13.3	1.94	27.7	1.12	0	0	0	0.11	0	7.67	0
 ciqual:9104	ciqual	Rice, white, cooked, no added salt	Riz blanc, cuit, sans sel ajouté	155	3.15	33.2	0	0.7	0.17	1.4	0.045	0	61.4	0	0	0.12	0.15	0	21.9	6.3	0	9.03	0	1.25	0	0	0	0.032	9.9	0
+ciqual:9125	ciqual	Rice, basmati, cooked, no added salt	Riz basmati, cuit, sans sel ajouté	148	3.03	32.9	0	0.4	0.14	0	0.045	0	63.3	0	0	0.083	0.11	0	14	7	0	5.26	0.51	1.25	0	0	1.12		8.77	0
 ciqual:9230	ciqual	Pop-corn or popped maize, with oil, salted	Pop-corn ou maïs éclaté, à l'huile, salé	477	8.3	50.2	2.02	24.6	11.9	10.6	2.75	0	3.33	0	0	7.27	3.45	0	182	9.6	2.3		2.48			0			43	
 ciqual:9341	ciqual	Quinoa, boiled/cooked in water, no added salt	Quinoa, bouilli/cuit à l'eau, sans sel ajouté	149	4.66	27.9	0.87	1.1	0.14	3.8	0.015	0	61.6	0	0	0.31	0.56	0	220	23	1.6	71	1.2	0.21	0	0	0.88	0	49.9	0
 ciqual:9435	ciqual	Wheat flour, type 65	Farine de blé tendre ou froment T65	346	10	71.5	1.5	1		3.5	0.03	0	13.2	0	0			0	176	25.3	1.31	30.4	0.8	0			0.5		18.3	0
 ciqual:9510	ciqual	Maize/corn starch	Amidon de maïs ou fécule de maïs	365	0.26	90.4	0	0.05	0.009	0.9	0.022	0	8.32	0	0	0.016	0.025	0	3	2	0.47	3	0.06	0	0	0	0	0	1	0
+ciqual:9520	ciqual	Rice flour	Farine de riz	357	7.62	73.9	0.9	2.5	0.46	3.3	0	0	11.4	0	0	0.97	0.92	0	270	9.5	0.79	110	1.4	0	0	0	0.66	0	25.1	0
+ciqual:9545	ciqual	Maize/corn flour	Farine de maïs	362	5.59	80.9	0.64	1.39	0.17	1.9	0.003	0	9.81	0	0	0.27	0.7	0	90	2	0.91	18	0.37	8.08	0	0	0.15	0		0
 ciqual:9580	ciqual	Chick pea flour	Farine de pois chiche	359	22.4	47	10.9	6.69	0.69	10.8	0.16	0	10.3	0	0	1.5	2.98	0	846	45	4.86	166	2.81	2.08	0	0	0.83	0		0
 ciqual:9615	ciqual	Polenta or maize/corn semolina, cooked, no added salt	Polenta ou semoule de maïs, cuite, sans sel ajouté	76.1	1.38	16.9	0.1	0	0	1.6	0	0	79.9	0	0	0	0	2.28	24	4.7	0.21	4	0.11	0.44	0		0	0.03	0	0
+ciqual:9640	ciqual	Oat bran	Son d'avoine	361	16.8	50.6	2.23	6.52	1.16	16.7	0.016	0	6.55	0	0	2.38	2.77	0	566	58	5.41	235	3.11	0	0	0	1.01	0		0
 ciqual:9683	ciqual	Couscous grain, cooked, no added salt	Semoule ou graine de couscous, cuite, sans sel ajouté	164	5.81	31	3.36	0.9	0.21	2.8	0.037	0	59	0	0.067	0.17	0.46	0	133	15	0.76	25.9	0.75	1.25	0	0	0	0	3.5	0
+ciqual:9691	ciqual	Wheat bulgur, cooked, no added salt	Boulgour de blé, cuit, sans sel ajouté	131	4.31	24.1	0	1	0.16	3.7	0.033	0	66.5	0	0.012	0.16	0.41	0	67.1	30.9	0.67	28.5	0.82	1.25	0	0	2.72	0	10.8	0
 ciqual:9810	ciqual	Pasta, dry, regular, raw	Pâtes sèches, standard, crues	364	12	72.7	2.58	1.6	0.33	2.91	0.015	0	9.9	0	0	0.17	0.56	0	223	21	1.3	53	1.41	0	0	0	0.067	0	18	0
 ciqual:9811	ciqual	Pasta, dry, regular, cooked, no added salt	Pâtes sèches, standard, cuites, sans sel ajouté	167	6.1	31.4	0.87	1.1	0.2	2.2	0.048	0	58.9	0	0.027	0.16	0.48	0	52.1	18	0.68	21.9	0.51	1.25	0	0	0	0.014	5.2	0
 ciqual:9822	ciqual	Pasta, dry, with egg, cooked, no added salt	Pâtes sèches, aux oeufs, cuites, sans sel ajouté	134	4.57	23	0.8	2	0.42	2	0	0	68.1	0	0	0.58	0.55	34.3	25	23	0.57	16	0.53	1.21	0	0	0.19	0.14	24.1	
 ciqual:9871	ciqual	Pasta, dry, wholewheat, cooked, no added salt	Pâtes sèches, au blé complet, cuites, sans sel ajouté	179	7.35	31.3	0.94	1.4	0.27	5.1	0.055	0	54.3	0	0.03	0.24	0.69	0	98.7	25.1	1.5	45.8	1.4	1.25	0	0	0.15	0.021	4.3	0
 ciqual:10001	ciqual	Squid, raw	Calmar ou calamar ou encornet, cru	77	14.4	2.17	0	1.19	0.28	0	0.608	0	80.9	0	0	0.11	0.39	247	227	17.5	0.2	44.2	1.13	2	4.7	0.36	1.39	3.15	11	0
+ciqual:10004	ciqual	Scallop, with coral, cooked	Coquille Saint-Jacques, noix et corail, cuite	110	20.2	3.22	0	1.77	0.32	0	0.458	0	73	0	0	0.12	0.68	44	348	17.1	1.4	62.8	2.89	2	0	0	0	8.39	19	0
 ciqual:10007	ciqual	Shrimp or prawn, boiled	Crevette, cuite	91.3	20.5	0.2	0	0.79	0.25	0	1.6	0	74.9	0	0.42	0.093	0.23	162	253	177	2.24	50	0.97	5.75	0	0	1.26	1.52	14.6	
 ciqual:10009	ciqual	Lobster, boiled/cooked in water	Homard, bouilli/cuit à l'eau	90.9	19.6	0.11	0	1.32	0.21	0	0.902	0	76.5	0	0	0.3	0.49	128	208	68.8	0.63	34.2	2.96	1	0	0	1.6	1.64	12.3	0
 ciqual:10011	ciqual	Oyster, raw	Huître, sans précision, crue	67.2	8.64	3.86	0	1.91	0.34	0	1.445	0	83.3	0	0	0.23	0.35	20.3	175	92.7	2.18	90.2	22.5	14.2	5.13	0	1.21	28.6	12.5	0
 ciqual:10013	ciqual	Mussel, boiled/cooked in water	Moule, bouillie/cuite à l'eau	108	17.2	5.12	0	2.09	0.37	0	0.805	0	74.1	0	0	0.29	0.72	52.1	166	59.4	3.99	66.6	2.85	98.4	5.87	0	2.68	17.6	48	0
 ciqual:10014	ciqual	Mussel, common, raw	Moule commune, crue	71.8	11.2	2.69	0	1.82	0.44	0	0.848	0	82.7	0	0	0.36	0.52	65.2	276	51.5	6.78	31	2.36	60	6.4	0	1.6	12.3	39.5	0
+ciqual:10016	ciqual	Cuttlefish, raw	Seiche, crue	76.3	16.2	0.51	0	1.05	0.37	0	0.93	0	80.6	0	0	0.1	0.44	111	351	37.1	2.74	31	1.81	25	5.3	0	2.4	2.5	14	0
 ciqual:10021	ciqual	Shrimp or prawn, raw	Crevette, crue	99	19.7	3.21	0	0.84	0.22	0	0.455	0	74.3	0	0	0.23	0.38	150	278	84.8	3.21	49.8	2.81		0	0	1.7	1	19	
 ciqual:10025	ciqual	Crab, boiled/cooked in water	Crabe ou tourteau, bouilli/cuit à l'eau	124	19.5	1.79	0	4.29	0.55	0	1.195	0	72.3	0	0	1.26	1.4	73.3	248	53	1.62	55	4.42	26	3.6	0	2.4	6.79	25.5	0
 ciqual:10027	ciqual	Clam, boiled/cooked in water	Clam, praire ou palourde, bouilli/cuit à l'eau	99.2	16.2	5.33	0	1.48	0.14	0	1.562	0	74.1	0	0	0.13	0.42	50.5	432	72.5	9.67	12.9	2.05	81	22.1	0	1	39.5	20.1	0
+ciqual:10034	ciqual	Cockle, cooked	Coque, cuite	86.9	13.6	5.64	0	1.1	0.29	0	0.96	0	77.6	0	0	0.083	0.33	50.7	139	208	14	63.1	1.4	0	0	0	1.91	38	12	0
+ciqual:10044	ciqual	Norway lobster, boiled/cooked in water	Langoustine, bouillie/cuite à l'eau	92.6	20.9	0	0	0.98	0.14	0	0.675	0	76.3	0	0	0.16	0.2	149	283	84	1.28	45	1.7	1		0	3.01	3.35		0
 ciqual:10079	ciqual	Octopus, common, cooked	Poulpe, cuit	156	29.8	4.4	0	2.08	0.45	0	1.15	0	60.5	0	0	0.32	0.48	96	630	106	9.54	60	3.36	0	8	0	1.2	36	24	0
 ciqual:11000	ciqual	Garlic, raw	Ail, cru	109	5.31	18.6	1.2	0	0	5.8	0.022	0	67.8	0	0.73	0	0	0	530	11	0.63	20	0.75	0.21	0	0	0	0	26.1	0
 ciqual:11003	ciqual	Chive or spring onion, fresh	Ciboule ou ciboulette, fraîche	30.8	2.55	2.85	2.09	0.46	0.089	2.55	0.024	0	90.2	0	0	0.061	0.17	0	286	82	1.54	31	0.48	134	38.5	0	0.38	0	84.5	0
 ciqual:11004	ciqual	Gherkin, pickled in vinegar	Cornichon, au vinaigre	16	1.06	0.78	0.6	0	0	1.5	1.722	0	93.7	0	2.12	0	0	0	120	65	0.25	23	0.13	30.8	0	0	0.48	0	11.5	0
 ciqual:11008	ciqual	Ketchup, prepacked	Ketchup, préemballé	108	1.23	23.7	21.1	0.16	0.035	1.77	2.25	0	68.3	0.12	1.42	0.028	0.098	0	440	21.4	0.77	21.2	0.12	46.7	10.2	0	1.48	0	6.67	
 ciqual:11013	ciqual	Mustard	Moutarde	151	6.92	4.33	1.73	11.2	1.1	0	5.75	0	67.9	0	1.82	5.76	2.91	0.35	205	207	2.64	98.8	1.12	0		0		0	13	0
+ciqual:11014	ciqual	Parsley, fresh	Persil, frais	42.5	2.97	4.1	0.85	0.63	0.1	4.3	0.129	0	85.5	0	0	0.3	0.12	0	554	138	6.2	50	1.07	422	133	0	0.75	0	152	0
 ciqual:11017	ciqual	Salt, white (sea, igneous or rock), no fortification	Sel blanc alimentaire, non iodé, non fluoré (marin, ignigène ou gemme)	0	0	0	0	0	0	0	97.75	0	0.027	0	0	0	0	0	16.9	13.3	0.33	3.15	0.1	0	0	0	0	0	0	0
 ciqual:11018	ciqual	Vinegar	Vinaigre	22.5	0.04	0.95	0.04	0.1	0	0	0.013	0	92.9	0	5.9	0	0	0	20.5	6	0.24	2.5	0.02	0	0.5	0	0	0	0	0
+ciqual:11033	ciqual	Basil, fresh	Basilic, frais	35.2	3.15	3.4	0.3	0.64	0.041	1.6	0.01	0	92.1	0	0	0.088	0.39	0	295	177	3.17	64	0.81	262	18	0	0.8	0	68	0
 ciqual:11049	ciqual	Paprika, powder	Paprika, poudre	318	14.1	18.8	10.3	12.9	2.14	34.9	0.17	0	11.2	0	0.34	1.7	7.77	0	2280	229	21.1	178	4.33	0	0.9	0	29.1	0	49	0
 ciqual:11054	ciqual	Mayonnaise (70% fat min.), prepacked	Mayonnaise (70% MG min.), préemballée	692	1.33	3.41	1.2	74.5	6.76	0.26	1.38	0	18.1	0	0.8	18.6	40.8	70	28.1	17.6	0.34	6.42	0.13	11.8	0	0	47.9	0.39	0	
 ciqual:11091	ciqual	Vinegar, balsamic	Vinaigre balsamique	91.7	0.69	18	18	0	0	0.75	0.068	0	77	0	5.16		0		160	18	0.95	12	0.12	0.21	0	0			5.5	0
@@ -107,12 +136,18 @@ ciqual:11244	ciqual	Cocktail style sauce, prepacked	Sauce cocktail, préemballé
 ciqual:12020	ciqual	Brie cheese, from cow's milk	Brie, sans précision	345	17.6	0.68	0.15	30.4	21.5	0.056	1.637	0	51.4	0		7.85	0.82	193	142	420	0.42	18.4	2.35	242	0	0.39	0.47	0.76	69.6	
 ciqual:12060	ciqual	Feta-type cheese, 100% from cow's milk	Fromage type feta, au lait de vache 100%	273	15.4	1.22	0.84	22.6	14.1	0	2.5	0	55.8	0	1.36	4.88	0.51	70.2	90.1	342	0	16.2	1.8	189	0	0	0.93	0.93	17.4	0
 ciqual:12068	ciqual	Uncured soft cheese, spreadable, plain, in tray, from cow's milk	Fromage frais ou spécialité fromagère non affinée, nature, à tartiner, en barquette, non allégée en matière grasse	225	6.25	3.31	3.31	20.7	13	0	0.895	0	67.8	0	0.41	4.52	0.45	62.1	129	97.7	0	9.31	0	209		0	0.55	0.28	4.65	0
+ciqual:12069	ciqual	Uncured soft cheese, spreadable, plain, in tray, reduced fat, from cow's milk	Fromage frais ou spécialité fromagère non affinée, nature, à tartiner, en barquette, allégée en matière grasse	133	10.8	5.12	4.79	7.48	4.94	0.25	0.917	0	74	0	0.59	1.64	0.19	36.1	186	151	0	14.6	0.72	83.4		0	0.28	0.62	11.7	0
+ciqual:12072	ciqual	Burrata, from cow's milk	Burrata	259	10.8	0.93	0.55	23.4	15.4	0	0.532	0	63.2	0	0.52	5.16	0.64	89.2	35.3	208	0	9.55	1.7	239		0	0.48	0.39	1.95	0
+ciqual:12115	ciqual	Emmental cheese, from cow's milk	Emmental ou emmenthal	373	27.9	0	0	28.8	19.7	0	0.613	0	39.1	0	1.47	6.58	0.54	96.3	97.4	978	0.15	48.9	3.48	232	0	0.78	0.74	1.84	20	
 ciqual:12118	ciqual	Emmental cheese, grated, from cow's milk	Emmental ou emmenthal, râpé	368	27.6	0.58	0	28.2	18.1	0.042	0.68	0	39	0	1.11	5.98	0.61	87.9	90.4	977	0	36.3	4.3	284	0	0	1.1	1.9	8.38	1
 ciqual:12119	ciqual	Ossau-Iraty cheese, from ewe's milk	Ossau-Iraty (fromage de brebis)	423	24.2	1	0.12	36	24.3	0	1.692	0	33.8	0		8.43	1.78	94.4	45.7	764	0.32	35.6	2.43	273			0.15	1.06	35.3	
 ciqual:12120	ciqual	Parmesan cheese, from cow's milk	Parmesan	411	31.1	1.14	0	31	20.6	0	1.57	0	30.4	0	1.88	7.23	0.96	95.3	110	980	0.1	40	3.9	336	0	0	0.17	2.64	16	
 ciqual:12300	ciqual	Processed cheese, in slices, from cow's milk	Fromage fondu en tranchettes	246	14.1	5.34	4.95	18.5	12.3	0	2.458	0	56.1	0	0.92	4.33	0.43	60	370	436	0.12	25	1.8	161		0	0.53	0.56		
 ciqual:12520	ciqual	Blue cheese, from cow's milk	Fromage bleu au lait de vache, non allégé en matière grasse	361	16.8	0.68	0.18	32.5	22.5	0.063	2.125	0	48.1	0		7.78	0.8	91	129	391	0	17	2.5	226	0	0	0	0.74	47	
+ciqual:12716	ciqual	Provolone cheese, from cow's milk	Provolone	340	25.6	0	0	26.6	17.1	0	2.19	0	41	0		7.39	0.77	69	138	756	0.52	28	3.23	236	0	0.5	0.23	1.46	10	
+ciqual:12726	ciqual	Cheddar cheese, from cow's milk	Cheddar	399	24.7	1.2	0.15	32.6	20.1	0	1.768	0	36.4	0	1.36	7.35	0.77	103	79.9	739	0	28.5	3.8	401	0	0	1.27	1.3	17.7	0
 ciqual:12729	ciqual	Edam cheese, from cow's milk	Edam	320	25.7	0	0	24.4	16.7	0	2	0	41.6	0		7.05	0.58	89	106	812	0.12	41.2	3.09	243	0	0.5	0.24	1.54	16	
+ciqual:12736	ciqual	Gouda cheese, from cow's milk	Gouda	369	24.7	0	0	30.2	20.1	0	2.025	0	38.4	0		7.75	0.66	103	121	774	0.24	29	3.9	165	0	0.5	0.24	1.54	21	
 ciqual:12747	ciqual	Pyrénées firm cheese, from ewe's milk	Fromage de brebis à pâte pressée non cuite des Pyrénées, type tomme ou tome	393	22.3	0.72	0.25	33.6	24	0	1.845	0	38	0		8.72	0.91	83		710	0.3	30		240		0.2	0.5	1.2	24	
 ciqual:12805	ciqual	Cheese, fresh, from goat's milk,	Fromage de chèvre frais, type palet, crottin ou bûchette	194	12	2.5	2.17	15.2	10.7	0	0.943	0	64.8	0		3.78	0.61	72.1	159	170	0.26	11.9	0.4	128	0	0	0.37		47	
 ciqual:12812	ciqual	Cheese, buche, from goat's milk	Fromage de chèvre bûche	285	18.8	0	0	23.3	16.2	0	1.575	0	54.8	0	0.55	4.88	0.62	95.9	167	190	0.22	12.7	0.61	152		0	0.29		76.4	
@@ -125,10 +160,12 @@ ciqual:13009	ciqual	Lemon, flesh without skin, without seeds, raw	Citron, chair 
 ciqual:13010	ciqual	Quince, raw	Coing, cru	59	0.4	12.5	6.3	0.1	0.01	1.9	0.01	0	83.8		0.93	0.036	0.05	0	197	11	0.7	8	0.04	0	15	0	0.55	0	3	0
 ciqual:13011	ciqual	Date, flesh and skin, pitted, dried	Datte, chair et peau, sans noyau, sèche	287	1.81	64.7	64.7	0.25	0.075	7.3	0.098	0	22.9		1.26	0.12		0.2	696	44.9	0.9	47.3	0.23	7.42	0	0	0.05	0	15	0
 ciqual:13012	ciqual	Fig, raw	Figue, crue	67.6	1.19	13.5	12.2	0	0	4.1	0.013	0	80.2	0	0.17	0	0	0	230	57	0.27	22	0.16	6.13	0	0	0	0	24.5	0
+ciqual:13013	ciqual	Fig, dried	Figue, sèche	261	2.9	55	48.4	1.22	0.57	8.15	0.216	0	30.1		0.8	0.16	0.35	0	680	167	2.03	52.5	0.51	0.5	1.2	0	0.35	0	9	0
 ciqual:13014	ciqual	Strawberry, raw	Fraise, crue	35.1	0.63	6.03	5.6	0	0	3.8	0	0	90.3	0	0.85	0	0	0	140	18	0.19	12	0.11	0.21	54	0	0.3	0	98.9	0
 ciqual:13015	ciqual	Raspberry, raw	Framboise, crue	47.9	1.19	5.83	5.4	0.8	0.13	4.3	0	0	86.8	0	1.9	0.16	0.43	0	170	16	0.4	20	0.24	8.33	18.7	0	0.88	0	38.1	0
 ciqual:13016	ciqual	Passion fruit, flesh without skin, with seeds, raw	Fruit de la passion ou maracudja, chair sans peau, avec pépins, cru	102	2.13	10.9	8.5	3	0.54	6.8	0	0	73.6	0	3	0.49	1.82	0	240	8.1	0.56	26	0.76	84.2	25.6	0	0.5	0	101	0
 ciqual:13018	ciqual	Pomegranate, flesh without skin, with seeds, raw	Grenade, chair sans peau, avec pépins, crue	81	1.44	14.3	13.3	1.2	0.07	2.3	0	0	79.4	0	0.88	0.07	0.96	0	230	9.5	0.17	12	0.22	1.01	9.02	0	0	0	8.77	0
+ciqual:13019	ciqual	Red currant, raw	Groseille, crue	67.2	1.56	7.06	6.63	0.7	0.21	4.6	0	0	82.1	0	6.3	0.11	0.38	0	230	38	0.35	12	0.15	2.13	29.8	0	1.19	0	11.8	0
 ciqual:13021	ciqual	Kiwi fruit, flesh without skin, with seeds, raw	Kiwi, chair sans peau, avec pépins, cru	60.9	0.88	11	8.9	0.6	0.13	2.4	0	0	83.5	0	1.05	0.16	0.25	0	290	29	0.16	12	0.12	3.17	81.9	0	0.96	0	22.2	0
 ciqual:13023	ciqual	Lithchi, flesh without skin, pitted, flesh without skin, raw	Litchi, chair sans peau, sans noyau, cru	77.5	1.13	16.1	15.7	0	0	2	0	0	80.5	0	2.06	0	0	0	200	3.6	0.26	18	0.23	0.21	19.2	0	0	0	28.3	0
 ciqual:13024	ciqual	Clementine or Mandarin orange, flesh without skin, without seeds, raw	Clémentine ou mandarine, chair sans peau, sans pépins, crue	45.5	0.81	9.17	8.6	0	0	1.7	0	0	87	0	0.72	0	0	0	140	23	0.09	9.3	0.1	12.3	49.2	0	0.21	0	27.6	0
@@ -140,6 +177,7 @@ ciqual:13034	ciqual	Orange, flesh without skin, without seeds, raw	Orange, chair
 ciqual:13035	ciqual	Papaya, flesh without skin, raw	Papaye, chair sans peau, crue	39.6	0.75	8.53	8.1	0	0	1.8	0	0	88.8	0	0.19	0	0	0	200	22	0.16	18	0	29.3	65.3	0	0	0	55.3	0
 ciqual:13036	ciqual	Watermelon, flesh without skin, without seeds, raw	Pastèque, chair sans peau, sans pépins, crue	35.4	0.69	8.33	7.9	0	0	0.5	0	0	91	0	0.016	0	0	0	100	6	0.16	11	0.09	102	4.26	0	0	0	36.9	0
 ciqual:13037	ciqual	Pear, flesh and skin, raw	Poire, chair et peau, crue	56.6	0.36	12.3	9.75	0.27	0.067	2.9	0.004	0	83.5	2.02	0.32	0.084	0.094	0	132	6.46	0.072	8.23	0.097	1.17	4.3	0	0.12	0	7	0
+ciqual:13038	ciqual	Apple compote, prepacked	Compote de pomme, préemballée	107	0.25	25.8	22.6	0.23	0	1.54	0	0	72.9	1.9	0.46	0.007	0.054	0	104	4.44	0.11	5.09	0.025	0.25	14.5	0	0.18	0	1	0
 ciqual:13039	ciqual	Apple, flesh and skin, raw	Pomme, chair et peau, crue	54	0.25	11.6	10.6	0.25	0.052	1.4	0.004	0	85.4		0.46	0.007	0.051	0	119	5.34	0.099	6.47	0.031	1.78	4.6	0	0.19	0	3	0
 ciqual:13040	ciqual	Grapefruit, flesh without skin, without seeds, raw	Pomelo (dit Pamplemousse), chair sans peau, sans pépins, cru	33.5	0.84	5.92	5.87	0	0	1.1	0	0	90	0	1.48	0	0	0	171	23	0	9.97	0	29.2	36.4	0	0.42	0	38.7	0
 ciqual:13042	ciqual	Prune, pitted	Pruneau, sans noyau, sec	229	1.63	55.4	38.1	0.4	0.16	5.1	0	0	34.9	9.6	0.9	0.14	0.05	0	610	50	0.38	30	0.28	32.8	0	0	0.41	0	2.5	0
@@ -148,41 +186,67 @@ ciqual:13046	ciqual	Raisin	Raisin sec	322	3	73.2	70.3	0.9	0.31	4.2	0.013	0	16	0	
 ciqual:13056	ciqual	Cherimoya, flesh without skin, raw	Anone ou chérimole, chair sans peau, crue	80	1.57	15.4	12.9	0.68	0.23	3	0.018	0	79.4			0.055	0.19	0	287	10	0.27	17	0.16	0.17	12.6	0	0.27	0	23	0
 ciqual:13066	ciqual	Persimmon, flesh and skin, raw	Kaki, chair et peau, cru	66	0.88	14.3	13.9	0	0	3.4	0	0	81.8	0	0.031	0	0	0	160	6.9	0.06	7.2	0	15	3.41	0	0.12	0	22.1	0
 ciqual:13067	ciqual	Lime, flesh without skin, without seeds, raw	Citron vert ou lime, chair sans peau, sans pépins, cru	39.3	1.13	3.14	2.1	0	0	4.3	0.015	0	86.3	0	4.55	0	0	0	190	57	0.2	14	0.15	1.03	29.3	0	0.45	0	36.5	0
+ciqual:13083	ciqual	Guava, flesh without skin, raw	Goyave, chair sans peau, crue	68.3	2.55	9.02	8.92	0.95	0.27	5.4	0.005	0	80.8		0.88	0.087	0.4	0	417	18	0.26	22	0.23	31.2	228	0	0.73	0	49	0
 ciqual:13100	ciqual	Plum, flesh and skin, pitted, raw	Prune, sans noyau, crue	51.6	0.7	9.92	9.92	0.28	0.017	1.4	0	0	87.2		1.27	0.13	0.044	0	157	6	0.17	7	0.1	15.8	9.5	0	0.26	0	5	0
 ciqual:13134	ciqual	Fruit salad, raw	Salade de fruits, crue	79.3	0.61	18	14.2	0.24	0.031	1.36	0.002	0	78			0.014	0.061	0	203	14.5	0.29	16.4	0.094	2.92	22.3	0	0.37	0	20.2	0
 ciqual:13147	ciqual	Olive, green, stuffed (anchovy, sweet peppers, etc…)	Olives vertes, fourrées ou farcies (anchois, poivrons, etc.)	156	2.09	1.17	0	15.2	2.63	3	2.775	0	75	0		10.9	1.68	1.4	32.9	66.8	0.3	11.2	0.11	0	38.6	0	4.18	0.08	13.8	
+ciqual:13175	ciqual	Apple, flesh without skin, roasted/baked	Pomme, chair sans peau, rôtie/cuite au four	52.7	0.16	12.9	12.6	0	0	0	0	0	85.6	0.26	0.6	0	0	0	128	0	0	4.74	0	1.25	3.24	0	0		0.85	0
+ciqual:13178	ciqual	Cranberry, dried, with sugar(s)	Canneberge ou cranberry, séchée, sucrée	332	0.25	76.4	72.8	1	0.2	5.7	0	0	14.6	0	1.91	0.55	0.15	0	58	8	0.16	3.9	0	1.29	0	0	1.92	0	2.5	0
+ciqual:13183	ciqual	Goji berry, dried	Baie de goji, séchée	300	12.1	49	48.4	2.9	0.75	11.8	0.905	0	18.4	0	2.88	0.5	1.18	2.2	1600	56.5	4.9	89.2	1	51.9	13.2	0	4.31		94.1	0
 ciqual:13186	ciqual	Olives, black (average food)	Olive noire (aliment moyen)	182	1.41	0.26	0.015	18	2.17	6.46	2.087	0	73.3	0		10.8	1.69	0	33.6	81.5	8.17	16.6	0.16	21.1	0.27	0	5.93	0	2.66	0
 ciqual:13395	ciqual	Grape, raw (average)	Raisin cru (aliment moyen)	71	0.7	16.3	15.4	0.25	0.025	1.11	0	0	81.2	0.24	0.076	0.008	0.023	0	193	11.2	0.23	7.38	0.028	0.99	3.03	0	0.33	0	14.9	0
 ciqual:13399	ciqual	Nectarine, flesh and skin, pitted, raw (average)	Nectarine ou brugnon, chair et peau, sans noyau, crue (aliment moyen)	49.5	0.74	11.3	8.84	0	0	0.47	0	0	86.6	0	0.16	0	0	0	216	4.88	0.13	8.04	0.11	7.48	3.24		0.42		9.74	0
 ciqual:13564	ciqual	Loquat, flesh and skin, pitted, raw	Nèfle du Japon, chair et peau, sans noyau, crue	48.1	0.43	9.9	6.1	0.2	0.04	1.7	0.003	0	86.7		0.54	0.008	0.091	0	266	16	0.28	13	0.05	13.5	1	0	0.89	0	14	0
+ciqual:13706	ciqual	Fruit cocktail or salad, canned in syrup, drained	Macédoine ou cocktail ou salade de fruits, au sirop, appertisé, égoutté	71.3	0.25	16.8	13.8	0		2.1	0	0	80.4	0.21	0.11			0	75	13	0.08	4	0	13.9	0.98				10.9	0
+ciqual:13716	ciqual	Pineapple, in pineapple juice, canned, drained	Ananas au jus d'ananas, appertisé, égoutté	56	0.25	12.9	12.8	0		1.4	0	0	84.5		0.51			0	130	11	0.19	12	0.11	2.02	4.99				13.5	0
 ciqual:13730	ciqual	Peach, pitted, canned in light syrup, drained	Pêche, sans noyau, au sirop léger, appertisée, égouttée	59	0.5	13.5	13.1	0		1.5	0	0	83.9	0.36	0.25			0	100	10	0.13	5	0.05	21.2	2.78				8.4	0
 ciqual:13731	ciqual	Peach, pitted, canned in light syrup, solids and liquids	Pêche, sans noyau, au sirop léger, appertisée, non égouttée	60	0.31	14	12.9	0.038	0.003	0.92	0.002	0	84.3		0.25	0.012	0.015	0	100	9.57	0.13	4.88	0.054	12.9	3.32	0	0.49	0	8.4	0
 ciqual:13996	ciqual	Fruit, dried (average)	Fruit séché (aliment moyen)	267	2.13	61.3	52.1	0.56	0.21	6.43	0.068	0	26.6	7.77	1.05	0.16	0.14	0.047	762	59.1	1.11	38.3	0.29	12.6	0.7	0	0.95	0	20.5	0
+ciqual:14003	ciqual	Wild boar, roasted/baked	Sanglier, viande rôtie/cuite au four	153	28.3	0	0	4.38	1.3	0	0.15	0	63.9	0	0	1.71	0.64	77	396	16	1.12	27	3.01	0	0	0	0.38	0.7	6	
+ciqual:14007	ciqual	Venison, hart, roasted/baked	Cerf, viande rôtie/cuite au four	150	30.2	0	0	3.19	1.25	0	0.135	0	65.2	0	0	0.88	0.62	112	335	7	4.47	24	2.75	0	0					
 ciqual:15000	ciqual	Almond, with peel, no added salt	Amande, avec peau, sans sel ajouté	615	18.8	9.51	4.2	51.3	4.11	12.5	0	0	4.8		0	34.4	10.5	0	800	260	3.4	270	3.5	0.61	0	0	22.3	0	120	0
 ciqual:15002	ciqual	Peanut, grilled, salted	Cacahuète, grillée, salée	635	22.9	14.2	4.25	50.8	8.63	8.08	1.252	0	1.22		0	26.1	12.5	0	531	47.4	1.2	169	2.92	0	0	0	2.5	0	66.6	0
 ciqual:15004	ciqual	Hazelnut, no added salt	Noisette, sans sel ajouté	632	14.4	7.16	4.9	56.9	4.75	11.6	0	0	7.3		0	44.2	5.4	0	860	120	3	160	2.3	1.33	0	0	16.3	0	65.2	0
 ciqual:15005	ciqual	Walnut, kernel, dried	Noix, cerneau, séchée	709	13.3	6.88	3	67.3	6.45	6.7	0	0	4		0	14.1	43.6	0	430	75	2.2	140	2.7	1.73	0.77	0	1.67	0	120	0
 ciqual:15006	ciqual	Coconut, pulp, fresh	Noix de coco, chair, fraîche	369	3.47	4.69	4.69	34.7	30.3	10.6	0.046	0	45.5		0	1.9	0.49	0	363	13.5	2.27	32	0.8	0	3.15	0	0.24		26	0
+ciqual:15007	ciqual	Coconut, pulp, dried	Noix de coco, chair, sèche	692	6.83	7.81	6.93	66.8	60.6	13.7	0.076	0	3		0	2.75	0.71	0	543	26	3.32	90	2.01	0	1.5	0	0.44	0	9	0
+ciqual:15008	ciqual	Brazil nut, no added salt	Noix du Brésil ou noix d'Amazonie, sans sel ajouté	701	14.3	4.23	2.33	67.1	16.1	7.5	0.007	0	3.42		0	23.9	24.4	0	659	160	2.43	376	4.06	0	0.7	0	5.65	0	22	0
 ciqual:15009	ciqual	Pistachio nut, grilled, salted	Pistache, grillée, salée	617	18.9	15.9	7.57	49.5	6.58	9.32	1.66	0	2.09		0	23.7	13.4	0	655	98.5	2.4	105	2.3	13	0	0	1.09	0	94.2	0
+ciqual:15010	ciqual	Sesame seed	Sésame, graine	606	17.7	12.8	0.3	49.7	6.96	11.8	0.006	0	3.48		0	18.8	21.8	0	468	962	14.6	324	5.74	0.42	0	0	0.25	0	97	0
 ciqual:15021	ciqual	Chestnut, grilled	Châtaigne, grillée	211	3.34	41.1	11.3	1.7	0.27	7.1	0	0	44.4	0	0.56	0.31	0.55	0	627	28.5	1.1	46.4	0.72	4.17	27.6	0	0	0	140	0
+ciqual:15025	ciqual	Pine nut	Pignon de pin	712	13.7	2.93	1.83	68.4	4.9	10	0.022	0	2.45		0	18.8	34.1	0	662	6.2	4.6	227	5.6	1.42	0	0	8.47	0	80.2	0
+ciqual:15026	ciqual	Pecan nut, no added salt	Noix de pécan, sans sel ajouté	727	9.17	4.25	3.81	72	6.18	9.6	0	0	3.52		0	40.8	21.6	0	410	70	2.53	121	4.53	2.42	1.1	0	1.4	0	22	0
+ciqual:15027	ciqual	Macadamia nut, no added salt	Noix de macadamia, sans sel ajouté	757	7.91	5.22	4.24	75.8	12.1	8.6	0.013	0	1.36		0	58.9	1.5	0	368	85	3.69	130	1.3	0	1.2	0	0.54	0	11	0
 ciqual:15034	ciqual	Flaxseed, seed	Lin, graine	528	19	6.49	1.64	40.3	4.26	24.4	0.1	0	6.1	0	0.42	8.19	26.1	0	840	223	6	336	6.1	1.25	0	0	7.2	0	23.9	0
 ciqual:15041	ciqual	Almond, peeled, no added salt	Amande, émondée, sans sel ajouté	631	21.4	8.76	4.63	52.5	3.95	9.9	0.048	0	4.51		0	33.4	12.4	0	659	236	3.28	268	2.97	0.33	0	0	23.8	0	49	0
+ciqual:15042	ciqual	Almond, grilled, salted	Amande, grillée, salée	647	20	12.2	3.94	53.9	5.68	8.46	0.95	0	2.41		0	33.1	13	0	713	268	3.73	279	3.31	0.083	0	0	23.9	0	55	0
 ciqual:15045	ciqual	Sunflower seed, grilled, salted	Tournesol, graine, grillé, salé	626	21.2	12.7	3.3	51	2.2	8.3	5	0	1.2		0	9.51	32.9	0	850	70	5	129	36	0.42	1.4	0	26.1	0	237	0
 ciqual:15047	ciqual	Chia, seed, dried	Chia, graine, séchée	454	16.5	7.72		30.7	3.33	34.4	0.04	0	5.8		0	2.31	23.7	0	407	631	7.72	335	4.58	0	1.6		0.5	0	49	0
 ciqual:15054	ciqual	Cashew nut, grilled, no added salt	Noix de cajou, grillée, sans sel ajouté	618	17.4	21.3	6.64	48.1	8.24	8.4	0.015	0	1.7	0	0.5	29.1	8.65	0	610	39	5.4	260	5	0.66	0	0	1.33		30.2	0
 ciqual:15059	ciqual	Mix of nuts, grilled, salted	Mélange apéritif de graines grillées, salées	637	18.6	9.69	4.55	54.7	8.91	10.5	0.94	0			0			0						0						0
 ciqual:15064	ciqual	Pumpkin and squash, seed, dried	Courge, graine, séchée	618	29.5	5.39	1.4	49.1	8.66	6	0.018	0	5.23		0	16.2	21	0	809	46	8.82	592	7.81	0.75	1.9	0	2.18	0	58	0
+ciqual:15201	ciqual	Marzipan or almond paste, prepacked	Pâte d'amande, préemballée	432	5.8	70.3	60.1	13.5	1.05	2.8	0.018	0	6.6	2.8	0.14	8.89	2.9	0	190	91	0.88	74	0.86	0.21	0	0	5.52		13.5	
 ciqual:15202	ciqual	Peanut butter or peanut paste	Beurre de cacahuète ou pâte d'arachide	643	22.2	17.3	10.5	51.4	10.1	5	1.065	0	1.23		0	25.5	12.3	0	558	49	1.74	168	2.51	0	0	0	9.1	0	87	0
+ciqual:15203	ciqual	Tahini (sesame paste)	Tahin ou purée de sésame	631	17.7	13.8	0.49	53.4	7.48	7	0.188	0	3.03		0	20.2	23.4	0	437	284	6.69	95	4.62	3.33	4.2	0	0.25	0	98	0
+ciqual:16040	ciqual	Coconut fat or oil	Huile ou graisse de coco, sans précision	897	0	0.41	0	99.5	84.5	0	0	0	0.03	0	0	6.07	1.75	0	0	1	0.045	0	0.02	0	0	0	0.1	0	0	0
 ciqual:16400	ciqual	Butter, 80% fat minimum, unsalted	Beurre à 80% MG minimum, doux	753	0.64	0.71	0.71	83	60	0	0.035	0	15.4	0	0.095	19	1.82	235	36.1	19.8	0	2.63	0	927	0	0	2.04	0.1	0.85	0
+ciqual:16402	ciqual	Butter, 80% fat minimum, half-salted	Beurre à 80% MG, demi-sel	725	0.75	0.5	0.5	80	56.5	0	1.905	0	15.5	0	0	20.9	2.54	223	39	17.8	0.13	4.94	0.052	753	0	1.13	2.11	0.17	3	
 ciqual:16520	ciqual	Lard or pork fat	Saindoux	900	0	0	0	100	39.2	0	0	0	0	0	0	45.1	11.2	95	0	0	0	0	0.11	0	0	2.5	0.6	0	0	
 ciqual:16530	ciqual	Pork fat, raw	Lard gras, cru	810	2.92	0	0	88.7	32.2	0	0.028	0	7.69	0	0	42	10.4	57	65	2	0.18	2	0.37	5		3.1	0	0.18	1	
 ciqual:17270	ciqual	Olive oil, extra virgin	Huile d'olive vierge extra	899	0.25	0	0	99.9	15.2	0	0	0	0.1	0	0	73.1	7.17	0	0	0	0	0	0	17.5	0	0	22.3	0	0	0
+ciqual:17400	ciqual	Sesame oil	Huile de sésame	900	0	0	0	100	14.9	0	0	0	0	0	0	40.2	40	0	0	0	0	0	0	0	0	0	1.1	0	0	0
 ciqual:17440	ciqual	Sunflower oil	Huile de tournesol	900	0.25	0	0	100	11.1	0	0.025	0	0	0	0	27.6	56.3	0	0	0	0	0	0	0.21	0	0	57.3	0	0	0
+ciqual:17645	ciqual	Salmon oil	Huile de saumon	900	0	0	0	100		0	0	0	0	0	0			485	0	0	0	0	0	0	0			0	0	
+ciqual:18001	ciqual	Carbonated beverage or soft drink, without fruit , no added sugars and with sweetener(s)	Boisson gazeuse aromatisée, sans fruit, sans sucres ajoutés, avec édulcorants	0.23	0	0.063	0.054	0	0	0	0.031	0	99.5	0	0	0	0	0	6		0.05	0	0.013	0	0	0	0	0	0	0
 ciqual:18004	ciqual	Coffee, non instant no added sugars, ready-to-drink	Café, non instantané, sans sucres ajoutés, prêt à boire	5.78	0.25	1.35	0	0.018	0.002	0	0.007	0	97.8	0	0.078	0.015	0.001	0	150	4.3	0	9.2	0	0.21	0	0	0	0	0	0
 ciqual:18010	ciqual	Lemonade, with sugar(s)	Limonade, sucrée	33	0	8.24	8.22	0	0	0.14	0.014	0	90.5	0	0	0	0	0	3.51	6.52	0.009	0	0	0	0	0	0	0	0	0
+ciqual:18011	ciqual	Coconut water	Eau de coco	11.8	0.21	3.33	2.48	0	0	0	0.051	0	95.7	0.7	0.051	0	0	0	200	14	0	8.3	0	0.21	0	0	0	0	0	0
+ciqual:18013	ciqual	Tonic drink, no added sugars, with sweetener(s)	Tonic ou bitter, sans sucres ajoutés, avec édulcorants	0.2	0	0.058	0.058	0	0	0	0.125	0		0	0	0	0	0						0						0
 ciqual:18018	ciqual	Cola, with sugar(s)	Cola, sucré	40.1	0	10	10	0	0	0	0.017	0	90.3	0		0	0	0	2	1.92	0.11	2.44	0	0	0	0	0	0	0	0
 ciqual:18020	ciqual	Tea, brewed, no added sugars	Thé infusé, sans sucres ajoutés	0.4	0.1	0	0	0	0	0	0.004	0	99.7	0	0	0	0	0	25.8	1.1	0.015	2	0.025	0	0	0	0	0	3.25	0
 ciqual:18022	ciqual	Infusion, brewed, no added sugars	Tisane infusée ou infusion, sans sucres ajoutés	0.8	0	0.2	0	0	0	0	0.003	0	99.7	0	0	0	0	0	9	2	0.08	1	0.04	0	0	0	0	0	1	0
+ciqual:18025	ciqual	Kombucha, prepacked	Kombucha, préemballé	6.61	0.25	1.45	1.45	0	0	0	0.005	0	97.6	0	0.27	0	0		7.7	5.7	0	1.5	0	0.21	0	0	0	0	0	0
+ciqual:18041	ciqual	Coconut milk	Lait de coco	199	1.94	4.29	2.5	19.2	17	0.75	0.068	0	72.9	0	0	0.91	0.23	0	220	18	3.3	46	0.56	0	1	0	0.7	0	14	0
 ciqual:18046	ciqual	Mineral sparkling water, bottled (average)	Eau minérale, embouteilée, gazeuse (aliment moyen)	0.018	0	0.005	0	0	0	0	0.035	0	99.9	0	0	0	0	0	1.25	15.4	0	3.7	0.004	0	0	0	0	0	0	0
 ciqual:18049	ciqual	Carbonated beverage or fruit soft drink, fruit content < 10% , with sugar(s)	Boisson gazeuse aux fruits (teneur en fruits < 10%), sucrée	33.6	0.011	8.36	8.25	0.015	0	0	0.024	0	90.5	0	0	0	0					2		0						0
 ciqual:18060	ciqual	Cola, without added sugars and with sweetener(s)	Cola, sans sucres ajoutés, avec édulcorants	1.04	0	0.25	0.04	0	0	0	0.025	0	99.7	0	0.019	0	0	0	6	2.26	0.065	2.38	0	0	0	0	0	0	0	0
@@ -198,19 +262,26 @@ ciqual:18344	ciqual	Tonic drink, with sugar(s)	Tonic ou bitter, sucré	33.1	0	8.
 ciqual:18348	ciqual	Sports drink, with sugar(s)	Boisson pour le sport, sucrée	21.7	0	5.41	5.04	0	0	0	0.126	0	94.4	0		0	0	0	6.24	31	0	16.5	0.95	0	16	1.5	1.9	0.31	30	
 ciqual:18352	ciqual	Energy drink, with sugar(s)	Boisson énergisante, sucrée	40.9	0.095	10.2	10.2	0	0	0.11	0.116	0	88	0	0	0	0	0	0	0	0	0	0	0	32	0	1.8	1.14	30	
 ciqual:18899	ciqual	Oat drink, plain, no added sugar, not fortified, prepacked	Boisson à l'avoine, nature, sans sucres ajoutés, non enrichie, préemballée	41	0.25	7.78	5	1.1	0.2	0	0.066	0	90.5	0	0	0.37	0.5	0	32	1	0.02	2.3	0	0.21	0	0	0.37		6.39	0
+ciqual:18904	ciqual	Rice drink, plain, prepacked	Boisson au riz, nature, préemballée	52.2	0.23	10.8	5.6	1	0.11	0	0.074	0	87.6	0	0	0.27	0.56	0	16	5	0.01	3.3	0	0.21	0	0	0.48		0	0
+ciqual:18907	ciqual	Coconut drink, plain, prepacked	Boisson à la noix de coco, nature, préemballée	29.9	0.21	2.75	2.46	2.1	1.87	0	0.089	0	94.6	0	0.006	0.12	0.04	0	14	2.7	0	2.1	0	0.21	0	0	0		0	0
 ciqual:19023	ciqual	Milk, whole, UHT	Lait entier, UHT	64.6	3.46	4.77	4.64	3.55	2.08	0	0.092	0	87.5	0	0.001	0.64	0.065	11.8	157	119	0	10.5	0.41	32.9	0	0.13	0.11	0.16	0.85	0
 ciqual:19027	ciqual	Condensed milk, with sugar(s), whole	Lait concentré sucré, entier	327	7.7	56.5	56.5	7.87	5.23	0	0.213	0	27.2	0	0	2.32	0.32	34	371	290	0.19	25.2	0.96	74.2	2.6	0.2	0.16	0.44	11	
 ciqual:19041	ciqual	Milk, semi-skimmed, UHT	Lait demi-écrémé, UHT	47.7	3.48	5	4.96	1.56	0.97	0	0.087	0	89.2	0	0.001	0.29	0.028	5.2	158	121	0	10.7	0.41	9.25	0	0	0	0.16	0.85	0
 ciqual:19050	ciqual	Milk, skimmed, UHT	Lait écrémé, UHT	34.4	3.6	5.01	4.68	0.021	0	0	0.085	0	90.6	0	0.001	0.02	0	2.1	156	119	0	10.7	0.42	9.25	0	0	0	0.18	0.85	0
+ciqual:19060	ciqual	Milk, semi-skimmed, UHT, reduced lactose	Lait demi-écrémé (ou à teneur en matière grasse légèrement inférieure), UHT,  à teneur réduite en lactose	44.4	3.45	4.69	4.66	1.29	0.86	0	0.087	0	89.7	0	0.18	0.29	0.02			120										
+ciqual:19415	ciqual	Cream 30% fat, semi-thick, UHT	Crème 30% MG, semi-épaisse, UHT	294	2.49	1.94	1.94	30.7	21.4	0	0.072	0	62.9	0	0.037	6.65	0.56	124	86	67	0.03	7	0.24	345	0.6	0.65	0.97	0.19	4	
 ciqual:19420	ciqual	Whipped cream, aerosol, UHT	Crème chantilly, sous pression, UHT	305	2.11	10.6	10.4	28.2	18.9	0	0.065	0	57.1	0	0.094	6.65	0.68	76	147	101	0.05	11	0.37	188	0	0.4	0.64	0.29	3	
 ciqual:19436	ciqual	Cream, 12-20% fat, light, fluid, refrigerated	Crème 12 à 20% MG, légère, fluide, rayon frais	173	2.96	4.3	4.2	16	9.4	0	0.15	0	72.4	0					127	105		9								
 ciqual:19508	ciqual	Fermented milk drink, flavoured, with sugar(s)	Lait fermenté ou yaourt à boire, aromatisé, sucré	65.9	3.16	10.7	9.67	0.89	0.59	0.14	0.092	0	83.5	0	0.77	0.21	0.022	3.7	157	140	0.27	13.1	0	9.25	0	1.03	0.78	0.14	7.15	0
+ciqual:19584	ciqual	Mascarpone cheese, from cow's milk	Mascarpone	369	6	3.1	2.99	37	25.9	0	0.081	0	51.5	0		10.1	1.03	123	120	130	0.06	13	0.53	367	0	0	1	0.48	0	
 ciqual:19587	ciqual	Yogurt or fermented milk, with fruits, with sugar(s)	Yaourt ou lait fermenté, aux fruits, sucré	88.9	3.23	12.6	11.6	2.41	1.58	0.6	0.095	0	79.5	0	0.96	0.5	0.049	7.8	163	118	0	11.6	0	35	0	0	0	0	9.35	0
 ciqual:19590	ciqual	Mozzarella cheese, from cow's milk	Mozzarella au lait de vache	227	16.5	0.7	0.7	17.7	11.7	0	0.6	0	62.7	0	0.12	4.24	0.45	79	76	598	0.44	20	2.92	179	0	0.4	0.19	2.28	7	
 ciqual:19593	ciqual	Yogurt or fermented milk, plain	Yaourt ou lait fermenté, nature	50.1	3.83	4.26	4	1.68	1.08	0	0.1	0	88.4	0	0.99	0.31	0.033	6.4	180	137	0	12.4	0.52	19	0	0	0	0.15	7.05	0
 ciqual:19594	ciqual	Yogurt or fermented milk, plain, 0% fat	Yaourt ou lait fermenté, nature, 0% MG	39.1	4.16	4.89	4.63	0	0	0.031	0.107	0	88.9	0	1.06	0	0	2.5	196	152	0	13.9	0.55	9.25	0	0	0	0.16	7.95	0
 ciqual:19599	ciqual	Yogurt or fermented milk, plain, with sugar(s)	Yaourt ou lait fermenté, nature, sucré	81.7	2.92	10.7	10.1	2.81	1.81	0.031	0.075	0	82.2	0	0.75	0.57	0.053	9.6	138	114	0	9.51	0	31.7	0	0	0	0.12	8.45	0
+ciqual:19644	ciqual	Quark, plain, 0% fat	Fromage blanc, nature, 0% MG	48.4	7.34	4.22	3.29	0	0	0.042	0.09	0	86.5	0	0.92	0	0	4	168	150	0	12.7	0.58	8.25	0	1.28	0	0.28	15.4	0
 ciqual:19685	ciqual	Panna cotta, with fruit preparation or caramel, refrigerated	Panna cotta, avec préparations de fruits ou caramel, rayon frais	192	2.69	15.9	15.8	12.1	8.21	1.44	0.085	1.1	66.1	0	0.19	2.85	0.27	68		75.8										
+ciqual:19693	ciqual	Soy dessert, plain, no added sugars, not fortified, fermented, refrigerated	Dessert au soja, nature, sans sucres ajoutés, non enrichi, fermenté, rayon frais	44.7	3.76	2.05	0.69	1.9	0.22	0.8	0.085	0	90.7	0	0.45	0.46	1.11	0	110	12	0.4	16	0.29	0	0	0	0.23		18.6	
 ciqual:19698	ciqual	Tiramisu with coffee, refrigerated	Tiramisu au café, rayon frais	242	4.25	30.2	19.5	9.8	6.41	1.2	0.193	1.8	51.6	0	0.23	2.36	0.42	44.8	230	94	0.68	18	0.46	38.5	0	0	0.86	0.078	5.52	
 ciqual:19724	ciqual	Yoghurt, rich in protein, plain	Spécialité laitière riche en protéines, nature	74.5	9.29	3.45	3.45	2.7	1.9	0	0.12	0		0						109										
 ciqual:19860	ciqual	Yogurt, Greek-style, plain	Yaourt à la grecque nature	103	3.02	3.73	3.11	8.16	5.26	0.071	0.08	0	83.5	0	0.87	1.62	0.16	14.1	143	116	0	10.1	0	74.5	0	0	0	0.13	6.95	0
@@ -223,38 +294,54 @@ ciqual:20003	ciqual	Beetroot, cooked	Betterave rouge, cuite	41.5	1.44	7.13	6.7	0
 ciqual:20009	ciqual	Carrot, raw	Carotte, crue	30.2	0.78	5.16	4.85	0	0	2.9	0.122	0	90	0	0.2	0	0	0	274	36.2	0	13.6	0	1100	3.73	0	0.21	0	11.2	0
 ciqual:20015	ciqual	Green cabbage, cooked	Chou vert, cuit	24.1	1.03	3.04	2.79	0.45	0.14	2.4	0.098	0	93.9			0.013	0.033	0	190	69.7	0.28	15.1	0.22	4	27.3	0	0.14	0	38	0
 ciqual:20017	ciqual	Cauliflower, boiled	Chou-fleur, bouilli/cuit à l'eau	20.9	1.6	1.6	0	0.46	0.097	2	0	0	93.7	0.017		0.032	0.22	0	238	19.2	0.31	12.9	0.22	2.08	9.7	0	0.07	0	78.8	0
+ciqual:20018	ciqual	Palm heart, canned, drained	Coeur de palmier, appertisé, égoutté	41.5	2.51	5.5	1.5	0.56	0.13	2.2	0.81	0	90.2			0.1	0.2	0	177	58	3.13	38	1.15	0	7.9	0		0	39	0
 ciqual:20019	ciqual	Cucumber, flesh and skin, raw	Concombre, chair et peau, cru	16.8	0.65	2.87	1.67	0.11	0.037	0.5	0.012	0	95.2	0.039	0.26	0.005	0.032	0	157	19.2	0.13	13.6	0.095	3.75	2.8	0	0.03	0	7	0
 ciqual:20020	ciqual	Courgette or zucchini, flesh and skin, raw	Courgette, chair et peau, crue	16.7	1.21	1.75	1.74	0.32	0.084	1	0.02	0	94.8	0.014		0.011	0.091	0	261	16	0.37	18	0.32	10	17.9	0	0.12	0	24	0
 ciqual:20021	ciqual	Courgette or zucchini, flesh and skin, cooked	Courgette, chair et peau, cuite	15.5	0.93	1.4	0	0.36	0.1	1.5	0.098	0	93.8	0.02		0.029	0.15	0	238	19.3	0.32	22.3	0.22	14.4	2.9	0	0.12	0	32.8	0
+ciqual:20022	ciqual	Watercress, raw	Cresson de fontaine, cru	15.5	2.3	1.11	0.2	0.1	0.027	0.5	0.102	0	95.1			0.008	0.035	0	330	120	0.2	21	0.11	160	43	0	1	0	9	0
 ciqual:20023	ciqual	Celery stalk, raw	Céleri branche, cru	15.4	0.63	2.41	1.3	0	0	2.2	0.198	0	93.4	0.8	0.047	0	0	0	390	46	0.06	11	0.09	6.22	5.51	0	0	0	56.8	0
 ciqual:20026	ciqual	Chicory, raw	Endive, crue	16.6	1.19	2.83	2.4	0	0	1.1	0	0	94.3	0	0.02	0	0	0	150	20	0.12	8.3	0.13	0.21	2.12	0	0	0	25.6	0
 ciqual:20027	ciqual	Spinach, cooked	Épinard, cuit	19.6	3.2	0.25	0	0.14	0.054	2.7	0.069	0	92.8		0.05	0.004	0.082	0	396	140	2.14	54.4	0.65	134	2.1	0	2.4	0	125	0
 ciqual:20028	ciqual	Fennel, raw	Fenouil, cru	18.2	1	2.63	2.2	0	0	2.6	0.055	0	92.9	0	0.071	0	0	0	320	37	0.2	11	0.19	0.67	2.57	0	0	0	19.6	0
 ciqual:20030	ciqual	French bean, cooked	Haricot vert, cuit	29.4	2	3	0	0.17	0.048	4	0.015	0	89.3	0.093		0.009	0.11	0	174	55.3	0.6	22.3	0.2	11.4	5	0	0.45	0	33	0
 ciqual:20031	ciqual	Lettuce, raw	Laitue, crue	14.7	1.35	1.22	0.73	0.2	0.022	1.1	0.021	0	95.4		0.14	0.006	0.09	0	206	64.6	1.1	14.9	0.2	303	5.53	0	0.18	0	49	0
+ciqual:20033	ciqual	Turnip, cooked	Navet, cuit	25	0.9	3.8	2.9	0.2	0.008	2.2	0.072	0	93.4			0.005	0.042	0	237	37.3	0.11	8.75	0.099	2.08	5.6	0	0.02	0	9	0
 ciqual:20034	ciqual	Onion, raw	Oignon, cru	39	1.1	6.25	4.8	0.62	0.2	1.7	0.098	0	89.6		0.21	0.013	0.017	0	190	25	0	9	0.23	2.08	3.9	0	0.02	0	29.6	0
 ciqual:20037	ciqual	Garden peas, cooked	Petits pois, cuits	61.4	5.8	4.7	1.7	0.87	0.21	5.8	0.018	0	82.9			0.019	0.1	0	135	32.7	1.17	31.9	0.8	34.5	1.8	0	0	0	65.6	0
 ciqual:20041	ciqual	Sweet pepper, green, yellow or red, raw	Poivron, vert, jaune ou rouge, cru	22.6	0.8	3.5	1.5	0.27	0.071	1.5	0.021	0	92.1			0.02	0.16	0	155	7.7	0.4	11.9	0.13	70.5	121	0	1.44		40.7	0
 ciqual:20045	ciqual	Radish, raw	Radis rouge, cru	11	0.94	1.53	1.1	0	0	1.4	0.04	0	95.5	0	0.01	0	0	0	250	15	0.4	6.2	0.08	0.21	12.2	0	0	0	95.4	0
 ciqual:20049	ciqual	Corn, on the cob, cooked	Maïs doux, en épis, cuit	106	3.41	18.6	4.54	1.5	0.2	2.4	0.003	0	73.4			0.37	0.6	0	218	3	0.45	26	0.62	5.5	5.5	0	0.09	0	23	0
 ciqual:20053	ciqual	Eggplant, raw	Aubergine, crue	22.9	0.98	2.7	2.7	0.18	0.034	3	0.005	0	92.3		0.18	0.016	0.076	0	229	9	0.23	14	0.16	1.17	2.2	0	0.3	0	22	0
+ciqual:20054	ciqual	Cardoon, raw	Cardon, cru	13.7	0.7	1.7	1.5	0.1	0.011	1.6	0.425	0	94			0.018	0.041	0	400	70	0.7	42	0.17	0	2	0	0.19	0	68	0
+ciqual:20056	ciqual	Button mushroom or cultivated mushroom, raw	Champignon de Paris ou champignon de couche, cru	21	2.11	1.83	1.55	0.36	0.067	1	0.098	0	93.9	0.28	0.14	0.02	0.12	0	364	3	0.31	10.4	0.53	0	3.18	0.3	0.02	0	28	0
 ciqual:20057	ciqual	Broccoli, raw	Brocoli, cru	31.9	2.9	2.15	1.7	0.36	0.047	2.6	0.075	0	90		1.1	0.018	0.1	0	321	47.5	0.81	23	0.41	30.1	91.2	0	0.78	0	67	0
 ciqual:20059	ciqual	Spinach, raw	Épinard, cru	33.3	2.68	3.06	0.46	0.39	0.063	2.6	0.199	0	90		0.55	0.01	0.17	0	558	99	2.71	79	0.53	469	28.1	0	2.03	0	194	0
 ciqual:20066	ciqual	Corn, sweet, canned, drained	Maïs doux, appertisé, égoutté	105	2.66	18.3	2.37	1.68	0.26	3.1	0.59	0	75.4	0.13		0.22	0.42	0	224	3.51	0.35	26.9	0.39	1.83	2.1	0	0.07	0	75	0
+ciqual:20068	ciqual	Tomato paste, concentrated, canned	Tomate, concentré, appertisé	99.2	4.4	17.1	13.3	0.53	0.1	4.2	0.27	0	72			0.067	0.16	0	1010	45.6	1.2	63.3	0	65.3	2.6	0	5.7	0	58	0
 ciqual:20069	ciqual	Green cabbage, raw	Chou vert, cru	24.4	1.43	2.74	2.74	0.14	0.023	2.55	0.051	0	92.1		0.47	0.013	0.06	0	223	42.3	0.5	17.5	0.2	26.8	40.2	0	0.16	0	59.3	0
 ciqual:20076	ciqual	Asparagus, canned, drained	Asperge, appertisée, égouttée	20.3	1.57	1.2	1.03	0.65	0.15	1.55	0.718	0	94		0.09	0.021	0.28	0	172	16	1.83	10	0.4	41.1	18.4	0	1.22	0	96	0
 ciqual:20085	ciqual	Sweet pepper, green, raw	Poivron vert, cru	22.5	0.81	3.43	3	0	0	3.2	0	0	93	0	0.27	0	0	0	160	6.2	0.22	7.7	0.11	12.8	26.9	0	0.28	0	55.1	0
 ciqual:20087	ciqual	Sweet pepper, red, raw	Poivron rouge, cru	33.6	1.06	5.98	4.8	0	0	3.2	0	0	90.2	1	0.45	0	0	0	180	4.8	0.21	8.2	0.14	46.2	121	0	3.45	0	81.8	0
 ciqual:20088	ciqual	Sweet pepper, red, cooked	Poivron rouge, cuit	37.9	1.17	6.41	6	0.35	0.1	2.2	0.005	0	90.2						180	9		14	0.2	0	81		0.9		11	0
+ciqual:20090	ciqual	Escaroles, raw	Scarole, crue	20.5	1.44	2	0.7	0.23	0.049	2.3	0.034	0	92.9			0.004	0.089	0	314	53.7	0.38	14	0.5	125	11.5	0	0	0	132	0
+ciqual:20095	ciqual	Red cabbage, boiled/cooked in water	Chou rouge, bouilli/cuit à l'eau	25.3	1.51	3.32	3.32	0.09	0.011	2.6	0.07	0	90.8			0.007	0.043	0	262	54.6	0.66	11.8	0.14	1.67	34.4	0	0.12	0	24	0
 ciqual:20096	ciqual	Pumpkin, cooked	Potiron, cuit	26.1	0.81	4.47	3.1	0.07	0.037	2	0	0	92		0.11	0.009	0.004	1.39	230	13	0.18	6.9	0.1	502	0.84	0	0.24	0	2.5	0
+ciqual:20099	ciqual	Lamb's lettuce, raw	Mâche, crue	15	2	0.5	0	0	0	2.3	0	0	93.7	0	0.13	0	0	0	330	41	0.4	19	0.14	273	2.38	0	0.22	0	45.5	0
 ciqual:20102	ciqual	Button mushroom or cultivated mushroom, boiled/cooked in water	Champignon de Paris ou champignon de couche, bouilli/cuit à l'eau	28.7	2.17	3	2.34	0.47	0.061	2.2	0.005	0	91.1	0.4		0.008	0.18	0	356	6	1.74	12	0.87	0	4	0.2	0.01	0	18	0
+ciqual:20114	ciqual	Oyster mushroom, raw	Champignon, pleurote, crue	26.8	3.31	1.5	1.07	0.41	0.062	2.3	0.045	0	89.2	0.43		0.031	0.12	0	420	3	1.33	18	0.77	2.42	4	0.7	0	0	38	0
 ciqual:20151	ciqual	Chili pepper, raw	Piment, cru	37.4	1.87	5.75	4.01	0.44	0.042	1.5	0.022	0	88			0.024	0.24	0	322	14	1.03	23	0.26	44.5	144	0	0.69	0	23	0
+ciqual:20160	ciqual	Cep or boletus mushroom, raw	Champignon, cèpe, cru	28.8	3.23	2	1.28	0.49	0.12	2.12	0.052	0	90.3	0.45		0	0.37	0	361	22.7	1.07	12	0.4	0	2.83	3.1	0.04		44	0
 ciqual:20169	ciqual	Tomato flesh without skin, canned	Tomate, chair, appertisée	22.6	1.2	3.63	3.2	0	0	1.8	0.068	0	93	0	0.45	0	0	0	260	20	0.39	11	0.09	165	10.5	0	1.3	0	30.2	0
 ciqual:20172	ciqual	Tomato, cherry, raw	Tomate cerise, crue	31.8	1.31	5.62	4.8	0	0	1.2	0	0	90.1	0	0.56	0	0	0	330	6.6	0.37	11	0.18	113	21.8	0	0.4	0	17.6	0
+ciqual:20181	ciqual	Parsnip, raw	Panais, cru	67.9	1.2	12.6	4.8	0.3	0.05	4.9	0.025	0	79.5	0.81	0.48	0.11	0.047	0	375	36	0.59	29	0.59	0	17	0	1.49	0	67	0
 ciqual:20183	ciqual	Mung bean, sprouted, raw	Graine germée de haricot mungo ou pousse de "soja", crue	28.3	2.57	3.4	3.4	0	0	1.7	0.043	0	91.7			0	0	0	120	16	0.44	16	0.32	0.42	4.13	0	0.1	0	61.3	0
+ciqual:20188	ciqual	Bamboo shoots, canned, drained	Bambou, pousses, appertisées, égouttées	19.3	1.63	1.9	1.89	0.31	0.072	1.2	0.185	0	95.1			0.007	0.14	0	307	10	0.28	3.5	0.56	0.67	1.1	0	0.63	0	2.5	0
 ciqual:20194	ciqual	Haricot beans with tomato sauce, canned	Haricots blancs à la sauce tomate, appertisés	80.5	4.83	11.7	3	0.5	0.16	5	0.85	0	74.7	0																
+ciqual:20212	ciqual	Shiitake mushroom, cooked	Champignon, lentin comestible ou shiitaké, cuit	60.9	1.56	12.3	3.84	0.22	0.05	2.1	0.01	0	83.5	0.4		0.07	0.034	0	117	3	0.44	14	1.33	0	0.3	0.7	0	0	21	0
 ciqual:20217	ciqual	Roman rocket, raw	Roquette, crue	27.9	2.58	2.1	2.05	0.66	0.086	1.6	0.068	0	91.7			0.049	0.32	0	369	160	1.46	47	0.47	119	15	0	0.43	0	97	0
 ciqual:20218	ciqual	Curly kale, raw	Chou frisé, cru	49.5	4.28	4.2	2.26	0.93	0.091	3.6	0.095	0	84			0.052	0.34	0	491	150	1.47	47	0.56	494	120	0	1.54	0	141	0
+ciqual:20241	ciqual	Cardoon, cooked	Cardon, cuit	22	0.76	3.63		0.11	0.012	1.7	0.44	0	93.5			0.02	0.044	0	392	72	0.73	43	0.18	0	1.7	0		0	22	0
+ciqual:20270	ciqual	Spinach, young leaves for salad, raw	Épinard, jeunes pousses pour salades, cru	17	2.06	0	0	0.4	0.09	2.4	0.062	0	93.7	0	0.11	0.06	0.21	0	580	110	1.8	44	0.43	234	6.04	0	0.56		78.6	0
 ciqual:20276	ciqual	Tomato, round, raw	Tomate ronde, crue	17.5	0.5	3.42	3	0	0	1	0	0	94.6	0	0.49	0	0	0	210	6.8	0.17	7	0.08	67.3	19.9		0.53		13.5	0
 ciqual:20299	ciqual	Asparagus, green, boiled/cooked in water	Asperge verte, bouillie/cuite à l'eau	25.3	2.69	1.73	1.3	0.3	0.07	2.2	0	0	92.7	0	0.73	0	0.19		220	21	0.64	10	0.49	36.5	4.73		1.5		69.9	0
 ciqual:20309	ciqual	Brussels sprout, boiled/cooked in water	Chou de Bruxelles, bouilli/cuit à l'eau	44.4	3.19	5.4	4.1	0	0	4.8	0.022	0	85.5	0	0.16	0	0		410	35	0.51	19	0.31	18	55.4		0.44		49.3	0
@@ -267,32 +354,49 @@ ciqual:20500	ciqual	Broad bean, boiled/cooked in water	Fève, bouillie/cuite à 
 ciqual:20501	ciqual	Haricot bean, dried	Haricot blanc, sec	307	23.4	43.9		0.85	0.22	15.2	0.04	0	11.3		0	0.074	0.36	0	1800	240	10.4	190	3.67	0	0	0	0.21	0	388	0
 ciqual:20502	ciqual	Haricot bean, boiled/cooked in water	Haricot blanc, bouilli/cuit à l'eau	112	6.75	12	0.3	1.1	0.25	13.8	0.023	0	66.9	0	0.12	0.15	0.61	0	260	120	1.7	33	0.67	0.46	0	0	0	0	31.1	0
 ciqual:20503	ciqual	Red kidney bean, boiled/cooked in water	Haricot rouge, bouilli/cuit à l'eau	116	9.63	12.3	0.5	0.6	0.19	11.6	0.021	0	65	0	0.17	0.16	0.24	0	300	55	2.3	39	0.94	0.21	0	0	0	0	78.3	0
+ciqual:20506	ciqual	Split pea, boiled/cooked in water	Pois cassé, bouilli/cuit à l'eau	129	8.6	16.3	3.85	1.49	0.16	7.95	0.011	0	64.9		0	0.33	0.66	0	327	24.7	2.09	20.9	0.65	0.83	0.85	0	0.19	0	119	0
 ciqual:20516	ciqual	Chick pea, dried	Pois chiche, sec	350	20.5	47.5	2.3	6.04	0.6	12.2	0.06	0	7.68		0	1.38	2.73	0	718	57	4.31	79	2.76	3.33	4	0	3.1	0	557	0
+ciqual:20589	ciqual	Lentil, pink or red, boiled/cooked in water	Lentille corail, bouillie/cuite à l'eau	123	10.6	15	0.26	0.5	0.09	8.2	0	0	65.1		0	0.13	0.28	0	190	21	2.2	25	1.3	1.04	0	0			23	0
+ciqual:20903	ciqual	Soy protein	Isolat de soja	402	80.5	1.76	0	3.39	0.42	5.6	2.525	0	4.98		0	0.65	1.65	0	81	178	14.5	39	4.03	0	0	0	0	0	176	0
 ciqual:20904	ciqual	Tofu, plain, prepacked	Tofu nature, préemballé	147	13.4	2.87	0.57	8.5	1.35	0	0.025	0	73.8	0	0.16	1.91	4.81	0	140	100	2.4	100	1.3	0.21	0	0	0.71	0	25.1	
+ciqual:20914	ciqual	Plant-based burger or steak from soybean	Galette ou pavé au soja	252	15.5	8.5	2.1	14.7	0.65	8.8	1.75	0	52.7	0	0	5.2	4.6	3.16	380	160	2.3	81	1.3	12.5	2	0	0.2	0.4	54.6	
+ciqual:20917	ciqual	Tempeh	Tempeh	157	16.1	7.89	0.24	4.7	0.57	6.2	0.098	0	63.7	0	0.25	1.09	2.79	0	310	88	1.7	60	1.3	0.21	0	0	1.17	0.019	38.5	0
+ciqual:20987	ciqual	Laver (Porphyra sp.), dried or dehydrated	Nori (Porphyra sp., Pyropia), séchée ou déshydratée	257	30.2	11.7	0	1.77	0.46	36.8	4.75	0	6.7	0		0.15	1.17	0	1760	440	36.4	480	4.35	1480	63.9	0.56	3.09		31.8	0
 ciqual:21512	ciqual	Lamb, rib chop, grilled/pan-fried	Agneau, côte première grillée/poêlée	185	26.1	0	0	9.01	3.67	0	0.182	0	64.1	0	0	3.37	0.7	90	271	22	1.27	20	3.43	0	0		0.1	1.38	15	
+ciqual:21801	ciqual	Kid meat, cooked	Chevreau, viande cuite	136	27.1	0	0	3.03	0.93	0	0.215	0	68.2	0	0	1.36	0.23	75	405	17	3.73		5.27	0	0	0	0.34	1.19	5	
 ciqual:22000	ciqual	Egg, raw	Oeuf cru	140	12.8	0.06	0.06	9.83	2.64	0	0.31	0	76.3	0	0	3.66	1.65	372	138	76.8	1.75	11	1.01	160	0	2	1.05	0.89	47	
 ciqual:22001	ciqual	Egg white, raw	Oeuf, blanc (blanc d'oeuf), cru	48.1	10.9	0.73	0.71	0.17	0	0	0.415	0	87.6	0	0		0	0	163	7	0.08	11	0.03	0	0	0	0	0.09	4	
 ciqual:22002	ciqual	Egg yolk, raw	Oeuf, jaune (jaune d'oeuf), cru	307	15.5	1.09	0.56	26.7	9.55	0	0.048	0	55	0	0	11.7	4.2	939	43	50.2	0.7	1.5	1.1	343	0	2	2.58	3.03	159	
 ciqual:22008	ciqual	Egg white, cooked	Oeuf, blanc (blanc d'oeuf), cuit	47.3	10.3	1.12	0.7	0.17	0	0	0.388	0	87.8	0	0	0	0	0	147	6.67	0.067	9.67	0.025	0	0	0	0	0.056	7.9	
 ciqual:22010	ciqual	Egg, hard-boiled	Oeuf dur	134	13.5	0.52	0.52	8.62	3.22	0	0.307	0	76.5	0	0	4.01	1.39	355	120	41	1.72	14	1.27	62.4	0	1.12	1.03	1.11	44	
 ciqual:22011	ciqual	Egg, poached	Oeuf poché	139	12.5	0.89	0.37	9.47	2.99	0	0.198	0	75.7	0	0	4.04	1.49	370	138	68.2	1.75	10.8	1.1	159	0	2	1.04	0.71	35	
+ciqual:22050	ciqual	Quail egg, raw	Oeuf de caille, cru	154	13.1	0.41	0.4	11.1	3.56	0	0.352	0	74.4	0	0	4.32	1.32	844	132	64	3.65	13	1.47	156	0	1.4	1.08	1.58	66	
 ciqual:22500	ciqual	Omelette, plain, homemade	Omelette nature, faite maison	196	13.8	0.9	0.31	15.3	3.32	0	0.6	0	69	0	0	4.84	2.71	385	117	80.2	1.8	10.7	1.02	125	0	0.53	1.29	0.76	39	
 ciqual:22502	ciqual	Egg, scrambled, with added fat	Oeuf brouillé, avec matière grasse	167	11.9	0.44	0.44	13	4.46	0	0.443	0	76	0	0	4.94	1.84	397	133	59.1	1.94	12.2	1.35	194	0	1.8	0.98	0.93	43	
 ciqual:23000	ciqual	Cake (average)	Gâteau (aliment moyen)	410	5.49	51.8	29.3	19.6	5.13	2.38	0.723	0.13	20	1.09	0.064	9.52	3.58	70.7	183	33.9	2.02	20.4	0.53	56.7	0.53	0.21	3.06	0.21		
 ciqual:23001	ciqual	Cheesecake, prepacked	Cheesecake, préemballé	337	5.44	34.1	21.3	19.7	11.4	0.7	0.435	0	39.2	0	0	4.69	1.09	86	110	55	0.34	12	0.41	176	0	0	0.9	0.2	12	
 ciqual:23024	ciqual	Macaroon filled with jam or cream	Macaron moelleux fourré à la confiture ou à la crème	448	11	56.5	51.3	19	2.5	2.9	0.164	0.1	10.8	0				19.3	290	81	1.5	79.1	0.9	6.67	2.1		5.2			
 ciqual:23032	ciqual	Brownie (chocolate cake), prepacked	Brownie au chocolat, préemballé	458	5.94	50.6	35.1	25.4	7.32	3.4	0.345	0	12.8	2.9	0.37	12.3	4.47	67.6	330	42	5	47	0.9	30.6	0	0	3.98	0.28	10.8	
+ciqual:23300	ciqual	Baklava (oriental pastry with almonds and syrup)	Baklava ou baklawa (pâtisserie orientale aux amandes et sirop)	459	10.4	49.2	39.6	24.5	4.7	0	0.074	0	13.5	0		13.9	5.34	37	255	98.3	1.5	95	1.12	94.2	0.4	0.18	6.55	0.02	24	
 ciqual:23424	ciqual	Puff pastry, pure butter, prepacked, raw	Pâte feuilletée, pur beurre, préemballée, crue	370	5.47	40	3	20	14	3	1.68	0	30.9	0	0	4.89	0.78													
 ciqual:23455	ciqual	Chou pastry filled cream (whipped or custard)	Chou à la crème, sans précision (chantilly ou pâtissière)	325	4.5	25.1	16.7	22.9	14.5	0	0.275	0	46.4	0	0.086	5.94	0.92	189	360	31	0.7		0.1	260	0		1.25		8	
+ciqual:23480	ciqual	Apple turnover	Chausson aux pommes	360	4.17	42.2	11.2	18.7	10.3	3.1	0.85	0	33.6	0		4.48	1.21	45.6	106	39	0.8	10	0.3	104	5.36	0.32	1.21	0	5.15	
+ciqual:23485	ciqual	Lemon tart	Tarte au citron	319	5.56	43.1	34.1	13.6	7.65	0.97	0.129	0	34.1	0		4.12	1.01	121	95.8	25.2	1.2	9.7	0	64.1	13.4	0	1.1	0.35	39.9	
 ciqual:23498	ciqual	Fruit tart (average)	Tarte ou tartelette aux fruits (aliment moyen)	245	3.18	34.1	21.6	9.99	5.52	2.4	0.245	0	48.9	0	0.21	3.23	0.7	40.4	140	22.7	0.87	11.9	0.28	49.1	5.79	0		0.12	22.8	
 ciqual:23585	ciqual	Chocolate cake, prepacked	Gâteau au chocolat, préemballé	445	5.88	51	28.6	24	5.71	3.7	0.417	0	17.4	3.5	0	13.2	4.73	54.2	233	38.9	4.5	33	0.71	58.3	0	0	3.86	0.18	3.75	0
 ciqual:23594	ciqual	Soft cake, plain, sponge cake type, prepacked	Gâteau moelleux nature type génoise, préemballé	378	6.7	57.6	30.5	13.2	2.3	0.8	1.393	0	20.4	0	0				141	31.4		9.5	0.7							
 ciqual:23799	ciqual	Crepe, plain, prepacked, refrigerated	Crêpe, nature, préemballée, rayon frais	257	6.31	41.6	19.1	6.8	3.6	2.2	0.525	0	42	0	0	1.6	1.59	60.9	140	75	0.56	14	0.52	23.6	0	0	1.06	0.41	17	
 ciqual:23850	ciqual	Waffle, from bakery, plain, from bakery	Gaufre bruxelloise ou liégeoise nature, artisanale	301	8	36.1	4.8	13.4	5.12	1.9	0.985	0	38.9	0	0.27	5.37	2.1	82	160	48	0.89	18	0.64		0	0.61	2.01	0.37	30.4	
 ciqual:23880	ciqual	Doughnut, plain, sprinkled with sugar	Beignet ou donut rond moelleux, sans fourrage, saupoudré de sucre	404	7.25	39.4	10.7	23.7	9.46	2	1.11	0	26	0	0.076	9.42	3.71	19	93	24	0.68	18	0.62	15.1	0	0	4.28	0.089	30.4	
+ciqual:23885	ciqual	Doughnut filled or covered with chocolate or with chocolate and hazelut paste, prepacked	Beignet ou donut fourré ou nappé goût chocolat ou chocolat noisette, préemballé	407	5.3	48	20	21	4.2	2.6	0.7	0	20.3	0		9.47	5.55	45.2	180	80	2	32	0.83	14.6	0	0	3.18	0.28	24.5	
 ciqual:23941	ciqual	Soft cake filled with fruits, mini sponge roll type, prepacked	Gâteau moelleux fourré aux fruits type mini-roulé ou mini-cake fourré, préemballé	374	4.63	57.7	33.9	12.8	2.35	4.5	0.608	0.038	19	0.41	0.24	5.85	2.65	55.2	195	28.8	0.75	12.5	0	9.25	0	0	2.17	0.14	11	0
 ciqual:24015	ciqual	Butter biscuit (cookie)	Biscuit sec petit beurre	450	7.78	73.4	22	13.3	8.61	2.54	1.155	0	1.4	0	0.14	2.79	0.62	40	150	34	0.82	18	0.52	107	0	0	0.53	0.092	19.1	
+ciqual:24016	ciqual	Biscuit (cookie),  with a chocolate bar covering	Biscuit sec avec tablette de chocolat	485	5.56	68.8	40.8	20	11.3	3.5	0.347	0	1.2	0	0	6.68	1.56	5.9	198	59.4	3.1	33	0.67	9.25	0	0	1.13	0.2	5.15	0
 ciqual:24017	ciqual	Butter biscuit (cookie), with chocolate (chocolate chips or covering)	Biscuit sec petit beurre au chocolat (tablette ou pépites)	496	6.88	63.8	35.4	22.8	14.2	4	0.59	0	1	0	0	6.28	0.99	24.6	288	91.8	4.6	45.7	0.89	12.5	0	0	0.67	0	8.75	0
+ciqual:24021	ciqual	Butter biscuit (cookie), whole wheat	Biscuit sec petit beurre au blé complet	439	9.25	66.6	18.8	13.4	2.01	7.2	0.372	0	2.2	0	0.14	6.75	3.57	3.3	280	31.9	2.2	71.8	2	9.25	0	0	6.44	0.15	3.9	
+ciqual:24224	ciqual	Chocolate biscuit (cookie),  with vanilla filling, round, black and white	Biscuit au chocolat fourré ("sandwiché") parfum vanille, rond, noir et blanc	480	5.06	69.2	35.7	19.6	5.88	3.2	0.652	0	1.8	0	0	9.57	3.32	0	226	21.2	2.3	33.6	0.59	9.25	0	0	3.94	0	4.35	0
+ciqual:24311	ciqual	Wafer biscuit, filled or coated with chocolate	Gaufrette fourrée et/ou enrobée de chocolat	534	6.63	56.6	37.8	30.5	18.8	3.5	0.25	0	1.2	0	0	8.12	1.56	9.8	465	127	5	65.4	1.1	9.25	5.7	0	1.36	0	11.6	0
+ciqual:24430	ciqual	Biscuit (cookie), sponge fingers or lady fingers	Biscuit sec aux oeufs à la cuillère (cuiller) ou boudoir	366	7.75	74.5	48.8	3.4	1.17	2.9	0.3	0	10.8	0	0	1.38	0.86	101	117	25.3	0.96	12.6	0	27.1	0	0	0.48	0.26	7.85	0
 ciqual:24520	ciqual	Meringue	Meringue	396	4.82	93.2	87.6	0.52	0	0	0.228	0	1.36	0	0	0	0	0	89.8	4.15	0.18	4.76	0.15	0	0	0	0	0.1	6	
 ciqual:24632	ciqual	Madeleine cake, prepacked	Madeleine ordinaire, préemballée	441	5.55	55.3	28.4	21.6	2.8	1.4	0.887	0	13.6	0	0.05	13.2	5.52	85.3	83	19	0.59	9.8	0.39	28.5	0	0.33	5.36	0.3	66.4	
 ciqual:24660	ciqual	Biscuit (puff pastry), palmier, from bakery	Biscuit sec feuilleté, type palmier ou autres, artisanal	499	5.93	47.8	21.8	30.4	14.4	5.3	1.157	0	6.12	0	0	8.4	2.06	28	83.5	15.6	0.58	11.5	0	49.1	0	0	3.2	0.43	11.5	
@@ -301,6 +405,7 @@ ciqual:25009	ciqual	Shepherd's pie or cottage pie with meat, prepacked	Hachis pa
 ciqual:25108	ciqual	Samosas or samoosas or filled filo pastry, prepacked, cooked	Samossa ou samoussa ou brick garni, préemballé, cuit	230	9.33	16.5	2.45	13.7	2.78	1.8	1.232	0	55.2	0		5.27	3.21	23	182	31	1.3	17.8	0.87	3.83	0.7	0	1.45	0.34	20	
 ciqual:25111	ciqual	Chili con carne, prepacked	Chili con carne, préemballé	118	7.13	13	2.58	3.35	1.13	3.56	0.927	0	74.2	0		1.41	0.4	14.6	282	32.8	1.6	27.3	1.2	20.4	2.25	0	0.88	0.35	44	
 ciqual:25123	ciqual	Moussaka, prepacked	Moussaka, préemballée	147	5.82	5.16	3.01	10.8	3.37	2.84	0.983	0	76	0		3.25	2.27			16	0.62			12.5						
+ciqual:25155	ciqual	Fresh pasta, stuffed with cheese and vegetables (e.g. ravioli), cooked, prepacked	Pâtes fraîches farcies (ex : raviolis, tortellinis), au fromage et aux légumes, préemballées, cuites	219	7.94	27.8	3.53	7.5	2.36	3.4	1.05	0	51.2	0	0.38	2.66	2.03	27.2	130	69	0.57	20	0.51	23.6	0	0	0.64	0.25	8.62	
 ciqual:25173	ciqual	Milanese-style veal escalope or breaded veal escalope	Escalope panée, viennoise ou milanaise, veau, cuite	271	22.9	12.6	0.49	14.1	2.42	0.94	0.985	0	47.8	0		7.04	3.87	72.4	328	28.7	1.11	24.3	2.26	12.9	0.006	0.13	3.32	0.72	15.3	
 ciqual:25189	ciqual	Risotto, with cheeses, prepacked	Risotto, aux fromages, préemballé	195	5.65	30.9	0.58	5.16	2.49	0.7	0.82	0		0	0															
 ciqual:25216	ciqual	Pasta (e.g. ravioli), filled, cooked (average)	Pâtes fraîches farcies (ex : raviolis, tortellinis), cuites (aliment moyen)	198	7.97	25.6	2.78	6.48	2.88	2.49	0.703	0	56.1	0	0.19	2.08	1.07	26.7	100	44.1	0.67	17.6	0.62	19.7	0	0	0.49	0.47	18.5	
@@ -319,6 +424,7 @@ ciqual:25538	ciqual	Beef carpaccio, with marinade (oil, herbs, cheese), home-mad
 ciqual:25543	ciqual	Sandwich baguette (average)	Sandwich baguette (aliment moyen)	293	11.7	33.2	2.21	12.1	5.55	2.08	1.633	0	38.9	0		3.59	2.3	38.4	164	69.6	1	20.8	1.15	142	2.63	0.36	1.45	0.41	20	
 ciqual:25547	ciqual	Toasted ham and cheese sandwich, prepacked	Croque-monsieur, préemballé	253	10.6	26.1	2.84	11.4	5.48	1.98	1.488	0	44.2	0	0	4.4	1.51	30.8	189	251	0	21.5	1.6	46.6	1.7	0.7	0.6	0.39	23.1	
 ciqual:25571	ciqual	Falafel, from take-away	Falafel ou boulette de pois-chiche et/ou fève, vente à emporter	252	8.25	18.7	1.4	14.4	1.5	7.7	1.6	0	48	0.9	0.33	6.4	5.83	1.95	390	57	2.1	51	1.3	2.917	0	0	6.9		105	
+ciqual:25598	ciqual	Seitan, prepacked	Seitan, préemballé	134	20.6	6.74	0.81	2.5	0.38	0.9	1.127	0	67.8	0	0.16	1.5	0.44		75	20	1.5	18	1.2	2.05	0	0	0.51	0.038	14.7	0
 ciqual:25608	ciqual	Tabbouleh or couscous salad, with vegetables, prepacked	Taboulé ou salade de semoule aux légumes, préemballé	179	4.88	23.7	4.9	6.7	0.67	2.5	0.998	0	60.3	0.9	0.38	4.23	1.45	0.1	210	24	0.88	25	0.65	12.4	6.27	0	1.26	0	14.5	0
 ciqual:25619	ciqual	Pasta salad, with vegetable and meat/fish, with sauce, prepacked	Salade de pâtes aux légumes et poisson ou viande, avec sauce, préemballée	160	6.24	14.2	1.59	8.24	1.59	1.96	0.945	0	70.2	0		5.01	1.64	11.3	193	24	0.95	23.3	0.53	52.2	12.3	0.12	1.18	0.14	18.4	
 ciqual:25620	ciqual	Guacamole, prepacked	Guacamole, préemballé	191	1.82	4.64	2.3	17.2	3.73	4.84	1.357	0	72.1	0		10.2	1.67	3.6	440	18	0.6	26.7	0.4	9.33	359	0	2.4		60.3	
@@ -334,6 +440,7 @@ ciqual:25916	ciqual	Soup, minestrone, prepacked, to be reheated	Soupe minestrone
 ciqual:25947	ciqual	Broth or stock, poultry, dehydrated and reconstituted	Bouillon de volaille, déshydraté reconstitué	7.19	1.23	0.28	0	0.13	0.13	0	0.78	0	97.4	0	0	0.002	0.002	0	10	5	0.05	1	0.01	1	0			0.01	1	
 ciqual:25996	ciqual	Salmon, cooked (average)	Saumon, cuit, sans précision (aliment moyen)	205	23.2	0.61	0	12.2	2.48	0	0.126	0	62.8	0	0	4.57	4.05	54.5	383	10.2	0.36	28.4	0.41		2.45			2.8	19.7	
 ciqual:25997	ciqual	Cod, cooked (average)	Cabillaud, cuit, sans précision (aliment moyen)	100	23.3	0	0	0.76	0.17	0	0.196	0	74.8	0	0	0.11	0.3	51.2	327	14.4	0.2	25.4	0.5	5.16	0.53	0.63	0.6	1.75	11.4	0
+ciqual:25998	ciqual	Atlantic herring, smoked	Hareng fumé, doux	163	18.1	0.44	0.24	9.9	2.24	0	3.775	0	67.7	0	0	5.51	1.59	54.9	380	62	0.7	39	0.51	0	0	17.7	1.72	13.4	10.8	0
 ciqual:26020	ciqual	Mackerel, fried	Maquereau, frit	186	23.6	0	0	10.2	2.96	0	0.208	0	64.6	0	0	3.74	2.28		323				1	0		12.3		12		0
 ciqual:26030	ciqual	Fish, breaded, fried, prepacked	Poisson pané, frit	194	11.9	13.5	0.37	10	2.15	0.8	0.845	0	62.2	0	0	3.54	4.34	36	286	15.1	0.44	32.4	0.39	16	0	0	3.8	1.95	29	0
 ciqual:26036	ciqual	Salmon, raw, farmed	Saumon, élevage, cru	193	20.5	0	0	12.4	2.15	0	0.114	0	66.5	0	0	4.9	4.17	53.6	358	5.84	0.48	27.4	0.36	4.27	1.8	4.92	2.3	3.95	20.8	
@@ -341,17 +448,24 @@ ciqual:26037	ciqual	Salmon, smoked	Saumon fumé	184	22.2	0.13	0.13	10.5	1.81	0.2
 ciqual:26039	ciqual	Tuna,  canned in brine, drained	Thon, au naturel, appertisé, égoutté	143	26.8	0	0	3.94	1.01	0	0.627	0	68	0	0	0.92	1.35	50	207	6.26	0.76	24	0.45	6.5	0	5.08	0.88	2.53	16.3	0
 ciqual:26040	ciqual	European pilchard or sardine, in olive oil, canned, drained	Sardine, à l'huile d'olive, appertisée, égouttée	224	23.3	0.11	0	14.5	3.07	0	0.728	0	60.9	0	0	6.33	2.96	64.2	412	432	2.5	44	1.8	8	0	10.3	2.43	20	8.55	0
 ciqual:26041	ciqual	Tuna, roasted/baked	Thon, rôti/cuit au four	136	29.9	0	0	1.83	1	0	0.14	0	66.9	0	0	0.25	0.58	43.5	445	18.7	1.8	46	0.44	8		1.83	0.32	2.57	40.6	0
+ciqual:26043	ciqual	Cod, raw	Cabillaud, cru	77.4	18.1	0	0	0.57	0.1	0	0.163	0	79.8	0	0	0.068	0.22	43.9	357	4.43	0.49	25.6	0.39	1	1		0.44	1.32	21.2	0
 ciqual:26044	ciqual	European hake, raw	Merlu, cru	82.6	17.6	0	0	1.35	0.22	0	0.246	0	80	0	0	0.38	0.31	31.4	332	25.3	1	22.9	0.64	0	0	2.15	0.25	1	9	0
 ciqual:26046	ciqual	Surimi, on sticks, in slices or grated, crab flavour	Surimi, bâtonnets, tranche ou râpé saveur crabe	117	7.54	11.8	2.71	4.33	0.41	0.73	1.57	0	72.5	0	0	2.37	1.36	10.8	51.8	19	0.4	11.5	0.19	28	0	0	1.1	0.71	2	
 ciqual:26059	ciqual	Common sole, steamed	Sole, cuite à la vapeur	94.6	20.3	0	0	1.48	0.2	0	0.415	0	77	0	0	0.2	0.2	70.8	175	96	0.72	23.1	0.39	0				1.12		
 ciqual:26064	ciqual	Yellowfin tuna, raw	Thon albacore, cru	112	25	1	0	0.94	0.17	0	0.1	0	71.6	0	0	0.12	0.15	43	410	7.77	0.98	40.8	0.23	195	2.6	2.3	0.72	3.44	8.5	0
 ciqual:26079	ciqual	Anchovy, raw	Anchois, cru	129	18.6	0	0	6.07	1.64	0	0.182	0	71.8	0	0	1.11	1.69	124	294	86.5	2.63	22.3	1.86	65.7	0	11	0.57	0.62	9	0
+ciqual:26081	ciqual	Anglerfish, grilled/pan-fried without added fat	Lotte ou baudroie, grillée/poêlée	98.2	23	0	0	0.68	0.19	0	0.061	0	75	0	0	0.1	0.2	26	472	11	0.46	28.5	0.64	50	0.5	0	0.6	0.93	20.5	0
+ciqual:26094	ciqual	Turbot, roasted/baked	Turbot, rôti/cuit au four	121	21.3	0.83	0	3.64	0.9	0	0.48	0	71.5	0	0	0.8	0.7	62	323	42.5	0.53	63.5	0.29	12	1.7	0	0	2.54	9	
+ciqual:26110	ciqual	Surmullet or red mullet, steamed	Rouget-barbet de roche, vapeur	143	24.1	0	0	5.2	0.73	0	0.239	0	69.6	0	0	3.95	0.29	63.9	410	21	0.48	33	0.39	23.1	3.17	1.27	2.1	3.74	14.3	0
 ciqual:26120	ciqual	European hake, braised	Merlu, cuit à l'étouffée	112	21.2	0	0	3	0.92	0	0.248	0	74.4	0	0		0.59	77.4	290	41.8	0.3	29.2	0.55	7.5	0	3.2	0.6	1.6	26.4	0
+ciqual:26123	ciqual	Mackerel, fillet (grilled or not grilled), canned in brine, drained	Maquereau, filet (grillé ou non), au naturel, appertisé, égoutté	221	18.8	0.018	0	16.2	3.74	0	0.843	0	59.9	0		5.23	7.24	64.8	200	38	1.1	23	0.8	51.9	0	4.56	1.23	10.5	8.37	0
 ciqual:26136	ciqual	European pilchard or sardine, grilled/pan-fried without added fat	Sardine,  grillée/poêlée	194	25.1	0	0	10.4	3.23	0	0.35	0	64	0	0	3.26	3.91	0	400	130	1.7	34	1.4	0	0	12.3	0.31	12	4	0
 ciqual:26177	ciqual	Anchovy, fillets, salted, in oil, semi-preserved, drained	Anchois, filets, salés, à l'huile, semi-conserve, égouttés	199	24.9	0	0	11	1.64	0	9	0		0	0			70	215		6.9		1.7	55	0	4.6	0.29		8	0
+ciqual:26236	ciqual	Horse mackerel, oily (autumn, winter), raw	Chinchard gras, cru	147	19.6	0	0	7.66	1.79	0	0.137	0	71.7	0	0	2.56	2.15	45.3	382	5.72	0.85	31.7	0.38	4.7		48.5	0.48	7.5		0
 ciqual:26245	ciqual	Tuna, flaked, in sunflower oil, canned, drained	Thon à l'huile de tournesol, miettes, appertisées, égouttées	227	23.4	0	0	14.8	1.62	0	0.848	0	60.9	0	0	4.55	7.93	38	210	11	1	27	0.71	0		1.21	8.68	4.46	6.71	0
 ciqual:26249	ciqual	White fish, cooked (average)	Poisson blanc, cuit (aliment moyen)	114	22	0.32	0	2.74	0.58	0	0.282	0	73.8	0	0	0.98	0.69	65.3	334	26.4	0.44	29.3	0.61	7.96	0.51	1.86		1.98	14.9	0
 ciqual:27014	ciqual	Rainbow trout, farmed, roasted/baked	Truite arc en ciel, élevage, rôtie/cuite au four	143	21.5	0	0	6.33	1.51	0	0.133	0	71	0	0	2.15	1.94	56.9	391	60.5	0.35	28.3	0.59	9.5	2.9	15	1.9	4.56	11	
+ciqual:27018	ciqual	Pangasius, filets, cooked	Pangas, poisson-chat, machoiron, cuit	79	17.5	0	0	1	0.51	0	0.583	0	80.6	0	0	0.36	0.07	40.8	200	7.5	0.09	18	0.3	0	0	0	0.28	0.89	11.1	
 ciqual:27030	ciqual	European bass, roasted/baked	Bar commun ou loup, rôti/cuit au four	151	22.2	1.02	0	6.51	1.27	0	0.172	0	69.1	0	0	2.36	2.14	63.3	410	11	0.28	30.3	0.42	0		4.15	0.97	3.7	12.6	
 ciqual:27031	ciqual	Gilthead seabream, roasted/baked	Dorade royale ou daurade ou vraie daurade, rôtie/cuite au four	148	23.6	0	0	5.9	1.3	0	0.177	0	68.8	0	0	2.4	1.79	72.4	420	13	0.2	29	0.48	0	0.59	5.71	0.65	2.37	17.2	
 ciqual:28101	ciqual	Pork, chop, grilled/pan-fried	Porc, côte grillée/poêlée	211	29.6	0	0	10.3	4.11	0	0.142	0	58.9	0	0	4.31	1.37	82.4	470	7.3	0.7	29	2.4	0	0	0.43	0	0.66	10.1	
@@ -363,24 +477,39 @@ ciqual:28480	ciqual	Pork, eye of shortloin, raw	Porc, rôti filet avec chaînett
 ciqual:28550	ciqual	Pork belly, brined	Poitrine de porc demi-sel	270	16.8	1.3	0.6	22	8.3	0	1.975	0	55.3	0	0	10.8	2.94		256	8.4	0.52	16	1.68	0			0.34	0.83	2.19	
 ciqual:28727	ciqual	Bacon, back	Filet de bacon	118	23.1	0.7	0	2.6	1.07	0	3.175	0	70.1	0	0	1.21	0.32	47.2	470	3.8	0.4	23	1.4	10.5	6.55	0	0.45	0.38	49.1	
 ciqual:28845	ciqual	Dry-cured ham, Serrano	Jambon sec Serrano	235	30.4	0.76	0.36	12.3	5.2	0	4.975	0	54.1	0	0	5.75	1.38													
+ciqual:28860	ciqual	Viande des Grisons or dried beef meat	Viande des Grisons	207	38.9	0.56	0.56	5.47	2.52	0	3.825	0	49.5	0	0	1.25	0.098	91.9	660	30.8	1.8	46.6	5.9	3	0	0	0	2.39	33.9	
 ciqual:28910	ciqual	Cooked ham, choice	Jambon cuit, choix	125	19.5	1.7	1.7	4.5	1.78	0.08	2.362	0	72.3	0	0															
 ciqual:28964	ciqual	Cooked ham, from turkey, in slices	Jambon de dinde ou blanc de dinde en tranche	99.3	20.9	0.023	0.023	1.67	0.54	0.39	1.907	0	74	0	0	0.57	0.46	49.7	370	7.1	0.35	26	0.92	0	26.3	0	0.11	0.6	17.3	
 ciqual:30005	ciqual	Chipolata sausage, cooked	Chipolata cuite	283	18.8	0.8	0.4	22.4	8.27	0	2.147	0	55.4	0	0.9	9.91	3.17	75.2	370	19	0.79	23	2	0	11	0.46	0.36	0.81	0	
+ciqual:30011	ciqual	Toulouse sausage, cooked	Saucisse de Toulouse cuite	279	18.8	1.28	0.6	22.1	8.2	0	1.715	0	54.9	0	0	9.94	2.96	88.5	650	11.5	0.9	18.2	2.2	15.3	0	0	0.35	0.41	0	
 ciqual:30134	ciqual	Frankfurter sausage	Saucisse de Francfort	279	13.7	3.37	1	23.4	9	0	1.975	0	56.7	0	0	11.3	3.15	73.1	164	16.5	0.91	11.9	1.4	0		0.26	0.1	0.42	1.6	
 ciqual:30309	ciqual	Dry sausage, thin size	Saucisse sèche	460	27.3	4.04	1.21	37.1	14.5	0.59	4.75	0	26.2	0	0	17.7	4.89													
 ciqual:30315	ciqual	Spicy pork sausage with red pepper	Chorizo	425	23.5	1.24	1.24	36.1	14.3	0.93	4.225	0	34	0	0	16.3								55.25						
 ciqual:30350	ciqual	Salami	Salami	457	17.7	2.59	0	41.8	16.2	0	4.05	0	33.2	0	0	18.3	5.24	95.9	300	7.2	1	15	1.9	10.5	3.61	0.68	1.26	1.58	8.54	
 ciqual:30789	ciqual	Mortadella	Mortadelle	310	15.2	0.69	0.67	27.4	10.2	0	2.417	0	55.1	0.014	0	11.5		72.5	270	36.5	0.8	26.9	1.5	7		0.78	0.5	0.68	31.5	
+ciqual:30887	ciqual	Other jam, reduced sugar	Confiture, autres fruits ou mélange de fruits, allégée en sucres (extra ou classique)	162	0.75	38	38	0.21	0.026	1.8	0.022	0	58.2	0	0.76			0	110	13	0.2	6.7	0.06	10.2	9.57	0	0.54		17.5	0
+ciqual:31000	ciqual	Chocolate bar with biscuit	Barre chocolatée biscuitée	492	5.56	61.4	43.3	24.1	14	3.7	0.33	0	3.8	0.46	0.026	7.72	1.38	9	322	126	3.2	42.3	0.84	9.25	0	0	1.38	0.25	7.25	0
+ciqual:31002	ciqual	Coconut bar, chocolate-coated	Barre à la noix de coco, enrobée de chocolat	475	3.88	60.2	53	23.8	19.6	3	0.5	0	7.83	0.81	0	3.75	0.49	5.5	331	78.8	1.8	46.8	0.8	8.92	0	0	0.18	0.17	25	
 ciqual:31004	ciqual	Milk chocolate, bar	Chocolat au lait, tablette	550	7.5	58.9	56.3	30.8	18.7	2.9	0.195	0	0.37	0	0.54	9.52	1.03	22.1	510	220	3.6	59	1.1	42.8	1.58	1.5	0.45	0.54	18.7	
 ciqual:31005	ciqual	Dark chocolate, 50% cocoa, bar	Chocolat noir 50 % de cacao environ, tablette	521	5.98	53	46.3	29.6	19	8.31	0.025	0	0.7		0.78	9.37	0.94	0.6	490	40	3.5	100	2	12.3	0	0	0.72	0	22.3	
 ciqual:31006	ciqual	Jam or marmalade, miscellaneaous fruits (not reduced sugar) (average)	Confiture ou marmelade ou gelée, tout type de fruits, non allégée en sucres (aliment moyen)	244	0.33	59.3	57.7	0.28	0.073	1.29	0.016	0	38.7	0.045			0.046	0						0	16.2					0
 ciqual:31008	ciqual	Honey	Miel	331	0.65	82.1	81.1	0	0	0	0.01	0	17.1		0	0	0	0	70.3	7.93	0.18	4.26	0.098	0	0.5	0	0	0	2	0
+ciqual:31010	ciqual	White chocolate, bar	Chocolat blanc, tablette	563	6.16	57.1	56	34.2	21.3	1	0.22	0	0.81		0	10	1.06	23	350	281	0.2	26.5	0.9	12.8	0	0	1.14	0	10	
 ciqual:31016	ciqual	Sugar, white	Sucre blanc	399	0	99.7	99.7	0	0	0	0.005	0	0.23	0	0	0	0	0	13.5	3.69	0.077	1.65	0.02	0	0	0	0	0	0	0
+ciqual:31017	ciqual	Sugar, brown	Sucre roux	393	0.12	98.1	97	0	0	0	0.07	0	1.34	0	0	0	0	0	133	83	0.71	9	0.03	0	0	0	0	0	1	0
+ciqual:31018	ciqual	Milk chocolate, with dried fruits (nuts, almonds, raisins, praliné), bar	Chocolat au lait aux fruits secs (noisettes, amandes, raisins, praline), tablette	559	8.43	48.7	43.6	35.9	17	3.52	0.253	0	1.12		0	17	1.92	17.5	617	187	1.4	61	0.98	38.8	0	0	6.25	0.32	42	
 ciqual:31032	ciqual	Chocolate spread with hazelnuts	Pâte à tartiner chocolat et noisette	549	5.02	57.9	56.2	32.4	9.18	3.23	0.124	0	0.38		0	17	3.99	2.25	503	99.5	3.85	97.1	1	0	0.75	0	6.6	1.68	42	
+ciqual:31035	ciqual	Ice cream bar, chocolate	Barre glacée chocolatée	354	4.79	37	28.8	20.5	13	1.36	0.25	0	35.2	0.016	0.037	4.41	1.35	8.8	251	145	1.1	40.3	1.1	61.5	0	0	1.5	0.26	0.87	
+ciqual:31036	ciqual	Sugared almond	Dragée amande	465	5.25	75.7	68.3	14.7	1.25	4.6	0.087	0	1.45	0		10.5	2.89	0	262	84	2.5	48	1.02	0	0	0	7.77		16	
+ciqual:31050	ciqual	Marshmallow	Guimauve ou marshmallow	336	3.31	80.7	69.9	0.081	0	0.011	0.2	0	16.4	0		0.051	0.03	0	5	3	0.23	2	0.04	0	0	0	0	0	1	
+ciqual:31059	ciqual	Hard candy and lollipop	Bonbon dur et sucette	384	0.16	95.3	70.4	0.18	0.087	0.91	0.085	0	1.3	0		0	0	0	5	3	0.3	3	0.01	0	0	0	0	0	0	
 ciqual:31060	ciqual	Jelly candy	Bonbon gélifié	339	4.88	76.9	58.4	0.53	0.25	1.5	0.02	0	14.9	0	1.23	0.14	0.044		13	0	0	1.08	0	0	0	0	0	0	0.85	0
 ciqual:31063	ciqual	Chocolate confectionery, filled with nuts and/or praliné	Bouchée chocolat fourrage fruits à coques et/ou praliné	558	9.1	51.5	46.2	34.7	13.6	2.1	0.325	0			0					275		52								
 ciqual:31074	ciqual	Dark chocolate, 70% cocoa, bar	Chocolat noir 70 % de cacao environ, de dégustation, tablette	591	10.4	26.9	17.9	46.3	28.7	12.8	0.02	0	0.9	0	0	14	1.46	6.07	750	62	11	200	3	10.7	0	2.16	0.67	0	52	
+ciqual:31098	ciqual	Chocolate bar, milk chocolate, with nougat	Barre chocolat au lait avec nougat	532	5.8	60.5	60.1	29	17.4	2.9	0.113	0	0.6	0	0	8.89	1.1	25.3	260	150	2.3	50	0.97	58.2	0	0	0.84	0.37	19.2	
 ciqual:31106	ciqual	Cereal bar with chocolate	Barre céréalière au chocolat	451	6.55	73	32.9	14.9	7.37	4.5	0.502	0	2.54	6.6		3.45	0.98	3.3	217	260	3.1	45	1	6.92	0	0.62	1.45	0.2	74	0
+ciqual:31112	ciqual	Jelly candy, liquorice, roll or stick	Bonbon gélifié à la réglisse, type rouleau ou batonnet	347	3.62	75.6	46.3	1.55	0.73	8.18	1.05	0		0	0		0													
+ciqual:31113	ciqual	Cereal bar with fruit	Barre céréalière aux fruits	379	5.49	74.1	29.6	7.07	3.44	3.8	0.623	0	8.68	6.45		1.57	2.06	0	392	84	2.18	91	1.6	0	0	0	2.5	0.24	30	0
 ciqual:31120	ciqual	Chocolate, bar (average)	Chocolat, tablette (aliment moyen)	552	7.57	50.4	45.2	34.2	20.3	5.96	0.131	0	0.74		0.32	10.9	1.31	12.8	519	142	4.96	93.2	1.6	29.1	0.76	1.12	1.28	0.38	24.9	
 ciqual:32003	ciqual	Breakfast cereals (average)	Céréales pour petit déjeuner (aliment moyen)	402	7.96	73.2	21.2	7.21	1.96	5.99	0.603	0	3.48	0	0.29	3.13	1.52	0.81	321	165	7.91	62.3	2.33	12.4	6.04	3.15	3	0.7	194	1
 ciqual:32013	ciqual	Breakfast cereals with chocolate, not filled, not fortified	Céréales pour petit déjeuner chocolatées, non fourrées, non enrichies en vitamines et minéraux	387	8.63	77.7	26.8	3.2	1.14	6.1	0.282	0	2.7	0	0.18	0.81	0.73	0	453	27.7	4.3	70.4	1.4	9.25	0	0	0.56	0	16.6	1
@@ -399,6 +528,7 @@ ciqual:36018	ciqual	Chicken, breast, without skin, grilled/pan-fried	Poulet, fil
 ciqual:36024	ciqual	Chicken, leg, meat, raw	Poulet, cuisse, viande crue	114	19.3	0	0	4.05	1.03	0	0.23	0	76	0	0	1.3	0.98	81	229	10.3	0.99	22.3	1.8	16.7	3.1	0	0.2	0.42	7.67	
 ciqual:36027	ciqual	Chicken nuggets, breaded croquette, prepacked	Nuggets ou croquette panée de poulet, préemballé	250	15.6	19.4	1.3	11.6	2.68	2.4	1.367	0	48.6	0	0.41	8.05	0.25	0	270	25	1	25	0.67	27.9	0	0	2.41	0.23	10.9	
 ciqual:36033	ciqual	Chicken, wing, meat and skin, roasted/baked	Poulet, aile, viande et peau rôties/cuites au four	247	23.8	0	0	16.9	4.98	0	0.245	0	59.4	0	0	7.71	3.59	141	212	18	0.84	19	1.64	12	0	0.2	0.69	0.35	9	
+ciqual:36102	ciqual	Quail, meat and skin, cooked	Caille, viande et peau cuites	206	26.8	0	0	10.9	3.51	0	0.13	0	60.5	0	0	4.34	3.09	86	216	15	4.43	22	3.1	70	2.3	0.2	0.7	0.36	6	
 ciqual:36200	ciqual	Duck, meat and skin, roasted/baked	Canard, viande et peau rôties/cuites au four	331	19	0	0	28.4	9.67	0	0.147	0	51.8	0	0	12.9	3.65	84	204	11	2.7	16	1.86	63	0	0.1	0.7	0.3	6	
 ciqual:36301	ciqual	Turkey, meat, raw	Dinde, viande crue	108	22.6	0	0	1.93	0.46	0	0.295	0	75.4	0	0	0.48	0.41	67	235	11	0.86	27	1.84	9	0	0.2	0.09	1.24	7	
 ciqual:36306	ciqual	Turkey, escalope, grilled/pan-fried	Dinde, escalope grillée/poêlée	124	28.5	0		1.09	0.51	0	0.163	0	66.3	0	0	0.33	0.26	72.5	462	5.42	0.49	44.4	1.22	1	0.75	0	0.08	0.61		
@@ -414,12 +544,20 @@ ciqual:39509	ciqual	Ice cream, cone (normal size)	Glace ou crème glacée, cône
 ciqual:39515	ciqual	Ice cream, in box	Glace ou crème glacée, en bac	191	2.55	26.1	21.9	8.4	5.44	0	0.115	0	60.5	0	0.21	2	0.28	39.3	190	74	0.14	14.3	0.35	99.5	0	0	0.48	0.43	10	
 ciqual:39524	ciqual	Sorbet, in box	Sorbet, en bac	122	0.41	28.7	24.9	0.56	0.33	0.99	0.021	0	67.1	0		0.2	0.03	1	56.9	19.7	0.18	6.18	0.48	12.1	2.3	0	0.01	0.065	2.5	0
 ciqual:39526	ciqual	Ice lolly	Glace à l'eau	83.8	0.18	20.5	19.4	0.17	0.1	0.26	0.007	0	81.8	0		0	0	0	13	5.8	0.01	1.4	0	45.2	2.35	0	0		0	0
+ciqual:40105	ciqual	Liver, heifer, cooked	Foie, génisse, cuit	165	26.3	2.2	0	5.71	1.69	0	0.193	0	64.1	0	0	0.63	1.02	204	351	6.14	5.8	17.8	3.82	7740	20	0.51	0.46	83.1	536	
+ciqual:42003	ciqual	Meal replacement, low calorie, ready-to-drink	Substitut de repas hypocalorique, prêt à boire	87.9	6.79	9.8	7.2	2.45	0.55	0	0.19	0	79.7	0	0	0.5	1.4	3.4	213	124	2.2	20.3	2	103	20.3	0.91	3.92	0.4	68.1	
+ciqual:53101	ciqual	Plantain banana, cooked	Banane plantain, cuite	125	0.79	28.9	14	0.18	0.069	2.3	0.013	0	67.3	0	0	0.015	0.033	0	465	2	0.58	32	0.13	30.8	10.9	0	0.13	0	26	0
+ciqual:54031	ciqual	Cassava or manioc, root, raw	Manioc, racine crue	157	1.36	36.3	1.7	0.28	0.074	1.8	0.035	0	59.7	0	0	0.075	0.048	0	271	16	0.27	21	0.34	0.67	20.6	0	0.19	0	27	0
+ciqual:54034	ciqual	Cassava or manioc, root, cooked	Manioc, racine cuite	135	0.69	32.8		0.043		0.4		0	65.2	0	0			0		12.1	0.6		0.35	0	13.1					0
 fdc:167534	sr_legacy	Cream puff, eclair, custard or cream filled, iced		334	4.41	36.53	22.05	18.52	7.055	0.9	0.662	0	38.64			6.07	4.173	66	68	35	0.95	10	0.45	23	0	0.3	0.95	0.17	16	1
+fdc:167552	sr_legacy	Snacks, popcorn, caramel-coated, without peanuts		431	3.8	73.9	53.19	12.8	3.61	5.2	0.515	0	2.8			2.88	4.48	0	109	43	1.74	35	0.58	2	0	0	1.2	0.01	5	0
 fdc:167558	sr_legacy	Snacks, tortilla chips, plain, white corn, salted		472	7.1	62.38	0.78	20.68	2.811	5.4	0.82	0	2.64			5.664	10.769	0	182	106	1.52	84	1.38	0	0	0	3.53	0.36	12	0
 fdc:167746	sr_legacy	Lemons, raw, without peel		29	1.1	6.52	2.5	0.3	0.039	2.8	0.005	0	88.98			0.011	0.089	0	138	26	0.6	8	0.06	1	53	0	0.15	0	11	0
+fdc:167750	sr_legacy	Prickly pears, raw		41	0.73	5.97		0.51	0.067	3.6	0.013	0	87.55			0.075	0.213	0	220	56	0.3	85	0.12	2	14			0	6	0
 fdc:167812	sr_legacy	Pork, fresh, belly, raw		518	9.34	0	0	53.01	19.33	0	0.08	0	36.74			24.7	5.65	72	185	5	0.52	4	1.02	3	0.3		0.39	0.84	1	0
 fdc:167839	sr_legacy	Pork, fresh, loin, top loin (chops), boneless, separable lean and fat, raw		155	21.55	0	0	6.94	2.45	0	0.12	0	70.38			2.985	0.878	67	373	7	0.5	26	1.55	1	0	0.4	0.13	0.53	0	0
 fdc:167844	sr_legacy	Pork, fresh, shoulder, whole, separable lean and fat, cooked, roasted		292	23.28	0	0	21.39	7.86	0	0.17	0	54.8			9.47	2.05	90	329	24	1.32	18	3.71	2	0.5	1.5	0.19	0.8	5	0
+fdc:167903	sr_legacy	Pork, fresh, ground, cooked		297	25.69	0	0	20.77	7.72	0	0.182	0	52.75			9.25	1.87	94	362	22	1.29	24	3.21	2	0.7	0.5	0.21	0.54	6	0
 fdc:167949	sr_legacy	Snacks, corn-based, extruded, puffs or twists, cheese-flavor		567	5.46	53.74	3.57	36.54	3.749	0.8	2.32	0	0.56			0.478	17.934	7	180	53	1.69	18	0.37	13	0.1	0.1	4.18	0.2	80	0
 fdc:167961	sr_legacy	Snacks, pork skins, plain		544	61.3	0	0	31.3	11.37	0	4.545	0	1.8			14.78	3.64	95	127	30	0.88	11	0.56	12	0.5	0	0.53	0.64	0	0
 fdc:168154	sr_legacy	Kumquats, raw		71	1.88	9.4	9.36	0.86	0.103	6.5	0.025	0	80.85			0.154	0.171	0	186	62	0.86	20	0.17	15	43.9	0	0.15	0	17	0
@@ -430,21 +568,39 @@ fdc:168258	sr_legacy	Pork, fresh, shoulder, arm picnic, separable lean only, raw
 fdc:168322	sr_legacy	Pork, cured, bacon, pre-sliced, cooked, pan-fried		468	33.92	1.7	0	35.09	11.964	0	4.21	0	23.65			15.53	6.112	99	499	11	0.95	31	3.06	11	0	0.4	0.42	1.09	0	0
 fdc:168411	sr_legacy	Edamame, frozen, prepared		121	11.91	3.71	2.18	5.2	0.62	5.2	0.015	0	72.77			1.282	2.156	0	436	63	2.27	64	1.37	15	6.1	0	0.68	0	311	0
 fdc:168555	sr_legacy	Potatoes, mashed, home-prepared, whole milk and butter added		113	1.86	15.31	1.43	4.22	2.613	1.5	0.792	0	75.61			1.07	0.199	11	284	24	0.26	18	0.27	38	6	0.2	0.12	0.07	8	0
+fdc:168588	sr_legacy	Nuts, almond butter, plain, without salt added		614	20.96	8.52	4.43	55.5	4.152	10.3	0.018	0	1.64			32.445	13.613	0	748	347	3.49	279	3.29	0	0	0	24.21	0	53	0
 fdc:168600	sr_legacy	Nuts, mixed nuts, oil roasted, with peanuts, with salt added		607	20.04	14.05	4.15	53.95	8.711	7	0.682	0	2.08			28.488	14.612	0	632	117	2.61	229	3.36	0	0.5	0	7.82	0	83	0
+fdc:168749	sr_legacy	Alcoholic beverage, beer, light		29	0.24	1.64	0.09	0	0	0	0.01	3.1	94.88			0	0	0	21	4	0.03	5	0.01	0	0	0	0	0.02	6	0
+fdc:168752	sr_legacy	Alcoholic beverage, pina colada, prepared-from-recipe		174	0.42	22.36	22.33	1.88	1.636	0.3	0.015	9.9	64.99			0.082	0.033	0	71	8	0.21	8	0.13	0	4.9		0.02	0	12	0
+fdc:168837	sr_legacy	Syrups, corn, light		283	0	76.79	76.77	0.2	0	0	0.155	0	22.81			0	0	0	1	13	0	1	0.44	0	0	0	0	0	0	0
+fdc:168849	sr_legacy	Snacks, banana chips		519	2.3	50.7	35.34	33.6	28.97	7.7	0.015	0	4.3			1.95	0.63	0	536	18	1.25	76	0.75	4	6.3	0	0.24	0	14	0
+fdc:168871	sr_legacy	Millet, cooked		119	3.51	22.37	0.13	1	0.172	1.3	0.005	0	71.41			0.184	0.508	0	62	3	0.63	44	0.91	0	0	0	0.02	0	19	0
+fdc:168893	sr_legacy	Wheat flour, whole-grain (Includes foods for USDA's Food Distribution Program)		340	13.21	61.27	0.41	2.5	0.43	10.7	0.005	0	10.74			0.283	1.167	0	363	34	3.6	137	2.6	0	0	0	0.71	0	44	0
 fdc:168894	sr_legacy	Wheat flour, white, all-purpose, enriched, bleached		364	10.33	73.61	0.27	0.98	0.155	2.7	0.005	0	11.92			0.087	0.413	0	107	15	4.64	22	0.7	0	0	0	0.06	0	29	1
+fdc:168914	sr_legacy	Rice noodles, cooked		108	1.79	23.01	0.03	0.2	0.023	1	0.048	0	73.82			0.026	0.023	0	4	4	0.14	3	0.25	0	0	0	0.03	0	1	0
+fdc:169092	sr_legacy	Melons, cantaloupe, raw		34	0.84	7.86	7.86	0.19	0.051	0.9	0.04	0	90.15			0.003	0.081	0	267	9	0.21	12	0.18	169	36.7	0	0.05	0	21	0
+fdc:169231	sr_legacy	Ginger root, raw		80	1.82	15.77	1.7	0.75	0.203	2	0.033	0	78.89			0.154	0.154	0	415	16	0.6	43	0.34	0	5	0	0.26	0	11	0
 fdc:169279	sr_legacy	Sauerkraut, canned, solids and liquids		19	0.91	1.78	1.78	0.14	0.034	2.9	1.653	0	92.52			0.013	0.067	0	170	30	1.47	13	0.19	1	14.7	0	0.14	0	24	0
 fdc:169418	sr_legacy	Seeds, sunflower seed kernels, dry roasted, with salt added		582	19.33	15.07	2.73	49.8	5.219	9	1.637	0	1.2			9.505	32.884	0	850	70	3.8	129	5.29	0	1.4	0	26.1	0	237	0
 fdc:169580	sr_legacy	Candies, truffles, prepared-from-recipe		510	6.21	42.38	38.31	33.76	18.488	2.5	0.17		13.47			12.636	1.013	53	297	157	1.75	48	1.55	144	0.1		1.82	0.49	9	0
+fdc:169599	sr_legacy	Gelatins, dry powder, unsweetened		335	85.6	0	0	0.1	0.07	0	0.49	0	13			0.06	0.01	0	16	55	1.11	22	0.14	0	0	0	0	0	30	0
 fdc:169641	sr_legacy	Jams and preserves		278	0.37	67.76	48.5	0.07	0.01	1.1	0.08	0	30.47			0.038	0	0	77	20	0.49	4	0.06	0	8.8	0	0.12	0	11	0
+fdc:169661	sr_legacy	Syrups, maple		260	0.04	67.04	60.46	0.06	0.007	0	0.03	0	32.39			0.011	0.017	0	212	102	0.11	21	1.47	0	0	0	0	0	0	0
 fdc:169704	sr_legacy	Rice, brown, long-grain, cooked (Includes foods for USDA's Food Distribution Program)		123	2.74	23.98	0.24	0.97	0.26	1.6	0.01	0	70.27			0.369	0.366	0	86	3	0.56	39	0.71	0	0	0	0.17	0	9	0
+fdc:169741	sr_legacy	Oat flour, partially debranned		404	14.66	59.2	0.8	9.12	1.607	6.5	0.048	0	8.55			2.866	3.329	0	371	55	4	144	3.2	0	0	0	0.7	0	32	0
 fdc:169911	sr_legacy	Melons, honeydew, raw		36	0.54	8.29	8.12	0.14	0.038	0.8	0.045	0	89.82			0.003	0.059	0	228	6	0.17	10	0.09	3	18	0	0.02	0	19	0
 fdc:170110	sr_legacy	Peppers, sweet, red, cooked, boiled, drained, without salt		28	0.92	5.5	4.39	0.2	0.029	1.2	0.005	0	91.87			0.013	0.106	0	166	9	0.46	10	0.12	147	171	0	1.65	0	16	0
+fdc:170139	sr_legacy	Turnip greens, cooked, boiled, drained, with salt		20	1.14	0.86	0.53	0.23	0.053	3.5	0.662		93.2			0.015	0.091	0	203	137	0.8	22	0.14	381	27.4	0	1.88	0	118	0
 fdc:170247	sr_legacy	Snacks, popcorn, oil-popped, white popcorn, salt added		500	9	47.2		28.1	4.89	10	2.21		2.8			8.17	13.42	0	225	10	2.78	108	2.64	1	0.3			0	17	0
+fdc:170392	sr_legacy	Cabbage, kimchi		15	1.1	1.06	1.06	0.5	0.067	1.6	1.245	0	94.3			0.037	0.241	0	151	33	2.5	14	0.22	5	0	0	0.11	0	52	0
 fdc:170401	sr_legacy	Chard, swiss, cooked, boiled, drained, without salt		20	1.88	2.03	1.1	0.08	0.012	2.1	0.448	0	92.65			0.016	0.028	0	549	58	2.26	86	0.33	306	18	0	1.89	0	9	0
+fdc:170686	sr_legacy	Buckwheat groats, roasted, cooked		92	3.38	17.24	0.9	0.62	0.134	2.7	0.01	0	75.63			0.188	0.188	0	88	7	0.8	51	0.61	0	0	0	0.09	0	14	0
 fdc:170857	sr_legacy	Cream, fluid, light (coffee cream or table cream)		195	2.96	3.67	3.67	19.1	10.176	0	0.18	0	73.75			4.525	0.789	59	136	91	0.05	9	0.32	120	0.8	1.1	0.12	0.14	2	0
+fdc:170882	sr_legacy	Milk, sheep, fluid		108	5.98	5.36		7	4.603	0	0.11		80.7			1.724	0.308	27	137	193	0.1	18	0.54	44	4.2			0.71	7	0
 fdc:170894	sr_legacy	Yogurt, Greek, plain, nonfat (Includes foods for USDA's Food Distribution Program)		59	10.19	3.6	3.24	0.39	0.117	0	0.09	0	85.1			0.053	0.012	5	141	110	0.07	11	0.52	1	0	0	0.01	0.75	7	0
 fdc:170903	sr_legacy	Yogurt, Greek, plain, lowfat		73	9.95	3.94	3.56	1.92	1.23	0	0.085	0	83.56			0.486	0.076	10	141	115	0.04	11	0.6	90	0.8	0	0.04	0.52	12	0
 fdc:171009	sr_legacy	Salad dressing, mayonnaise, regular		680	0.96	0.57	0.57	74.85	11.703	0	1.587	0	21.65			16.843	44.69	42	20	8	0.21	1	0.15	16	0	0.2	3.28	0.12	5	0
+fdc:171061	sr_legacy	Chicken, liver, all classes, cooked, simmered		167	24.46	0.87	0	6.51	2.06	0	0.19	0	66.81			1.416	1.988	563	263	11	11.63	25	3.98	3981	27.9	0	0.82	16.85	578	0
 fdc:171206	sr_legacy	Beef, chuck for stew, separable lean and fat, all grades, raw		128	21.75	0.16	0	4.48	1.86	0	0.2	0	72.51			2.32	0.3	64	367	13	2.12	21	5.43	2	0	0.1	0.17	2.3	3	0
 fdc:171249	sr_legacy	Cheese, romano		387	31.8	3.63	0.73	26.94	17.115	0	3.583	0	30.91			7.838	0.593	104	86	1064	0.77	41	2.58	96	0	0.5	0.23	1.12	7	0
 fdc:171284	sr_legacy	Yogurt, plain, whole milk		61	3.47	4.66	4.66	3.25	2.096	0	0.115	0	87.9			0.893	0.092	13	155	121	0.05	12	0.59	27	0.5	0.1	0.06	0.37	7	0
@@ -452,38 +608,54 @@ fdc:171290	sr_legacy	Cheese, pasteurized process, American, without added vitami
 fdc:171402	sr_legacy	Salad dressing, thousand island, commercial, regular		379	1.09	15.18	15.18	35.06	5.092	0.8	2.405	0	46.51			7.881	18.22	26	107	17	1.18	8	0.26	14	0	0	4	0	0	0
 fdc:171417	sr_legacy	Salad dressing, home recipe, vinegar and oil		449	0	2.5	2.5	50.1	9.1	0	0.003	0	47.4			14.8	24.1	0	8	0	0	0	0	0	0	0	4.61	0	0	0
 fdc:171479	sr_legacy	Turkey, whole, meat and skin, cooked, roasted		189	28.55	0.06	0	7.39	2.155	0	0.258	0	63.52			2.647	2.119	109	239	14	1.09	30	2.48	12	0	0.4	0.07	1.02	9	0
+fdc:171506	sr_legacy	Turkey, Ground, cooked		203	27.37	0	0	10.4	2.669	0	0.195	0	62.07			3.458	2.917	93	294	28	1.52	30	3.11	24	0	0.2	0.11	1.34	7	0
 fdc:171550	sr_legacy	Soup, minestrone, canned, chunky, ready-to-serve		53	2.13	6.24	2.17	1.17	0.62	2.4	0.72	0	86.72			0.38	0.11	2	255	25	0.74	6	0.6	89	2	0	0.67	0	13	1
 fdc:171618	sr_legacy	Blood sausage		379	14.6	1.29	1.29	34.5	13.4	0	1.7	0	47.3			15.9	3.46	120	38	6	6.4	8	1.3	0	0	1.3	0.13	1	5	0
 fdc:171706	sr_legacy	Avocados, raw, California		167	1.96	1.84	0.3	15.41	2.126	6.8	0.02		72.33			9.799	1.816	0	507	13	0.61	29	0.68	7	8.8	0	1.97	0	89	0
+fdc:171811	sr_legacy	Beef, tenderloin, steak, separable lean only, trimmed to 1/8" fat, all grades, cooked, broiled		200	29.04	0	0	8.39	3.195	0	0.15	0	62.93			3.35	0.319	82	370	19	1.84	25	5.38	0	0	0.1	0.4	1.66	10	0
+fdc:171917	sr_legacy	Beverages, tea, green, brewed, regular		1	0.22	0	0	0	0	0	0.003	0	99.93			0	0	0	8	0	0.02	1	0.01	0	0	0	0	0	0	0
+fdc:171940	sr_legacy	Water, with corn syrup and/or sugar and low calorie sweetener, fruit flavored		18	0	4.5	4.5	0	0	0	0.02	0	94.44			0	0	0	0	17	0	3	0.32	32	12.7	0	1.9	0.25	0	1
 fdc:172182	sr_legacy	Cheese, cottage, lowfat, 2% milkfat		81	10.45	4.76	4	2.27	1.235	0	0.77	0	81.24			0.516	0.083	12	125	111	0.13	9	0.51	68	0	0	0.08	0.47	8	0
 fdc:172234	sr_legacy	Mustard, prepared, yellow		60	3.74	1.83	0.92	3.34	0.214	4	2.76	0	83.72			2.182	0.774	0	152	63	1.61	48	0.64	5	0.3	0	0.36	0	7	0
+fdc:172343	sr_legacy	Fish oil, salmon		902	0	0		100	19.872	0	0		0			29.037	40.324	485	0	0	0	0	0	0	0			0	0	0
+fdc:172411	sr_legacy	Duck, domesticated, meat only, cooked, roasted		201	23.48	0	0	11.2	3.951	0	0.163	0	64.22			3.858	1.487	89	252	12	2.7	20	2.6	23	0	0.1	0.7	0.4	10	0
 fdc:172420	sr_legacy	Lentils, raw		352	24.63	52.65	2.03	1.06	0.154	10.7	0.015	0	8.26			0.193	0.526	0	677	35	6.51	47	3.27	2	4.5	0	0.49	0	479	0
 fdc:172485	sr_legacy	Lamb, leg, shank half, separable lean and fat, trimmed to 1/4" fat, choice, cooked, roasted		225	26.41	0		12.45	5.09	0	0.163		60.66			5.29	0.88	90	326	10	1.98	25	4.66	0	0		0.16	2.67	22	0
 fdc:172706	sr_legacy	Cake, sponge, commercially prepared		290	5.4	60.5	36.66	2.7	0.802	0.5	1.558	0	29.7			0.949	0.448	102	99	70	2.72	11	0.51	44	0	0.2	0.24	0.24	13	1
 fdc:172938	sr_legacy	Salami, dry or hard, pork		407	22.58	1.6		33.72	11.89	0	5.65	0	36.18			16	3.74	79	378	13	1.3	22	4.2	0	0			2.8	2	0
+fdc:173176	sr_legacy	Alcoholic beverage, wine, dessert, sweet		160	0.2	13.69	7.78	0	0	0	0.022	15.3	70.51			0	0	0	92	8	0.24	9	0.07	0	0	0	0	0	0	0
 fdc:173180	sr_legacy	Beverages, Protein powder whey based		352	78.13	3.15	0	1.56	0.781	3.1	0.39	0	3.44			0.158	0.299	16	500	469	1.13	195	6.18	0	0	0	0	2.45	33	0
+fdc:173205	sr_legacy	Beverages, carbonated, lemon-lime soda, no caffeine		41	0.09	10.42	10.38	0	0	0	0.025	0	89.49			0	0	0	1	2	0.02	1	0.01	0	0	0	0	0	0	0
 fdc:173435	sr_legacy	Cheese, goat, soft type		264	18.52	0	0	21.08	14.575	0	1.147	0	60.75			4.807	0.501	46	26	140	1.9	16	0.92	288	0	0.4	0.18	0.19	12	0
 fdc:173461	sr_legacy	Dulce de Leche		315	6.84	55.35	49.74	7.35	4.534	0	0.323	0	28.71			2.143	0.375	29	350	251	0.17	22	0.79	74	2.6	0.2	0.2	0.31	11	0
 fdc:173582	sr_legacy	Margarine-like, vegetable oil spread, 60% fat, tub, with salt		533	0.17	0.86	0	59.81	12.086	0	1.538	0	37.58			19.348	26.477	1	30	21	0	2	0	819	0.1	0	21.12	10.8	1	0
+fdc:173612	sr_legacy	Chicken, broilers or fryers, drumstick, meat and skin, cooked, roasted		191	23.35	0	0	10.15	2.74	0	0.307	0	66.39			4.155	2.083	130	247	11	1.11	22	2.36	12	0	0.1	0.19	0.39	4	0
+fdc:173672	sr_legacy	Fish, mackerel, Pacific and jack, mixed species, raw		158	20.07	0	0	7.89	2.247	0	0.215	0	70.15			2.629	1.94	47	406	23	1.16	28	0.67	19	2	9.1	1	4.4	2	0
+fdc:173704	sr_legacy	Fish, swordfish, cooked, dry heat		172	23.45	0	0	7.93	1.911	0	0.242	0	68.26			3.544	1.368	78	499	6	0.45	35	0.78	43	0	16.6	2.41	1.62	2	0
 fdc:173735	sr_legacy	Beans, black, mature seeds, cooked, boiled, without salt		132	8.86	15.01	0.32	0.54	0.139	8.7	0.003	0	65.74			0.047	0.231	0	355	27	2.1	70	1.12	0	0	0	0.87	0	149	0
 fdc:173745	sr_legacy	Beans, navy, mature seeds, raw		337	22.33	45.45	3.88	1.5	0.17	15.3	0.013	0	12.1			0.128	0.873		1185	147	5.49	175	3.65	0		0	0.02	0	364	0
 fdc:173757	sr_legacy	Chickpeas (garbanzo beans, bengal gram), mature seeds, cooked, boiled, without salt		164	8.86	19.82	4.8	2.59	0.269	7.6	0.018	0	60.21			0.583	1.156	0	291	49	2.89	48	1.53	1	1.3	0	0.35	0	172	0
+fdc:173804	sr_legacy	Lupins, mature seeds, cooked, boiled, with salt		116	15.57	6.49		2.92	0.346	2.8	0.6		71.08			1.18	0.73	0	245	51	1.2	54	1.38	0	1.1	0		0	59	0
 fdc:173864	sr_legacy	Ham, sliced, regular (approximately 11% fat)		164	16.6	2.33	1	8.8	0.5	1.3	2.035	0	67.27			4.354	0.789	57	287	24	1.02	22	1.35	0	4	0.7	0.08	0.42	7	0
 fdc:174183	sr_legacy	Fish, anchovy, european, canned in oil, drained solids		210	28.89	0	0	9.71	2.203	0	9.17	0	50.3			3.77	2.562	85	544	232	4.63	69	2.44	12	0	1.7	3.33	0.88	13	0
 fdc:174197	sr_legacy	Fish, flatfish (flounder and sole species), cooked, dry heat		86	15.24	0	0	2.37	0.542	0	0.907	0	81.11			0.657	0.459	56	197	25	0.23	22	0.39	12	0	3.5	0.77	1.31	6	0
 fdc:174210	sr_legacy	Crustaceans, shrimp, mixed species, raw (may contain additives to retain moisture)		71	13.61	0.91	0	1.01	0.261	0	1.415	0	83.01			0.181	0.295	126	113	54	0.21	22	0.97	54	0	0.1	1.32	1.11	19	0
+fdc:174267	sr_legacy	Peanut flour, defatted		327	52.2	18.9	8.22	0.55	0.063	15.8	0.45	0	7.8			0.225	0.143	0	1290	140	2.1	370	5.1	0	0	0	0.05	0	248	0
 fdc:174289	sr_legacy	Hummus, commercial		237	7.78	9.5	0.62	17.82	2.562	5.5	1.065	0	57.4			5.34	8.812	0	312	47	2.54	75	1.44	1	0	0	1.54	0	48	0
 fdc:174573	sr_legacy	Mortadella, beef, pork		311	16.37	3.05	0	25.39	9.51	0	3.115	0	52.3			11.38	3.12	56	163	18	1.4	11	2.1	0	0	1	0.22	1.48	3	0
 fdc:174687	sr_legacy	Jackfruit, raw		95	1.72	21.75	19.08	0.64	0.195	1.5	0.005	0	73.46			0.155	0.094	0	448	24	0.23	29	0.13	5	13.7		0.34	0	24	0
 fdc:174769	sr_legacy	Beef, variety meats and by-products, tripe, cooked, simmered		94	11.71	1.99	0	4.05	1.357	0	0.17	0	81.65			1.604	0.208	157	42	81	0.66	15	1.71	0	0		0.14	0.72	3	0
 fdc:174837	sr_legacy	Alcoholic beverage, wine, table, white		82	0.07	2.6	0.96	0	0	0	0.013	10.3	86.86			0	0	0	71	9	0.27	10	0.12	0	0	0	0	0	1	0
+fdc:174846	sr_legacy	Beverages, carbonated, ginger ale		34	0	8.9	8.9	0	0	0	0.018	0	91.23			0	0	0	1	3	0.18	1	0.05	0	0	0	0	0	0	0
 fdc:174854	sr_legacy	Beverages, carbonated, orange		48	0	12.3		0	0	0	0.03	0	87.6			0	0	0	2	5	0.06	1	0.1	0	0			0	0	0
 fdc:174906	sr_legacy	Bread, banana, prepared from recipe, made with margarine		326	4.3	53.5		10.5	2.237	1.1	0.755	0	29.2			4.48	3.13	43	134	21	1.4	14	0.35	106	1.7			0.1	11	1
 fdc:175039	sr_legacy	Waffles, plain, prepared from recipe		291	7.9	32.9		14.1	2.866		1.278		42			3.521	6.785	69	159	255	2.31	19	0.68	65	0.4			0.25	15	1
 fdc:175120	sr_legacy	Fish, mackerel, Atlantic, cooked, dry heat		262	23.85	0		17.81	4.176	0	0.207		53.27			7.006	4.3	75	401	15	1.57	97	0.94	54	0.4			19	2	0
+fdc:175159	sr_legacy	Fish, tuna, fresh, yellowfin, raw		109	24.4	0	0	0.49	0.172	0	0.113	0	74.03			0.116	0.147	39	441	4	0.77	35	0.37	18	0	1.7	0.24	2.08	2	0
 fdc:175161	sr_legacy	Fish, whiting, mixed species, cooked, dry heat		116	23.48	0	0	1.69	0.4	0	0.33	0	74.71			0.445	0.587	84	434	62	0.42	27	0.53	38	0	1.8	0.38	2.6	15	0
 fdc:175168	sr_legacy	Fish, salmon, Atlantic, farmed, cooked, dry heat		206	22.1	0	0	12.35	2.397	0	0.152	0	64.75			4.181	4.553	63	384	15	0.34	30	0.43	69	3.7	13.1	1.14	2.8	34	0
 fdc:175182	sr_legacy	Beans, baked, canned, plain or vegetarian		94	4.75	17.04	7.96	0.37	0.071	4.1	0.858	0	72			0.095	0.121	0	224	34	1.19	27	2.28	5	0	0	0.15	0	12	0
+fdc:175200	sr_legacy	Beans, pinto, mature seeds, cooked, boiled, without salt		143	9.01	17.22	0.34	0.65	0.136	9	0.003	0	62.95			0.133	0.235	0	436	46	2.09	50	0.98	0	0.8	0	0.94	0	172	0
 fdc:2341284	fndds	Ham, prosciutto		195	27.8	0.3	0	8.32	2.78	0	6.737	0	55.93			3.821	0.97	70	510	10	1.11	25	2.81	0	0	0.9	0.28	0.88	5	0
 fdc:2341307	fndds	Pork, belly		404	26.58	0	0	32.24	11.675	0	1.12	0	39.51			13.977	5.375	104	284	55	1.08	20	3.52	10	0	1.6	0.28	0.89	0	0
 fdc:2341355	fndds	Chicken, NS as to part, fried, coated, skin / coating eaten		251	21.75	6.94	0	15.02	3.999	0.2	1.677	0	53.52			6.838	2.796	100	264	44	0.86	24	1.26	14	0	0.1	0.49	0.4	11	1
@@ -499,6 +671,7 @@ fdc:2342572	fndds	Pho		89	6.15	9.78	0.77	2.26	0.672	0.6	1.008	0	79.91			0.893	0.
 fdc:2342606	fndds	Clam chowder, New England, prepared with milk		62	3.25	7.24	2.66	2.1	1.106	0.3	0.688	0	85.25			0.232	0.509	7	188	71	1.23	12	0.4	38	2.1	0.6	0.22	4.9	7	0
 fdc:2342655	fndds	Egg, Benedict		288	13.81	7.88	1.17	22.1	10.251	0.6	1.17	0	53.51			6.146	2.036	271	325	58	1.56	15	1.19	232	1.4	1.4	1.14	0.49	33	1
 fdc:2342656	fndds	Egg, deviled		198	11.52	1.07	1.07	15.9	3.948	0	1.075	0	69.7			5.114	5.014	343	116	46	1.1	9	0.97	137	0	2	1.21	1.02	40	0
+fdc:2342926	fndds	Textured vegetable protein, dry		366	51.1	16.42	16.42	3.33	0.136	17.5	0.005	0	6.24			0.208	0.533	0	2480	338	7.34	313	4.44	2	0	0	0.12	0	305	0
 fdc:2342931	fndds	Soybean soup, miso broth		32	2.5	1.87	0.83	1.56	0.218	0.4	1.532	0	91.81			0.453	0.622	4	57	16	0.32	8	0.3	1	0.1	0.1	0.21	0.13	6	0
 fdc:2343089	fndds	Focaccia, Italian, plain		249	8.77	34.02	1.75	7.89	0.877	1.8	1.403	0	45.91			5.67	0.994	0	114	35	3.16	20	1.33	0	0	0	1.42	0	84	1
 fdc:2343103	fndds	Garlic bread, NFS		349	8.34	39.14	3.68	16.58	5.27	2.5	1.55	0	31.72			4.66	5.426	0	103	27	3.04	23	0.87	13	0.2	0.2	1.18	0.08	122	1
@@ -512,6 +685,8 @@ fdc:2343493	fndds	Pie, pumpkin		249	4.76	34.64	24.55	9.78	4.107	1.7	0.63	0	47.77
 fdc:2343507	fndds	Fritter, plain		378	6.56	26.56	2.06	26.93	5.64	0.9	0.85	0	37.6			9.839	8.974	67	125	64	2.1	15	0.58	76	0	0.8	3.58	0.23	13	1
 fdc:2343522	fndds	Strudel, apple		281	1.96	36.38	21.1	14.08	7.604	0.8	0.33	0	46.03			2.823	0.501	39	67	9	0.3	6	0.18	126	0.5	0.1	0.08	0	9	1
 fdc:2343542	fndds	Danish pastry, plain or spice		403	7	43.3	19.78	22.4	5.681	1.3	1.035	0	24.3			12.515	2.933	21	125	71	1.96	19	0.72	6	0.1	0	0.39	0.1	33	1
+fdc:2343610	fndds	Nutrition bar or meal replacement bar, NFS		426	30	43	27	14	4.499	2	1.11	0	7			3.828	4.804	8	250	200	3.6	80	7.5	1050	120	0	24	4.2	0	1
+fdc:2343678	fndds	Corn nuts		446	8.5	64.96	0.61	15.64	2.43	6.9	1.41	0	1.3			9.46	3.05	0	278	9	1.67	113	1.78	0	0	0	1.98	0	0	0
 fdc:2343750	fndds	Pretzels, soft, NFS		345	8.01	67.68	0.24	4	1.283	1.7	1.938	0	14.66			1.326	0.962	2	86	23	3.83	21	0.92	8	0	0	0.56	0	23	0
 fdc:2343787	fndds	Pancakes, plain		282	7.41	33.22	7.05	12.07	3.027	2.1	1.27	0	42.43			4.162	3.64	66	174	206	1.45	20	0.73	77	0	1	1.62	0.38	11	1
 fdc:2343999	fndds	Taco, corn tortilla, beef, cheese		249	15.5	13.19	0.36	13.97	4.536	2.1	0.94	0	53.65			5.601	2.314	47	214	70	1.63	35	3.55	12	0	0.1	0.81	1.27	6	0
@@ -544,4 +719,14 @@ fdc:2345582	fndds	Fried onion rings		352	4.19	37.34	4.96	19.82	3.172	2.6	1.438	0
 fdc:2345592	fndds	Vegetable tempura		238	3.81	18.82	1.55	15.81	2.359	1.6	0.033	0	59.4			6.228	6.056	38	175	22	1.57	15	0.39	60	15	0.2	2.63	0.06	19	1
 fdc:2345732	fndds	Pesto sauce		580	8.61	4.67	0.7	59.17	10.306	1	2.47	0	22.76			33.265	10.071	16	199	207	1.87	61	2.08	91	3.6	0.1	10.63	0.25	19	0
 fdc:2345870	fndds	Gelatin dessert		60	1.22	14.19	13.49	0	0	0	0.188	0	84.39			0	0	0	1	3	0.02	1	0.01	0	0	0	0	0	1	0
+fdc:2345970	fndds	Coffee, Cafe Mocha		64	2.56	10.22	9.3	1.47	0.855	0	0.115	0	85.07			0.303	0.058	6	149	96	0.02	25	0.38	63	0.2	0.8	0.02	0.33	2	0
 fdc:2346178	fndds	Horchata beverage, made with water		88	1.09	19.95	8.07	0.13	0.029	0.5	0.01	0	78.13			0.032	0.027	0	20	13	0.7	5	0.18	0	0	0	0.03	0	1	1
+fdc:2346191	fndds	Sports drink, dry concentrate, not reconstituted		380	0	97.9	97.15	1.01	0.183	0	0.325	0	0.52			0.129	0.531	0	39	11	0.17	165	0.03	0	40.6	0	0.08	0	0	0
+fdc:2346206	fndds	Daiquiri		119	0.09	15.54	14.93	0.1	0.008	0.1	0.16	8.1	75.9			0.004	0.021	0	28	3	0.11	2	0.06	0	2.5	0	0.02	0	1	0
+fdc:2346214	fndds	Margarita		122	0.08	16.06	16.06	0.08	0.006	0	0.51	8.2	75.08			0.002	0.015	0	22	2	0.09	1	0.06	0	2	0	0	0	0	0
+fdc:2346257	fndds	Liqueur with cream		327	2.8	20.9	19.76	15.7	9.664	0	0.23	13.8	46.5			4.458	0.669	58	32	16	0.13	2	0.16	173	0.2	0	0.45	0.08	2	0
+fdc:2346281	fndds	Tequila		231	0	0	0	0	0	0	0.003	33.4	66.6			0	0	0	2	0	0.04	0	0.04	0	0	0	0	0	0	0
+fdc:2346303	fndds	Nutritional drink or shake, high protein, ready-to-drink, NFS		61	6.59	0.6	0.6	3.38	0.508	0.4	0.18	0	88.57			2.1	0.767	4	179	130	0.96	44	0.85	171	19.4	1.1	4.58	0.6	0	1
+fdc:2346346	fndds	Energy drink, sugar free		4	0.25	0.7	0	0.08	0	0	0.17	0	98.35			0	0	0	3	13	0.02	3	0	0	0	0	0	2.24	0	0
+fdc:2346352	fndds	Sports drink, low calorie		8	0.05	1.94	1.3	0.01	0	0	0.113	0	97.94			0	0	0	13	0	0	0	0	0	0	0	0	0	0	0
+fdc:2346353	fndds	Fluid replacement, electrolyte solution		10	0	2.45	2.45	0	0	0	0.253	0	96.44			0	0	0	77	10	0	1	0.02	0	0	0	0	0	0	0

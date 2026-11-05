@@ -16,7 +16,10 @@
       training.db (with the notes) is still backed up.
     - meal_photos: photos of the logged meals, kept on this phone only (the quota, and they never
       leave the device); food.db with the entries is still backed up.
-    Cloud sync bookkeeping lives in noBackupFilesDir, which is never backed up.
+    - product_photos: photos of the products found by barcode, downloaded from Open Food Facts; a
+      restored phone downloads them again at the product's next lookup (the quota).
+    Cloud sync bookkeeping and the embeddings of the scanned products' photos (product_embeddings.bin,
+    computed again on a new phone) live in noBackupFilesDir, which is never backed up.
     Keep in sync with data_extraction_rules.xml.
 -->
 <full-backup-content>
@@ -38,4 +41,5 @@
     <exclude domain="database" path="firestore.%5BDEFAULT%5D.globalfitness-app.%28default%29-shm" />
     <exclude domain="file" path="exercise_photos/" />
         <exclude domain="file" path="meal_photos/" />
+    <exclude domain="file" path="product_photos/" />
 </full-backup-content>

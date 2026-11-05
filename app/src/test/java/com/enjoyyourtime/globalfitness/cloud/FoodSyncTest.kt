@@ -464,6 +464,17 @@ class FoodSyncTest {
     }
 
     @Test
+    fun aProductsPhotoStaysOnThePhone() {
+        val plain = CustomFood("c1", "Nutella", "Ferrero", "3017620422003", FoodUnit.G, Nutrients(kcal = 539.0), 15.0, CustomFoodSource.OFF, 5, 9)
+        val f = plain.copy(imageUrl = "https://images.openfoodfacts.org/a.jpg", image = "off_1.jpg")
+        val map = FoodCodec.customFoodToMap(f)
+        assertEquals("nothing of the photo in the cloud document", FoodCodec.customFoodToMap(plain), map)
+        assertTrue(map.values.none { it is String && (it.contains("openfoodfacts") || it.contains(".jpg")) })
+        assertEquals("not part of the version either", FoodMerge.versionOf(plain), FoodMerge.versionOf(f))
+        assertEquals(plain, (FoodCodec.customFoodFromMap("c1", map, null) as Decoded.Live).record)
+    }
+
+    @Test
     fun baseCodecRoundTrip() {
         val base = FoodBase(
             datasetKey = "ds",

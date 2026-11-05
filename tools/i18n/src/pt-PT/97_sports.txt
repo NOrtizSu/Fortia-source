@@ -35,3 +35,23 @@ ex_martial_arts = Artes marciais
 # Others
 ex_climbing = Escalada
 ex_golf = Golfe
+
+# Snow (1.8)
+ex_alpine_skiing = Esqui alpino
+ex_cross_country_skiing = Esqui de fundo
+ex_snowboarding = Snowboard
+
+# Water (1.8)
+ex_surfing = Surf
+ex_rowing = Remo (na água)
+ex_kayaking = Caiaque e canoagem
+ex_open_water_swimming = Natação em águas abertas
+
+# Team and racket sports (1.8)
+ex_rugby = Râguebi
+ex_table_tennis = Ténis de mesa
+ex_squash = Squash
+
+# Skating (1.8)
+ex_inline_skating = Patinagem em linha
+ex_ice_skating = Patinagem no gelo

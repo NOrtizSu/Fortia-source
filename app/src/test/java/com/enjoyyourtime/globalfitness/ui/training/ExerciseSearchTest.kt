@@ -98,6 +98,55 @@ class ExerciseSearchTest {
     }
 
     @Test
+    fun theExercisesAndSportsOf18AreFoundByTheWordsPeopleUse() {
+        fun findsAll(haystacks: Map<String, String>, query: String, vararg ids: String) {
+            val found = search(haystacks, query)
+            assertTrue("\"$query\" finds $found", found.containsAll(ids.toList()))
+        }
+        findsAll(spanish, "muscle up", "bar_muscle_up", "ring_muscle_up")
+        findsAll(spanish, "pino", "wall_handstand", "handstand", "wall_handstand_push_up")
+        findsAll(spanish, "calistenia", "front_lever", "back_lever", "tuck_planche", "human_flag")
+        findsAll(spanish, "pesa rusa", "kettlebell_halo", "american_kettlebell_swing", "kettlebell_overhead_carry")
+        findsAll(spanish, "halterofilia", "push_jerk", "clean_and_jerk", "squat_snatch", "snatch_pull")
+        // "Arrancada" in Spain, "arranque" in much of Latin America.
+        findsAll(
+            spanish, "arranque",
+            "power_snatch", "hang_power_snatch", "squat_snatch", "snatch_balance", "snatch_pull", "dumbbell_snatch", "kettlebell_snatch",
+        )
+        findsAll(spanish, "barra hexagonal", "trap_bar_deadlift")
+        findsAll(spanish, "strongman", "yoke_carry", "log_press", "atlas_stone", "tyre_flip", "sandbag_to_shoulder")
+        findsAll(spanish, "neumático", "tyre_flip")
+        findsAll(spanish, "trx", "suspension_row", "suspension_chest_press", "suspension_pike", "suspension_fallout")
+        findsAll(spanish, "pelota suiza", "swiss_ball_crunch", "swiss_ball_pass", "stir_the_pot")
+        findsAll(spanish, "fitball", "swiss_ball_crunch", "swiss_ball_hamstring_curl")
+        findsAll(spanish, "bosu", "bosu_squat", "bosu_push_up", "bosu_balance")
+        findsAll(spanish, "pilates", "pilates", "pilates_hundred", "pilates_teaser", "pilates_shoulder_bridge")
+        findsAll(spanish, "saco", "heavy_bag", "bag_kicks", "knee_strikes")
+        findsAll(spanish, "boxeo", "shadow_boxing", "heavy_bag", "speed_bag", "pad_work", "shadow_hooks", "shadow_uppercuts")
+        findsAll(spanish, "manoplas", "pad_work")
+        findsAll(spanish, "esquiar", "alpine_skiing", "cross_country_skiing")
+        findsAll(spanish, "ping pong", "table_tennis")
+        findsAll(spanish, "patines", "inline_skating", "ice_skating")
+        findsAll(spanish, "piragua", "kayaking")
+        findsAll(spanish, "nadar en el mar", "open_water_swimming")
+        findsAll(english, "muscle up", "bar_muscle_up", "ring_muscle_up")
+        findsAll(english, "hex bar", "trap_bar_deadlift")
+        findsAll(english, "stability ball", "swiss_ball_crunch", "swiss_ball_pike")
+        findsAll(english, "punching bag", "heavy_bag")
+        findsAll(english, "ping pong", "table_tennis")
+        findsAll(english, "rollerblade", "inline_skating")
+        findsAll(english, "skiing", "alpine_skiing", "cross_country_skiing")
+        // No false friends: padel is not paddling, the rowing machine is not rowing on the water by name alone.
+        assertFalse("kayaking" in search(spanish, "pádel"))
+        assertFalse("padel" in search(spanish, "piragua"))
+        assertFalse("rowing_machine" in search(spanish, "remo en el agua"))
+        assertFalse("plank" in search(spanish, "planche"))
+        // "Gancho" is the hook; the uppercut is not found by it.
+        assertTrue("shadow_hooks" in search(spanish, "gancho"))
+        assertFalse("shadow_uppercuts" in search(spanish, "gancho"))
+    }
+
+    @Test
     fun everySearchWordStringBelongsToABuiltInExerciseAndIsNamedAfterIt() {
         val ids = ExerciseCatalog.all.map { it.id }.toSet()
         assertEquals(emptySet<String>(), ExerciseAliases.ids - ids)

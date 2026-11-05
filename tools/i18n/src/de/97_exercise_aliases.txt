@@ -93,7 +93,7 @@ exa_box_jump = box jump, kastensprung, kastensprünge, plyo box, plyometrie, spr
 exa_tuck_jump = hocksprung, tuck jumps, tuck jump, knie zur brust springen
 exa_skater_jump = eisschnellläufer, skater, skaters, seitsprünge, seitliche sprünge
 exa_bear_crawl = bear crawl, krabbeln, bärenlauf, vierfüßlergang
-exa_shadow_boxing = shadow boxing, luftboxen, boxen in die luft, schläge, schlagen
+exa_shadow_boxing = shadow boxing, luftboxen, boxen in die luft, schläge, schlagen, jab, gerade, cross, eins-zwei
 exa_step_aerobics = stepbrett, aerobic, step aerobic, stepaerobic, aerobic step
 exa_battle_ropes = battle rope, seile, taue, seilwellen, wellen
 exa_sled_push = prowler, schlitten, sled push, gewichtsschlitten
@@ -123,3 +123,117 @@ exa_foam_roll_glutes = foam roller, blackroll, rolle, rollen, faszientraining, s
 exa_foam_roll_it_band = foam roller, blackroll, rolle, rollen, faszientraining, selbstmassage, smr, itb, tractus
 exa_foam_roll_upper_back = foam roller, blackroll, rolle, rollen, faszientraining, selbstmassage, smr, bws, brustwirbelsäule
 exa_foam_roll_lats = foam roller, blackroll, rolle, rollen, faszientraining, selbstmassage, smr
+
+# Free weights
+exa_kettlebell_snatch = kb snatch, one arm snatch, reißen, kettlebell reißen, einarmiges reißen
+
+# Sports and activities added in 1.8
+exa_alpine_skiing = ski, ski alpin, ski fahren, skifahren, piste, abfahrt, skiurlaub, schnee
+exa_cross_country_skiing = langlauf, skilanglauf, loipe, klassisch, skitour, nordisch, ski
+exa_snowboarding = snowboard, board, boarden, piste, schnee
+exa_surfing = surfen, surf, surfbrett, wellenreiten, bodyboard, wellen
+exa_rowing = rudern, ruderboot, boot, skullen, achter, regatta
+exa_kayaking = kanu, kanufahren, kajak, paddeln, sup, stand up paddling, kanadier
+exa_open_water_swimming = freiwasser, open water, schwimmen im see, schwimmen im meer, see, meer, triathlon
+exa_rugby = rugby union, rugby league, siebener-rugby, sevens
+exa_table_tennis = ping pong, pingpong, tt, platte
+exa_squash = squashball, schläger, racket
+exa_inline_skating = inliner, inlineskates, rollerblades, rollerblade, skaten, rollschuhe, rollschuhlaufen
+exa_ice_skating = schlittschuh, schlittschuhlaufen, schlittschuhe, eisbahn, eislaufbahn, eiskunstlauf
+
+# Advanced calisthenics (1.8)
+exa_bar_muscle_up = muscle up, muscleup, muscle-up, stange, calisthenics
+exa_ring_muscle_up = muscle up, muscleup, ringe, turnringe, calisthenics
+exa_wall_handstand = handstand, wand, handstand wand, wall walk, handbalance
+exa_handstand = handstand, freier handstand, handstand frei, handbalance, gleichgewicht
+exa_wall_handstand_push_up = hspu, handstand push-up, handstand liegestütze, handstanddrücken, kopfüber drücken
+exa_tuck_front_lever = front lever, lever, hangwaage, tuck, calisthenics
+exa_front_lever = lever, hangwaage, hangwaage vorlings, calisthenics
+exa_tuck_back_lever = back lever, lever, hangwaage, tuck, calisthenics
+exa_back_lever = lever, hangwaage, hangwaage rücklings, calisthenics
+exa_tuck_planche = planche, stützwaage, tuck, calisthenics
+exa_straddle_planche = planche, stützwaage, gegrätscht, straddle, calisthenics
+exa_human_flag = flag, fahne, menschliche fahne, flagge, pole flag, calisthenics
+exa_tuck_l_sit = l sit, l-sit, tuck sit, winkelstütz, hockstütz
+exa_archer_pull_up = archer, bogenschützen klimmzug, einarmige vorstufe, calisthenics
+exa_typewriter_pull_up = typewriter, schreibmaschine, seitliche klimmzüge, calisthenics
+exa_one_arm_push_up = einarmiger liegestütz, einhändige liegestütze, one arm push-up, liegestütz einarmig
+exa_shrimp_squat = shrimp, garnelen kniebeuge, einbeinige kniebeuge, single leg squat
+exa_skin_the_cat = ringe, turnringe, german hang, rückhang
+exa_ring_support_hold = ringe, turnringe, stütz, ringstütz, support hold
+exa_ring_push_up = ringe, turnringe, ring push-up, liegestütz ringe
+exa_hollow_body_rock = hollow rock, hollow, schaukeln, banane, bananenschaukel
+exa_pseudo_planche_push_up = pppu, planche lean, planche, vorgelehnte liegestütze
+exa_clap_push_up = plyo liegestütz, explosive liegestütze, plyometrische liegestütze, klatschen
+exa_hanging_windshield_wiper = windshield wipers, scheibenwischer, wipers, schräge bauchmuskeln hängend
+
+# Olympic lifts, kettlebells, strongman and CrossFit (1.8)
+exa_push_jerk = jerk, stoßen, ausstoßen, gewichtheben, olympisches gewichtheben
+exa_split_jerk = jerk, stoßen, ausstoßen, ausfallschritt, gewichtheben, olympisches gewichtheben
+exa_clean_and_jerk = c&j, clean, jerk, stoßen, umsetzen und ausstoßen, gewichtheben
+exa_squat_clean = full clean, clean, umsetzen, umsetzen in die hocke, gewichtheben
+exa_hang_power_snatch = snatch, hang snatch, reißen, reißen aus dem hang, gewichtheben
+exa_squat_snatch = full snatch, snatch, reißen, reißen in die hocke, gewichtheben
+exa_snatch_balance = snatch, drop snatch, reißen, gewichtheben
+exa_clean_pull = pull, zug, umsetzzug, gewichtheben
+exa_snatch_pull = pull, zug, reißzug, gewichtheben
+exa_trap_bar_deadlift = hex bar, hex bar deadlift, trap bar, sechseckstange, hexagonstange
+exa_kettlebell_halo = halo, kb, kopfkreisen, kettlebell kreisen
+exa_kettlebell_bottoms_up_press = bottoms up, bottom up press, kb press, kettlebell kopfüber
+exa_double_kettlebell_front_squat = kb front squat, double kb, zwei kettlebells, kettlebell kniebeuge
+exa_single_arm_kettlebell_swing = one arm swing, kb swing, einarmiger swing, einhändiger swing
+exa_american_kettlebell_swing = overhead swing, kb swing, crossfit, swing über kopf
+exa_kettlebell_overhead_carry = waiter walk, waiter's walk, kellnergang, kb carry, über kopf tragen
+exa_renegade_row = plank row, rudern im stütz, liegestütz rudern
+exa_devil_press = crossfit, burpee, devil's press, kurzhantel burpee
+exa_man_maker = crossfit, burpee, manmaker, man makers
+exa_dumbbell_thruster = thrusters, crossfit, kniebeuge mit drücken, kurzhanteln
+exa_double_unders = du, double under, doppelsprung, doppeldurchschlag, springseil, crossfit
+exa_burpee_box_jump_over = bbjo, burpee box, burpee über die box, box, crossfit
+exa_yoke_carry = yoke, joch, strongman
+exa_log_press = log, baumstamm, strongman
+exa_atlas_stone = stein, steine, atlas steine, stone to shoulder, strongman
+exa_tyre_flip = tire flip, tyre flip, reifen, reifen flippen, traktorreifen, strongman
+exa_sandbag_to_shoulder = sandbag over shoulder, sandbag, sandsack, sandsack schulter, strongman
+
+# Suspension trainer, bosu, Swiss ball, balance and Pilates (1.8)
+exa_suspension_chest_press = trx, schlingentrainer, sling trainer, liegestütz, brustdrücken
+exa_suspension_y_raise = trx, schlingentrainer, sling trainer, y fly, y raise, y heben
+exa_suspension_curl = trx, schlingentrainer, sling trainer, bizeps, curl
+exa_suspension_triceps_extension = trx, schlingentrainer, sling trainer, trizeps, trizepsstrecken
+exa_suspension_pistol_squat = trx, schlingentrainer, assistierte pistol, pistol squat, einbeinige kniebeuge
+exa_suspension_atomic_push_up = trx, schlingentrainer, atomic push-up, liegestütz mit knie zur brust
+exa_suspension_pike = trx, schlingentrainer, sling trainer, pike, klappmesser
+exa_suspension_hamstring_curl = trx, schlingentrainer, sling trainer, leg curl, beinbeuger
+exa_suspension_fallout = trx, schlingentrainer, sling trainer, rollout, fallout
+exa_bosu_squat = bosu ball, balance trainer, halbkugel, gleichgewicht
+exa_bosu_push_up = bosu ball, balance trainer, halbkugel, liegestütz
+exa_bosu_balance = bosu ball, balance trainer, halbkugel, propriozeption, gleichgewicht
+exa_swiss_ball_crunch = gymnastikball, pezziball, swiss ball, fitball, sitzball, stability ball
+exa_swiss_ball_pike = gymnastikball, pezziball, swiss ball, fitball, pike
+exa_swiss_ball_hamstring_curl = gymnastikball, pezziball, swiss ball, fitball, leg curl, beinbeuger
+exa_swiss_ball_pass = gymnastikball, pezziball, swiss ball, fitball, ballübergabe, v pass
+exa_stir_the_pot = gymnastikball, pezziball, swiss ball, plank, umrühren
+exa_single_leg_balance = gleichgewicht, balance, propriozeption, storch, auf einem bein stehen, einbeinig
+exa_crow_pose = krähe, kranich, crow, yoga, armbalance
+exa_v_up = klappmesser, jackknife, v sit-up, v-up
+exa_pilates_hundred = the hundred, hundred, hundreds, mattenpilates
+exa_pilates_roll_up = roll up, aufrollen, mattenpilates
+exa_pilates_single_leg_stretch = mattenpilates, beinwechsel
+exa_pilates_double_leg_stretch = mattenpilates
+exa_pilates_swimming = mattenpilates, swimming
+exa_pilates_teaser = mattenpilates, v sit, v-sitz
+exa_pilates_side_kick = mattenpilates, seitliches beinheben, beinheben seitlich
+exa_pilates_shoulder_bridge = mattenpilates, shoulder bridge, brücke, glute bridge
+
+# Combat drills (1.8)
+exa_heavy_bag = boxsack, sandsack, punching bag, boxen, schläge, sandsacktraining
+exa_speed_bag = boxbirne, birne, speedball, speed bag, boxen
+exa_double_end_bag = doppelendball, reflexball, double end bag, boxen
+exa_pad_work = pratzen, handpratzen, focus mitts, pratzentraining, boxen
+exa_shadow_hooks = boxen, schläge, haken, hook, seitwärtshaken
+exa_shadow_uppercuts = boxen, schläge, uppercut, aufwärtshaken
+exa_dumbbell_punches = boxen, schläge, hantelboxen, kurzhantel boxen, punches
+exa_bag_kicks = kickboxen, muay thai, tritte, kicks, roundhouse kick, halbkreistritt
+exa_knee_strikes = muay thai, knie, kniestoß, kniestöße, kickboxen
+exa_sprawl = mma, ringen, wrestling, takedown abwehr, takedown verteidigung

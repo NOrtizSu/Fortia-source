@@ -165,14 +165,15 @@ class FoodRepository(
     }
 
     /**
-     * Applies [transform] and stores the result with a new updatedAt, unless only its local check time
-     * changed (a product asked again that is still the same: no new version, nothing to back up).
+     * Applies [transform] and stores the result with a new updatedAt, unless only what this phone keeps
+     * for itself changed (a product asked again that is still the same, its photo: no new version,
+     * nothing to back up).
      */
     suspend fun updateCustomFood(id: String, transform: (CustomFood) -> CustomFood): CustomFood? = write {
         val current = _customFoods.value.firstOrNull { it.id == id } ?: return@write null
         val changed = transform(current).let { it.copy(name = it.name.trim()) }
         if (changed == current) return@write current
-        val newVersion = changed.copy(checkedAt = current.checkedAt) != current
+        val newVersion = changed.withLocalOf(current) != current
         val updatedAt = if (newVersion) maxOf(clock(), current.updatedAt + 1) else current.updatedAt
         val stored = changed.copy(id = id, createdAt = current.createdAt, updatedAt = updatedAt)
         withContext(io) { store.upsertCustomFood(stored) }
@@ -237,9 +238,9 @@ class FoodRepository(
                 upsertEntries = batch.upsertEntries.filter { entries[it.id]?.updatedAt == seen.entries[it.id] }
                     .map { e -> e.copy(photo = entries[e.id]?.photo) },
                 removeEntries = batch.removeEntries.filter { entries[it]?.updatedAt == seen.entries[it] },
-                // A product from the cloud keeps when this phone last asked Open Food Facts about it.
+                // A product from the cloud keeps when this phone last asked Open Food Facts about it, and its photo.
                 upsertCustomFoods = batch.upsertCustomFoods.filter { foods[it.id]?.updatedAt == seen.customFoods[it.id] }
-                    .map { f -> f.copy(checkedAt = foods[f.id]?.checkedAt) },
+                    .map { f -> f.withLocalOf(foods[f.id]) },
                 removeCustomFoods = batch.removeCustomFoods.filter { foods[it]?.updatedAt == seen.customFoods[it] },
             )
             if (safe.isEmpty) return@write safe to emptyList()

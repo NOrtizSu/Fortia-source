@@ -25,6 +25,8 @@ food_portion_tbsp = Thìa canh
 food_portion_tsp = Thìa cà phê
 food_portion_handful = Nắm
 food_portion_serving = Phần
+# The measuring scoop that comes in a tub of protein powder (~30 g)
+food_portion_scoop = Muỗng (scoop)
 
 # Meals of the day (sections of the day, chips of the confirm page). In Spanish "Comida" is the tab, so lunch is "Almuerzo"
 foodlog_meal_breakfast = Bữa sáng
@@ -241,9 +243,9 @@ health_rationale_write_meals = Nếu bạn cho phép, Fortia cũng ghi các th�
 notice_litert = Chạy trình nhận diện món ăn của chúng tôi trên điện thoại.
 notice_zxing = Đọc mã vạch sản phẩm từ ảnh.
 open_source_food_data = Dữ liệu thực phẩm
-notice_open_food_facts = Sản phẩm đóng gói được tìm theo mã vạch. Dữ liệu © những người đóng góp Open Food Facts, theo Open Database License (ODbL).
+notice_open_food_facts = Sản phẩm đóng gói được tìm theo mã vạch. Dữ liệu © những người đóng góp Open Food Facts, theo Open Database License (ODbL); ảnh sản phẩm © những người đóng góp Open Food Facts, theo CC BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0/).
 notice_usda = Giá trị dinh dưỡng của danh sách thực phẩm: U.S. Department of Agriculture, Agricultural Research Service, FoodData Central. Phạm vi công cộng (CC0).
 notice_ciqual = Giá trị dinh dưỡng của danh sách thực phẩm: Anses, bảng thành phần thực phẩm Pháp Ciqual, theo Licence Ouverte / Etalab 2.0.
 notice_food_model_name = Trình nhận diện món ăn của Fortia
-notice_food_model_license = Mô hình của riêng chúng tôi (xem thẻ mô hình)
+notice_food_model_license = Mô hình của riêng chúng tôi (xem thẻ mô hình) · AGPL-3.0 · food_model.tflite: AGPL-3.0 / CC BY-SA 4.0
 notice_food_model = Các mô hình của riêng chúng tôi, dựa trên MobileNetV4 (timm, Apache-2.0) và Ultralytics YOLO11n (AGPL-3.0), được huấn luyện bằng hình ảnh từ Open Images (CC BY 2.0), Wikimedia Commons (giấy phép tự do) và MyFoodRepo (CC BY 4.0); ước tính khối lượng được hiệu chỉnh bằng Nutrition5k (CC BY 4.0). Danh sách hình ảnh và tác giả được công bố cùng mã nguồn.

@@ -359,7 +359,8 @@ private fun EntryRow(e: FoodEntry, onClick: () -> Unit) {
                 style = MaterialTheme.typography.bodyMedium.merge(TabularNumbers),
             )
         },
-        leadingContent = { MealThumbnail(e.photo, 48.dp) },
+        // The meal photo, else the product's photo (the row reads the name already).
+        leadingContent = { MealThumbnail(e.photo, 48.dp, customFoodId = e.customFoodId) },
         trailingContent = {
             Text(
                 e.nutrients.kcal?.let { stringResource(R.string.value_kcal, FoodFormat.kcal(it)) } ?: "—",

@@ -1,0 +1,30 @@
+# Comida after 1.7.0: the photo of a product found by its barcode, from Open Food Facts.
+# The rest of the food log is in 99_food.txt, 99_food_160.txt and 99_food_170.txt.
+
+# The credit line under a product of Open Food Facts when its photo shows too (foodlog_off_attribution without one).
+# ODbL is the licence of the data, CC BY-SA the licence of the photo: keep both names as they are.
+foodlog_off_attribution_photo = البيانات والصورة: Open Food Facts (ODbL, CC BY-SA)
+
+# A packaged product on the meal photo ("What's on the plate?" page).
+foodlog_pack_barcode = الرمز الشريطي %1$s في الصورة
+foodlog_pack_match = هل هو %1$s؟
+foodlog_pack_match_text = أحد المنتجات التي مسحتها
+foodlog_pack_suggestions = ربما أحد منتجاتك
+foodlog_pack_search = البحث عن المنتج من عبوته
+foodlog_pack_reading = جارٍ قراءة العبوة…
+foodlog_pack_words_label = كلمات البحث
+foodlog_pack_words_hint = العلامة التجارية واسم المنتج
+foodlog_pack_searching = جارٍ البحث عن «%1$s» في Open Food Facts…
+foodlog_pack_results = المنتجات المطابقة لـ«%1$s»
+foodlog_pack_results_text = اختر منتجك: قيمه مأخوذة من Open Food Facts.
+foodlog_pack_no_text = تعذّرت قراءة أي كلمات على العبوة. اكتب العلامة التجارية والاسم أعلاه، أو التقط صورة للرمز الشريطي.
+foodlog_pack_read_failed = تعذّرت قراءة نص العبوة هذه المرة. أعد المحاولة.
+foodlog_pack_none = لا يوجد في Open Food Facts أي منتج لـ«%1$s». غيّر الكلمات أعلاه، أو التقط صورة للرمز الشريطي، أو ابحث عن الطعام.
+foodlog_pack_offline = لا يوجد اتصال: لا يمكن البحث عن العبوة. أعد المحاولة، أو التقط صورة للرمز الشريطي.
+foodlog_pack_busy = عمليات بحث كثيرة في وقت قصير. أعد المحاولة بعد دقيقة.
+foodlog_pack_unavailable = تتطلب قراءة العبوات خدمات Google Play. اكتب العلامة التجارية والاسم أعلاه، أو التقط صورة للرمز الشريطي.
+foodlog_pack_preparing = يجري تثبيت ميزة التعرّف على النص على هاتفك. أعد المحاولة بعد قليل.
+foodlog_pack_private = يُقرأ النص على هاتفك؛ ولا يُرسل إلى Open Food Facts للبحث إلا الكلمات الموجودة في الحقل.
+foodlog_pack_barcode_photo = صورة الرمز الشريطي
+# Open source page: the text recognition library (Google ML Kit, through Google Play services).
+notice_mlkit = يقرأ الكلمات في صورة العبوة، على الهاتف (خدمات Google Play).
